@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 3.6.1 (26313) - http://www.bohemiancoding.com/sketch -->
+    <title>info_active</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-3" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Icons" transform="translate(-189.000000, -136.000000)" fill="#000000">
+            <path d="M200,149 L201,149 L201,150 L200,150 L200,151 L199,151 C198.447715,151 198,150.549025 198,150.009222 L198,146 L197,146 L197,145 L198.5,145 L199,145 C199.552285,145 200,145.450975 200,145.990778 L200,149 Z M199,154 C203.418278,154 207,150.418278 207,146 C207,141.581722 203.418278,138 199,138 C194.581722,138 191,141.581722 191,146 C191,150.418278 194.581722,154 199,154 Z M198,141 L200,141 L200,143 L198,143 L198,141 Z" id="Oval-447"></path>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,36 @@
+.slider {
+	display: flex;
+	align-items: center;
+	color: rgba(0,0,0,.5);
+	padding: 12px;
+
+	a {
+		color: currentColor;
+
+		.svgIcon {
+			display:block;
+		}
+		
+		&:first-child {
+			margin-right: 10px;
+		}
+		
+		&:last-child {
+			margin-left: 10px;
+		}
+
+		&:active {
+			color: rgba(0,0,0,.8);
+		}
+	}
+
+	input {
+		flex:1;
+	}
+}
+
+.themeDark {
+	.slider {
+		color: rgba(255,255,255,.5);
+	}
+}

@@ -1,0 +1,88 @@
+@require "../../consts.styl";
+
+macTabBarGap = 69px;
+
+columnsPlatformMacMainIsLeft()
+	#main > header, #panel > header {
+		.headerWrap {
+			padding-left: macTabBarGap;
+		}
+	}
+columnsPlatformMacReaderIsLeft()
+	#reader > header {
+		.headerWrap {padding-left: macTabBarGap;}
+	}
+
+//all time
+html.electron.mac {
+	#markup:not(.themeDark) #main {
+		background: white;
+
+		header {
+			background: contentBackground;
+		}
+	}
+}
+
+@media only screen and (min-width : 650px) {
+	/*html.electron.mac {
+		#markup {
+			transition: background .2s ease-in-out;
+		}
+	
+		body:not(.mode-panel) {
+			#panel, #sidebar-black-overlay {
+				transition: none !important;
+			}
+			
+			#markup.theme-sidebar-default/*, #markup.themeDark* {
+				background: transparent;
+				
+				#sidebar {
+					background: transparent;
+				}
+			}
+			
+			/*#markup.themeDark {
+				background: rgba(darkBackground,.4);
+			}*
+		}
+	}*/
+}
+
+//only not fullscreen
+html.electron.mac:not(.electron-full-screen) {
+	#sidebar .raindropLogo {
+		display: none;
+	}
+
+	#sidebar > header {
+		.headerWrap {
+			padding-left: (macTabBarGap + 10px);
+		}
+	}
+
+	#main > header, #reader > header, #sidebar > header {
+		.headerWrap {
+			transition: padding layoutTransitionSpeed ease-in-out, opacity .1s ease-in-out;
+		}
+	}
+
+	body.mode-reader:not(.mode-force-sidebar):not(.mode-reader-fullscreen):not(.mode-reader-modal) {
+		columnsPlatformMacMainIsLeft()
+	}
+
+	body.mode-reader.mode-reader-fullscreen {
+		columnsPlatformMacReaderIsLeft()
+	}
+}
+
+columnsPlatformMacSmall()
+
+columnsPlatformMacExtension()
+	html.electron.mac:not(.electron-full-screen) {
+		columnsPlatformMacMainIsLeft()
+		columnsPlatformMacReaderIsLeft()
+	}
+
+columnsPlatformMacBig()

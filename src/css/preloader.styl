@@ -1,0 +1,119 @@
+@require "consts.styl";
+
+@keyframes preloaderAppear {
+	0%{
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+@keyframes preloaderDash{
+	0%{
+		stroke-dasharray: 1,200;
+		stroke-dashoffset: 0;
+	}
+	50%{
+		stroke-dasharray: 89,200;
+		stroke-dashoffset: -35px;
+	}
+	100%{
+		stroke-dasharray: 89,200;
+		stroke-dashoffset: -124px;
+	}
+}
+
+.overlayPreloader {
+	position: absolute;
+	left:0;top:0;right:0;bottom:0;
+	z-index: 3;
+	display: flex;
+	align-items:center;
+	justify-content:center;
+	cursor: wait;
+	opacity: 1;
+	transition: opacity .3s ease-in-out;
+	transition-delay: .2s;
+	//background: rgba(0,0,0,.02);
+	
+	&.hidden {
+		opacity:0;
+		display:flex !important;
+		pointer-events: none;
+		//transition-delay: 0 !important;
+		transition-duration: .2s;
+		
+		.preloaderPath {
+			//animation: none;
+			stroke: transparent !important;
+		}
+	}
+}
+
+.preloader {
+	position: relative;
+	margin: 0px auto;
+	width: 40px;
+	display: inline-block;
+	//animation: preloaderAppear .2s ease-in-out;
+	//background: rgba(colorTheme, .05);
+	//background: var(--accentOverlay, rgba(colorTheme, .05));
+	border-radius: 50%;
+
+	&:before {
+		content:'';
+		display: block;
+		padding-top: 100%;
+	}
+
+	.preloaderCircular {
+		animation: rotate 1s linear infinite;
+		height: 100%;
+		transform-origin: center center;
+		width: 100%;
+		position: absolute;
+		top: 0; bottom: 0; left: 0; right: 0;
+		margin: auto;
+	}
+
+	.preloaderPath {
+		stroke-dasharray: 1,200;
+		stroke-dashoffset: 0;
+		animation: preloaderDash 1.5s ease-in-out infinite;
+			stroke-dasharray: 89,200;
+		stroke-dashoffset: -35px;
+		stroke-linecap: square;
+		stroke-width: 2px;
+		stroke-miterlimit: 10px;
+		stroke: colorTheme;
+		stroke: var(--accentColor, colorTheme);
+		transition: stroke .2s ease-in-out;
+	}
+	
+	&.size-small {
+		width: 24px;
+		
+		.preloaderPath {
+			stroke-width: 3px;
+		}
+	}
+	
+	&.size-medium {
+		width: 30px;
+	}
+	
+	&.size-big {
+		width: 80px;
+		
+		.preloaderPath {
+			stroke-width: 1px;
+		}
+	}
+}
+
+.preloaderMax {
+	flex:1;
+	display:flex;
+	align-items: center;
+	justify-content: center;
+}

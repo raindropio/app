@@ -1,0 +1,36 @@
+.installExtensionPage {
+	.video {
+		display: flex;
+		justify-content: center;
+		align-items: flex-end;
+		box-shadow: inset 0px -30px 50px -20px rgba(0,0,0,0.1);
+		padding: 0 30px;
+		pointer-events: none;
+		background: transparent;
+			
+		video {
+			background: transparent;
+			object-position: bottom center;
+			flex: 1;
+			min-width: 0;
+			display: block;
+			max-width: 546px;
+			min-height: 400px;
+			border-top-left-radius: 2px;
+			border-top-right-radius: 2px;
+			//box-shadow: 0px 0px 0px 1px rgba(0,0,0,.15);
+		}
+	}
+
+	.button, .button b {
+		flex: 1;
+		justify-content: center;
+		cursor: pointer;
+	}
+
+	.button b {
+		height: 32px;
+    	line-height: 28px;
+		@extend .font-weight-semibold !optional;
+	}
+}

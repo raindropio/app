@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="10px" height="10px" viewBox="0 0 10 10" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 44.1 (41455) - http://www.bohemiancoding.com/sketch -->
+    <title>micro_broken</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M1,0 L9,0 C9.55228475,-1.01453063e-16 10,0.44771525 10,1 L10,9 C10,9.55228475 9.55228475,10 9,10 L1,10 C0.44771525,10 6.76353751e-17,9.55228475 0,9 L0,1 L0,1 C-6.76353751e-17,0.44771525 0.44771525,1.01453063e-16 1,0 L1,0 Z M1,4 L1,5 L2,5 L2,4 L1,4 Z M0,5 L0,6 L1,6 L1,5 L0,5 Z M9,4 L9,5 L10,5 L10,4 L9,4 Z M2,5 L2,7 L3,7 L3,5 L2,5 Z M3,3 L3,5 L4,5 L4,3 L3,3 Z M5,4 L5,5 L6,5 L6,4 L5,4 Z M7,3 L7,5 L8,5 L8,3 L7,3 Z M4,5 L4,6 L5,6 L5,5 L4,5 Z M6,5 L6,7 L7,7 L7,5 L6,5 Z M8,5 L8,6 L9,6 L9,5 L8,5 Z" id="Combined-Shape" fill="#000000"></path>
+    </g>
+</svg>

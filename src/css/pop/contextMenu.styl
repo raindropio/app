@@ -1,0 +1,137 @@
+@require "../consts.styl"
+
+#pop-body[data-name="contextMenu"] {
+	min-height: 0;
+	min-width: 0;
+	max-width: 370px;
+	background: sidebarBackground;
+	border-radius: 6px;
+	overflow: hidden;
+	
+	.overflow-scroll {
+		max-height: 250px;
+	}
+}
+
+.contextMenuList {
+	-webkit-font-smoothing: subpixel-antialiased;
+	overflow: hidden;
+	padding: 5px 0px;
+	font-family: 'San Francisco', -apple-system, BlinkMacSystemFont, '.SFNSText-Regular', sans-serif;
+
+	.contextMenuItem {
+		display: flex;
+		align-items: center;
+		color: black;
+		padding: 2px 20px;
+		font-size: 14px;
+		cursor: default;
+		
+		.title {
+			@extend .text-overflow;
+			flex:1;
+			min-width: 0;
+		}
+		.sublabel {
+			opacity: .5;
+			margin-left: 20px;
+			font-size: 12px;
+			
+			&:empty {
+				display:none;
+			}
+		}
+		
+		* {
+			pointer-events: none;
+		}
+		
+		.svgIcon {
+			margin-left: -8px;
+			margin-right: 10px;
+			opacity: .6;
+		}
+
+		
+		
+		&:hover:not(:active), &.active {
+			background: colorTheme;
+			background: var(--accentColor, colorTheme);
+			color: white;
+			
+			.svgIcon {
+				opacity:1;
+			}
+		}
+
+		&[disabled] {
+			pointer-events: none;
+			opacity: .4;
+		}
+	}
+	
+	.separator {
+		border-top: 1px solid rgba(0,0,0,.1);
+		display: block;
+		margin: 5px 0px;
+	}
+
+	&.selectable {
+		.contextMenuItem {
+			&:hover:not(:active):not(.active) {
+				background: rgba(0,0,0,.1);
+				color: black;
+			}
+		}
+	}
+	
+	&.size-medium {
+		.contextMenuItem {
+			font-size: 15px;
+			padding-top: 4px;
+			padding-bottom: 4px;
+			
+			.svgIcon {
+				margin-left:-4px;
+			}
+		}
+	}
+}
+
+.contextMenuList.two-columns {
+	display: flex;
+	flex-wrap: wrap;
+
+	.contextMenuItemWrap {
+		display: block;
+		width: 50%;
+		min-width: 0;
+		box-shadow: 1px 0 0 rgba(0,0,0,.08);
+		
+	}
+}
+
+.themeDark {
+	.contextMenuList {
+		.contextMenuItem {
+			color: rgba(255,255,255,.6);
+			
+			&:hover:not(:active), &.active {
+				color: darkBackground;
+			}
+		}
+		
+		.separator {
+			border-color: rgba(255,255,255,.1);
+		}
+		
+		&.selectable {
+			.contextMenuItem {
+				&:hover:not(:active):not(.active) {
+					background: rgba(255,255,255,.2);
+					color: darkBackground;
+				}
+			}
+		}
+	}
+}

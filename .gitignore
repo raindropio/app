@@ -1,0 +1,10 @@
+# OSX
+.DS_Store
+
+# Node
+node_modules
+yarn-error.log
+npm-debug.log
+
+# Next
+build

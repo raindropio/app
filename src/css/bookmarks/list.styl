@@ -1,0 +1,316 @@
+@require "../consts.styl";
+
+listCoverSize = 50px;
+
+listCoverSizeMake(size)
+    listCoverSizeWidthHeight = (listCoverSize + (10px * size));
+    
+    .element-list {
+        &:after {
+            left: rem(listCoverSizeWidthHeight + 32px);
+        }
+        
+        .cover, .cover-over, .addToFavorite {
+            width: rem(listCoverSizeWidthHeight);
+            height: rem(listCoverSizeWidthHeight);
+        }
+    }
+
+.view-list, .view-simple {
+    .section {
+        background: white;
+        margin-top: -1px;
+
+        &:first-child {
+            margin-top:0;
+        }
+    }
+}
+
+.element-list {
+    display: flex;
+    align-items: center;
+    padding: 12px baseHorizontalGap;
+    background: white;
+    position: relative;
+    transition: padding .2s ease-in-out;
+    
+    .rating {
+        box-shadow: none;
+        padding: 0;
+        margin: 0;
+        padding-left: 20px;
+        font-size: rem(13px);
+        width: 70px;
+        display: flex;
+        align-items: center;
+        
+        .ratingValue {
+            @extend .text-overflow;
+            opacity: .6;
+        }
+    }
+
+    &:after {
+        content: " ";
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        transition: left .2s ease-in-out;
+        border-top: 0.5px solid rgba(0,0,0,.07);
+        z-index:1;
+        transition: transform .2s ease-in-out;
+        //height: 1px;
+    }
+
+    .cover-wrap {
+        //display:none;
+        flex-shrink: 0;
+        position:relative;
+        align-self: flex-start;
+        
+        .cover-over {
+            position:absolute;
+            left:0;top:0;bottom:0;
+            border-radius:1px;
+            box-shadow: inset 0px 0px 0px 1px rgba(0,0,0,.07);
+        }
+
+        /*&:before {
+            content: "";
+            position:absolute;
+            left:0;top:0;right:0;bottom:0;
+            border-radius:2px;
+            box-shadow: inset 0px 0px 0px 1px rgba(0,0,0,.1);
+        }*/
+    }
+    
+    .selectElement {
+        display: flex;
+        bottom:0;
+        
+        label {
+            flex:1;
+            justify-content: flex-end;
+            margin: (baseHorizontalGap / 2) baseHorizontalGap;
+            margin-left: 1px;
+            //transform: translateX(-17px);
+            //transition: transform .2s ease-in-out;
+        }
+    }
+    
+    &.checked {
+        background: white !important;
+    }
+
+    .cover {
+        margin-right: 16px;
+    }
+    
+    .cover {
+        background: white;
+
+        &.cover-placeholder {
+            border-radius: 2px;
+            overflow: hidden;
+            box-shadow: inset 0px 0px 0px 1px rgba(0,0,0,.15), inset 0px -10px 20px rgba(255,255,255,.2);
+            .min-size {
+                display:block;
+                font-weight: bold;
+                font-size: 14px;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+            }
+        }
+    }
+    
+    .cover, .cover img {
+        transition: width .2s ease-in-out, height .2s ease-in-out;
+    }
+
+    .about {
+        min-width:0;
+        flex: 3;
+        
+        .title, p {
+            //max-width: 650px;
+        }
+    }
+
+    .info-wrap {
+        display: flex;
+
+        .info-path {
+            &:after {
+                margin:0 8px;
+                content: '·';
+            }
+        }
+    }
+
+    .info {
+        @extend .text-overflow;
+        //width: 200px;
+        text-align: left;
+        
+        &.right {
+            text-align: right;
+            width: 76px;
+            padding-left: 16px;
+        }
+    }
+    
+    .actions {
+        margin: 0;
+        position: absolute;
+        right: 0px;
+        top:1px;
+        bottom:1px;
+        background: inherit;
+        padding: 0 6px;
+        padding-right: 44px;
+        
+        .button {
+            position: relative;
+            z-index:1;
+        }
+    }
+    
+    &:last-child:after {
+        border:0;
+    }
+}
+
+.view-list  {
+    .addToFavorite {
+        padding: 4px;
+        display: flex;
+        //align-items: flex-end;
+        //justify-content: flex-end;
+    }
+}
+
+.view-simple {
+    .addToFavorite {
+        margin-left: -2px;
+        
+        &:hover + .cover {
+            visibility: hidden;
+        }
+    }
+    
+    .element-list.important {
+        .cover {
+            visibility: hidden;
+        }
+        
+        .addToFavorite .outline {
+            filter: none;
+        }
+    }
+}
+
+listCoverSizeMake(0)
+
+.view-list-cover-size-1 {
+    listCoverSizeMake(1)
+}
+.view-list-cover-size-2 {
+    listCoverSizeMake(2)
+}
+.view-list-cover-size-3 {
+    listCoverSizeMake(3)
+}
+.view-list-cover-size-4 {
+    listCoverSizeMake(4)
+}
+
+.select-mode .element-list {
+    //padding-left: 44px;
+    
+    .selectElement label {
+        
+    }
+}
+
+body.mode-disable-cover .element-list {
+    .cover-wrap, .cover {
+        display: none;
+    }
+
+    &:after {
+        left: rem(16px);
+    }
+}
+
+body.mode-disable-description .element-list {
+    .about .description {
+        display: none;
+    }
+}
+
+body.mode-reader #markup:not(.themeDark) div, #markup:not(.themeDark) .select-mode {
+    &.view-list, &.view-simple {
+        .section {
+            background: gridBackground;
+        }
+    }
+    
+    .element-list {
+        background: gridBackground;
+    }
+}
+
+html:not(.electron) .element-list {
+    &:hover, &.active {
+        /*.info {
+            display: none;
+        }*/
+            
+        .actions:before {
+            position: absolute;
+            left:-24px;
+            top:20%;
+            bottom:20%;
+            width: 80px;
+            background: inherit;
+            content: "";
+            filter: blur(10px);
+            pointer-events: none;
+            z-index:0;
+        }
+    }
+}
+
+html.retina.chrome {
+    .element-list:after {
+        border: 0;height: 1px;
+        box-shadow: 0px 0.5px 0px darken(subSeparatorColorAlpha,5%);
+    }
+    
+    .themeDark .element-list:after {
+        box-shadow: 0px 0.5px 0px rgba(255,255,255,.07);
+    }
+}
+
+
+
+.themeDark {
+    .view-list, .view-simple {
+        .section {
+            background: darkBackground;
+        }
+    }
+    
+    .element-list {
+        background: darkBackground;
+        
+        &.checked {
+            background: lighten(darkBackground,10%);
+        }
+        
+        &:after {
+            border-color: rgba(255,255,255,.07);
+        }
+    }
+}

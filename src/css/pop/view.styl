@@ -1,0 +1,82 @@
+@require "../consts.styl"
+
+#pop-body[data-name="view"] {
+	min-width: 0;
+	max-width: 600px;
+	font-size: 13px;
+	
+	.superForm:first-child {
+		box-shadow: 0px 1px 0px rgba(0,0,0,.07);
+		
+		.fieldName {
+			padding-top: 14px;
+		}
+	}
+
+	.slider input {
+		width:0;
+	}
+}
+
+.popBodyView {
+	overflow: hidden;
+}
+
+.popBodyViewSwitch {
+	//margin-bottom:-1px;
+	border-bottom: 1px solid rgba(0,0,0,.09);
+	text-align: center;
+	padding: 10px; 
+	padding-top: 0;
+	
+	a, a:hover {
+		display:inline-block;
+		text-align: center;
+		opacity: 0.6;
+		padding: 10px;
+		transition: opacity .2s ease-in-out;
+		position: relative;
+		color: black;
+		//box-shadow: 1px 0px 0px rgba(0,0,0,.1), 0px -1px 0px rgba(0,0,0,.1);
+		transition: filter .2s ease-in-out, opacity .2s ease-in-out;
+		
+		.svgIcon {
+			color: currentColor;
+			border-radius :2px;
+			//box-sizing: content-box;
+			//border: 1px solid rgba(0,0,0,.2);
+			//box-shadow: 0px 0px 0px 1px rgba(0,0,0,.2);
+			width: 80px;
+			height: 80px;
+			display:block;
+			margin-bottom: 7px;
+			//filter: grayscale(100%);
+			
+			opacity: .6;
+		}
+		
+		&.active {
+			@extend .font-weight-semibold !optional;
+			opacity:1;
+			filter: none;
+			color: colorTheme;
+			color: var(--accentColor, colorTheme);
+			
+			.svgIcon {
+				
+				opacity:1;
+				//border-color: inherit;
+			}
+			
+			/*&:before {
+				box-shadow: inset 0px 0px 0px 2px currentColor;
+				position: absolute;
+				left:5px;top:5px;right:5px;bottom:5px;
+				content: "";
+				pointer-events: none;
+				z-index:1;
+			}*/
+		}
+		
+	}
+}

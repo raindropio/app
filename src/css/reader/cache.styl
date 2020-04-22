@@ -1,0 +1,38 @@
+@require "../consts.styl";
+
+.cache-status {
+    box-shadow: 0 0.5px 0 subSeparatorColorAlpha, 0 1px 3px subSeparatorColorAlpha;
+    position: relative;
+    z-index: 2;
+
+    display: flex;
+    align-items: center;
+    //justify-content: center;
+    padding: 0 14px;
+    padding-bottom: 8px;
+
+    font-size: rem(15px);
+
+    p {
+        margin: 0;
+        padding: 0;
+    }
+
+    &[data-status='ready'] .cache-status-icon {
+        color: colorGreen
+    }
+
+    &[data-status='retry'] .cache-status-icon {
+        color: colorTheme
+    }
+
+    &[data-status='failed'], &[data-status^='invalid-'] {
+        .cache-status-icon {
+            color: colorRed
+        }
+    }
+}
+
+.cache-status-icon {
+    margin-right: 8px;
+}

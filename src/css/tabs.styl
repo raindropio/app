@@ -1,0 +1,36 @@
+@require "consts.styl"
+@require "buttons.styl"
+
+.tabs {
+	display: inline-flex;
+
+	.item {
+		@extend .button;
+		position: relative;
+		@extend .font-weight-semibold !optional;
+		
+		&:after {
+			position: absolute;
+			bottom: -1px;left:14px;right:14px;
+			content: " ";
+			border-bottom: 0px solid transparent;
+			transition: border .2s ease-in-out;
+		}
+
+		&.active {
+			padding-left: 4px;
+			padding-right: 4px;
+			
+			b {
+				@extend .font-weight-semibold !optional;
+				border-radius: 20px;
+				padding: 2px 10px;
+			}
+			
+			
+			&:after {
+				border-bottom: 2px solid;
+			}
+		}
+	}
+}

@@ -1,0 +1,71 @@
+@include "list.styl"
+
+simpleCoverSize = 16px;
+
+simpleCoverSizeMake(size)
+    simpleCoverSizeWidthHeight = (simpleCoverSize + (10px * size));
+    
+    .element-simple {
+        &:after {
+            left: rem(simpleCoverSizeWidthHeight + 32px);
+        }
+        
+        .cover, .cover img {
+            width: rem(simpleCoverSizeWidthHeight);
+            height: rem(simpleCoverSizeWidthHeight);
+        }
+    }
+
+.element-simple {
+	&:after {
+	}
+	
+	.selectElement {
+        label {
+        	//margin: 18px;
+        }
+        
+        .selectCheckbox {
+        	//margin-top:2px;
+        }
+    }
+	
+	.cover, .cover img {
+		display:block;
+	}
+
+	.cover {
+		background: transparent;
+		
+		&.cover-placeholder {
+			
+			
+            &:after {
+            	display:none;
+                background-size: 11px 7px !important;
+            }
+        }
+	}
+}
+
+simpleCoverSizeMake(0)
+
+.view-list-cover-size-1 {
+    simpleCoverSizeMake(1)
+}
+.view-list-cover-size-2 {
+    simpleCoverSizeMake(2)
+}
+.view-list-cover-size-3 {
+    simpleCoverSizeMake(3)
+}
+.view-list-cover-size-4 {
+    simpleCoverSizeMake(4)
+}
+
+
+html.web .elements-list:not(.select-mode) .element-simple:hover {
+	.cover {
+		opacity: 0;
+	}
+}

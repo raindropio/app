@@ -1,0 +1,37 @@
+collectionsInBlack()
+	.collection.active:not([data-is-focus="true"]), .collection.active {
+		background: rgba(255,255,255,.15) !important;
+	}
+
+	.collection .collectionIcon.svgIcon {
+		opacity: .7;
+		
+		&.accent {
+			color: white;
+		}
+	}
+	
+	.collection {
+		&.is-drag-over {
+	    	background-color: rgba(255,255,255,.1) !important;
+	    	box-shadow: inset 0px 0px 0px 2px rgba(255,255,255,.5);
+	    }
+	}
+
+	.group {
+		color: rgba(255,255,255,.55);
+		.toggle {
+			color:white;
+		}
+	}
+
+	.collectionMoveZone {
+		&:before {
+			background: white;
+		}
+		
+		&:after {
+			border-color: white;
+			background: transparent;
+		}
+	}

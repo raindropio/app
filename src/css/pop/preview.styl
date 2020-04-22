@@ -1,0 +1,70 @@
+@require "../consts.styl"
+
+#pop-body[data-name="preview"] {
+	min-width: 0;
+	max-width: 230px;
+	font-size: 13px;
+}
+
+.popBodyPreview {
+
+}
+
+.popBodyPreviewSwitch {
+	display: flex;
+	padding: 5px;
+	
+	a {
+		flex: 1;
+		height: 24px;
+		border-radius: 3px;
+		margin: 5px;
+		box-shadow: inset 0px 0px 0px 1px rgba(0,0,0,.1);
+
+		&.white {
+			
+		}
+		
+		&.sunset {
+			background: sunsetBackground;
+		}
+
+		&.dark {
+			background: darkBackground;
+		}
+
+		&.active {
+			box-shadow: inset 0px 0px 0px 1px colorTheme, inset 0px 0px 0px 3px white;
+		}
+		
+	}
+}
+
+.popBodyPreviewFont {
+	a {
+		display: block;
+		text-align: center;
+		font-size: 16px;
+		padding: 10px;
+		color: black;
+		box-shadow: inset 0px -1px 0px rgba(0,0,0,.07);
+
+		&.georgia {
+			font-family: Georgia;
+		}
+
+		&.verdana {
+			font-family: Verdana;
+		}
+		
+		&.active {
+			background: colorTheme;
+			background: var(--accentColor, colorTheme);
+			color: white;
+		}
+
+		&:last-child {
+			box-shadow: none;
+		}
+	}
+}

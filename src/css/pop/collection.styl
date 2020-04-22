@@ -1,0 +1,45 @@
+@require "../consts.styl"
+
+#pop-body[data-name="collection"] {
+	.collections {
+		padding-bottom: 16px;
+	}
+}
+
+.popCollectionCover {
+	@extend .font-weight-semibold !optional;
+	display: flex;
+	align-items: center;
+
+	color: colorTheme;
+	color: var(--accentColor, colorTheme);
+	font-size: 13px;
+	cursor: default;
+	padding: 4px 0px;
+
+	svg:last-child {
+		margin-right: -6px;
+	}
+
+	&:active {
+		filter: brightness(.8);
+	}
+}
+
+.popCollectionCoverImg {
+	display: block;
+}
+
+img.popCollectionCoverImg {
+	width: 32px;height: 32px;
+	object-fit: contain;
+}
+
+#pop-body[data-name="collectionsSortByTitle"] {
+	min-height: 0
+
+	.pop-content {
+		padding: 8px 10px
+		font-size: rem(13px)
+	}
+}

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="80px" height="80px" viewBox="0 0 80 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 3.8.3 (29802) - http://www.bohemiancoding.com/sketch -->
+    <title>80_moodboard_active</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-3" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard-7" transform="translate(-472.000000, -183.000000)" fill="#000000">
+            <path d="M472,184.997498 C472,183.89431 472.898438,183 473.997498,183 L550.002502,183 C551.10569,183 552,183.898438 552,184.997498 L552,261.002502 C552,262.10569 551.101562,263 550.002502,263 L473.997498,263 C472.89431,263 472,262.101562 472,261.002502 L472,184.997498 Z M474,185 L550,185 L550,261 L474,261 L474,185 Z" id="Combined-Shape-Copy-7"></path>
+            <rect id="Combined-Shape-Copy-11" opacity="0.1" x="472" y="183" width="80" height="80" rx="2"></rect>
+            <g id="view_masonry-copy" transform="translate(478.000000, 189.000000)">
+                <g id="Group">
+                    <rect id="Rectangle-1210" x="0" y="0" width="32" height="30" rx="1"></rect>
+                </g>
+                <g id="Group-Copy" transform="translate(36.000000, 0.000000)">
+                    <rect id="Rectangle-1210" x="0" y="0" width="32" height="10" rx="1"></rect>
+                </g>
+                <g id="Group-Copy-3" transform="translate(0.000000, 34.000000)">
+                    <rect id="Rectangle-1210" x="0" y="0" width="32" height="20" rx="1"></rect>
+                </g>
+                <g id="Group-Copy-2" transform="translate(36.000000, 14.000000)">
+                    <rect id="Rectangle-1210" x="0" y="0" width="32" height="20" rx="1"></rect>
+                </g>
+                <g id="Group-Copy-5" transform="translate(0.000000, 58.000000)">
+                    <rect id="Rectangle-1210" x="0" y="0" width="32" height="16" rx="1"></rect>
+                </g>
+                <g id="Group-Copy-4" transform="translate(36.000000, 38.000000)">
+                    <rect id="Rectangle-1210" x="0" y="0" width="32" height="36" rx="1"></rect>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

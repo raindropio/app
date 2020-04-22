@@ -1,0 +1,56 @@
+@require "../consts.styl";
+
+.elementDragPreview {
+	margin-top: 10px;
+	margin-left: 0;
+	font-size: 14px;
+	cursor: move;
+	
+	.count {
+		@extend .font-weight-semibold;
+		background: colorRed;
+		color: white;
+		display: inline-block;
+		text-align: center;
+		min-width: 20px;
+		height: 20px;
+		line-height: 20px;
+		border-radius: 20px;
+		position: relative;
+		z-index: 1;
+		padding: 0 5px;
+		
+		span {
+			display: block;
+		}
+	}
+	
+	.items {
+		margin-top: -8px;
+		margin-left: 10px;
+		
+		.itemWrap {
+
+		}
+		
+		.item {
+			margin-bottom: 1px;
+			display: inline-flex;
+			align-items: center;
+			background: white;
+			padding: 2px 8px;
+			box-shadow: 0 0 0 1px rgba(0,0,0,.1), 0 1px 1px rgba(0,0,0,.1);
+			border-radius: 20px;
+			color: rgba(0,0,0,.75);
+			
+			.svgIcon {
+				margin-right: 8px;
+			}
+			
+			.title {
+				@extend .text-overflow;
+				max-width: 300px;
+			}
+		}
+	}
+}

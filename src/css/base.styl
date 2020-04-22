@@ -1,0 +1,265 @@
+@require "normalize.styl";
+@require "fonts.styl";
+@require "consts.styl";
+@require "icons.styl";
+@require "buttons.styl";
+@require "forms.styl";
+@require "checkbox.styl";
+
+@require "preloader.styl";
+@require "slider.styl";
+@require "tabs.styl";
+@require "toast.styl";
+@require "search.styl";
+@require "searchInput.styl";
+
+@require "account.styl";
+@require "bookmarks/*";
+@require "collections/*";
+@require "columns/*";
+@require "pop/*";
+@require "reader/*";
+@require "parts/*";
+@require "clipper.styl";
+
+@require "apps.styl"
+
+:root {
+    --accentColor: colorTheme;
+}
+
+html.scrollbar-obtrusive:not(.mobile) {
+    //firefox specific
+    scrollbar-color: rgba(0,0,0,.17) transparent;
+
+    ::-webkit-scrollbar {
+        width: 0;
+        height: rem(scrollBarWidth);
+        will-change: width;
+        background: transparent;
+        transition: width .2s ease-in-out;
+    }
+    ::-webkit-scrollbar * {
+        background: transparent;
+    }
+    :hover::-webkit-scrollbar, body::-webkit-scrollbar {
+        width: rem(scrollBarWidth);
+    }
+
+    ::-webkit-scrollbar-thumb {
+        //border-radius: scrollBarWidth;
+        border: 3px solid rgba(0,0,0,0);
+        border-radius: rem(scrollBarWidth);
+        box-shadow: inset 0px 0px 0px 7px rgba(0,0,0,.2);
+        transition: box-shadow .2s ease-in-out;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+        box-shadow: inset 0px 0px 0px 7px rgba(0,0,0,.25);
+    }
+
+    ::-webkit-scrollbar-button{
+        width: 0;
+        height: 0;
+        display: none;
+    }
+
+    [data-super-overflow="true"] {
+        /*&:hover::-webkit-scrollbar {
+            width: 0;
+        }*/
+
+        &[data-scrolling="true"]:hover::-webkit-scrollbar, &::-webkit-scrollbar:hover {
+            width: scrollBarWidth !important;
+        }
+    }
+}
+
+
+::selection {
+    background: colorTheme;
+    background: var(--accentColor, colorTheme);
+    color: white;
+}
+
+::-moz-selection {
+    background: colorTheme;
+    background: var(--accentColor, colorTheme);
+    color: white;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+input:-webkit-autofill {
+     transition: background-color 9999s ease-out;
+}
+
+input, textarea, select, button {
+    color: inherit;
+    -webkit-user-select: text !important;
+    -moz-user-select: text !important;
+    -ms-user-select: text !important;
+    user-select: text !important;
+}
+
+figure {
+    margin:0;
+}
+
+progress::-webkit-progress-value {
+    transition: width .3s ease-in-out;
+}
+
+html {
+    transition: font-size .2s ease-in-out;
+    
+    &:not(.mobile) {
+        font-size: baseFontSize;
+    }
+    &.mobile {
+        font-size: (baseFontSize+1px);
+    }
+    
+    &[font-size=xs] {
+        font-size: (baseFontSize - 2px);
+    }
+    
+    &[font-size=m] {
+        font-size: (baseFontSize + 2px);
+    }
+    
+    &[font-size=l] {
+        font-size: (baseFontSize + 4px);
+    }
+}
+
+html, body, input, textarea, select, button {
+    @extend .font-weight-normal;
+}
+
+input, textarea, select, button {
+    font-size: 1rem;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    will-change: width;
+    overflow: hidden;
+    -webkit-tap-highlight-color: transparent;
+}
+
+#react {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+body {
+    //background: contentBackground;
+    font-size: 100%;
+    margin:0;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    
+    > canvas {
+        visibility: hidden;
+    }
+}
+
+html.mobile body {
+    height: 100%;
+    overflow: hidden;
+    width: 100%;
+    position: fixed;
+}
+
+a {
+    color: colorLink;
+    text-decoration: none;
+}
+a:hover {
+    color: #157CE3;
+}
+
+html.electron {
+    a {
+        cursor: default;
+    }
+    
+    &.windows body {
+        border-top: 1px solid rgba(0,0,0,.1);
+    }
+}
+
+input, textarea {
+    outline:none;
+}
+
+
+
+.headLabel, .extraHeadLabel {
+    font-size: rem(18px);
+    font-weight:normal;
+    margin: rem(10px) 0;
+    margin-top: rem(20px);
+
+    .preloader {
+        vertical-align: -7px;
+    }
+}
+
+.extraHeadLabel {
+    @extend .font-weight-light;
+    font-size: rem(32px);
+    max-width: 700px;
+}
+
+.mediumHeadLabel {
+    font-weight: normal;
+    font-size: rem(17px);
+    color: rgba(0,0,0,.6);
+}
+.themeDark .mediumHeadLabel {
+    color: rgba(255,255,255,.6);
+}
+
+.subHeadLabel {
+    font-size: rem(14px);
+    font-weight: normal;
+    margin:0;
+    color: #878787;
+    max-width: 320px;
+    margin:0 auto;
+    
+    .svgIcon {
+        vertical-align: middle;
+    }
+}
+
+.raindropLogo {
+    display: block;
+
+    svg {
+        width: rem(94px);
+        height: rem(11px);
+        opacity: .6;
+    }
+}
+
+.status-init, .status-loading {
+    cursor: progress;
+}
+
+.hidden {
+  display: none !important;
+}
+.invisible {
+  visibility: hidden !important;
+}
+
+.pull-right {
+    float:right;
+}

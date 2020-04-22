@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+  <g fill="none" fill-rule="evenodd">
+    <rect width="15" height="1" x="2" y="8" fill="#000"/>
+    <g fill="#000" transform="translate(7 2)">
+      <polygon points="2 2 3 2 3 4 2 4"/>
+      <polygon points="2.5 0 5 2 0 2"/>
+    </g>
+    <g fill="#000" transform="matrix(1 0 0 -1 7 18)">
+      <polygon points="2 2 3 2 3 4 2 4"/>
+      <polygon points="2.5 0 5 2 0 2"/>
+    </g>
+    <rect width="15" height="1" x="2" y="11" fill="#000"/>
+  </g>
+</svg>

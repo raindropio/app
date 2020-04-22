@@ -1,0 +1,17 @@
+{
+  "version": 2,
+  "name": "app_4",
+  "scope": "raindrop-io",
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@now/static-build",
+      "config": { "distDir": "build/web" }
+    }
+  ],
+  "routes": [
+    { "src": "/assets/(.*)",            "headers": { "cache-control": "public, must-revalidate, max-age=31536000" }, "continue": true },
+    { "src": "/legacy/4/?",             "dest": "/index.html" },
+    { "src": "/bookmarklet/1.0/(.*)",   "dest": "https://bookmarklet1.raindrop-io.now.sh/$1" }
+  ]
+}

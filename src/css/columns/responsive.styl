@@ -1,0 +1,322 @@
+sidebarOverlay()
+    box-shadow: 1px 0px 0px rgba(0,0,0,.1), 15px 0px 25px -10px rgba(0,0,0,.05);
+sidebarBlackOverlay()
+    opacity: 1;
+    pointer-events: auto;
+showButtonToggleSidebar()
+    margin-right: 0 !important;
+    max-width: 48px !important;
+    pointer-events:auto !important;
+    
+    &.button-toggle-sidebar-autowidth {
+        max-width: 200px !important;
+    }
+
+searchMin()
+    .searchButton {
+        min-width:0;
+    }
+    .searchButtonTitle {
+        display: none;
+    }
+    .searchInput {
+        opacity:0;
+        width: 0;
+        padding: 0;
+        min-width:0;
+    }
+
+readerFullScreen()   
+    #reader {
+        width: 100vw;
+    }
+    /*Reader full-screen*/
+    body.mode-reader #reader, body.mode-reader.mode-reader-modal:not(.mode-reader-fullscreen) #reader {
+        left: 0 !important;
+        width: 100vw !important;
+        //right: 0;
+        box-shadow: none;
+    }
+    
+    body.mode-reader {
+        #reader {
+            z-index: 11;
+        }
+
+        #reader header {
+            box-shadow: none;
+        }
+    
+        #reader-black-overlay {
+            opacity: 1;
+            pointer-events: auto;
+        }
+    }
+
+    /*Force sidebar mode if reader mode*/
+    body.mode-force-sidebar #sidebar {
+        //z-index: 13;
+        sidebarOverlay()
+    }
+     
+
+mainReaderSize(perc)
+    body:not(.mode-force-sidebar):not(.mode-reader-fullscreen):not(.mode-reader-modal).mode-reader #main, body:not(.mode-reader-fullscreen):not(.mode-reader-modal).mode-reader .view-grid {
+        left: 0;
+        //z-index: 11;
+        max-width: (mainCollapsedWidth*perc);
+        max-width: "calc(var(--mainCollapsedWidth,%s) * %s)" % (mainCollapsedWidth perc);
+    }
+    body:not(.mode-force-sidebar) #reader {
+        width: "calc(100vw - %s)" % (mainCollapsedWidth*perc);
+        width: "calc(100vw - (var(--mainCollapsedWidth,%s) * %s))" % (mainCollapsedWidth perc);
+    }
+    body:not(.mode-force-sidebar).mode-reader #reader {
+        left: (mainCollapsedWidth*perc);
+        left: "calc(var(--mainCollapsedWidth,%s) * %s)" % (mainCollapsedWidth perc);
+    }
+
+    body:not(.mode-reader-fullscreen):not(.mode-reader-modal).mode-reader #main {
+        max-width: (mainCollapsedWidth*perc);
+        max-width: "calc(var(--mainCollapsedWidth,%s) * %s)" % (mainCollapsedWidth perc);
+    }
+    
+#js_markup_status {
+    position:fixed;opacity:0;z-index:-1; 
+}
+
+.show-on-small-body, .show-on-extension {
+    display:none;
+}
+ 
+body:not(.mode-reader-fullscreen):not(.mode-reader-modal).mode-reader {
+    #sidebar {
+        transform: translateX(sidebarWidth * -1);
+        transform: translateX(calc(var(--sidebarWidth, sidebarWidth) * -1));
+    }
+
+    #panel {
+        transform: translateX(panelWidth * -1);
+        transform: translateX(calc(var(--panelWidth, panelWidth) * -1));
+    }
+}
+
+.button-toggle-sidebar {
+    overflow: hidden;
+    max-width:0;
+    margin-right: baseHorizontalGap;
+    pointer-events: none;
+    transition: max-width layoutTransitionSpeed ease-in-out, margin layoutTransitionSpeed ease-in-out;
+    
+    .button {
+        
+    }
+    
+    + .button {
+        margin-left: -14px;
+    }
+}
+
+html:not(.clipper) body:not(.mode-reader-fullscreen):not(.mode-reader-modal).mode-reader .button-toggle-sidebar {
+    showButtonToggleSidebar()
+}
+
+
+body.mode-reader:not(.mode-reader-fullscreen):not(.mode-reader-modal) {
+    .search.min {
+        //searchMin()
+    }
+
+    #main .hide-on-small-body {
+        display:none;
+    }
+    
+    #main .show-on-small-body {
+        display:initial;
+    }
+}
+
+//Panel
+body.mode-panel {
+    #panel {
+        sidebarOverlay()
+    }
+
+    #sidebar-black-overlay {
+        sidebarBlackOverlay()
+    }
+    
+    /*#reader {
+        display: none;
+    }*/
+}
+
+/* Small app */
+@media only screen and (max-width : 999px) {
+    #js_markup_status {
+        width:2px;
+    }
+
+    /*Sidebar hidden if reader mode */
+    body.mode-reader:not(.mode-reader-fullscreen):not(.mode-reader-modal) #main {
+        left: 0;
+        //z-index: 11;
+        max-width: 45%;
+    }
+    #reader {
+        width: 55%;
+    }
+    body.mode-reader #reader {
+        left: 45%;
+    }
+
+    /*Force sidebar mode if reader mode*/
+    body.mode-force-sidebar.mode-reader:not(.mode-panel) #sidebar {
+        sidebarOverlay()
+        //z-index: 13;
+    }
+    body.mode-force-sidebar.mode-reader #sidebar-black-overlay {
+        //z-index: 12;
+        sidebarBlackOverlay()
+    }
+
+    columnsPlatformMacSmall()
+}
+
+/* Extra: small body */
+@media only screen and (max-width : 999px) {
+    #markup .hide-on-small-body {
+        display:none;
+    }
+    #markup .show-on-small-body {
+        display:block;
+    }
+
+    body .search.min {
+        //searchMin()
+    }
+}
+
+/* Extension+ mode */
+@media only screen and (max-width : 700px) {
+    #markup {
+        --sidebarWidth: 240px;
+    }
+    
+    #main {
+        left: var(--sidebarWidth, sidebarWidth) !important;
+        max-width: 100% !important;
+    }
+    #sidebar {
+        transform: none !important;
+    }
+    
+    /*Multiline title*/
+    .element .title {
+        white-space: initial !important;
+    }
+    
+    readerFullScreen()
+}
+
+/* Extension mode */
+@media only screen and (max-width : 600px) {
+    #js_markup_status {
+        width:1px;
+    }
+    
+    /*Sidebar hidden*/
+    #sidebar, #panel {
+        transform: translateX(panelWidth * -1) !important;
+        transform: translateX(calc(var(--panelWidth, panelWidth) * -1)) !important;
+        
+        //width: 70%;
+    }
+    #main {
+        left: 0 !important;
+        //z-index: 11;
+        max-width: 100% !important;
+    }
+
+
+    //readerFullScreen()
+    
+    body.mode-force-sidebar:not(.mode-panel) #sidebar {
+        //width: 100%;
+    }
+    
+    body.mode-force-sidebar {
+        #sidebar-black-overlay {
+            //z-index: 12;
+            sidebarBlackOverlay()
+        }
+    }
+    
+    body.mode-panel {
+        #sidebar {
+            transform: translateX(sidebarWidth * -1) !important;
+            transform: translateX(calc(var(--sidebarWidth, sidebarWidth) * -1)) !important;
+        }
+        #panel {
+            transform: translateX(0) !important;
+            width:100%;
+            //z-index: 10;
+        }
+    }
+    
+    
+
+    //hidder
+    #markup .hide-on-extension {
+        display: none !important;
+    }
+    
+    #markup .show-on-extension {
+        display: block;
+    }
+    
+    .button-toggle-sidebar {
+        showButtonToggleSidebar()
+    }
+
+    columnsPlatformMacExtension()
+    
+    #reader .preview.preview-type-image {
+        left:0;
+    }
+}
+
+
+/* Big screen */
+@media only screen and (min-width : 999px) and (max-width: 1700px) {
+    #js_markup_status {
+        width:3px;
+    }
+
+    /*Sidebar hidden if reader mode */
+    mainReaderSize(1)
+}
+
+/* Big screen and more */
+@media only screen and (min-width : 999px) {
+    columnsPlatformMacBig()
+}
+
+/* Extra big screen */
+@media only screen and (min-width : 1700px) {
+    #js_markup_status {
+        width:4px;
+    }
+    
+    mainReaderSize(1.5)
+    
+    #reader {
+        width: "calc(100vw - %s)" % (sidebarWidth + mainCollapsedWidth * 1.5);
+        width: calc(100vw - (var(--sidebarWidth, sidebarWidth) + var(--mainCollapsedWidth,mainCollapsedWidth) * 1.5));
+    }
+
+    body.mode-reader #reader {
+        left: (sidebarWidth + mainCollapsedWidth * 1.5);
+        left: calc(var(--sidebarWidth, sidebarWidth) + var(--mainCollapsedWidth,mainCollapsedWidth) * 1.5);
+    }
+}

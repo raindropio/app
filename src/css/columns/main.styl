@@ -1,0 +1,97 @@
+@require "../consts.styl";
+
+#main {
+	background: white;
+	transition: left layoutTransitionSpeed ease-in-out;
+    
+    header {
+    	background: inherit;
+    	
+    	.headerMoreButton {
+    		padding-left: 14px;
+    		padding-right: 16px;
+
+    		.svgIcon.collectionIcon {
+    			margin-top: 3px;
+    			margin-left: 3px;
+    			margin-right: -3px;
+    		}
+    	}
+    	
+    	.headerBatchActionCheckbox {
+    		padding: 0 16px;
+    		padding-top: rem(5px);
+    	}
+    	
+    	.toolbar-button {
+    		padding-left: 4px;
+    	}
+    	
+    	.field {
+    		padding-bottom: 4px;
+    	}
+
+    	.collectionIcon {
+    		width: 24px;height:24px;
+    	}
+    }
+    
+    header, footer {
+	    &.batchActions {
+	    	padding-top: (1px);
+	    	padding-bottom: (1px);
+			/*background: colorTheme;
+			background: var(--accentColor);
+			box-shadow: none;
+			
+			.button {
+				color: rgba(255,255,255,.8);
+			}
+			
+			.button.active {
+				color: white;
+			}*/
+		}
+	}
+    
+    #mainBody {
+    	
+    }
+}
+
+#markup:not(.themeDark) #main.main-gray-background, body.mode-reader #markup:not(.themeDark) #main {
+	background: gridBackground !important;
+}
+
+.promoScreen {
+	background: transparent;
+	//flex: 0;
+	pointer-events: none;
+	text-align: center;
+	position: relative;
+	z-index: 0;
+	
+	> img {
+		max-width: 90%;
+		height: auto;
+	}
+}
+
+.drop-files {
+	&:after {
+		background: rgba(74,116,226,.1);
+		left:0;top:0;right:0;bottom:0;
+		content: "";
+		position: absolute;
+		z-index:1;
+		pointer-events: none;
+		opacity: 0;
+		transition: opacity .1s ease-in-out;
+	}
+
+	&.is-drag-over {
+		&:after {	
+			opacity:1;
+		}
+	}
+}

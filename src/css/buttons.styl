@@ -1,0 +1,282 @@
+@require "consts.styl"
+
+html.electron .button {
+	-webkit-app-region: no-drag;
+	
+	* {
+		-webkit-app-region: no-drag;
+	}
+}
+
+.button {
+	@extend .disable-select;
+	height: rem(48px);
+	padding: rem(14px) 12px;
+	display: inline-flex;
+	color: buttonColorDefault;
+	font-size: rem(13px);
+	flex-shrink:2;
+	min-width:0;
+	outline: none;
+	appearance: none;
+	background: transparent;
+	border: 0;
+	box-shadow: none;
+	transition: background .1s ease-in-out, color .1s ease-in-out;
+	
+	line-height: rem(16px);
+    align-items: center;
+    cursor: pointer;
+    position: relative;
+	
+	
+
+	img {
+		width: 20px;height: 20px;
+	}
+
+	b, &.input {
+		font-weight: normal;
+		display: block;
+    	padding: rem(2px) 8px;
+    	margin: rem(-2px);
+    	border-radius: rem(2px);
+    	
+    	.svgIcon {
+    		vertical-align: middle;
+    	}
+	}
+	
+	.badge {
+		position: absolute;
+		bottom:10px;right:8px;
+		font-size: rem(9px);
+		
+		background: buttonColorDefault;
+		color: white !important;
+		border-radius: 30px;
+		
+		min-width: 13px;
+		padding: 0 2px;
+		height: 13px;
+		line-height: 13px;
+		text-align: center;
+	}
+	
+	&.input {
+		margin:0;
+	}
+
+	span:not(.svgIcon) {
+		@extend .text-overflow;
+	}
+
+	span:not(.svgIcon):not(:first-child):last-child {
+		margin-left: 6px;
+	}
+
+	
+	&.default b, &.default.input {
+		background: white;
+		box-shadow: 0px 0px 0px 1px rgba(0,0,0,.13), 0px 1px 0px rgba(0,0,0,.13);
+		
+		&:active {
+			background: darken(white,6%);
+			box-shadow: 0px 0px 0px 1px rgba(0,0,0,.13), inset 0px 1px 0px rgba(0,0,0,.05);
+		}
+	}
+	
+	&.flat {
+		b {
+			padding: rem(1px) 4px;
+			background: rgba(0,0,0,.07);
+			
+			.icon-add {
+				margin-bottom:-1px;
+			}
+		}
+	}
+
+	&.active {
+		@extend .font-weight-semibold !optional;
+		color: colorTheme;
+		color: var(--accentColor, colorTheme);
+	}
+	
+	&.active b, &.active.input {
+		color: white !important;
+		background: colorTheme;
+		background: var(--accentColor, colorTheme);
+	}
+	
+	&.blue {
+		@extend .font-weight-semibold !optional;
+		color: white;
+		background: colorTheme;
+		background: var(--accentColor, colorTheme);
+		border-radius: 2px;
+		
+		&:hover {
+			color: white;
+		}
+	}
+	
+	&.red {
+		@extend .font-weight-semibold !optional;
+		color: white;
+		background: colorRed;
+		border-radius: 2px;
+		
+		&:hover {
+			color: white;
+		}
+	}
+
+	&:hover {
+		color: colorTheme;
+		color: var(--accentColor, colorTheme);
+	}
+	
+	&:active {
+		filter: brightness(.8);
+		//background: rgba(0,0,0,.04);
+	}
+
+	&[disabled] {
+		filter: grayscale(100%)
+		opacity: .5
+	}
+
+	&.min {
+		padding:0;
+		height: auto;
+	}
+	
+	&.standart {
+		padding: 8px 12px;
+		height: auto;
+	}
+
+	&.select {
+		position: relative;
+		cursor: pointer;
+		
+		select, input {
+			opacity:0;
+			position:absolute;left:0;top:0;right:0;bottom:0;
+			color:black !important;
+			width:100%;height:100%;
+			border: none;
+		    outline: none;
+		    display: inline-block;
+		    appearance: none;
+		    cursor: pointer;
+		}
+	}
+	
+	&.display-block {
+		display: block;
+	}
+	
+	&.facebook {
+		color: #3b5998;
+	}
+	
+	&.twitter {
+		color: #55acee;
+	}
+	
+	&.vk {
+		color: #45668e;
+	}
+}
+
+html.electron .button {
+	cursor: default;
+}
+
+html.retina.chrome {
+	.button {
+		&.default b, &.default.input {
+			box-shadow: 0px 0px 0px 0.5px rgba(0,0,0,.16), 0px 1px 0px rgba(0,0,0,.1);
+			
+			&:active {
+				box-shadow: 0px 0px 0px 0.5px rgba(0,0,0,.16), inset 0px 0.5px 0px rgba(0,0,0,.1);
+			}
+		}
+	}
+}
+
+.themeDark {
+	#main, #panel, #sidebar, #reader, #pop-body {
+		.button, .tabs .item {
+			color: rgba(255,255,255,.6);
+
+			&.blue {
+				color: darkBackground
+			}
+
+			&.flat {
+				b {
+					background: rgba(255,255,255,.1);
+				}
+			}
+			
+			&.default b, &.default.input {
+				background: lighten(darkBackground, 10%);
+				box-shadow: 0px 0px 0px 1px rgba(255,255,255,.15);
+				
+				&:active {
+					background: lighten(darkBackground,5%);
+					box-shadow: 0px 0px 0px 1px rgba(255,255,255,.15);
+				}
+			}
+			
+			&.active {
+				color: colorYellowForDark;
+				
+				&.input {
+					color: darkBackground !important;
+				}
+				
+				b {
+					color: darkBackground !important;
+					background: colorYellowForDark;
+				}
+			}
+		}
+	}
+}
+
+.fab {
+	@extend .disable-select;
+	position: absolute;
+	width: 48px;
+	height: 48px;
+	background: contentBackground;
+	box-shadow: 0px 0px 0px 1px rgba(0,0,0,0.10), 0px 1px 1px 0px rgba(0,0,0,0.15);
+	border-radius: 50%;
+	z-index: 20;
+	right: 16px;
+	bottom: 40px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	
+	* {
+		pointer-events: none;
+	}
+
+	&.fab-fixed {
+		position:fixed;
+	}
+
+	&.active {
+		color: colorTheme;
+		color: var(--accentColor, colorTheme);
+	}
+
+	&:active {
+		background: darken(contentBackground,5%);
+	}
+}

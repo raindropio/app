@@ -1,0 +1,134 @@
+@require "consts.styl"
+
+toastDefaultBackground = rgba(45,45,45,.95);
+
+#app-toast {
+  position: fixed;
+  bottom: 24px;
+  left: 0;right: 0;
+  width: 100%;
+  text-align: center;
+  z-index: 10000;
+  pointer-events: none;
+
+  ul, li {
+    list-style: none;
+    margin:0;padding:0;
+  }
+
+  ul {
+    display: inline-block;
+    margin: 0 auto;
+    pointer-events: none;
+    max-width: 100vw;
+  }
+
+  li {
+    pointer-events: auto;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    overflow: hidden;
+    margin-top: 14px;
+    will-change: clip-path, transform;
+    //animation: modalFromLeftBottom .3s ease-in-out;
+    transition: clip-path 300ms ease-in, transform 300ms ease-in;
+    transition: -webkit-clip-path 300ms ease-in, transform 300ms ease-in, background 300ms ease-in;
+    
+    .item-wrap {
+      box-shadow: clean-shadow;
+      overflow: hidden;
+      background: toastDefaultBackground;
+      transition: background 400ms ease-in;
+      color: white;
+      padding: 6px 15px;
+      padding-bottom: 7px;
+      border-radius: 20px; 
+      font-size: 15px;
+      display: flex;
+      align-items: center;
+
+      > div {
+        margin-right: 8px;
+
+        &:last-child {
+          margin-right:0;
+        }
+        
+        &:empty {
+          display:none;
+        }
+      }
+
+      .title, .excerpt {
+        max-width: 500px;
+        @extend .text-overflow;
+        
+        strong {
+          @extend .font-weight-semibold !optional;
+          font-weight: normal;
+        }
+      }
+      
+      .title {
+
+      }
+      
+      .excerpt {
+        opacity: .85;
+      }
+
+      .icn {
+        fill: white;
+      }
+
+      &.status-error {
+        background: colorRed;
+      }
+    }
+
+    > * {
+      pointer-events: none;
+    }
+
+    &.toastanim-enter {
+      .item-wrap {
+        background: colorGreen;
+
+        &.status-error {
+          background: toastDefaultBackground;
+        }
+      }
+      clip-path: circle(0px at 50% 100%);
+      transform: translateY(4px);
+    }
+
+    &.toastanim-enter.toastanim-enter-active {
+      clip-path: circle(400px at 50% 50%);
+      transform: translateY(0);
+
+      .item-wrap {
+        background: toastDefaultBackground;
+
+        &.status-error {
+          background: colorRed;
+        }
+      }
+    }
+
+    &.toastanim-leave {
+      clip-path: circle(400px at 50% 50%);
+      //transform: translateY(0);
+    }
+
+    &.toastanim-leave.toastanim-leave-active {
+      clip-path: circle(0px at 50% 100%);
+      //transform: translateY(4px);
+    }
+
+    /*&.close {
+      opacity:0;
+      animation: modalFromLeftBottomClose .25s ease-in-out;
+    }*/
+  }
+}

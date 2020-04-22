@@ -1,0 +1,114 @@
+.newCover {
+    width: 400px
+    height: 360px
+    display: flex
+    flex-direction: column
+
+    header {
+        display: flex
+        align-items: center
+
+        .tabs {
+            flex: 1
+            margin-top: 0
+            margin-bottom: 0
+        }
+    }
+
+    .nc-content {
+        flex: 1
+        overflow: overlay
+        overflow-x: hidden
+
+        .nc-content-center {
+            min-width: 100%
+            min-height: 100%
+            display: flex
+            align-items: center
+            justify-content: center
+        }
+
+        .nc-content-center > * {
+            flex:1
+        }
+    }
+
+    .loading-block {
+        background: rgba(0,0,0,.15)
+        z-index: 999
+
+        .preloader {
+            background: white
+            box-shadow: 0 1px 3px rgba(0,0,0,.1)
+        }
+    }
+}
+
+.nc-template {
+    margin-top: 14px
+}
+
+.nc-icons {
+    display: grid
+    grid-template-columns: repeat(10, 1fr)
+    grid-column-gap: 4px
+    grid-row-gap: 4px
+    padding: 10px
+
+    .nc-icon {
+        padding: 4px
+        border-radius: 3px
+        transition: opacity .1s ease-in-out, background .1s ease-in-out;
+
+        img {
+            display: block
+            pointer-events: none
+            object-fit: contain
+        }
+
+        &:hover {
+            opacity: .9
+            background: rgba(0,0,0,.1)
+        }
+    }
+}
+
+.nc-search {
+    margin: 14px
+}
+
+.nc-link {
+    display: flex
+    flex-direction: column
+    align-items: center
+    text-align: center
+    padding: 0 14px
+
+    .nc-link-icon {
+        opacity: .3
+    }
+
+    form {
+        flex:1
+        min-width: 300px
+    }
+
+    label {
+        text-align: left
+    }
+
+    input[type='submit'] {
+        margin: 16px auto
+        display: inline-block
+    }
+}
+
+.nc-upload {
+    text-align: center
+
+    .nc-upload-icon {
+        margin-bottom: 14px
+        opacity: .3
+    }
+}
+
