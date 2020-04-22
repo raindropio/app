@@ -5,7 +5,7 @@ import helper from './helper'
 import ListBlank from './listBlank'
 
 class Item extends React.Component {
-	displayName: 'bookmarks/listItem'
+	displayName = 'bookmarks/listItem'
 
 	componentDidMount() {
 		this.props.connectDragPreview(getEmptyImage(), {

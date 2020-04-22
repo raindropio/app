@@ -7,6 +7,7 @@ import collectionsHelpers from '../../../helpers/collections'
 import collectionsStore from '../../../stores/collections'
 import collectionsActions from '../../../actions/collections'
 import Pop from '../../../actions/pop'
+import UserStore from '../../../stores/user'
 
 import CollectionIcon from '../icon'
 import Icon from 'icon'
@@ -14,7 +15,7 @@ import SuperInput from '../../common/superInput'
 //import FormParent from '../../form/parent'
 
 export default class Edit extends React.Component {
-	displayName: "collections/edit/info"
+	displayName = "collections/edit/info"
 
 	constructor(props) {
 		super(props);

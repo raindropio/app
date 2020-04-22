@@ -1,12 +1,7 @@
 import Reflux from 'reflux'
 import Api from 'api'
 import actions from '../actions/tags'
-
-const _ = {
-	uniqueId: require('lodash/uniqueId'),
-	uniq: require('lodash/uniq'),
-	orderBy: require('lodash/orderBy')
-}
+import _ from 'lodash'
 
 export default Reflux.createStore({
 	init() {

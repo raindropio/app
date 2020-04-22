@@ -2,6 +2,8 @@ import React from 'react'
 import t from 't'
 import config from 'config'
 import environment from '../helpers/environment'
+import _ from 'lodash'
+import UserStore from '../stores/user'
 
 import Icon from 'icon'
 import CollectionItem from '../co/collections/item'
@@ -10,12 +12,8 @@ import TabBar from '../app/sidebar/tabBar'
 
 import SidebarWrap from '../co/columns/sidebarWrap'
 
-var _ = {
-  capitalize: require('lodash/capitalize')
-}
-
 class Sidebar extends React.Component {
-	displayName: "sidebar"
+	displayName = "sidebar"
 
 	componentDidMount() {
 		if (typeof document !== 'undefined'){

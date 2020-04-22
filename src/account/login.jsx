@@ -13,7 +13,7 @@ import Pop from '../actions/pop'
 import AccountMixin from './mixin'
 
 class AccountLogin extends React.Component {
-	displayName: "account/login"
+	displayName = "account/login"
 
 	constructor(props) {
 		super(props);

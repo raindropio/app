@@ -12,7 +12,7 @@ import LabelHighlight from './label'
 import helper from './helper'
 
 class Item extends React.PureComponent {
-	displayName: "bookmarks/gridItem"
+	displayName = "bookmarks/gridItem"
 
 	componentDidMount() {
 		this.props.connectDragPreview(getEmptyImage(), {

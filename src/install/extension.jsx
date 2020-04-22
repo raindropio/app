@@ -1,23 +1,20 @@
 import React from 'react'
 import t from 't'
 import Icon from 'icon'
-import strings from '../modules/strings'
+import { browserExtensionInfo } from '../modules/strings'
 import config from 'config'
+import _ from 'lodash'
 import settingsHelpers from './parts/helpers'
 
 import MainWrap from '../co/columns/mainWrap'
 
-var _ = {
-  capitalize: require('lodash/capitalize')
-}
-
 class Main extends React.Component {
-	displayName: "install/home"
+	displayName = "install/home"
 
 	constructor(props) {
 		super(props);
 
-		this.state = strings.browserExtensionInfo();
+		this.state = browserExtensionInfo();
 	}
 
 	renderBrowser = (name)=>(

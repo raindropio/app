@@ -6,7 +6,7 @@ import config from 'config'
 import helpers from './helpers'
 
 export default class ImportStart extends React.Component {
-	displayName: "settings/import/start"
+	displayName = "settings/import/start"
 
 	constructor(props) {
 		super(props)

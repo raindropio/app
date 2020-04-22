@@ -3,7 +3,7 @@ import ReactDom from 'react-dom'
 import Icon from 'icon'
 
 export default class Slider extends React.Component {
-	displayName: "common/Slider"
+	displayName = "common/Slider"
 
 	setVal(val,_this) {
 		ReactDom.findDOMNode(_this.refs.ranger).value = parseInt(val);

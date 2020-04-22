@@ -3,7 +3,7 @@ import environment from './helpers/environment'
 import keyValStore from './stores/keyval'
 
 export default class Start extends React.Component {
-	displayName: "start"
+	displayName = "start"
 
 	openApp() {
 		window.location.hash = "#/app";

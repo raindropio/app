@@ -1,12 +1,10 @@
 import collectionsActions from '../actions/collections'
 import collectionsStore from '../stores/collections'
 import keyvalStore from '../stores/keyval'
+import UserStore from '../stores/user'
 import Pop from '../actions/pop'
 import t from 't'
-
-var _ = {
-    findIndex: require('lodash/findIndex')
-}
+import _ from 'lodash'
 
 export default {
     createBlank(item,params,callback) {

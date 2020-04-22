@@ -9,7 +9,7 @@ import collectionsHelper from '../../helpers/collections'
 import collectionsActions from '../../actions/collections'
 
 class Group extends React.Component {
-	displayName: "collections/group"
+	displayName = "collections/group"
 
 	constructor(props) {
 		super(props);

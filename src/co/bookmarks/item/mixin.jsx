@@ -1,7 +1,7 @@
 import React from 'react'
 import MobileDetect from 'mobile-detect'
 import contextMenu from '../../../modules/contextMenu'
-import strings from '../../../modules/strings'
+import { copyTextToClipboard } from '../../../modules/strings'
 import environment from '../../../helpers/environment'
 import t from 't'
 import Icon from 'icon'
@@ -106,7 +106,7 @@ export default ComposedComponent => class extends React.PureComponent {
     }
 
     handleCopyToClippboard() {
-        strings.copyTextToClipboard(this.props.item.link);
+        copyTextToClipboard(this.props.item.link);
     }
 
     handleEdit() {

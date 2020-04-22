@@ -7,7 +7,7 @@ import keyvalStore from '../../stores/keyval'
 import keyvalActions from '../../actions/keyval'
 
 export default class PreviewPop extends React.Component {
-	displayName: "pop/preview"
+	displayName = "pop/preview"
 
 	constructor(props) {
 		super(props);

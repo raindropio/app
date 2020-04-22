@@ -5,13 +5,13 @@ import network from 'network'
 import config from 'config'
 import Api from 'api'
 import colors from '../../modules/colors'
-import strings from '../../modules/strings'
+import { beautifulDomain } from '../../modules/strings'
 
 var brokenImgs = []
 var scaleDownImgs = []
 
 export default class Cover extends React.PureComponent {
-	displayName: "common/cover"
+	displayName = "common/cover"
 
   cleanSource(src,link) {
     var finalSrc = src;
@@ -144,7 +144,7 @@ export default class Cover extends React.PureComponent {
                       onError={this.handleImgLoadError.bind(this)}/>;
       }else{
           if (this.state.width <= 230){
-            var minDomain = strings.beautifulDomain(this.props.domain).toLowerCase();
+            var minDomain = beautifulDomain(this.props.domain).toLowerCase();
             if (minDomain.length>3) minDomain = minDomain[0];
 
             img = (

@@ -10,7 +10,7 @@ import AccountMixin from '../mixin'
 import initAuth from '../../helpers/initAuth'
 
 class Welcome extends React.Component {
-	displayName: "account/welcome"
+	displayName = "account/welcome"
 
 	constructor(props) {
 		super(props);

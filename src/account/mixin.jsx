@@ -14,7 +14,7 @@ var resized = false;
 
 export default function(Component) {
 	return class AccountMixin extends React.Component {
-		displayName: "account/mixin"
+		displayName = "account/mixin"
 
 		constructor(props) {
 			super(props);

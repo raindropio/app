@@ -2,7 +2,7 @@ import React from 'react'
 import Icon from 'icon'
 import t from 't'
 
-module.exports = {
+export default {
 	backButton(small) {
 		var label = <span>{t.s("all") + " " + t.s('settings').toLowerCase()}</span>;
 		if (small) label = null;

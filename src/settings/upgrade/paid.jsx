@@ -1,8 +1,9 @@
 import React from 'react'
 import t from 't'
 import Icon from 'icon'
-import strings from '../../modules/strings'
+import { humanDate } from '../../modules/strings'
 import config from '../../modules/config'
+import UserStore from '../../stores/user'
 
 import Loading from './loading'
 
@@ -46,12 +47,12 @@ export default class UpgradePaid extends React.Component {
     renderPeriod = ()=>{
         if (this.state.stopAt)
             return (
-                <span><b><Icon name='close' size='micro' /> {t.s('willStop')}: {strings.humanDate(this.state.stopAt)}</b></span>
+                <span><b><Icon name='close' size='micro' /> {t.s('willStop')}: {humanDate(this.state.stopAt)}</b></span>
             )
 
         if (this.state.renewAt)
             return (
-                <span><Icon name='check' /> {t.s('next')} {this.getPeriod()} {t.s('payment').toLowerCase()}: <b>{strings.humanDate(this.state.renewAt)}</b></span>
+                <span><Icon name='check' /> {t.s('next')} {this.getPeriod()} {t.s('payment').toLowerCase()}: <b>{humanDate(this.state.renewAt)}</b></span>
             )
 
         return null
@@ -94,7 +95,7 @@ export default class UpgradePaid extends React.Component {
             case 'canceled':
                 alert = (
                     <div className='pro-alert notice'>
-                        Your subscription has been canceled, but is active through {strings.humanDate(this.state.stopAt)}.<br />
+                        Your subscription has been canceled, but is active through {humanDate(this.state.stopAt)}.<br />
                         You'll still be able to take advantage of PRO plan through this date,
                         but you will not be charged a subscription fee moving forward.
                     </div>

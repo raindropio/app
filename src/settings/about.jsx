@@ -10,7 +10,7 @@ import MainWrap from '../co/columns/mainWrap'
 import SuperImg from '../co/common/superImg'
 
 class About extends React.Component {
-	displayName: "settings/about"
+	displayName = "settings/about"
 
 	componentDidMount() {
 		if (!environment.isClipper()){

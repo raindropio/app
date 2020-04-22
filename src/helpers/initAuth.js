@@ -1,10 +1,6 @@
 import CollectionsStore from '../stores/collections'
 import StatsActions from '../actions/stats'
-
-if (typeof window !== "undefined")
-	window.UserStore = require('../stores/user.js')
-else
-	global.UserStore = require('../stores/user.js')
+import UserStore from '../stores/user'
 
 /*
 done
@@ -12,7 +8,7 @@ error
 needLogin
 */
 
-module.exports = {
+export default {
 	timeout: null,
 
 	checkStatus(callback) {

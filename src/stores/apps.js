@@ -18,7 +18,7 @@ var _blankClient = {
     redirects: []
 }
 
-module.exports = Reflux.createStore({
+export default Reflux.createStore({
 	init: function() {
         this.listenTo(AppsActions.loadConnections, this.onLoadConnections)
         this.listenTo(AppsActions.loadClients, this.onLoadClients)

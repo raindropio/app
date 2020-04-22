@@ -6,14 +6,10 @@ import Icon from 'icon'
 import tagsStore from '../../../stores/tags'
 import Pop from '../../../actions/pop'
 import PopStore from '../../../stores/pop'
-
-var _ = {
-	orderBy: require('lodash/orderBy'),
-	uniq: require('lodash/uniq')
-}
+import _ from 'lodash'
 
 export default class EditTags extends React.Component {
-	displayName: "bookmarks/edit/tags"
+	displayName = "bookmarks/edit/tags"
 
 	constructor(props) {
 		super(props);

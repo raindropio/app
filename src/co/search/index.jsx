@@ -2,6 +2,7 @@ import React from 'react'
 import ReactDom from 'react-dom'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import t from 't'
+import _ from 'lodash'
 import colors from '../../modules/colors'
 import network from '../../modules/network'
 
@@ -12,16 +13,11 @@ import Icon from 'icon'
 import CollectionIcon from '../collections/icon'
 import FavIcon from '../common/favIcon'
 
-var _ = {
-	findIndex: require('lodash/findIndex'),
-	forEach: require('lodash/forEach')
-}
-
 export default class Search extends React.Component {
-	displayName: "search/index"
+	displayName = "search/index"
 
-	removeKeywordPrepared: false
-	removeKeywordTimeout: null
+	removeKeywordPrepared = false
+	removeKeywordTimeout = null
 
 	constructor(props) {
 		super(props);

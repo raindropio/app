@@ -8,7 +8,7 @@ import Lazy from './common/lazy'
 import Clients from './common/clients'
 
 class About extends React.Component {
-	displayName: "settings/apps/authorized"
+	displayName = "settings/apps/authorized"
 
 	constructor(props) {
         super(props)

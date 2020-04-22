@@ -6,7 +6,7 @@ import Bookmark from './bookmark';
 import Preloader from '../../co/common/preloader'
 
 class Note extends React.Component {
-	displayName: "reader/note"
+	displayName = "reader/note"
 
 	render() {
 		if (this.props.status=="loading")

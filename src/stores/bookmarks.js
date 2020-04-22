@@ -1,12 +1,13 @@
 import Reflux from 'reflux'
 import t from 't'
 import Api from 'api'
-import strings from '../modules/strings'
+import _ from 'lodash'
+import { getErrorFromJSON } from '../modules/strings'
 import network from 'network'
 import S from 'string'
 import config from 'config'
-import clipperHelper from '../helpers/clipper'
-var ls = {}; try{localStorage.getItem("a"); ls = require('localforage');}catch(e){}
+import { parse } from '../helpers/clipper'
+import ls from 'localforage'
 
 import Toasts from '../actions/toast'
 import BookmarkActions from '../actions/bookmarks';
@@ -14,17 +15,9 @@ import CollectionsActions from '../actions/collections';
 import CollectionsStore from '../stores/collections';
 import LastBookmarkActions from '../actions/lastBookmark';
 import KeyValStore from './keyval'
+import UserStore from '../stores/user'
 
-import V from 'validator';
-
-var _ = {
-  map: require('lodash/map'),
-  clone: require('lodash/clone'),
-  findIndex: require('lodash/findIndex'),
-  forEach: require('lodash/forEach'),
-  uniq: require('lodash/uniq'),
-  groupBy: require('lodash/groupBy')
-}
+import V from 'validator'
 
 var cacheDisabled = true;
 
@@ -303,7 +296,7 @@ var BookmarksStore = Reflux.createStore({
 
           new Promise(res=>{
             try{
-              clipperHelper.parse(url, (item)=>{
+              parse(url, (item)=>{
                 if (item) res(item)
                 //otherwise wait for server
               })
@@ -397,7 +390,7 @@ var BookmarksStore = Reflux.createStore({
               insertToModels(json.item);
             }else{
               if (!params.silent)
-                if (typeof Toasts != "undefined") Toasts.show({text: strings.getErrorFromJSON(json)/*, title: params.item.title*/, status:"error"});
+                if (typeof Toasts != "undefined") Toasts.show({text: getErrorFromJSON(json)/*, title: params.item.title*/, status:"error"});
             }
 
             var reason = false;
@@ -519,7 +512,7 @@ var BookmarksStore = Reflux.createStore({
             if (typeof Toasts != "undefined") Toasts.show({text: params.successMessage/*, title: json.item.title*/});
         }else{
             if (!params.silent)
-                if (typeof Toasts != "undefined") Toasts.show({text: strings.getErrorFromJSON(json), status: "error"});
+                if (typeof Toasts != "undefined") Toasts.show({text: getErrorFromJSON(json), status: "error"});
         }
 
         if (typeof callback == 'function')
@@ -692,7 +685,7 @@ var BookmarksStore = Reflux.createStore({
               _this.update(true);
             }else{
                 if (!params.silent)
-                  if (typeof Toasts != "undefined") Toasts.show({text: strings.getErrorFromJSON(json)/*, title: params.item.title*/, status:"error"});
+                  if (typeof Toasts != "undefined") Toasts.show({text: getErrorFromJSON(json)/*, title: params.item.title*/, status:"error"});
             }
 
             if (typeof callback == "function")
@@ -1172,4 +1165,4 @@ var BookmarksStore = Reflux.createStore({
     }
 });
 
-module.exports = BookmarksStore;
+export default BookmarksStore;

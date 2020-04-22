@@ -9,7 +9,7 @@ import LabelHighlight from './label'
 import helper from './helper'
 
 class Item extends React.Component {
-	displayName: "bookmarks/simpleItem"
+	displayName = "bookmarks/simpleItem"
 
 	componentDidMount() {
 		this.props.connectDragPreview(getEmptyImage(), {

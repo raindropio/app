@@ -1,14 +1,14 @@
 import React from 'react'
-import strings from '../modules/strings'
+import { getCurrentBrowser } from '../modules/strings'
 import MobileDetect from 'mobile-detect'
 
 var md = new MobileDetect((typeof window != "undefined" ? window.navigator.userAgent : null))
 
 export default class Main extends React.Component {
-	displayName: "install/blank"
+	displayName = "install/blank"
 
 	componentWillMount() {
-		var isMac = (strings.getCurrentBrowser().indexOf('mac')!=-1);
+		var isMac = (getCurrentBrowser().indexOf('mac')!=-1);
 		var goPath = "windows";
 
 		if (md.mobile()){

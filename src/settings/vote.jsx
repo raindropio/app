@@ -9,7 +9,7 @@ import MainWrap from '../co/columns/mainWrap'
 import SuperFrame from '../co/common/superFrame'
 
 class Main extends React.Component {
-	displayName: "settings/vote"
+	displayName = "settings/vote"
 
 	render() {
 		return (

@@ -1,9 +1,10 @@
 import React from 'react'
 
 export default class SuperOverflow extends React.Component {
-	displayName: "common/superOverflow"
+	displayName = "common/superOverflow"
 
-	isMountedNow: false
+	isMountedNow = false
+	scrollAfterTimeout = null
 
 	constructor(props) {
 		super(props);
@@ -27,8 +28,6 @@ export default class SuperOverflow extends React.Component {
 		if (this.props['data-initialScrollTop'])
 			r.scrollTop = this.props['data-initialScrollTop']
 	}
-
-	scrollAfterTimeout: null
 
 	afterScroll() {
 		if (this.isMountedNow)

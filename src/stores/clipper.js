@@ -4,8 +4,7 @@ import BookmarksStore from './bookmarks'
 import LastBookmarkActions from '../actions/lastBookmark'
 
 import environment from '../helpers/environment'
-
-var {getCurrentTab, setButtonStatus} = require('../helpers/clipper').default
+import { getCurrentTab, setButtonStatus } from '../helpers/clipper'
 
 var prepareState = (item,defaultStatus="")=>{
 	var s = {

@@ -4,12 +4,13 @@ import t from 't'
 import config from 'config'
 
 import settingsHelpers from './parts/helpers'
+import UserStore from '../stores/user'
 
 import MainWrap from '../co/columns/mainWrap'
 import SuperImg from '../co/common/superImg'
 
 class Main extends React.Component {
-	displayName: "settings/import"
+	displayName = "settings/import"
 
 	constructor(props) {
 		super(props);

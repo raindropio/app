@@ -1,13 +1,9 @@
 import Reflux from 'reflux'
 import Api from 'api'
-var ls = {}; try{localStorage.getItem("a"); ls = require('localforage');}catch(e){}
-
-var _ = {
-  findIndex: require('lodash/findIndex')
-}
-
-var StatsActions = require('../actions/stats');
-var CollectionsActions = require('../actions/collections');
+import StatsActions from '../actions/stats'
+import CollectionsActions from '../actions/collections'
+import _ from 'lodash'
+import ls from 'localforage'
 
 var _stat = {
     collections: [],
@@ -144,4 +140,4 @@ var StatsStore = Reflux.createStore({
     },
 });
 
-module.exports = StatsStore;
+export default StatsStore

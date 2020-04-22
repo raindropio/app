@@ -13,7 +13,7 @@ const invalidStatus = {
 }
 
 class Cache extends React.Component {
-    displayName: 'reader/cache'
+    displayName = 'reader/cache'
     
     renderStatus() {
         const { cache={} } = this.props.item||{}

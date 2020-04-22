@@ -10,12 +10,13 @@ import MainWrap from '../co/columns/mainWrap'
 import ReaderPop from '../co/pop/reader'
 import keyvalStore from '../stores/keyval'
 import keyvalActions from '../actions/keyval'
+import UserStore from '../stores/user'
 
 import Theme from './parts/theme'
 import Broken from './parts/broken'
 
 class Main extends React.Component {
-	displayName: "settings/common"
+	displayName = "settings/common"
 
 	constructor(props) {
 		super(props);

@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDom from 'react-dom'
 
 export default class SuperInput extends React.Component {
-	displayName: "common/superInput"
+	displayName = "common/superInput"
 
 	bindRef = (r)=>this._ref=r
 

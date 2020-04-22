@@ -14,7 +14,7 @@ import TabBar from '../app/sidebar/tabBar'
 import SidebarWrap from '../co/columns/sidebarWrap'
 
 class Sidebar extends React.Component {
-	displayName: "sidebar"
+	displayName = "sidebar"
 	
 	sidebarToggle(e) {
 		e.preventDefault();

@@ -1,14 +1,9 @@
 import Reflux from 'reflux'
 import Api from 'api'
 import t from 't'
-import strings from '../modules/strings'
-var ls = {}; try{localStorage.getItem("a"); ls = require('localforage');}catch(e){}
-
-var _ = {
-  findIndex: require('lodash/findIndex'),
-  sortBy: require('lodash/sortBy'),
-  chunk: require('lodash/chunk')
-}
+import { getErrorFromJSON } from '../modules/strings'
+import _ from 'lodash'
+import ls from 'localforage'
 
 import Toasts from '../actions/toast'
 import CollectionsActions from '../actions/collections'
@@ -17,6 +12,7 @@ import ChildrensActions from '../actions/childrens'
 import UserActions from '../actions/user'
 import StatsStore from '../stores/stats.js'
 import BookmarksActions from '../actions/bookmarks'
+import UserStore from '../stores/user'
 
 var 
     _collections = [],
@@ -222,7 +218,7 @@ var CollectionsStore = Reflux.createStore({
                     Toasts.show({text: t.s("saveSuccess"), title: params.item.title});
             }else{
                 if (!params.silent)
-                    Toasts.show({text: strings.getErrorFromJSON(json), title: params.item.title, status: "error"});
+                    Toasts.show({text: getErrorFromJSON(json), title: params.item.title, status: "error"});
             }
 
             _this._resortAll();
@@ -270,7 +266,7 @@ var CollectionsStore = Reflux.createStore({
                 _this._saveCache();
             }else{
                 if (!params.silent)
-                    Toasts.show({text: strings.getErrorFromJSON(json), title: params.item.title, status: "error"});
+                    Toasts.show({text: getErrorFromJSON(json), title: params.item.title, status: "error"});
             }
 
             if (typeof callback == 'function')
@@ -303,7 +299,7 @@ var CollectionsStore = Reflux.createStore({
                         BookmarksActions.reset(true);
                     }
                 }else{
-                    Toasts.show({text: strings.getErrorFromJSON(json), title: params.item.title, status: "error"});
+                    Toasts.show({text: getErrorFromJSON(json), title: params.item.title, status: "error"});
                 }
 
                 if (typeof callback == 'function')
@@ -626,4 +622,4 @@ var CollectionsStore = Reflux.createStore({
 });
 //CollectionsStore.reset();
 
-module.exports = CollectionsStore;
+export default CollectionsStore;

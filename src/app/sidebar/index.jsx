@@ -13,13 +13,11 @@ import keyvalStore from '../../stores/keyval'
 import statsStore from '../../stores/stats'
 import New from '../../co/collections/new'
 import ClipperSave from '../parts/clipperSave'
-
-var _ = {
-	capitalize: require('lodash/capitalize')
-}
+import UserStore from '../../stores/user'
+import _ from 'lodash'
 
 class Sidebar extends React.Component {
-	displayName: "sidebar"
+	displayName = "sidebar"
 
 	constructor(props) {
 		super(props);

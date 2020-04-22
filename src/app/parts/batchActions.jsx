@@ -4,7 +4,7 @@ import Icon from 'icon'
 import environment from '../../helpers/environment'
 
 import contextMenu from '../../modules/contextMenu'
-import clipper from '../../helpers/clipper'
+import { openTab } from '../../helpers/clipper'
 
 import bookmarksActions from '../../actions/bookmarks'
 import bookmarksStore from '../../stores/bookmarks'
@@ -13,10 +13,8 @@ import Pop from '../../actions/pop'
 import Toast from '../../actions/toast'
 
 import Tags from '../../co/bookmarks/edit/tags'
+import _ from 'lodash'
 
-var _ = {
-	capitalize: require('lodash/capitalize')
-}
 
 const toFavorites = _.capitalize(t.s("to")) + " " + t.s("favoriteSites").toLowerCase();
 
@@ -97,7 +95,7 @@ export default class BatchActions extends React.Component {
 		var selected = bookmarksStore._getSelected();
 		selected.forEach((item)=>{
 			if (environment.isClipper())
-				clipper.openTab(item.link)
+				openTab(item.link)
 			else
 				window.open(item.link)
 		})

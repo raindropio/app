@@ -1,10 +1,6 @@
 import Reflux from 'reflux'
 import Toasts from '../actions/toast'
-import strings from '../modules/strings'
-
-var _ = {
-  findIndex: require('lodash/findIndex')
-}
+import _ from 'lodash'
 
 var _toasts = [],
     _timeout = 3000;
@@ -92,4 +88,4 @@ var ToastStore = Reflux.createStore({
     }
 });
 
-module.exports = ToastStore;
+export default ToastStore

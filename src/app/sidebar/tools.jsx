@@ -8,13 +8,10 @@ import CollectionItem from '../../co/collections/item'
 import keyvalStore from '../../stores/keyval'
 import collectionsStore from '../../stores/collections'
 import statsStore from '../../stores/stats'
-
-var _ = {
-	capitalize: require('lodash/capitalize')
-}
+import _ from 'lodash'
 
 export default class Tools extends React.Component {
-	displayName: "app/sidebar/tools"
+	displayName = "app/sidebar/tools"
 
 	constructor(props) {
 		super(props);

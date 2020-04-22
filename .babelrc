@@ -1,19 +1,33 @@
 {
-	"presets": [
-		"es2015",
-		"react",
-		"survivejs-kanban"
-	],
-	"env": {
-		"production": {
-			"presets": ["react-optimize"],
-			"plugins": [
-				"babel-plugin-transform-remove-console",
-				"babel-plugin-transform-remove-debugger"
-			]
-		},
-		"development": {
-			"presets": ["react-hmre"]
-		}
-	}
+    "presets": ["@babel/preset-react"],
+    "plugins": [
+        ["@babel/plugin-proposal-decorators",{"legacy": true}],
+        ["@babel/plugin-proposal-class-properties",{"useBuiltIns": true, "corejs": 3}],
+        ["@babel/plugin-proposal-object-rest-spread",{"useBuiltIns": true, "corejs": 3}],
+        "@babel/plugin-syntax-dynamic-import"
+    ],
+
+    "env": {
+        "production": {
+            "presets": [
+                [
+                    "@babel/env",
+                    {
+                        "useBuiltIns": "usage",
+                        "corejs": 3,
+                        "targets": {
+                            "esmodules": true
+                        }
+                    }
+                ]
+            ],
+            "plugins": [
+                "lodash"
+            ]
+        },
+
+        "development": {
+            
+        }
+    }
 }

@@ -8,13 +8,13 @@ import Api from 'api'
 
 import settingsHelpers from './parts/helpers'
 import ResetAccount from './parts/reset'
-
+import UserStore from '../stores/user'
 import Toasts from '../actions/toast'
 
 import MainWrap from '../co/columns/mainWrap'
 
 class Main extends React.Component {
-	displayName: "settings/profile"
+	displayName = "settings/profile"
 
 	constructor(props) {
 		super(props);

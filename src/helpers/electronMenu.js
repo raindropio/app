@@ -1,13 +1,13 @@
 import t from 't'
 import bookmarksHelpers from './bookmarks'
 import collectionsHelpers from './collections'
+import { remote } from 'electron'
 
-var electron = require('electron').remote;
-var app = electron.app;
-var shell = electron.shell;
-const {Menu, MenuItem} = electron;
+const electron = remote
+const { app, shell } = electron;
+const { Menu, MenuItem } = electron;
 
-module.exports = {
+export default {
 	init: function() {
 		var menu = this.defaultMenu();
 

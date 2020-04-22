@@ -1,5 +1,5 @@
 import network from 'network'
-import strings from '../modules/strings'
+import { getCurrentBrowser } from '../modules/strings'
 //import keyvalStore from '../stores/keyval'
 
 var webextension;
@@ -7,7 +7,7 @@ if (typeof msBrowser != "undefined") webextension = msBrowser;
 else if (typeof browser != "undefined") webextension = browser;
 else if (typeof chrome != "undefined") webextension = chrome;
 
-const isElectron = strings.getCurrentBrowser().indexOf("electron")!=-1;
+const isElectron = getCurrentBrowser().indexOf("electron")!=-1;
 var electronDefaults;
 
 export default {

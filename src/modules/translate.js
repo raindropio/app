@@ -1,17 +1,17 @@
 var strings = {
-  'de_DE': require("json!../languages/de_DE.json"),
-  'en_US': require("json!../languages/en_US.json"),
-  'es_ES': require("json!../languages/es_ES.json"),
-  'fi_FI': require("json!../languages/fi_FI.json"),
-  'fr_FR': require("json!../languages/fr_FR.json"),
-  'it_IT': require("json!../languages/it_IT.json"),
-  'nl_NL': require("json!../languages/nl_NL.json"),
-  'pl_PL': require("json!../languages/pl_PL.json"),
-  'pt_BR': require("json!../languages/pt_BR.json"),
-  'ru_RU': require("json!../languages/ru_RU.json"),
-  'sv_SE': require("json!../languages/sv_SE.json"),
-  'tr_TR': require("json!../languages/tr_TR.json"),
-  'zh_CN': require("json!../languages/zh_CN.json"),
+  'de_DE': require("../languages/de_DE.json"),
+  'en_US': require("../languages/en_US.json"),
+  'es_ES': require("../languages/es_ES.json"),
+  'fi_FI': require("../languages/fi_FI.json"),
+  'fr_FR': require("../languages/fr_FR.json"),
+  'it_IT': require("../languages/it_IT.json"),
+  'nl_NL': require("../languages/nl_NL.json"),
+  'pl_PL': require("../languages/pl_PL.json"),
+  'pt_BR': require("../languages/pt_BR.json"),
+  'ru_RU': require("../languages/ru_RU.json"),
+  'sv_SE': require("../languages/sv_SE.json"),
+  'tr_TR': require("../languages/tr_TR.json"),
+  'zh_CN': require("../languages/zh_CN.json"),
 };
 
 var translate = {
@@ -87,4 +87,4 @@ var translate = {
 if (!translate.currentLang)
   translate.initLang();
 
-module.exports = translate;
+export default translate;

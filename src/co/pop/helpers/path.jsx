@@ -4,7 +4,7 @@ import CollectionsList from '../../collections'
 import Icon from 'icon'
 
 export default class PopView extends React.Component {
-    displayName: "Pop/helpers/path"
+    displayName = "Pop/helpers/path"
 
     render() {
     	return (

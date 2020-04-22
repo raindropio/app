@@ -2,7 +2,6 @@ import React from 'react'
 import t from 't'
 import S from 'string'
 import moment from 'moment'
-import strings from '../../modules/strings'
 
 import keyvalActions from '../../actions/keyval'
 import keyvalStore from '../../stores/keyval'
@@ -18,7 +17,7 @@ const yesterday = moment().subtract(1,'day').startOf('day').toDate().toDateStrin
 	  //thisWeek = moment().startOf('week').toDate().toDateString();
 
 export default class Items extends React.Component {
-	displayName: "bookmarks/index"
+	displayName = "bookmarks/index"
 
 	constructor(props) {
 		super(props);

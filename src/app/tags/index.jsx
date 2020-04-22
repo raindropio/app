@@ -12,7 +12,7 @@ import tagsActions from '../../actions/tags'
 import tagsStore from '../../stores/tags'
 
 class Main extends React.Component {
-	displayName: "app/tags"
+	displayName = "app/tags"
 
 	constructor(props) {
 		super(props);

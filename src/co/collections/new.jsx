@@ -9,7 +9,7 @@ import collectionsActions from '../../actions/collections'
 import keyvalStore from '../../stores/keyval'
 
 export default class NewCollection extends React.Component {
-	displayName: "NewCollection"
+	displayName = "NewCollection"
 
 	constructor(props) {
 		super(props);

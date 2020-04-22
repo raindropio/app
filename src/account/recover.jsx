@@ -10,7 +10,7 @@ import Pop from '../actions/pop'
 import AccountMixin from './mixin'
 
 class AccountReset extends React.Component {
-	displayName: "account/recover"
+	displayName = "account/recover"
 
 	constructor(props) {
 		super(props);

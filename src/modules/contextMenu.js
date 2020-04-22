@@ -1,9 +1,9 @@
 import Pop from '../actions/pop'
-import strings from './strings'
+import { getCurrentBrowser } from './strings'
 
 export default {
 	show(items, pos) {
-		if (strings.getCurrentBrowser().indexOf("electron")!=-1){
+		if (getCurrentBrowser().indexOf("electron")!=-1){
 			const {remote} = require('electron');
 			const {Menu, MenuItem} = remote;
 

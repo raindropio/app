@@ -1,14 +1,12 @@
 import React from 'react'
 import t from 't'
 import Icon from 'icon'
-var _ = {
-	orderBy: require('lodash/orderBy'),
-	capitalize: require('lodash/capitalize')
-}
+import _ from 'lodash'
 
 import collectionsActions from '../../actions/collections'
 import collectionsStore from '../../stores/collections.js'
 import userActions from '../../actions/user'
+import UserStore from '../../stores/user'
 
 import Item from './item'
 import Group from './group'
@@ -18,7 +16,7 @@ import Examples from './examples'
 var haveChildrens = []
 
 export default class CollectionsList extends React.Component {
-	displayName: "collections/index"
+	displayName = "collections/index"
 
 	constructor(props) {
 		super(props);

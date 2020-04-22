@@ -3,7 +3,8 @@ import ReactDom from 'react-dom'
 import t from 't'
 import Icon from 'icon'
 import network from 'network'
-import V from 'validator';
+import _ from 'lodash'
+import V from 'validator'
 import environment from '../../helpers/environment'
 import Textarea from 'react-autosize-textarea'
 
@@ -19,10 +20,6 @@ import keyvalStore from '../../stores/keyval'
 import collectionsStore from '../../stores/collections'
 import Toasts from '../../actions/toast'
 import bookmarksHelpers from '../../helpers/bookmarks'
-
-var _ = {
-  capitalize: require('lodash/capitalize')
-}
 
 export default class URL extends React.Component {
 	constructor(props) {

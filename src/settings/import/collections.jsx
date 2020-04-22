@@ -6,9 +6,10 @@ import config from 'config'
 import helpers from './helpers'
 import collectionsHelpers from '../../helpers/collections'
 import Preloader from '../../co/common/preloader'
+import UserStore from '../../stores/user'
 
 export default class ImportCollections extends React.Component {
-	displayName: "settings/import/collections"
+	displayName = "settings/import/collections"
 
 	makeNode(arr,parentId) {
 		var current = Promise.resolve();

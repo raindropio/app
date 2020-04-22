@@ -3,7 +3,7 @@ import Icon from 'icon'
 import t from 't'
 
 export default class ImportNesting extends React.Component {
-	displayName: "settings/import/nesting"
+	displayName = "settings/import/nesting"
 
 	render() {
 		return (

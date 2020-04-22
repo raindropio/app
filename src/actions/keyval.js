@@ -1,6 +1,6 @@
 import Reflux from 'reflux'
 
-module.exports = Reflux.createActions([
+export default Reflux.createActions([
 	'all',
 	'get',
 	'set',

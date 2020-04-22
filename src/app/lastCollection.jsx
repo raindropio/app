@@ -1,14 +1,13 @@
 import React from 'react'
-import Api from 'api'
+import UserStore from '../stores/user'
 
 export default class AppInit extends React.Component {
-	displayName: "app/init"
+	displayName = 'app/init'
 
-	componentWillMount() {
+	componentDidMount() {
 		var cId;
 		try{cId = parseInt(UserStore.getUser().config.last_collection);}catch(e){}
 		cId = cId || 0;
-
 		window.location.hash = "#/collection/"+cId;
 	}
 

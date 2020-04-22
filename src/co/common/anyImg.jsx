@@ -1,12 +1,9 @@
 import React from 'react'
 import ReactDom from 'react-dom'
-
-var _ = {
-	isEqual: require('lodash/isEqual')
-}
+import _ from 'lodash'
 
 export default class AnyImg extends React.Component {
-	displayName: "common/AnyImg"
+	displayName = "common/AnyImg"
 
 	constructor(props) {
 		super(props);

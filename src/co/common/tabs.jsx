@@ -2,7 +2,7 @@ import React from 'react'
 import Icon from 'icon'
 
 export default class Tabs extends React.Component {
-	displayName: "common/tabs"
+	displayName = "common/tabs"
 
 	render() {
 		var items = (this.props.items||[]).map((item)=>{

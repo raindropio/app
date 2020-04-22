@@ -5,8 +5,8 @@ import initAuth from '../helpers/initAuth'
 import Preloader from '../co/common/preloader'
 
 export default class AccountRedirect extends React.Component {
-	displayName: "account/redirect"
-	checked: false
+	displayName = "account/redirect"
+	checked = false
 
 	componentDidMount() {
 		setTimeout(()=>document.body.addEventListener('mouseover', this.mouseOver),300);

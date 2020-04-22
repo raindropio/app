@@ -3,7 +3,7 @@ import Icon from 'icon'
 import network from 'network'
 
 export default class CollectionIcon extends React.PureComponent {
-	displayName: "collections/icon"
+	displayName = "collections/icon"
 
 	render() {
 		if ((this.props._id < 0)||(!this.props.src)) {

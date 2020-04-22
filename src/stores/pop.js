@@ -3,7 +3,7 @@ import PopActions from '../actions/pop';
 
 var _params = false;
 
-module.exports = Reflux.createStore({
+export default Reflux.createStore({
     timeout: null,
 
     init: function() {

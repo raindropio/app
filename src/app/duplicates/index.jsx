@@ -11,13 +11,11 @@ import Pop from '../../actions/pop'
 import Toast from '../../actions/toast'
 import duplicatesActions from '../../actions/duplicates'
 import duplicatesStore from '../../stores/duplicates'
-
-var _ = {
-	capitalize: require('lodash/capitalize')
-}
+import UserStore from '../../stores/user'
+import _ from 'lodash'
 
 class Main extends React.Component {
-	displayName: "app/duplicates"
+	displayName = "app/duplicates"
 
 	constructor(props) {
 		super(props);

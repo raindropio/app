@@ -1,6 +1,6 @@
 import Reflux from 'reflux'
 import Api from 'api'
-var ls = {}; try{localStorage.getItem("a"); ls = require('localforage');}catch(e){}
+import ls from 'localforage'
 
 import BookmarkActions from '../actions/singleBookmark'
 
@@ -9,7 +9,7 @@ var _state = {
 	status: ""
 };
 
-module.exports = Reflux.createStore({
+export default Reflux.createStore({
 	init: function() {
 		this.listenTo(BookmarkActions.load, this.onLoad);
 	},

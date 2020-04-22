@@ -7,7 +7,7 @@ import bookmarksStore from '../../stores/bookmarks'
 import Preloader from '../../co/common/preloader'
 
 export default function(Component) { return class ReaderBookmark extends React.Component {
-	displayName: "reader/bookmark"
+	displayName = "reader/bookmark"
 
 	constructor(props) {
 		super(props);

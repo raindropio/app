@@ -3,9 +3,10 @@ import t from 't'
 
 import Icon from 'icon'
 import Slider from '../common/slider'
+import UserStore from '../../stores/user'
 
 export default class PreviewPop extends React.Component {
-	displayName: "pop/preview"
+	displayName = "pop/preview"
 
 	constructor(props) {
 		super(props);

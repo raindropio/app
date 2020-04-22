@@ -1,6 +1,6 @@
 import config from './config'
 
-module.exports = {
+export default {
     defaultIcons: function(s) {
       switch(parseInt(s)){
         case 0: return "infinite"; break;

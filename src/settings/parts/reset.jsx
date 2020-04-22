@@ -3,9 +3,10 @@ import t from 't'
 import Api from 'api'
 
 import Pop from '../../actions/pop'
+import UserStore from '../../stores/user'
 
 export default class Reset extends React.Component {
-	displayName: "settings/parts/reset"
+	displayName = "settings/parts/reset"
 
 	handleReset() {
 		if (!confirm(t.s("areYouSure")))

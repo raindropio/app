@@ -10,9 +10,9 @@ import keyvalStore from '../../stores/keyval'
 import collectionsStore from '../../stores/collections'
 
 export default class Panel extends React.Component {
-	displayName: "sidebar/panel"
+	displayName = "sidebar/panel"
 
-	timeout: null
+	timeout = null
 
 	constructor(props) {
 		super(props);

@@ -8,7 +8,7 @@ import keyvalStore from '../../stores/keyval'
 
 export default function(Component, params={}) {
 	return class LayoutWrap extends React.Component {
-		displayName: "columns/layoutWrap"
+		displayName = "columns/layoutWrap"
 
 		constructor(props) {
 			super(props);

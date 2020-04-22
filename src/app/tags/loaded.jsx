@@ -5,10 +5,7 @@ import Header from './parts/header'
 import SuperOverflow from '../../co/common/superOverflow'
 
 import Item from './parts/item'
-
-const _ = {
-	map: require('lodash/map')
-}
+import _ from 'lodash'
 
 export default class Loaded extends React.Component {
 	constructor(props) {

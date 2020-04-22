@@ -1,6 +1,5 @@
 import React from 'react'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-import strings from '../../modules/strings'
 
 import Toasts from '../../actions/toast'
 import ToastStore from '../../stores/toast'
@@ -10,7 +9,7 @@ import Icon from 'icon'
 const isElectron = false; //strings.getCurrentBrowser().indexOf("electron")!=-1;
 
 export default class Toast extends React.Component {
-	displayName: "common/Toast"
+	displayName = "common/Toast"
 
 	constructor(props) {
 		super(props);

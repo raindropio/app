@@ -2,7 +2,7 @@ import React from 'react'
 import keyvalStore from '../../stores/keyval'
 
 export default class ThemeColor extends React.Component {
-	displayName: "collections/themeColor"
+	displayName = "collections/themeColor"
 
 	prepareCollectionColor(e,_this) {
 		if (typeof this.props.collection._id == 'undefined')

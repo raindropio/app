@@ -3,7 +3,7 @@ import Icon from 'icon'
 import t from 't'
 
 export default class ImportDone extends React.Component {
-	displayName: "settings/import/done"
+	displayName = "settings/import/done"
 
 	render() {
 		return (

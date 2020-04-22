@@ -18,4 +18,4 @@ var UserActions = Reflux.createActions([
     'signUp'
 ]);
 
-module.exports = UserActions;
+export default UserActions;

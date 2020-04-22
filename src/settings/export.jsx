@@ -10,7 +10,7 @@ import SuperImg from '../co/common/superImg'
 import MainWrap from '../co/columns/mainWrap'
 
 class Main extends React.Component {
-	displayName: "settings/export"
+	displayName = "settings/export"
 
 	constructor(props) {
 		super(props);

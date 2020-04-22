@@ -6,4 +6,4 @@ var ChildrensActions = Reflux.createActions([
     'removeCollection'
 ]);
 
-module.exports = ChildrensActions;
+export default ChildrensActions;

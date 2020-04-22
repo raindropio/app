@@ -1,12 +1,9 @@
 import Reflux from 'reflux'
 import actions from '../actions/keyval'
 import Api from 'api'
+import _ from 'lodash'
 
 const persist_keys_Key = "keyval_persist_keys";
-
-var _ = {
-  uniq: require('lodash/uniq')
-}
 
 var _all = {}, _persist_keys = JSON.parse(Api.getItem(persist_keys_Key))||[];
 
@@ -16,7 +13,7 @@ for(var i in _persist_keys){
 	if (tempVal) _all[_persist_keys[i]] = tempVal;
 }
 
-module.exports = Reflux.createStore({
+export default Reflux.createStore({
 	listenables: actions,
 	
 	onAll: function() {

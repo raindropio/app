@@ -1,27 +1,23 @@
 import React from 'react'
 import ReactDom from 'react-dom'
+import _ from 'lodash'
 
 import config from 'config'
 import Api from 'api'
 import t from 't'
 import network from 'network'
-import strings from '../../modules/strings'
 import environment from '../../helpers/environment'
 
 import Icon from 'icon'
-import Preloader from 'preloader'
+import Preloader from '../../co/common/preloader'
 import ElectronWebView from './electronWebView'
-
-var _ = {
-  capitalize: require('lodash/capitalize')
-}
 
 var pauseBeforeLoad = /*(environment.isDesktop() ? 0 :*/ 300/*)*/;
 
 export default class SuperFrame extends React.Component {
-	displayName: "common/superFrame"
+	displayName = "common/superFrame"
 
-	timer: null
+	timer = null
 
 	constructor(props) {
 		super(props);

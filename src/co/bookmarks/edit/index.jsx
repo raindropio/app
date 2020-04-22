@@ -3,7 +3,7 @@ import ReactDom from 'react-dom'
 import t from 't'
 import config from 'config'
 import environment from '../../../helpers/environment'
-import clipperHelper from '../../../helpers/clipper'
+import { capturePage } from '../../../helpers/clipper'
 import Icon from 'icon'
 import Api from 'api'
 import debounce from 'lodash/debounce'
@@ -16,13 +16,10 @@ import Textarea from 'react-autosize-textarea'
 import Masonry from 'react-masonry-component'
 import Cover from '../../../co/common/cover'
 import Tags from './tags'
-
-var _ = {
-	findIndex: require('lodash/findIndex')
-}
+import _ from 'lodash'
 
 class Edit extends React.Component {
-	displayName: "reader/edit"
+	displayName = "reader/edit"
 
 	constructor(props) {
 		super(props);
@@ -169,7 +166,7 @@ class Edit extends React.Component {
 				return rej('not clipper')
 
 			try{
-				clipperHelper.capturePage(this.state.item.link, (dataURI)=>{
+				capturePage(this.state.item.link, (dataURI)=>{
 					if (dataURI)
 						return res(dataURI)
 					rej('cant capture')

@@ -3,13 +3,14 @@ import t from 't'
 
 import keyvalActions from '../../actions/keyval'
 import keyvalStore from '../../stores/keyval'
+import UserStore from '../../stores/user'
 
 var themes = [
 	'dark themeDark','default','sunset','sky','piano','beach','color1','color2','color3','color4','color5','color6','color7','color8'
 ];
 
 export default class Theme extends React.Component {
-	displayName: "settings/parts/theme"
+	displayName = "settings/parts/theme"
 
 	constructor(props) {
 		super(props);

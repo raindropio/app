@@ -7,6 +7,7 @@ import config from 'config'
 import CollectionsActions from '../../actions/collections'
 import CollectionsStore from '../../stores/collections'
 import Pop from '../../actions/pop'
+import UserStore from '../../stores/user'
 
 import Textarea from 'react-textarea-autosize'
 import Icon from 'icon'
@@ -26,7 +27,7 @@ var _defaultItem = {
 };
 
 export default class PopCollection extends React.Component {
-    displayName: "Pop/Collection"
+    displayName = "Pop/Collection"
 
     updateCover: false
 

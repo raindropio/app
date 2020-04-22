@@ -1,9 +1,6 @@
 import React from 'react'
 import t from 't'
-
-var _ = {
-    capitalize: require('lodash/capitalize')
-}
+import _ from 'lodash'
 
 export const formatDate = (value, short=true)=>{
     var content = ''

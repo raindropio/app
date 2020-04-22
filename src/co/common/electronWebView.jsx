@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDom from 'react-dom'
 
 export default class ElectronWebView extends React.Component {
-	displayName: "common/ElectronWebView"
+	displayName = "common/ElectronWebView"
 
 	componentDidMount() {
 		var webViewElem = ReactDom.findDOMNode(this.refs.webview);

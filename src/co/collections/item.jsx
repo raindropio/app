@@ -6,7 +6,7 @@ import { NativeTypes } from 'react-dnd-html5-backend';
 import Api from 'api'
 import t from 't'
 import config from 'config'
-import strings from '../../modules/strings'
+import { humanNumber } from '../../modules/strings'
 import contextMenu from '../../modules/contextMenu'
 import collectionsHelpers from '../../helpers/collections'
 import bookmarksHelpers from '../../helpers/bookmarks'
@@ -19,13 +19,14 @@ import collectionsStore from '../../stores/collections'
 import keyvalActions from '../../actions/keyval'
 import keyvalStore from '../../stores/keyval'
 import Pop from '../../actions/pop'
+import UserStore from '../../stores/user'
 
 import CollectionIcon from './icon'
 import SuperLink from '../common/superLink'
 import Icon from 'icon'
 
 class Item extends React.PureComponent {
-	displayName: "collections/item"
+	displayName = "collections/item"
 
 	/*shouldComponentUpdate(nextProps, nextState) {
 		if (this.props.active != nextProps.active)
@@ -244,7 +245,7 @@ class Item extends React.PureComponent {
 
 				{this.renderStatus()}
 
-				{typeof this.props.item.count != 'undefined' && <div className="count">{strings.humanNumber(this.props.item.count)||""}</div>}
+				{typeof this.props.item.count != 'undefined' && <div className="count">{humanNumber(this.props.item.count)||""}</div>}
 				{collectionEditable ? <div className="actions" id={id}><span onClick={this.openInfo.bind(this)}>{t.s("editMin")}</span></div> : null}
 
 				<SuperLink

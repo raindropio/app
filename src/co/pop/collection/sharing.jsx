@@ -1,15 +1,16 @@
 import React from 'react'
 import t from 't'
-import strings from '../../../modules/strings'
+import { inputSelectAllMixin } from '../../../modules/strings'
 import network from 'network'
 import Api from 'api'
 
 import Icon from 'icon'
 
 import Toasts from '../../../actions/toast'
+import UserStore from '../../../stores/user'
 
-var CollectionsActions = require('../../../actions/collections');
-var Avatar = require("../../common/avatar");
+import CollectionsActions from '../../../actions/collections'
+import Avatar from "../../common/avatar"
 
 var _roles = [
     {
@@ -26,10 +27,10 @@ var _roles = [
     }
 ];
 
-module.exports = React.createClass({
+export default React.createClass({
     displayName: "Collection/Sharing",
 
-    mixins: [strings.inputSelectAllMixin],
+    mixins: [inputSelectAllMixin],
 
     getInitialState: function() {
         return {

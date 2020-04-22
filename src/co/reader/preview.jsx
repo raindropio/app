@@ -1,6 +1,6 @@
 import React from 'react'
 import network from 'network'
-import strings from '../../modules/strings'
+import { fromNow } from '../../modules/strings'
 
 import Pop from '../../actions/pop'
 
@@ -8,7 +8,7 @@ import FavIcon from '../common/favIcon'
 import Preloader from '../common/preloader'
 
 export default class Sidebar extends React.Component {
-	displayName: "reader/preview"
+	displayName = "reader/preview"
 
 	componentWillReceiveProps(nextProps) {
 		if ((nextProps.item||{})._id != (this.props.item||{})._id){
@@ -38,7 +38,7 @@ export default class Sidebar extends React.Component {
 				{this.props.status=="loading" ? <div className="centerContentWrap status-loading"><Preloader /></div> : null}
 				
 				<div className={"previewContent "+this.props.status+(this.props.canAppearWithAnimation ? " " + this.props.canAppearWithAnimation + " canAppearWithAnimation" : "")}>
-					<div className="domain"><FavIcon className="domainFavIcon" domain={network.cleanDomain((this.props.item||{}).domain)} /><b>{network.cleanDomain((this.props.item||{}).domain)}</b> &nbsp;&middot;&nbsp; {strings.fromNow((this.props.item||{}).lastUpdate)}</div>
+					<div className="domain"><FavIcon className="domainFavIcon" domain={network.cleanDomain((this.props.item||{}).domain)} /><b>{network.cleanDomain((this.props.item||{}).domain)}</b> &nbsp;&middot;&nbsp; {fromNow((this.props.item||{}).lastUpdate)}</div>
 					<h1 className="previewTitle"><a href={(this.props.item||{}).link} target="_blank">{(this.props.item||{}).title}</a></h1>
 
 					<div className="text-viewer-raindrop">

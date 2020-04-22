@@ -8,7 +8,7 @@ import keyvalStore from '../../stores/keyval'
 
 export default function(Component) {
 	return class SidebarWrap extends React.Component {
-		displayName: "columns/SidebarWrap"
+		displayName = "columns/SidebarWrap"
 
 		constructor(props) {
 			super(props);

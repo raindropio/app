@@ -6,7 +6,7 @@ import keyvalStore from '../../stores/keyval'
 
 export default function(Component) {
 	return class MainWrap extends React.Component {
-		displayName: "columns/mainWrap"
+		displayName = "columns/mainWrap"
 
 		constructor(props) {
 			super(props);

@@ -6,7 +6,7 @@ import initAuth from '../helpers/initAuth'
 import LayoutWrap from '../co/columns/layoutWrap'
 
 class AccountLayout extends React.Component {
-	displayName: "account"
+	displayName = 'account'
 
 	componentDidMount() {
 		initAuth.alreadyLoaded=false;

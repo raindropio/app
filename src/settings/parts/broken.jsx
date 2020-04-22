@@ -1,9 +1,10 @@
 import React from 'react'
 import t from 't'
 import Toasts from '../../actions/toast'
+import UserStore from '../../stores/user'
 
 export default class CommonBroken extends React.Component {
-    displayName: "settings/parts/broken"
+    displayName = "settings/parts/broken"
 
     levels = [
         { id: 'basic',      title: 'Basic mode',     description: 'Mark only nonexistent links'},

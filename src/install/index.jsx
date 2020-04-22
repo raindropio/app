@@ -6,7 +6,7 @@ import Sidebar from './sidebar'
 import LayoutWrap from '../co/columns/layoutWrap'
 
 class Layout extends React.Component {
-	displayName: "install/index"
+	displayName = "install/index"
 
 	render() {
 		return (

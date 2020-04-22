@@ -1,25 +1,8 @@
-if (!__DEV__){
-	if (window.location.protocol.indexOf('http')==0){
-		var { install } = require('offline-plugin/runtime');
-		install();
-	}
-}
-else{
-	var Perf = require('react-addons-perf')
-	window.Perf = Perf
-}
-
-require('./css/base.styl')
+import './css/base.styl'
 
 import React from 'react'
 import { render } from 'react-dom'
-import { renderToString } from 'react-dom/server'
-import environment from './helpers/environment'
-import strings from './modules/strings'
-
 import { Router, Route, hashHistory, IndexRedirect, Redirect } from 'react-router'
-
-//import template from './index.ejs'
 
 //Routes
 import Base from './base'
@@ -41,7 +24,7 @@ const rootRoute = (
 		{Install.getRoutes()}
 		{Settings}
 	</Route>
-);
+)
 
 //Client side
 

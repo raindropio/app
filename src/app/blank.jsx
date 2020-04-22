@@ -8,7 +8,7 @@ import keyvalActions from '../actions/keyval'
 import keyvalStore from '../stores/keyval'
 
 class Main extends React.Component {
-	displayName: "install/blank"
+	displayName = "install/blank"
 
 	onKeyvalChange(all) {
 		var isForceSidebar = keyvalStore.onGet('mode-force-sidebar')||false;

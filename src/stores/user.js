@@ -2,20 +2,13 @@ import Reflux from 'reflux'
 import Api from 'api'
 import t from 't'
 import config from '../modules/config'
-import strings from '../modules/strings'
-var ls = {}; try{localStorage.getItem("a"); ls = require('localforage');}catch(e){}
+import { swapArray } from '../modules/strings'
+import _ from 'lodash'
+import ls from 'localforage'
 
 import Toasts from '../actions/toast'
 import UserActions from '../actions/user'
 import CollectionsStore from './collections.js'
-
-var _ = {
-  clone: require('lodash/clone'),
-  sortBy: require('lodash/sortBy'),
-  pullAt: require('lodash/pullAt'),
-  findIndex: require('lodash/findIndex'),
-  uniq: require('lodash/uniq')
-}
 
 var _user = {}, _logged = false, _loading = false, _trusted = false, _subscription = { loading:true };
 
@@ -207,7 +200,7 @@ var UserStore = Reflux.createStore({
       var toIndex = _.findIndex(_user.groups, {id: parseInt(params.toId)});
 
       if ((fromIndex!=-1)&&(toIndex!=-1)){
-        _user.groups = strings.swapArray(_user.groups, fromIndex, toIndex);
+        _user.groups = swapArray(_user.groups, fromIndex, toIndex);
         for(var i in _user.groups){
           _user.groups[i].sort = i;
         }
@@ -524,4 +517,4 @@ var UserStore = Reflux.createStore({
     }
 });
 
-module.exports = UserStore;
+export default UserStore

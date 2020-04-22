@@ -1,6 +1,7 @@
 import React from 'react'
 import Icon from 'icon'
 import t from 't'
+import UserStore from '../../stores/user'
 
 import settingsHelpers from '../parts/helpers'
 import MainWrap from '../../co/columns/mainWrap'
@@ -9,7 +10,7 @@ import Gdrive from './gdrive'
 import Link from './link'
 
 class Main extends React.Component {
-	displayName: "settings/integrations"
+	displayName = "settings/integrations"
 
 	constructor(props) {
 		super(props);

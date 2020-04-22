@@ -3,17 +3,15 @@ import Icon from 'icon'
 import t from 't'
 import config from 'config'
 import Api from 'api'
+import _ from 'lodash'
 
 import helpers from './helpers'
 import Preloader from '../../co/common/preloader'
 
 var iterator=0;
-var _ = {
-	chunk: require('lodash/chunk')
-}
 
 export default class ImportBookmarks extends React.Component {
-	displayName: "settings/import/bookmarks"
+	displayName = "settings/import/bookmarks"
 
 	constructor(props) {
 		super(props);

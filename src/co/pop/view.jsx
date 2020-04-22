@@ -15,7 +15,7 @@ const disableCoverName = "mode-disable-cover",
 	  disableTitleName = "mode-disable-title"
 
 export default class ViewPop extends React.Component {
-	displayName: "pop/view"
+	displayName = "pop/view"
 
 	constructor(props) {
 		super(props);

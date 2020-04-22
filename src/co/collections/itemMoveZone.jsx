@@ -4,9 +4,10 @@ import { DragSource, DropTarget } from 'react-dnd'
 import collectionsHelpers from '../../helpers/collections'
 import collectionsActions from '../../actions/collections'
 import collectionsStore from '../../stores/collections'
+import UserStore from '../../stores/user'
 
 class Zone extends React.Component {
-	displayName: "collections/itemMoveZone"
+	displayName = "collections/itemMoveZone"
 
 	render() {
 		const {

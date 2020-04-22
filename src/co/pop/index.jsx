@@ -1,6 +1,5 @@
 import React from 'react'
 import ReactDom from 'react-dom'
-import strings from '../../modules/strings'
 import MobileDetect from 'mobile-detect'
 
 import Pop from '../../actions/pop'
@@ -32,7 +31,7 @@ import Prompt from './prompt'
 var md = new MobileDetect((typeof window != "undefined" ? window.navigator.userAgent : null))
 
 export default class PopView extends React.Component {
-    displayName: "Pop/Pop"
+    displayName = "Pop/Pop"
 
     constructor(props) {
         super(props);

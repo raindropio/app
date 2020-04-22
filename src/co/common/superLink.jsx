@@ -26,7 +26,7 @@ var helpers = {
 }
 
 export default class SuperLink extends React.PureComponent {
-	displayName: "common/superLink"
+	displayName = "common/superLink"
 
 	componentWillMount() {
 		helpers.bind();

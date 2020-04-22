@@ -2,15 +2,12 @@ import React from 'react'
 
 import network from 'network'
 import colors from '../../modules/colors'
-
-var _ = {
-  isEqual: require('lodash/isEqual')
-}
+import _ from 'lodash'
 
 var brokenImgs = []
 
 export default class FavIcon extends React.Component {
-	displayName: "common/favIcon"
+	displayName = "common/favIcon"
 
 	cleanSource(domain) {
 		if (brokenImgs.indexOf(domain)!=-1)

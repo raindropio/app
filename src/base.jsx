@@ -3,13 +3,10 @@ import HTML5Backend from 'react-dnd-html5-backend';
 import { DragDropContext } from 'react-dnd';
 
 import MobileDetect from 'mobile-detect'
-import strings from './modules/strings'
+import { getCurrentBrowser, scrollbarIsObtrusive } from './modules/strings'
 import environment from './helpers/environment'
-
-if (typeof document !== 'undefined')
-    var keyvalStore = require('./stores/keyval')
-
-const _each = require('lodash/forEach');
+import keyvalStore from './stores/keyval'
+import _ from 'lodash'
 
 class Base extends React.Component {
     constructor(props) {
@@ -21,7 +18,7 @@ class Base extends React.Component {
 
 	onKeyvalChange(all) {
 		var bodyClass = [], fontSize = "";
-		_each(all, function(val,key) {
+		_.each(all, function(val,key) {
 			if (key.indexOf('mode')==0)
 				bodyClass.push(key);
             else if (key=="font-size")
@@ -50,11 +47,11 @@ class Base extends React.Component {
         }
 
         if (typeof document !== 'undefined'){
-            var env = strings.getCurrentBrowser();
+            var env = getCurrentBrowser();
             for(var i in env)
                 document.documentElement.classList.add(env[i]);
 
-            if (strings.scrollbarIsObtrusive())
+            if (scrollbarIsObtrusive())
                 document.documentElement.classList.add('scrollbar-obtrusive')
         }
 

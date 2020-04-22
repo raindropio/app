@@ -7,7 +7,7 @@ import t from 't'
 import bookmarksHelpers from '../../helpers/bookmarks'
 
 class Zone extends React.Component {
-	displayName: "App/parts/dropFile"
+	displayName = "App/parts/dropFile"
 
 	render() {
 		const {

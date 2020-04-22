@@ -7,7 +7,7 @@ import CollectionInfo from "./info"
 import ThemeColor from '../themeColor'
 
 export default class Edit extends React.Component {
-	displayName: "collections/edit"
+	displayName = "collections/edit"
 
 	constructor(props) {
 		super(props);

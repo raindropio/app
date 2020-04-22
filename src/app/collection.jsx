@@ -7,7 +7,6 @@ import Icon from 'icon'
 import t from 't'
 import SuperImg from '../co/common/superImg'
 import config from 'config'
-import strings from '../modules/strings'
 import colors from '../modules/colors'
 import network from '../modules/network'
 import collectionsHelpers from '../helpers/collections'
@@ -35,20 +34,16 @@ import SuperOverflow from '../co/common/superOverflow'
 import CollectionIcon from '../co/collections/icon'
 import DropFile from './parts/dropFile'
 import BatchActions from './parts/batchActions'
-
-var _ = {
-  findIndex: require('lodash/findIndex'),
-  capitalize: require('lodash/capitalize')
-}
+import _ from 'lodash'
 
 import MainWrap from '../co/columns/mainWrap'
 
 class Main extends React.Component {
-	displayName: "collection"
+	displayName = "collection"
 
-	lastCid: null
+	lastCid = null
 
-	status: ""
+	status = ""
 
 	constructor(props) {
 		super(props);

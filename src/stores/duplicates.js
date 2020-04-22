@@ -1,14 +1,7 @@
 import Reflux from 'reflux'
 import Api from 'api'
 import actions from '../actions/duplicates'
-
-var _ = {
-	uniq: require('lodash/uniq'),
-	remove: require('lodash/remove'),
-	groupBy: require('lodash/groupBy'),
-	filter: require('lodash/filter'),
-	flatten: require('lodash/flatten')
-}
+import _ from 'lodash'
 
 export default Reflux.createStore({
 	init() {

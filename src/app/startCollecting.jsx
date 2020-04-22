@@ -8,7 +8,7 @@ import MainWrap from '../co/columns/mainWrap'
 import SuperImg from '../co/common/superImg'
 
 class Main extends React.Component {
-	displayName: "install/startCollecting"
+	displayName = "install/startCollecting"
 
 	componentDidMount() {
 		

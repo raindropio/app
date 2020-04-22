@@ -1,17 +1,14 @@
 import Reflux from 'reflux'
 import Api from 'api'
 import hash from 'object-hash'
-var ls = {}; try{localStorage.getItem("a"); ls = require('localforage');}catch(e){}
+import _ from 'lodash'
+import ls from 'localforage'
 
 import FiltersActions from '../actions/filters';
 
-var _ = {
-    orderBy: require('lodash/orderBy')
-}
-
 var _filters = [], _query = {};
 
-module.exports = Reflux.createStore({
+export default Reflux.createStore({
 	init: function() {
         this.listenTo(FiltersActions.setQuery, this.onSetQuery);
         this.listenTo(FiltersActions.load, this.onLoad);

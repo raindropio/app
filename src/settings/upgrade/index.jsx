@@ -2,6 +2,7 @@ import React from 'react'
 import t from 't'
 import settingsHelpers from '../parts/helpers'
 import MainWrap from '../../co/columns/mainWrap'
+import UserStore from '../../stores/user'
 
 import Loading from './loading'
 import Free from './free'

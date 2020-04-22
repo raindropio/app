@@ -6,9 +6,10 @@ import Empty from './empty'
 import Buy from './buy'
 
 import statsStore from '../../stores/stats'
+import UserStore from '../../stores/user'
 
 class Main extends React.Component {
-	displayName: "app/broken"
+	displayName = "app/broken"
 
 	onStatChange() {
 		this.setState({});

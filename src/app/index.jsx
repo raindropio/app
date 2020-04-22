@@ -4,8 +4,8 @@ import DocumentTitle from 'react-document-title'
 import Icon from 'icon'
 import Api from 'api'
 import t from 't'
-import strings from '../modules/strings'
 import initAuth from '../helpers/initAuth'
+import UserStore from '../stores/user'
 
 import Sidebar from './sidebar'
 import SidebarTabBar from './sidebar/tabBar'
@@ -18,9 +18,9 @@ import CustomDragPreview from '../co/common/customDragPreview'
 var loginStep, correctStepCount, alreadyLoaded = false;
 
 class Layout extends React.Component {
-	displayName: "app/index"
+	displayName = "app/index"
 
-	timeout: null
+	timeout = null
 
 	constructor(props) {
 		super(props);

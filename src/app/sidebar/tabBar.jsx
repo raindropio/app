@@ -12,7 +12,7 @@ var tabItems = [
 ]
 
 export default class TabBar extends React.Component {
-	displayName: "app/sidebar/tabBar"
+	displayName = "app/sidebar/tabBar"
 
 	shouldComponentUpdate(nextProps, nextState) {
 		return shallowCompare(this, nextProps, nextState);

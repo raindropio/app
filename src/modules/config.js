@@ -6,7 +6,7 @@ if(typeof window != "undefined"){
         host = window.location.protocol+"//"+home;
 }
 
-module.exports = {
+export default {
     home: home,
 	host: host,
     apiPrefix: __DEV__ ? "http://dev.raindrop.io:3000/v1/" : "https://api.raindrop.io/v1/",

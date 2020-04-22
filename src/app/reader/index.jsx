@@ -1,12 +1,12 @@
 import React from 'react'
 import t from 't'
-import strings from '../../modules/strings'
 
 import keyvalActions from '../../actions/keyval'
 import keyvalStore from '../../stores/keyval'
 import bookmarksActions from '../../actions/bookmarks'
 import bookmarksStore from '../../stores/bookmarks'
 import Pop from '../../actions/pop'
+import UserStore from '../../stores/user'
 
 import Icon from 'icon'
 import SuperFrame from '../../co/common/superFrame'
@@ -18,8 +18,8 @@ import Tabs from '../../co/common/tabs'
 import ChildView from './child'
 
 export default class Sidebar extends React.Component {
-	displayName: "reader/index"
-	lastScrollPos: 0
+	displayName = "reader/index"
+	lastScrollPos = 0
 
 	constructor(props) {
 		super(props);

@@ -1,6 +1,6 @@
 import Api from './api'
 
-module.exports = {
+export default {
 	search: function(q, page, callback) {
 		Api.get("https://api.iconfinder.com/v2/icons/search?query="+encodeURIComponent(""+q)+"&minimum_size=128&count=100&offset="+(100*page), function(json) {
 			if (json.icons){

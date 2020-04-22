@@ -1,14 +1,11 @@
 import React from 'react'
 import t from 't'
 import Api from 'api'
+import _ from 'lodash'
 
 import Item from './item'
 
 const _prefix = "interest_";
-
-var _ = {
-	orderBy: require('lodash/orderBy')
-}
 
 export default class Examples extends React.Component {
 	constructor(props) {
