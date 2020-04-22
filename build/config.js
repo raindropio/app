@@ -55,7 +55,7 @@ module.exports = {
 	},
 
 	entry: {
-		app: './index.jsx'
+		app: './index.js'
 	},
 	
 	output: {
@@ -74,7 +74,7 @@ module.exports = {
 
 	resolve: {
 		symlinks: false,
-		extensions: ['.js', '.jsx'],
+		extensions: ['.js'],
 		modules: [
 			path.resolve(__dirname, '../node_modules')
 		],
@@ -82,7 +82,7 @@ module.exports = {
 			api: __dirname + '/../src/modules/api.js',
 			network: __dirname + '/../src/modules/network.js',
 			config: __dirname + '/../src/modules/config.js',
-			icon: __dirname + '/../src/co/common/icon.jsx',
+			icon: __dirname + '/../src/co/common/icon.js',
 			t: __dirname + '/../src/modules/translate.js',
 
 			lodash: 'lodash-es'
@@ -139,7 +139,7 @@ module.exports = {
 
 		rules: [
 			{
-				test: /\.jsx?$/,
+				test: /\.js$/,
 				exclude: /node_modules/,
 				use: ['babel-loader']
 			},
