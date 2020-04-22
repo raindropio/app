@@ -1,6 +1,6 @@
 import React from 'react'
-import t from 't'
-import Icon from 'icon'
+import t from '~t'
+import Icon from '~icon'
 import initAuth from '../helpers/initAuth'
 
 import LayoutWrap from '../co/columns/layoutWrap'

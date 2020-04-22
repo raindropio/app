@@ -1,7 +1,7 @@
 import React from 'react'
-import Icon from 'icon'
-import t from 't'
-import config from 'config'
+import Icon from '~icon'
+import t from '~t'
+import config from '~config'
 
 import settingsHelpers from './parts/helpers'
 import UserStore from '../stores/user'

@@ -1,5 +1,5 @@
 import Reflux from 'reflux'
-import Api from 'api'
+import Api from '~api'
 import ls from 'localforage'
 
 import BookmarkActions from '../actions/singleBookmark'

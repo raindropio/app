@@ -1,6 +1,6 @@
 import React from 'react'
-import t from 't'
-import Icon from 'icon'
+import t from '~t'
+import Icon from '~icon'
 import environment from '../../helpers/environment'
 import Preloader from '../../co/common/preloader'
 

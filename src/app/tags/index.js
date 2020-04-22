@@ -1,5 +1,5 @@
 import React from 'react'
-import t from 't'
+import t from '~t'
 
 import MainWrap from '../../co/columns/mainWrap'
 import Init from './init'

@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDom from 'react-dom'
 import shallowCompare from 'react-addons-shallow-compare'
 import { DragSource, DropTarget } from 'react-dnd';
-import t from 't'
+import t from '~t'
 import contextMenu from '../../modules/contextMenu'
 import collectionsHelper from '../../helpers/collections'
 

@@ -3,7 +3,7 @@ import collectionsStore from '../stores/collections'
 import keyvalStore from '../stores/keyval'
 import UserStore from '../stores/user'
 import Pop from '../actions/pop'
-import t from 't'
+import t from '~t'
 import _ from 'lodash'
 
 export default {

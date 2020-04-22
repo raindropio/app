@@ -1,5 +1,5 @@
-import t from 't'
-import Api from 'api'
+import t from '~t'
+import Api from '~api'
 import Pop from '../../actions/pop'
 import UserStore from '../../stores/user'
 

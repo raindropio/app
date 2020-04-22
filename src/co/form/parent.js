@@ -1,12 +1,12 @@
 import React from 'react'
 import ReactDom from 'react-dom'
-import t from 't'
+import t from '~t'
 
 import collectionsStore from '../../stores/collections'
 import UserStore from '../../stores/user'
 
 import CollectionIcon from '../collections/icon'
-import Icon from 'icon'
+import Icon from '~icon'
 import CollectionsList from '../collections'
 
 export default class Parent extends React.Component {

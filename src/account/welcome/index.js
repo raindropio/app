@@ -1,8 +1,8 @@
 import React from 'react'
 import DocumentTitle from 'react-document-title'
-import t from 't'
-import Icon from 'icon'
-import Api from 'api'
+import t from '~t'
+import Icon from '~icon'
+import Api from '~api'
 import environment from '../../helpers/environment'
 
 import SuperImg from '../../co/common/superImg'

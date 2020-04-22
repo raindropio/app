@@ -2,7 +2,7 @@ import React from 'react'
 import { Route, IndexRedirect } from 'react-router'
 import environment from '../helpers/environment'
 import routeHelpers from '../helpers/routes'
-import t from 't'
+import t from '~t'
 
 import Index from './index'
 import Blank from '../install/blank'

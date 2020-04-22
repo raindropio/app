@@ -1,4 +1,4 @@
-import t from 't'
+import t from '~t'
 import network from './network'
 import config from './config'
 import _ from 'lodash'

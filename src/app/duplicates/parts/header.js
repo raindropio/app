@@ -1,7 +1,7 @@
 import React from 'react'
 import DocumentTitle from 'react-document-title'
-import t from 't'
-import Icon from 'icon'
+import t from '~t'
+import Icon from '~icon'
 
 export default ({children, sidebarToggle, className})=>{
 	return (

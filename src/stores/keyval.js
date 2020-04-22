@@ -1,6 +1,6 @@
 import Reflux from 'reflux'
 import actions from '../actions/keyval'
-import Api from 'api'
+import Api from '~api'
 import _ from 'lodash'
 
 const persist_keys_Key = "keyval_persist_keys";

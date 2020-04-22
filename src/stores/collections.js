@@ -1,6 +1,6 @@
 import Reflux from 'reflux'
-import Api from 'api'
-import t from 't'
+import Api from '~api'
+import t from '~t'
 import { getErrorFromJSON } from '../modules/strings'
 import _ from 'lodash'
 import ls from 'localforage'

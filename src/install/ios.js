@@ -1,7 +1,7 @@
 import React from 'react'
-import config from 'config'
-import t from 't'
-import Icon from 'icon'
+import config from '~config'
+import t from '~t'
+import Icon from '~icon'
 import settingsHelpers from './parts/helpers'
 
 import SuperImg from '../co/common/superImg'

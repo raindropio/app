@@ -1,5 +1,5 @@
 import React from 'react'
-import t from 't'
+import t from '~t'
 import Client from './client'
 
 export default function Clients({ items }) {

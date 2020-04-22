@@ -1,7 +1,7 @@
 import React from 'react'
-import t from 't'
+import t from '~t'
 
-import Icon from 'icon'
+import Icon from '~icon'
 import CollectionsList from '../../co/collections'
 import CollectionsToolbar from '../../co/collections/toolbar'
 import SuperOverflow from '../../co/common/superOverflow'

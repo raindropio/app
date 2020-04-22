@@ -1,6 +1,6 @@
 import React from 'react'
-import t from 't'
-import Icon from 'icon'
+import t from '~t'
+import Icon from '~icon'
 import Header from './parts/header'
 import SuperOverflow from '../../co/common/superOverflow'
 

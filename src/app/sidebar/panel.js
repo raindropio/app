@@ -1,7 +1,7 @@
 import React from 'react'
-import t from 't'
+import t from '~t'
 
-import Icon from 'icon'
+import Icon from '~icon'
 import CollectionEdit from '../../co/collections/edit'
 import SuperOverflow from '../../co/common/superOverflow'
 import URLPop from '../../co/pop/url'

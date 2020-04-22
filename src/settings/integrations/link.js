@@ -1,6 +1,6 @@
 import React from 'react'
-import Icon from 'icon'
-import t from 't'
+import Icon from '~icon'
+import t from '~t'
 
 export default ({title, subtitle, href, icon, color})=>{
 	return (

@@ -1,9 +1,9 @@
 import React from 'react'
-import t from 't'
+import t from '~t'
 import shallowCompare from 'react-addons-shallow-compare'
 import environment from '../../helpers/environment'
 
-import Icon from 'icon'
+import Icon from '~icon'
 
 var tabItems = [
 	{id: "app", title: t.s("my"), icon: "home"},

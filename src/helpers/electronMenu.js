@@ -1,4 +1,4 @@
-import t from 't'
+import t from '~t'
 import bookmarksHelpers from './bookmarks'
 import collectionsHelpers from './collections'
 import { remote } from 'electron'

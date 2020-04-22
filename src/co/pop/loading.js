@@ -1,7 +1,7 @@
 import React from 'react'
-import t from 't'
-import Icon from 'icon'
-import network from 'network'
+import t from '~t'
+import Icon from '~icon'
+import network from '~network'
 
 import Pop from '../../actions/pop'
 import Preloader from '../common/preloader'

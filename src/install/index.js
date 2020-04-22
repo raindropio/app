@@ -1,5 +1,5 @@
 import React from 'react'
-import t from 't'
+import t from '~t'
 import DocumentTitle from 'react-document-title'
 
 import Sidebar from './sidebar'

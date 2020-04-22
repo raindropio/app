@@ -1,6 +1,6 @@
 import React from 'react'
 import { getEmptyImage } from 'react-dnd-html5-backend';
-import t from 't'
+import t from '~t'
 
 import keyvalStore from '../../../stores/keyval'
 

@@ -1,5 +1,5 @@
 import React from 'react'
-import t from 't'
+import t from '~t'
 import AppsActions from '../../../actions/apps'
 
 export default class Client extends React.PureComponent {

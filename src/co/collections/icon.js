@@ -1,6 +1,6 @@
 import React from 'react'
-import Icon from 'icon'
-import network from 'network'
+import Icon from '~icon'
+import network from '~network'
 
 export default class CollectionIcon extends React.PureComponent {
 	displayName = "collections/icon"

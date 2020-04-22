@@ -1,4 +1,4 @@
-import network from 'network'
+import network from '~network'
 import { getCurrentBrowser } from '../modules/strings'
 //import keyvalStore from '../stores/keyval'
 

@@ -1,5 +1,5 @@
 import Reflux from 'reflux'
-import Api from 'api'
+import Api from '~api'
 import hash from 'object-hash'
 import _ from 'lodash'
 import ls from 'localforage'

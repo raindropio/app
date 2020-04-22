@@ -1,5 +1,5 @@
 import Reflux from 'reflux'
-import Api from 'api'
+import Api from '~api'
 import actions from '../actions/covers'
 
 var _state = {

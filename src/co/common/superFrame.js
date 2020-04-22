@@ -2,13 +2,13 @@ import React from 'react'
 import ReactDom from 'react-dom'
 import _ from 'lodash'
 
-import config from 'config'
-import Api from 'api'
-import t from 't'
-import network from 'network'
+import config from '~config'
+import Api from '~api'
+import t from '~t'
+import network from '~network'
 import environment from '../../helpers/environment'
 
-import Icon from 'icon'
+import Icon from '~icon'
 import Preloader from '../../co/common/preloader'
 import ElectronWebView from './electronWebView'
 

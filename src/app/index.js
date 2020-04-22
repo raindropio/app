@@ -1,9 +1,9 @@
 import React from 'react'
 import DocumentTitle from 'react-document-title'
 
-import Icon from 'icon'
-import Api from 'api'
-import t from 't'
+import Icon from '~icon'
+import Api from '~api'
+import t from '~t'
 import initAuth from '../helpers/initAuth'
 import UserStore from '../stores/user'
 

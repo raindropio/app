@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDom from 'react-dom'
-import t from 't'
-import Icon from 'icon'
+import t from '~t'
+import Icon from '~icon'
 
 import tagsStore from '../../../stores/tags'
 import Pop from '../../../actions/pop'

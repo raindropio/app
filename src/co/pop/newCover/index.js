@@ -1,5 +1,5 @@
 import React from 'react'
-import t from 't'
+import t from '~t'
 import Pop from '../../../actions/pop'
 import Tabs from '../../common/tabs'
 

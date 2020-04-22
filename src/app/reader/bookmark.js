@@ -1,5 +1,5 @@
 import React from 'react'
-import t from 't'
+import t from '~t'
 
 import singleBookmarkStore from '../../stores/singleBookmark'
 import bookmarksStore from '../../stores/bookmarks'

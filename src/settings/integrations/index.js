@@ -1,6 +1,6 @@
 import React from 'react'
-import Icon from 'icon'
-import t from 't'
+import Icon from '~icon'
+import t from '~t'
 import UserStore from '../../stores/user'
 
 import settingsHelpers from '../parts/helpers'

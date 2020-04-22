@@ -1,7 +1,7 @@
 import React from 'react'
-import t from 't'
+import t from '~t'
 
-import Icon from 'icon'
+import Icon from '~icon'
 import Group from '../../co/collections/group'
 import CollectionItem from '../../co/collections/item'
 

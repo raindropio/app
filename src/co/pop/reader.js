@@ -1,8 +1,8 @@
 import React from 'react'
-import t from 't'
+import t from '~t'
 import _ from 'lodash'
 
-import Icon from 'icon'
+import Icon from '~icon'
 import keyvalStore from '../../stores/keyval'
 import keyvalActions from '../../actions/keyval'
 

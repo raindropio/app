@@ -1,6 +1,6 @@
 import React from 'react'
-import t from 't'
-import Icon from 'icon'
+import t from '~t'
+import Icon from '~icon'
 
 export default class NewCover extends React.Component {
     onChange = (e)=>{

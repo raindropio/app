@@ -3,9 +3,9 @@ import ReactDom from 'react-dom'
 import { DragSource, DropTarget } from 'react-dnd';
 import { NativeTypes } from 'react-dnd-html5-backend';
 
-import Api from 'api'
-import t from 't'
-import config from 'config'
+import Api from '~api'
+import t from '~t'
+import config from '~config'
 import { humanNumber } from '../../modules/strings'
 import contextMenu from '../../modules/contextMenu'
 import collectionsHelpers from '../../helpers/collections'
@@ -23,7 +23,7 @@ import UserStore from '../../stores/user'
 
 import CollectionIcon from './icon'
 import SuperLink from '../common/superLink'
-import Icon from 'icon'
+import Icon from '~icon'
 
 class Item extends React.PureComponent {
 	displayName = "collections/item"

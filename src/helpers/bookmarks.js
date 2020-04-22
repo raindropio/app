@@ -4,7 +4,7 @@ import BookmarksActions from '../actions/bookmarks'
 import bookmarksStore from '../stores/bookmarks'
 import Pop from '../actions/pop'
 import Toasts from '../actions/toast'
-import t from 't'
+import t from '~t'
 
 const maxFileSize = 10485760, //10mb
       fileTypes = ["image/png", "image/jpeg", "image/jpg", "image/gif", "application/pdf"];

@@ -1,5 +1,5 @@
 import React from 'react'
-import t from 't'
+import t from '~t'
 import _ from 'lodash'
 
 export const formatDate = (value, short=true)=>{

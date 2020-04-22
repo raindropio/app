@@ -1,5 +1,5 @@
 import React, {PureComponent} from 'react'
-import Icon from 'icon'
+import Icon from '~icon'
 import CollectionIcon from '../../../co/collections/icon'
 
 import collectionsStore from '../../../stores/collections'

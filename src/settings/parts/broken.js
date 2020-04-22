@@ -1,5 +1,5 @@
 import React from 'react'
-import t from 't'
+import t from '~t'
 import Toasts from '../../actions/toast'
 import UserStore from '../../stores/user'
 

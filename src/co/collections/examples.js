@@ -1,6 +1,6 @@
 import React from 'react'
-import t from 't'
-import Api from 'api'
+import t from '~t'
+import Api from '~api'
 import _ from 'lodash'
 
 import Item from './item'

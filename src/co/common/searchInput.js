@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDom from 'react-dom'
 import _ from 'lodash'
-import Icon from 'icon'
+import Icon from '~icon'
 import Preloader from './preloader'
 
 export default class NewCoverTempalteSearch extends React.PureComponent {

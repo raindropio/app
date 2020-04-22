@@ -1,5 +1,5 @@
 import React from 'react'
-import Icon from 'icon'
+import Icon from '~icon'
 import { abbreviateNumber } from '../../../modules/strings'
 
 export default function Rating({rating={},enabled=true}){

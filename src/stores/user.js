@@ -1,6 +1,6 @@
 import Reflux from 'reflux'
-import Api from 'api'
-import t from 't'
+import Api from '~api'
+import t from '~t'
 import config from '../modules/config'
 import { swapArray } from '../modules/strings'
 import _ from 'lodash'

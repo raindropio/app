@@ -1,9 +1,9 @@
 import React from 'react'
-import t from 't'
+import t from '~t'
 import config from '../../modules/config'
 import { humanDate, humanFileSize } from '../../modules/strings'
 
-import Icon from 'icon'
+import Icon from '~icon'
 import SuperFrame from '../../co/common/superFrame'
 
 const invalidStatus = {

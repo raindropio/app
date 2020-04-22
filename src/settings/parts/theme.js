@@ -1,5 +1,5 @@
 import React from 'react'
-import t from 't'
+import t from '~t'
 
 import keyvalActions from '../../actions/keyval'
 import keyvalStore from '../../stores/keyval'

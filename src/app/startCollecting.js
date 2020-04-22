@@ -1,8 +1,8 @@
 import React from 'react'
 import DocumentTitle from 'react-document-title'
-import config from 'config'
-import t from 't'
-import Icon from 'icon'
+import config from '~config'
+import t from '~t'
+import Icon from '~icon'
 
 import MainWrap from '../co/columns/mainWrap'
 import SuperImg from '../co/common/superImg'

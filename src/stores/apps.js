@@ -1,7 +1,7 @@
 import Reflux from 'reflux'
-import Api from 'api'
+import Api from '~api'
 import AppsActions from '../actions/apps'
-import t from 't'
+import t from '~t'
 
 var _state = {
     connections: {

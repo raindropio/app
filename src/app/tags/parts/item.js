@@ -1,6 +1,6 @@
 import React from 'react'
-import t from 't'
-import Icon from 'icon'
+import t from '~t'
+import Icon from '~icon'
 import Preloader from '../../../co/common/preloader'
 
 export default class Item extends React.PureComponent {

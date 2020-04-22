@@ -1,8 +1,8 @@
 import React from 'react'
-import config from 'config'
-import t from 't'
-import Icon from 'icon'
-import Api from 'api'
+import config from '~config'
+import t from '~t'
+import Icon from '~icon'
+import Api from '~api'
 
 import settingsHelpers from './parts/helpers'
 

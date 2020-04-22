@@ -1,5 +1,5 @@
 import React from 'react'
-import t from 't'
+import t from '~t'
 import environment from '../helpers/environment'
 import initAuth from '../helpers/initAuth'
 import Preloader from '../co/common/preloader'

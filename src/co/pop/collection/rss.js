@@ -1,6 +1,6 @@
 import React from 'react'
-import t from 't'
-import config from 'config'
+import t from '~t'
+import config from '~config'
 
 import collectionsStore from '../../../stores/collections'
 import Pop from '../../../actions/pop'

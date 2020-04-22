@@ -1,8 +1,8 @@
 import React from 'react'
 import { DropTarget } from 'react-dnd'
 import { NativeTypes } from 'react-dnd-html5-backend';
-import Icon from 'icon'
-import t from 't'
+import Icon from '~icon'
+import t from '~t'
 
 import bookmarksHelpers from '../../helpers/bookmarks'
 

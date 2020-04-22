@@ -1,5 +1,5 @@
 import React from 'react'
-import Icon from 'icon'
+import Icon from '~icon'
 
 export default function Tags({tags=[],appendQuery}){
 	var items = []

@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDom from 'react-dom'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
-import t from 't'
+import t from '~t'
 import _ from 'lodash'
 import colors from '../../modules/colors'
 import network from '../../modules/network'
@@ -9,7 +9,7 @@ import network from '../../modules/network'
 import Pop from '../../actions/pop'
 import PopStore from '../../stores/pop'
 
-import Icon from 'icon'
+import Icon from '~icon'
 import CollectionIcon from '../collections/icon'
 import FavIcon from '../common/favIcon'
 

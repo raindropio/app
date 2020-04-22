@@ -1,9 +1,9 @@
 import React from 'react'
 import ReactDom from 'react-dom'
 
-import network from 'network'
-import config from 'config'
-import Api from 'api'
+import network from '~network'
+import config from '~config'
+import Api from '~api'
 import colors from '../../modules/colors'
 import { beautifulDomain } from '../../modules/strings'
 

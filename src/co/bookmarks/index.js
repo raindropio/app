@@ -1,5 +1,5 @@
 import React from 'react'
-import t from 't'
+import t from '~t'
 import S from 'string'
 
 import isToday from 'date-fns/isToday'

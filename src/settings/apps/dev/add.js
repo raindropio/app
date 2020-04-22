@@ -1,5 +1,5 @@
 import React from 'react'
-import t from 't'
+import t from '~t'
 import settingsHelpers from '../../parts/helpers'
 import AppsStore from '../../../stores/apps'
 

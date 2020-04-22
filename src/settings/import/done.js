@@ -1,6 +1,6 @@
 import React from 'react'
-import Icon from 'icon'
-import t from 't'
+import Icon from '~icon'
+import t from '~t'
 
 export default class ImportDone extends React.Component {
 	displayName = "settings/import/done"

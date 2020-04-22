@@ -1,5 +1,5 @@
 import React from 'react'
-import t from 't'
+import t from '~t'
 
 import keyvalActions from '../../actions/keyval'
 import keyvalStore from '../../stores/keyval'
@@ -8,7 +8,7 @@ import bookmarksStore from '../../stores/bookmarks'
 import Pop from '../../actions/pop'
 import UserStore from '../../stores/user'
 
-import Icon from 'icon'
+import Icon from '~icon'
 import SuperFrame from '../../co/common/superFrame'
 
 import Edit from '../../co/bookmarks/edit'

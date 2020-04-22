@@ -1,7 +1,7 @@
 import React from 'react'
-import t from 't'
+import t from '~t'
 import SuperInput from '../../common/superInput'
-import Icon from 'icon'
+import Icon from '~icon'
 
 export default class NewCover extends React.Component {
     constructor(props) {

@@ -4,7 +4,7 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import Toasts from '../../actions/toast'
 import ToastStore from '../../stores/toast'
 
-import Icon from 'icon'
+import Icon from '~icon'
 
 const isElectron = false; //strings.getCurrentBrowser().indexOf("electron")!=-1;
 

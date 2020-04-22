@@ -59,7 +59,7 @@ module.exports = {
 	},
 	
 	output: {
-		filename:	'assets/[name].[hash].js',
+		filename:	'[name].[hash].js',
 		path:		path.resolve(__dirname, '..', 'dist', isProd?'':'dev', process.env.APP_TARGET),
 		publicPath:	process.env.APP_PUBLIC_PATH
 	},
@@ -79,12 +79,6 @@ module.exports = {
 			path.resolve(__dirname, '../node_modules')
 		],
 		alias: {
-			api: __dirname + '/../src/modules/api.js',
-			network: __dirname + '/../src/modules/network.js',
-			config: __dirname + '/../src/modules/config.js',
-			icon: __dirname + '/../src/co/common/icon.js',
-			t: __dirname + '/../src/modules/translate.js',
-
 			lodash: 'lodash-es'
 		}
 	},
@@ -124,7 +118,7 @@ module.exports = {
 
 		//CSS
 		new MiniCssExtractPlugin({
-			filename: 'assets/[name].[hash].css',
+			filename: '[name].[hash].css',
 			chunkFilename: '[id].css'
 		}),
 
@@ -188,7 +182,13 @@ module.exports = {
 			{
 				test: /.*\.(gif|png|jpe?g|ico)$/i,
 				use: [
-					'file-loader',
+					{
+						loader: 'file-loader',
+						options: {
+							outputPath: 'assets',
+							name: '[hash].[ext]'
+						}
+					},
 					{
 						loader: 'image-webpack-loader',
 						options: {

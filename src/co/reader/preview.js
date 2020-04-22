@@ -1,5 +1,5 @@
 import React from 'react'
-import network from 'network'
+import network from '~network'
 import { fromNow } from '../../modules/strings'
 
 import Pop from '../../actions/pop'

@@ -1,6 +1,6 @@
 import React from 'react'
-import t from 't'
-import Api from 'api'
+import t from '~t'
+import Api from '~api'
 import debounce from 'lodash/debounce'
 import collectionsHelpers from '../../../helpers/collections'
 
@@ -10,7 +10,7 @@ import Pop from '../../../actions/pop'
 import UserStore from '../../../stores/user'
 
 import CollectionIcon from '../icon'
-import Icon from 'icon'
+import Icon from '~icon'
 import SuperInput from '../../common/superInput'
 //import FormParent from '../../form/parent'
 

@@ -1,10 +1,10 @@
 import React from 'react'
-import t from 't'
+import t from '~t'
 import { inputSelectAllMixin } from '../../../modules/strings'
-import network from 'network'
-import Api from 'api'
+import network from '~network'
+import Api from '~api'
 
-import Icon from 'icon'
+import Icon from '~icon'
 
 import Toasts from '../../../actions/toast'
 import UserStore from '../../../stores/user'

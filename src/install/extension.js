@@ -1,8 +1,8 @@
 import React from 'react'
-import t from 't'
-import Icon from 'icon'
+import t from '~t'
+import Icon from '~icon'
 import { browserExtensionInfo } from '../modules/strings'
-import config from 'config'
+import config from '~config'
 import _ from 'lodash'
 import settingsHelpers from './parts/helpers'
 
