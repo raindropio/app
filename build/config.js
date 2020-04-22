@@ -5,6 +5,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const WriteFilePlugin = require('write-file-webpack-plugin')
+const LodashModuleReplacementPlugin = require('lodash-webpack-plugin')
 
 //Params
 process.env.APP_TARGET = process.env.APP_TARGET || 'default'
@@ -59,7 +60,7 @@ module.exports = {
 	
 	output: {
 		filename:	'assets/[name].[hash].js',
-		path:		path.resolve(__dirname, '..', 'dist', process.env.APP_TARGET),
+		path:		path.resolve(__dirname, '..', 'dist', isProd?'':'dev', process.env.APP_TARGET),
 		publicPath:	process.env.APP_PUBLIC_PATH
 	},
 
@@ -92,7 +93,8 @@ module.exports = {
 		//Pre plugins
 		...(isProd ? [
 			//Clean dist folder
-			new CleanWebpackPlugin()
+			new CleanWebpackPlugin(),
+			new LodashModuleReplacementPlugin()
 		] : [
 			new WriteFilePlugin()
 		]),

@@ -1,27 +1,7 @@
 import React from 'react'
-import _ from 'lodash'
 
 export default class Icon extends React.PureComponent {
 	displayName = "common/icon"
-
-	/*shouldComponentUpdate(nextProps, nextState) {
-		if (this.props.size != nextProps.size)
-			return true;
-
-		if (this.props.name != nextProps.name)
-			return true;
-
-		if (this.props.className != nextProps.className)
-			return true;
-
-		if (this.props.id != nextProps.id)
-			return true;
-
-		if (!_.isEqual(this.props.style, nextProps.style))
-			return true;
-
-		return false;
-	}*/
 
 	render() {
 		if (!this.props.name) return null;

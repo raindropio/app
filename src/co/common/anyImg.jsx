@@ -1,6 +1,4 @@
 import React from 'react'
-import ReactDom from 'react-dom'
-import _ from 'lodash'
 
 export default class AnyImg extends React.Component {
 	displayName = "common/AnyImg"
@@ -11,16 +9,6 @@ export default class AnyImg extends React.Component {
 		this.state = {
 			step: 0
 		}
-	}
-
-	componentWillReceiveProps(nextProps) {
-		this.setState({step: 0});
-
-		var next = JSON.parse(JSON.stringify(nextProps.urls||[])),
-			prev = JSON.parse(JSON.stringify(this.props.urls||[]));
-
-		if (!_.isEqual(next.sort(), prev.sort()))
-			ReactDom.findDOMNode(this.refs.img).src = "";
 	}
 
 	onError(e) {

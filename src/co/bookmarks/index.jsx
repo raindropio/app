@@ -1,7 +1,11 @@
 import React from 'react'
 import t from 't'
 import S from 'string'
-import moment from 'moment'
+
+import isToday from 'date-fns/isToday'
+import isYesterday from 'date-fns/isYesterday'
+import isThisWeek from 'date-fns/isThisWeek'
+import isThisYear from 'date-fns/isThisYear'
 
 import keyvalActions from '../../actions/keyval'
 import keyvalStore from '../../stores/keyval'
@@ -11,10 +15,6 @@ import simpleItem from './item/simple'
 import gridItem from './item/grid'
 import Section from './section'
 import Masonry from 'react-masonry-component'
-
-const yesterday = moment().subtract(1,'day').startOf('day').toDate().toDateString(),
-	   thisWeek = moment().subtract(1,'week').startOf('day').toDate().toDateString()
-	  //thisWeek = moment().startOf('week').toDate().toDateString();
 
 export default class Items extends React.Component {
 	displayName = "bookmarks/index"
@@ -138,22 +138,23 @@ export default class Items extends React.Component {
 
 				switch(this.props.sort){
 					case "-created":
-					case "created":
-						currentSection = new Date(item.created || item.lastUpdate).getMonth();
+					case "created":{
+						const created = new Date(item.created || item.lastUpdate)
+						currentSection = created.getMonth()
 
 						//today
-						if (new Date(item.created || item.lastUpdate).toDateString() == new Date().toDateString())
+						if (isToday(created))
 							currentSection = "today";
 						//yesterday
-						else if (moment(item.created || item.lastUpdate).startOf('day').toDate().toDateString() == yesterday)
+						else if (isYesterday(created))
 							currentSection = "yesterday";
 						//week
-						else if (moment(item.created || item.lastUpdate).startOf('week').toDate().toDateString() == thisWeek)
+						else if (isThisWeek(created))
 							currentSection = "this_week";
-
 						//year
-						if (new Date(item.created || item.lastUpdate).getYear() != new Date().getYear())
-							currentSection = new Date(item.created || item.lastUpdate).getYear();
+						else if (!isThisYear(created))
+							currentSection = created.getYear()
+					}
 					break;
 					case "title":
 					case "-title":

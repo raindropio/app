@@ -33,9 +33,6 @@ export default class FavIcon extends React.Component {
 		if (this.state.domain != nextState.domain)
 			return true;
 
-		if (!_.isEqual(this.props.style, nextProps.style))
-			return true;
-
 		return false;
 	}
 

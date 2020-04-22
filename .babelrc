@@ -2,8 +2,8 @@
     "presets": ["@babel/preset-react"],
     "plugins": [
         ["@babel/plugin-proposal-decorators",{"legacy": true}],
-        ["@babel/plugin-proposal-class-properties",{"useBuiltIns": true, "corejs": 3}],
-        ["@babel/plugin-proposal-object-rest-spread",{"useBuiltIns": true, "corejs": 3}],
+        ["@babel/plugin-proposal-class-properties",{"useBuiltIns": false}],
+        ["@babel/plugin-proposal-object-rest-spread",{"useBuiltIns": false}],
         "@babel/plugin-syntax-dynamic-import"
     ],
 
@@ -13,8 +13,6 @@
                 [
                     "@babel/env",
                     {
-                        "useBuiltIns": "usage",
-                        "corejs": 3,
                         "targets": {
                             "esmodules": true
                         }
