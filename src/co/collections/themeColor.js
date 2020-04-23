@@ -1,5 +1,5 @@
 import React from 'react'
-import keyvalStore from '../../stores/keyval'
+import keyvalStore from '~stores/keyval'
 
 export default class ThemeColor extends React.Component {
 	displayName = "collections/themeColor"

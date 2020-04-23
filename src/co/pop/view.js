@@ -5,10 +5,10 @@ import SuperImg from '../common/superImg'
 import Slider from '../common/slider'
 import Preloader from '../common/preloader'
 
-import collectionsStore from '../../stores/collections'
-import collectionsActions from '../../actions/collections'
-import keyvalStore from '../../stores/keyval'
-import keyvalActions from '../../actions/keyval'
+import collectionsStore from '~stores/collections'
+import collectionsActions from '~actions/collections'
+import keyvalStore from '~stores/keyval'
+import keyvalActions from '~actions/keyval'
 
 const disableCoverName = "mode-disable-cover",
 	  disableDescriptionName = "mode-disable-description",

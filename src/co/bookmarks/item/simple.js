@@ -1,6 +1,6 @@
 import React from 'react'
 import { getEmptyImage } from 'react-dnd-html5-backend';
-import keyvalStore from '../../../stores/keyval'
+import keyvalStore from '~stores/keyval'
 import FavIcon from '../../common/favIcon'
 import Tags from './tags'
 import SuperLink from '../../common/superLink'

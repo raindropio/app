@@ -63,7 +63,8 @@ module.exports = {
 	},
 
 	entry: {
-		app: './index.js'
+		app: './index.js',
+		analytics: './analytics.js'
 	},
 	
 	output: {
@@ -81,7 +82,7 @@ module.exports = {
 	},
 
 	resolve: {
-		symlinks: false,
+		symlinks: true,
 		extensions: ['.js'],
 		modules: [
 			path.resolve(__dirname, '../node_modules')
@@ -117,8 +118,8 @@ module.exports = {
 		//HTML
 		new HtmlWebpackPlugin({
 			title: 'Raindrop.io',
-			template: './index.html',
-			favicon: './assets/icons/favicon.ico',
+			template: './assets/index.html',
+			favicon: './assets/images/icons/favicon.ico',
 			minify: false
 		}),
 

@@ -2,19 +2,19 @@ import React from 'react'
 import ReactDom from 'react-dom'
 import t from '~t'
 import config from '~config'
-import environment from '../../../helpers/environment'
-import { capturePage } from '../../../helpers/clipper'
+import environment from '~modules/environment'
+import { capturePage } from '~modules/clipper'
 import Icon from '~icon'
 import Api from '~api'
 import debounce from 'lodash/debounce'
 
-import bookmarksActions from '../../../actions/bookmarks'
-import Pop from '../../../actions/pop'
+import bookmarksActions from '~actions/bookmarks'
+import Pop from '~actions/pop'
 
-import Bookmark from '../../../app/reader/bookmark';
+import Bookmark from '~routes/app/reader/bookmark';
 import Textarea from 'react-autosize-textarea'
 import Masonry from 'react-masonry-component'
-import Cover from '../../../co/common/cover'
+import Cover from '~co/common/cover'
 import Tags from './tags'
 import _ from 'lodash'
 

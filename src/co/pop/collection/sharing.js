@@ -5,10 +5,10 @@ import Api from '~api'
 
 import Icon from '~icon'
 
-import Toasts from '../../../actions/toast'
-import UserStore from '../../../stores/user'
+import Toasts from '~actions/toast'
+import UserStore from '~stores/user'
 
-import CollectionsActions from '../../../actions/collections'
+import CollectionsActions from '~actions/collections'
 import Avatar from "../../common/avatar"
 
 var _roles = [

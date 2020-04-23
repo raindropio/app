@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import bookmarksStore from '../../stores/bookmarks'
+import bookmarksStore from '~stores/bookmarks'
 import Icon from '~icon'
 
 const limit = 15;

@@ -7,8 +7,8 @@ import isYesterday from 'date-fns/isYesterday'
 import isThisWeek from 'date-fns/isThisWeek'
 import isThisYear from 'date-fns/isThisYear'
 
-import keyvalActions from '../../actions/keyval'
-import keyvalStore from '../../stores/keyval'
+import keyvalActions from '~actions/keyval'
+import keyvalStore from '~stores/keyval'
 
 import listItem from './item/list'
 import simpleItem from './item/simple'

@@ -1,27 +1,13 @@
-import './css/base.styl'
-
 import React from 'react'
 import { render } from 'react-dom'
-import { HashRouter as Router, Switch } from 'react-router-dom'
+import { DndProvider } from 'react-dnd'
+import HTML5Backend from 'react-dnd-html5-backend'
 
-import Base from './base'
-
-import Account from './account/routes'
-import App from './app/routes'
-import Install from './install/routes'
-import Settings from './settings/routes'
+import Routes from './routes'
 
 render(
-	<Router>
-		<Base>
-			<Switch>
-				{Account}
-				{Install.getRoutes()}
-				{Settings}
-
-				{App}
-			</Switch>
-		</Base>
-	</Router>,
+	<DndProvider backend={HTML5Backend}>
+		<Routes />
+	</DndProvider>,
 	document.getElementById('react')
 )

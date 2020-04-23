@@ -1,6 +1,6 @@
 import React from 'react'
 import network from '~network'
-import colors from '../../modules/colors'
+import colors from '~modules/colors'
 
 var brokenImgs = []
 

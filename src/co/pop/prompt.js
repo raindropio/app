@@ -1,5 +1,5 @@
 import React from 'react'
-import Pop from '../../actions/pop'
+import Pop from '~actions/pop'
 
 export default class Prompt extends React.Component {
     constructor(props) {

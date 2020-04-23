@@ -3,8 +3,8 @@ import network from '~network'
 import config from '~config'
 import { formatDate } from '../section'
 
-import collectionsStore from '../../../stores/collections.js'
-import userStore from '../../../stores/user'
+import collectionsStore from '~stores/collections.js'
+import userStore from '~stores/user'
 
 import Icon from '~icon'
 import FavIcon from '../../common/favIcon'

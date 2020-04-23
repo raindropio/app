@@ -6,10 +6,10 @@ import config from '~config'
 import Api from '~api'
 import t from '~t'
 import network from '~network'
-import environment from '../../helpers/environment'
+import environment from '~modules/environment'
 
 import Icon from '~icon'
-import Preloader from '../../co/common/preloader'
+import Preloader from '~co/common/preloader'
 import ElectronWebView from './electronWebView'
 
 var pauseBeforeLoad = /*(environment.isDesktop() ? 0 :*/ 300/*)*/;
@@ -88,7 +88,7 @@ export default class SuperFrame extends React.Component {
 					if (typeof this.props.disableSandbox == "undefined")
 						sandbox = "allow-same-origin allow-forms allow-scripts allow-popups";
 
-					content = <iframe tabIndex="-" className={this.state.loading ? "loading" : null} id="readerPreview" allowTransparency={false} src={src} sandbox={sandbox} target="_self" onLoad={(e)=>this.onLoad(e,this)} onError={(e,errorCode,errorDescription)=>this.onError(e,this,errorCode,errorDescription)}></iframe>;
+					content = <iframe tabIndex="-" className={this.state.loading ? "loading" : null} id="readerPreview" allowtransparency='false' src={src} sandbox={sandbox} target="_self" onLoad={(e)=>this.onLoad(e,this)} onError={(e,errorCode,errorDescription)=>this.onError(e,this,errorCode,errorDescription)}></iframe>;
 				}
 			}
 			else{

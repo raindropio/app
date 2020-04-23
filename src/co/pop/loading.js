@@ -3,7 +3,7 @@ import t from '~t'
 import Icon from '~icon'
 import network from '~network'
 
-import Pop from '../../actions/pop'
+import Pop from '~actions/pop'
 import Preloader from '../common/preloader'
 
 export default class Loading extends React.Component {

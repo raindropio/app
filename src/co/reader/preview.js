@@ -1,8 +1,8 @@
 import React from 'react'
 import network from '~network'
-import { fromNow } from '../../modules/strings'
+import { fromNow } from '~modules/strings'
 
-import Pop from '../../actions/pop'
+import Pop from '~actions/pop'
 
 import FavIcon from '../common/favIcon'
 import Preloader from '../common/preloader'

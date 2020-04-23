@@ -2,8 +2,8 @@ import React from 'react'
 import ReactDom from 'react-dom'
 import isMobile from 'ismobilejs'
 
-import Pop from '../../actions/pop'
-import PopStore from '../../stores/pop'
+import Pop from '~actions/pop'
+import PopStore from '~stores/pop'
 
 var gap = 10;
 var updateTimeout = null,

@@ -2,7 +2,7 @@ import React from 'react'
 import { getEmptyImage } from 'react-dnd-html5-backend';
 import t from '~t'
 
-import keyvalStore from '../../../stores/keyval'
+import keyvalStore from '~stores/keyval'
 
 import Cover from '../../common/cover'
 import Tags from './tags'

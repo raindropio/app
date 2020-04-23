@@ -1,18 +1,18 @@
 import Reflux from 'reflux'
 import Api from '~api'
 import t from '~t'
-import { getErrorFromJSON } from '../modules/strings'
+import { getErrorFromJSON } from '~modules/strings'
 import _ from 'lodash'
 import ls from 'localforage'
 
-import Toasts from '../actions/toast'
-import CollectionsActions from '../actions/collections'
-import ChildrensActions from '../actions/childrens'
+import Toasts from '~actions/toast'
+import CollectionsActions from '~actions/collections'
+import ChildrensActions from '~actions/childrens'
 
-import UserActions from '../actions/user'
-import StatsStore from '../stores/stats.js'
-import BookmarksActions from '../actions/bookmarks'
-import UserStore from '../stores/user'
+import UserActions from '~actions/user'
+import StatsStore from '~stores/stats.js'
+import BookmarksActions from '~actions/bookmarks'
+import UserStore from '~stores/user'
 
 var 
     _collections = [],

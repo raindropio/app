@@ -2,10 +2,10 @@ import React from 'react'
 import ReactDom from 'react-dom'
 import { DragSource, DropTarget } from 'react-dnd';
 import t from '~t'
-import contextMenu from '../../modules/contextMenu'
-import collectionsHelper from '../../helpers/collections'
+import contextMenu from '~modules/contextMenu'
+import collectionsHelper from '~modules/collections'
 
-import collectionsActions from '../../actions/collections'
+import collectionsActions from '~actions/collections'
 
 class Group extends React.Component {
 	displayName = "collections/group"

@@ -1,6 +1,6 @@
 import React from 'react'
-import Toasts from '../../actions/toast'
-import ToastStore from '../../stores/toast'
+import Toasts from '~actions/toast'
+import ToastStore from '~stores/toast'
 
 const isElectron = false; //strings.getCurrentBrowser().indexOf("electron")!=-1;
 

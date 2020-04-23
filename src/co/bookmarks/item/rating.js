@@ -1,6 +1,6 @@
 import React from 'react'
 import Icon from '~icon'
-import { abbreviateNumber } from '../../../modules/strings'
+import { abbreviateNumber } from '~modules/strings'
 
 export default function Rating({rating={},enabled=true}){
 	var value = 0;

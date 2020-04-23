@@ -1,7 +1,7 @@
 import React from 'react'
 
-import collectionsStore from '../../../stores/collections'
-import PopStore from '../../../stores/pop'
+import collectionsStore from '~stores/collections'
+import PopStore from '~stores/pop'
 
 import CollectionInfo from "./info"
 import ThemeColor from '../themeColor'

@@ -1,5 +1,5 @@
 import Reflux from 'reflux'
-import actions from '../actions/keyval'
+import actions from '~actions/keyval'
 import Api from '~api'
 import _ from 'lodash'
 

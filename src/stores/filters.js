@@ -4,7 +4,7 @@ import hash from 'object-hash'
 import _ from 'lodash'
 import ls from 'localforage'
 
-import FiltersActions from '../actions/filters';
+import FiltersActions from '~actions/filters';
 
 var _filters = [], _query = {};
 

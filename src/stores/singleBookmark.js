@@ -2,7 +2,7 @@ import Reflux from 'reflux'
 import Api from '~api'
 import ls from 'localforage'
 
-import BookmarkActions from '../actions/singleBookmark'
+import BookmarkActions from '~actions/singleBookmark'
 
 var _state = {
 	item: {},

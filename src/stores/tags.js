@@ -1,6 +1,6 @@
 import Reflux from 'reflux'
 import Api from '~api'
-import actions from '../actions/tags'
+import actions from '~actions/tags'
 import _ from 'lodash'
 
 export default Reflux.createStore({

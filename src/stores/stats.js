@@ -1,7 +1,7 @@
 import Reflux from 'reflux'
 import Api from '~api'
-import StatsActions from '../actions/stats'
-import CollectionsActions from '../actions/collections'
+import StatsActions from '~actions/stats'
+import CollectionsActions from '~actions/collections'
 import _ from 'lodash'
 import ls from 'localforage'
 

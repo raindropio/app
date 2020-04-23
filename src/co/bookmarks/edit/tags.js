@@ -3,9 +3,9 @@ import ReactDom from 'react-dom'
 import t from '~t'
 import Icon from '~icon'
 
-import tagsStore from '../../../stores/tags'
-import Pop from '../../../actions/pop'
-import PopStore from '../../../stores/pop'
+import tagsStore from '~stores/tags'
+import Pop from '~actions/pop'
+import PopStore from '~stores/pop'
 import _ from 'lodash'
 
 export default class EditTags extends React.Component {

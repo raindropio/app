@@ -1,5 +1,5 @@
 import React from 'react'
-import CoversStore from '../../../../stores/covers'
+import CoversStore from '~stores/covers'
 
 import Listing from './listing'
 import Search from './search'

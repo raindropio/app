@@ -1,5 +1,5 @@
 import Reflux from 'reflux'
-import Toasts from '../actions/toast'
+import Toasts from '~actions/toast'
 import _ from 'lodash'
 
 var _toasts = [],

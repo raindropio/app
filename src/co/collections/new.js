@@ -5,8 +5,8 @@ import Icon from '~icon'
 import SuperLink from '../common/superLink'
 import SuperInput from '../common/superInput'
 
-import collectionsActions from '../../actions/collections'
-import keyvalStore from '../../stores/keyval'
+import collectionsActions from '~actions/collections'
+import keyvalStore from '~stores/keyval'
 
 export default class NewCollection extends React.Component {
 	displayName = "NewCollection"

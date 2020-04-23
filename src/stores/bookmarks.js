@@ -2,20 +2,20 @@ import Reflux from 'reflux'
 import t from '~t'
 import Api from '~api'
 import _ from 'lodash'
-import { getErrorFromJSON } from '../modules/strings'
+import { getErrorFromJSON } from '~modules/strings'
 import network from '~network'
 import S from 'string'
 import config from '~config'
-import { parse } from '../helpers/clipper'
+import { parse } from '~modules/clipper'
 import ls from 'localforage'
 
-import Toasts from '../actions/toast'
-import BookmarkActions from '../actions/bookmarks';
-import CollectionsActions from '../actions/collections';
-import CollectionsStore from '../stores/collections';
-import LastBookmarkActions from '../actions/lastBookmark';
+import Toasts from '~actions/toast'
+import BookmarkActions from '~actions/bookmarks';
+import CollectionsActions from '~actions/collections';
+import CollectionsStore from '~stores/collections';
+import LastBookmarkActions from '~actions/lastBookmark';
 import KeyValStore from './keyval'
-import UserStore from '../stores/user'
+import UserStore from '~stores/user'
 
 var cacheDisabled = true;
 

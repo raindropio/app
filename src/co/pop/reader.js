@@ -3,8 +3,8 @@ import t from '~t'
 import _ from 'lodash'
 
 import Icon from '~icon'
-import keyvalStore from '../../stores/keyval'
-import keyvalActions from '../../actions/keyval'
+import keyvalStore from '~stores/keyval'
+import keyvalActions from '~actions/keyval'
 
 export default class PreviewPop extends React.Component {
 	displayName = "pop/preview"

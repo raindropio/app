@@ -2,8 +2,8 @@ import React from 'react'
 import Icon from '~icon'
 import { withRouter } from 'react-router-dom'
 
-import keyvalActions from '../../actions/keyval'
-import keyvalStore from '../../stores/keyval'
+import keyvalActions from '~actions/keyval'
+import keyvalStore from '~stores/keyval'
 
 export default function(Component) {
 	return withRouter(class SidebarWrap extends React.Component {

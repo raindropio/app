@@ -1,6 +1,6 @@
 import React from 'react'
 
-import keyvalStore from '../../../stores/keyval'
+import keyvalStore from '~stores/keyval'
 import Cover from '../../common/cover'
 import Tags from './tags'
 import SuperLink from '../../common/superLink'

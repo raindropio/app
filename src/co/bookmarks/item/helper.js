@@ -1,7 +1,7 @@
 import React from 'react'
 import { findDOMNode } from 'react-dom'
 import { DragSource, DropTarget } from 'react-dnd'
-import bookmarksActions from '../../../actions/bookmarks'
+import bookmarksActions from '~actions/bookmarks'
 
 export default {
 	dropTarget: (Item)=>{

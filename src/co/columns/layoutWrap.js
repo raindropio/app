@@ -4,7 +4,7 @@ import ReactDom from 'react-dom'
 import PopComponent from '../pop'
 import Toasts from '../common/toast'
 
-import keyvalStore from '../../stores/keyval'
+import keyvalStore from '~stores/keyval'
 
 export default function(Component, params={}) {
 	return class LayoutWrap extends React.Component {

@@ -1,16 +1,16 @@
 import React from 'react'
 import isMobile from 'ismobilejs'
-import contextMenu from '../../../modules/contextMenu'
-import { copyTextToClipboard } from '../../../modules/strings'
-import environment from '../../../helpers/environment'
+import contextMenu from '~modules/contextMenu'
+import { copyTextToClipboard } from '~modules/strings'
+import environment from '~modules/environment'
 import t from '~t'
 import Icon from '~icon'
-import bookmarksActions from '../../../actions/bookmarks'
+import bookmarksActions from '~actions/bookmarks'
 
-import keyvalActions from '../../../actions/keyval'
-import keyvalStore from '../../../stores/keyval'
-import ClipperStore from '../../../stores/clipper'
-import Pop from '../../../actions/pop'
+import keyvalActions from '~actions/keyval'
+import keyvalStore from '~stores/keyval'
+import ClipperStore from '~stores/clipper'
+import Pop from '~actions/pop'
 
 export default ComposedComponent => class extends React.PureComponent {
 	constructor(props) {

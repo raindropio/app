@@ -1,4 +1,4 @@
-import Pop from '../actions/pop'
+import Pop from '~actions/pop'
 import { getCurrentBrowser } from './strings'
 
 export default {

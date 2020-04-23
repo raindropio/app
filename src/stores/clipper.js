@@ -1,10 +1,10 @@
 import Reflux from 'reflux'
-import ClipperActions from '../actions/clipper'
+import ClipperActions from '~actions/clipper'
 import BookmarksStore from './bookmarks'
-import LastBookmarkActions from '../actions/lastBookmark'
+import LastBookmarkActions from '~actions/lastBookmark'
 
-import environment from '../helpers/environment'
-import { getCurrentTab, setButtonStatus } from '../helpers/clipper'
+import environment from '~modules/environment'
+import { getCurrentTab, setButtonStatus } from '~modules/clipper'
 
 var prepareState = (item,defaultStatus="")=>{
 	var s = {

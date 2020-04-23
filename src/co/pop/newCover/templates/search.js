@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDom from 'react-dom'
 import _ from 'lodash'
 import t from '~t'
-import CoversStore from '../../../../stores/covers'
+import CoversStore from '~stores/covers'
 import SearchInput from '../../../common/searchInput'
 
 export default class NewCoverTempalteSearch extends React.Component {

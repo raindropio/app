@@ -1,13 +1,13 @@
 import Reflux from 'reflux'
 import Api from '~api'
 import t from '~t'
-import config from '../modules/config'
-import { swapArray } from '../modules/strings'
+import config from '~modules/config'
+import { swapArray } from '~modules/strings'
 import _ from 'lodash'
 import ls from 'localforage'
 
-import Toasts from '../actions/toast'
-import UserActions from '../actions/user'
+import Toasts from '~actions/toast'
+import UserActions from '~actions/user'
 import CollectionsStore from './collections.js'
 
 var _user = {}, _logged = false, _loading = false, _trusted = false, _subscription = { loading:true };

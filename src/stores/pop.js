@@ -1,5 +1,5 @@
 import Reflux from 'reflux'
-import PopActions from '../actions/pop';
+import PopActions from '~actions/pop';
 
 var _params = false;
 

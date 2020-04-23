@@ -2,7 +2,7 @@ import React from 'react'
 import t from '~t'
 import Icon from '~icon'
 
-import Pop from '../../actions/pop'
+import Pop from '~actions/pop'
 
 export default class SortPop extends React.Component {
 	displayName = "pop/sort"

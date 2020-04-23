@@ -2,8 +2,8 @@ import React from 'react'
 import t from '~t'
 import config from '~config'
 
-import collectionsStore from '../../../stores/collections'
-import Pop from '../../../actions/pop'
+import collectionsStore from '~stores/collections'
+import Pop from '~actions/pop'
 
 export default class RSS extends React.Component {
 	componentDidUpdate() {

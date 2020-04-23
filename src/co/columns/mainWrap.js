@@ -1,8 +1,8 @@
 import React from 'react'
-import environment from '../../helpers/environment'
+import environment from '~modules/environment'
 
-import keyvalActions from '../../actions/keyval'
-import keyvalStore from '../../stores/keyval'
+import keyvalActions from '~actions/keyval'
+import keyvalStore from '~stores/keyval'
 
 export default function(Component) {
 	return class MainWrap extends React.Component {

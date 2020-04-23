@@ -1,7 +1,7 @@
 import config from './config';
 import 'whatwg-fetch'
 import XMLHttpRequestPromise from 'xhr-promise';
-import environment from '../helpers/environment'
+import environment from '~modules/environment'
 
 function isQuotaExceeded(e) {
   var quotaExceeded = false;

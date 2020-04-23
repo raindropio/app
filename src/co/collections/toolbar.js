@@ -2,8 +2,8 @@ import React from 'react'
 import t from '~t'
 import Icon from '~icon'
 import SearchInput from '../common/searchInput'
-import CollectionsActions from '../../actions/collections'
-import Pop from '../../actions/pop'
+import CollectionsActions from '~actions/collections'
+import Pop from '~actions/pop'
 
 const buttons = {
     empty: [],

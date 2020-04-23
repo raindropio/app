@@ -2,7 +2,7 @@ import React from 'react'
 import t from '~t'
 import Icon from '~icon'
 
-import environment from '../../helpers/environment'
+import environment from '~modules/environment'
 
 export default class ClipperFab extends React.Component {
 	render() {

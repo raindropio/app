@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDom from 'react-dom'
 
-import Pop from '../../actions/pop'
+import Pop from '~actions/pop'
 
 var mouseOver = false;
 
