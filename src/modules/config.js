@@ -19,25 +19,7 @@ export default {
     collectionExpandPrefix: "collection_expanded_",
 
     "links": {
-        "apps": host+"/settings#/settings/install",
-        "extension": {
-            "chrome": "https://raindrop.io/r/extension/chrome",
-            "firefox": "https://raindrop.io/r/extension/firefox",
-            "safari": "https://raindrop.io/r/extension/safari",
-            "opera": "https://raindrop.io/r/extension/opera",
-            "edge": "https://raindrop.io/r/extension/edge"
-        },
-        "newtab": {
-            "chrome": "https://chrome.google.com/webstore/detail/raindropio-new-tab-speed/knifgjkgmgdinjeecneiphoniamhgbof",
-            "firefox": "https://raindrop.io/releases/newtab.xpi"
-        },
-        "ios": "https://raindrop.io/r/app/ios",
-        "android": "https://raindrop.io/r/app/android",
-
-        "macos": "https://raindrop.io/r/app/macos",
-        "windows": "https://raindrop.io/r/app/windows",
-
-        "settings": host+"/settings#/settings",
+        "download": "https://raindrop.io/download",
 
         "pro": {
             "buy": "https://raindrop.io/pro/buy",

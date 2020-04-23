@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDom from 'react-dom'
 import t from '~t'
 import Icon from '~icon'
-import network from '~network'
+import config from '~config'
 import _ from 'lodash'
 import isURL from 'validator/es/lib/isURL'
 import environment from '~modules/environment'
@@ -89,11 +89,11 @@ export default class URL extends React.Component {
 				</figure>
 
 				<section className="fieldLink">
-					<a className="button active" href="#/install/extension" onClick={(e)=>Pop.close()}><span className="button-icon"><Icon name="extension" /></span>{t.s("browserExtension")}</a>
+					<a className="button active" href={config.links.download} target='_blank' onClick={(e)=>Pop.close()}><span className="button-icon"><Icon name="extension" /></span>{t.s("browserExtension")}</a>
 				</section>
 
 				<section className="fieldLink">
-					<a className="button active" href="#/install" onClick={(e)=>Pop.close()}><span className="button-icon"><Icon name="mobile" /></span>{t.s("mobileApp")}</a>
+					<a className="button active" href={config.links.download} target='_blank' onClick={(e)=>Pop.close()}><span className="button-icon"><Icon name="mobile" /></span>{t.s("mobileApp")}</a>
 				</section>
 			</div>
     	);

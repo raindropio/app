@@ -515,7 +515,7 @@ class Main extends React.Component {
 							</p>
 
 							
-							<br/>{environment.isClipper() ? null : <a className="button active" href="#/install/extension">{t.s("install") + " " + t.s("browserExtension").toLowerCase()}</a>}
+							<br/>{environment.isClipper() ? null : <a className="button active" href={config.links.download} target='_blank'>{t.s("install") + " " + t.s("browserExtension").toLowerCase()}</a>}
 							<br/><a className="button active" href="#/settings/import">{t.s("importBookmarks")}&nbsp;{t.s("elements2")}</a>
 
 							{this.state.collection._id>0?<p className="subHeadLabel">{t.s("importSuccessInfo")}</p>:null}

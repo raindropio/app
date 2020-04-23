@@ -4,7 +4,6 @@ import { HashRouter as Router, Switch } from 'react-router-dom'
 import Document from './document'
 import Account from './account/routes'
 import App from './app/routes'
-import Install from './install/routes'
 import Settings from './settings/routes'
 
 export default ()=>(
@@ -12,7 +11,6 @@ export default ()=>(
         <Document>
             <Switch>
                 {Account}
-                {Install.getRoutes()}
                 {Settings}
 
                 {App}

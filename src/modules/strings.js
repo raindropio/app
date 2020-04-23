@@ -61,29 +61,6 @@ export function scrollbarIsObtrusive() {
   return scrollbarWidth ? true : false
 }
 
-export function browserExtensionInfo() {
-  var l = config.links.apps, currentBrowser = "none";
-  var browser = getCurrentBrowser();
-
-  if (browser.includes("safari"))
-    currentBrowser = "safari";
-  else if (browser.includes("opera"))
-    currentBrowser = "opera";
-  else if (browser.includes("firefox"))
-    currentBrowser = "firefox";
-  else if (browser.includes("edge"))
-    currentBrowser = "edge";
-  else if ((browser.includes("chrome"))||(browser.includes("webkit")))
-    currentBrowser = "chrome";
-
-  l = config.links.extension[currentBrowser];
-
-  return {
-    browser: currentBrowser,
-    link: l
-  }
-}
-
 export function swapArray(a, x, y) {
   var a = _.clone(a);
   var b = _.clone(a[x]);

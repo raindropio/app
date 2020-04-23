@@ -2,6 +2,7 @@ import t from '~t'
 import bookmarksHelpers from './bookmarks'
 import collectionsHelpers from './collections'
 import { remote } from 'electron'
+import config from '~config'
 
 const electron = remote
 const { app, shell } = electron;
@@ -53,7 +54,7 @@ export default {
 		        },
 		        {
 		          label: t.s("install")+" "+t.s("browserExtension").toLowerCase()+"...",
-		          click: function() { window.location.hash = "#/install/extension";  }
+		          click: function() { shell.openExternal(config.links.download);  }
 		        }
 		      ]
 		    },

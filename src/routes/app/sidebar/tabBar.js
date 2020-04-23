@@ -1,27 +1,19 @@
 import React from 'react'
 import t from '~t'
+import config from '~config'
 
 import Icon from '~icon'
 
 var tabItems = [
-	{id: "app", title: t.s("my"), icon: "home"},
-	{id: "install", title: t.s("install"), icon: "install"},
-	{id: "settings", title: t.s("settings"), icon: "settings"}
+	{id: 'app', title: t.s('my'), icon: 'home'},
+	{id: 'install', title: t.s('install'), icon: 'install', href: config.links.download},
+	{id: 'settings', title: t.s('settings'), icon: 'settings'}
 ]
 
 export default class TabBar extends React.Component {
-	displayName = "app/sidebar/tabBar"
-
-	onClick(href,isActive,index) {
-		if (isActive) return;
-		var link = "#/" + href;
-		window.location.href = link;
-	}
+	displayName = 'app/sidebar/tabBar'
 
 	render() {
-		//if (environment.isClipper() && !environment.isClipperSafari())
-		//	return null;
-
 		var items = tabItems.map((item,index)=>{
 			var isActive = (item.id==this.props.active);
 			var styler;
@@ -31,18 +23,17 @@ export default class TabBar extends React.Component {
 			}
 
 			return (
-				<div key={item.id} onClick={(e)=>this.onClick(item.id,isActive,index)} className={"item " + (isActive ? "active" : "")} title={item.title}>
-					<Icon name={item.icon+(isActive ? "_active" : "")} size="24" />
-					{/*<div className="title"><span>{item.title}</span></div>*/}
+				<a key={item.id} href={item.href || `#/${item.id}`} target={item.href?'_blank':''} className={'item ' + (isActive ? 'active' : '')} title={item.title}>
+					<Icon name={item.icon+(isActive ? '_active' : '')} size='24' />
 					{styler}
-				</div>
+				</a>
 			);
 		})
 
 		return (
-			<div className="tabBar" key="pageSidebarTabBar">
+			<div className='tabBar' key='pageSidebarTabBar'>
 				{items}
 			</div>
-		);
+		)
 	}
 }

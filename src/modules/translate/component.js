@@ -24,7 +24,7 @@ export default class UtilsTranslateComponent extends React.PureComponent {
     render() {
         return (
             <React.Fragment key={this.state.lang}>
-                {this.props.loading && <div data-loading={this.state.loading}>{this.props.loading}</div>}
+                {this.props.loading && this.props.loading}
                 {!this.state.loading && this.props.children}
             </React.Fragment>
         )
