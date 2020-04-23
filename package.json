@@ -28,9 +28,9 @@
 	},
 	"dependencies": {
 		"date-fns": "2.12.x",
+		"ismobilejs": "^1.1.1",
 		"localforage": "1.7.x",
 		"lodash-es": "4.17.x",
-		"mobile-detect": "1.4.x",
 		"object-hash": "2.0.x",
 		"react": "16.13.x",
 		"react-autosize-textarea": "7.0.x",
@@ -42,7 +42,7 @@
 		"react-router-dom": "5.1.x",
 		"reflux": "5.0.x",
 		"string": "3.3.x",
-		"validator": "5.4.x",
+		"validator": "13.0.x",
 		"whatwg-fetch": "1.0.x",
 		"xhr-promise": "2.0.x"
 	},
@@ -54,7 +54,6 @@
 		"@babel/plugin-syntax-dynamic-import": "7.x",
 		"@babel/preset-env": "7.x",
 		"@babel/preset-react": "7.x",
-		"autoprefixer": "9.7.x",
 		"babel-eslint": "10.x",
 		"babel-loader": "8.x",
 		"babel-plugin-lodash": "3.3.x",

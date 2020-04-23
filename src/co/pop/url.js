@@ -4,7 +4,7 @@ import t from '~t'
 import Icon from '~icon'
 import network from '~network'
 import _ from 'lodash'
-import V from 'validator'
+import isURL from 'validator/es/lib/isURL'
 import environment from '../../helpers/environment'
 import Textarea from 'react-autosize-textarea'
 
@@ -136,7 +136,7 @@ export default class URL extends React.Component {
 				<div className="centerContentWrap desktop-behavior"><div className="centerContent"><Preloader /></div></div>
 			</form>);
 
-		var validURL = (V.isURL(this.state.url, {require_tld: false, require_valid_protocol: false}));
+		var validURL = (isURL(this.state.url, {require_tld: false, require_valid_protocol: false}));
 		if (!(this.state.url||"").includes('.')) validURL = false;
 
 		return (

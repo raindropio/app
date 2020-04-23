@@ -2,7 +2,7 @@ import React from 'react'
 import { DndProvider } from 'react-dnd'
 import HTML5Backend from 'react-dnd-html5-backend'
 
-import MobileDetect from 'mobile-detect'
+import isMobile from 'ismobilejs'
 import { getCurrentBrowser, scrollbarIsObtrusive } from './modules/strings'
 import environment from './helpers/environment'
 import keyvalStore from './stores/keyval'
@@ -30,19 +30,8 @@ class Base extends React.Component {
     }
 
     componentDidMount() {
-        var md = new MobileDetect((typeof window != "undefined" ? window.navigator.userAgent : null));
-
         if (typeof document !== 'undefined')
-    	document.documentElement.classList.add(md.mobile() ? 'mobile' : 'web');
-        
-        if (md.is('iOS')){
-            if (typeof window !== "undefined"){
-                window.addEventListener("resize", this.setViewportHeight.bind(this), false);
-                window.addEventListener("scroll", this.setViewportHeight.bind(this), false);
-                window.addEventListener("orientationchange", this.setViewportHeight.bind(this), false);
-            }
-            this.setViewportHeight();
-        }
+    	    document.documentElement.classList.add(isMobile(navigator.userAgent).phone ? 'mobile' : 'web')
 
         if (typeof document !== 'undefined'){
             var env = getCurrentBrowser();
@@ -73,23 +62,6 @@ class Base extends React.Component {
     componentWillUnmount() {
         if (typeof document !== 'undefined')
         this.unsubscribeKeyval();
-    }
-
-    setViewportHeight(){
-        function debounced(){
-            if (typeof document !== 'undefined'){
-                document.documentElement.style.height = window.innerHeight + "px";
-                if (document.body.scrollTop !== 0) {
-                    window.scrollTo(0, 0);
-                }
-            }
-        }
-        var cancelable = null;
-
-        return function(){
-            cancelable && clearTimeout(cancelable);
-            cancelable = setTimeout(debounced, 100);
-        };
     }
 
 	render() {

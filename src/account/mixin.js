@@ -1,9 +1,8 @@
 import React from 'react'
-import network from '~network'
 import Icon from '~icon'
 import t from '~t'
 import Api from '~api'
-import V from 'validator'
+import isURL from 'validator/es/lib/isURL'
 import environment from '../helpers/environment'
 import config from '../modules/config'
 
@@ -38,7 +37,7 @@ export default function(Component) {
 		getRedirectURL = ()=>{
 			if (this.props.location.query &&
 				this.props.location.query.redirect &&
-				V.isURL(this.props.location.query.redirect, {
+				isURL(this.props.location.query.redirect, {
 					require_host: false, 
 					host_whitelist: ['raindrop.io', /\.raindrop\.io$/]
 				}))

@@ -17,8 +17,6 @@ import LastBookmarkActions from '../actions/lastBookmark';
 import KeyValStore from './keyval'
 import UserStore from '../stores/user'
 
-import V from 'validator'
-
 var cacheDisabled = true;
 
 var _state = {

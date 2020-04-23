@@ -1,19 +1,16 @@
 import React from 'react'
-import MobileDetect from 'mobile-detect'
+import isMobile from 'ismobilejs'
 import contextMenu from '../../../modules/contextMenu'
 import { copyTextToClipboard } from '../../../modules/strings'
 import environment from '../../../helpers/environment'
 import t from '~t'
 import Icon from '~icon'
 import bookmarksActions from '../../../actions/bookmarks'
-import config from '../../../modules/config'
 
 import keyvalActions from '../../../actions/keyval'
 import keyvalStore from '../../../stores/keyval'
 import ClipperStore from '../../../stores/clipper'
 import Pop from '../../../actions/pop'
-
-var md = new MobileDetect((typeof window != "undefined" ? window.navigator.userAgent : null))
 
 export default ComposedComponent => class extends React.PureComponent {
 	constructor(props) {
@@ -22,7 +19,7 @@ export default ComposedComponent => class extends React.PureComponent {
     }
 
 	openReader(e,_this) {
-        if (md.mobile()) return true;
+        if (isMobile(navigator.userAgent).phone) return true;
 
         if (e.nativeEvent.shiftKey){
             e.preventDefault();

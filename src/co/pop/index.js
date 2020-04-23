@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDom from 'react-dom'
-import MobileDetect from 'mobile-detect'
+import isMobile from 'ismobilejs'
 
 import Pop from '../../actions/pop'
 import PopStore from '../../stores/pop'
@@ -27,8 +27,6 @@ import URL from './url'
 import Loading from './loading'
 import Sort from './sort'
 import Prompt from './prompt'
-
-var md = new MobileDetect((typeof window != "undefined" ? window.navigator.userAgent : null))
 
 export default class PopView extends React.Component {
     displayName = "Pop/Pop"
@@ -101,7 +99,7 @@ export default class PopView extends React.Component {
     }
 
     updatePosition() {
-        if (md.mobile()) return;
+        if (isMobile(navigator.userAgent).phone) return;
         
     	var body = ReactDom.findDOMNode(this.refs.body);
     	if (!body) return;
