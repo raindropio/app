@@ -1,10 +1,13 @@
-const webpack = require('webpack')
 const path = require('path')
 const fs = require('fs')
+
+const webpack = require('webpack')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const TerserJSPlugin = require('terser-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const WriteFilePlugin = require('write-file-webpack-plugin')
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
+//const WriteFilePlugin = require('write-file-webpack-plugin')
 const LodashModuleReplacementPlugin = require('lodash-webpack-plugin')
 
 //Params
@@ -17,7 +20,6 @@ module.exports = {
 	context:	path.resolve(__dirname, '../src'),
 	mode:		process.env.NODE_ENV,
 	devtool:	isProd ? 'source-map' : 'cheap-module-eval-source-map',
-	cache:		isProd,
 	performance: {
 		hints: false,//!isProd ? false : 'error',
 		maxEntrypointSize: 2000000,
@@ -25,6 +27,12 @@ module.exports = {
 	},
 	optimization: {
 		minimize: isProd,
+		minimizer: [
+			new TerserJSPlugin({
+				parallel: true
+			}),
+			new OptimizeCSSAssetsPlugin({})
+		],
 		runtimeChunk: true,
 		splitChunks: {
 			maxInitialRequests: 10,
@@ -59,7 +67,7 @@ module.exports = {
 	},
 	
 	output: {
-		filename:	'[name].[hash].js',
+		filename:	'[name].[contenthash].js',
 		path:		path.resolve(__dirname, '..', 'dist', isProd?'':'dev', process.env.APP_TARGET),
 		publicPath:	process.env.APP_PUBLIC_PATH
 	},
@@ -90,7 +98,7 @@ module.exports = {
 			new CleanWebpackPlugin(),
 			new LodashModuleReplacementPlugin()
 		] : [
-			new WriteFilePlugin()
+			//new WriteFilePlugin()
 		]),
 
 		new webpack.DefinePlugin({
@@ -118,8 +126,8 @@ module.exports = {
 
 		//CSS
 		new MiniCssExtractPlugin({
-			filename: '[name].[hash].css',
-			chunkFilename: '[id].css'
+			filename: '[contenthash].css',
+			chunkFilename: '[id].[contenthash].css'
 		}),
 
 		//Post plugins
@@ -140,14 +148,16 @@ module.exports = {
 
 			{
 				test: /\.(styl|css)$/,
+				sideEffects: true,
 				use: [
-					...(isProd ? [MiniCssExtractPlugin.loader] : ['style-loader']),
-					{
-						loader: 'css-loader',
+					...(isProd ? [{
+						loader: MiniCssExtractPlugin.loader,
 						options: {
-							modules: false
-						}
-					},
+							esModule: true,
+							hmr: !isProd
+						},
+					}] : ['style-loader']),
+					'css-loader',
 					'stylus-loader'
 				]
 			},
@@ -186,7 +196,7 @@ module.exports = {
 						loader: 'file-loader',
 						options: {
 							outputPath: 'assets',
-							name: '[hash].[ext]'
+							name: '[contenthash].[ext]'
 						}
 					},
 					{
