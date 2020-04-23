@@ -3,3 +3,4 @@
 - replace react-mansonry-component
 - sentry
 - font-size setting change support
+- persist lang change

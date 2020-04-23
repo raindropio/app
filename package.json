@@ -24,7 +24,7 @@
 		"~network": "src/modules/network.js",
 		"~config": "src/modules/config.js",
 		"~icon": "src/co/common/icon.js",
-		"~t": "src/modules/translate.js",
+		"~t": "src/modules/translate/index.js",
 
 		"~actions": "src/actions",
 		"~assets": "src/assets",

@@ -52,11 +52,6 @@ module.exports = {
 					test: /[\\/]src\/.+\.svg$/,
 					chunks: 'all',
 					name: 'svgs'
-				},
-				jsons: {
-					test: /[\\/]src\/.+\.json$/,
-					chunks: 'all',
-					name: 'jsons'
 				}
 			}
 		}

@@ -48,21 +48,6 @@ export default {
         }
     },
 
-    languages: {
-        "de_DE": "Deutsch",
-        "en_US": "English",
-        "es_ES": "Español",
-        "fr_FR": "Français",
-        "nl_NL": "Nederlands",
-        "pl_PL": "Polski",
-        "pt_BR": "Português (Brasil)",
-        "sv_SE": "Svenska",
-        "fi_FI": "Suomi",
-        "tr_TR": "Türkçe",
-        "ru_RU": "Русский",
-        "zh_CN": "中文（简体）"
-    },
-
     getImportLink: function() {
         return this.host+"/app#/settings/import";
     }

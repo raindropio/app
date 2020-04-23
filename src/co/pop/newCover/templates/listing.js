@@ -20,7 +20,7 @@ export default class NewCoverTemplates extends React.Component {
 
     renderIcon = ({png}, index)=>(
         <a key={index} className='nc-icon' href='' data-link={png} onClick={this.onIconClick}>
-            <img src={png} is loading='lazy' width='24' height='24' />
+            <img src={png} loading='lazy' width='24' height='24' />
         </a>
     )
 

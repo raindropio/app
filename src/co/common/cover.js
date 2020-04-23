@@ -136,6 +136,7 @@ export default class Cover extends React.PureComponent {
           }
 
           img = <img ref="img"
+                      loading='lazy'
                       crossOrigin={this.props.crossOrigin}
                       className={className}
                       src={nonRetina}
@@ -148,10 +149,10 @@ export default class Cover extends React.PureComponent {
             if (minDomain.length>3) minDomain = minDomain[0];
 
             img = (
-                <img className="cover" crossOrigin={this.props.crossOrigin} src={network.favIcon(this.props.domain,"retina")} onLoad={this.props.onLoad} onError={this.handleNothingError.bind(this)} />
+                <img className="cover" loading='lazy' crossOrigin={this.props.crossOrigin} src={network.favIcon(this.props.domain,"retina")} onLoad={this.props.onLoad} onError={this.handleNothingError.bind(this)} />
               );
           }else
-            img = <img ref="img" className="cover is-screenshot" crossOrigin={this.props.crossOrigin} src={config.screenshotService+encodeURIComponent(this.props.link)} onLoad={this.props.onLoad} onError={this.handleNothingError.bind(this)}/>;
+            img = <img ref="img" className="cover is-screenshot" loading='lazy' crossOrigin={this.props.crossOrigin} src={config.screenshotService+encodeURIComponent(this.props.link)} onLoad={this.props.onLoad} onError={this.handleNothingError.bind(this)}/>;
       }
     }
 

@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDom from 'react-dom'
 import Icon from '~icon'
 import t from '~t'
-import config from '~config'
+import supportedLangs from '~assets/languages/index.json'
 
 import settingsHelpers from './parts/helpers'
 
@@ -51,24 +51,23 @@ class Main extends React.Component {
         var lang = select.options[select.selectedIndex].value;
 
         UserStore.onUpdateLanguage({lang:lang}, function(){
-        	t.initLang(lang);
-            location.reload();//window.history.back();
-        });
+        	t.init(lang)
+        })
 	}
 
 	renderLanguages() {
 		var languages = [];
-		for(var code in config.languages)
+		for(var code in supportedLangs)
         	languages.push(
-        		<option key={code} value={code}>{config.languages[code]}</option>
-        	);
-
+        		<option key={code} value={code}>{supportedLangs[code]}</option>
+			);
+			
         return (
         	<figure className="fieldWrap">
 				<label className="fieldName">{t.s("language")}</label>
 				
 				<label className="selectBlank selectButton inline no-icon">
-					<span className="caption">{config.languages[t.currentLang]}</span>
+					<span className="caption">{supportedLangs[t.currentLang]}</span>
 					<Icon className="fieldIcon arrow" name="arrow" />
 
 					<select ref="lang" value={t.currentLang} onChange={this.handleLangChange.bind(this)}>
