@@ -63,7 +63,7 @@ module.exports = {
 	},
 	
 	output: {
-		filename:	'[name].[contenthash].js',
+		filename:	'assets/[name].[contenthash].js',
 		path:		path.resolve(__dirname, '..', 'dist', isProd?'':'dev', process.env.APP_TARGET),
 		publicPath:	process.env.APP_PUBLIC_PATH
 	},
@@ -121,7 +121,7 @@ module.exports = {
 		//CSS
 		new MiniCssExtractPlugin({
 			filename: '[contenthash].css',
-			chunkFilename: '[id].[contenthash].css'
+			chunkFilename: 'assets/[contenthash].css'
 		}),
 
 		//Post plugins

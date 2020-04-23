@@ -1,39 +1,29 @@
 import config from './config'
 
 export default {
-    defaultIcons: function(s) {
-      switch(parseInt(s)){
-        case 0: return "infinite"; break;
-        case -1: return "inbox"; break;
-        case -2: return "best"; break;
-        case -99: return "trash"; break;
-        default: return "default-folder"; break;
-      }
-    },
-    
     getDomain: function(url){
-      url = url || "";
-      if(typeof document != "undefined"){
-          var a = document.createElement('a');
-          a.href = url;
-          var host = a.hostname;
-          //delete a;
-          return host;
-      }else{
-        var domain;
-        //find & remove protocol (http, ftp, etc.) and get domain
-        if (url.indexOf("://") > -1) {
-            domain = url.split('/')[2];
-        }
-        else {
-            domain = url.split('/')[0];
-        }
+        url = url || "";
+        if(typeof document != "undefined"){
+            var a = document.createElement('a');
+            a.href = url;
+            var host = a.hostname;
+            //delete a;
+            return host;
+        }else{
+            var domain;
+            //find & remove protocol (http, ftp, etc.) and get domain
+            if (url.indexOf("://") > -1) {
+                domain = url.split('/')[2];
+            }
+            else {
+                domain = url.split('/')[0];
+            }
 
-        //find & remove port number
-        domain = domain.split(':')[0];
+            //find & remove port number
+            domain = domain.split(':')[0];
 
-        return domain;
-      }
+            return domain;
+        }
     },
 
     getProtocol: function(url) {
@@ -116,39 +106,5 @@ export default {
             _target = "_top";
 
         return _target;
-    },
-
-    settingsURL: function() {
-        var sURL = "../settings/settings.html#/settings";
-        var _target = "_self";
-        if ((window.environment||[]).indexOf("clipper")!=-1){
-            _target = "_blank";
-        }
-        
-        if (window.location.protocol.indexOf("http")!=-1) {
-            sURL = "/settings#/settings";
-        }
-        if ((window.environment||[]).indexOf("mac")!=-1)
-        {
-            sURL = "../settings/settings.html?isMac#/settings";
-        }
-        
-        return sURL;
-    },
-
-    getAvatar: function(emailMD5) {
-        return "https://www.gravatar.com/avatar/"+emailMD5+"?d=mm&s="+40;
-    },
-
-    getSearchParam: function(name, url) {
-        if (!url) {
-          url = window.location.href;
-        }
-        name = name.replace(/[\[\]]/g, "\\$&");
-        var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
-            results = regex.exec(url);
-        if (!results) return null;
-        if (!results[2]) return '';
-        return decodeURIComponent(results[2].replace(/\+/g, " "));
     }
-};
+}

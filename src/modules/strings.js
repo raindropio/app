@@ -1,6 +1,5 @@
 import t from '~t'
 import network from './network'
-import config from './config'
 import _ from 'lodash'
 
 export function getCurrentBrowser() {
@@ -69,26 +68,6 @@ export function swapArray(a, x, y) {
   return a;
 }
 
-export function parseSearch(val) {
-  var key = "word";
-  var typeRegexp = /type\-(image|video|link|article)/i;
-
-  if (val.match(new RegExp(/(^|\s)#([^ ]*)/i))) {
-      key = "tag";
-      val = val.replace(/,/g, '').replace(/#/g, '');
-  }
-  else if (val.match(new RegExp(/^((?:(?:(?:\w[\.\-\+]?)*)\w)+)((?:(?:(?:\w[\.\-\+]?){0,62})\w)+)\.(\w{2,6})$/))){
-      key = "domain";
-      val = val.toLowerCase();
-  }
-  else if (val.match(new RegExp(typeRegexp))){
-      key = "type";
-      val = val.match(typeRegexp)[1];
-  }
-
-  return {key: key, val: val};
-}
-
 export function getErrorFromJSON(json) {
   if (typeof json.error != "undefined") {
     return t.s("server"+json.error);
@@ -100,25 +79,6 @@ export function getErrorFromJSON(json) {
   }
 
   return t.s("server");
-}
-
-export function defaultTitle() {
-  if ((window.environment||[]).indexOf("desktop")!=-1)
-    return "Raindrop.io";
-  else{
-    var s = t.s("pro_speed_dial");
-    if (s.indexOf("(")!=-1){
-      s = s.substr(0, s.indexOf("(")-1);
-    }
-
-    s = S(s).replaceAll('"', '').s;
-    
-    if (s.indexOf("-")!=-1){
-      s = s.substr(0, s.indexOf("-")-1);
-    }
-
-    return s;
-  }
 }
 
 export function beautifulDomain(s) {
@@ -251,19 +211,6 @@ export function humanDate(dt) {
   return res;
 }
 
-export function parseBrowserQuery() {
-  var q = {};
-  try{
-    var temp = window.location.search.substr(1, window.location.search.length).split("&");
-    temp.forEach(function(item){
-      var a = item.split("=");
-      q[a[0]]=decodeURIComponent(a[1]);
-    });
-  }catch(e){}
-
-  return q;
-}
-
 export function fromNow(dt) {
   var d;
   try{d = new Date(dt)}catch(e){}
@@ -293,13 +240,4 @@ export function fromNow(dt) {
     res = new Intl.DateTimeFormat(t.currentLang.replace('_','-'), format).format(d);
   } catch(e) {}
   return res;
-}
-
-export function capitalizeFirstLetter(string) {
-  return string.charAt(0).toUpperCase() + string.slice(1);
-}
-
-export function numberThouthands(value) {
-  var thouthends = String(value||0).length, num=1; for(var i=0;i<thouthends-1;i++) num=num*10;
-  return num;
 }

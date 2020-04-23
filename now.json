@@ -6,11 +6,12 @@
     {
       "src": "package.json",
       "use": "@now/static-build",
-      "config": { "distDir": "build/web" }
+      "config": { "distDir": "dist/default" }
     }
   ],
   "routes": [
     { "src": "/assets/(.*)",            "headers": { "cache-control": "public, must-revalidate, max-age=31536000" }, "continue": true },
+    { "src": "/favicon.ico",            "headers": { "cache-control": "public, must-revalidate, max-age=31536000" }, "continue": true },
     { "src": "/legacy/4/?",             "dest": "/index.html" },
     { "src": "/bookmarklet/1.0/(.*)",   "dest": "https://bookmarklet1.raindrop-io.now.sh/$1" }
   ]
