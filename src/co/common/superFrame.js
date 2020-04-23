@@ -45,7 +45,7 @@ export default class SuperFrame extends React.Component {
 		this.loadSrc(this.props);
 	}
 
-	componentWillReceiveProps(nextProps) {
+	UNSAFE_componentWillReceiveProps(nextProps) {
 		clearTimeout(this.timer);
 		if (this.state.src == nextProps.src) return;
 

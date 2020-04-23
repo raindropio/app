@@ -1,5 +1,5 @@
 import React from 'react'
-import DocumentTitle from 'react-document-title'
+import { Helmet } from 'react-helmet'
 import t from '~t'
 import Icon from '~icon'
 import Api from '~api'
@@ -58,7 +58,7 @@ class AccountLogin extends React.Component {
 	render() {
 		return (
 			<div className="centerContentWrap accountPage">
-				<DocumentTitle title={t.s("signIn")+' - Raindrop.io'} />
+				<Helmet><title>{t.s("signIn")+' - Raindrop.io'}</title></Helmet>
 
 				<div className="centerContent">
 					<form className="centerContentBlock" onSubmit={this.handleLogin.bind(this)}>

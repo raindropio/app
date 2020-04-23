@@ -44,7 +44,7 @@ export default function(Component) { return class ReaderBookmark extends React.C
 		return state;
 	}
 
-	componentWillReceiveProps(nextProps) {
+	UNSAFE_componentWillReceiveProps(nextProps) {
 		this.setState(this.prepareState(nextProps));
 	}
 

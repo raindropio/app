@@ -25,14 +25,11 @@ var helpers = {
 	}
 }
 
-export default class SuperLink extends React.PureComponent {
+export default class SuperLink extends React.Component {
 	displayName = "common/superLink"
 
-	componentWillMount() {
-		helpers.bind();
-	}
-
 	componentDidMount() {
+		helpers.bind()
 		window.addEventListener('blur', this.onWindowBlur);
 		window.addEventListener('focus', this.onWindowFocus);
 	}

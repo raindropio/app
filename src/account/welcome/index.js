@@ -1,5 +1,5 @@
 import React from 'react'
-import DocumentTitle from 'react-document-title'
+import { Helmet } from 'react-helmet'
 import t from '~t'
 import Icon from '~icon'
 import Api from '~api'
@@ -130,7 +130,7 @@ class Welcome extends React.Component {
 	render() {
 		return (
 			<div className="centerContentWrap accountPage">
-				<DocumentTitle title={'Raindrop.io'} />
+				<Helmet><title>Raindrop.io</title></Helmet>
 
 				<div className="centerContent">
 					{this.renderPage(this.state.page)}

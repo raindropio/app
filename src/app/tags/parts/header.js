@@ -1,5 +1,5 @@
 import React from 'react'
-import DocumentTitle from 'react-document-title'
+import { Helmet } from 'react-helmet'
 import t from '~t'
 import Icon from '~icon'
 
@@ -11,7 +11,8 @@ export default ({children, actions, sidebarToggle, className, title=""})=>{
 	return (
 		<header className={className}>
 			<div className="headerWrap">
-				<DocumentTitle title={defaultTitle} />
+				<Helmet><title>{defaultTitle}</title></Helmet>
+
 				<span className="button-toggle-sidebar"><a tabIndex="-1" onClick={sidebarToggle} className="button default"><Icon name="menu" /></a></span>
 				<h1 className="min">{title}</h1>
 

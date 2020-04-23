@@ -28,7 +28,6 @@ class Main extends React.Component {
 	)
 
 	render() {
-		console.log(this.state.browser)
 		return (
 			<section id="main" className="installExtensionPage">
 				<header className="no-border">

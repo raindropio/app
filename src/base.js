@@ -10,10 +10,8 @@ import _ from 'lodash'
 
 class Base extends React.Component {
     constructor(props) {
-        super(props);
-        this.state = {};
-
-        this.pathName(props);
+        super(props)
+        this.state = {}
     }
 
 	onKeyvalChange(all) {
@@ -31,7 +29,7 @@ class Base extends React.Component {
         }
     }
 
-    componentWillMount() {
+    componentDidMount() {
         var md = new MobileDetect((typeof window != "undefined" ? window.navigator.userAgent : null));
 
         if (typeof document !== 'undefined')
@@ -65,9 +63,7 @@ class Base extends React.Component {
             document.documentElement.classList.add('clipper');
 
         this.onKeyvalChange(keyvalStore.onAll())
-    }
 
-    componentDidMount() {
         environment.onLoad();
         
         if (typeof document !== 'undefined')
@@ -77,24 +73,6 @@ class Base extends React.Component {
     componentWillUnmount() {
         if (typeof document !== 'undefined')
         this.unsubscribeKeyval();
-    }
-
-    pathName(props) {
-        var routeName = "";
-        try{
-            var names = [];
-            props.routes.forEach((route)=>{
-                if (typeof route.name != "undefined")
-                    if (route.name)
-                        names.push(route.name);
-            });
-            routeName = names.join('/');
-        } catch(e) {}
-        document.body.setAttribute('data-route', routeName);
-    }
-
-    componentWillReceiveProps(nextProps) {
-        this.pathName(nextProps);
     }
 
     setViewportHeight(){

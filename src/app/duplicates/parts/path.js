@@ -45,7 +45,7 @@ export default class Path extends PureComponent {
 		}
 	}
 
-	componentWillReceiveProps(props) {
+	UNSAFE_componentWillReceiveProps(props) {
 		this.setState(this.prepareState(props));
 	}
 

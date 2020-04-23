@@ -1,7 +1,5 @@
 import React from 'react'
-import t from '~t'
 import Icon from '~icon'
-import environment from '../../helpers/environment'
 
 import keyvalActions from '../../actions/keyval'
 import keyvalStore from '../../stores/keyval'
@@ -17,14 +15,6 @@ export default function(Component) {
 			}
 		}
 
-		componentWillMount() {
-			//first init
-			if (!keyvalStore.onGet("sidebar-is-initialized")){
-				keyvalStore.onSet('mode-force-sidebar', true, true);
-				keyvalStore.onSet('sidebar-is-initialized', true, true);
-			}
-		}
-
 		onKeyvalChange(all) {
 			var isForceSidebar = keyvalStore.onGet('mode-force-sidebar')||false;
 			if (this.state.sidebar != isForceSidebar)
@@ -32,6 +22,12 @@ export default function(Component) {
 		}
 
 		componentDidMount() {
+			//first init
+			if (!keyvalStore.onGet("sidebar-is-initialized")){
+				keyvalStore.onSet('mode-force-sidebar', true, true);
+				keyvalStore.onSet('sidebar-is-initialized', true, true);
+			}
+
 	        this.unsubscribeKeyval = keyvalStore.listen(this.onKeyvalChange.bind(this));
 	    }
 

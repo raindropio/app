@@ -2,23 +2,21 @@ import React from 'react'
 import t from '~t'
 import Pop from '../../../actions/pop'
 
-export default class AppsDevEdit extends React.PureComponent {
-    constructor(props) {
-        super(props)
+const emptyObject = {}
 
-        this.state = {
-            unsaved: false,
-            client: {
-                redirects: [],
-                ...props.client||{}
-            }
+export default class AppsDevEdit extends React.PureComponent {
+    state = {
+        unsaved: false,
+        client: {
+            redirects: [],
+            ...this.props.client||{}
         }
     }
 
-    componentWillReceiveProps(nextProps) {
-        this.setState({
-            client: {...nextProps.client||{}}
-        })
+    static getDerivedStateFromProps(props) {
+        return {
+            client: props.client||emptyObject
+        }
     }
 
     onChange = (e)=>{

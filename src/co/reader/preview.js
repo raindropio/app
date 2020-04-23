@@ -10,7 +10,7 @@ import Preloader from '../common/preloader'
 export default class Sidebar extends React.Component {
 	displayName = "reader/preview"
 
-	componentWillReceiveProps(nextProps) {
+	UNSAFE_componentWillReceiveProps(nextProps) {
 		if ((nextProps.item||{})._id != (this.props.item||{})._id){
 			if (typeof document !== 'undefined')
 				setTimeout(()=>{

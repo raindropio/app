@@ -11,7 +11,6 @@ import UserStore from '../../stores/user'
 import Item from './item'
 import Group from './group'
 import ItemMoveZone from './itemMoveZone'
-import Examples from './examples'
 
 var haveChildrens = []
 
@@ -211,13 +210,7 @@ export default class CollectionsList extends React.Component {
 					<ItemMoveZone key={"itemMoveZoneGroup"+group.id} group={group.id} level={0} />
 				</section>
 			);
-		});
-
-		if (this.props.embeded){
-			groups.push(
-				<Examples onClick={this.createNewFromExample.bind(this)} />
-			);
-		}
+		})
 
 		return groups
 	}

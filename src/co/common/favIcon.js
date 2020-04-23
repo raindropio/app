@@ -1,39 +1,21 @@
 import React from 'react'
-
 import network from '~network'
 import colors from '../../modules/colors'
-import _ from 'lodash'
 
 var brokenImgs = []
 
 export default class FavIcon extends React.Component {
-	displayName = "common/favIcon"
+	state = {}
 
-	cleanSource(domain) {
-		if (brokenImgs.indexOf(domain)!=-1)
-			return false;
+	static getDerivedStateFromProps(props) {
+		if (brokenImgs.indexOf(props.domain)!=-1)
+			return null
 		else
-			return domain;
+			return { domain: props.domain }
 	}
 
-	constructor(props) {
-		super(props);
-		this.state = {
-			domain: this.cleanSource(this.props.domain)
-		}
-	}
-
-	componentWillReceiveProps(nextProps) {
-		this.setState({
-			domain: this.cleanSource(nextProps.domain)
-		});
-	}
-
-	shouldComponentUpdate(nextProps, nextState) {
-		if (this.state.domain != nextState.domain)
-			return true;
-
-		return false;
+	shouldComponentUpdate(nextProps) {
+		return (this.props.domain != nextProps.domain)
 	}
 
 	handleImgLoadSuccess(e) {

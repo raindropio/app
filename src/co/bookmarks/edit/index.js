@@ -44,7 +44,7 @@ class Edit extends React.Component {
 		this.getSuggestions(this.props)
 	}
 
-	componentWillReceiveProps(nextProps) {
+	UNSAFE_componentWillReceiveProps(nextProps) {
 		var item = nextProps.item||{};
 
 		if (this.state.item && (this.state.item._id != item._id ||

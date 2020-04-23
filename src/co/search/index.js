@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDom from 'react-dom'
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
+import { CSSTransitionGroup } from 'react-transition-group'
 import t from '~t'
 import _ from 'lodash'
 import colors from '../../modules/colors'
@@ -39,7 +39,7 @@ export default class Search extends React.Component {
 		return word;
 	}
 
-	componentWillReceiveProps(nextProps) {
+	UNSAFE_componentWillReceiveProps(nextProps) {
 		if (this.state.word=="")
 			this.setState({word: this.getWord(nextProps.query)});
 		else
@@ -361,9 +361,9 @@ export default class Search extends React.Component {
 				{icon}
 			{/*<Icon name="arrow" className="searchMagnifierArrow" />*/}
 
-				<ReactCSSTransitionGroup className="searchKeywordsItems" transitionName="keyword-anim" transitionEnterTimeout={150} transitionLeaveTimeout={150}>
+				<CSSTransitionGroup className="searchKeywordsItems" transitionName="keyword-anim" transitionEnterTimeout={150} transitionLeaveTimeout={150}>
 					{items}
-				</ReactCSSTransitionGroup>
+				</CSSTransitionGroup>
 
 				<input ref="searchInput"
 						tabIndex="300"

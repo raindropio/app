@@ -45,7 +45,7 @@ export default class Edit extends React.Component {
 		this.loadCollaborators(this.props.item);
 	}
 
-	componentWillReceiveProps(nextProps) {
+	UNSAFE_componentWillReceiveProps(nextProps) {
 		if (this.props.item != nextProps.item){
 			this.loadCollaborators(nextProps.item);
 			this.setState({item:nextProps.item, showPath: false, collaborators: 0})

@@ -41,7 +41,7 @@ export default class Edit extends React.Component {
 		return JSON.parse(JSON.stringify(collectionsStore.getCollection(id)||{}));
 	}
 
-	componentWillReceiveProps(nextProps) {
+	UNSAFE_componentWillReceiveProps(nextProps) {
 		if (nextProps.id){
 			var c = this.getCollection(nextProps.id);
     		this.setState({item: c});

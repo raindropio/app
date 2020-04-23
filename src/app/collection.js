@@ -1,7 +1,6 @@
 import React from 'react'
 import ReactDom from 'react-dom'
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
-import DocumentTitle from 'react-document-title'
+import { Helmet } from 'react-helmet'
 import { browserHistory } from 'react-router'
 import Icon from '~icon'
 import t from '~t'
@@ -163,7 +162,7 @@ class Main extends React.Component {
 			},1)
     }
 
-    componentWillReceiveProps(nextProps) {
+    UNSAFE_componentWillReceiveProps(nextProps) {
     	this.openCollection(nextProps);
     }
 
@@ -470,7 +469,8 @@ class Main extends React.Component {
 
 		return (
 			<header className={className}><div className="headerWrap">
-				<DocumentTitle title={this.state.collection.title||"Raindrop.io"} />
+				<Helmet><title>{this.state.collection.title||"Raindrop.io"}</title></Helmet>
+
 				<span className="button-toggle-sidebar"><a tabIndex="-1" onClick={this.props.sidebarToggle} className={"button active "/*+(this.props.sidebarIsOpen ? "active" : "")*/} title={t.s("show") + "/" + t.s("hide").toLowerCase() + " " + t.s("myCollections").toLowerCase()}>{sidebarToggleIcon}</a></span>
 
 				{more}

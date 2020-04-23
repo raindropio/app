@@ -1,6 +1,5 @@
 import React from 'react'
 import ReactDom from 'react-dom'
-import shallowCompare from 'react-addons-shallow-compare'
 import { DragSource, DropTarget } from 'react-dnd';
 import t from '~t'
 import contextMenu from '../../modules/contextMenu'
@@ -22,14 +21,7 @@ class Group extends React.Component {
 	componentDidMount() {
 		this.checkIsBlank()
 	}
-
-	/*shouldComponentUpdate(nextProps, nextState) {
-		if (shallowCompare(this, nextProps.item, nextState.item))
-			return true;
-		
-		return shallowCompare(this, nextProps, nextState);
-    }*/
-
+	
     checkIsBlank() {
     	setTimeout(()=>{
 			if (this.state.title == t.s("untitled")){

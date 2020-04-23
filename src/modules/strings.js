@@ -112,13 +112,6 @@ export function parseSearch(val) {
   return {key: key, val: val};
 }
 
-export const inputSelectAllMixin = {
-  handleSelectAll: function(e) {
-    e.target.focus();
-    e.target.select();
-  }
-}
-
 export function getErrorFromJSON(json) {
   if (typeof json.error != "undefined") {
     return t.s("server"+json.error);

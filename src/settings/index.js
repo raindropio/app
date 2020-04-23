@@ -1,6 +1,6 @@
 import React from 'react'
 import t from '~t'
-import DocumentTitle from 'react-document-title'
+import { Helmet } from 'react-helmet'
 
 import Sidebar from './sidebar'
 import LayoutWrap from '../co/columns/layoutWrap'
@@ -11,7 +11,8 @@ class Layout extends React.Component {
 	render() {
 		return (
 			<div>
-				<DocumentTitle title={t.s("settings")} />
+				<Helmet><title>{t.s("settings")}</title></Helmet>
+
 				<Sidebar />
 				{this.props.children}
 			</div>

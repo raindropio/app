@@ -1,6 +1,5 @@
 import React from 'react'
 import t from '~t'
-import { inputSelectAllMixin } from '../../../modules/strings'
 import network from '~network'
 import Api from '~api'
 
@@ -27,14 +26,12 @@ var _roles = [
     }
 ];
 
-export default React.createClass({
-    displayName: "Collection/Sharing",
+export default class CollectionSharing extends React.Component {
+    constructor(props) {
+        super(props)
 
-    mixins: [inputSelectAllMixin],
-
-    getInitialState: function() {
-        return {
-            collection: this.props.collection,
+        this.state = {
+            collection: props.collection,
             collaborators: [],
             invite: {
                 emails: "",
@@ -42,22 +39,22 @@ export default React.createClass({
                 loading: false
             }
         }
-    },
+    }
 
-    componentDidMount: function() {
-        this.loadCollaborators();
-    },
+    componentDidMount() {
+        this.loadCollaborators()
+    }
 
-    componentWillReceiveProps: function(nextProps) {
+    UNSAFE_componentWillReceiveProps(nextProps) {
         this.state.collection = nextProps.collection;
         this.loadCollaborators();
 
         this.setState({
             collection: nextProps.collection
         });
-    },
+    }
 
-    loadCollaborators: function(force) {
+    loadCollaborators = (force)=>{
         var _this = this, link = "collection/"+this.state.collection._id+"/collaborators";
 
         //frome cache
@@ -73,9 +70,9 @@ export default React.createClass({
                 _this.setState({collaborators: json.items||[]});
                 Api.setItem(link, JSON.stringify(json.items||[]));
             });
-    },
+    }
 
-    handleChangePublic: function(e) {
+    handleChangePublic = (e)=>{
         e.preventDefault();
         this.state.collection.public = !this.state.collection.public;
 
@@ -88,9 +85,9 @@ export default React.createClass({
         }, function (cId) {});
 
         this.setState({collection: this.state.collection});
-    },
+    }
 
-    handleChangeRole: function(e) {
+    handleChangeRole = (e)=>{
         var role = e.target.value,
             userId = parseInt(e.target.getAttribute("data-userid"));
 
@@ -104,14 +101,14 @@ export default React.createClass({
                     _this.setState({collaborators: _this.state.collaborators});*/
             }
         });
-    },
+    }
 
-    handleRemoveRole: function(e) {
+    handleRemoveRole = (e)=>{
         e.preventDefault();
         this.handleChangeRole("", {userId: e.target.getAttribute("data-userid")});
-    },
+    }
 
-    handleUnshareCollection: function(e) {
+    handleUnshareCollection = (e)=>{
         e.preventDefault();
 
         var _this = this;
@@ -121,19 +118,19 @@ export default React.createClass({
                 _this.loadCollaborators(true);
             //}
         });
-    },
+    }
 
-    handleEmailsChange: function(e) {
+    handleEmailsChange = (e)=>{
         this.state.invite.emails = e.target.value;
         this.setState({invite: this.state.invite});
-    },
+    }
 
-    handleChangeInviteRole: function(e) {
+    handleChangeInviteRole = (e)=>{
         this.state.invite.role = this.state.invite.role=='viewer' ? 'member' : 'viewer';
         this.setState({invite: this.state.invite});
-    },
+    }
 
-    handleSendInvites: function(e) {
+    handleSendInvites = (e)=>{
         e.preventDefault();
         var _this = this;
 
@@ -152,9 +149,14 @@ export default React.createClass({
             _this.state.invite.loading = false;
             _this.setState({invite: _this.state.invite});
         });
-    },
+    }
 
-    renderMember: function(item,index) {
+    handleSelectAll = (e)=>{
+        e.target.focus();
+        e.target.select();
+    }
+
+    renderMember = (item,index)=>{
         var first = (index==0);
         var actions = t.s("role_"+item.role);
         if (item.role!="owner" && this.state.collection.author)
@@ -193,13 +195,13 @@ export default React.createClass({
                 </div>
             </div>
         );
-    },
+    }
 
-    componentDidUpdate: function() {
+    componentDidUpdate() {
         this.props.onUpdate();
-    },
+    }
 
-    render: function() {
+    render() {
         var _this = this, collaborators = [], members = [], viewers = [];
 
         members = this.state.collaborators.filter(function(item){
@@ -300,4 +302,4 @@ export default React.createClass({
             </div>
     	);
     }
-});
+}

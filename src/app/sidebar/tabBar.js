@@ -1,7 +1,5 @@
 import React from 'react'
 import t from '~t'
-import shallowCompare from 'react-addons-shallow-compare'
-import environment from '../../helpers/environment'
 
 import Icon from '~icon'
 
@@ -13,10 +11,6 @@ var tabItems = [
 
 export default class TabBar extends React.Component {
 	displayName = "app/sidebar/tabBar"
-
-	shouldComponentUpdate(nextProps, nextState) {
-		return shallowCompare(this, nextProps, nextState);
-    }
 
 	onClick(href,isActive,index) {
 		if (isActive) return;

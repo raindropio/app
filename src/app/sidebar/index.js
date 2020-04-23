@@ -142,7 +142,7 @@ class Sidebar extends React.Component {
 				<SuperOverflow
 					id="sidebarContent"
 					className='collections-scroll-block'
-					data-initialScrollTop={38}>
+					data-initial-scroll-top={38}>
 					<CollectionsToolbar />
 
 					<div className='collections-scroll-main-content'>

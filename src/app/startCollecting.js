@@ -1,5 +1,5 @@
 import React from 'react'
-import DocumentTitle from 'react-document-title'
+import { Helmet } from 'react-helmet'
 import config from '~config'
 import t from '~t'
 import Icon from '~icon'
@@ -21,7 +21,8 @@ class Main extends React.Component {
 			<section id="main">
 				<header className="no-border">
 					<div className="headerWrap">
-						<DocumentTitle title={title} />
+						<Helmet><title>{title}</title></Helmet>
+
 						<span className="button-toggle-sidebar"><a tabIndex="-1" onClick={this.props.sidebarToggle} className="button default"><Icon name="menu" /></a></span>
 						
 					</div>

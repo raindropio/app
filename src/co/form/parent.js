@@ -99,7 +99,7 @@ export default class Parent extends React.Component {
 		nextElem.click();
 	}
 
-	componentWillReceiveProps(nextProps) {
+	UNSAFE_componentWillReceiveProps(nextProps) {
 		//if (nextProps._id != this.state._id)
 		this.setState(this.prepareState(nextProps));
 

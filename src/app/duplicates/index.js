@@ -50,10 +50,6 @@ class Main extends React.Component {
 		duplicatesActions.changeSelectionRule(val);
 	}
 
-	componentWillReceiveProps(nextProps) {
-    	//duplicatesActions.load();
-    }
-
 	onDuplicatesChange = (state) => {
 		this.setState(state)
 	}

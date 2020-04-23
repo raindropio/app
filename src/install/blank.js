@@ -7,7 +7,7 @@ var md = new MobileDetect((typeof window != "undefined" ? window.navigator.userA
 export default class Main extends React.Component {
 	displayName = "install/blank"
 
-	componentWillMount() {
+	componentDidMount() {
 		var isMac = (getCurrentBrowser().indexOf('mac')!=-1);
 		var goPath = "windows";
 

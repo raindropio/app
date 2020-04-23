@@ -48,7 +48,7 @@ export default class Cover extends React.PureComponent {
 		this.state = this.makeNextState(this.props)
 	}
 
-	componentWillReceiveProps(nextProps) {
+	UNSAFE_componentWillReceiveProps(nextProps) {
       this.setState(this.makeNextState(nextProps));
   }
 

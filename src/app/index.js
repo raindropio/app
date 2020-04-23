@@ -1,8 +1,7 @@
 import React from 'react'
-import DocumentTitle from 'react-document-title'
+import { Helmet } from 'react-helmet'
 
 import Icon from '~icon'
-import Api from '~api'
 import t from '~t'
 import initAuth from '../helpers/initAuth'
 import UserStore from '../stores/user'
@@ -15,11 +14,9 @@ import Preloader from '../co/common/preloader'
 import LayoutWrap from '../co/columns/layoutWrap'
 import CustomDragPreview from '../co/common/customDragPreview'
 
-var loginStep, correctStepCount, alreadyLoaded = false;
+var alreadyLoaded = false
 
 class Layout extends React.Component {
-	displayName = "app/index"
-
 	timeout = null
 
 	constructor(props) {
@@ -28,15 +25,13 @@ class Layout extends React.Component {
 		this.refresh = this.refresh.bind(this);
 
 		this.state = {
-			status: "loading"
+			status: 'loading'
 		}
 	}
 
-	componentWillMount() {
-		if (typeof document === 'undefined') return;
-
+	componentDidMount() {
 		initAuth.checkStatus((status)=>{
-			if (status=="needLogin")
+			if (status=='needLogin')
 				UserStore._redirectToLogin();
 			else
 				this.setState({status: status})
@@ -52,7 +47,7 @@ class Layout extends React.Component {
 			case "loading":
 				return (
 					<div>
-						<DocumentTitle title={t.s("loading")+"..."} />
+						<Helmet><title>{t.s("loading")+"..."}</title></Helmet>
 
 						<aside id="sidebar" className="disable-transition">
 							<header>
@@ -90,7 +85,7 @@ class Layout extends React.Component {
 
 			case "error":
 				return (<div className="centerContentWrap"><div className="centerContent"><div>
-					<DocumentTitle title={t.s("server")} />
+					<Helmet><title>{t.s("server")}</title></Helmet>
 
 					<h2 className="headLabel">{t.s("server")}</h2>
 					<p className="subHeadLabel">
@@ -104,7 +99,7 @@ class Layout extends React.Component {
 			default:
 				return (
 					<div>
-						<DocumentTitle title="Raindrop.io" />
+						<Helmet><title>Raindrop.io</title></Helmet>
 
 						<Sidebar />
 						<Panel />

@@ -4,7 +4,7 @@ import _ from 'lodash'
 import Icon from '~icon'
 import Preloader from './preloader'
 
-export default class NewCoverTempalteSearch extends React.PureComponent {
+export default class CommonSearchInput extends React.PureComponent {
     constructor(props) {
         super(props)
         
@@ -90,7 +90,7 @@ export default class NewCoverTempalteSearch extends React.PureComponent {
                         value={this.state.value}
                         onFocus={this.onFocus}
                         onBlur={this.onBlur}
-                        onInput={this.onChange} />
+                        onChange={this.onChange} />
 
                     {(this.state.filled && count === 0) && (
                         <div className='search-input-nofound'>

@@ -1,5 +1,5 @@
 import React from 'react'
-import DocumentTitle from 'react-document-title'
+import { Helmet } from 'react-helmet'
 import t from '~t'
 import Icon from '~icon'
 import Api from '~api'
@@ -58,7 +58,7 @@ class AccountReset extends React.Component {
 
 		return (
 			<div className="centerContentWrap accountPage">
-				<DocumentTitle title={t.s("recoverPassword")+' - Raindrop.io'} />
+				<Helmet><title>{t.s("recoverPassword")+' - Raindrop.io'}</title></Helmet>
 
 				<div className="centerContent">
 					<form className="centerContentBlock" onSubmit={this.handleReset.bind(this)}>

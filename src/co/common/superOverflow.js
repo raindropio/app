@@ -25,8 +25,8 @@ export default class SuperOverflow extends React.Component {
 	bindRef = (r)=>{
 		if (!r) return
 		
-		if (this.props['data-initialScrollTop'])
-			r.scrollTop = this.props['data-initialScrollTop']
+		if (this.props['data-initial-scroll-top'])
+			r.scrollTop = this.props['data-initial-scroll-top']
 	}
 
 	afterScroll() {
@@ -48,11 +48,6 @@ export default class SuperOverflow extends React.Component {
 	render() {
 		return <div {...this.props}
 					ref={this.bindRef}
-					data-super-overflow="true">{this.props.children}</div>;
-					
-		return <div {...this.props}
-					data-super-overflow="true"
-					data-scrolling={this.state.scrolling}
-					onWheel={this.onWheel.bind(this)}>{this.props.children}</div>;
+					data-super-overflow="true">{this.props.children}</div>
 	}
 }

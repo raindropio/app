@@ -1,6 +1,5 @@
 import React from 'react'
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-
+import { CSSTransitionGroup } from 'react-transition-group'
 import Toasts from '../../actions/toast'
 import ToastStore from '../../stores/toast'
 
@@ -66,9 +65,9 @@ export default class Toast extends React.Component {
 
         return (
             <div id="app-toast">
-            <ReactCSSTransitionGroup component="ul" transitionName="toastanim" transitionEnterTimeout={300} transitionLeaveTimeout={400}>
+            <CSSTransitionGroup component="ul" transitionName="toastanim" transitionEnterTimeout={300} transitionLeaveTimeout={400}>
                 {items}
-            </ReactCSSTransitionGroup>
+            </CSSTransitionGroup>
             </div>
         );
 	}
