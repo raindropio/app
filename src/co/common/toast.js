@@ -1,9 +1,6 @@
 import React from 'react'
-import { CSSTransitionGroup } from 'react-transition-group'
 import Toasts from '../../actions/toast'
 import ToastStore from '../../stores/toast'
-
-import Icon from '~icon'
 
 const isElectron = false; //strings.getCurrentBrowser().indexOf("electron")!=-1;
 
@@ -65,10 +62,10 @@ export default class Toast extends React.Component {
 
         return (
             <div id="app-toast">
-            <CSSTransitionGroup component="ul" transitionName="toastanim" transitionEnterTimeout={300} transitionLeaveTimeout={400}>
-                {items}
-            </CSSTransitionGroup>
+                <ul>
+                    {items}
+                </ul>
             </div>
-        );
+        )
 	}
 }

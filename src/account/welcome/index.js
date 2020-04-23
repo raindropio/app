@@ -16,16 +16,11 @@ class Welcome extends React.Component {
 		super(props);
 
 		this.state = {
-			page: 0,
-			price: 0
+			page: 0
 		}
 	}
 
 	componentDidMount() {
-		Api.get('https://billing.raindrop.io/v1/info/pricing', (json)=>{
-			this.setState({price: "$" + parseInt(json.pricing['1'].price) + "/" + t.s("month")})
-		})
-
 		initAuth.checkStatus((status)=>{
 			switch(status){
 				case "done":

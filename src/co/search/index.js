@@ -1,6 +1,5 @@
 import React from 'react'
 import ReactDom from 'react-dom'
-import { CSSTransitionGroup } from 'react-transition-group'
 import t from '~t'
 import _ from 'lodash'
 import colors from '../../modules/colors'
@@ -361,9 +360,9 @@ export default class Search extends React.Component {
 				{icon}
 			{/*<Icon name="arrow" className="searchMagnifierArrow" />*/}
 
-				<CSSTransitionGroup className="searchKeywordsItems" transitionName="keyword-anim" transitionEnterTimeout={150} transitionLeaveTimeout={150}>
+				<div className='searchKeywordsItems'>
 					{items}
-				</CSSTransitionGroup>
+				</div>
 
 				<input ref="searchInput"
 						tabIndex="300"

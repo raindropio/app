@@ -11,15 +11,17 @@ import Recover from './recover'
 import Welcome from './welcome'
 
 export default (
-	<Route path='/account' name='account' component={Index}>
-		<Switch>
-			<Route path='/account/redirect' name='redirect' component={RedirectRoute} />
-			<Route path='/account/login' name='login' component={Login} />
-			<Route path='/account/signup' name='signup' component={Signup} />
-			<Route path='/account/reset' name='reset' component={Reset} />
-			<Route path='/account/recover/:token' name='recover' component={Recover} />
+	<Route path='/account' name='account'>
+		<Index>
+			<Switch>
+				<Route path='/account/redirect' name='redirect' component={RedirectRoute} />
+				<Route path='/account/login' name='login' component={Login} />
+				<Route path='/account/signup' name='signup' component={Signup} />
+				<Route path='/account/reset' name='reset' component={Reset} />
+				<Route path='/account/recover/:token' name='recover' component={Recover} />
 
-			<Route name='welcome' component={Welcome} />
-		</Switch>
+				<Route name='welcome' component={Welcome} />
+			</Switch>
+		</Index>
 	</Route>
 )

@@ -1,6 +1,6 @@
 import React from 'react'
-import HTML5Backend from 'react-dnd-html5-backend';
-import { DragDropContext } from 'react-dnd';
+import { DndProvider } from 'react-dnd'
+import HTML5Backend from 'react-dnd-html5-backend'
 
 import MobileDetect from 'mobile-detect'
 import { getCurrentBrowser, scrollbarIsObtrusive } from './modules/strings'
@@ -93,8 +93,12 @@ class Base extends React.Component {
     }
 
 	render() {
-		return this.props.children;
+		return (
+            <DndProvider backend={HTML5Backend}>
+                {this.props.children}
+            </DndProvider>
+        );
 	}
 }
 
-export default DragDropContext(HTML5Backend)(Base);
+export default Base
