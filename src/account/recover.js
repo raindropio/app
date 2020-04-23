@@ -26,7 +26,7 @@ class AccountReset extends React.Component {
 		Pop.show('loading');
 
 		Api.post("auth/email/recover", {
-            token: this.props.params.token,
+            token: this.props.match.params.token,
 			password: this.state.password
 		}, (json)=> {
 			if (json.result === true)

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Route } from 'react-router'
+import { Route } from 'react-router-dom'
 import CollectionItem from '../co/collections/item'
 
 export default {

@@ -32,11 +32,12 @@ export default function(Component) {
 	    }
 
 	    sidebarSmartClose() {
-	    	if (typeof document !== 'undefined')
-		    	if (document.getElementById('js_markup_status').offsetWidth<=2) {
-		    		keyvalActions.remove('mode-panel', true);
-					keyvalActions.remove('mode-force-sidebar', true);
-		    	}
+			const status = document.getElementById('js_markup_status')
+			
+			if (status && status.offsetWidth<=2) {
+				keyvalActions.remove('mode-panel', true);
+				keyvalActions.remove('mode-force-sidebar', true);
+			}
 		}
 
 	    sidebarToggle(e) {

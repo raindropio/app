@@ -117,10 +117,8 @@ module.exports = {
 		//HTML
 		new HtmlWebpackPlugin({
 			title: 'Raindrop.io',
-			template: './index.ejs',
+			template: './index.html',
 			favicon: './assets/icons/favicon.ico',
-			hash: false,//!options.debug
-			inject: 'head',
 			minify: false
 		}),
 

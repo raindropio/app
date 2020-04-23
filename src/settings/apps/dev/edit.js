@@ -10,7 +10,7 @@ export default class AppsDevEdit extends React.PureComponent {
         super(props)
 
         this.state = {
-            client: AppsStore.getClient(props.params.id)
+            client: AppsStore.getClient(props.match.params.id)
         }
     }
 
@@ -19,7 +19,7 @@ export default class AppsDevEdit extends React.PureComponent {
 
         AppsStore.onLoadClients()
 
-        AppsStore.getTestTokenClient(this.props.params.id, test_token=>
+        AppsStore.getTestTokenClient(this.props.match.params.id, test_token=>
             this.setState({ test_token })
         )
     }
@@ -30,41 +30,41 @@ export default class AppsDevEdit extends React.PureComponent {
 
 	onAppsChange = () =>
         this.setState({
-            client: AppsStore.getClient(this.props.params.id)
+            client: AppsStore.getClient(this.props.match.params.id)
         })
 
     onSubmit = (client, callback)=>{
-        AppsStore.onUpdateClient(this.props.params.id, client, callback)
+        AppsStore.onUpdateClient(this.props.match.params.id, client, callback)
     }
 
     onCover = (file, callback)=>{
-        AppsStore.onUploadIconClient(this.props.params.id, file, callback)
+        AppsStore.onUploadIconClient(this.props.match.params.id, file, callback)
     }
 
     onResetSecretClient = (e)=>{
         e.preventDefault()
 
-        AppsStore.onResetSecretClient(this.props.params.id, ()=>{})
+        AppsStore.onResetSecretClient(this.props.match.params.id, ()=>{})
     }
 
     onRevokeAllTokens = (e)=>{
         e.preventDefault()
 
-        AppsStore.onRevoke(this.props.params.id)
+        AppsStore.onRevoke(this.props.match.params.id)
         this.setState({ test_token: '' })
     }
 
     onCreateTestToken = (e)=>{
         e.preventDefault()
 
-        AppsStore.createTestTokenClient(this.props.params.id, test_token=>
+        AppsStore.createTestTokenClient(this.props.match.params.id, test_token=>
             this.setState({ test_token })
         )
     }
 
     onRemove = (e)=>{
         e.preventDefault()
-        AppsStore.onRemoveClient(this.props.params.id, (success)=>{
+        AppsStore.onRemoveClient(this.props.match.params.id, (success)=>{
             if (success)
                 window.location.hash = "#/settings/apps/dev"
         })

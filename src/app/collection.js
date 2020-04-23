@@ -1,7 +1,6 @@
 import React from 'react'
 import ReactDom from 'react-dom'
 import { Helmet } from 'react-helmet'
-import { browserHistory } from 'react-router'
 import Icon from '~icon'
 import t from '~t'
 import SuperImg from '../co/common/superImg'
@@ -102,8 +101,8 @@ class Main extends React.Component {
     }
 
     openCollection(props,forceRefresh) {
-    	var _id = parseInt(props.params.cid);
-    	var nextSearch = props.params.search||"[]";
+    	var _id = parseInt(props.match.params.cid);
+		var nextSearch = props.match.params.search||"[]";
 
     	var idIsUnchanged = (this.lastCid===_id);
     	var searchIsUnchanged = ((JSON.stringify(this.state.bookmarks.search||[]))==nextSearch);
@@ -119,7 +118,7 @@ class Main extends React.Component {
     		params = Object.assign(params, {
     			sort: props.sort||this.state.bookmarks.sort
     		})
-    	}
+		}
 
     	var searchIsOpen = ((params.search||[]).length>0);
 
@@ -185,7 +184,7 @@ class Main extends React.Component {
 
 	openView() {
 		Pop.show("view", {
-			id: this.props.params.cid,
+			id: this.props.match.params.cid,
 			pin: "collection_view",
 			force: "vertical",
 			mousePosition:true
@@ -775,6 +774,7 @@ class Main extends React.Component {
 
 		if (bookmarksStore.getSelectedCount()>0)
 			className="main-gray-background";
+			
 
 		return (
 			<DropFile><section id="main" className={className}>

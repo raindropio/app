@@ -1,11 +1,12 @@
 import React from 'react'
 import Icon from '~icon'
+import { withRouter } from 'react-router-dom'
 
 import keyvalActions from '../../actions/keyval'
 import keyvalStore from '../../stores/keyval'
 
 export default function(Component) {
-	return class SidebarWrap extends React.Component {
+	return withRouter(class SidebarWrap extends React.Component {
 		displayName = "columns/SidebarWrap"
 
 		constructor(props) {
@@ -62,5 +63,5 @@ export default function(Component) {
 				</div>
 			);
 		}
-	}
+	})
 }

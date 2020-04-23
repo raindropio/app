@@ -1,1 +1,2 @@
-- css minimize
+- html require icons
+- remake encodeURIComponent(JSON.stringify for search, current not supported by react-router
