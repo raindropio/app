@@ -91,7 +91,6 @@ module.exports = {
 		...(isProd ? [
 			//Clean dist folder
 			new CleanWebpackPlugin(),
-			new LodashModuleReplacementPlugin()
 		] : [
 			//new WriteFilePlugin()
 		]),
@@ -168,26 +167,6 @@ module.exports = {
 
 			{
 				test: /\.svg$/,
-				use: [
-					{
-						loader: 'image-webpack-loader',
-						options: {
-							svgo: {
-								plugins: [
-									{ transformsWithOnePath: true },
-									{ removeTitle: true },
-									{ removeUselessStrokeAndFill: true },
-									{ removeAttrs: { attrs: '(stroke|fill)' } },
-									{ removeViewBox:false }
-								]
-							}
-						},
-					}
-				]
-			},
-
-			{
-				test: /\.svg$/,
 				oneOf: [
 					{
 						resourceQuery: /asis/,
@@ -203,6 +182,26 @@ module.exports = {
 							name: '[name]',
 							prefixize: false
 						}
+					}
+				]
+			},
+
+			{
+				test: /\.svg$/,
+				use: [
+					{
+						loader: 'image-webpack-loader',
+						options: {
+							svgo: {
+								plugins: [
+									{ transformsWithOnePath: true },
+									{ removeTitle: true },
+									{ removeUselessStrokeAndFill: true },
+									{ removeAttrs: { attrs: '(stroke|fill)' } },
+									{ removeViewBox:false }
+								]
+							}
+						},
 					}
 				]
 			},
