@@ -6,6 +6,7 @@ import contextMenu from '~modules/contextMenu'
 import collectionsHelper from '~modules/collections'
 
 import collectionsActions from '~actions/collections'
+import UserStore from '~stores/user'
 
 class Group extends React.Component {
 	displayName = "collections/group"

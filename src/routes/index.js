@@ -1,9 +1,10 @@
 import React from 'react'
-import { HashRouter as Router, Switch } from 'react-router-dom'
+import { HashRouter as Router, Route, Redirect, Switch } from 'react-router-dom'
 
-import Document from './document'
+import Document from './_document'
+import Home from './_home'
 import Account from './account/routes'
-import App from './app/routes'
+import Collection from './collection/routes'
 import Settings from './settings/routes'
 
 export default ()=>(
@@ -13,7 +14,14 @@ export default ()=>(
                 {Account}
                 {Settings}
 
-                {App}
+                {/* Legacy */}
+				<Route path='/app/duplicates'><Redirect to='/settings/duplicates' /></Route>
+				<Route path='/app/tags'><Redirect to='/settings/tags' /></Route>
+				<Route path='/app/libroken'><Redirect to='/settings/libroken' /></Route>
+
+                {Collection}
+
+                <Route><Home/></Route>
             </Switch>
         </Document>
     </Router>

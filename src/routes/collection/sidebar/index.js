@@ -7,7 +7,6 @@ import CollectionsToolbar from '~co/collections/toolbar'
 import SuperOverflow from '~co/common/superOverflow'
 import TabBar from './tabBar'
 import SidebarWrap from '~co/columns/sidebarWrap'
-import Tools from './tools'
 
 import keyvalStore from '~stores/keyval'
 import statsStore from '~stores/stats'
@@ -147,7 +146,6 @@ class Sidebar extends React.Component {
 
 					<div className='collections-scroll-main-content'>
 						<CollectionsList />
-						<Tools />
 					</div>
 				</SuperOverflow>
 

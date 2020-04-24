@@ -59,7 +59,7 @@ module.exports = {
 
 	entry: {
 		app: './index.js',
-		analytics: './analytics.js'
+		analytics: './assets/analytics.js'
 	},
 	
 	output: {

@@ -69,8 +69,6 @@ export default class CollectionsList extends React.Component {
     noCollectionsClick = (e)=>{
     	e.preventDefault()
 
-    	window.location.href='#/app/startcollecting'
-
     	document.querySelector('#createNewCollectionLink .superLink').click()
     }
 

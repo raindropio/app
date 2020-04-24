@@ -10,15 +10,10 @@ import Textarea from 'react-autosize-textarea'
 
 import SuperImg from '../common/superImg'
 import Pop from '~actions/pop'
-import SuperInput from '../common/superInput'
 import Preloader from '../common/preloader'
 import Tags from '../bookmarks/edit/tags'
-import DropFile from '~routes/app/parts/dropFile'
+import DropFile from '~routes/collection/parts/dropFile'
 
-import BookmarksActions from '~actions/bookmarks'
-import keyvalStore from '~stores/keyval'
-import collectionsStore from '~stores/collections'
-import Toasts from '~actions/toast'
 import bookmarksHelpers from '~modules/bookmarks'
 
 export default class URL extends React.Component {

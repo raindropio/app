@@ -11,7 +11,7 @@ import debounce from 'lodash/debounce'
 import bookmarksActions from '~actions/bookmarks'
 import Pop from '~actions/pop'
 
-import Bookmark from '~routes/app/reader/bookmark';
+import Bookmark from '~routes/collection/reader/bookmark';
 import Textarea from 'react-autosize-textarea'
 import Masonry from 'react-masonry-component'
 import Cover from '~co/common/cover'

@@ -7,9 +7,12 @@ import Upgrade from './upgrade'
 import Common from './common'
 import Profile from './profile'
 import Export from './export'
-import Vote from './vote'
 import About from './about'
 import Integrations from './integrations'
+
+import Broken from './broken'
+import Duplicates from './duplicates'
+import Tags from './tags'
 
 import Import from './import'
 import ImportStart from './import/start'
@@ -46,7 +49,10 @@ export default (
 
 				<Route path='/settings/export' name='export' component={Export} />
 
-				<Route path='/settings/vote' name='vote' component={Vote} />
+				<Route path='/settings/duplicates' name='duplicates' component={Duplicates} />
+				<Route path='/settings/tags' name='tags' component={Tags} />
+				<Route path='/settings/libroken' name='libroken' component={Broken} />
+
 				<Route path='/settings/about' name='about' component={About} />
 				<Route path='/settings/integrations' name='integrations' component={Integrations} />
 
