@@ -58,8 +58,7 @@ module.exports = {
 	},
 
 	entry: {
-		app: './index.js',
-		analytics: './assets/analytics.js'
+		app: './index.js'
 	},
 	
 	output: {
@@ -113,9 +112,10 @@ module.exports = {
 		//HTML
 		new HtmlWebpackPlugin({
 			title: 'Raindrop.io',
-			template: './assets/index.html',
+			template: './assets/index.ejs',
 			favicon: './assets/images/icons/favicon.ico',
-			minify: false
+			hash: true,
+			scriptLoading: 'defer'
 		}),
 
 		//CSS
@@ -131,13 +131,23 @@ module.exports = {
 	],
 
 	module: {
-		noParse: /node_modules\/localforage\/dist\/localforage.js/,
-
 		rules: [
 			{
 				test: /\.js$/,
 				exclude: /node_modules/,
-				use: ['babel-loader']
+				oneOf: [
+					{
+						resourceQuery: /asis/,
+						loader: 'file-loader',
+						options: {
+							outputPath: 'assets',
+							name: '[contenthash].[ext]'
+						}
+					},
+					{
+						loader: 'babel-loader'
+					}
+				]
 			},
 
 			{
@@ -160,13 +170,6 @@ module.exports = {
 				test: /\.svg$/,
 				use: [
 					{
-						loader: 'svg-sprite-loader',
-						options: {
-							name: '[name]',
-							prefixize: false
-						}
-					},
-					{
 						loader: 'image-webpack-loader',
 						options: {
 							svgo: {
@@ -179,6 +182,27 @@ module.exports = {
 								]
 							}
 						},
+					}
+				]
+			},
+
+			{
+				test: /\.svg$/,
+				oneOf: [
+					{
+						resourceQuery: /asis/,
+						loader: 'file-loader',
+						options: {
+							outputPath: 'assets',
+							name: '[contenthash].[ext]'
+						}
+					},
+					{
+						loader: 'svg-sprite-loader',
+						options: {
+							name: '[name]',
+							prefixize: false
+						}
 					}
 				]
 			},

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
+	<meta http-equiv="x-ua-compatible" content="ie=edge,chrome=1" />
+	<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+	<meta name="google" value="notranslate" />
+	<meta http-equiv="cleartype" content="on" />
+	
+	<title>Raindrop.io</title>
+
+	<meta name='apple-itunes-app' content='app-id=1021913807' />
+	<meta name='google-play-app' content='app-id=io.raindrop.raindropio' />
+	<link rel="chrome-webstore-item" href="https://chrome.google.com/webstore/detail/ldgfbffkinooeloadekpmfoklnobpien">
+	
+	<link rel='icon' href='<%= require("./images/icons/icon_16.png").default %>' sizes='16x16' type='image/png'/>
+	<link rel='icon' href='<%= require("./images/icons/icon_32.png").default %>' sizes='32x32' type='image/png'/>
+	<link rel='icon' href='<%= require("./images/icons/icon_64.png").default %>' sizes='64x64' type='image/png'/>
+	<link rel='icon' href='<%= require("./images/icons/icon_128.png").default %>' sizes='128x128' type='image/png'/>
+	<link rel='apple-touch-icon' href='<%= require("./images/icons/icon_128.png").default %>' />
+	<link rel='icon' type='image/svg+xml' href='<%= require("./images/icons/icon-raw.svg?asis").default %>' />
+
+	<meta name='twitter:card' content='app' />
+	<meta name='twitter:site' content='@raindrop_io' />
+	<meta name='twitter:description' content='All in One Bookmark Manager. For your inspiration, read later, media and stuff.' />
+	<meta name='twitter:image' content='<%= require("./images/marketing/og.png").default %>' />
+	<meta property='og:type' content='product' />
+	<meta property='og:title' content='Raindrop.io &mdash; All in One Bookmark Manager' />
+	<meta property='og:description' content='For your inspiration, read later, media and stuff' />
+	<meta property='og:image' content='<%= require("./images/marketing/og.png").default %>' />
+
+	<style>@media (prefers-color-scheme: dark) {.temp-loading-markup > * {background: #303030 !important;height: 100%}}</style>
+	
+</head>
+<body>
+	<div id="react"><div id="markup" class="temp-loading-markup">
+		<span id="js_markup_status"></span>
+		<aside id="sidebar"></aside>
+		<section id="main"></section>
+	</div></div>
+
+	<script async src='<%= require("./analytics.js?asis").default %>'></script>
+</body>
+</html>
