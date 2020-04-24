@@ -1,17 +1,13 @@
 import React from 'react'
-import Icon from '~icon'
 import t from '~t'
 import UserStore from '~stores/user'
 
-import settingsHelpers from '../parts/helpers'
-import MainWrap from '~co/columns/mainWrap'
+import Main, { Header, Content } from '~co/screen/splitview/main'
 import Dropbox from './dropbox'
 import Gdrive from './gdrive'
 import Link from './link'
 
-class Main extends React.Component {
-	displayName = "settings/integrations"
-
+class Integrations extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -45,27 +41,21 @@ class Main extends React.Component {
 		try{gdrive=this.state.user.gdrive.enabled;}catch(e){}
 
 		return (
-			<section id="main">
-				<header className="no-border">
-					<div className="headerWrap">
-						{settingsHelpers.backButton.bind(this)()}
-						
-						<h1 className="min">{t.s("integrations")}</h1>
-					</div>
-				</header>
+			<Main>
+				<Header title={t.s('integrations')} />
 
-				<div id="mainBody">
-					<div className="blocks-container">
+				<Content>
+					<div className='blocks-container'>
 						<Link title='IFTTT' subtitle='Connect to 600 apps, RSS and Email' icon='ifttt' color='' href='https://ifttt.com/raindrop' />
 						<Link title='Zapier' subtitle='Connect to 2,000 business apps' icon='zapier' color='#FF4A00' href='https://zapier.com/apps/raindropio' />
 
 						<Dropbox enabled={dropbox} pro={UserStore.isPro()} />
 						<Gdrive enabled={gdrive} pro={UserStore.isPro()} />
 					</div>
-				</div>
-			</section>
-		);
+				</Content>
+			</Main>
+		)
 	}
 }
 
-export default MainWrap(Main)
+export default Integrations

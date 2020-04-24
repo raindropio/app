@@ -1,20 +1,13 @@
 import React from 'react'
 import t from '~t'
-import settingsHelpers from '../parts/helpers'
 import AppsStore from '~stores/apps'
 
-import MainWrap from '~co/columns/mainWrap'
+import Main, { Header, Content } from '~co/screen/splitview/main'
 import Lazy from './common/lazy'
 import Clients from './common/clients'
 
-class About extends React.Component {
-	displayName = "settings/apps/authorized"
-
-	constructor(props) {
-        super(props)
-
-        this.state = AppsStore.getState().connections
-	}
+class Authorized extends React.Component {
+	state = AppsStore.getState().connections
 	
 	componentDidMount() {
         this._uns = AppsStore.listen(this.onAppsChange.bind(this));
@@ -31,22 +24,17 @@ class About extends React.Component {
 
 	render() {
 		return (
-			<section id="main">
-				<header className="no-border">
-					<div className="headerWrap">
-						{settingsHelpers.backButton.bind(this)()}
-                        <h1 className="min">{t.s("connected")} {t.s('interest_technology_applications').toLowerCase()}</h1>
-					</div>
-				</header>
+			<>
+				<Header title={`${t.s('connected')} ${t.s('interest_technology_applications').toLowerCase()}`} />
 
-				<div id="mainBody">
+				<Content>
 					<Lazy {...this.state}>
 						<Clients {...this.state} />
 					</Lazy>
-                </div>
-			</section>
+				</Content>
+			</>
 		);
 	}
 }
 
-export default MainWrap(About)
+export default Authorized

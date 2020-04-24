@@ -1,0 +1,62 @@
+<div>
+    <!-- sidebar -->
+    <div>
+        <aside id='sidebar'>
+            <header>
+                <div className='headerWrap'>
+                    <a href="" class="button active show-on-extension">
+                        <!-- close sidebar icon when it floating -->
+                    </a>
+
+                    <div class="sidebarHeaderTitle">
+                        <!-- Title component or text -->
+                    </div>
+
+                    <a class="button flat"><b>
+                        <!-- additional button icons -->
+                    </b></a>
+                </div>
+            </header>
+
+            <div id='sidebarContent'>
+                <!-- main sidebar content -->
+            </div>
+
+            <footer>
+
+            </footer>
+        </aside>
+        <div id='sidebar-black-overlay'/>
+    </div>
+
+    <!-- additional sidebar -->
+    <aside id='panel'>
+        <header><!-- same as sidebar --></header>
+        <div id='panelContent'></div>
+    </aside>
+
+    <section id='main'>
+        <header className='no-border'><!-- same as sidebar --></header>
+
+        <div id='mainBody'>
+            <!-- main content -->
+        </div>
+    </section>
+
+    <div>
+        <section id='reader'>
+            <header><!-- same as sidebar --></header>
+
+            <div className='readerContent'>
+
+            </div>
+        </section>
+        <div id='reader-black-overlay'/>
+    </div>
+</div>
+
+States:
+- <html className='mode-reader' /> when reader panel is open
+- <html className='mode-panel' /> when sidebar panel is open
+- <html className='mode-force-sidebar' /> when sidebar is floating or not closed automatically when reader enabled
+- mode-reader-fullscreen

@@ -9,7 +9,7 @@ if(typeof window != 'undefined'){
 export default {
     home: home,
 	host: host,
-    apiPrefix: __DEV__ ? 'http://dev.raindrop.io:3000/v1/' : 'https://api.raindrop.io/v1/',
+    apiPrefix: __DEV__ ? 'http://localhost:3000/v1/' : 'https://api.raindrop.io/v1/',
     screenshotService: 'https://stella.raindrop.io/imager/screenshot.jpg?width=460&url=',
     thumbService: 'https://stella.raindrop.io/imager/thumb.jpg',
     contentTypes: ['link', 'article', 'image', 'video'],

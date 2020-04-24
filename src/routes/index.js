@@ -2,26 +2,27 @@ import React from 'react'
 import { HashRouter as Router, Route, Redirect, Switch } from 'react-router-dom'
 
 import Document from './_document'
-import Home from './_home'
-import Account from './account/routes'
+
+import Account from './account'
 import Collection from './collection/routes'
-import Settings from './settings/routes'
+import Settings from './settings'
+
+import Home from './_home'
 
 export default ()=>(
     <Router>
         <Document>
             <Switch>
-                {Account}
-                {Settings}
+                <Route path='/account' component={Account} />
+                <Route path='/settings' component={Settings} />
+                {Collection}
 
-                {/* Legacy */}
+                {/* Redirects */}
 				<Route path='/app/duplicates'><Redirect to='/settings/duplicates' /></Route>
 				<Route path='/app/tags'><Redirect to='/settings/tags' /></Route>
 				<Route path='/app/libroken'><Redirect to='/settings/libroken' /></Route>
-
-                {Collection}
-
-                <Route><Home/></Route>
+                
+                <Route component={Home} />
             </Switch>
         </Document>
     </Router>

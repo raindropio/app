@@ -5,6 +5,6 @@ import UserStore from '~stores/user'
 export default ()=>{
 	var id
 	try{id = parseInt(UserStore.getUser().config.last_collection);}catch(e){}
-
-	return <Redirect to={`/collection/${id||0}`} />
+	
+	return <Redirect to={`/collection/${parseInt(id)||'0'}`} />
 }

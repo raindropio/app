@@ -1,27 +1,34 @@
 import React from 'react'
-import t from '~t'
+import { Route, Switch, Redirect, useRouteMatch } from 'react-router-dom'
 import Icon from '~icon'
-import initAuth from '~modules/initAuth'
 
-import LayoutWrap from '~co/columns/layoutWrap'
+import Screen from '~co/screen/basic'
+import RedirectRoute from './redirect'
+import Login from './login'
+import Signup from './signup'
+import Reset from './reset'
+import Recover from './recover'
 
-class AccountLayout extends React.Component {
-	displayName = 'account'
+export default ()=>{
+	let { path } = useRouteMatch()
 
-	componentDidMount() {
-		initAuth.alreadyLoaded=false;
-	}
-
-	render() {
-		return (
-			<div className="accountPageWrap">
-				<Icon name="diamond" className="cloudCloud" />
-				<Icon name="default_collection" className="cloudCloud" />
-				<Icon name="video" className="cloudCloud" />
-				{this.props.children}
+	return (
+		<Screen>
+			<div className='accountPageWrap'>
+				<Icon name='diamond' className='cloudCloud' />
+				<Icon name='default_collection' className='cloudCloud' />
+				<Icon name='video' className='cloudCloud' />
+				
+				<Switch>
+					<Route path={`${path}/redirect`} component={RedirectRoute} />
+					<Route path={`${path}/login`} component={Login} />
+					<Route path={`${path}/signup`} component={Signup} />
+					<Route path={`${path}/reset`} component={Reset} />
+					<Route path={`${path}/recover/:token`} component={Recover} />
+	
+					<Route><Redirect to={`${path}/login`} /></Route>
+				</Switch>
 			</div>
-		);
-	}
+		</Screen>
+	)
 }
-
-export default LayoutWrap(AccountLayout, {disableTheme:true})

@@ -1,23 +1,53 @@
 import React from 'react'
-import t from '~t'
-import { Helmet } from 'react-helmet'
+import { Route, Redirect, Switch, useRouteMatch } from 'react-router-dom'
+import environment from '~modules/environment'
+
+import SplitView from '~co/screen/splitview'
+import Protected from '~co/screen/protected'
 
 import Sidebar from './sidebar'
-import LayoutWrap from '~co/columns/layoutWrap'
 
-class Layout extends React.Component {
-	displayName = "settings/index"
+import Upgrade from './upgrade'
+import Common from './common'
+import Profile from './profile'
 
-	render() {
-		return (
-			<div>
-				<Helmet><title>{t.s("settings")}</title></Helmet>
+import Import from './import'
+import Export from './export'
+import Duplicates from './duplicates'
+import Broken from './broken'
+import Tags from './tags'
 
+import Integrations from './integrations'
+import Apps from './apps'
+import About from './about'
+
+export default ()=>{
+	let { path } = useRouteMatch()
+
+	return (
+		<Protected>
+			<SplitView>
 				<Sidebar />
-				{this.props.children}
-			</div>
-		);
-	}
-}
+				
+				<Switch>
+					<Route path={`${path}/upgrade`} component={Upgrade} />
+					<Route path={`${path}/common`} component={Common} />
+					<Route path={`${path}/profile`} component={Profile} />
 
-export default LayoutWrap(Layout)
+					<Route path={`${path}/import`} component={Import} />
+					<Route path={`${path}/export`} component={Export} />
+					<Route path={`${path}/duplicates`} component={Duplicates} />
+					<Route path={`${path}/libroken`} component={Broken} />
+					<Route path={`${path}/tags`} component={Tags} />
+
+					<Route path={`${path}/integrations`} component={Integrations} />
+					<Route path={`${path}/apps`} component={Apps} />
+
+					<Route path={`${path}/about`} component={About} />
+
+					<Route><Redirect to={path+'/'+(environment.isClipper()?'common':'upgrade')} /></Route>
+				</Switch>
+			</SplitView>
+		</Protected>
+	)
+}

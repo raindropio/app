@@ -1,21 +1,14 @@
 import React from 'react'
 import t from '~t'
-import settingsHelpers from '../../parts/helpers'
 import AppsStore from '~stores/apps'
 
 import Icon from '~icon'
-import MainWrap from '~co/columns/mainWrap'
+import { Header, Content } from '~co/screen/splitview/main'
 import Lazy from '../common/lazy'
 import Clients from '../common/clients'
 
-class About extends React.Component {
-	displayName = "settings/apps/dev"
-
-	constructor(props) {
-        super(props)
-
-        this.state = AppsStore.getState().clients
-	}
+class Dev extends React.Component {
+	state = AppsStore.getState().clients
 	
 	componentDidMount() {
         this._uns = AppsStore.listen(this.onAppsChange.bind(this));
@@ -32,15 +25,10 @@ class About extends React.Component {
 
 	render() {
 		return (
-			<section id="main">
-				<header className="no-border">
-					<div className="headerWrap">
-						{settingsHelpers.backButton.bind(this)()}
-                        <h1 className="min">{t.s("dev")}</h1>
-					</div>
-				</header>
+			<>
+				<Header title={t.s('dev')} />
 
-				<div id="mainBody">
+				<Content>
 					<Lazy {...this.state}>
 						<Clients {...this.state} />
 					</Lazy>
@@ -55,10 +43,10 @@ class About extends React.Component {
 							</a>
 						</div>
 					</div>
-                </div>
-			</section>
-		);
+				</Content>
+			</>
+		)
 	}
 }
 
-export default MainWrap(About)
+export default Dev

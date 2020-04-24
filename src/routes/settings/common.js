@@ -4,9 +4,7 @@ import Icon from '~icon'
 import t from '~t'
 import supportedLangs from '~assets/languages/index.json'
 
-import settingsHelpers from './parts/helpers'
-
-import MainWrap from '~co/columns/mainWrap'
+import Main, { Header, Content } from '~co/screen/splitview/main'
 import ReaderPop from '~co/pop/reader'
 import keyvalStore from '~stores/keyval'
 import keyvalActions from '~actions/keyval'
@@ -15,7 +13,7 @@ import UserStore from '~stores/user'
 import Theme from './parts/theme'
 import Broken from './parts/broken'
 
-class Main extends React.Component {
+class Common extends React.Component {
 	displayName = "settings/common"
 
 	constructor(props) {
@@ -80,16 +78,10 @@ class Main extends React.Component {
 
 	render() {
 		return (
-			<section id="main">
-				<header>
-					<div className="headerWrap">
-						{settingsHelpers.backButton.bind(this)()}
-						
-						<h1 className="min">{t.s("commonSettings")}</h1>
-					</div>
-				</header>
+			<Main>
+				<Header title={t.s('commonSettings')} />
 
-				<div id="mainBody">
+				<Content>
 					<div className="superForm">
 						<Theme />
 
@@ -135,10 +127,10 @@ class Main extends React.Component {
 					</div>
 
 					<div className="hide-on-clipper"><ReaderPop/></div>
-				</div>
-			</section>
+				</Content>
+			</Main>
 		);
 	}
 }
 
-export default MainWrap(Main)
+export default Common

@@ -13,7 +13,6 @@ import Pop from '~actions/pop'
 
 import Bookmark from '~routes/collection/reader/bookmark';
 import Textarea from 'react-autosize-textarea'
-import Masonry from 'react-masonry-component'
 import Cover from '~co/common/cover'
 import Tags from './tags'
 import _ from 'lodash'
@@ -218,44 +217,6 @@ class Edit extends React.Component {
 				})
 			break
 		}
-	}
-
-	renderCovers() {
-		if (this.props.loading) return null;
-
-		var selected = this.state.item.coverId;
-        if (typeof (this.state.item.media||[])[this.state.item.coverId] == undefined)
-            selected = -1;
-
-		var items = [];
-		(this.state.item.media||[]).forEach((item,index)=>{
-			if (index<9)
-			items.push(
-				<figure key={index} className={index == selected ? "active" : ""} onClick={this.handleChangeCover.bind(this,index)}>
-					<Cover src={item.link}
-						link={this.state.item.link}
-						domain={this.state.item.domain}
-						onLoad={()=>{if (this.refs.masonry) this.refs.masonry.masonry.layout()}} />
-				</figure>
-			);
-		});
-
-		/*var screenshot;
-		if (!haveScreenshot)
-			screenshot = (
-				<figure className="makeScreenshot"
-						onClick={this.addScreenshot.bind(this)}>
-					<Icon name="screenshot" size="80"/>
-					<figcaption>{t.s("clickToMakeScreenshot")}/{t.s("site")} {t.s("icon").toLowerCase()}</figcaption>
-				</figure>
-			);*/
-
-		return (
-			<Masonry ref="masonry" className="cover-list" elementType="span" options={{percentPosition: true, transitionDuration: "0"}}>
-				
-				{items}
-			</Masonry>
-		);
 	}
 
 	renderAdvice() {

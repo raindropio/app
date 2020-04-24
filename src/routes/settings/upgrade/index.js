@@ -1,31 +1,13 @@
 import React from 'react'
 import t from '~t'
-import settingsHelpers from '../parts/helpers'
-import MainWrap from '~co/columns/mainWrap'
 import UserStore from '~stores/user'
 
-import Loading from './loading'
+import Main, { Header, Content } from '~co/screen/splitview/main'
 import Free from './free'
 import Paid from './paid'
 
-class Upgrade extends React.Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			loading: true
-		}
-	}
-
-	componentDidMount() {
-		UserStore.onLoad((result)=>{
-			this.setState({loading: false});
-		});
-    }
-    
+export default class Upgrade extends React.Component {
     renderBody = ()=>{
-        if (this.state.loading)
-            return <Loading />
-
         if (UserStore.isPro())
             return <Paid />
 
@@ -34,22 +16,13 @@ class Upgrade extends React.Component {
 
 	render() {
 		return (
-			<section id='main' className='proPage'>
-				<header className='no-border'>
-					<div className='headerWrap'>
-                        {settingsHelpers.backButton.bind(this,true)()}
-                        <h1 style={{padding:'12px 0'}}>
-                            {t.s('upgradeAccount')}
-                        </h1>
-                    </div>
-				</header>
+			<Main className='proPage'>
+				<Header title={t.s('upgradeAccount')} />
 
-				<div id='mainBody'>
+				<Content>
 					{this.renderBody()}
-				</div>
-			</section>
+				</Content>
+			</Main>
 		)
 	}
 }
-
-export default MainWrap(Upgrade)

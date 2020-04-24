@@ -1,7 +1,6 @@
 import React from 'react'
 import t from '~t'
 
-import MainWrap from '~co/columns/mainWrap'
 import Loaded from './loaded'
 import Init from './init'
 import Empty from './empty'
@@ -14,9 +13,7 @@ import duplicatesStore from '~stores/duplicates'
 import UserStore from '~stores/user'
 import _ from 'lodash'
 
-class Main extends React.Component {
-	displayName = "app/duplicates"
-
+class Duplicates extends React.Component {
 	constructor(props) {
 		super(props);
 
@@ -33,11 +30,11 @@ class Main extends React.Component {
 
 		duplicatesStore.onRemoveSelected()
 			.then(()=>{
-				Toast.show({title: t.s("bookmarksRemoved")});
+				Toast.show({title: t.s('bookmarksRemoved')});
 				Pop.close();
 			})
 			.catch(()=>{
-				Toast.show({title: t.s("error"), status:"error"});
+				Toast.show({title: t.s('error'), status:'error'});
 				Pop.close();
 			})
 	}
@@ -69,7 +66,7 @@ class Main extends React.Component {
 			return <Buy {...this.props} />
 
 		switch(this.state.step){
-			case "loaded":
+			case 'loaded':
 				return <Loaded 
 							{...this.props}
 							{...this.state}
@@ -78,17 +75,14 @@ class Main extends React.Component {
 							changeSelectionRule={this.changeSelectionRule}
 							changeSelection={this.changeSelection}
 							removeSelected={this.removeSelected} />
-			break;
 
-			case "empty":
+			case 'empty':
 				return <Empty {...this.props} />
-			break;
 
 			default:
 				return <Init {...this.props} />
-			break;
 		}
 	}
 }
 
-export default MainWrap(Main)
+export default Duplicates

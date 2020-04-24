@@ -16,7 +16,7 @@ gridItemCoverSize(size)
     gridItemSizePx = round(originalCoverWidth + (originalCoverGap * (size - 1)));
     gridItemSizeHeight = round(gridItemSizePx * 0.459);
     
-    body:not(.mode-reader), body.mode-reader-modal, body.mode-reader-fullscreen {
+    body:not(.mode-reader), .mode-reader-modal, .mode-reader-fullscreen {
         .view-grid-size-{size} {
             .element-grid {
                 width: gridItemSizePx;
@@ -156,7 +156,7 @@ gridItemCoverSize(size)
         }
     }
 }
-.main-gray-background, body.mode-reader #markup:not(.themeDark) {
+.main-gray-background, .mode-reader #markup:not(.themeDark) {
     .element.element-grid {
         border-color: gridBackground;
     }
@@ -319,7 +319,7 @@ html.retina.chrome .element.element-grid {
 
 
 
-body.mode-disable-title .element.element-grid {
+.mode-disable-title .element.element-grid {
     .about {
         padding: 0;
         .title, .info {

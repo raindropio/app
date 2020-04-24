@@ -1,6 +1,7 @@
 import React from 'react'
+import t from '~t'
 
-import MainWrap from '~co/columns/mainWrap'
+import Main, { Header, Content } from '~co/screen/splitview/main'
 import Hello from './hello'
 import Empty from './empty'
 import Buy from './buy'
@@ -8,9 +9,7 @@ import Buy from './buy'
 import statsStore from '~stores/stats'
 import UserStore from '~stores/user'
 
-class Main extends React.Component {
-	displayName = "app/broken"
-
+class Broken extends React.Component {
 	onStatChange() {
 		this.setState({});
 	}
@@ -24,16 +23,26 @@ class Main extends React.Component {
     }
 
 	render() {
+		var content
 		const count = statsStore.getBrokenCount();
 
 		if (!UserStore.isPro())
-			return <Buy {...this.props} />
+			content = <Buy {...this.props} />
+		else if (count==0)
+			content = <Empty {...this.props} />
+		else
+			content = <Hello {...this.props} count={statsStore.getBrokenCount()} />
 
-		if (count==0)
-			return <Empty {...this.props} />
+		return (
+			<Main>
+				<Header title={t.s('broken')+' '+t.s('links').toLowerCase()} />
 
-		return <Hello {...this.props} count={statsStore.getBrokenCount()} />
+				<Content>
+					{content}
+				</Content>
+			</Main>
+		)
 	}
 }
 
-export default MainWrap(Main)
+export default Broken

@@ -1,11 +1,10 @@
 import React from 'react'
 import t from '~t'
 import Icon from '~icon'
-import Header from './parts/header'
-import SuperOverflow from '~co/common/superOverflow'
 import ListItem from '~co/bookmarks/item/listBlank'
 import DuplicateItem from './parts/duplicateItem'
 import Preloader from '~co/common/preloader'
+import Main, { Header, Content, Footer } from '~co/screen/splitview/main'
 
 export default class Loaded extends React.PureComponent {
 	constructor(props) {
@@ -23,7 +22,7 @@ export default class Loaded extends React.PureComponent {
 
 	render() {
 		const {
-			buttonLabel="",
+			buttonLabel='',
 			sidebarToggle,
 			itemsCount=0,
 			items=[],
@@ -54,28 +53,28 @@ export default class Loaded extends React.PureComponent {
 			var hereFullyRemoved = (hereSelected==dups.length);
 
 			var actions = (
-				<div className="actions">
-					<a href={"#/collection/0/"+encodeURIComponent(JSON.stringify([{key:"word",val:item.link}]))} className="button min default">
-						<b>{t.s('show')+" "+t.s('elements2')}</b>
+				<div className='actions'>
+					<a href={'#/collection/0/'+encodeURIComponent(JSON.stringify([{key:'word',val:item.link}]))} className='button min default'>
+						<b>{t.s('show')+' '+t.s('elements2')}</b>
 					</a>
 				</div>
 			)
 
 			return (
-				<div className="duplicate-group" data-fully-removed={hereFullyRemoved} key={index}>
+				<div className='duplicate-group' data-fully-removed={hereFullyRemoved} key={index}>
 					<ListItem
-						baseClassName="element element-list"
+						baseClassName='element element-list'
 						item={item}
 						author={true}
 						actions={actions}>
-						<div className="info">
+						<div className='info'>
 							{hereSelected}
 							&nbsp;|&nbsp;
 							{dups.length}
 						</div>
 					</ListItem>
 
-					<div className="duplicate-items">
+					<div className='duplicate-items'>
 						{dups}
 					</div>
 				</div>
@@ -83,56 +82,56 @@ export default class Loaded extends React.PureComponent {
 		})
 
 		return (
-			<section id="main">
-				<Header sidebarToggle={sidebarToggle}>
-					<div className="duplicates-toolbar">
-						<a tabIndex="-1" className="button active select">
-							<span>{t.s("select")}&nbsp;<Icon name="dropdown" size="micro" /></span>
+			<Main>
+				<Header title={t.s('duplicates')}>
+					<div className='duplicates-toolbar'>
+						<a tabIndex='-1' className='button active select'>
+							<span>{t.s('select')}&nbsp;<Icon name='dropdown' size='micro' /></span>
 							
 							<select value={-1} onChange={(e)=>changeSelectionRule(e.target.options[e.target.selectedIndex].value)}>
-								<option value="-1" disabled>{t.s("select")+" "+t.s("duplicates").toLowerCase()}</option>
-								<option value="sameCollection">{t.s("sameCollection")}</option>
-								<option value="old">{t.s('only') + " " + t.s("old").toLowerCase()}</option>
-								<option value="new">{t.s('only') + " " + t.s("newString").toLowerCase()}</option>
-								<option value="nothing">{t.s("nothing")}</option>
+								<option value='-1' disabled>{t.s('select')+' '+t.s('duplicates').toLowerCase()}</option>
+								<option value='sameCollection'>{t.s('sameCollection')}</option>
+								<option value='old'>{t.s('only') + ' ' + t.s('old').toLowerCase()}</option>
+								<option value='new'>{t.s('only') + ' ' + t.s('newString').toLowerCase()}</option>
+								<option value='nothing'>{t.s('nothing')}</option>
 							</select>
 						</a>
 
-						<div className="di-space"/>
+						<div className='di-space'/>
 
 						<RemoveButton label={buttonLabel} count={selected.length} fully={fullyRemoved.length} onClick={removeSelected} />
 					</div>
 				</Header>
 
-				<SuperOverflow id="mainBody" className="translateFromTopSlightly" onScroll={this.handleBodyScroll}>
-					<div className="elements view-list">
+				<Content className='translateFromTopSlightly' onScroll={this.handleBodyScroll}>
+					<div className='elements view-list'>
 						{elements}
 					</div>
-				</SuperOverflow>
+				</Content>
 
-				<footer className={!more ? "hidden" : ""}>
-					<div className="title center" style={{opacity:0.6}}>
-						{httpActivity ? <Preloader className="size-small" /> : 'Scroll down to load more...' }
+				<Footer className={!more ? 'hidden' : ''}>
+					<div className='title center' style={{opacity:0.6}}>
+						{httpActivity ? <Preloader className='size-small' /> : 'Scroll down to load more...' }
 					</div>
-				</footer>
-			</section>
+				</Footer>
+			</Main>
 		);
 	}
 }
 
-const RemoveButton = ({label="", count=0, fully=0, onClick})=>{
+const RemoveButton = ({label='', count=0, fully=0, onClick})=>{
 	if (!count) return null;
 
 	return (
-		<a className="button red standart di-remove-button" onClick={onClick}>
-			<Icon name="trash_active" />
+		<a className='button red standart di-remove-button' onClick={onClick}>
+			<Icon name='trash_active' />
 
-			<span className="hide-on-small-body">
+			<span className='hide-on-small-body'>
 				{`${label}: ${count} ${t.s('duplicates').toLowerCase()}`}
-				{fully? `, ${t.s("including")} ${fully} ${t.s('original').toLowerCase()}` : null}
+				{fully? `, ${t.s('including')} ${fully} ${t.s('original').toLowerCase()}` : null}
 			</span>
 
-			<span className="show-on-small-body">
+			<span className='show-on-small-body'>
 				{`${count}`}
 			</span>
 		</a>

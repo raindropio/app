@@ -11,7 +11,7 @@ import SidebarTabBar from './sidebar/tabBar'
 import Panel from './sidebar/panel'
 import Reader from './reader'
 import Preloader from '~co/common/preloader'
-import LayoutWrap from '~co/columns/layoutWrap'
+import Screen from '~co/screen/basic'
 import CustomDragPreview from '~co/common/customDragPreview'
 
 var alreadyLoaded = false
@@ -46,7 +46,7 @@ class Layout extends React.Component {
 		switch(this.state.status){
 			case "loading":
 				return (
-					<div>
+					<Screen>
 						<Helmet><title>{t.s("loading")}</title></Helmet>
 
 						<aside id="sidebar" className="disable-transition">
@@ -79,38 +79,44 @@ class Layout extends React.Component {
 								<Preloader/>
 							</div></div>
 						</section>
-					</div>
+					</Screen>
 				);
 			break;
 
 			case "error":
-				return (<div className="centerContentWrap"><div className="centerContent"><div>
-					<Helmet><title>{t.s("server")}</title></Helmet>
+				return (
+					<Screen>
+						<div className="centerContentWrap"><div className="centerContent"><div>
+							<Helmet><title>{t.s("server")}</title></Helmet>
 
-					<h2 className="headLabel">{t.s("server")}</h2>
-					<p className="subHeadLabel">
-						{t.s("noInternetError")}<br />
-						<a href="#/" onClick={this.refresh}>{t.s("refresh")}</a>
-					</p>
-					
-				</div></div></div>);
+							<h2 className="headLabel">{t.s("server")}</h2>
+							<p className="subHeadLabel">
+								{t.s("noInternetError")}<br />
+								<a href="#/" onClick={this.refresh}>{t.s("refresh")}</a>
+							</p>
+							
+						</div></div></div>
+					</Screen>
+				);
 			break;
 
 			default:
 				return (
-					<div>
-						<Sidebar />
-						<Panel />
+					<Screen>
+						<div>
+							<Sidebar />
+							<Panel />
 
-						{this.props.children}
+							{this.props.children}
 
-						<Reader />
-						<CustomDragPreview />
-					</div>
+							<Reader />
+							<CustomDragPreview />
+						</div>
+					</Screen>
 				);
 			break;
 		}
 	}
 }
 
-export default LayoutWrap(Layout)
+export default Layout

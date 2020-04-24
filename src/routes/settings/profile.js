@@ -1,21 +1,16 @@
 import React from 'react'
 import ReactDom from 'react-dom'
-import Icon from '~icon'
 import t from '~t'
 import config from '~config'
-import network from '~network'
 import Api from '~api'
 
-import settingsHelpers from './parts/helpers'
 import ResetAccount from './parts/reset'
 import UserStore from '~stores/user'
 import Toasts from '~actions/toast'
 
-import MainWrap from '~co/columns/mainWrap'
+import Main, { Header, Content } from '~co/screen/splitview/main'
 
-class Main extends React.Component {
-	displayName = "settings/profile"
-
+class Profile extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -156,7 +151,7 @@ class Main extends React.Component {
 			);
 
 		return (
-			<div id="mainBody">
+			<div>
 				<form className="superForm" onSubmit={this.handleSave.bind(this)} autoComplete="off">
 					<figure className="fieldWrap">
 						<label className="fieldName" htmlFor="yourName">{t.s("yourName")}</label>
@@ -200,18 +195,15 @@ class Main extends React.Component {
 
 	render() {
 		return (
-			<section id="main">
-				<header>
-					<div className="headerWrap">
-						{settingsHelpers.backButton.bind(this)()}
-						<h1 className="min">{t.s("profile")}</h1>
-					</div>
-				</header>
+			<Main>
+				<Header title={t.s('profile')} />
 
-				{this.renderBody()}
-			</section>
+				<Content>
+					{this.renderBody()}
+				</Content>
+			</Main>
 		);
 	}
 }
 
-export default MainWrap(Main)
+export default Profile

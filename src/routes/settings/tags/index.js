@@ -1,7 +1,6 @@
 import React from 'react'
 import t from '~t'
 
-import MainWrap from '~co/columns/mainWrap'
 import Init from './init'
 import Empty from './empty'
 import Loaded from './loaded'
@@ -11,14 +10,8 @@ import Toast from '~actions/toast'
 import tagsActions from '~actions/tags'
 import tagsStore from '~stores/tags'
 
-class Main extends React.Component {
-	displayName = "app/tags"
-
-	constructor(props) {
-		super(props);
-
-		this.state = tagsStore.getState()
-	}
+class Tags extends React.Component {
+	state = tagsStore.getState()
 
 	changeSelection = (val)=> {
 		tagsActions.changeSelection(val);
@@ -35,46 +28,46 @@ class Main extends React.Component {
 	removeItem = (tag)=>{
 		tagsStore.onRemoveItem(tag)
 			.then(()=>{
-				Toast.show({title: t.s("removeSuccess")});
+				Toast.show({title: t.s('removeSuccess')});
 			})
 			.catch(()=>{
-				Toast.show({title: t.s("error"), status:"error"});
+				Toast.show({title: t.s('error'), status:'error'});
 			})
 	}
 
 	updateItem = (obj)=>{
 		tagsStore.onUpdateItem(obj)
 			.then(()=>{
-				Toast.show({title: t.s("saveSuccess")});
+				Toast.show({title: t.s('saveSuccess')});
 			})
 			.catch(()=>{
-				Toast.show({title: t.s("error"), status:"error"});
+				Toast.show({title: t.s('error'), status:'error'});
 			})
 	}
 
 	removeSelected = ()=>{
-		if (!confirm( `${t.s("remove")} ${this.state.selected.length} ${t.s("tags").toLowerCase()}?` ))
+		if (!confirm( `${t.s('remove')} ${this.state.selected.length} ${t.s('tags').toLowerCase()}?` ))
 			return
 
 		Pop.show('loading')
 
 		tagsStore.onRemoveSelected()
 			.then(()=>{
-				Toast.show({title: t.s("removeSuccess")});
+				Toast.show({title: t.s('removeSuccess')});
 				Pop.close()
 			})
 			.catch(()=>{
-				Toast.show({title: t.s("error"), status:"error"});
+				Toast.show({title: t.s('error'), status:'error'});
 				Pop.close()
 			})
 	}
 
 	mergeSelected = (e)=>{
-		Pop.show("prompt", {
+		Pop.show('prompt', {
 			pin: 'mergeSelectedTags',
-			force: "vertical",
+			force: 'vertical',
 
-			title: t.s("newString")+" "+t.s("name").toLowerCase(),
+			title: t.s('newString')+' '+t.s('name').toLowerCase(),
 			value: tagsStore.getTitleById(this.state.selected[0]),
 			onSubmit: (newName)=>{
 				if (!newName) return;
@@ -83,11 +76,11 @@ class Main extends React.Component {
 
 				tagsStore.onMergeSelected(newName)
 					.then(()=>{
-						Toast.show({title: t.s("merge")});
+						Toast.show({title: t.s('merge')});
 						Pop.close()
 					})
 					.catch(()=>{
-						Toast.show({title: t.s("error"), status:"error"});
+						Toast.show({title: t.s('error'), status:'error'});
 						Pop.close()
 					})
 			}
@@ -114,7 +107,7 @@ class Main extends React.Component {
 
 	render() {
 		switch(this.state.step){
-			case "loaded":
+			case 'loaded':
 				return <Loaded 
 							{...this.props}
 							{...this.state}
@@ -127,17 +120,14 @@ class Main extends React.Component {
 							mergeSelected={this.mergeSelected}
 							changeSort={this.changeSort}
 							sortingValues={tagsStore.getSortingValues()} />
-			break;
 
-			case "empty":
+			case 'empty':
 				return <Empty {...this.props} />
-			break;
 
 			default:
 				return <Init {...this.props} />
-			break;
 		}
 	}
 }
 
-export default MainWrap(Main)
+export default Tags

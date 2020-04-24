@@ -1,21 +1,22 @@
 import React from 'react'
-import Header from './parts/header'
+import t from '~t'
 import Preloader from '~co/common/preloader'
+import Main, { Header, Content } from '~co/screen/splitview/main'
 
-export default (props) => {
+export default () => {
 	return (
-		<section id="main">
-			<Header {...props} className="no-border" />
+		<Main>
+			<Header title={t.s('duplicates')} />
 
-			<div id="mainBody">
-				<div className="centerContentWrap desktop-behavior">
-					<div className="centerContent">
-						<div className="centerContentBlock">
+			<Content>
+				<div className='centerContentWrap desktop-behavior'>
+					<div className='centerContent'>
+						<div className='centerContentBlock'>
 							<Preloader />
 						</div>
 					</div>
 				</div>
-			</div>
-		</section>
-	);
+			</Content>
+		</Main>
+	)
 }

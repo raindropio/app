@@ -1,8 +1,8 @@
 import React from 'react'
 import t from '~t'
-import settingsHelpers from '../../parts/helpers'
 import AppsStore from '~stores/apps'
 
+import { Header, Content } from '~co/screen/splitview/main'
 import Form from './form'
 
 export default class AppsDevEdit extends React.PureComponent {
@@ -72,19 +72,14 @@ export default class AppsDevEdit extends React.PureComponent {
         
     render() {
         return (
-            <section id="main">
-				<header>
-					<div className="headerWrap">
-						{settingsHelpers.backButton.bind(this)()}
-                        <h1 className="min">
-                            <a href="#/settings/apps/dev">{t.s('dev')}</a>
-                            &nbsp;/&nbsp;
-                            {this.state.client.name}
-                        </h1>
-					</div>
-				</header>
+            <>
+				<Header title={(<span>
+                    <a href="#/settings/apps/dev">{t.s('dev')}</a>
+                    &nbsp;/&nbsp;
+                    {this.state.client.name}
+                </span>)} />
 
-				<div id="mainBody">
+				<Content>
                     <div className="client-edit-page">
                         <div className="edit-form">
                             <h4>{t.s('edit')}</h4>
@@ -133,8 +128,8 @@ export default class AppsDevEdit extends React.PureComponent {
                             </div>
                         </div>
                     </div>
-                </div>
-			</section>
+                </Content>
+			</>
         )
     }
 }

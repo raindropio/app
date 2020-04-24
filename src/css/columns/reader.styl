@@ -206,7 +206,7 @@ html.retina.chrome #reader footer.readMore {
 }
 
 
-body.mode-reader #reader {
+.mode-reader #reader {
     left: (sidebarWidth + mainCollapsedWidth);
     left: calc(var(--sidebarWidth, sidebarWidth) + var(--mainCollapsedWidth,mainCollapsedWidth));
     
@@ -219,11 +219,11 @@ body.mode-reader #reader {
     }
 }
 
-body.mode-force-sidebar #sidebar {
+.mode-force-sidebar #sidebar {
     transform: translateX(0) !important;
 }
 
-body.mode-reader.mode-reader-fullscreen #reader {
+.mode-reader.mode-reader-fullscreen #reader {
     left: 0 !important;
     width: 100vw !important;
     box-shadow: none;
@@ -233,7 +233,7 @@ body.mode-reader.mode-reader-fullscreen #reader {
     }
 }
 
-body.mode-reader-modal, body.mode-reader-fullscreen {
+.mode-reader-modal, .mode-reader-fullscreen {
     #reader {
         z-index: 11;
     }
@@ -246,20 +246,20 @@ body.mode-reader-modal, body.mode-reader-fullscreen {
     }
 }
 
-body.mode-reader-modal {
+.mode-reader-modal {
     #reader {
         transform: translateY(120vh);
         transition: transform layoutTransitionSpeed ease-in-out;
     }
 }
 
-body.mode-reader.mode-reader-modal {
+.mode-reader.mode-reader-modal {
     #reader {
         transform: translateY(0) !important;
     }
 }
 
-body.mode-reader.mode-reader-modal:not(.mode-reader-fullscreen) {
+.mode-reader.mode-reader-modal:not(.mode-reader-fullscreen) {
     #reader {
         width: 70vw !important;
         left: 15vw !important;
