@@ -21,7 +21,6 @@ export default class DocumentBody extends React.PureComponent {
     }
 
     getClassName = (all)=>[
-
         `theme-sidebar-${all.theme||'default'}`
     ]
 

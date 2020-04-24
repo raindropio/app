@@ -37,7 +37,7 @@ class SettingsSidebar extends React.Component {
         
                 <Content>
                     <section>
-                        <CollectionItem item={{title: t.s('backToCollection'), icon: 'back'}} href='/' />
+                        <CollectionItem item={{title: t.s('backToCollection'), icon: 'back', link: '/'}} />
                     </section>
 
                     <section>

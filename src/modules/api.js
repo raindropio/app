@@ -1,7 +1,8 @@
 import config from './config';
 import 'whatwg-fetch'
+import t from '~t'
 import XMLHttpRequestPromise from 'xhr-promise';
-import environment from '~modules/environment'
+import Toasts from '~actions/toast'
 
 function isQuotaExceeded(e) {
   var quotaExceeded = false;
@@ -40,8 +41,7 @@ export default {
     },
 
     errorHappen: function(url) {
-        if (typeof Toasts != "undefined")
-            Toasts.show({title: t.s("server"), text: url, status: "error"});
+        Toasts.show({title: t.s('server'), text: url, status: 'error'});
     },
 
     checkStatus: function(response) {
@@ -68,13 +68,13 @@ export default {
             }, options||{}))
             .then(function(res){
                 res.text = function() {
-                    if (typeof res.responseText != "undefined")
+                    if (typeof res.responseText != 'undefined')
                         return res.responseText;
-                    return "";
+                    return '';
                 }
 
                 res.json = function() {
-                    if (typeof res.responseText != "undefined")
+                    if (typeof res.responseText != 'undefined')
                         return res.responseText;
                     return {};
                 }
@@ -95,14 +95,14 @@ export default {
             .then((text)=>{
                 callback(text);
             })
-            .catch((e)=>{
+            .catch(()=>{
                 this.errorHappen(url);
-                callback("");
+                callback('');
                 return;
             })
     },
 
-    "get": function(url,callback,conf) {
+    'get': function(url,callback,conf) {
         conf = conf || {};
 
         this.timeoutPromise(this.httpClient(this.makeFinalURL(url), Object.assign({
@@ -283,7 +283,7 @@ export default {
                 }
             }
         else
-            console.log("No localStorage access");
+            console.log('No localStorage access');
     },
 
     removeItem: function(key) {
@@ -296,7 +296,7 @@ export default {
             LST.removeItem(key);
         }
         else
-            console.log("No localStorage access");
+            console.log('No localStorage access');
     },
 
     clear: function() {
@@ -309,13 +309,13 @@ export default {
             LST.clear();
         }
         else
-            console.log("No localStorage access");
+            console.log('No localStorage access');
     },
 
     timeoutPromise(promise) {
         return new Promise((resolve, reject) => {
             const timeoutId = setTimeout(() => {
-              reject(new Error("promise timeout"))
+              reject(new Error('promise timeout'))
             }, this.timeout);
             promise.then(
               (res) => {

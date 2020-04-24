@@ -44,61 +44,59 @@ class Layout extends React.Component {
 
 	render() {
 		switch(this.state.status){
-			case "loading":
+			case 'loading':
 				return (
 					<Screen>
-						<Helmet><title>{t.s("loading")}</title></Helmet>
+						<Helmet><title>{t.s('loading')}</title></Helmet>
 
-						<aside id="sidebar" className="disable-transition">
+						<aside id='sidebar' className='disable-transition'>
 							<header>
-								<div className="headerWrap">
-									<div className="sidebarHeaderTitle">
-										<Icon name="raindrop_logo" className="raindropLogo" />
+								<div className='headerWrap'>
+									<div className='sidebarHeaderTitle'>
+										<Icon name='raindrop_logo' className='raindropLogo' />
 									</div>
 
-									{/*<Preloader className="size-medium" />&nbsp;*/}
+									{/*<Preloader className='size-medium' />&nbsp;*/}
 								</div>
 							</header>
 
-							<div id="sidebarContent">
+							<div id='sidebarContent'>
 								<section>
-									<div className="collection placeholder" />
-									<div className="collection placeholder small" />
+									<div className='collection placeholder' />
+									<div className='collection placeholder small' />
 								</section>
 
 								<section>
-									<div className="group placeholder" />
-									<div className="collection placeholder" />
+									<div className='group placeholder' />
+									<div className='collection placeholder' />
 								</section>
 							</div>
-							{alreadyLoaded ? <SidebarTabBar active="" /> : null}
+							{alreadyLoaded ? <SidebarTabBar active='' /> : null}
 						</aside>
 
-						<section id="main">
-							<div className="centerContentWrap"><div className="centerContent">
+						<section id='main'>
+							<div className='centerContentWrap'><div className='centerContent'>
 								<Preloader/>
 							</div></div>
 						</section>
 					</Screen>
-				);
-			break;
+				)
 
-			case "error":
+			case 'error':
 				return (
 					<Screen>
-						<div className="centerContentWrap"><div className="centerContent"><div>
-							<Helmet><title>{t.s("server")}</title></Helmet>
+						<div className='centerContentWrap'><div className='centerContent'><div>
+							<Helmet><title>{t.s('server')}</title></Helmet>
 
-							<h2 className="headLabel">{t.s("server")}</h2>
-							<p className="subHeadLabel">
-								{t.s("noInternetError")}<br />
-								<a href="#/" onClick={this.refresh}>{t.s("refresh")}</a>
+							<h2 className='headLabel'>{t.s('server')}</h2>
+							<p className='subHeadLabel'>
+								{t.s('noInternetError')}<br />
+								<a href='#/' onClick={this.refresh}>{t.s('refresh')}</a>
 							</p>
 							
 						</div></div></div>
 					</Screen>
-				);
-			break;
+				)
 
 			default:
 				return (
@@ -113,8 +111,7 @@ class Layout extends React.Component {
 							<CustomDragPreview />
 						</div>
 					</Screen>
-				);
-			break;
+				)
 		}
 	}
 }

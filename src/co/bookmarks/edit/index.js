@@ -13,7 +13,7 @@ import Pop from '~actions/pop'
 
 import Bookmark from '~routes/collection/reader/bookmark';
 import Textarea from 'react-autosize-textarea'
-import Cover from '~co/common/cover'
+import Cover from '~co/bookmarks/item/cover'
 import Tags from './tags'
 import _ from 'lodash'
 

@@ -3,7 +3,6 @@ import { Route, Switch, Redirect, useRouteMatch } from 'react-router-dom'
 import Icon from '~icon'
 
 import Screen from '~co/screen/basic'
-import RedirectRoute from './redirect'
 import Login from './login'
 import Signup from './signup'
 import Reset from './reset'
@@ -20,7 +19,6 @@ export default ()=>{
 				<Icon name='video' className='cloudCloud' />
 				
 				<Switch>
-					<Route path={`${path}/redirect`} component={RedirectRoute} />
 					<Route path={`${path}/login`} component={Login} />
 					<Route path={`${path}/signup`} component={Signup} />
 					<Route path={`${path}/reset`} component={Reset} />

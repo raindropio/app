@@ -4,7 +4,7 @@ import t from '~t'
 
 import keyvalStore from '~stores/keyval'
 
-import Cover from '../../common/cover'
+import Cover from '~co/bookmarks/item/cover'
 import Tags from './tags'
 import SuperLink from '../../common/superLink'
 import ItemFooter from './footer'
