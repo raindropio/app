@@ -1,8 +1,10 @@
 import React from 'react'
-import { withSplitView } from '../'
+import { Context } from '../'
 import Icon from '~co/common/icon'
 
 class SplitViewSidebarHeader extends React.Component {
+    static contextType = Context
+
     render() {
         return (
             <header>
@@ -13,7 +15,7 @@ class SplitViewSidebarHeader extends React.Component {
 
                     {this.props.children}
 
-                    <a href='' className='button default show-on-extension' onClick={this.props.sidebar.toggle}>
+                    <a href='' className='button default show-on-extension' onClick={this.context.sidebar.toggle}>
                         <Icon name='close' />
                     </a>
                 </div>
@@ -22,4 +24,4 @@ class SplitViewSidebarHeader extends React.Component {
     }
 }
 
-export default withSplitView(SplitViewSidebarHeader)
+export default SplitViewSidebarHeader

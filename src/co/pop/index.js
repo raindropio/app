@@ -22,8 +22,6 @@ import Sharing from './collection/sharing'
 import RSS from './collection/rss'
 import CollectionsSortByTitle from './collectionsSortByTitle'
 
-import URL from './url'
-
 import Loading from './loading'
 import Sort from './sort'
 import Prompt from './prompt'
@@ -342,7 +340,6 @@ export default class PopView extends React.Component {
             case "sharing": Component = Sharing; break;
             case "collectionsSortByTitle": Component = CollectionsSortByTitle; break;
 
-            case "url": Component = URL; break;
             case "loading": Component = Loading; break;
             case "sort": Component = Sort; break;
             case "prompt": Component = Prompt; break;

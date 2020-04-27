@@ -1,25 +1,25 @@
 import React from 'react'
-import { withSplitView } from '../'
+import { Context } from '../'
 
 import Header from './header'
 import Content from './content'
 import Footer from './footer'
 
-export default withSplitView(
-    class SplitViewSidebar extends React.Component {
-        render() {
-            return (
-                <>
-                    <aside id='sidebar'>
-                        {this.props.children}
-                    </aside>
+export default class SplitViewSidebar extends React.Component {
+    static contextType = Context
 
-                    <div id='sidebar-black-overlay' onClick={this.props.sidebar.toggle} />
-                </>
-            )
-        }
+    render() {
+        return (
+            <>
+                <aside id='sidebar'>
+                    {this.props.children}
+                </aside>
+
+                <div id='sidebar-black-overlay' onClick={this.context.sidebar.toggle} />
+            </>
+        )
     }
-)
+}
 
 export {
     Header,

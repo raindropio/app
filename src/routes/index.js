@@ -4,7 +4,7 @@ import { HashRouter as Router, Route, Redirect, Switch } from 'react-router-dom'
 import Document from './_document'
 
 import Account from './account'
-import Collection from './collection/routes'
+import Collection from './collection'
 import Settings from './settings'
 
 import Home from './_home'
@@ -14,8 +14,8 @@ export default ()=>(
         <Document>
             <Switch>
                 <Route path='/account' component={Account} />
+                <Route path='/collection/:cid(-?\d+)/:search?' component={Collection} />
                 <Route path='/settings' component={Settings} />
-                {Collection}
 
                 {/* Redirects */}
 				<Route path='/app/duplicates'><Redirect to='/settings/duplicates' /></Route>

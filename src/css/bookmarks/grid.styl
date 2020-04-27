@@ -16,7 +16,7 @@ gridItemCoverSize(size)
     gridItemSizePx = round(originalCoverWidth + (originalCoverGap * (size - 1)));
     gridItemSizeHeight = round(gridItemSizePx * 0.459);
     
-    body:not(.mode-reader), .mode-reader-modal, .mode-reader-fullscreen {
+    .splitView(.mode-reader), .mode-reader-modal, .mode-reader-fullscreen {
         .view-grid-size-{size} {
             .element-grid {
                 width: gridItemSizePx;

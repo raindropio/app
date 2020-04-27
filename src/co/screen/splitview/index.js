@@ -3,61 +3,31 @@ import Basic from '../basic'
 
 export const Context = React.createContext({})
 
-export default class ScreenSplitView extends React.PureComponent {
+export default class ScreenSplitView extends React.Component {
     state = {
         sidebar: {
             force: false,
 
             toggle: (e)=>{
                 e && e.preventDefault && e.preventDefault()
-
-                this.setState({
-                    sidebar: {
-                        ...this.state.sidebar,
-                        force: !this.state.sidebar.force
-                    }
-                })
-            }
+                this.state.update('sidebar', { force: !this.state.sidebar.force })
+            },
         },
         panel: {
-            show: false,
-
-            toggle: (e)=>{
-                e && e.preventDefault && e.preventDefault()
-
-                this.setState({
-                    panel: {
-                        ...this.state.panel,
-                        show: !this.state.panel.show
-                    }
-                })
-            }
+            show: false
         },
         reader: {
             show: false,
-            fullScreen: false,
+            fullscreen: false
+        },
 
-            toggle: (e)=>{
-                e && e.preventDefault && e.preventDefault()
-
-                this.setState({
-                    reader: {
-                        ...this.state.reader,
-                        show: !this.state.reader.show
-                    }
-                })
-            },
-
-            toggleFullScreen: (e)=>{
-                e && e.preventDefault && e.preventDefault()
-
-                this.setState({
-                    reader: {
-                        ...this.state.reader,
-                        fullScreen: !this.state.reader.fullScreen
-                    }
-                })
-            }
+        update: (space, obj)=>{
+            this.setState({
+                [space]: {
+                    ...this.state[space],
+                    ...obj
+                }
+            })
         }
     }
 
@@ -65,10 +35,11 @@ export default class ScreenSplitView extends React.PureComponent {
         return (
             <Basic
                 className={`
+                    splitView
                     ${this.state.sidebar.force ? 'mode-force-sidebar' : ''}
                     ${this.state.panel.show ? 'mode-panel' : ''}
-                    ${this.state.panel.show ? 'mode-reader' : ''}
-                    ${this.state.panel.fullScreen ? 'mode-reader-fullscreen' : ''}
+                    ${this.state.reader.show ? 'mode-reader' : ''}
+                    ${this.state.reader.fullscreen ? 'mode-reader-fullscreen' : ''}
                 `}>
                 <Context.Provider value={this.state}>
                     {this.props.children}
@@ -77,21 +48,3 @@ export default class ScreenSplitView extends React.PureComponent {
         )
     }
 }
-
-export const withSplitView = (Component)=>(
-    class withSplitView extends React.PureComponent {
-        displayName = 'withSplitView'+Component.name
-
-        renderBody = consumerProps=>(
-            <Component 
-                {...consumerProps}
-                {...this.props} />
-        )
-
-        render() {
-            return (
-                <Context.Consumer children={this.renderBody} />
-            )
-        }
-    }
-)

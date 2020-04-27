@@ -61,22 +61,22 @@ readerFullScreen()
      
 
 mainReaderSize(perc)
-    body:not(.mode-force-sidebar):not(.mode-reader-fullscreen):not(.mode-reader-modal).mode-reader #main, body:not(.mode-reader-fullscreen):not(.mode-reader-modal).mode-reader .view-grid {
+    .splitView(.mode-force-sidebar):not(.mode-reader-fullscreen):not(.mode-reader-modal).mode-reader #main, .splitView(.mode-reader-fullscreen):not(.mode-reader-modal).mode-reader .view-grid {
         left: 0;
         //z-index: 11;
         max-width: (mainCollapsedWidth*perc);
         max-width: "calc(var(--mainCollapsedWidth,%s) * %s)" % (mainCollapsedWidth perc);
     }
-    body:not(.mode-force-sidebar) #reader {
+    .splitView(.mode-force-sidebar) #reader {
         width: "calc(100vw - %s)" % (mainCollapsedWidth*perc);
         width: "calc(100vw - (var(--mainCollapsedWidth,%s) * %s))" % (mainCollapsedWidth perc);
     }
-    body:not(.mode-force-sidebar).mode-reader #reader {
+    .splitView(.mode-force-sidebar).mode-reader #reader {
         left: (mainCollapsedWidth*perc);
         left: "calc(var(--mainCollapsedWidth,%s) * %s)" % (mainCollapsedWidth perc);
     }
 
-    body:not(.mode-reader-fullscreen):not(.mode-reader-modal).mode-reader #main {
+    .splitView(.mode-reader-fullscreen):not(.mode-reader-modal).mode-reader #main {
         max-width: (mainCollapsedWidth*perc);
         max-width: "calc(var(--mainCollapsedWidth,%s) * %s)" % (mainCollapsedWidth perc);
     }
@@ -89,7 +89,7 @@ mainReaderSize(perc)
     display:none;
 }
  
-body:not(.mode-reader-fullscreen):not(.mode-reader-modal).mode-reader {
+.splitView(.mode-reader-fullscreen):not(.mode-reader-modal).mode-reader {
     #sidebar {
         transform: translateX(sidebarWidth * -1);
         transform: translateX(calc(var(--sidebarWidth, sidebarWidth) * -1));
@@ -117,7 +117,7 @@ body:not(.mode-reader-fullscreen):not(.mode-reader-modal).mode-reader {
     }
 }
 
-html:not(.clipper) body:not(.mode-reader-fullscreen):not(.mode-reader-modal).mode-reader .button-toggle-sidebar {
+html:not(.clipper) .splitView(.mode-reader-fullscreen):not(.mode-reader-modal).mode-reader .button-toggle-sidebar {
     showButtonToggleSidebar()
 }
 
