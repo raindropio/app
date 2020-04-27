@@ -2,7 +2,7 @@ import React from 'react'
 import t from '~t'
 import Icon from '~icon'
 import { humanDate } from '~modules/strings'
-import config from '~modules/config'
+import config from '~config'
 import UserStore from '~stores/user'
 
 import Loading from './loading'

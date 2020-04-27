@@ -4,7 +4,7 @@ import t from '~t'
 import Api from '~api'
 import isURL from 'validator/es/lib/isURL'
 import environment from '~modules/environment'
-import config from '~modules/config'
+import config from '~config'
 
 import CollectionsStore from '~stores/collections'
 import UserStore from '~stores/user'

@@ -15,3 +15,6 @@ Design
 Bugs
 - Critical
     - react-mansonry-component not works
+
+Not ready
+- electron

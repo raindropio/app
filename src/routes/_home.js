@@ -1,6 +1,6 @@
 import React from 'react'
 import { Redirect } from 'react-router-dom'
-import UserStore from '~stores/user'
+//import UserStore from '~stores/user'
 
 export default ()=>{
 	var id

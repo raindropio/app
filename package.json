@@ -21,18 +21,15 @@
 		"postinstall": "link-module-alias"
 	},
 	"_moduleAliases": {
-		"~api": "src/modules/api.js",
 		"~network": "src/modules/network.js",
-		"~config": "src/modules/config.js",
+		"~config": "src/config.js",
 		"~icon": "src/co/common/icon.js",
 		"~t": "src/modules/translate/index.js",
 
-		"~actions": "src/actions",
 		"~assets": "src/assets",
 		"~co": "src/co",
 		"~modules": "src/modules",
-		"~routes": "src/routes",
-		"~stores": "src/stores"
+		"~routes": "src/routes"
 	},
 	"dependencies": {
 		"date-fns": "2.12.x",

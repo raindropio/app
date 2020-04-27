@@ -32,23 +32,6 @@ export default {
 		return __ABOUT__.version
 	},
 
-	initElectron() {
-		if (isElectron){
-			var remote = require('electron').remote;
-			//var cwd = remote.process.cwd();
-
-		    //Main menu
-		    const menu = require("./electronMenu");
-		    menu.init();
-
-		    //Defaults
-		    electronDefaults = remote.require("./defaults");
-		}
-
-		//if ((this.isClipper())&&(this.isClipperFrame()))
-		//	window.bridgeSend({action: 'show', position: keyvalStore.onGet('clipper-position-reverse')?'left':'right'});
-	},
-
 	openWindow(params) {
 		var url = params.url,
 			name = params.name||"raindrop",

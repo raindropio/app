@@ -3,7 +3,6 @@ import ReactDom from 'react-dom'
 import { DragSource, DropTarget } from 'react-dnd';
 import { NativeTypes } from 'react-dnd-html5-backend';
 
-import Api from '~api'
 import t from '~t'
 import config from '~config'
 import { humanNumber } from '~modules/strings'
