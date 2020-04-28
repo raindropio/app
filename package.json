@@ -25,7 +25,6 @@
 		"~config": "src/config.js",
 		"~icon": "src/co/common/icon.js",
 		"~t": "src/modules/translate/index.js",
-
 		"~assets": "src/assets",
 		"~co": "src/co",
 		"~data": "src/data",
@@ -47,6 +46,7 @@
 		"react-helmet": "6.0.x",
 		"react-masonry-component": "6.2.x",
 		"react-router-dom": "5.1.x",
+		"react-virtualized": "^9.21.2",
 		"reflux": "5.0.x",
 		"string": "3.3.x",
 		"validator": "13.0.x",

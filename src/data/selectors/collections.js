@@ -125,35 +125,17 @@ export const makeTree = ()=> createSelector(
 )
 
 export const makeTreeFlat = ()=> createSelector(
-	[makeTree(), ({collections})=>collections.blankChildInParent],
-	(groups, blankChildInParent)=>{
+	[makeTree()],
+	(groups)=>{
 		const flat = []
 		groups.forEach((g)=>{
 			if (!g.system)
 				flat.push({...g, type: 'group', data: undefined})
 
-			//use this index for append 'add new'
-			let _blankIndex = -1
-
 			//items
 			g.data.forEach((c)=>{
 				flat.push({...c, type: 'collection'})
-
-				if (blankChildInParent && blankChildInParent==c._id)
-					flat[flat.length-1].expandable=true
-
-				if (blankChildInParent && (blankChildInParent==c.item.parentId || blankChildInParent==c._id))
-					_blankIndex = flat.length
 			})
-
-			//add new as child
-			if (_blankIndex!=-1){
-				const parent = _.find(g.data, ({_id})=>_id==blankChildInParent)
-				flat.splice(_blankIndex, 0, {parentId: parent._id, level: parent.level+1, type: 'blankCollection', _id: 'blank_'+parent._id})
-			}
-			//add new as root
-			if (!g.system && !g.hidden)
-				flat.push({parentId: g._id, type: 'blankCollection', _id: 'blank_'+g._id})
 		})
 		return flat
 	}

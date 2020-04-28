@@ -97,7 +97,7 @@ function* createCollection({obj={}, ignore=false, onSuccess, onFail}) {
 	}
 }
 
-function* updateCollection({_id=0, set={}, ignore=false, onSuccess, onFail}) {
+function* updateCollection({_id=0, set={}, ignore=false, quiet=false, onSuccess, onFail}) {
 	if ((ignore)||(_id<=0))
 		return;
 
@@ -107,21 +107,23 @@ function* updateCollection({_id=0, set={}, ignore=false, onSuccess, onFail}) {
 		if (!result)
 			throw new ApiError(error, errorMessage||'cant update collection')
 
-		yield put({
-			type: COLLECTION_UPDATE_SUCCESS,
-			_id: _id,
-			item: item,
-			changedFields: Object.keys(set),
-			onSuccess, onFail
-		});
+		if (!quiet)
+			yield put({
+				type: COLLECTION_UPDATE_SUCCESS,
+				_id: _id,
+				item: item,
+				changedFields: Object.keys(set),
+				onSuccess, onFail
+			})
 	} catch (error) {
-		yield put({
-			type: COLLECTION_UPDATE_ERROR,
-			_id: _id,
-			changedFields: Object.keys(set),
-			error,
-			onSuccess, onFail
-		});
+		if (!quiet)
+			yield put({
+				type: COLLECTION_UPDATE_ERROR,
+				_id: _id,
+				changedFields: Object.keys(set),
+				error,
+				onSuccess, onFail
+			})
 	}
 }
 
@@ -157,6 +159,7 @@ function* toggleCollection({_id=0, expanded, ignore=false}) {
 		yield put({
 			type: COLLECTION_UPDATE_REQ,
 			_id: _id,
+			quiet: true,
 			set: {
 				expanded: expanded
 			}

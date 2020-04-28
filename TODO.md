@@ -20,3 +20,5 @@ Bugs
 
 Not ready
 - electron
+- edit group
+- collections tree context menus, dragndrop

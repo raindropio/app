@@ -10,7 +10,7 @@ const Home = ({ last_collection })=>(
 )
 
 export default connect(
-	state => ({
-		last_collection: state.last_collection
+	({ last_collection }) => ({
+		last_collection
 	})
 )(Home)
