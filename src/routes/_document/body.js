@@ -1,16 +1,15 @@
 import React from 'react'
 import { Helmet } from 'react-helmet'
+import { connect } from 'react-redux'
 
-export default class DocumentBody extends React.PureComponent {
-    constructor(props) {
-        super(props)
+const DocumentBody = ({theme})=>(
+    <Helmet>
+        <body className={`theme-sidebar-${theme}`} />
+    </Helmet>
+)
 
-        this.state = {
-            className: []
-        }
-    }
-
-    render() {
-        return <Helmet><body className={this.state.className.join(' ')} /></Helmet>
-    }
-}
+export default connect(
+    state => ({
+        theme: state.local.theme
+    })
+)(DocumentBody)

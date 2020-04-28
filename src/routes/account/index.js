@@ -1,32 +1,19 @@
 import React from 'react'
-import { Route, Switch, Redirect, useRouteMatch } from 'react-router-dom'
-import Icon from '~icon'
+import { Route, Switch, Redirect } from 'react-router-dom'
 
-import Screen from '~co/screen/basic'
 import Login from './login'
 import Signup from './signup'
-import Reset from './reset'
+import Lost from './lost'
 import Recover from './recover'
 
-export default ()=>{
-	let { path } = useRouteMatch()
+export default ({ match })=>(
+	<Switch>
+		<Route path={`${match.path}/login`} component={Login} />
+		<Route path={`${match.path}/signup`} component={Signup} />
+		<Route path={`${match.path}/lost`} component={Lost} />
+		<Route path={`${match.path}/recover/:token`} component={Recover} />
 
-	return (
-		<Screen>
-			<div className='accountPageWrap'>
-				<Icon name='diamond' className='cloudCloud' />
-				<Icon name='default_collection' className='cloudCloud' />
-				<Icon name='video' className='cloudCloud' />
-				
-				<Switch>
-					<Route path={`${path}/login`} component={Login} />
-					<Route path={`${path}/signup`} component={Signup} />
-					<Route path={`${path}/reset`} component={Reset} />
-					<Route path={`${path}/recover/:token`} component={Recover} />
-	
-					<Route><Redirect to={`${path}/login`} /></Route>
-				</Switch>
-			</div>
-		</Screen>
-	)
-}
+		{/* Default route */}
+		<Route><Redirect to={`${match.path}/login`} /></Route>
+	</Switch>
+)

@@ -1,96 +1,68 @@
 import React from 'react'
 import { Helmet } from 'react-helmet'
 import t from '~t'
+
+import withPage from './_page'
 import Icon from '~icon'
-import Api from '~api'
-
-import SuperImg from '~co/common/superImg'
-import Toasts from '~actions/toast'
-import Pop from '~actions/pop'
-
-import AccountMixin from './mixin'
+import Social from './social'
+import Error from './error'
 
 class AccountLogin extends React.Component {
-	displayName = 'account/login'
+    state = {
+        email: '',
+        password: ''
+    }
 
-	constructor(props) {
-		super(props);
+    onChangeValue = (e)=>
+        this.setState({[e.target.name]: e.target.value})
 
-		this.state = {
-			loading: false,
-			email: '',
-			password: ''
-		}
-	}
+    onSubmit = (e)=>{
+        e.preventDefault()
+        this.props.loginWithPassword(this.state)
+    }
 
-	renderSocial() {
-		return this.props.renderSocial(
-			()=>this.setState({loading: true}), 
-			()=>{
-				this.setState({loading: false});
-				this.props.redirectIfLogged()
-			},
-			this.props.messageFromWindow
-		)
-	}
+    render() {
+        const status = this.props.status.login
+        const error = this.props.error.login
 
-	handleLogin(e) {
-		e.preventDefault();
-		
-		Pop.show('loading');
+        return (
+            <form onSubmit={this.onSubmit}>
+                <Helmet><title>{t.s('signIn')}</title></Helmet>
+                <Icon name='raindrop_logo' className='raindropLogo' />
 
-		Api.post('auth/login', {
-			email: this.state.email,
-			password: this.state.password
-		}, (json)=> {
-			if (json.result === true)
-				this.props.redirectLogged();
-			else{
-				Toasts.show({text: t.s('server7'), status:'error'});
-			}
+                {status == 'error' && <Error error={error} />}
 
-			Pop.close();
-		});
-	}
+                <input
+                    type='email'
+                    name='email'
+                    disabled={status=='loading'}
+                    autoFocus
+                    required
+                    placeholder='Email'
+                    value={this.state.email}
+                    onChange={this.onChangeValue} />
 
-	render() {
-		return (
-			<div className='centerContentWrap accountPage'>
-				<Helmet><title>{t.s('signIn')}</title></Helmet>
+                <input
+                    type='password'
+                    name='password'
+                    disabled={status=='loading'}
+                    required
+                    placeholder={t.s('password')}
+                    value={this.state.password}
+                    onChange={this.onChangeValue} />
 
-				<div className='centerContent'>
-					<form className='centerContentBlock' onSubmit={this.handleLogin.bind(this)}>
-						<div className='dots'><span/><span/><span/><span/><span/><span/></div>
-						<div className='accountLogo'><SuperImg src='marketing/logoIcon.png' height='72' /></div>
-						<Icon name='raindrop_logo' className='raindropLogo' />
+                <div className='additionalButtonWrap'>
+                    <input 
+                        type='submit'
+                        disabled={status=='loading'}
+                        className='button default standart loginButton input'
+                        value={t.s('signIn')} />
+                </div>
 
-						<input type='email' name='email' autoFocus required placeholder='Email' value={this.state.email} onChange={(e)=>this.setState({email:e.target.value})} />
-						<input type='password' name='password' required placeholder={t.s('password')} value={this.state.password} onChange={(e)=>this.setState({password:e.target.value})} />
-
-						<div className='additionalButtonWrap'>
-							<input type='submit' className='button default standart loginButton input' value={t.s('signIn')} />
-						</div>
-
-						<br />
-						<div className='acceptLicence'>
-							{t.s('or')} {t.s('loginOrRegisterSocial').toLowerCase()}
-						</div>
-						{this.renderSocial()}
-					</form>
-
-					<div className='otherLogin'>
-						<a href={'#/account/reset'+this.props.getAdditionalQueryString()} className='button active'>{t.s('recoverPassword')}</a>
-						&nbsp;
-						&times;
-						&nbsp;
-						<a href={'#/account/signup'+this.props.getAdditionalQueryString()} className='button active'>{t.s('signUp')}</a>
-
-						{this.props.renderLinks()}
-					</div>
-				</div>
-			</div>
-		);
-	}
+                <Social {...this.props} />
+            </form>
+        )
+    }
 }
 
-export default AccountMixin(AccountLogin)
+export default withPage(AccountLogin)

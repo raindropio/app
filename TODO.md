@@ -8,9 +8,11 @@
 - load exact width covers instead hard-coded
 - migrate to react-virtualized
 - co/screen/protected support redirect when not logged
+- Toasts!
 
 Design
 - replace tabbar to user button
+- account screens dark theme support
 
 Bugs
 - Critical

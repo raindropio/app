@@ -13,7 +13,7 @@ export default (Component)=>
 
             state = {
                 search: {
-                    params: searchStringToObject(this.props.location.search),
+                    params: searchStringToObject(this.props.location.search || location.search),
 
                     set: (key, val, replace)=>
                         this.mutate(params=>
@@ -28,17 +28,17 @@ export default (Component)=>
                 }
             }
             
-            static getDerivedStateFromProps({ location }, { search }) {
+            static getDerivedStateFromProps(props, { search }) {
                 return {
                     search: {
                         ...search,
-                        params: searchStringToObject(location.search)
+                        params: searchStringToObject(props.location.search || location.search)
                     }
                 }
             }
 
             mutate = (func, replace=false)=>{
-                const params = new URLSearchParams(this.props.location.search)
+                const params = new URLSearchParams(this.props.location.search || location.search)
                 func(params)
                 this.props.history[replace ? 'replace' : 'push'](this.props.location.pathname+'?'+params.toString())
             }

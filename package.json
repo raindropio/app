@@ -28,6 +28,8 @@
 
 		"~assets": "src/assets",
 		"~co": "src/co",
+		"~data": "src/data",
+		"~local": "src/local",
 		"~modules": "src/modules",
 		"~routes": "src/routes"
 	},
@@ -50,6 +52,14 @@
 		"validator": "13.0.x",
 		"whatwg-fetch": "1.0.x",
 		"xhr-promise": "2.0.x"
+	},
+	"optionalDependencies": {
+		"react-redux": "7.2.x",
+		"redux": "4.x",
+		"redux-persist": "6.0.x",
+		"redux-saga": "1.1.x",
+		"reselect": "4.x",
+		"seamless-immutable": "7.x"
 	},
 	"devDependencies": {
 		"@babel/core": "7.x",

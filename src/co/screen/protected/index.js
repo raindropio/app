@@ -1,23 +1,25 @@
 import React from 'react'
 import { Redirect } from 'react-router-dom'
-import Loading from '../loading'
-import Error from '../error'
+import { connect } from 'react-redux'
+import { isNotAuthorized } from '~data/selectors/user'
+import * as userActions from '~data/actions/user'
 
-export default class ScreenProtected extends React.Component {
-	state = {
-		status: 'loading'
-	}
-
+class ScreenProtected extends React.Component {
 	componentDidMount() {
-		
+		this.props.refresh()
 	}
 
 	render() {
-		switch(this.state.status) {
-			case 'loading': return <Loading />
-			case 'error': return <Error />
-			case 'logged': return this.props.children
-			case false: return <Redirect to='/account/login' />
-		}
+		if(this.props.notLogged)
+			return <Redirect to='/account/login' />
+
+		return this.props.children
 	}
 }
+
+export default connect(
+	state => ({
+		notLogged: isNotAuthorized(state)
+	}),
+	userActions
+)(ScreenProtected)

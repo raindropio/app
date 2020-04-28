@@ -1,10 +1,16 @@
 import React from 'react'
 import { Redirect } from 'react-router-dom'
-//import UserStore from '~stores/user'
+import { connect } from 'react-redux'
+import Protected from '~co/screen/protected'
 
-export default ()=>{
-	var id
-	try{id = parseInt(UserStore.getUser().config.last_collection);}catch(e){}
-	
-	return <Redirect to={`/collection/${parseInt(id)||'0'}`} />
-}
+const Home = ({ last_collection })=>(
+	<Protected>
+		<Redirect to={`/collection/${parseInt(last_collection)||'0'}`} />
+	</Protected>
+)
+
+export default connect(
+	state => ({
+		last_collection: state.last_collection
+	})
+)(Home)

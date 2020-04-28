@@ -1,0 +1,1 @@
+- Every reducer should have 'RESET' action
