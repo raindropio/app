@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom'
 
 import AutoSizer from 'react-virtualized/dist/commonjs/AutoSizer'
 import List from 'react-virtualized/dist/commonjs/List'
+import { CellMeasurer, CellMeasurerCache } from 'react-virtualized/dist/commonjs/CellMeasurer'
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
 
 function getStyle({ draggableProps }, snapshot, source) {
@@ -37,6 +38,12 @@ export default class SortableVirtualList extends React.Component {
         this.props.innerRef && this.props.innerRef(ref)
     }
 
+    sizeCache = new CellMeasurerCache({
+        defaultHeight: 32,
+        fixedWidth: true,
+        keyMapper: (index)=>this.props.rowType({ index })
+    })
+
     renderRow = source => {
         //drag disabled
         if (!this.props.rowIsDraggable(source))
@@ -64,7 +71,12 @@ export default class SortableVirtualList extends React.Component {
             style={getStyle(provided, snapshot, source)}
             tabIndex='-1'
             onClick={null}>
-            {this.props.rowRenderer(source, provided, snapshot)}
+            <CellMeasurer
+                {...source}
+                columnIndex={0}
+                cache={this.sizeCache}>
+                {this.props.rowRenderer(source, provided, snapshot)}
+            </CellMeasurer>
         </div>
     )
 
@@ -109,6 +121,8 @@ export default class SortableVirtualList extends React.Component {
                             <List
                                 {...size}
                                 {...other}
+                                rowHeight={this.sizeCache.rowHeight}
+                                deferredMeasurementCache={this.sizeCache}
                                 ref={this.bindList(dragProvider)}
                                 rowRenderer={this.renderRow}
                                 />

@@ -47,17 +47,10 @@ export default class CollectionsTree extends React.Component {
         )
     }
 
-    rowHeight = ({ index })=>{
-        const row = this.props.data[index]
-
-        switch(row.type) {
-            case 'group': return 36
-            default:
-                return 32
-        }
-    }
-
     //drag/drop
+    rowType = ({ index })=>
+        this.props.data[index].type
+
     rowIsDraggable = ({ index })=>{
         const row = this.props.data[index]
 
@@ -159,11 +152,11 @@ export default class CollectionsTree extends React.Component {
                 selectedId={this.props.selectedId}
                 className='collections'
                 rowCount={this.props.data.length}
-                rowHeight={this.rowHeight}
                 rowRenderer={this.rowRenderer}
                 scrollToAlignment='center'
 
                 //custom
+                rowType={this.rowType}
                 rowIsDraggable={this.rowIsDraggable}
                 rowIsDroppable={this.rowIsDroppable}
                 onDragStart={this.onDragStart}

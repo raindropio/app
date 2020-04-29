@@ -67,7 +67,7 @@ export default class SuperLink extends React.Component {
 	}
 
 	onMouseDown = (e)=>{
-		
+		e.target.focus()
 	}
 
 	onDoubleClick = (e)=>{
