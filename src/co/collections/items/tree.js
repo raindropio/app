@@ -58,21 +58,6 @@ export default class CollectionsTree extends React.Component {
     }
 
     //drag/drop
-    rowId = ({ index })=>{
-        return index
-        const row = this.props.data[index]
-        return row.item ? row.item._id : row._id
-    }
-
-    rowIndex = (id)=>
-        id
-        // this.props.data.findIndex(row=>{
-        //     if (row._id == id)
-        //         return true
-        //     if (row.item && row.item._id == id)
-        //         return true
-        // })
-
     rowIsDraggable = ({ index })=>{
         const row = this.props.data[index]
 
@@ -83,14 +68,13 @@ export default class CollectionsTree extends React.Component {
         return true
     }
 
-    rowIsDroppable = (from, to)=>{
+    rowIsDroppable = (from)=>{
         const origin = this.props.data[from.index]
-        const target = this.props.data[to.index]
 
-        if (origin.type == 'group')
-            return false
-
-        return true
+        switch(origin.type){
+            case 'group': return false
+            case 'collection': return origin.item.draggable
+        }
     }
 
     onDragStart = ({ index })=>{
@@ -180,8 +164,6 @@ export default class CollectionsTree extends React.Component {
                 scrollToAlignment='center'
 
                 //custom
-                rowId={this.rowId}
-                rowIndex={this.rowIndex}
                 rowIsDraggable={this.rowIsDraggable}
                 rowIsDroppable={this.rowIsDroppable}
                 onDragStart={this.onDragStart}

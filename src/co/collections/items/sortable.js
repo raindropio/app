@@ -18,8 +18,6 @@ function getStyle({ draggableProps }, snapshot, source) {
 export default class SortableVirtualList extends React.Component {
     static defaultProps = {
         //specific for this component:
-        rowId: undefined, //func
-        rowIndex: undefined, //func
         rowIsDraggable: undefined, //func
         rowIsDroppable: undefined, //func
         onDragStart: undefined, //func
@@ -40,31 +38,26 @@ export default class SortableVirtualList extends React.Component {
     }
 
     renderRow = source => {
-        const details = {
-            source,
-            id: this.props.rowId(source)
-        }
-
         //drag disabled
         if (!this.props.rowIsDraggable(source))
-            return this.renderClone(undefined, undefined, details)
+            return this.renderClone(undefined, undefined, { source })
 
         //drag enabled
         return (
             <Draggable
-                key={details.id}
-                draggableId={String(details.id)}
+                key={source.index}
+                draggableId={String(source.index)}
                 index={source.index}>
                 {(provided, snapshot)=>
-                    this.renderClone(provided, snapshot, details)
+                    this.renderClone(provided, snapshot, { source })
                 }
             </Draggable>
         )
     }
 
-    renderClone = (provided={}, snapshot={}, { source, id })=>(
+    renderClone = (provided={}, snapshot={}, { source })=>(
         <div
-            key={id}
+            key={source.index}
             ref={provided.innerRef}
             {...provided.draggableProps||{}}
             {...provided.dragHandleProps||{}}
@@ -83,7 +76,7 @@ export default class SortableVirtualList extends React.Component {
         //Enable or disable dropping into items
         let isCombineEnabled = true
         if (combine && this.props.rowIsDroppable)
-            isCombineEnabled = this.props.rowIsDroppable(source, { index: this.props.rowIndex(combine.draggableId) })
+            isCombineEnabled = this.props.rowIsDroppable(source, { index: parseInt(combine.draggableId) })
 
         if (isCombineEnabled != this.state.isCombineEnabled)
             this.setState({ isCombineEnabled })
@@ -93,7 +86,7 @@ export default class SortableVirtualList extends React.Component {
         if (!this.props.onDragEnd) return
 
         if (combine)
-            return this.props.onDragEnd(source, { index: this.props.rowIndex(combine.draggableId) }, 'combine')
+            return this.props.onDragEnd(source, { index: parseInt(combine.draggableId) }, 'combine')
         else if (destination && source.index != destination.index)
             this.props.onDragEnd(source, destination, 'move')
     }

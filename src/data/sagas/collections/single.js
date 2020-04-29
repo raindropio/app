@@ -237,6 +237,9 @@ function* reorderCollection({_id=0, ignore=false, to, after, before}) {
 			break;
 
 			case 'moveToCollection':
+				if (!collection.draggable)
+					throw new ApiError('fail', 'collection is not draggable')
+
 				yield onlyForProUsersCheck()
 
 				yield all([
@@ -260,6 +263,9 @@ function* reorderCollection({_id=0, ignore=false, to, after, before}) {
 			break;
 
 			case 'reorder':{
+				if (!collection.draggable)
+					throw new ApiError('fail', 'collection is not draggable')
+					
 				const target = state.collections.getIn(['items', parseInt(after||before)])||{}
 				if (target._id<=0 || !target._id)
 					throw new ApiError('not_found', 'target not found')
