@@ -34,11 +34,13 @@ export default class CollectionsItemView extends React.PureComponent {
 	}
 
     render() {
-        const { _id, title, count, color, cover, level, selected, expanded, expandable, author, href, onClick, onExpandClick, onEditClick, onContextMenu } = this.props
+        const { _id, title, count, color, cover, level, selected, expanded, expandable, author, href } = this.props
+        const { isDragging, isDropping } = this.props
+        const { onClick, onExpandClick, onEditClick, onContextMenu } = this.props
 
         return (
             <article
-                className={`collection ${selected && 'active'} ${expandable && (expanded ? 'expanded' : 'collapsed')} ${_id>0 && author && 'have-actions'}`}
+                className={`collection ${selected && 'active'} ${expandable && (expanded ? 'expanded' : 'collapsed')} ${_id>0 && author && 'have-actions'} ${isDragging && 'is-dragging'} ${isDropping && 'is-drag-over'}`}
                 style={{'--accentColor': color, '--level': level}}>
                 <span className='expand' onMouseUp={onExpandClick}>
                     <Icon name='arrow_alt' />
@@ -62,7 +64,8 @@ export default class CollectionsItemView extends React.PureComponent {
 
                 <SuperLink
 					navPrefix='collection'
-					href={href}
+                    href={href}
+                    tabIndex='1'
 					onClick={onClick}
 					onDoubleClick={onExpandClick}
                     onEnter={onEditClick}

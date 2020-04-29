@@ -40,6 +40,7 @@
 		"object-hash": "2.0.x",
 		"react": "16.13.x",
 		"react-autosize-textarea": "7.0.x",
+		"react-beautiful-dnd": "^13.0.0",
 		"react-dnd": "10.0.x",
 		"react-dnd-html5-backend": "10.0.x",
 		"react-dom": "16.13.x",

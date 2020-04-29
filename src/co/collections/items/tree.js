@@ -1,13 +1,12 @@
 import React from 'react'
-import AutoSizer from 'react-virtualized/dist/commonjs/AutoSizer';
-import List from 'react-virtualized/dist/commonjs/List'
 
+import Sortable from './sortable'
 import Item from '../item'
 import Group from '../group'
 
 export default class CollectionsTree extends React.Component {
-    _scrolled = false
     _bindList = ref => this._list = ref
+    _scrolled = false
 
     componentDidUpdate() {
         //scroll to selected on first paint
@@ -21,8 +20,9 @@ export default class CollectionsTree extends React.Component {
                 )
         }
     }
-
-    rowRenderer = ({ index, key, style })=>{
+    
+    //rendering rows
+    rowRenderer = ({ index }, provided, { isDragging, combineTargetFor })=>{
         const row = this.props.data[index]
 
         let Component
@@ -33,14 +33,17 @@ export default class CollectionsTree extends React.Component {
         }
 
         return (
-            <div key={key} style={style}>
-                <Component 
-                    {...row}
-                    key={row.item && row.item._id || key}
-                    selected={row.item && this.props.selectedId == row.item._id}
-                    events={this.props.events}
-                    actions={this.props.actions} />
-            </div>
+            <Component 
+                //item,etc
+                {...row}
+                //tree specififc
+                selected={row.item && this.props.selectedId == row.item._id}
+                events={this.props.events}
+                actions={this.props.actions}
+                //drag/drop specific
+                isDragging={isDragging}
+                isDropping={combineTargetFor?true:false}
+                />
         )
     }
 
@@ -54,24 +57,107 @@ export default class CollectionsTree extends React.Component {
         }
     }
 
+    //drag/drop
+    rowIsDraggable = ({ index })=>{
+        const row = this.props.data[index]
+
+        //disable for system collections
+        if (row.type == 'collection' && row.item && row.item._id <= 0)
+            return false
+
+        return true
+    }
+
+    rowIsDroppable = (from, to)=>{
+        const origin = this.props.data[from.index]
+        const target = this.props.data[to.index]
+
+        if (origin.type == 'group')
+            return false
+
+        return true
+    }
+
+    onDragStart = ({ index })=>{
+        const row = this.props.data[index]
+
+        switch(row.type) {
+            case 'collection':{
+                const { item } = row
+
+                if (item.expanded)
+                    this.props.actions.oneToggle(item._id)
+            }break
+        }
+    }
+
+    onDragEnd = (from, to, action)=>{
+        const origin = this.props.data[from.index]
+        const target = this.props.data[to.index]
+
+        switch (origin.type) {
+            case 'collection':{
+                if (action=='move')
+                    if (target.type == 'collection'){
+                        if (to.index >= from.index)
+                            this.props.actions.oneReorder(origin.item._id, { after: target.item._id })
+                        else if (to.index <= from.index)
+                            this.props.actions.oneReorder(origin.item._id, { before: target.item._id })
+                    } else
+                        action = 'combine'
+
+                if (action=='combine')
+                    this.props.actions.oneReorder(origin.item._id, { to: target.item ? target.item._id : target._id })
+            }break
+            
+            case 'group':{
+                let after, before
+
+                if (to.index > from.index) {
+                    if (target.type == 'group')
+                        after = target._id
+                    else
+                        for(let i=to.index-1; i>0; i--)
+                            if (this.props.data[i].type=='group'){
+                                after=this.props.data[i]._id
+                                break
+                            }
+                } else if (to.index < from.index) {
+                    if (target.type == 'group')
+                        before = target._id
+                    else
+                        for(let i=to.index+1; i<this.props.data.length; i++)
+                            if (this.props.data[i].type=='group'){
+                                before=this.props.data[i]._id
+                                break
+                            }
+                }
+
+                if (after || before)
+                    this.props.actions.groupReorder(origin._id, { after, before })
+            }break
+        }
+    }
+
     render() {
-        const { data } = this.props
-
         return (
-            <AutoSizer>{size =>
-                <List
-                    {...size}
+            <Sortable
+                innerRef={this._bindList}
 
-                    ref={this._bindList}
-                    data={this.props.selectedId}
-                    className='collections'
+                //react-virtualized
+                data={this.props.selectedId}
+                className='collections'
+                rowCount={this.props.data.length}
+                rowHeight={this.rowHeight}
+                rowRenderer={this.rowRenderer}
+                scrollToAlignment='center'
 
-                    rowCount={data.length}
-                    rowHeight={this.rowHeight}
-                    rowRenderer={this.rowRenderer}
-                    scrollToAlignment='center'
-                    />
-            }</AutoSizer>
+                //custom
+                rowIsDraggable={this.rowIsDraggable}
+                rowIsDroppable={this.rowIsDroppable}
+                onDragStart={this.onDragStart}
+                onDragEnd={this.onDragEnd}
+                />
         )
     }
 }
