@@ -58,6 +58,21 @@ export default class CollectionsTree extends React.Component {
     }
 
     //drag/drop
+    rowId = ({ index })=>{
+        return index
+        const row = this.props.data[index]
+        return row.item ? row.item._id : row._id
+    }
+
+    rowIndex = (id)=>
+        id
+        // this.props.data.findIndex(row=>{
+        //     if (row._id == id)
+        //         return true
+        //     if (row.item && row.item._id == id)
+        //         return true
+        // })
+
     rowIsDraggable = ({ index })=>{
         const row = this.props.data[index]
 
@@ -103,8 +118,20 @@ export default class CollectionsTree extends React.Component {
                             this.props.actions.oneReorder(origin.item._id, { after: target.item._id })
                         else if (to.index <= from.index)
                             this.props.actions.oneReorder(origin.item._id, { before: target.item._id })
-                    } else
-                        action = 'combine'
+                    }
+                    else {
+                        //to end of previous group
+                        if (to.index < from.index){
+                            for(let i=to.index-1; i>0; i--)
+                                if (this.props.data[i].type=='collection'){
+                                    this.props.actions.oneReorder(origin.item._id, { after: this.props.data[i].item._id })
+                                    break
+                                }
+                        }
+                        //to start of current group
+                        else
+                            action = 'combine'
+                    }
 
                 if (action=='combine')
                     this.props.actions.oneReorder(origin.item._id, { to: target.item ? target.item._id : target._id })
@@ -145,7 +172,7 @@ export default class CollectionsTree extends React.Component {
                 innerRef={this._bindList}
 
                 //react-virtualized
-                data={this.props.selectedId}
+                selectedId={this.props.selectedId}
                 className='collections'
                 rowCount={this.props.data.length}
                 rowHeight={this.rowHeight}
@@ -153,6 +180,8 @@ export default class CollectionsTree extends React.Component {
                 scrollToAlignment='center'
 
                 //custom
+                rowId={this.rowId}
+                rowIndex={this.rowIndex}
                 rowIsDraggable={this.rowIsDraggable}
                 rowIsDroppable={this.rowIsDroppable}
                 onDragStart={this.onDragStart}

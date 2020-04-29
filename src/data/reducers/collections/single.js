@@ -4,7 +4,7 @@ import {
 import {
 	COLLECTION_TOGGLE, COLLECTION_CHANGE_VIEW,
 	COLLECTION_CREATE_SUCCESS, COLLECTION_CREATE_ERROR,
-	COLLECTION_UPDATE_SUCCESS, COLLECTION_UPDATE_ERROR,
+	COLLECTION_UPDATE_REQ, COLLECTION_UPDATE_SUCCESS, COLLECTION_UPDATE_ERROR,
 	COLLECTION_REMOVE_SUCCESS, COLLECTION_REMOVE_ERROR,
 	COLLECTION_BLANK_IN_PARENT
 } from '../../constants/collections'
@@ -59,6 +59,16 @@ export default function(state, action) {
 		}
 
 		//Update
+		case COLLECTION_UPDATE_REQ:{
+			//speed up drag reorder
+			if (action.set && action.set.parentId){
+				const collection = state.getIn(['items', action._id])
+					.set('parentId', action.set.parentId)
+					
+				return state.setIn(['items', action._id], normalizeCollection(collection))
+			}
+		}break
+
 		case COLLECTION_UPDATE_SUCCESS:{
 			const updatedItem = normalizeCollection(action.item)
 			if (state.items[updatedItem._id])

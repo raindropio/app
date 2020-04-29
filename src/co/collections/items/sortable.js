@@ -5,9 +5,21 @@ import AutoSizer from 'react-virtualized/dist/commonjs/AutoSizer'
 import List from 'react-virtualized/dist/commonjs/List'
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
 
+function getStyle({ draggableProps }, snapshot, source) {
+    if (!draggableProps || !draggableProps.style)
+        return source.style
+
+    return {
+        ...draggableProps.style,
+        ...source.style,
+    }
+}
+
 export default class SortableVirtualList extends React.Component {
     static defaultProps = {
         //specific for this component:
+        rowId: undefined, //func
+        rowIndex: undefined, //func
         rowIsDraggable: undefined, //func
         rowIsDroppable: undefined, //func
         onDragStart: undefined, //func
@@ -22,36 +34,41 @@ export default class SortableVirtualList extends React.Component {
     bindList = (dragProvider) => ref => {
         if (!ref || this._list == ref) return
         this._list = ref
-        dragProvider.innerRef(ReactDOM.findDOMNode(ref))
 
+        dragProvider.innerRef(ReactDOM.findDOMNode(ref))
         this.props.innerRef && this.props.innerRef(ref)
     }
 
     renderRow = source => {
+        const details = {
+            source,
+            id: this.props.rowId(source)
+        }
+
         //drag disabled
         if (!this.props.rowIsDraggable(source))
-            return this.renderClone(undefined, undefined, { source })
+            return this.renderClone(undefined, undefined, details)
 
         //drag enabled
         return (
             <Draggable
-                key={source.key}
-                draggableId={source.index.toString()}
+                key={details.id}
+                draggableId={String(details.id)}
                 index={source.index}>
                 {(provided, snapshot)=>
-                    this.renderClone(provided, snapshot, { source })
+                    this.renderClone(provided, snapshot, details)
                 }
             </Draggable>
         )
     }
 
-    renderClone = (provided={}, snapshot={}, { source })=>(
+    renderClone = (provided={}, snapshot={}, { source, id })=>(
         <div
-            key={source.key}
+            key={id}
             ref={provided.innerRef}
             {...provided.draggableProps||{}}
             {...provided.dragHandleProps||{}}
-            style={{...(provided.draggableProps && provided.draggableProps.style || {}), ...source.style}}
+            style={getStyle(provided, snapshot, source)}
             tabIndex='-1'
             onClick={null}>
             {this.props.rowRenderer(source, provided, snapshot)}
@@ -66,7 +83,7 @@ export default class SortableVirtualList extends React.Component {
         //Enable or disable dropping into items
         let isCombineEnabled = true
         if (combine && this.props.rowIsDroppable)
-            isCombineEnabled = this.props.rowIsDroppable(source, { index: parseInt(combine.draggableId) })
+            isCombineEnabled = this.props.rowIsDroppable(source, { index: this.props.rowIndex(combine.draggableId) })
 
         if (isCombineEnabled != this.state.isCombineEnabled)
             this.setState({ isCombineEnabled })
@@ -76,8 +93,8 @@ export default class SortableVirtualList extends React.Component {
         if (!this.props.onDragEnd) return
 
         if (combine)
-            return this.props.onDragEnd(source, { index: parseInt(combine.draggableId) }, 'combine')
-        else if (destination)
+            return this.props.onDragEnd(source, { index: this.props.rowIndex(combine.draggableId) }, 'combine')
+        else if (destination && source.index != destination.index)
             this.props.onDragEnd(source, destination, 'move')
     }
 

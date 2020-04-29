@@ -262,28 +262,37 @@ function* reorderCollection({_id=0, ignore=false, to, after, before}) {
 
 				yield onlyForProUsersCheck()
 
+				let actions = []
+
 				//remove from groups
-				yield put({
-					type: GROUP_REMOVE_COLLECTION,
-					collectionId: collection._id
-				})
+				actions.push(
+					put({
+						type: GROUP_REMOVE_COLLECTION,
+						collectionId: collection._id
+					})
+				)
 
 				//Move to root collection
 				if (!target.parentId){
 					//make original also root
-					if (collection.parentId) yield put({
-						type: COLLECTION_UPDATE_REQ,
-						_id: _id,
-						set: { parentId: 'root' }
-					})
+					if (collection.parentId)
+						actions.push(
+							put({
+								type: COLLECTION_UPDATE_REQ,
+								_id: _id,
+								set: { parentId: 'root' }
+							}),
+						)
 
-					yield put({
-						type: GROUP_APPEND_COLLECTION,
-						_id: findGroupByCollection(state.collections.groups, target._id)._id,
-						collectionId: _id,
-						after: parseInt(after),
-						before: parseInt(before)
-					})
+					actions.push(
+						put({
+							type: GROUP_APPEND_COLLECTION,
+							_id: findGroupByCollection(state.collections.groups, target._id)._id,
+							collectionId: _id,
+							after: parseInt(after),
+							before: parseInt(before)
+						})
+					)
 				}
 				//Make nested children and reorder
 				else{
@@ -293,19 +302,25 @@ function* reorderCollection({_id=0, ignore=false, to, after, before}) {
 					else
 						newSort = newSort + 0.5
 
-					yield put({
-						type: COLLECTION_UPDATE_REQ,
-						_id: collection._id,
-						set: {
-							parentId: parseInt(target.parentId),
-							sort: newSort
-						}
-					})
+					actions.push(
+						put({
+							type: COLLECTION_UPDATE_REQ,
+							_id: collection._id,
+							set: {
+								parentId: parseInt(target.parentId),
+								sort: newSort
+							}
+						})
+					)
 
-					yield put({
-						type: COLLECTIONS_SAVE_ORDER
-					})
+					actions.push(
+						put({
+							type: COLLECTIONS_SAVE_ORDER
+						})
+					)
 				}
+
+				yield all(actions)
 			}
 		}
 	} catch(error) {
