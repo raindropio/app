@@ -6,6 +6,8 @@ import List from 'react-virtualized/dist/commonjs/List'
 import { CellMeasurer, CellMeasurerCache } from 'react-virtualized/dist/commonjs/CellMeasurer'
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
 
+const emptyObject = {}
+
 function getStyle({ draggableProps }, snapshot, source) {
     if (!draggableProps || !draggableProps.style)
         return source.style
@@ -19,11 +21,12 @@ function getStyle({ draggableProps }, snapshot, source) {
 export default class SortableVirtualList extends React.Component {
     static defaultProps = {
         //specific for this component:
-        rowIsDraggable: undefined, //func
-        rowIsDroppable: undefined, //func
-        onDragStart: undefined, //func
-        onDragUpdate: undefined, //func
-        onDragEnd: undefined, //func(from,to,action=combine|move)
+        rowType: undefined,         //func, optional ({ index })
+        rowIsDraggable: undefined,  //func, optional ({ index })
+        rowIsDroppable: undefined,  //func, optional (from, to)
+        onDragStart: undefined,     //func, optional ({ index })
+        onDragEnd: undefined,       //func (from,to,action=combine|move)
+        onLongHover: undefined,     //func, optional (from, to), not works properly when content is changed!!!
     }
 
     state = {
@@ -41,7 +44,8 @@ export default class SortableVirtualList extends React.Component {
     sizeCache = new CellMeasurerCache({
         defaultHeight: 32,
         fixedWidth: true,
-        keyMapper: (index)=>this.props.rowType({ index })
+        keyMapper: (index)=>
+            this.props.rowType ? this.props.rowType({ index }) : 1
     })
 
     renderRow = source => {
@@ -62,7 +66,7 @@ export default class SortableVirtualList extends React.Component {
         )
     }
 
-    renderClone = (provided={}, snapshot={}, { source })=>(
+    renderClone = (provided=emptyObject, snapshot=emptyObject, { source })=>(
         <div
             key={source.index}
             ref={provided.innerRef}
@@ -72,6 +76,7 @@ export default class SortableVirtualList extends React.Component {
             tabIndex='-1'
             onClick={null}>
             <CellMeasurer
+                parent={emptyObject}
                 {...source}
                 columnIndex={0}
                 cache={this.sizeCache}>
@@ -85,16 +90,28 @@ export default class SortableVirtualList extends React.Component {
     }
 
     onDragUpdate = ({ source, combine })=>{
+        clearTimeout(this._longHover)
+
         //Enable or disable dropping into items
         let isCombineEnabled = true
-        if (combine && this.props.rowIsDroppable)
-            isCombineEnabled = this.props.rowIsDroppable(source, { index: parseInt(combine.draggableId) })
+        if (combine && this.props.rowIsDroppable){
+            const to = { index: parseInt(combine.draggableId) }
+            isCombineEnabled = this.props.rowIsDroppable(source, to)
+
+            //Long hover
+            if (this.props.onLongHover && combine && isCombineEnabled)
+                this._longHover = setTimeout(() => {
+                    this.props.onLongHover(source, to)
+                }, 500)
+        }
 
         if (isCombineEnabled != this.state.isCombineEnabled)
             this.setState({ isCombineEnabled })
     }
 
     onDragEnd = ({ source, destination, combine })=>{
+        clearTimeout(this._longHover)
+
         if (!this.props.onDragEnd) return
 
         if (combine)

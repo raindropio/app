@@ -3,9 +3,11 @@ import t from '~t'
 
 export default class CollectionsGroupView extends React.Component {
     render() {
-        const { title, hidden, selected } = this.props
+        const { title, hidden, system, selected } = this.props
         const { isDragging, isDropping } = this.props
         const { onClick, onContextMenu } = this.props
+
+        if (system) return null
 
         return (
             <div 

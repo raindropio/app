@@ -7,15 +7,6 @@ import Icon from '~co/common/icon'
 import CollectionIcon from './icon'
 
 export default class CollectionsItemView extends React.PureComponent {
-    onKey = (e)=>{
-		if (
-            this.props.onRemoveClick &&
-            ((e.keyCode == 8)&&(e.metaKey || e.ctrlKey))|| //backspace+command
-            (e.keyCode == 46) //delete
-        )
-            this.props.onRemoveClick()
-	}
-
     renderStatus = ()=>{
 		let status
 
@@ -36,7 +27,7 @@ export default class CollectionsItemView extends React.PureComponent {
     render() {
         const { _id, title, count, color, cover, level, selected, expanded, expandable, author, href } = this.props
         const { isDragging, isDropping } = this.props
-        const { onClick, onExpandClick, onEditClick, onContextMenu } = this.props
+        const { onClick, onExpandClick, onEditClick, onContextMenu, onKeyDown } = this.props
 
         return (
             <article
@@ -47,9 +38,9 @@ export default class CollectionsItemView extends React.PureComponent {
                 </span>
 
                 <CollectionIcon
-                    src={cover}
+                    src={cover && cover[0]}
                     _id={_id}
-                    active={selected} />
+                    selected={selected} />
 
                 <div className='title'>
 					<span>{title}</span>
@@ -70,7 +61,7 @@ export default class CollectionsItemView extends React.PureComponent {
 					onDoubleClick={onExpandClick}
                     onEnter={onEditClick}
                     onContextMenu={onContextMenu}
-					onKey={this.onKey}
+					onKey={onKeyDown}
 					className='permalink' />
             </article>
         )

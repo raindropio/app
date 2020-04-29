@@ -128,8 +128,8 @@ export const makeTreeFlat = ()=> createSelector(
 	[makeTree()],
 	(groups)=>{
 		const flat = []
-		groups.forEach((g)=>{
-			if (!g.system)
+		groups.forEach((g,i)=>{
+			if (!g.system || i>0)
 				flat.push({...g, type: 'group', data: undefined})
 
 			//items

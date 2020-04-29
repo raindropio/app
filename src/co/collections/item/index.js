@@ -29,6 +29,22 @@ export default class CollectionsItem extends React.Component {
         e.preventDefault()
     }
 
+    onKeyDown = (e)=>{
+        switch(e.keyCode){
+            case 37: //left
+            case 39: //right
+                return this.onExpandClick()
+
+            case 46: //delete
+                return this.onRemoveClick()
+
+            case 8: //backspace
+                if (e.metaKey || e.ctrlKey)
+                    return this.onRemoveClick()
+            break
+        }
+    }
+
     render() {
         const { item, ...props } = this.props
 
@@ -41,7 +57,8 @@ export default class CollectionsItem extends React.Component {
                 onExpandClick={this.onExpandClick}
                 onEditClick={this.onEditClick}
                 onRemoveClick={this.onRemoveClick}
-                onContextMenu={this.onContextMenu} />
+                onContextMenu={this.onContextMenu}
+                onKeyDown={this.onKeyDown} />
         )
     }
 }

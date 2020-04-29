@@ -66,7 +66,7 @@ export default class CollectionsTree extends React.Component {
 
         switch(origin.type){
             case 'group': return false
-            case 'collection': return origin.item.draggable
+            case 'collection': return origin.item.access.draggable
         }
     }
 

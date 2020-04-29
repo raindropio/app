@@ -81,13 +81,11 @@ export default class SuperLink extends React.Component {
 	onKey = (e)=>{
 		switch(e.keyCode){
 			case 38: //top
-			case 37: //left
 				if (!this.scrollTo("top",e,this))
 					e.preventDefault();
 			break;
 
 			case 40: //bottom
-			case 39: //right
 				if (!this.scrollTo("bottom",e,this))
                 	e.preventDefault();
             break;

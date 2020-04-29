@@ -99,7 +99,7 @@ export const normalizeCollection = (item={})=>{
 		view: 		item.view||'list',
 		sort: 		parseFloat(item.sort||0),
 		author: 	item.author||parseInt(item._id||0)<=0||false,
-		draggable:	item.draggable || item.access && item.access.draggable,
+		access:		item.access,
 		created:	item.created,
 
 		cover: 		item.cover,
