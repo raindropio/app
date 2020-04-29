@@ -251,7 +251,10 @@ function* reorderCollection({_id=0, ignore=false, to, after, before}) {
 					put({
 						type: COLLECTION_UPDATE_REQ,
 						_id: _id,
-						set: { parentId: parseInt(to) }
+						set: {
+							parentId: parseInt(to),
+							order: 0
+						}
 					})
 				])
 			break;
@@ -297,28 +300,21 @@ function* reorderCollection({_id=0, ignore=false, to, after, before}) {
 				}
 				//Make nested children and reorder
 				else{
-					let sorts = []
-					let targetSort = -1
+					let order = 0
+					let siblings = 0
 					
-					//find all siblings and prepare new sort values
+					//find target sibling to get exact sort position
 					_.forEach(
 						_.sortBy(state.collections.items, ({sort})=>sort),
 						(item)=>{
-							if (item.parentId == collection.parentId && item._id != _id){
-								let sort = sorts.length
-
+							if (item.parentId == target.parentId && item._id != _id){
 								if (item._id == target._id)
-									targetSort = sort+(after?1:0)
+									order = siblings+(after?1:0)
 								
-								if (targetSort!=-1 && sort >= targetSort)
-									sort += 1
-
-								sorts.push({ _id: item._id, sort })
+								siblings++
 							}
 						}
 					)
-					
-					sorts.push({ _id, sort: targetSort })
 
 					actions.push(
 						put({
@@ -326,15 +322,8 @@ function* reorderCollection({_id=0, ignore=false, to, after, before}) {
 							_id: collection._id,
 							set: {
 								parentId: parseInt(target.parentId),
-								order: targetSort
+								order
 							}
-						})
-					)
-
-					actions.push(
-						put({
-							type: COLLECTIONS_SIBLINGS_REORDER,
-							items: sorts
 						})
 					)
 				}
