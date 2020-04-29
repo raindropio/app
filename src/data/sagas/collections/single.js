@@ -14,14 +14,15 @@ import {
 } from './utils'
 
 import {
+	COLLECTIONS_SIBLINGS_REORDER,
+
 	COLLECTION_CREATE_REQ, COLLECTION_CREATE_SUCCESS, COLLECTION_CREATE_ERROR,
 	COLLECTION_UPDATE_REQ, COLLECTION_UPDATE_SUCCESS, COLLECTION_UPDATE_ERROR,
 	COLLECTION_REMOVE_REQ, COLLECTION_REMOVE_SUCCESS, COLLECTION_REMOVE_ERROR,
 
 	COLLECTION_TOGGLE, COLLECTION_REORDER, COLLECTION_CHANGE_VIEW,
 
-	GROUP_APPEND_COLLECTION, GROUP_REMOVE_COLLECTION,
-	COLLECTIONS_SAVE_ORDER
+	GROUP_APPEND_COLLECTION, GROUP_REMOVE_COLLECTION
 } from '../../constants/collections'
 
 //Requests
@@ -296,11 +297,28 @@ function* reorderCollection({_id=0, ignore=false, to, after, before}) {
 				}
 				//Make nested children and reorder
 				else{
-					var newSort = parseFloat(target.sort)
-					if (before)
-						newSort = newSort - 0.5
-					else
-						newSort = newSort + 0.5
+					let sorts = []
+					let targetSort = -1
+					
+					//find all siblings and prepare new sort values
+					_.forEach(
+						_.sortBy(state.collections.items, ({sort})=>sort),
+						(item)=>{
+							if (item.parentId == collection.parentId && item._id != _id){
+								let sort = sorts.length
+
+								if (item._id == target._id)
+									targetSort = sort+(after?1:0)
+								
+								if (targetSort!=-1 && sort >= targetSort)
+									sort += 1
+
+								sorts.push({ _id: item._id, sort })
+							}
+						}
+					)
+					
+					sorts.push({ _id, sort: targetSort })
 
 					actions.push(
 						put({
@@ -308,14 +326,15 @@ function* reorderCollection({_id=0, ignore=false, to, after, before}) {
 							_id: collection._id,
 							set: {
 								parentId: parseInt(target.parentId),
-								sort: newSort
+								order: targetSort
 							}
 						})
 					)
 
 					actions.push(
 						put({
-							type: COLLECTIONS_SAVE_ORDER
+							type: COLLECTIONS_SIBLINGS_REORDER,
+							items: sorts
 						})
 					)
 				}

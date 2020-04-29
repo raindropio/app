@@ -1,3 +1,4 @@
+import _ from 'lodash'
 import {
 	normalizeCollection
 } from '../../helpers/collections'

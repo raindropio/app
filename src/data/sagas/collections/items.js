@@ -8,8 +8,6 @@ import {
 	COLLECTIONS_REFRESH_REQ,
 
 	COLLECTION_DRAFT_LOAD_REQ, COLLECTION_UPDATE_REQ,
-
-	COLLECTIONS_SAVE_ORDER
 } from '../../constants/collections'
 
 //Requests
@@ -20,8 +18,6 @@ export default function* () {
 		COLLECTIONS_REFRESH_REQ, 
 		COLLECTION_DRAFT_LOAD_REQ
 	], loadItems)
-
-	yield takeLatest(COLLECTIONS_SAVE_ORDER, saveOrder)
 }
 
 function* loadItems({dontLoadCollections=false}) {
@@ -73,35 +69,5 @@ function* loadItems({dontLoadCollections=false}) {
 		});
 	} catch (error) {
 		yield put({type: COLLECTIONS_LOAD_ERROR, error});
-	}
-}
-
-function* saveOrder() {
-	try {
-		const state = yield select()
-
-		yield all(
-			_.map(
-				_.sortBy(
-					_.filter(
-						state.collections.items,
-						(item)=>item.parentId?true:false
-					),
-					({sort})=>sort
-				),
-
-				(item, index)=>(
-					put({
-						type: COLLECTION_UPDATE_REQ,
-						_id: item._id,
-						set: {
-							sort: parseInt(index)
-						}
-					})
-				)
-			)
-		)
-	} catch ({message}) {
-		console.log(message)
 	}
 }
