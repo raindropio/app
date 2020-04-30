@@ -19,7 +19,7 @@ import {
 	COLLECTION_REMOVE_REQ, COLLECTION_REMOVE_SUCCESS, COLLECTION_REMOVE_ERROR,
 	COLLECTION_ADD_BLANK, COLLECTION_CREATE_FROM_BLANK, COLLECTION_REMOVE_BLANK,
 
-	COLLECTION_TOGGLE, COLLECTION_REORDER, COLLECTION_CHANGE_VIEW,
+	COLLECTION_TOGGLE, COLLECTION_REORDER, COLLECTION_CHANGE_VIEW, COLLECTIONS_EXPAND_TO,
 
 	GROUP_APPEND_COLLECTION, GROUP_REMOVE_COLLECTION
 } from '../../constants/collections'
@@ -175,19 +175,21 @@ function* addBlank({ siblingId, asChild, ignore=false }) {
 	let groupId = state.collections.getIn(['groups', 0, '_id'])
 
 	//if sibling id is specified move it to specific position in the tree
-	let after, expandParent = false
+	let after
 	if (parseInt(siblingId) > 0){
 		after = parseInt(siblingId)
+
 		//should be in specific parent
 		const collection = state.collections.getIn(['items', after])
-		if (collection && collection.parentId){
-			item.parentId = asChild ? collection._id : collection.parentId
-
-			if (!asChild)
+		if (collection){
+			if (asChild){
+				item.parentId = collection._id
+				item.sort = -1
+			}
+			else if (collection.parentId){
+				item.parentId = collection.parentId
 				item.sort = collection.sort + 0.5
-
-			if (!collection.expanded)
-				expandParent = true
+			}
 		}
 
 		//group id
@@ -209,13 +211,12 @@ function* addBlank({ siblingId, asChild, ignore=false }) {
 				ignore: true
 			})
 		)
-	//expand parent
-	else if (expandParent)
+	else if (after)
 		actions.push(
 			put({
-				type: COLLECTION_TOGGLE,
-				_id: item.parentId,
-				expanded: true
+				type: COLLECTIONS_EXPAND_TO,
+				_id: after,
+				self: true
 			})
 		)
 	

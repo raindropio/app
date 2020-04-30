@@ -17,6 +17,23 @@ export const getGroup = (groups, _id)=>{
 	return _.find(groups, (g)=>g._id == _id) || normalizeGroup()
 }
 
+export const findParentIds = (collections, findId)=>{
+	let parents = []
+
+	const { parentId } = collections[findId]
+	if (parentId)
+		_.forEach(collections, item=>{
+			if (item._id == parentId){
+				parents.push(item._id)
+
+				if (item.parentId)
+					parents.push(...findParentIds(collections, item._id))
+			}
+		})
+
+	return parents
+}
+
 export const getPath = (allCollections, allGroups, objectId, options={})=>{
 	var parents = []
 

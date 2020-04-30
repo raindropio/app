@@ -1,7 +1,8 @@
 import _ from 'lodash-es'
 import {
 	normalizeCollections,
-	shouldLoadItems
+	shouldLoadItems,
+	findParentIds
 } from '../../helpers/collections'
 import {
 	increaseCount,
@@ -15,7 +16,8 @@ import {REHYDRATE} from 'redux-persist/src/constants'
 import {
 	COLLECTIONS_LOAD_REQ, COLLECTIONS_LOAD_SUCCESS, COLLECTIONS_LOAD_ERROR,
 	COLLECTIONS_REFRESH_REQ,
-	COLLECTIONS_REORDER
+	COLLECTIONS_REORDER,
+	COLLECTIONS_EXPAND_TO
 } from '../../constants/collections'
 
 import {
@@ -86,6 +88,20 @@ export default function(state, action) {switch (action.type) {
 
 			state = state.setIn(['groups', groupIndex, 'collections'], items.map(({_id})=>parseInt(_id)))
 		})
+
+		return state
+	}
+
+	case COLLECTIONS_EXPAND_TO:{
+		const parents = findParentIds(state.items, action._id)
+
+		if (action.self)
+			parents.push(action._id)
+
+		if (parents.length)
+			parents.forEach(_id=>{
+				state = state.setIn(['items', _id, 'expanded'], true)
+			})
 
 		return state
 	}

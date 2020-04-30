@@ -12,7 +12,7 @@ class CollectionsItems extends React.Component {
         uriPrefix:          '',
         selectedId:         undefined,
         options:            {}, //hideIds[], showGroups:true
-        events:             {}  //onItemSelect, onItemEditClick, onGroupSelect
+        events:             {}  //onItemSelect, onGroupSelect
     }
 
     componentDidMount() {
@@ -25,7 +25,14 @@ class CollectionsItems extends React.Component {
 			groupTitle: t.s('myCollections')
         })
         
-		this.props.actions.load()
+        this.props.actions.load()
+    }
+
+    componentDidUpdate({ selectedId, status }) {
+        //expand tree to selected id
+        if (selectedId != this.props.selectedId ||
+            (status != this.props.status && this.props.status == 'loaded') )
+            this.props.actions.expandTo(this.props.selectedId)
     }
 
     createNewCollection = (e)=>{

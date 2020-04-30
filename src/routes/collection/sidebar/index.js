@@ -9,11 +9,7 @@ import Tree from '~co/collections/items'
 class CollectionsSidebar extends React.Component {
     tree = React.createRef()
 
-    events = {
-        onItemEditClick: (item)=>{
-            
-        }
-    }
+    events = {}
 
     onCreateClick = (e)=>{
         return this.tree.current.createNewCollection(e)
