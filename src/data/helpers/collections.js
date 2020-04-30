@@ -122,13 +122,15 @@ export const normalizeCollections = (items=[], groups=[])=>{
 			if (item._id>0 && !item.parentId) return item._id
 		})),
 		collectionsIdsInGroups = _.flatten(_.map(cleanGroups, ({collections})=>collections))
+		
 	const notInGroups = _.without(_.difference(rootCollectionsIds, collectionsIdsInGroups), collectionsIdsInGroups)
-	if (notInGroups.length){
-		cleanGroups = cleanGroups.concat([normalizeGroup({
-			title: 'My Collections',
-			collections: notInGroups
-		}, cleanGroups.length)])
-	}
+	if (notInGroups.length)
+		cleanGroups.push(
+			normalizeGroup({
+				title: 'My Collections',
+				collections: notInGroups
+			}, cleanGroups.length)
+		)
 
 	return Immutable({
 		items: _.zipObject(

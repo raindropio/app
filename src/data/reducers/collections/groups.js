@@ -50,9 +50,9 @@ export default function(state, action) {
 				return state
 			}
 			
-			return state.set('groups', state.groups.concat([normalizeGroup({
+			return state.set('groups', [...state.groups, normalizeGroup({
 				title: action.title
-			}, state.groups.length-1)]))
+			}, state.groups.length-1)])
 		}
 
 		//Rename
@@ -113,10 +113,10 @@ export default function(state, action) {
 
 			//no groups, or invalid group id, create new with this id
 			if (index==-1){
-				state = state.set('groups', state.groups.concat([normalizeGroup({
+				state = state.set('groups', [...state.groups, normalizeGroup({
 					title: state.defaultGroupTitle,
 					_id: action._id
-				}, state.groups.length-1)]))
+				}, state.groups.length-1)] )
 
 				index = state.groups.length-1;
 			}
