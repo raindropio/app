@@ -79,6 +79,14 @@ const initialState = Immutable({
 			_id: -99,
 			title: 'Trash',
 			view: 'list'
+		},
+		{
+			_id: -100,
+			title: 'One click new item'
+		},
+		{
+			_id: -101,
+			title: 'Blank item'
 		}
 	],
 

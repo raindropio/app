@@ -11,6 +11,7 @@ export default React.memo(({ _id, src, className, size, selected })=>{
 		case 0: svgIcon = 'cloud'+prefix; break;
 		case -1: svgIcon = 'inbox'+prefix; break;
 		case -99: svgIcon = 'trash'+prefix; break;
+		case -101: svgIcon = 'add'+prefix; break;
 		default: svgIcon = 'default_collection'+prefix; break;
 	}
 

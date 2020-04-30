@@ -29,16 +29,13 @@ class CollectionsItems extends React.Component {
     }
 
     createNewCollection = (e)=>{
-        e && e.preventDefault()
+        let asChild = false
+        if (e) {
+            e.preventDefault()
+            asChild = e.shiftKey ? true : false
+        }
 
-        this.props.actions.oneCreate({
-            title: t.s('newString')
-        }, (item)=>{
-            if (this.props.onItemSelect)
-                return this.props.onItemSelect(item)
-
-            location.hash = `#${this.props.uriPrefix}${item._id}`
-        })
+        this.props.actions.addBlank(this.props.selectedId, asChild)
     }
 
     render() {

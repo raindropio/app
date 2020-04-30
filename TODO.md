@@ -25,3 +25,6 @@ Not ready
 
 Good to have
 - Refactor collection/reorder redux to server
+- Expand tree for selected id
+- Logic for moving to several parents in the end of the list
+- Preloader for blank collection

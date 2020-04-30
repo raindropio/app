@@ -1,4 +1,5 @@
 import React from 'react'
+import Blank from './blank'
 import View from './view'
 
 export default class CollectionsItem extends React.Component {
@@ -50,9 +51,10 @@ export default class CollectionsItem extends React.Component {
 
     render() {
         const { item, uriPrefix, ...props } = this.props
+        const Component = item._id == -101 ? Blank : View
 
         return (
-            <View 
+            <Component 
                 {...item}
                 {...props}
                 to={`${uriPrefix}${item._id}`}

@@ -7,7 +7,7 @@ export default class SuperLink extends React.PureComponent {
 	}
 
 	onBlur = (e)=>{
-		/*try{e.target.parentElement.removeAttribute('data-is-focus');}catch(e){}*/
+		try{e.target.parentElement.removeAttribute('data-is-focus');}catch(e){}
 	}
 
 	onMouseDown = (e)=>{

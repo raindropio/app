@@ -15,17 +15,19 @@ class CollectionsSidebar extends React.Component {
         }
     }
 
-    render() {
-        const { createNewCollection } = this.tree.current||{}
+    onCreateClick = (e)=>{
+        return this.tree.current.createNewCollection(e)
+    }
 
+    render() {
         return (
             <Sidebar>
                 <Header title={<Icon name='raindrop_logo' className='raindropLogo' />}>
                     <a 
                         href=''
                         className='button default'
-                        title={t.s('createNewCollection')}
-                        onClick={createNewCollection}>
+                        title={`${t.s('createNewCollection')}\nShift+click: ${t.s('createSubFolder').toLowerCase()}`}
+                        onClick={this.onCreateClick}>
                         <b><Icon name='new_collection' /></b>
                     </a>
                 </Header>

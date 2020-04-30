@@ -6,7 +6,8 @@ import {
 	COLLECTION_CREATE_REQ, COLLECTION_UPDATE_REQ, COLLECTION_REMOVE_REQ,
 	COLLECTION_DRAFT_LOAD_REQ, COLLECTION_DRAFT_CHANGE, COLLECTION_DRAFT_COMMIT,
 	SHARING_LOAD_REQ, SHARING_UPDATE_USER_REQ, SHARING_REMOVE_USER_REQ, SHARING_UNSHARE_REQ, SHARING_SEND_INVITES_REQ,
-	COLLECTION_TOGGLE, COLLECTION_REORDER, COLLECTION_CHANGE_VIEW, COLLECTION_EMPTY_TRASH, COLLECTION_BLANK_IN_PARENT,
+	COLLECTION_ADD_BLANK, COLLECTION_CREATE_FROM_BLANK, COLLECTION_REMOVE_BLANK,
+	COLLECTION_TOGGLE, COLLECTION_REORDER, COLLECTION_CHANGE_VIEW, COLLECTION_EMPTY_TRASH,
 	COLLECTIONS_DEFAULTS_CHANGE,
 	GROUP_CREATE, GROUP_TOGGLE, GROUP_REORDER, GROUP_REMOVE, GROUP_RENAME
 } from '../constants/collections'
@@ -28,9 +29,21 @@ export const oneCreate = (obj={}, onSuccess, onFail)=>({
 	onFail: wrapFunc(onFail)
 })
 
-export const oneBlankInParent = (parentId)=>({
-	type: COLLECTION_BLANK_IN_PARENT,
-	parentId
+export const addBlank = (siblingId, asChild)=>({
+	type: COLLECTION_ADD_BLANK,
+	siblingId,
+	asChild
+})
+
+export const createFromBlank = (obj, onSuccess, onFail)=>({
+	type: COLLECTION_CREATE_FROM_BLANK,
+	obj,
+	onSuccess: wrapFunc(onSuccess),
+	onFail: wrapFunc(onFail)
+})
+
+export const removeBlank = ()=>({
+	type: COLLECTION_REMOVE_BLANK
 })
 
 export const oneRemove = (_id, onSuccess, onFail)=>({

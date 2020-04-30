@@ -17,6 +17,7 @@ import {
 	COLLECTION_CREATE_REQ, COLLECTION_CREATE_SUCCESS, COLLECTION_CREATE_ERROR,
 	COLLECTION_UPDATE_REQ, COLLECTION_UPDATE_SUCCESS, COLLECTION_UPDATE_ERROR,
 	COLLECTION_REMOVE_REQ, COLLECTION_REMOVE_SUCCESS, COLLECTION_REMOVE_ERROR,
+	COLLECTION_ADD_BLANK, COLLECTION_CREATE_FROM_BLANK, COLLECTION_REMOVE_BLANK,
 
 	COLLECTION_TOGGLE, COLLECTION_REORDER, COLLECTION_CHANGE_VIEW,
 
@@ -29,6 +30,9 @@ export default function* () {
 	yield takeEvery(COLLECTION_CREATE_REQ, createCollection)
 	yield takeEvery(COLLECTION_UPDATE_REQ, updateCollection)
 	yield takeEvery(COLLECTION_REMOVE_REQ, removeCollection)
+	yield takeEvery(COLLECTION_ADD_BLANK, addBlank)
+	yield takeEvery(COLLECTION_CREATE_FROM_BLANK, createFromBlank)
+	yield takeEvery(COLLECTION_REMOVE_BLANK, removeBlank)
 
 	//helpers
 	yield takeEvery(COLLECTION_TOGGLE, toggleCollection)
@@ -36,7 +40,7 @@ export default function* () {
 	yield takeEvery(COLLECTION_CHANGE_VIEW, changeViewCollection)
 }
 
-function* createCollection({obj={}, ignore=false, onSuccess, onFail}) {
+function* createCollection({obj={}, ignore=false, after, fromBlank=false, onSuccess, onFail}) {
 	if (ignore)
 		return;
 
@@ -68,7 +72,7 @@ function* createCollection({obj={}, ignore=false, onSuccess, onFail}) {
 				type: GROUP_APPEND_COLLECTION,
 				_id: groupId,
 				collectionId: item._id,
-				last: true
+				...(after ? { after } : { last: true })
 			})
 		//Expand parent
 		else if (obj.parentId)
@@ -86,6 +90,13 @@ function* createCollection({obj={}, ignore=false, onSuccess, onFail}) {
 			item,
 			onSuccess, onFail
 		})
+
+		//remove blank item
+		if (fromBlank)
+			yield put({
+				type: COLLECTION_REMOVE_SUCCESS,
+				_id: -101
+			})
 	} catch (error) {
 		yield put({
 			type: COLLECTION_CREATE_ERROR,
@@ -148,6 +159,115 @@ function* removeCollection({_id=0, ignore=false, onSuccess, onFail}) {
 			onSuccess, onFail
 		});
 	}
+}
+
+function* addBlank({ siblingId, asChild, ignore=false }) {
+	if (ignore) return
+
+	const state = yield select()
+
+	//new item
+	const item = {
+		_id: -101
+	}
+
+	//add to first group by default
+	let groupId = state.collections.getIn(['groups', 0, '_id'])
+
+	//if sibling id is specified move it to specific position in the tree
+	let after, expandParent = false
+	if (parseInt(siblingId) > 0){
+		after = parseInt(siblingId)
+		//should be in specific parent
+		const collection = state.collections.getIn(['items', after])
+		if (collection && collection.parentId){
+			item.parentId = asChild ? collection._id : collection.parentId
+
+			if (!asChild)
+				item.sort = collection.sort + 0.5
+
+			if (!collection.expanded)
+				expandParent = true
+		}
+
+		//group id
+		for(const group of state.collections.groups)
+			if (group.collections.includes(after))
+				groupId = group._id
+	}
+
+	let actions = []
+
+	//as root
+	if (!item.parentId)
+		actions.push(
+			put({
+				type: GROUP_APPEND_COLLECTION,
+				_id: groupId,
+				collectionId: item._id,
+				...(after ? { after } : { last: true }),
+				ignore: true
+			})
+		)
+	//expand parent
+	else if (expandParent)
+		actions.push(
+			put({
+				type: COLLECTION_TOGGLE,
+				_id: item.parentId,
+				expanded: true
+			})
+		)
+	
+	actions.push(
+		put({
+			type: COLLECTION_CREATE_SUCCESS,
+			_id: -101,
+			item: item
+		})
+	)
+
+	yield all(actions)
+}
+
+function* createFromBlank({ obj, ignore=false, onSuccess, onFail }) {
+	if (ignore) return
+
+	const blankId = -101
+	const state = yield select()
+
+	//is a child?
+	const sort = state.collections.getIn(['items', blankId, 'sort'])
+	let parentId = state.collections.getIn(['items', blankId, 'parentId'])
+
+	//get group id if root
+	if (!parentId) {
+		for(const group of state.collections.groups)
+			if (group.collections.includes(blankId))
+				parentId = group._id
+	}
+
+	yield put({
+		type: COLLECTION_CREATE_REQ,
+		obj: {
+			...obj,
+			parentId,
+			sort,
+			order: sort
+		},
+		...(typeof parentId == 'string' ? { after: blankId } : {}),
+		fromBlank: true,
+		onSuccess, onFail
+	})
+}
+
+function* removeBlank({ ignore=false }) {
+	if (ignore) return
+
+	yield put({
+		type: COLLECTION_REMOVE_SUCCESS,
+		_id: -101
+	})
 }
 
 function* toggleCollection({_id=0, expanded, ignore=false}) {

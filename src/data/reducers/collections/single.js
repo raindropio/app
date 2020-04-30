@@ -6,8 +6,7 @@ import {
 	COLLECTION_TOGGLE, COLLECTION_CHANGE_VIEW,
 	COLLECTION_CREATE_SUCCESS, COLLECTION_CREATE_ERROR,
 	COLLECTION_UPDATE_REQ, COLLECTION_UPDATE_SUCCESS, COLLECTION_UPDATE_ERROR,
-	COLLECTION_REMOVE_SUCCESS, COLLECTION_REMOVE_ERROR,
-	COLLECTION_BLANK_IN_PARENT
+	COLLECTION_REMOVE_SUCCESS, COLLECTION_REMOVE_ERROR
 } from '../../constants/collections'
 import {
 	actualizeStatus
@@ -42,12 +41,6 @@ export default function(state, action) {
 			return state
 		}
 
-		case COLLECTION_BLANK_IN_PARENT:{
-			return state
-				.set('blankChildInParent', action.parentId)
-				.setIn(['items', action.parentId, 'expanded'], true)
-		}
-
 		//Create
 		case COLLECTION_CREATE_SUCCESS:{
 			const newItem = normalizeCollection(action.item).set('isNew', true)
@@ -75,8 +68,7 @@ export default function(state, action) {
 			if (typeof action.onSuccess == 'function')
 				action.onSuccess()
 
-			if (action._id>0)
-				state = state.set('items', state.items.without(action._id))
+			state = state.set('items', state.items.without(action._id))
 
 			return actualizeStatus(state)
 		}
