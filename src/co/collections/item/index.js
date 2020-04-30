@@ -45,15 +45,9 @@ export default class CollectionsItem extends React.Component {
                 return this.onExpandClick()
 
             case 46: //delete
+            case 8: //backspace
                 e.preventDefault()
                 return this.onRemoveClick()
-
-            case 8: //backspace
-                if (e.metaKey || e.ctrlKey){
-                    e.preventDefault()
-                    return this.onRemoveClick()
-                }
-            break
 
             case 13: //enter
                 e.preventDefault()

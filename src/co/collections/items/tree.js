@@ -61,10 +61,18 @@ export default class CollectionsTree extends React.Component {
         const row = this.props.data[index]
 
         //disable for system collections
-        if (row.type == 'collection' && row.item && row.item._id <= 0)
-            return false
-        else if (row.type == 'group' && row.system)
-            return false
+        switch(row.type){
+            case 'collection':
+                if (row.item._id <= 0)
+                    if (row.item._id==-101)
+                        return true
+                    else
+                        return false
+            break
+
+            case 'group':
+                return false
+        }
 
         return true
     }

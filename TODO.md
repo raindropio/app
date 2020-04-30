@@ -21,7 +21,8 @@ Bugs
 Not ready
 - electron
 - edit group
-- collections tree context menus, dragndrop
+- collections tree context menus
+- collections confirm remove!!!
 
 Good to have
 - Refactor collection/reorder redux to server

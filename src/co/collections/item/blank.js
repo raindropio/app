@@ -73,7 +73,8 @@ class CollectionsItemBlank extends React.PureComponent {
                     placeholder={t.s('enterTitle')}
                     onKeyUp={this.onKeyUp}
                     onChange={this.onChange}
-                    onBlur={this.create} />
+                    onBlur={this.create} 
+                    />
             </form>
         )
     }

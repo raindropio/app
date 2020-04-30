@@ -168,7 +168,10 @@ function* addBlank({ siblingId, asChild, ignore=false }) {
 
 	//new item
 	const item = {
-		_id: -101
+		_id: -101,
+		access: {
+			draggable: true
+		}
 	}
 
 	//add to first group by default
@@ -207,7 +210,7 @@ function* addBlank({ siblingId, asChild, ignore=false }) {
 				type: GROUP_APPEND_COLLECTION,
 				_id: groupId,
 				collectionId: item._id,
-				...(after ? { after } : { last: true }),
+				...(after ? { after } : {}),
 				ignore: true
 			})
 		)
@@ -317,7 +320,7 @@ function* changeViewCollection({_id=0, view, ignore=false}) {
 }
 
 function* reorderCollection({_id=0, ignore=false, to, after, before}) {
-	if ((ignore)||(_id<=0))
+	if (ignore) //don't check _id>0 because it needs to give ability to move blank collection (-101)
 		return;
 
 	try{
@@ -382,9 +385,6 @@ function* reorderCollection({_id=0, ignore=false, to, after, before}) {
 			break;
 
 			case 'reorder':{
-				if (!collection.access.draggable)
-					throw new ApiError('fail', 'collection is not draggable')
-					
 				const target = state.collections.getIn(['items', parseInt(after||before)])||{}
 				if (target._id<=0 || !target._id)
 					throw new ApiError('not_found', 'target not found')
@@ -392,12 +392,13 @@ function* reorderCollection({_id=0, ignore=false, to, after, before}) {
 				let actions = []
 
 				//remove from groups
-				actions.push(
-					put({
-						type: GROUP_REMOVE_COLLECTION,
-						collectionId: collection._id
-					})
-				)
+				if (_id > 0)
+					actions.push(
+						put({
+							type: GROUP_REMOVE_COLLECTION,
+							collectionId: collection._id
+						})
+					)
 
 				//Move to root collection
 				if (!target.parentId){
@@ -417,12 +418,16 @@ function* reorderCollection({_id=0, ignore=false, to, after, before}) {
 							_id: findGroupByCollection(state.collections.groups, target._id)._id,
 							collectionId: _id,
 							after: parseInt(after),
-							before: parseInt(before)
+							before: parseInt(before),
+							ignore: _id<=0 //useful to give ability dragging of blank collection (-101)
 						})
 					)
 				}
 				//Make nested children and reorder
 				else{
+					if (collection.access.draggable === false)
+						throw new ApiError('fail', 'collection is not draggable')
+
 					yield onlyForProUsersCheck()
 					
 					let order = 0
