@@ -3,6 +3,7 @@ import React from 'react'
 import Sortable from './sortable'
 import Item from '../item'
 import Group from '../group'
+import Empty from './empty'
 
 export default class CollectionsTree extends React.Component {
     _bindList = ref => this._list = ref
@@ -37,6 +38,7 @@ export default class CollectionsTree extends React.Component {
                 //item,etc
                 {...row}
                 //tree specififc
+                uriPrefix={this.props.uriPrefix}
                 selected={row.item && this.props.selectedId == row.item._id}
                 events={this.props.events}
                 actions={this.props.actions}
@@ -46,6 +48,10 @@ export default class CollectionsTree extends React.Component {
                 />
         )
     }
+
+    noRowsRenderer = ()=>(
+        <Empty />
+    )
 
     //drag/drop
     rowType = ({ index })=>
@@ -153,6 +159,7 @@ export default class CollectionsTree extends React.Component {
                 className='collections'
                 rowCount={this.props.data.length}
                 rowRenderer={this.rowRenderer}
+                noRowsRenderer={this.noRowsRenderer}
                 scrollToAlignment='center'
 
                 //custom

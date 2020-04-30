@@ -14,8 +14,6 @@ import {
 } from './utils'
 
 import {
-	COLLECTIONS_SIBLINGS_REORDER,
-
 	COLLECTION_CREATE_REQ, COLLECTION_CREATE_SUCCESS, COLLECTION_CREATE_ERROR,
 	COLLECTION_UPDATE_REQ, COLLECTION_UPDATE_SUCCESS, COLLECTION_UPDATE_ERROR,
 	COLLECTION_REMOVE_REQ, COLLECTION_REMOVE_SUCCESS, COLLECTION_REMOVE_ERROR,
@@ -270,8 +268,6 @@ function* reorderCollection({_id=0, ignore=false, to, after, before}) {
 				if (target._id<=0 || !target._id)
 					throw new ApiError('not_found', 'target not found')
 
-				yield onlyForProUsersCheck()
-
 				let actions = []
 
 				//remove from groups
@@ -306,6 +302,8 @@ function* reorderCollection({_id=0, ignore=false, to, after, before}) {
 				}
 				//Make nested children and reorder
 				else{
+					yield onlyForProUsersCheck()
+					
 					let order = 0
 					let siblings = 0
 					

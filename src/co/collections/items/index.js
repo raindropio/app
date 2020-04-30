@@ -9,6 +9,7 @@ import Tree from './tree'
 
 class CollectionsItems extends React.Component {
     static defaultProps = {
+        uriPrefix:          '',
         selectedId:         undefined,
         options:            {}, //hideIds[], showGroups:true
         events:             {}  //onItemSelect, onItemEditClick, onGroupSelect
@@ -25,6 +26,19 @@ class CollectionsItems extends React.Component {
         })
         
 		this.props.actions.load()
+    }
+
+    createNewCollection = (e)=>{
+        e && e.preventDefault()
+
+        this.props.actions.oneCreate({
+            title: t.s('newString')
+        }, (item)=>{
+            if (this.props.onItemSelect)
+                return this.props.onItemSelect(item)
+
+            location.hash = `#${this.props.uriPrefix}${item._id}`
+        })
     }
 
     render() {
@@ -48,5 +62,7 @@ export default connect(
     },
 	(dispatch)=>({
 		actions: bindActionCreators(collectionsActions, dispatch)
-	})
+    }),
+    undefined,
+    { forwardRef: true }
 )(CollectionsItems)

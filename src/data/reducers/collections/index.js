@@ -5,6 +5,7 @@ import single from './single'
 import drafts from './drafts'
 import sharing from './sharing'
 import defaults from './defaults'
+import reorder from './reorder'
 
 export default function(state = initialState, action={}){
 	//Items
@@ -30,6 +31,10 @@ export default function(state = initialState, action={}){
 	//Defaults
 	const caseDefaults = defaults(state,action);
 	if (caseDefaults) state = caseDefaults;
+
+	//Reorder items when needed
+	const caseReorder = reorder(state,action);
+	if (caseReorder) state = caseReorder;
 
 	switch (action.type) {
 		case 'RESET':{

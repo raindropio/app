@@ -25,7 +25,7 @@ export default class CollectionsItemView extends React.PureComponent {
 	}
 
     render() {
-        const { _id, title, count, color, cover, level, selected, expanded, expandable, author, href } = this.props
+        const { _id, title, count, color, cover, level, selected, expanded, expandable, author, to } = this.props
         const { isDragging, isDropping } = this.props
         const { onClick, onExpandClick, onEditClick, onContextMenu, onKeyDown } = this.props
 
@@ -55,13 +55,12 @@ export default class CollectionsItemView extends React.PureComponent {
 
                 <SuperLink
 					navPrefix='collection'
-                    href={href}
+                    to={to}
                     tabIndex='1'
 					onClick={onClick}
 					onDoubleClick={onExpandClick}
-                    onEnter={onEditClick}
                     onContextMenu={onContextMenu}
-					onKey={onKeyDown}
+					onKeyDown={onKeyDown}
 					className='permalink' />
             </article>
         )

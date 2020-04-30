@@ -59,40 +59,6 @@ export default function(state, action) {
 			return actualizeStatus(state)
 		}
 
-		//Update
-		case COLLECTION_UPDATE_REQ:{
-			//speed up drag reorder
-			if (action.set){
-				const { parentId, order=-1 } = action.set
-
-				if (parentId || order!=-1){
-					let collection = state.getIn(['items', action._id])
-
-					if (parentId)
-						collection = collection.set('parentId', parentId)
-
-					//reorder siblings
-					if (order!=-1){
-						collection = collection.set('sort', order)
-
-						let i=0
-						_.forEach(
-							_.sortBy(state.items, ({sort})=>sort),
-							(item)=>{
-								if (item.parentId == collection.parentId &&
-									item._id != collection._id){
-									state = state.setIn(['items', item._id, 'sort'], i + (i>=order?1:0) )
-									i++
-								}
-							}
-						)
-					}
-						
-					return state.setIn(['items', action._id], normalizeCollection(collection))
-				}
-			}
-		}break
-
 		case COLLECTION_UPDATE_SUCCESS:{
 			const updatedItem = normalizeCollection(action.item)
 			if (state.items[updatedItem._id])

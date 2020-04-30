@@ -42,17 +42,20 @@ export default class CollectionsItem extends React.Component {
                 if (e.metaKey || e.ctrlKey)
                     return this.onRemoveClick()
             break
+
+            case 13: //enter
+                return this.onEditClick()
         }
     }
 
     render() {
-        const { item, ...props } = this.props
+        const { item, uriPrefix, ...props } = this.props
 
         return (
             <View 
                 {...item}
                 {...props}
-                href={`#/collection/${item._id}`}
+                to={`${uriPrefix}${item._id}`}
                 onClick={props.events.onItemSelect && this.onClick}
                 onExpandClick={this.onExpandClick}
                 onEditClick={this.onEditClick}

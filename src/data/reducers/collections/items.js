@@ -14,7 +14,6 @@ import {REHYDRATE} from 'redux-persist/src/constants'
 
 import {
 	COLLECTIONS_LOAD_REQ, COLLECTIONS_LOAD_SUCCESS, COLLECTIONS_LOAD_ERROR,
-	COLLECTIONS_SIBLINGS_REORDER,
 	COLLECTIONS_REFRESH_REQ,
 	COLLECTIONS_REORDER
 } from '../../constants/collections'
@@ -67,14 +66,6 @@ export default function(state, action) {switch (action.type) {
 	case COLLECTIONS_REFRESH_REQ:{
 		return state
 			.set('status', 'loading')
-	}
-
-	case COLLECTIONS_SIBLINGS_REORDER:{
-		action.items.forEach(({_id, sort})=>{
-			state = state.setIn(['items', _id, 'sort'], sort)
-		})
-
-		return state
 	}
 
 	//Reorder all collections
