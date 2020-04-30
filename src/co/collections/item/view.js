@@ -27,7 +27,7 @@ export default class CollectionsItemView extends React.PureComponent {
     render() {
         const { _id, title, count, color, cover, level, selected, expanded, expandable, author, to } = this.props
         const { isDragging, isDropping } = this.props
-        const { onClick, onExpandClick, onEditClick, onContextMenu, onKeyDown } = this.props
+        const { onClick, onExpandClick, onRenameClick, onContextMenu, onKeyUp } = this.props
 
         return (
             <article
@@ -51,7 +51,7 @@ export default class CollectionsItemView extends React.PureComponent {
                 {this.renderStatus()}
 
                 {count ? <div className='count'>{humanNumber(count)}</div> : null}
-				{_id>0 && author ? <div className='actions'><span onClick={onEditClick}>{t.s('editMin')}</span></div> : null}
+				{_id>0 && author ? <div className='actions'><span onClick={onRenameClick}>{t.s('editMin')}</span></div> : null}
 
                 <SuperLink
 					navPrefix='collection'
@@ -60,7 +60,7 @@ export default class CollectionsItemView extends React.PureComponent {
 					onClick={onClick}
 					onDoubleClick={onExpandClick}
                     onContextMenu={onContextMenu}
-					onKeyDown={onKeyDown}
+					onKeyUp={onKeyUp}
 					className='permalink' />
             </article>
         )

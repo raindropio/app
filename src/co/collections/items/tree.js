@@ -157,6 +157,7 @@ export default class CollectionsTree extends React.Component {
                 innerRef={this._bindList}
 
                 //react-virtualized
+                data={this.props.data}
                 selectedId={this.props.selectedId}
                 className='collections'
                 rowCount={this.props.data.length}
