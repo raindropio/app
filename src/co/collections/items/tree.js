@@ -171,7 +171,7 @@ export default class CollectionsTree extends React.Component {
                 rowCount={this.props.data.length}
                 rowRenderer={this.rowRenderer}
                 noRowsRenderer={this.noRowsRenderer}
-                scrollToAlignment='center'
+                overscanRowCount={5}
 
                 //custom
                 rowType={this.rowType}

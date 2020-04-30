@@ -138,6 +138,7 @@ export default class SortableVirtualList extends React.Component {
                             <List
                                 {...size}
                                 {...other}
+                                tabIndex=''
                                 rowHeight={this.sizeCache.rowHeight}
                                 deferredMeasurementCache={this.sizeCache}
                                 ref={this.bindList(dragProvider)}

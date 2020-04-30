@@ -29,3 +29,4 @@ Good to have
 - Expand tree for selected id
 - Logic for moving to several parents in the end of the list
 - Preloader for blank collection
+- Fix input focus style on blue background (when rename collection for example)

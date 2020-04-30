@@ -114,7 +114,8 @@ module.exports = {
 			template: './assets/index.ejs',
 			favicon: './assets/images/icons/favicon.ico',
 			hash: true,
-			scriptLoading: 'defer'
+			scriptLoading: 'defer',
+			inject: 'body'
 		}),
 
 		//CSS

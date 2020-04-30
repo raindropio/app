@@ -56,7 +56,7 @@ export default class CollectionsItemView extends React.PureComponent {
                 <SuperLink
 					navPrefix='collection'
                     to={to}
-                    tabIndex='1'
+                    tabIndex={selected ? '1' : '-1'}
 					onClick={onClick}
 					onDoubleClick={onExpandClick}
                     onContextMenu={onContextMenu}
