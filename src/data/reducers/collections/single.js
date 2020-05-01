@@ -68,7 +68,10 @@ export default function(state, action) {
 			if (typeof action.onSuccess == 'function')
 				action.onSuccess()
 
-			if (action._id != -99)
+			//change trash counter to 0
+			if (action._id == -99)
+				state = state.setIn(['items', -99, 'count'], 0)
+			else
 				state = state.set('items', state.items.without(action._id))
 
 			return actualizeStatus(state)

@@ -30,6 +30,7 @@ Good to have
 - Preloader for blank collection
 - Fix input focus style on blue background (when rename collection for example)
 - Group is not empty alert on remove
+- When collection removed increment Trash counter
 
 Translation
 - leave

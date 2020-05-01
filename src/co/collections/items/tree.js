@@ -71,7 +71,7 @@ export default class CollectionsTree extends React.Component {
             break
 
             case 'group':
-                return false
+                return row.system ? false : true
         }
 
         return true

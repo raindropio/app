@@ -50,7 +50,12 @@ export default class CollectionsGroup extends React.PureComponent {
         },
 
         onCollapseAllClick: ()=>{
-            this.props.actions.toggleAll()
+            this.props.actions.toggle()
+        },
+
+        onSortAllByTitleClick: ()=>{
+            if (confirm(t.s('areYouSure')))
+                this.props.actions.reorder('title')
         },
     
         onContextMenu: (e)=>{

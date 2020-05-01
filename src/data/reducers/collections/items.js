@@ -72,21 +72,30 @@ export default function(state, action) {switch (action.type) {
 
 	//Reorder all collections
 	case COLLECTIONS_REORDER:{
+		let items
+		switch(action.method) {
+			case 'title':
+				items = _.sortBy(state.items, ({title})=>title.toLowerCase())
+			break;
+
+			case 'count':
+				items = _.sortBy(state.items, ({count})=>count).reverse()
+			break;
+		}
+
+		items.forEach((item, i)=>
+			state = state.setIn(['items', item._id, 'sort'], i)
+		)
+
 		state.groups.forEach(({collections}, groupIndex)=>{
-			var items = collections.map(_id=>state.items[_id])
-							.filter(item=>item)
+			let ids = items
+				.filter(({_id})=>collections.includes(_id))
+				.map(({_id})=>parseInt(_id))
 
-			switch(action.method) {
-				case 'title':
-					items = _.sortBy(items, ({title})=>title.toLowerCase())
-				break;
-
-				case 'count':
-					items = _.sortBy(items, ({count})=>count).reverse()
-				break;
-			}
-
-			state = state.setIn(['groups', groupIndex, 'collections'], items.map(({_id})=>parseInt(_id)))
+			state = state.setIn(
+				['groups', groupIndex, 'collections'], 
+				ids
+			)
 		})
 
 		return state

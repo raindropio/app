@@ -7,6 +7,7 @@ import {
 	COLLECTIONS_LOAD_REQ, COLLECTIONS_LOAD_SUCCESS, COLLECTIONS_LOAD_ERROR,
 	COLLECTIONS_REFRESH_REQ,
 	COLLECTIONS_COLLAPSE_ALL,
+	COLLECTIONS_REORDER,
 
 	COLLECTION_DRAFT_LOAD_REQ, COLLECTION_UPDATE_REQ,
 } from '../../constants/collections'
@@ -21,6 +22,7 @@ export default function* () {
 	], loadItems)
 
 	yield takeEvery(COLLECTIONS_COLLAPSE_ALL, collapseAll)
+	yield takeEvery(COLLECTIONS_REORDER, reorderAll)
 }
 
 function* loadItems({dontLoadCollections=false}) {
@@ -79,4 +81,10 @@ function* collapseAll({ ignore=false }){
 	if (ignore) return
 
 	yield call(Api.put, 'collections', { expanded: false }) 
+}
+
+function* reorderAll({ ignore=false, method }){
+	if (ignore) return
+
+	yield call(Api.put, 'collections', { sort: method }) 
 }

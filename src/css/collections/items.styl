@@ -63,95 +63,6 @@ groupActive(){
     }
 }
 
-/*@media (hover: hover) and (pointer: fine) {
-	html.chrome .collections-scroll-block {
-		scroll-snap-type: y mandatory;
-	}
-}*/
-
-.collections-scroll-block {
-	.collections-toolbar {
-		scroll-snap-align: center;
-		height: 38px;
-		padding-left: 19px;
-		padding-right: 14px;
-		margin-right: 1px;
-		display: flex;
-
-		.collections-toolbar-search {
-			flex: 1
-			min-width: 0
-		}
-
-		.collections-toolbar-buttons {
-			margin-left: 4px;
-			
-			.button {
-				width: searchHeight
-				height: searchHeight
-				align-items: center
-				justify-content: center
-			}
-		}
-
-		&[data-sticky='true'] {
-			position: sticky;
-			top: 0;left:0;right:0;
-			z-index: 10;
-			box-shadow: 0px .5px 0px rgba(0,0,0,.15), 0px 1px 6px rgba(0,0,0,.15)
-		}
-	}
-
-	.collections-scroll-main-content {
-		scroll-snap-align: start;
-		min-height: 100%;
-	}
-}
-
-.collectionMoveZone {
-	height: 1px;
-	position: relative;
-	z-index: 1;
-	
-	&:before {
-		position: absolute;
-		top: 50%;
-		margin-top: -1px;
-		left: (sidebarRightGap + 5px);right:sidebarRightGap;
-		height:2px;
-		border-radius: 2px;
-		content: "";
-		opacity: 0;
-		background: colorTheme;
-		pointer-events: none;
-	}
-	
-	&:after {
-		position: absolute;
-		top: 50%;
-		width: 3px;height:3px;
-		margin-top: -3px;
-		border: 2px solid colorTheme;
-		background: white;
-		border-radius: 3px;
-		left: sidebarRightGap;
-		content: "";
-		opacity: 0;
-		pointer-events: none;
-	}
-	
-	&.is-drag-over:before,&.is-drag-over:after {
-		opacity:1;
-		transition: opacity .15s ease-in-out;
-		pointer-events: auto;
-	}
-}
-
-.is-collection-dragging-mode .collectionMoveZone {
-	height: 16px;
-	margin: -7.5px 0px;
-}
-
 img.collectionIcon {
 	width: rem(20px);height:rem(20px);
 	object-fit: cover;
@@ -262,7 +173,7 @@ img.collectionIcon {
 			position:relative;
 			z-index:1;
 			display: block;
-			padding: 0 3px
+			padding: 0 4px
 		}
 	}
 
@@ -436,7 +347,7 @@ section:first-child .group {
 	.toggle {
 		height: rem(groupHeight);
     	line-height: rem(groupHeight);
-		padding:0 (sidebarRightGap - 5px);
+		padding:0 (sidebarRightGap - 4px);
 		display:none;
 		color: black;
 		opacity: .55;
@@ -461,6 +372,7 @@ section:first-child .group {
     }
 	
 	&:hover {
+		background-color: rgba(0,0,0,0.07);
 		.toggle {
 			display:block;
 		}

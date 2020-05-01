@@ -175,7 +175,8 @@ export const expandTo = (_id, self)=>({
 	self
 })
 
-export const toggleAll = ()=>({
+//Toggle all collections
+export const toggle = ()=>({
 	type: COLLECTIONS_COLLAPSE_ALL
 })
 
