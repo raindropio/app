@@ -17,7 +17,7 @@ import {
 	COLLECTIONS_LOAD_REQ, COLLECTIONS_LOAD_SUCCESS, COLLECTIONS_LOAD_ERROR,
 	COLLECTIONS_REFRESH_REQ,
 	COLLECTIONS_REORDER,
-	COLLECTIONS_EXPAND_TO
+	COLLECTIONS_EXPAND_TO, COLLECTIONS_COLLAPSE_ALL
 } from '../../constants/collections'
 
 import {
@@ -102,6 +102,14 @@ export default function(state, action) {switch (action.type) {
 			parents.forEach(_id=>{
 				state = state.setIn(['items', _id, 'expanded'], true)
 			})
+
+		return state
+	}
+
+	case COLLECTIONS_COLLAPSE_ALL:{
+		Object.entries(state.items).forEach(([_id])=>{
+			state = state.setIn(['items', _id, 'expanded'], false)
+		})
 
 		return state
 	}

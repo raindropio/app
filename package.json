@@ -46,6 +46,7 @@
 		"react-dom": "16.13.x",
 		"react-helmet": "6.0.x",
 		"react-masonry-component": "6.2.x",
+		"react-portal": "^4.2.1",
 		"react-router-dom": "5.1.x",
 		"react-virtualized": "^9.21.2",
 		"reflux": "5.0.x",

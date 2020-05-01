@@ -654,5 +654,6 @@
   "canceled": "Canceled",
   "willStop": "Will stop",
   "invoices": "Invoices",
-  "billingCycle": "Billing cycle"
+  "billingCycle": "Billing cycle",
+  "leave": "Leave"
 }

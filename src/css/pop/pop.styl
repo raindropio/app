@@ -27,7 +27,7 @@ popShadowRetina = 0px 0px 0px 0.5px rgba(0,0,0,0.3), 0px 20px 90px 0px rgba(0,0,
 	}
 }
 
-#pop-body-black {
+.pop-body-black {
 	position: fixed;
 	top:0;left:0;right:0;bottom:0;
 	z-index: 998;
@@ -67,7 +67,7 @@ popShadowRetina = 0px 0px 0px 0.5px rgba(0,0,0,0.3), 0px 20px 90px 0px rgba(0,0,
 	top: 0;
 }
 
-#pop-body {
+.pop-body {
 	//@extend .disable-select;
 	//top:0;left:0;
 	z-index: 999;
@@ -76,20 +76,10 @@ popShadowRetina = 0px 0px 0px 0.5px rgba(0,0,0,0.3), 0px 20px 90px 0px rgba(0,0,
 	border-radius: 2px;
 	
 	position: fixed;
-	min-width: 260px;
-	max-width: popMaxWidth;
-	min-height: 90px;
 
-	//transition: left .2s ease-in-out, top .2s ease-in-out, bottom .2s ease-in-out, right .2s ease-in-out;
-	//transition-delay: .2s;
-	animation: popDir .2s ease-in-out;
-
-	//&[data-dir=""], &[data-dir="center"], &[data-is-mouse="true"] {
-		
-		#pop-arrow  {
-			display: none;
-		}
-	//}
+	#pop-arrow  {
+		display: none;
+	}
 	
 	&[data-is-mouse="true"] {
 		animation: none;
@@ -149,27 +139,17 @@ popShadowRetina = 0px 0px 0px 0.5px rgba(0,0,0,0.3), 0px 20px 90px 0px rgba(0,0,
 	}
 }
 
-html.retina.chrome #pop-body {
+html.retina.chrome .pop-body {
 	box-shadow: popShadowRetina;
 }
 
 /*Only safari*/
 html.safari {
-	&.retina #pop-body {
+	&.retina .pop-body {
 		border: 0.5px solid rgba(0,0,0,.3);
 		box-shadow: 0px 10px 40px 0px rgba(0,0,0,0.4);
 	}
 }
-
-/*.selectize-overflow-visible #pop-body {
-	footer {
-		visibility: hidden;
-	}
-	.overflow-scroll {
-		overflow: visible;
-	}
-}*/
-
 
 #pop-arrow {
 	//z-index: 99999999999;
@@ -185,12 +165,12 @@ html.safari {
 }
 
 .pop-mode-will-close {
-	#pop-body-black {
+	.pop-body-black {
 		animation: popDisappear .2s ease-in-out;
 		opacity:0;
 	}
 
-	#pop-body{
+	.pop-body{
 		animation: popDirReverse .2s ease-in-out;
 		opacity:0;
 
@@ -290,7 +270,7 @@ popPadding = 16px;
 	}
 }
 
-html.mobile #pop-body {
+html.mobile .pop-body {
 	bottom:0 !important;
 	left:0 !important;
 	right:0 !important;
@@ -325,7 +305,7 @@ html.mobile #pop-body {
 		background-image: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz48c3ZnIHdpZHRoPSIxMnB4IiBoZWlnaHQ9IjIwcHgiIHZpZXdCb3g9IjAgMCAxMiAyMCIgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIj4gICAgICAgIDx0aXRsZT5hPC90aXRsZT4gICAgPGRlc2M+Q3JlYXRlZCB3aXRoIFNrZXRjaC48L2Rlc2M+ICAgIDxkZWZzPjwvZGVmcz4gICAgPGcgaWQ9IlBhZ2UtMSIgc3Ryb2tlPSJub25lIiBzdHJva2Utd2lkdGg9IjEiIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCIgc3Ryb2tlLW9wYWNpdHk9IjAuMiI+ICAgICAgICA8cG9seWxpbmUgaWQ9ImEiIHN0cm9rZT0iI0ZGRkZGRiIgZmlsbD0iIzNBM0EzQSIgcG9pbnRzPSIxMSAyMCAxIDEwIDExIDAiPjwvcG9seWxpbmU+ICAgIDwvZz48L3N2Zz4=");
 	}
 	
-	#pop-body {
+	.pop-body {
 		background: lighten(darkBackground,5%);
 		box-shadow: 0 0 0 1px rgba(255,255,255,.15) !important;
 		color: rgba(255,255,255,.8);

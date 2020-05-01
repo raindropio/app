@@ -167,7 +167,7 @@ img.collectionIcon {
 	//transition: background .01s linear, color .01s linear;
 	padding-left: calc(var(--level) * 21px);
 
-	.expand, .actions span {
+	.expand {
 		@extend .disable-select;
 		
 		opacity: .4;
@@ -254,28 +254,15 @@ img.collectionIcon {
 
 	.actions {
 		display: none;
+		text-align: right;
+		justify-content: flex-end;
 
-		&.active {
-			display: block;
-			background: transparent;
-			
-			span {
-				opacity:1;
-			}
-		}
-		
 		span {
 			opacity: .7;
-			padding-left: 6px;
-			padding-right: 6px;
-			font-size: rem(13px);
-			display: flex;
-			align-items: center;
-			justify-content: center;
-
-			.svgIcon {
-				vertical-align: rem(-4px);
-			}
+			position:relative;
+			z-index:1;
+			display: block;
+			padding: 0 3px
 		}
 	}
 
@@ -381,7 +368,7 @@ html.web:not(.electron) .collection {
     		display: none;
     	}
     	.actions {
-    		display: block;
+    		display: flex;
     	}
     }
 }
@@ -449,7 +436,7 @@ section:first-child .group {
 	.toggle {
 		height: rem(groupHeight);
     	line-height: rem(groupHeight);
-		padding:0 sidebarRightGap;
+		padding:0 (sidebarRightGap - 5px);
 		display:none;
 		color: black;
 		opacity: .55;

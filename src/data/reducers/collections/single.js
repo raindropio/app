@@ -68,7 +68,8 @@ export default function(state, action) {
 			if (typeof action.onSuccess == 'function')
 				action.onSuccess()
 
-			state = state.set('items', state.items.without(action._id))
+			if (action._id != -99)
+				state = state.set('items', state.items.without(action._id))
 
 			return actualizeStatus(state)
 		}

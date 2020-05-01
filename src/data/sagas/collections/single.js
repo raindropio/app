@@ -177,6 +177,14 @@ function* addBlank({ siblingId, asChild, ignore=false }) {
 	//add to first group by default
 	let groupId = state.collections.getIn(['groups', 0, '_id'])
 
+	//check maybe need to add to specific group?
+	if (typeof siblingId == 'string')
+		for(const group of state.collections.groups)
+			if (group._id == siblingId){
+				groupId = group._id
+				break
+			}
+
 	//if sibling id is specified move it to specific position in the tree
 	let after
 	if (parseInt(siblingId) > 0){

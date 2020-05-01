@@ -1,5 +1,4 @@
 import React from 'react'
-import t from '~t'
 import { humanNumber } from '~modules/strings'
 
 import SuperLink from '~co/common/superLink'
@@ -25,13 +24,13 @@ export default class CollectionsItemView extends React.PureComponent {
 	}
 
     render() {
-        const { _id, title, count, color, cover, level, selected, expanded, expandable, author, to } = this.props
+        const { _id, title, count, color, cover, level, selected, expanded, expandable, to } = this.props
         const { isDragging, isDropping } = this.props
         const { onClick, onExpandClick, onRenameClick, onContextMenu, onKeyUp } = this.props
 
         return (
             <article
-                className={`collection ${selected && 'active'} ${expandable && (expanded ? 'expanded' : 'collapsed')} ${_id>0 && author && 'have-actions'} ${isDragging && 'is-dragging'} ${isDropping && 'is-drag-over'}`}
+                className={`collection have-actions ${selected && 'active'} ${expandable && (expanded ? 'expanded' : 'collapsed')} ${isDragging && 'is-dragging'} ${isDropping && 'is-drag-over'}`}
                 style={{'--accentColor': color, '--level': level}}>
                 <span className='expand' onMouseUp={onExpandClick}>
                     <Icon name='arrow_alt' />
@@ -51,14 +50,14 @@ export default class CollectionsItemView extends React.PureComponent {
                 {this.renderStatus()}
 
                 {count ? <div className='count'>{humanNumber(count)}</div> : null}
-				{_id>0 && author ? <div className='actions'><span onClick={onRenameClick}>{t.s('editMin')}</span></div> : null}
+				<div className='actions'><Icon name='more_horizontal' onMouseDown={onContextMenu} /></div>
 
                 <SuperLink
 					navPrefix='collection'
                     to={to}
                     tabIndex={selected ? '1' : '-1'}
 					onClick={onClick}
-					onDoubleClick={onExpandClick}
+					onDoubleClick={onRenameClick}
                     onContextMenu={onContextMenu}
 					onKeyUp={onKeyUp}
 					className='permalink' />

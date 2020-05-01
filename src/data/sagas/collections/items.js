@@ -6,6 +6,7 @@ import _ from 'lodash-es'
 import {
 	COLLECTIONS_LOAD_REQ, COLLECTIONS_LOAD_SUCCESS, COLLECTIONS_LOAD_ERROR,
 	COLLECTIONS_REFRESH_REQ,
+	COLLECTIONS_COLLAPSE_ALL,
 
 	COLLECTION_DRAFT_LOAD_REQ, COLLECTION_UPDATE_REQ,
 } from '../../constants/collections'
@@ -18,6 +19,8 @@ export default function* () {
 		COLLECTIONS_REFRESH_REQ, 
 		COLLECTION_DRAFT_LOAD_REQ
 	], loadItems)
+
+	yield takeEvery(COLLECTIONS_COLLAPSE_ALL, collapseAll)
 }
 
 function* loadItems({dontLoadCollections=false}) {
@@ -70,4 +73,10 @@ function* loadItems({dontLoadCollections=false}) {
 	} catch (error) {
 		yield put({type: COLLECTIONS_LOAD_ERROR, error});
 	}
+}
+
+function* collapseAll({ ignore=false }){
+	if (ignore) return
+
+	yield call(Api.put, 'collections', { expanded: false }) 
 }

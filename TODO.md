@@ -22,7 +22,6 @@ Not ready
 - electron
 - edit group
 - collections tree context menus
-- collections confirm remove!!!
 
 Good to have
 - Refactor collection/reorder redux to server
@@ -30,3 +29,7 @@ Good to have
 - Logic for moving to several parents in the end of the list
 - Preloader for blank collection
 - Fix input focus style on blue background (when rename collection for example)
+- Group is not empty alert on remove
+
+Translation
+- leave

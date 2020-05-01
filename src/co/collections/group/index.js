@@ -1,5 +1,7 @@
 import React from 'react'
+import t from '~t'
 import View from './view'
+import Contextmenu from './contextmenu'
 
 export default class CollectionsGroup extends React.PureComponent {
     static defaultProps = {
@@ -9,23 +11,71 @@ export default class CollectionsGroup extends React.PureComponent {
         actions:    {} //redux collections
     }
 
-    onClick = ()=>{
-        if (this.props.events.onGroupSelect)
-            return this.props.events.onGroupSelect(this.props)
-            
-        this.props.actions.groupToggle(this.props._id)
+    state = {
+        rename: false,
+        menu: false
     }
 
-    onContextMenu = (e)=>{
-        e.preventDefault()
+    handlers = {
+        onClick: ()=>{
+            if (this.props.events.onGroupSelect)
+                return this.props.events.onGroupSelect(this.props)
+                
+            this.handlers.onToggleClick()
+        },
+
+        onCreateNewCollectionClick: ()=>{
+            this.props.actions.addBlank(this.props._id)
+        },
+
+        onCreateNewGroupClick: ()=>{
+            const title = prompt(t.s('enterTitle'))
+            if (title)
+                this.props.actions.groupCreate(title)
+        },
+
+        onRenameClick: ()=>{
+            const title = prompt(t.s('enterTitle'), this.props.title)
+
+            if (title)
+                this.props.actions.groupRename(this.props._id, title)
+        },
+
+        onToggleClick: ()=>{
+            this.props.actions.groupToggle(this.props._id)
+        },
+
+        onRemoveClick: ()=>{
+            this.props.actions.groupRemove(this.props._id)
+        },
+
+        onCollapseAllClick: ()=>{
+            this.props.actions.toggleAll()
+        },
+    
+        onContextMenu: (e)=>{
+            e.preventDefault()
+            e.target.focus()
+            this.setState({ menu: true })
+        },
+    
+        onContextMenuClose: ()=>
+            this.setState({ menu: false }),
     }
 
     render() {
         return (
-            <View 
-                {...this.props}
-                onClick={this.onClick}
-                onContextMenu={this.onContextMenu} />
+            <>
+                <View 
+                    {...this.props}
+                    {...this.handlers} />
+
+                {this.state.menu && (
+                    <Contextmenu 
+                        {...this.props}
+                        {...this.handlers} />
+                )}
+            </>
         )
     }
 }

@@ -48,7 +48,7 @@ class CollectionsItemRename extends React.PureComponent {
 
         return (
             <form
-                className='collection active'
+                className='collection'
                 data-is-focus='true'
                 style={{'--accentColor': color, '--level': level}}
                 onSubmit={this.onSubmit}>

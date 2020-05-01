@@ -1,5 +1,5 @@
 import React from 'react'
-import t from '~t'
+import Icon from '~co/common/icon'
 
 export default class CollectionsGroupView extends React.Component {
     render() {
@@ -12,10 +12,9 @@ export default class CollectionsGroupView extends React.Component {
         return (
             <div 
                 className={`group ${selected && 'active'} ${isDragging && 'is-dragging'} ${isDropping && 'is-drag-over'}`}
-                onContextMenu={onContextMenu}
-                onClick={onClick}>
-                <div className='title'>{title}</div>
-                <span className='toggle'>{t.s(hidden ? 'show' : 'hide')}</span>
+                onContextMenu={onContextMenu}>
+                <div className='title' onClick={onClick}>{title}</div>
+                <div className='toggle'><Icon name='more_horizontal' onMouseDown={onContextMenu} /></div>
             </div>
         )
     }

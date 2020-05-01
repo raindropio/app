@@ -1,7 +1,9 @@
 import React from 'react'
+import t from '~t'
 import Blank from './blank'
 import View from './view'
 import Rename from './rename'
+import Contextmenu from './contextmenu'
 
 export default class CollectionsItem extends React.Component {
     static defaultProps = {
@@ -12,46 +14,59 @@ export default class CollectionsItem extends React.Component {
     }
 
     state = {
-        rename: false
+        rename: false,
+        menu: false
     }
 
-    onClick = ()=>{
-        this.props.events.onItemSelect(this.props.item)
-    }
-
-    onExpandClick = ()=>{
-        this.props.actions.oneToggle(this.props.item._id)
-    }
-
-    onRenameClick = ()=>
-        this.setState({ rename: true })
+    handlers = {
+        onClick: this.props.events.onItemSelect ?
+            ()=>
+                this.props.events.onItemSelect(this.props.item) :
+            undefined,
     
-    onRenameCancel = ()=>
-        this.setState({ rename: false })
+        onExpandClick: ()=>
+            this.props.actions.oneToggle(this.props.item._id),
+    
+        onRenameClick: ()=>
+            this.setState({ rename: true }),
+        
+        onRenameCancel: ()=>
+            this.setState({ rename: false }),
+    
+        onRemoveClick: ()=>{
+            if (confirm(t.s('areYouSure')))
+                this.props.actions.oneRemove(this.props.item._id)
+        },
+    
+        onContextMenu: (e)=>{
+            e.preventDefault()
+            e.target.focus()
+            this.setState({ menu: true })
+        },
+    
+        onContextMenuClose: ()=>
+            this.setState({ menu: false }),
 
-    onRemoveClick = ()=>{
-        this.props.actions.oneRemove(this.props.item._id)
-    }
-
-    onContextMenu = (e)=>{
-        e.preventDefault()
-    }
-
-    onKeyUp = (e)=>{
-        switch(e.keyCode){
-            case 37: //left
-            case 39: //right
-                e.preventDefault()
-                return this.onExpandClick()
-
-            case 46: //delete
-            case 8: //backspace
-                e.preventDefault()
-                return this.onRemoveClick()
-
-            case 13: //enter
-                e.preventDefault()
-                return this.onRenameClick()
+        onCreateNewChildClick: ()=>{
+            this.props.actions.addBlank(this.props.item._id, true)
+        },
+    
+        onKeyUp: (e)=>{
+            switch(e.keyCode){
+                case 37: //left
+                case 39: //right
+                    e.preventDefault()
+                    return this.handlers.onExpandClick()
+    
+                case 46: //delete
+                case 8: //backspace
+                    e.preventDefault()
+                    return this.handlers.onRemoveClick()
+    
+                case 13: //enter
+                    e.preventDefault()
+                    return this.handlers.onRenameClick()
+            }
         }
     }
 
@@ -63,17 +78,21 @@ export default class CollectionsItem extends React.Component {
             (this.state.rename ? Rename : View)
 
         return (
-            <Component 
-                {...item}
-                {...props}
-                to={`${uriPrefix}${item._id}`}
-                onClick={props.events.onItemSelect && this.onClick}
-                onExpandClick={this.onExpandClick}
-                onRenameClick={this.onRenameClick}
-                onRenameCancel={this.onRenameCancel}
-                onRemoveClick={this.onRemoveClick}
-                onContextMenu={this.onContextMenu}
-                onKeyUp={this.onKeyUp} />
+            <>
+                <Component 
+                    {...item}
+                    {...props}
+                    {...this.handlers}
+                    to={`${uriPrefix}${item._id}`} />
+
+                {this.state.menu && (
+                    <Contextmenu 
+                        {...item}
+                        {...props}
+                        {...this.handlers}
+                        to={`${uriPrefix}${item._id}`} />
+                )}
+            </>
         )
     }
 }
