@@ -21,7 +21,7 @@ class CollectionsSidebar extends React.Component {
                 <Header title={<Icon name='raindrop_logo' className='raindropLogo' />}>
                     <a 
                         href=''
-                        className='button default'
+                        className='button flat'
                         title={`${t.s('createNewCollection')}\nShift+click: ${t.s('createSubFolder').toLowerCase()}`}
                         onClick={this.onCreateClick}>
                         <b><Icon name='new_collection' /></b>

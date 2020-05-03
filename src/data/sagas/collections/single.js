@@ -388,6 +388,12 @@ function* reorderCollection({_id=0, ignore=false, to, after, before}) {
 							parentId: parseInt(to),
 							order: 0
 						}
+					}),
+
+					put({
+						type: COLLECTIONS_EXPAND_TO,
+						_id: parseInt(to),
+						self: true
 					})
 				])
 			break;
