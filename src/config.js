@@ -20,6 +20,8 @@ export default {
 
     'links': {
         'download': 'https://raindrop.io/download',
+        'help': 'https://help.raindrop.io',
+        'blog': 'https://blog.raindrop.io',
 
         'pro': {
             'buy': 'https://raindrop.io/pro/buy',

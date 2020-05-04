@@ -50,7 +50,7 @@ export default class CollectionsItemView extends React.PureComponent {
                 {this.renderStatus()}
 
                 {count ? <div className='count'>{humanNumber(count)}</div> : null}
-				<div className='actions'><Icon name='more_horizontal' onMouseDown={onContextMenu} /></div>
+				<div className='actions'><Icon name='more_horizontal' onClick={onContextMenu} /></div>
 
                 <SuperLink
 					navPrefix='collection'

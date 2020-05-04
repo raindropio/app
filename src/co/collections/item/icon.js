@@ -3,7 +3,7 @@ import Icon from '~co/common/icon'
 
 export default React.memo(({ _id, src, className, size, selected })=>{
 	if (src)
-		return <img src={src} className={'collectionIcon '+className||''} />
+		return <img src={src} className={'collectionIcon '+className||''} loading='lazy' />
 
 	var svgIcon = '', prefix = (selected ? '_active' : '')
 	

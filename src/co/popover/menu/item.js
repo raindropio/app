@@ -1,11 +1,12 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import Context from '../context'
 
 export class MenuItem extends React.Component {
     static contextType = Context
 
     onClick = (e)=>{
-        if (!this.props.href && !this.props.to)
+        if ((this.props.href || this.props.to) == false)
             e.preventDefault()
 
         this.props.onClick && this.props.onClick(e)
@@ -14,15 +15,16 @@ export class MenuItem extends React.Component {
     }
 
     render() {
-        const { children, ...link } = this.props
+        const { children, ...etc } = this.props
+        const Component = etc.to ? Link : 'a'
         
         return (
-            <a 
-                {...link}
+            <Component 
+                {...etc}
                 className='contextMenuItem'
                 onClick={this.onClick}>
-                <span className='title'>{children}</span>
-            </a>
+                {children}
+            </Component>
         )
     }
 }

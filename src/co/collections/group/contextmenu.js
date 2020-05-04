@@ -1,6 +1,7 @@
 import React from 'react'
 import t from '~t'
 import Popover, { Menu, MenuItem, MenuSeparator } from '~co/popover'
+import Icon from '~co/common/icon'
 
 export default function CollectionsItemContextmenu({
     system, hidden,
@@ -10,22 +11,26 @@ export default function CollectionsItemContextmenu({
         <Popover onClose={onContextMenuClose}>
             <Menu>
                 <MenuItem onClick={onCreateNewCollectionClick}>
+                    <Icon name='new_collection' />
                     {t.s('createNewCollection')}
                 </MenuItem>
 
                 <MenuSeparator />
 
                 <MenuItem onClick={onCollapseAllClick}>
+                    <Icon name='collapse_all' />
                     {t.s('collapseAll')} {t.s('collectionsCount')}
                 </MenuItem>
 
                 <MenuItem onClick={onSortAllByTitleClick}>
+                    <Icon name='sort_title' />
                     {t.s('sortMin')} {t.s('all').toLowerCase()} {t.s('collectionsCount')} {t.s('byName').toLowerCase()}
                 </MenuItem>
 
                 <MenuSeparator />
 
                 <MenuItem onClick={onCreateNewGroupClick}>
+                    <Icon name='plus' />
                     {t.s('createGroup')}
                 </MenuItem>
 
@@ -33,14 +38,17 @@ export default function CollectionsItemContextmenu({
                 { !system && (
                     <>
                         <MenuItem onClick={onRenameClick}>
+                            <Icon name='new_note' />
                             {t.s('edit')} {t.s('group').toLowerCase()}
                         </MenuItem>
 
                         <MenuItem onClick={onToggleClick}>
+                            <Icon name='sort' />
                             {t.s(hidden ? 'show' : 'hide')} {t.s('group').toLowerCase()}
                         </MenuItem>
 
                         <MenuItem onClick={onRemoveClick}>
+                            <Icon name='trash' />
                             {t.s('remove')} {t.s('group').toLowerCase()}
                         </MenuItem>
                     </>

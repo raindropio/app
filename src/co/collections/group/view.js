@@ -14,7 +14,7 @@ export default class CollectionsGroupView extends React.Component {
                 className={`group ${selected && 'active'} ${isDragging && 'is-dragging'} ${isDropping && 'is-drag-over'}`}
                 onContextMenu={onContextMenu}>
                 <div className='title' onClick={onClick}>{title}</div>
-                <div className='toggle'><Icon name='more_horizontal' onMouseDown={onContextMenu} /></div>
+                <div className='toggle'><Icon name='more_horizontal' onClick={onContextMenu} /></div>
             </div>
         )
     }

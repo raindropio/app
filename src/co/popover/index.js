@@ -2,13 +2,21 @@ import React from 'react'
 import { Portal } from 'react-portal'
 import Context from './context'
 
+//save mouse position
+let _mousePos = { x:-1, y:-1 }
+document.body.addEventListener('mousemove', function(e){
+    _mousePos = {
+        x: e.pageX,
+        y: e.pageY
+    }
+})
+
 export default class Popover extends React.Component {
     static defaultProps = {
         onClose: undefined      //func, required
     }
 
     _body = React.createRef()
-    _mousePos = { x:-1, y:-1 }
 
     store = {
         close: ()=>{
@@ -17,25 +25,15 @@ export default class Popover extends React.Component {
     }
     
     componentDidMount() {
-        document.body.addEventListener('mouseup', this.onInitialMousePos)
+        this.updatePosition()
+
         document.body.addEventListener('mousedown', this.onBodyMouseDown)
         document.body.addEventListener('keydown', this.onBodyKeyDown)
     }
 
     componentWillUnmount() {
-        document.body.removeEventListener('mouseup', this.onInitialMousePos)
         document.body.removeEventListener('mousedown', this.onBodyMouseDown)
         document.body.removeEventListener('keydown', this.onBodyKeyDown)
-    }
-
-    onInitialMousePos = (e)=>{
-        if (this._mousePos.x!=-1) return
-
-        this._mousePos = {
-            x: e.pageX,
-            y: e.pageY
-        }
-        this.updatePosition()
     }
 
     onBodyMouseDown = (e)=>{
@@ -58,7 +56,7 @@ export default class Popover extends React.Component {
     }
 
     updatePosition = ()=>{
-        this._body.current.setAttribute('style', `top: ${this._mousePos.y}px; left: ${this._mousePos.x}px;`)
+        this._body.current.setAttribute('style', `top: ${_mousePos.y}px; left: ${_mousePos.x}px;`)
     }
 
     render() {

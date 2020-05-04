@@ -23,36 +23,18 @@
 		display: flex;
 		align-items: center;
 		color: black;
-		padding: 2px 20px;
+		padding: 2px 16px;
 		font-size: 14px;
 		cursor: default;
-		
-		.title {
-			@extend .text-overflow;
-			flex:1;
-			min-width: 0;
-		}
-		.sublabel {
-			opacity: .5;
-			margin-left: 20px;
-			font-size: 12px;
-			
-			&:empty {
-				display:none;
-			}
-		}
 		
 		* {
 			pointer-events: none;
 		}
 		
 		.svgIcon {
-			margin-left: -8px;
-			margin-right: 10px;
 			opacity: .6;
+			margin-right: 8px
 		}
-
-		
 		
 		&:hover:not(:active), &.active {
 			background: colorTheme;
