@@ -1,9 +1,9 @@
 import React from 'react'
-import List from '~co/virtual/list'
+import FlatList from '~co/virtual/flatList'
 import Item from '../item'
 
 export default class BookmarksItemsListing extends React.Component {
-    rowRenderer = ({ index })=>{
+    itemRenderer = (index)=>{
         const _id = this.props.items[index]
 
         return (
@@ -21,10 +21,10 @@ export default class BookmarksItemsListing extends React.Component {
         )
     }
 
-    rowId = ({ index })=>
+    itemId = (index)=>
         this.props.items[index]
 
-    noMoreRows = ()=>
+    noMoreItems = ()=>
         this.props.status.nextPage == 'noMore'
 
     onEndReached = async()=>
@@ -33,17 +33,30 @@ export default class BookmarksItemsListing extends React.Component {
     render() {
         const { items, collection, activeId, selectModeEnabled } = this.props
 
+        let Component = FlatList
+        let columnWidth = 0
+
+        switch(collection.view) {
+            case 'grid':
+            case 'masonry':
+                columnWidth = 250
+            break
+        }
+
         return (
-            <List
+            <Component
                 className={`elements view-${collection.view} ${selectModeEnabled&&'select-mode'}`}
                 //just to force re-render
-                items={items} 
+                items={items}
                 activeId={activeId}
+                view={collection.view}
+                selectModeEnabled={selectModeEnabled}
                 //virtulized
-                rowId={this.rowId}
-                rowCount={items.length}
-                rowRenderer={this.rowRenderer}
-                noMoreRows={this.noMoreRows}
+                columnWidth={columnWidth}
+                itemId={this.itemId}
+                itemsCount={items.length}
+                itemRenderer={this.itemRenderer}
+                noMoreItems={this.noMoreItems}
                 onEndReached={this.onEndReached} />
         )
     }

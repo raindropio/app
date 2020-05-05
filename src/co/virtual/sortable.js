@@ -2,9 +2,9 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 
 import 'react-virtualized/styles.css'
-import AutoSizer from 'react-virtualized/dist/commonjs/AutoSizer'
-import List from 'react-virtualized/dist/commonjs/List'
-import { CellMeasurer, CellMeasurerCache } from 'react-virtualized/dist/commonjs/CellMeasurer'
+import AutoSizer from 'react-virtualized/dist/es/AutoSizer'
+import List from 'react-virtualized/dist/es/List'
+import { CellMeasurer, CellMeasurerCache } from 'react-virtualized/dist/es/CellMeasurer'
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
 
 const emptyObject = {}

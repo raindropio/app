@@ -1,20 +1,34 @@
+import React from 'react'
 import t from '~t'
-import format from 'date-fns/format'
 import isToday from 'date-fns/isToday'
 import isThisYear from 'date-fns/isThisYear'
 import { parseDate } from './parse'
 
-export const shortDate = (d, options={}) => {
-    if (!d) return ''
+export const shortDate = (original) => {
+    try{
+        const d = parseDate(original)
 
-    const date = parseDate(d)
-    const { time=true } = options
+        if (isToday(d))
+            return t.s('today')+', '+new Intl.DateTimeFormat(
+                t.currentLang,
+                { hour: 'numeric', minute: 'numeric' }
+            ).format(d)
 
-    return format(
-        date,
-        isThisYear(date) ? 
-            (!isToday(date) ? 'MMM d, ' : '') + (time ? 'p' : '') :
-            'PP',
-        { locale: t.datelocale }
-    )
+        return new Intl.DateTimeFormat(
+            t.currentLang,
+            {
+                ...(!isThisYear(d) ? {year: 'numeric'} : {}),
+                month: 'short',
+                day: 'numeric',
+            }
+        ).format(d)
+    }catch(e){}
+
+    return ''
 }
+
+export const ShortDate = React.memo(
+    function({ date }) {
+        return shortDate(date)
+    }
+)

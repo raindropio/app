@@ -7,31 +7,6 @@ gridItemGap = 8px;
 gridItemPaddingHorizontal = rem(11px);
 gridItemBorder = 3px;
 
-smallGridItem()
-    max-width: 50%;
-    width: "calc(50% - %s)" % gridItemGap;
-    flex: 1 0 50%;
-
-gridItemCoverSize(size)
-    gridItemSizePx = round(originalCoverWidth + (originalCoverGap * (size - 1)));
-    gridItemSizeHeight = round(gridItemSizePx * 0.459);
-    
-    .splitView(.mode-reader), .mode-reader-modal, .mode-reader-fullscreen {
-        .view-grid-size-{size} {
-            .element-grid {
-                width: gridItemSizePx;
-                flex: 0 1 gridItemSizePx;
-            }
-        }
-    }
-
-    body .view-grid-size-{size} .element-grid {
-        .cover {
-            height: gridItemSizeHeight;
-        }
-    }
-
-
 .view-grid {
     //align-items: flex-start;
 }
@@ -59,9 +34,8 @@ gridItemCoverSize(size)
     display: flex;
     flex-direction: column;
     padding: gridItemBorder;
-    smallGridItem()
-    min-width: 0;
-    //min-width: 170px;
+    min-width: 100%;
+    min-height: 100%;
     border: (gridItemGap - (gridItemBorder)) solid white;/*gridBackground*/
     border-radius: gridItemGap;
     //box-shadow: 0px 1px 0px subSeparatorColor, 1px 0 0px subSeparatorColor, inset 1px 0 0px subSeparatorColor;
@@ -184,29 +158,30 @@ html.retina.chrome .element.element-grid {
     .title {
         margin-top: rem(-3px);
     }
+}
+
+.element-grid .actions {
+    position: absolute;
+    right: gridItemGap
+    top: gridItemGap
     
-    .actions {
-        position: absolute;
-        right: 44px;top:(gridItemGap + 2px);
-        
-        .button.active b {
-            background: colorTheme;
-            background: val(--accentColor, colorTheme);
-            backdrop-filter: blur(10px);
-        }
-        
-        .action-small {
-            position: relative;
- 
-            &:before {
-                position: absolute;
-                content: "";
-                left:10%;right:10%;bottom:20%;top:20%;
-                border-radius: 2px;
-                background: white;
-                z-index: -1;
-                box-shadow: 0px 0px 0px 1px rgba(0,0,0,.1), 0px 1px 0px rgba(0,0,0,.16);
-            }
+    .button.active b {
+        background: colorTheme;
+        background: val(--accentColor, colorTheme);
+        backdrop-filter: blur(10px);
+    }
+    
+    .action-small {
+        position: relative;
+
+        &:before {
+            position: absolute;
+            content: "";
+            left:10%;right:10%;bottom:20%;top:20%;
+            border-radius: 2px;
+            background: white;
+            z-index: -1;
+            box-shadow: 0px 0px 0px 1px rgba(0,0,0,.1), 0px 1px 0px rgba(0,0,0,.16);
         }
     }
 }
@@ -229,24 +204,6 @@ html.retina.chrome .element.element-grid {
     }
 }
 
-/* Unflued grid */
-@media only screen and (min-width : 750px) {
-    /*Grid width*/
-    gridItemCoverSize(1);
-    gridItemCoverSize(2);
-    gridItemCoverSize(3);
-    gridItemCoverSize(4);
-    gridItemCoverSize(5);
-}
-
-/* Extra big screen */
-@media only screen and (min-width : 1700px) {
-    .element.element-grid {
-        max-width: 33.333333%;
-        width: "calc(33.333333% - %s)" % gridItemGap;
-        flex: 1 0 33.333333%;
-    }
-}
 
 
 .themeDark {

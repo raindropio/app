@@ -1,6 +1,6 @@
 import React from 'react'
 import t from '~t'
-import { shortDate } from '~modules/format/date'
+import { ShortDate } from '~modules/format/date'
 
 import Cover from './cover'
 import Tags from './tags'
@@ -41,7 +41,7 @@ export default class BookmarkItemView extends React.PureComponent {
                             )}
 
                             <div className='info-domain'>
-                                {domain}&nbsp; ·&nbsp; {shortDate(created)}
+                                {domain}&nbsp; ·&nbsp; <ShortDate date={created}/>
                             </div>
                         </div>
                     </div>

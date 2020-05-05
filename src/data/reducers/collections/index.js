@@ -63,30 +63,40 @@ const initialState = Immutable({
 		{
 			_id: 0,
 			title: 'All',
-			view: 'list'
+			view: 'list',
+			access: {
+				level: 4
+			}
 		},
 		{
 			_id: -1,
 			title: 'Unsorted',
-			view: 'list'
-		},
-		{
-			_id: -3,
-			title: 'Readlater',
-			view: 'list'
+			view: 'list',
+			access: {
+				level: 4
+			}
 		},
 		{
 			_id: -99,
 			title: 'Trash',
-			view: 'list'
+			view: 'list',
+			access: {
+				level: 4
+			}
 		},
 		{
 			_id: -100,
-			title: 'One click new item'
+			title: 'One click new item',
+			access: {
+				level: 4
+			}
 		},
 		{
 			_id: -101,
-			title: 'Blank item'
+			title: 'Blank item',
+			access: {
+				level: 4
+			}
 		}
 	],
 
