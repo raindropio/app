@@ -2,7 +2,7 @@ import normalizeURL from './url'
 import { THUMB_URL, STELLA_BASE_URL } from '../../constants/app'
 
 export default function(url='') {
-    const finalURL = normalizeURL(url)
+    let finalURL = normalizeURL(url)
     if (!finalURL)
         return ''
 

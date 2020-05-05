@@ -2,11 +2,24 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { makeBookmark, makeHighlight, makeIsSelected, makeSelectModeEnabled } from '~data/selectors/bookmarks'
 
+import View from './view'
+
 class BookmarkItem extends React.Component {
     static defaultProps = {
+        //bookmarks
         _id:        0,
+        selected:   false,
+        //collection
+        cid:        0,
+        view:       '', //list, grid, etc...
+        access:     {}, //{ level }...
+        //funcs
         events:     {}, //same as ...items/index
         actions:    {}  //redux collections
+    }
+
+    state = {
+        menu: false
     }
 
     handlers = {
@@ -42,10 +55,14 @@ class BookmarkItem extends React.Component {
     }
 
     render() {
+        const { item, ...props } = this.props
+
         return (
-            <div>
-                {this.props.item.title}
-            </div>
+            <View 
+                {...item}
+                {...props}
+                {...this.handlers}
+                />
         )
     }
 }
