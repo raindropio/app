@@ -1,6 +1,6 @@
 import React from 'react'
 
-import Sortable from './sortable'
+import Sortable from '~co/virtual/sortable'
 import Item from '../item'
 import Group from '../group'
 import Empty from './empty'
@@ -174,6 +174,7 @@ export default class CollectionsTree extends React.Component {
                 overscanRowCount={5}
 
                 //custom
+                droppableId='collections'
                 rowType={this.rowType}
                 rowIsDraggable={this.rowIsDraggable}
                 rowIsDroppable={this.rowIsDroppable}

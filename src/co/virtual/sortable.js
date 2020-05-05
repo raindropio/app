@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
+import 'react-virtualized/styles.css'
 import AutoSizer from 'react-virtualized/dist/commonjs/AutoSizer'
 import List from 'react-virtualized/dist/commonjs/List'
 import { CellMeasurer, CellMeasurerCache } from 'react-virtualized/dist/commonjs/CellMeasurer'
@@ -18,7 +19,7 @@ function getStyle({ draggableProps }, snapshot, source) {
     }
 }
 
-export default class SortableVirtualList extends React.Component {
+export default class VirtualSortable extends React.Component {
     static defaultProps = {
         //specific for this component:
         rowType: undefined,         //func, optional ({ index })
@@ -44,13 +45,14 @@ export default class SortableVirtualList extends React.Component {
     sizeCache = new CellMeasurerCache({
         defaultHeight: 32,
         fixedWidth: true,
-        keyMapper: (index)=>
-            this.props.rowType ? this.props.rowType({ index }) : 1
+        keyMapper: this.props.rowType ? 
+            (index)=>this.props.rowType({ index }) :
+            undefined
     })
 
     renderRow = source => {
         //drag disabled
-        if (!this.props.rowIsDraggable(source))
+        if (this.props.rowIsDraggable && !this.props.rowIsDraggable(source))
             return this.renderClone(undefined, undefined, { source })
 
         //drag enabled
@@ -121,7 +123,7 @@ export default class SortableVirtualList extends React.Component {
     }
 
     render() {
-        const { ...other } = this.props
+        const { droppableId, ...other } = this.props
 
         return (
             <DragDropContext
@@ -129,7 +131,7 @@ export default class SortableVirtualList extends React.Component {
                 onDragUpdate={this.onDragUpdate}
                 onDragEnd={this.onDragEnd}>
                 <Droppable
-                    droppableId='collections'
+                    droppableId={droppableId||'default'}
                     mode='virtual'
                     isCombineEnabled={this.state.isCombineEnabled}
                     renderClone={this.renderClone}>
