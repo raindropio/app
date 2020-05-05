@@ -6,7 +6,7 @@ import Contextmenu from './contextmenu'
 export default class CollectionsGroup extends React.PureComponent {
     static defaultProps = {
         //...item,
-        selected:   false,
+        active:     false,
         events:     {}, //same as ...items/index
         actions:    {} //redux collections
     }
@@ -18,8 +18,8 @@ export default class CollectionsGroup extends React.PureComponent {
 
     handlers = {
         onClick: ()=>{
-            if (this.props.events.onGroupSelect)
-                return this.props.events.onGroupSelect(this.props)
+            if (this.props.events.onGroupClick)
+                return this.props.events.onGroupClick(this.props)
                 
             this.handlers.onToggleClick()
         },

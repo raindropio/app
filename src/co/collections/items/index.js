@@ -10,9 +10,9 @@ import Tree from './tree'
 class CollectionsItems extends React.Component {
     static defaultProps = {
         uriPrefix:          '',
-        selectedId:         undefined,
+        activeId:         undefined,
         options:            {}, //hideIds[], showGroups:true
-        events:             {}  //onItemSelect, onGroupSelect
+        events:             {}  //onItemClick, onGroupClick
     }
 
     componentDidMount() {
@@ -28,11 +28,11 @@ class CollectionsItems extends React.Component {
         this.props.actions.load()
     }
 
-    componentDidUpdate({ selectedId, status }) {
-        //expand tree to selected id
-        if (selectedId != this.props.selectedId ||
+    componentDidUpdate({ activeId, status }) {
+        //expand tree to active id
+        if (activeId != this.props.activeId ||
             (status != this.props.status && this.props.status == 'loaded') )
-            this.props.actions.expandTo(this.props.selectedId)
+            this.props.actions.expandTo(this.props.activeId)
     }
 
     createNewCollection = (e)=>{
@@ -42,7 +42,7 @@ class CollectionsItems extends React.Component {
             asChild = e.shiftKey ? true : false
         }
 
-        this.props.actions.addBlank(this.props.selectedId, asChild)
+        this.props.actions.addBlank(this.props.activeId, asChild)
     }
 
     render() {

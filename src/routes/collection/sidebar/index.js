@@ -31,10 +31,10 @@ class CollectionsSidebar extends React.Component {
 
                 <Content>
                     <Tree 
-                            ref={this.tree}
-                            uriPrefix='/collection/'
-                            selectedId={this.props.match.params.cid}
-                            events={this.events} />
+                        ref={this.tree}
+                        uriPrefix='/collection/'
+                        activeId={this.props.match.params.cid}
+                        events={this.events} />
                 </Content>
             </Sidebar>
         )

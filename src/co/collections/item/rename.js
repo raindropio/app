@@ -57,7 +57,7 @@ class CollectionsItemRename extends React.PureComponent {
                 <CollectionIcon
                     src={cover && cover[0]}
                     _id={_id}
-                    selected={true} />
+                    active={true} />
 
                 <SuperInput
                     type='text'

@@ -18,3 +18,5 @@ export const makeHaveScreenshot = ()=>createSelector(
 export const highlight = ({bookmarks}, _id)=>(bookmarks.meta[_id] ? bookmarks.meta[_id] : blankMeta).highlight
 
 export const makeHighlight = ()=>highlight
+
+export const tags = ({bookmarks}, _id)=>(bookmarks.meta[_id] ? bookmarks.meta[_id] : blankMeta).tags

@@ -8,7 +8,7 @@ elementInvert()
         display: none;
     }
     
-    .addToFavorite, .actions .button.active {
+    .actions .button.active {
         color: white !important;
     }
     
@@ -125,48 +125,6 @@ elementInvert()
         }
     }
     
-    .addToFavorite {
-        position: absolute;
-        left:baseHorizontalGap;
-        top: (baseHorizontalGap - 4px);
-        z-index: 2;
-        color: white;
-        opacity: 0;
-        transition: opacity .2s ease-in-out, transform .1s ease-in-out, color .2s ease-in-out;
-        cursor: pointer;
-        
-        .filled {
-            
-            position: relative;
-            z-index:1;
-        }
-        
-        .outline {
-            position:absolute;
-            //left:0;top:0;
-            color: rgba(0,0,0,.2);
-            filter: drop-shadow(0 0.5px 1px rgba(0,0,0,.5));
-            transition: filter .1s ease-in-out, color .2s ease-in-out;
-        }
-        
-        &:hover {
-            opacity:1;
-        }
-    }
-    
-    &.important {
-        .addToFavorite {
-            color: colorRed;
-            filter:none;
-            opacity:1;
-            
-            .outline {
-                color: white;
-                //filter: drop-shadow(0 0 1px white);
-            }
-        }
-    }
-    
     &.broken {
         .title, p {
             opacity:.7
@@ -178,35 +136,11 @@ elementInvert()
     }
     
     .selectElement {
-        cursor: pointer;
         position: absolute;
         z-index: 2;
         opacity: 0;
         transition: opacity .1s ease-in-out;
-        right:0;top:0;
-        overflow: hidden;
-        
-        label, .selectCheckbox {
-            pointer-events: none;
-        }
-        
-        label {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            background: transparent;
-        }
-
-        &:hover {
-            opacity:1 !important;
-            transition-delay: 0 !important;
-            
-            .selectCheckbox {
-                color: colorTheme;
-                color: var(--accentColor);
-            }
-        }
+        left:0;top:0;
     }
     
     .cover {
@@ -381,32 +315,32 @@ elementInvert()
     /*&:hover .permalink {
         background: rgba(0,0,0,.04);
     }*/
-        
+
     .actions {
         //opacity: 0;
         //transition: opacity .01s linear;
         display: none;
-        align-items: center;
         position: relative;
         z-index:1;
         margin: -4px;
+    }
+
+            
+    .button {
+        height: 36px;
+        padding: 0 8px;
         
-        .button {
-            height: 36px;
-            padding: 0 8px;
-            
-            &.action-red {
-                color: colorRed;
-            }
-            
-            b {
-                padding-top: 3px;
-                padding-bottom: 3px;
-            }
-            
-            &:hover {
-                background:transparent;
-            }
+        &.action-red {
+            color: colorRed;
+        }
+        
+        b {
+            padding-top: 3px;
+            padding-bottom: 3px;
+        }
+        
+        &:hover {
+            background:transparent;
         }
     }
     
@@ -446,14 +380,6 @@ elementInvert()
     
     &.checked {
         .selectElement {
-            //background: rgba(0,0,0,.05);
-            //background: rgba(colorTheme, .1);
-            //background: var(--accentOverlay, rgba(colorTheme, .1));
-
-            label {
-                //background: colorTheme;
-                //background: var(--accentColor,colorTheme);
-            }
         }
     }
 
@@ -479,26 +405,17 @@ html.mac.web {
 .select-mode .element {
     //opacity: .7;
     .selectElement {
-        left:0;
         opacity:1 !important;
-        
-        input {
-            opacity:1;
-        }
     }
     .actions {
         display: none !important;
     }
-    .addToFavorite {
-        pointer-events: none;
-    }
 }
 
-html.web .element {
+.element {
     &:hover {
         .selectElement {
             opacity: 1;
-            //transition-delay: .3s;
         }
     }
 }

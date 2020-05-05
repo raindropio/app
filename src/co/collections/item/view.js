@@ -24,13 +24,13 @@ export default class CollectionsItemView extends React.PureComponent {
 	}
 
     render() {
-        const { _id, title, count, color, cover, level, selected, expanded, expandable, to } = this.props
+        const { _id, title, count, color, cover, level, active, expanded, expandable, to } = this.props
         const { isDragging, isDropping } = this.props
         const { onClick, onExpandClick, onRenameClick, onContextMenu, onKeyUp } = this.props
 
         return (
             <article
-                className={`collection have-actions ${selected && 'active'} ${expandable && (expanded ? 'expanded' : 'collapsed')} ${isDragging && 'is-dragging'} ${isDropping && 'is-drag-over'}`}
+                className={`collection have-actions ${active && 'active'} ${expandable && (expanded ? 'expanded' : 'collapsed')} ${isDragging && 'is-dragging'} ${isDropping && 'is-drag-over'}`}
                 style={{'--accentColor': color, '--level': level}}>
                 <span className='expand' onMouseUp={onExpandClick}>
                     <Icon name='arrow_alt' />
@@ -39,7 +39,7 @@ export default class CollectionsItemView extends React.PureComponent {
                 <CollectionIcon
                     src={cover && cover[0]}
                     _id={_id}
-                    selected={selected} />
+                    active={active} />
 
                 <div className='title'>
 					<span>{title}</span>
@@ -55,7 +55,7 @@ export default class CollectionsItemView extends React.PureComponent {
                 <SuperLink
 					navPrefix='collection'
                     to={to}
-                    tabIndex={selected ? '1' : '-1'}
+                    tabIndex={active ? '1' : '-1'}
 					onClick={onClick}
 					onDoubleClick={onRenameClick}
                     onContextMenu={onContextMenu}

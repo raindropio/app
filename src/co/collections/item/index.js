@@ -8,7 +8,7 @@ import Contextmenu from './contextmenu'
 export default class CollectionsItem extends React.Component {
     static defaultProps = {
         item:       {},
-        selected:   false,
+        active:     false,
         events:     {}, //same as ...items/index
         actions:    {} //redux collections
     }
@@ -19,9 +19,9 @@ export default class CollectionsItem extends React.Component {
     }
 
     handlers = {
-        onClick: this.props.events.onItemSelect ?
+        onClick: this.props.events.onItemClick ?
             ()=>
-                this.props.events.onItemSelect(this.props.item) :
+                this.props.events.onItemClick(this.props.item) :
             undefined,
     
         onExpandClick: ()=>

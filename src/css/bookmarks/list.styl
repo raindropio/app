@@ -10,7 +10,7 @@ listCoverSizeMake(size)
             left: rem(listCoverSizeWidthHeight + 32px);
         }
         
-        .cover, .cover-over, .addToFavorite {
+        .cover, .cover-over {
             width: rem(listCoverSizeWidthHeight);
             height: rem(listCoverSizeWidthHeight);
         }
@@ -34,6 +34,11 @@ listCoverSizeMake(size)
     background: white;
     position: relative;
     transition: padding .2s ease-in-out;
+
+    .selectElement {
+        top: 12px
+        left: baseHorizontalGap
+    }
     
     .rating {
         box-shadow: none;
@@ -83,20 +88,6 @@ listCoverSizeMake(size)
             border-radius:2px;
             box-shadow: inset 0px 0px 0px 1px rgba(0,0,0,.1);
         }*/
-    }
-    
-    .selectElement {
-        display: flex;
-        bottom:0;
-        
-        label {
-            flex:1;
-            justify-content: flex-end;
-            margin: (baseHorizontalGap / 2) baseHorizontalGap;
-            margin-left: 1px;
-            //transform: translateX(-17px);
-            //transition: transform .2s ease-in-out;
-        }
     }
     
     &.checked {
@@ -167,8 +158,7 @@ listCoverSizeMake(size)
         top:1px;
         bottom:1px;
         background: inherit;
-        padding: 0 6px;
-        padding-right: 44px;
+        padding: 12px baseHorizontalGap;
         
         .button {
             position: relative;
@@ -178,35 +168,6 @@ listCoverSizeMake(size)
     
     &:last-child:after {
         border:0;
-    }
-}
-
-.view-list  {
-    .addToFavorite {
-        padding: 4px;
-        display: flex;
-        //align-items: flex-end;
-        //justify-content: flex-end;
-    }
-}
-
-.view-simple {
-    .addToFavorite {
-        margin-left: -2px;
-        
-        &:hover + .cover {
-            visibility: hidden;
-        }
-    }
-    
-    .element-list.important {
-        .cover {
-            visibility: hidden;
-        }
-        
-        .addToFavorite .outline {
-            filter: none;
-        }
     }
 }
 
@@ -225,14 +186,6 @@ listCoverSizeMake(0)
     listCoverSizeMake(4)
 }
 
-.select-mode .element-list {
-    //padding-left: 44px;
-    
-    .selectElement label {
-        
-    }
-}
-
 .mode-disable-cover .element-list {
     .cover-wrap, .cover {
         display: none;
@@ -246,18 +199,6 @@ listCoverSizeMake(0)
 .mode-disable-description .element-list {
     .about .description {
         display: none;
-    }
-}
-
-.mode-reader #markup:not(.themeDark) div, #markup:not(.themeDark) .select-mode {
-    &.view-list, &.view-simple {
-        .section {
-            background: gridBackground;
-        }
-    }
-    
-    .element-list {
-        background: gridBackground;
     }
 }
 

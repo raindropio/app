@@ -13,6 +13,7 @@ import {
 	BOOKMARK_UPDATE_SUCCESS, BOOKMARK_UPDATE_ERROR,
 	BOOKMARK_REMOVE_SUCCESS, BOOKMARK_REMOVE_ERROR,
 	BOOKMARK_UPLOAD_PROGRESS,
+	BOOKMARK_IMPORTANT,
 } from '../../constants/bookmarks'
 
 import {
@@ -102,6 +103,11 @@ export default function(state, action) {
 			//const itemId = parseInt(action._id)
 
 			return state
+		}
+
+		//Important
+		case BOOKMARK_IMPORTANT:{
+			return state.setIn(['elements', action._id, 'important'], !state.elements[action._id].important)
 		}
 
 		//Update tags

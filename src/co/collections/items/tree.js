@@ -10,14 +10,14 @@ export default class CollectionsTree extends React.Component {
     _scrolled = false
 
     componentDidUpdate() {
-        //scroll to selected on first paint
+        //scroll to active on first paint
         if (this.props.data.length && !this._scrolled){
             this._scrolled = true
 
-            if (this.props.selectedId)
+            if (this.props.activeId)
                 this._list.scrollToRow(
                     this.props.data
-                        .findIndex(({item})=>item && item._id == this.props.selectedId)
+                        .findIndex(({item})=>item && item._id == this.props.activeId)
                 )
         }
     }
@@ -39,7 +39,7 @@ export default class CollectionsTree extends React.Component {
                 {...row}
                 //tree specififc
                 uriPrefix={this.props.uriPrefix}
-                selected={row.item && this.props.selectedId == row.item._id}
+                active={row.item && this.props.activeId == row.item._id}
                 events={this.props.events}
                 actions={this.props.actions}
                 //drag/drop specific
@@ -166,7 +166,7 @@ export default class CollectionsTree extends React.Component {
 
                 //react-virtualized
                 data={this.props.data}
-                selectedId={this.props.selectedId}
+                activeId={this.props.activeId}
                 className='collections'
                 rowCount={this.props.data.length}
                 rowRenderer={this.rowRenderer}
@@ -174,7 +174,6 @@ export default class CollectionsTree extends React.Component {
                 overscanRowCount={5}
 
                 //custom
-                droppableId='collections'
                 rowType={this.rowType}
                 rowIsDraggable={this.rowIsDraggable}
                 rowIsDroppable={this.rowIsDroppable}

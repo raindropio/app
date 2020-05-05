@@ -229,7 +229,7 @@ function* important({_id, ignore=false, onSuccess, onFail}) {
 			type: BOOKMARK_UPDATE_REQ,
 			_id: item._id,
 			set: {
-				important: !item.important
+				important: item.important
 			},
 			onSuccess
 		})

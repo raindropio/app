@@ -8,8 +8,9 @@ import { CellMeasurer, CellMeasurerCache } from 'react-virtualized/dist/commonjs
 
 export default class VirtualList extends React.Component {
     static defaultProps = {
-        noMoreRows: undefined, //func, optional
-        onEndReached: undefined, //func, optional
+        rowId: undefined,           //func, optional ({ index })
+        noMoreRows: undefined,      //func, optional
+        onEndReached: undefined,    //func, optional
     }
 
     bindList = ref => {
@@ -20,12 +21,15 @@ export default class VirtualList extends React.Component {
 
     sizeCache = new CellMeasurerCache({
         defaultHeight: 32,
-        fixedWidth: true
+        fixedWidth: true,
+        keyMapper: this.props.rowId ? 
+            (index)=>this.props.rowId({ index }) :
+            undefined
     })
 
     rowRenderer = source => (
         <CellMeasurer
-            key={source.index}
+            key={this.props.rowId ? this.props.rowId(source) : source.index}
             columnIndex={0}
             rowIndex={source.index}
             parent={source.parent}

@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as bookmarksActions from '~data/actions/bookmarks'
-import { makeBookmarksIds, makeStatus } from '~data/selectors/bookmarks'
+import { makeBookmarksIds, makeStatus, makeSelectModeEnabled } from '~data/selectors/bookmarks'
 import { makeCollection } from '~data/selectors/collections'
 
 import Listing from './listing'
@@ -10,8 +10,8 @@ import Listing from './listing'
 class BookmarksItems extends React.Component {
     static defaultProps = {
         cid:        0,
-        selectedId: 0,
-        events:     {}  //onItemSelect
+        activeId:   0,
+        events:     {}  //onItemClick
     }
 
     componentDidMount() {
@@ -35,11 +35,13 @@ export default connect(
         const getBookmarkIds = makeBookmarksIds()
         const getStatus = makeStatus()
         const getCollection = makeCollection()
+        const getSelectModeEnabled = makeSelectModeEnabled()
     
         return (state, { cid })=>({
             items: getBookmarkIds(state, cid),
             status: getStatus(state, cid),
-            collection: getCollection(state, cid)
+            collection: getCollection(state, cid),
+            selectModeEnabled: getSelectModeEnabled(state, cid)
         })
     },
 	(dispatch)=>({

@@ -22,6 +22,7 @@ function getStyle({ draggableProps }, snapshot, source) {
 export default class VirtualSortable extends React.Component {
     static defaultProps = {
         //specific for this component:
+        type: 'default',            //optional
         rowType: undefined,         //func, optional ({ index })
         rowIsDraggable: undefined,  //func, optional ({ index })
         rowIsDroppable: undefined,  //func, optional (from, to)
@@ -123,7 +124,7 @@ export default class VirtualSortable extends React.Component {
     }
 
     render() {
-        const { droppableId, ...other } = this.props
+        const { type, ...other } = this.props
 
         return (
             <DragDropContext
@@ -131,7 +132,7 @@ export default class VirtualSortable extends React.Component {
                 onDragUpdate={this.onDragUpdate}
                 onDragEnd={this.onDragEnd}>
                 <Droppable
-                    droppableId={droppableId||'default'}
+                    droppableId={type}
                     mode='virtual'
                     isCombineEnabled={this.state.isCombineEnabled}
                     renderClone={this.renderClone}>

@@ -1,12 +1,20 @@
 import React from 'react'
+import t from '~t'
+import { shortDate } from '~modules/format/date'
+
 import Cover from './cover'
+import Tags from './tags'
+import SuperLink from '~co/common/superLink'
+import Icon from '~co/common/icon'
 
 export default class BookmarkItemView extends React.PureComponent {
     render() {
-        const { title, excerpt, body, cover, domain, view, selected } = this.props
+        const { link, title, excerpt, body, cover, domain, tags, type, view, access, created } = this.props
+        const { active, selected, important, broken } = this.props
+        const { onClick, onEditClick, onSelectClick, onImportantClick, onContextMenu, onKeyUp } = this.props
 
         return (
-            <article className={`element element-${view} ${selected&&'active'} `}>
+            <article className={`element element-${view} ${active&&'active'} ${selected&&'checked'} ${important&&'important'} ${broken&&'broken'}`}>
                 <Cover
                     src={cover}
                     domain={domain}
@@ -19,7 +27,77 @@ export default class BookmarkItemView extends React.PureComponent {
                         <p className='description'>{excerpt}</p>
                         {body && <p className='description from-body'>{body}</p>}
                     </div>
+
+                    <Tags tags={tags} />
+
+                    <div className='info-wrap'>
+                        <div className='info info-domain'>
+                            {type != 'link' && (
+                                <div className='info-important'>
+                                    <span className='info-img'>
+                                        <Icon name={type} size='micro' />
+                                    </span>
+                                </div>
+                            )}
+
+                            <div className='info-domain'>
+                                {domain}&nbsp; ·&nbsp; {shortDate(created)}
+                            </div>
+                        </div>
+                    </div>
                 </div>
+
+                <div className='actions'>
+                    <a 
+                        href={link}
+                        tabIndex='-1'
+                        target='_blank'
+                        className='button min default'
+                        title={t.s('openInBrowser')}>
+                        <b><Icon name='open' /></b>
+                    </a>
+
+                    {access.level >= 3 && (
+                        <>
+                            <span 
+                                className='button min default'
+                                onClick={onImportantClick}>
+                                <b><Icon name={'like'+(important?'_active':'')} /></b>
+                            </span>
+
+                            <span 
+                                className='button min default'
+                                onClick={onEditClick}>
+                                <b>{t.s('editMin')}</b>
+                            </span>
+
+                            <span
+                                className='button min default'
+                                onClick={onContextMenu}
+                                title={t.s('helpContextD')}>
+                                <b><Icon name='more_horizontal' /></b>
+                            </span>
+                        </>
+                    )}
+                </div>
+
+                {access.level >= 3 && (
+                    <span
+                        className={`button min selectElement ${selected ? 'active' : 'default'}`}
+                        onClick={onSelectClick}
+                        title={t.s('select')}>
+                        <b><Icon name='check' /></b>
+                    </span>
+                )}
+
+                <SuperLink
+					navPrefix='element'
+                    href={link}
+                    tabIndex={active ? '200' : '-1'}
+					onClick={onClick}
+                    onContextMenu={onContextMenu}
+					onKeyUp={onKeyUp}
+					className='permalink' />
             </article>
         )
     }

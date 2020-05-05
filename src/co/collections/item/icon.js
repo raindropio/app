@@ -1,11 +1,11 @@
 import React from 'react'
 import Icon from '~co/common/icon'
 
-export default React.memo(({ _id, src, className, size, selected })=>{
+export default React.memo(({ _id, src, className, size, active })=>{
 	if (src)
 		return <img src={src} className={'collectionIcon '+className||''} loading='lazy' />
 
-	var svgIcon = '', prefix = (selected ? '_active' : '')
+	var svgIcon = '', prefix = (active ? '_active' : '')
 	
 	switch(_id){
 		case 0: svgIcon = 'cloud'+prefix; break;

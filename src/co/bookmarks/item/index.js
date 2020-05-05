@@ -1,21 +1,22 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { makeBookmark, makeHighlight, makeIsSelected, makeSelectModeEnabled } from '~data/selectors/bookmarks'
+import { bookmark, tags, makeIsSelected } from '~data/selectors/bookmarks'
 
 import View from './view'
 
 class BookmarkItem extends React.Component {
     static defaultProps = {
         //bookmarks
-        _id:        0,
-        selected:   false,
+        _id:                0,
+        active:             false,
         //collection
-        cid:        0,
-        view:       '', //list, grid, etc...
-        access:     {}, //{ level }...
+        cid:                0,
+        view:               '', //list, grid, etc...
+        access:             {}, //{ level }...
+        selectModeEnabled:  false,
         //funcs
-        events:     {}, //same as ...items/index
-        actions:    {}  //redux collections
+        events:             {}, //same as ...items/index
+        actions:            {}  //redux collections
     }
 
     state = {
@@ -23,10 +24,28 @@ class BookmarkItem extends React.Component {
     }
 
     handlers = {
-        onClick: this.props.events.onItemSelect ?
-            ()=>
-                this.props.events.onItemSelect(this.props.item) :
-            undefined,
+        onClick: (e)=>{
+            if (this.props.selectModeEnabled){
+                e.preventDefault()
+                return this.handlers.onSelectClick()
+            }
+                
+            if (this.props.events.onItemClick){
+                e.preventDefault()
+                this.props.events.onItemClick(this.props.item)
+            }
+        },
+
+        onEditClick: ()=>{
+
+        },
+
+        onSelectClick: ()=>{
+            this.props.actions[this.props.selected ? 'unselectOne' : 'selectOne'](this.props.cid, this.props.item._id)
+        },
+
+        onImportantClick: ()=>
+            this.props.actions.oneImportant(this.props.item._id),
     
         onRemoveClick: ()=>
             this.props.actions.oneRemove(this.props.item._id),
@@ -70,20 +89,15 @@ class BookmarkItem extends React.Component {
 export default connect(
 	() => {
         const getIsSelected = makeIsSelected()
-        const getBookmark = makeBookmark()
-        const getHighlight = makeHighlight()
-        const getSelectModeEnabled = makeSelectModeEnabled()
     
-        return (state, { _id, cid })=>{
-            const item = getBookmark(state, _id)
-            const selectModeEnabled = getSelectModeEnabled(state, cid)
+        return (state, { _id, cid, selectModeEnabled })=>{
+            const item = bookmark(state, _id)
     
             return {
                 item,
-                highlight: getHighlight(state, _id),
-                selected: selectModeEnabled ? getIsSelected(state, cid, _id) : false,
-                selectModeEnabled
-            };
+                tags: tags(state, _id),
+                selected: selectModeEnabled ? getIsSelected(state, cid, _id) : false
+            }
         }
     }
 )(BookmarkItem)

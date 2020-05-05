@@ -22,6 +22,9 @@ Not ready
 - electron
 - edit group
 - collections tree context menus
+- search bookmarks highlight lables
+- bookmark info about cache status and reparse
+- bookmark path
 
 Good to have
 - Refactor collection/reorder redux to server

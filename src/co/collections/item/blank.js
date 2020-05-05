@@ -41,8 +41,8 @@ class CollectionsItemBlank extends React.PureComponent {
         this.props.actions.createFromBlank({
             title: this.state.title
         }, (newItem)=>{
-            if (this.props.events.onItemSelect)
-                this.props.events.onItemSelect(newItem)
+            if (this.props.events.onItemClick)
+                this.props.events.onItemClick(newItem)
             else
                 this.props.history.push(this.props.to.replace(this.props._id, newItem._id))
         }, e=>{
