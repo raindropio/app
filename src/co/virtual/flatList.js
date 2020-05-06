@@ -14,30 +14,37 @@ class VirtualFlatListInner extends React.Component {
         onEndReached: undefined,    //func, optional
     }
 
-    getColumnCount = ()=>{
-        if (!this.props.columnWidth)
-            return 1
+    //calculate columns and rows count
+    getGridSize = ()=>{
+        const columnCount = parseInt(this.props.width / this.props.columnWidth) || 1
 
-        return parseInt(this.props.width / this.props.columnWidth)
+        return {
+            optimalColumnWidth: parseInt(this.props.width / columnCount),
+            columnCount,
+            rowCount: parseInt(this.props.itemsCount/columnCount) || this.props.itemsCount
+        }
     }
 
-    getItemIndex = (rowIndex, columnIndex)=>
-        columnIndex + (rowIndex*this.state.columnCount)
-
-    state = {
-        columnCount: this.getColumnCount()
-    }
+    state = this.getGridSize()
 
     componentDidUpdate(prev) {
-        if (prev.width != this.props.width || prev.columnWidth != this.props.columnWidth){
-            const columnCount = this.getColumnCount()
+        if (prev.width != this.props.width ||
+            prev.columnWidth != this.props.columnWidth ||
+            prev.itemsCount != this.props.itemsCount) {
+            const size = this.getGridSize()
 
-            if (columnCount != this.state.columnCount){
+            if (size.columnCount != this.state.columnCount ||
+                size.rowCount != this.state.rowCount ||
+                size.optimalColumnWidth != this.state.optimalColumnWidth){
                 this.sizeCache.clearAll()
-                this.setState({ columnCount })
+                this.setState(size)
             }
         }
     }
+
+    //render cells
+    getItemIndex = (rowIndex, columnIndex)=>
+        columnIndex + (rowIndex*this.state.columnCount)
 
     sizeCache = new CellMeasurerCache({
         defaultHeight: 32,
@@ -60,7 +67,12 @@ class VirtualFlatListInner extends React.Component {
                 cache={this.sizeCache}>
                 {({ registerChild }) =>
                     <div
-                        style={this.props.columnWidth ? {...style, width: this.props.columnWidth} : style}
+                        style={
+                            this.state.columnCount>1 ? {
+                                ...style,
+                                width: this.state.optimalColumnWidth
+                            } : style
+                        }
                         ref={registerChild}
                         tabIndex='-1'>
                         {this.props.itemRenderer(index)}
@@ -70,6 +82,7 @@ class VirtualFlatListInner extends React.Component {
         )
     }
 
+    //inifinite load
     isRowLoaded = ({ index }) => {
         if (this.props.noMoreItems)
             if (this.props.noMoreItems())
@@ -90,9 +103,10 @@ class VirtualFlatListInner extends React.Component {
         })
     }
 
+    //render wrap
     renderGrid = ({ onRowsRendered, registerChild })=>{
-        const { columnCount } = this.state
-        const { columnWidth, width, height, ...etc } = this.props
+        const { columnCount, optimalColumnWidth } = this.state
+        const { width, height, ...etc } = this.props
         const rowCount = parseInt(this.props.itemsCount/this.state.columnCount) || this.props.itemsCount
 
         this._onRowsRendered = onRowsRendered
@@ -105,7 +119,7 @@ class VirtualFlatListInner extends React.Component {
                 //size
                 width={width}
                 height={height}
-                columnWidth={columnWidth || width}
+                columnWidth={optimalColumnWidth}
                 rowHeight={this.sizeCache.rowHeight}
                 deferredMeasurementCache={this.sizeCache}
                 //columns, rows

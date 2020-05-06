@@ -47,9 +47,9 @@ export default class BookmarksItemsListing extends React.Component {
             <Component
                 className={`elements view-${collection.view} ${selectModeEnabled&&'select-mode'}`}
                 //just to force re-render
+                key={collection._id+collection.view}
                 items={items}
                 activeId={activeId}
-                view={collection.view}
                 selectModeEnabled={selectModeEnabled}
                 //virtulized
                 columnWidth={columnWidth}

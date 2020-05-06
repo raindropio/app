@@ -17,9 +17,9 @@ export default class BookmarkItemView extends React.PureComponent {
             <article className={`element element-${view} ${active&&'active'} ${selected&&'checked'} ${important&&'important'} ${broken&&'broken'}`}>
                 <Cover
                     src={cover}
+                    link={link}
                     domain={domain}
-                    width={50}
-                    ar='1:1' />
+                    view={view} />
 
                 <div className='about'>
                     <span className='title'>{title}</span>
@@ -32,6 +32,14 @@ export default class BookmarkItemView extends React.PureComponent {
 
                     <div className='info-wrap'>
                         <div className='info info-domain'>
+                            {important && (
+                                <div className='info-important'>
+                                    <span className='info-img'>
+                                        <Icon name='important' size='micro' />
+                                    </span>
+                                </div>
+                            )}
+
                             {type != 'link' && (
                                 <div className='info-important'>
                                     <span className='info-img'>

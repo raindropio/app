@@ -23,7 +23,8 @@ Not ready
 - edit group
 - collections tree context menus
 - search bookmarks highlight lables
-- bookmark info about cache status and reparse
+- bookmark info about cache status, reparse, creatorRef
+- bookmark info important icon should be bright
 - bookmark path
 
 Good to have
@@ -34,6 +35,7 @@ Good to have
 - Fix input focus style on blue background (when rename collection for example)
 - Group is not empty alert on remove
 - When collection removed increment Trash counter
+- Change cover img width depends on config
 
 Translation
 - leave
