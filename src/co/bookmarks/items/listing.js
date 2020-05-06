@@ -56,6 +56,7 @@ export default class BookmarksItemsListing extends React.Component {
                 itemId={this.itemId}
                 itemsCount={items.length}
                 itemRenderer={this.itemRenderer}
+                overscanRowCount={5}
                 noMoreItems={this.noMoreItems}
                 onEndReached={this.onEndReached} />
         )
