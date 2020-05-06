@@ -47,6 +47,7 @@
 		"react-portal": "^4.2.1",
 		"react-router-dom": "5.1.x",
 		"react-virtualized": "^9.21.2",
+		"react-virtuoso": "^0.16.2",
 		"string": "3.3.x",
 		"validator": "13.0.x"
 	},

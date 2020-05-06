@@ -1,5 +1,5 @@
 import React from 'react'
-import FlatList from '~co/virtual/flatList'
+import FlatList from '~co/virtual/grid'
 import Item from '../item'
 
 export default class BookmarksItemsListing extends React.Component {
@@ -32,7 +32,7 @@ export default class BookmarksItemsListing extends React.Component {
 
     render() {
         const { items, collection, activeId, selectModeEnabled } = this.props
-
+        
         let Component = FlatList
         let columnWidth = 0
 
