@@ -14,7 +14,7 @@ export default class BookmarkItemView extends React.PureComponent {
         const { onClick, onEditClick, onSelectClick, onImportantClick, onContextMenu, onKeyUp } = this.props
 
         return (
-            <article className={`element element-${view} ${active&&'active'} ${selected&&'checked'} ${important&&'important'} ${broken&&'broken'}`}>
+            <article className={`element ${active&&'active'} ${selected&&'checked'} ${important&&'important'} ${broken&&'broken'}`}>
                 <Cover
                     src={cover}
                     link={link}

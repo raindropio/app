@@ -428,7 +428,7 @@ html.web:not(.electron) .element {
     color: rgba(0,0,0,0.5);
 }
 
-html:not(.blur) #main .element:not(.element-grid) {
+html:not(.blur) #main .element {
     &.active {
         &[data-is-focus="true"] {
             elementInvert()
@@ -440,7 +440,7 @@ html:not(.blur) #main .element:not(.element-grid) {
     background: transparent !important;
 }
 
-.element-list .title, .element-list p, .element .domain {
+.element .domain {
     @extend .text-overflow;
 }
 
@@ -537,7 +537,7 @@ html.retina.chrome {
 
 
 .themeDark {
-    .element:not(.element-grid) {
+    .element {
         elementInvert()
     }
     

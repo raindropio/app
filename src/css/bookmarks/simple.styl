@@ -1,23 +1,15 @@
 @include "list.styl"
 
-simpleCoverSize = 16px;
+simpleCoverSize = 16px
 
-simpleCoverSizeMake(size)
-    simpleCoverSizeWidthHeight = (simpleCoverSize + (10px * size));
-    
-    .element-simple {
-        &:after {
-            left: rem(simpleCoverSizeWidthHeight + 32px);
-        }
-        
-        .cover, .cover img {
-            width: rem(simpleCoverSizeWidthHeight);
-            height: rem(simpleCoverSizeWidthHeight);
-        }
-    }
-
-.element-simple {
+.view-simple .element {
 	&:after {
+		left: rem(simpleCoverSize + 32px)
+	}
+	
+	.cover {
+		width: rem(simpleCoverSize)
+		height: rem(simpleCoverSize)
 	}
 	
 	.cover, .cover img {
@@ -36,19 +28,4 @@ simpleCoverSizeMake(size)
             }
         }
 	}
-}
-
-simpleCoverSizeMake(0)
-
-.view-list-cover-size-1 {
-    simpleCoverSizeMake(1)
-}
-.view-list-cover-size-2 {
-    simpleCoverSizeMake(2)
-}
-.view-list-cover-size-3 {
-    simpleCoverSizeMake(3)
-}
-.view-list-cover-size-4 {
-    simpleCoverSizeMake(4)
 }

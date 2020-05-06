@@ -94,7 +94,6 @@ export default class BookmarkItemCover extends React.PureComponent {
 
         return (
             <div className={'cover-wrap '+className}>
-                <div className='cover-over'  />
                 {this.renderImage()}
             </div>
         )

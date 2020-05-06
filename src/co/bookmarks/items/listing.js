@@ -9,6 +9,7 @@ export default class BookmarksItemsListing extends React.Component {
 
         return (
             <Item
+                key={_id}
                 _id={_id}
                 //collection
                 cid={this.props.cid}
@@ -26,6 +27,7 @@ export default class BookmarksItemsListing extends React.Component {
         this.props.items[index]
 
     endReached = ()=>
+        this.props.status.nextPage != 'noMore' &&
         this.props.actions.nextPage(this.props.cid)
 
     render() {
@@ -46,10 +48,11 @@ export default class BookmarksItemsListing extends React.Component {
 
         return (
             <Component
-                className={`elements view-${collection.view} ${selectModeEnabled&&'select-mode'} view-grid-size-2 view-list-cover-size-0`}
+                className={`elements view-${collection.view} ${selectModeEnabled&&'select-mode'}`}
                 dataKey={activeId+selectModeEnabled+collection._id} //force re-render
                 computeItemKey={this.computeItemKey}
                 totalCount={items.length}
+                columns={3}
                 item={this.item}
                 endReached={this.endReached} />
         )
