@@ -1,10 +1,19 @@
 import React from 'react'
 import List from '~co/virtual/list'
 import Grid from '~co/virtual/grid'
+
 import Item from '../item'
+import Footer from './footer'
 
 export default class BookmarksItemsListing extends React.Component {
-    item = (index)=>{
+    computeItemKey = (index)=>
+        this.props.items[index]
+
+    endReached = ()=>
+        this.props.status.nextPage != 'noMore' &&
+        this.props.actions.nextPage(this.props.cid)
+
+    renderItem = (index)=>{
         const _id = this.props.items[index]
 
         return (
@@ -23,12 +32,11 @@ export default class BookmarksItemsListing extends React.Component {
         )
     }
 
-    computeItemKey = (index)=>
-        this.props.items[index]
-
-    endReached = ()=>
-        this.props.status.nextPage != 'noMore' &&
-        this.props.actions.nextPage(this.props.cid)
+    renderFooter = ()=>(
+        <Footer 
+            status={this.props.status}
+            loadMore={this.endReached} />
+    )
 
     render() {
         const { items, collection, activeId, selectModeEnabled } = this.props
@@ -50,10 +58,14 @@ export default class BookmarksItemsListing extends React.Component {
             <Component
                 className={`elements view-${collection.view} ${selectModeEnabled&&'select-mode'}`}
                 dataKey={activeId+selectModeEnabled+collection._id} //force re-render
+
+                item={this.renderItem}
+                footer={this.renderFooter}
                 computeItemKey={this.computeItemKey}
+
                 totalCount={items.length}
                 columnWidth={250}
-                item={this.item}
+                
                 endReached={this.endReached} />
         )
     }

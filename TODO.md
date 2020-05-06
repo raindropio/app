@@ -39,3 +39,6 @@ Good to have
 
 Translation
 - leave
+
+Ideas
+- Move all logic of Cover to Cloduflare worker
