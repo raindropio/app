@@ -51,14 +51,15 @@ export default class BookmarksItemsListing extends React.Component {
                 items={items}
                 activeId={activeId}
                 selectModeEnabled={selectModeEnabled}
-                //virtulized
+                //custom
                 columnWidth={columnWidth}
                 itemId={this.itemId}
                 itemsCount={items.length}
                 itemRenderer={this.itemRenderer}
-                overscanRowCount={5}
                 noMoreItems={this.noMoreItems}
-                onEndReached={this.onEndReached} />
+                onEndReached={this.onEndReached}
+                //virtualized
+                overscanRowCount={5} />
         )
     }
 }

@@ -6,23 +6,97 @@ import Grid from 'react-virtualized/dist/es/Grid'
 import InfiniteLoader from 'react-virtualized/dist/es/InfiniteLoader'
 import { CellMeasurer, CellMeasurerCache } from 'react-virtualized/dist/es/CellMeasurer'
 
-class VirtualFlatListInner extends React.Component {
+export default class VirtualFlatList extends React.Component {
     static defaultProps = {
+        columnWidth: 0,             //optional
         itemId: undefined,          //func, optional ({ index })
+        itemsCount: undefined,      //required
+        itemRenderer: undefined,    //required
         noMoreItems: undefined,     //func, optional
         onEndReached: undefined,    //func, optional
     }
 
+    render() {
+        const { className, ...etc } = this.props
+
+        return (
+            <AutoSizer className={className}>{size =>
+                size.width ? <VirtualFlatListOuter {...etc} {...size} /> : null
+            }</AutoSizer>
+        )
+    }
+}
+
+//Get columns and rows count with cellMeasurerCache
+class VirtualFlatListOuter extends React.Component {
+    //calculate columns and rows count
+    getGridSize = ()=>{
+        const { width, columnWidth, itemsCount } = this.props
+        const columnCount = parseInt(width / columnWidth) || 1
+
+        return {
+            optimalColumnWidth: parseInt(width / columnCount),
+            columnCount,
+            rowCount: parseInt(itemsCount/columnCount) || itemsCount
+        }
+    }
+
+    state = this.getGridSize()
+
+    componentDidUpdate(prev) {
+        if (prev.width != this.props.width ||
+            prev.columnWidth != this.props.columnWidth ||
+            prev.itemsCount != this.props.itemsCount) {
+            const size = this.getGridSize()
+
+            const columnsChanged = (
+                size.columnCount != this.state.columnCount ||
+                size.optimalColumnWidth != this.state.optimalColumnWidth
+            )
+
+            if (columnsChanged)
+                this.sizeCache.clearAll()
+
+            if (columnsChanged || size.rowCount != this.state.rowCount)
+                this.setState(size)
+        }
+    }
+
+    sizeCache = new CellMeasurerCache({
+        fixedWidth: true,
+        keyMapper: this.props.itemId ? 
+            (rowIndex, columnIndex)=>
+                this.props.itemId(
+                    columnIndex + (rowIndex*this.state.columnCount)
+                ) :
+                undefined
+    })
+
+    render() {
+        return (
+            <VirtualFlatListInner 
+                {...this.props}
+                {...this.state}
+                sizeCache={this.sizeCache} />
+        )
+    }
+}
+
+class VirtualFlatListInner extends React.Component {
     //render cells
     getItemIndex = (rowIndex, columnIndex)=>
         columnIndex + (rowIndex*this.props.columnCount)
 
     cellRenderer = ({rowIndex, columnIndex, parent, style}) => {
         const index = this.getItemIndex(rowIndex, columnIndex)
+        const id = this.props.itemId(index)
+
+        if (!id)
+            return null
 
         return (
             <CellMeasurer
-                key={this.props.itemId ? this.props.itemId(index) : index}
+                key={id}
                 columnIndex={columnIndex}
                 rowIndex={rowIndex}
                 parent={parent}
@@ -108,73 +182,4 @@ class VirtualFlatListInner extends React.Component {
             </InfiniteLoader>
         )
     }
-}
-
-//Get columns and rows count with cellMeasurerCache
-class VirtualFlatListOuter extends React.Component {
-    static defaultProps = {
-        itemsCount: undefined,      //required
-        columnWidth: 0,             //optional
-        itemId: undefined,          //func, optional ({ index })
-    }
-
-    //calculate columns and rows count
-    getGridSize = ()=>{
-        const { width, columnWidth, itemsCount } = this.props
-        const columnCount = parseInt(width / columnWidth) || 1
-
-        return {
-            optimalColumnWidth: parseInt(width / columnCount),
-            columnCount,
-            rowCount: parseInt(itemsCount/columnCount) || itemsCount
-        }
-    }
-
-    state = this.getGridSize()
-
-    componentDidUpdate(prev) {
-        if (prev.width != this.props.width ||
-            prev.columnWidth != this.props.columnWidth ||
-            prev.itemsCount != this.props.itemsCount) {
-            const size = this.getGridSize()
-
-            const columnsChanged = (
-                size.columnCount != this.state.columnCount ||
-                size.optimalColumnWidth != this.state.optimalColumnWidth
-            )
-
-            if (columnsChanged)
-                this.sizeCache.clearAll()
-
-            if (columnsChanged || size.rowCount != this.state.rowCount)
-                this.setState(size)
-        }
-    }
-
-    sizeCache = new CellMeasurerCache({
-        fixedWidth: true,
-        keyMapper: this.props.itemId ? 
-            (rowIndex, columnIndex)=>
-                this.props.itemId(
-                    columnIndex + (rowIndex*this.state.columnCount)
-                ) :
-                undefined
-    })
-
-    render() {
-        return (
-            <VirtualFlatListInner 
-                {...this.props}
-                {...this.state}
-                sizeCache={this.sizeCache} />
-        )
-    }
-}
-
-export default function VirtualFlatList(props) {
-    return (
-        <AutoSizer>{size =>
-            size.width ? <VirtualFlatListOuter {...props} {...size} /> : null
-        }</AutoSizer>
-    )
 }
