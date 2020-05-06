@@ -52,7 +52,7 @@ export default class BookmarksItemsListing extends React.Component {
                 dataKey={activeId+selectModeEnabled+collection._id} //force re-render
                 computeItemKey={this.computeItemKey}
                 totalCount={items.length}
-                columns={3}
+                columnWidth={250}
                 item={this.item}
                 endReached={this.endReached} />
         )
