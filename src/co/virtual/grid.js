@@ -1,13 +1,13 @@
 import React from 'react'
-import { Virtuoso } from 'react-virtuoso'
+import { VirtuosoGrid } from 'react-virtuoso'
 
-export default ({ itemRenderer, itemsCount, overscanRowCount, onEndReached, ...etc }) => (
-    <Virtuoso
+const mainStyle = { width: '100%', height: '100%' }
+
+export default ({ className, ...etc }) => (
+    <VirtuosoGrid
         {...etc}
-        totalCount={itemsCount}
-        overscan={overscanRowCount}
-        item={itemRenderer}
-        endReached={onEndReached}
-        style={{ height: '100%', width: '100%' }}
+        listClassName={className}
+        itemClassName='grid-item'
+        style={mainStyle}
     />
 )

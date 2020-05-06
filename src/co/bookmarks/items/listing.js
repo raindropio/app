@@ -1,9 +1,10 @@
 import React from 'react'
-import FlatList from '~co/virtual/grid'
+import List from '~co/virtual/list'
+import Grid from '~co/virtual/grid'
 import Item from '../item'
 
 export default class BookmarksItemsListing extends React.Component {
-    itemRenderer = (index)=>{
+    item = (index)=>{
         const _id = this.props.items[index]
 
         return (
@@ -21,45 +22,36 @@ export default class BookmarksItemsListing extends React.Component {
         )
     }
 
-    itemId = (index)=>
+    computeItemKey = (index)=>
         this.props.items[index]
 
-    noMoreItems = ()=>
-        this.props.status.nextPage == 'noMore'
-
-    onEndReached = async()=>
+    endReached = ()=>
         this.props.actions.nextPage(this.props.cid)
 
     render() {
         const { items, collection, activeId, selectModeEnabled } = this.props
         
-        let Component = FlatList
-        let columnWidth = 0
+        let Component
 
         switch(collection.view) {
             case 'grid':
             case 'masonry':
-                columnWidth = 250
+                Component = Grid
+            break
+
+            default:
+                Component = List
             break
         }
 
         return (
             <Component
-                className={`elements view-${collection.view} ${selectModeEnabled&&'select-mode'}`}
-                //just to force re-render
-                key={collection._id+collection.view}
-                items={items}
-                activeId={activeId}
-                selectModeEnabled={selectModeEnabled}
-                //custom
-                columnWidth={columnWidth}
-                itemId={this.itemId}
-                itemsCount={items.length}
-                itemRenderer={this.itemRenderer}
-                noMoreItems={this.noMoreItems}
-                onEndReached={this.onEndReached}
-                //virtualized
-                overscanRowCount={5} />
+                className={`elements view-${collection.view} ${selectModeEnabled&&'select-mode'} view-grid-size-2 view-list-cover-size-0`}
+                dataKey={activeId+selectModeEnabled+collection._id} //force re-render
+                computeItemKey={this.computeItemKey}
+                totalCount={items.length}
+                item={this.item}
+                endReached={this.endReached} />
         )
     }
 }

@@ -7,36 +7,28 @@ gridItemGap = 8px;
 gridItemPaddingHorizontal = rem(11px);
 gridItemBorder = 3px;
 
-.view-grid {
-    //align-items: flex-start;
-}
+smallGridItem()
+    width: 50%
 
-.view-grid, .view-masonry, .view-masonry-container {
-    //min-height: calc(100vh - 48px - 38px);
-        
-    .section {
-        //box-shadow:none;
-        margin: gridItemGap (gridItemGap * -1);
-        //margin-bottom: (gridItemGap - gridItemBorder - 1);
-        //padding-bottom:0;
-        
-        .quickFiltersOverlay {
-            margin-right: (gridItemGap * -1 * 2);
-        }
-        
-        &:first-child {
-            margin-top: (gridItemGap * -1);
+gridItemCoverSize(size)
+    gridItemSizePx = round(originalCoverWidth + (originalCoverGap * (size - 1)));
+    
+    body:not(.mode-reader), body.mode-reader-modal, body.mode-reader-fullscreen {
+        .view-grid-size-{size} {
+            .grid-item {
+                width: gridItemSizePx
+            }
         }
     }
-}
 
-.virtuoso-grid-list {
+.view-grid {
+    padding: gridItemGap;
     display: flex;
-  flex-wrap: wrap;
-}
+    flex-wrap: wrap;
 
-.virtuoso-grid-item {
-    width: 25%
+    .grid-item {
+        smallGridItem()
+    }
 }
 
 .element.element-grid {
@@ -215,7 +207,24 @@ html.retina.chrome .element.element-grid {
     }
 }
 
+/* Unflued grid */
+@media only screen and (min-width : 750px) {
+    /*Grid width*/
+    gridItemCoverSize(1);
+    gridItemCoverSize(2);
+    gridItemCoverSize(3);
+    gridItemCoverSize(4);
+    gridItemCoverSize(5);
+}
 
+/* Extra big screen */
+@media only screen and (min-width : 1700px) {
+    .element.element-grid {
+        max-width: 33.333333%;
+        width: "calc(33.333333% - %s)" % gridItemGap;
+        flex: 1 0 33.333333%;
+    }
+}
 
 .themeDark {
     .element.element-grid {
