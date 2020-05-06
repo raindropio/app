@@ -105,9 +105,8 @@ class VirtualFlatListInner extends React.Component {
 
     //render wrap
     renderGrid = ({ onRowsRendered, registerChild })=>{
-        const { columnCount, optimalColumnWidth } = this.state
+        const { columnCount, rowCount, optimalColumnWidth } = this.state
         const { width, height, ...etc } = this.props
-        const rowCount = parseInt(this.props.itemsCount/this.state.columnCount) || this.props.itemsCount
 
         this._onRowsRendered = onRowsRendered
 
@@ -138,22 +137,22 @@ class VirtualFlatListInner extends React.Component {
 
         return (
             <InfiniteLoader
-                {...this.props} //force re-render on props change
                 isRowLoaded={this.isRowLoaded}
                 loadMoreRows={onEndReached}
                 rowCount={itemsCount}>
-                {this.renderGrid}
+                {il=>{
+                    //important to have as inline func, otherwise doesn't re-render correctly
+                    return this.renderGrid(il)
+                }}
             </InfiniteLoader>
         )
     }
 }
 
-export default class VirtualFlatList extends React.PureComponent {
-    render() {
-        return (
-            <AutoSizer>{size =>
-                size.width ? <VirtualFlatListInner {...this.props} {...size} /> : null
-            }</AutoSizer>
-        )
-    }
+export default function VirtualFlatList(props) {
+    return (
+        <AutoSizer>{size =>
+            size.width ? <VirtualFlatListInner {...props} {...size} /> : null
+        }</AutoSizer>
+    )
 }
