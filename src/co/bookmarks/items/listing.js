@@ -3,7 +3,7 @@ import List from '~co/virtual/list'
 import Grid from '~co/virtual/grid'
 
 import Item from '../item'
-import Footer from './footer'
+import Footer from '../footer'
 
 export default class BookmarksItemsListing extends React.Component {
     computeItemKey = (index)=>
@@ -33,9 +33,7 @@ export default class BookmarksItemsListing extends React.Component {
     }
 
     renderFooter = ()=>(
-        <Footer 
-            status={this.props.status}
-            loadMore={this.endReached} />
+        <Footer cid={this.props.cid} />
     )
 
     render() {

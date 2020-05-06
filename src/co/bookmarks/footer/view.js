@@ -4,7 +4,7 @@ import t from '~t'
 export default class BookmarksItemsFooter extends React.PureComponent {
     loadMore = (e)=>{
         e.preventDefault()
-        this.props.loadMore()
+        this.props.actions.nextPage(this.props.cid)
     }
 
     render() {
@@ -29,11 +29,7 @@ export default class BookmarksItemsFooter extends React.PureComponent {
                 )
 
             case 'noMore':
-                return (
-                    <div className='loadMore is-no-more'>
-                        <div className='subHeadLabel'>&nbsp;</div>
-                    </div>
-                )
+                return null
 
             default:
                 return (
