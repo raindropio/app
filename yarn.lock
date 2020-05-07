@@ -865,6 +865,28 @@
     lodash "^4.17.13"
     to-fast-properties "^2.0.0"
 
+"@essentials/memoize-one@^1.0.2":
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/@essentials/memoize-one/-/memoize-one-1.0.3.tgz#7ac5fb6a6fcf3d0badb1a02a12e892b50fbb2d57"
+  integrity sha512-wS1xFUD4KDpLKyRO8FqqFrsYoaYy+kZYZ97lH6nmUxHVMuB/coohNpWcDUzrr13tAzTKE4c79duvBhgzwArWbA==
+
+"@essentials/one-key-map@^1.0.1":
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/@essentials/one-key-map/-/one-key-map-1.0.2.tgz#be7a84e6ad3a5c6c968703cca105da9c22e31694"
+  integrity sha512-O2OjgyvJOS0BptC5kr92kwlMo2w4nrGtIFBYr5nisNN2x9xef9EiGj/tGWGjBpEX92W9CuNRwsG9ua4TYjEbAA==
+
+"@essentials/raf@^1.1.2":
+  version "1.1.3"
+  resolved "https://registry.yarnpkg.com/@essentials/raf/-/raf-1.1.3.tgz#0ed3d95ce7c59ffb7a4c2bd77e9e3301466b42fc"
+  integrity sha512-2pnbJu6M2agYKPhnD2lqRxLGG4GOfMFxIePw0WoIDmuTmnfrCoIJp9RlgDhVhbOGHXiQHARdrvGeiHgC3B5YnA==
+
+"@essentials/request-timeout@^1.2.0":
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/@essentials/request-timeout/-/request-timeout-1.2.0.tgz#00aabcbb4ca20a731f030a44588acf0c8491d9bc"
+  integrity sha512-7HbQnSxy2lpf2/wz5XNwjzKakyyZAtptTGYzfIaS4xTXgXs64xfXM8UT4fG40sEEJitXFkwzxgCCXVrokorGLQ==
+  dependencies:
+    "@essentials/raf" "^1.1.2"
+
 "@nodelib/fs.scandir@2.1.3":
   version "2.1.3"
   resolved "https://registry.yarnpkg.com/@nodelib/fs.scandir/-/fs.scandir-2.1.3.tgz#3a582bdb53804c6ba6d146579c46e52130cf4a3b"
@@ -900,6 +922,36 @@
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/@react-dnd/shallowequal/-/shallowequal-2.0.0.tgz#a3031eb54129f2c66b2753f8404266ec7bf67f0a"
   integrity sha512-Pc/AFTdwZwEKJxFJvlxrSmGe/di+aAOBn60sremrpLo6VI/6cmiUYNNwlI5KNYttg7uypzA3ILPMPgxB2GYZEg==
+
+"@react-hook/debounce@^2.0.3":
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/@react-hook/debounce/-/debounce-2.0.3.tgz#46b346580a19b41e9f25faad0a4103d7c7e5e1ba"
+  integrity sha512-G1RStTQ5NJvy0N/Wydn+wdahpEJpdKe/KzTVEkGZ7DTKCixjbOD5TtBJfnkajQzfQUrgLely2JE65W58F2hb1A==
+
+"@react-hook/passive-layout-effect@^1.0.3":
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/@react-hook/passive-layout-effect/-/passive-layout-effect-1.0.3.tgz#55faac3bce2ad2b4a12eb0c6a52903da32fdc006"
+  integrity sha512-VFUvBBSYWRigI/YhMRp28tncMWYVgzsUdmdIdZyJ3CpKgj5sLmm4RmJdIoKIfWO/WRX5XQ+83GW2E6VmqTHZ3g==
+
+"@react-hook/throttle@^2.1.2":
+  version "2.1.2"
+  resolved "https://registry.yarnpkg.com/@react-hook/throttle/-/throttle-2.1.2.tgz#ff2b342655896dd210246f382e156cdb2ab599cf"
+  integrity sha512-AmZX4wUXHJe/jN33elneFDt5zJN6f4uB9ruTDrBaUcA+Yroh+hjqBlL4/N3IL2sf6oyDRmL2eMQUgJoJN+akIg==
+
+"@react-hook/window-scroll@^1.1.4":
+  version "1.1.4"
+  resolved "https://registry.yarnpkg.com/@react-hook/window-scroll/-/window-scroll-1.1.4.tgz#1604a0cba2dd5d27b21c9faa370920c32499bd09"
+  integrity sha512-TGoJD1OjJ3WpNwfGndc5aMBsepBBTQRa3pnyOJXLLmAZW9YCyapKa+DpT5U70RqbCXgRXhUB4begqSoOBm7zeA==
+  dependencies:
+    "@react-hook/throttle" "^2.1.2"
+
+"@react-hook/window-size@^2.0.4":
+  version "2.0.4"
+  resolved "https://registry.yarnpkg.com/@react-hook/window-size/-/window-size-2.0.4.tgz#e6eb73a7c3b78f9ad79634ce47432905af830855"
+  integrity sha512-7Eo44fLY1ryiL6pOjcCUTxPqsBjVrj0TpJNCGaoqMc88KWYYI6p2micKCVGqIRqTY5HontZFrlkAL3ZoOVic9Q==
+  dependencies:
+    "@react-hook/debounce" "^2.0.3"
+    "@react-hook/throttle" "^2.1.2"
 
 "@redux-saga/core@^1.1.3":
   version "1.1.3"
@@ -5952,6 +6004,20 @@ map-visit@^1.0.0:
   dependencies:
     object-visit "^1.0.0"
 
+masonic@^3.0.5:
+  version "3.0.5"
+  resolved "https://registry.yarnpkg.com/masonic/-/masonic-3.0.5.tgz#78985641d394d207c72d5fbb38a2f84a7eff477b"
+  integrity sha512-ZXI9vyzlyAy273CeRJ/NkBI5hTGSJEGcB9AxDxjZfpFd8ypt2gSNsh0IFL5CH8mNoFAwcdtCsOhedJqavgs+jg==
+  dependencies:
+    "@essentials/memoize-one" "^1.0.2"
+    "@essentials/one-key-map" "^1.0.1"
+    "@essentials/request-timeout" "^1.2.0"
+    "@react-hook/passive-layout-effect" "^1.0.3"
+    "@react-hook/window-scroll" "^1.1.4"
+    "@react-hook/window-size" "^2.0.4"
+    resize-observer-polyfill "^1.5.1"
+    trie-memoize "^1.1.4"
+
 md5.js@^1.3.4:
   version "1.3.5"
   resolved "https://registry.yarnpkg.com/md5.js/-/md5.js-1.3.5.tgz#b5d07b8e3216e3e27cd728d72f70d1e6a342005f"
@@ -9376,6 +9442,11 @@ traverse@^0.6.6:
   version "0.6.6"
   resolved "https://registry.yarnpkg.com/traverse/-/traverse-0.6.6.tgz#cbdf560fd7b9af632502fed40f918c157ea97137"
   integrity sha1-y99WD9e5r2MlAv7UD5GMFX6pcTc=
+
+trie-memoize@^1.1.4:
+  version "1.1.5"
+  resolved "https://registry.yarnpkg.com/trie-memoize/-/trie-memoize-1.1.5.tgz#538e5471ca5e355e8b21a7434aa20c185ffd80a4"
+  integrity sha512-Omd6IBnEpYI4ufoAW/nDeHiSE3HBRQWadGWQCVUob3M9UsuJoU8ZYhiF1VZGDntkcCYifB7KmJxheAuMkSMK4w==
 
 trim-newlines@^1.0.0:
   version "1.0.0"

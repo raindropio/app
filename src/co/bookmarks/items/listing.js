@@ -1,6 +1,7 @@
 import React from 'react'
 import List from '~co/virtual/list'
 import Grid from '~co/virtual/grid'
+import Masonry from '~co/virtual/masonry'
 
 import Item from '../item'
 import Footer from '../footer'
@@ -43,8 +44,11 @@ export default class BookmarksItemsListing extends React.Component {
 
         switch(collection.view) {
             case 'grid':
-            case 'masonry':
                 Component = Grid
+            break
+
+            case 'masonry':
+                Component = Masonry
             break
 
             default:

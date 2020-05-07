@@ -84,6 +84,7 @@ class VirtualGrid extends React.Component {
                 totalCount={rowCount}
 
                 rangeChanged={endReached && this.rangeChanged}
+                overscan={500}
             />
         )
     }
