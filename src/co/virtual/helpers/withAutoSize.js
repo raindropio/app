@@ -1,13 +1,12 @@
 import React from 'react'
-import _ from 'lodash'
+
+const mainStyle = { width: '100%', height: '100%' }
 
 export default (Component)=>
     class VirtualGridAutoSize extends React.Component {
         state = {
             width: 0,
-            height: 0,
-            scrollTop: 0,
-            isScrolling: false
+            height: 0
         }
 
         bindRef = ref => {
@@ -31,40 +30,27 @@ export default (Component)=>
             this.computeSize(width, height)
         }
 
-        onScroll = ()=>{
-            if (this._scroll) return
-
-            clearTimeout(this._isScrolling)
-
-            this._scroll = window.requestAnimationFrame(() => {
-                this.setState({ scrollTop: this._div.scrollTop, isScrolling: true })
-
-                clearTimeout(this._isScrolling)
-                this._isScrolling = setTimeout(() => {
-                    this.setState({ isScrolling: false })
-                }, 1000 / 6)
-
-                this._scroll = 0
+        computeSize = (width, height)=>{
+            window.requestAnimationFrame(() => {
+                if (width != this.state.width ||
+                    height != this.state.height)
+                    this.setState({ width, height })
             })
         }
 
-        computeSize = _.debounce((width, height)=>{
-            if (width != this.state.width ||
-                height != this.state.height)
-                this.setState({ width, height })
-        }, 50)
-
         render() {
-            const { className, style, ...props } = this.props
             const { width } = this.state
 
             return (
                 <div 
                     ref={this.bindRef}
-                    className={className}
-                    style={style}
-                    onScroll={this.onScroll}>
-                    {width ? <Component {...props} {...this.state} /> : null}
+                    style={mainStyle}>
+                    {width ? (
+                        <Component 
+                            {...this.props}
+                            {...this.state}
+                            containerRef={this._div} />
+                    ) : null}
                 </div>
             )
         }

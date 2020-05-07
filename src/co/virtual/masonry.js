@@ -1,74 +1,72 @@
 import React from 'react'
-import { usePositioner, useResizeObserver, useMasonry } from 'masonic'
+import Masonry from 'react-masonry-css'
 import withAutoSize from './helpers/withAutoSize'
 
-const emptyObj = {}
-const emptyArr = []
-
-export default class VirtualMasonry extends React.Component {
+class VirtualMasonry extends React.Component {
     static defaultProps = {
         className: '', //optional
         columnWidth: 0, //required
         item: undefined, //required
-        computeItemKey: undefined, //required
         totalCount: 0, //required
         endReached: undefined //optional
     }
 
-    generateItems = ()=>{
-        if (!this.props.totalCount)
-            return emptyArr
+    //columns count
+    measure = ()=>{
+        const { width, columnWidth } = this.props
+        const columnCount = parseInt(width / columnWidth)
 
-        return Array.from(Array(this.props.totalCount), () => emptyObj)
+        return {
+            columnCount
+        }
     }
 
-    state = {
-        items: this.generateItems()
-    }
+    state = this.measure()
 
     componentDidUpdate(prev) {
-        if (prev.totalCount != this.props.totalCount)
-            this.setState({ items: this.generateItems() })
+        if (prev.width == this.props.width &&
+            prev.columnWidth == this.props.columnWidth)
+            return
+
+        const m = this.measure()
+        if (m.columnCount != this.state.columnCount)
+            this.setState(m)
     }
 
-    renderItem = ({ index })=>
-        this.props.item(index)
+    //infinite scroll
+    onContainerScroll = (e)=>{
+        const { height, endReached } = this.props
+        const { scrollTop, scrollHeight } = e.target
+        
+        if (scrollTop > scrollHeight-height*2)
+            endReached()
+    }
 
-    itemKey = (data, index)=>
-        this.props.computeItemKey(index)
+    //render
+    renderItems = ()=>{
+        const { totalCount, item } = this.props
+        
+        let items = []
+        for(var i=0;i<totalCount;i++)
+            items.push(item(i))
 
-    onRender = (startIndex, endIndex)=>{
-        if (endIndex >= this.props.totalCount - 3)
-            this.props.endReached()
+        return items
     }
 
     render() {
-        const { items } = this.state
+        const { columnCount } = this.state
+        const { className } = this.props
 
         return (
-            <MyMasonry
-                {...this.props}
-                items={items}
-                render={this.renderItem}
-                itemKey={this.itemKey}
-                onRender={this.onRender}
-                overscanBy={5} />
+            <Masonry 
+                breakpointCols={columnCount}
+                className={className}
+                columnClassName=''
+                onScroll={this.onContainerScroll}>
+                {this.renderItems()}
+            </Masonry>
         )
     }
 }
 
-const MyMasonry = withAutoSize(
-    function({ width, height, scrollTop, isScrolling, columnWidth, columnGutter, dataKey, ...props }) {
-        const positioner = usePositioner({ width, columnWidth, columnGutter }, [ dataKey ])
-        const resizeObserver = useResizeObserver(positioner)
-    
-        return useMasonry({
-            ...props,
-            positioner,
-            resizeObserver,
-            height,
-            scrollTop,
-            isScrolling,
-        })
-    }
-)
+export default withAutoSize(VirtualMasonry)

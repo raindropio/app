@@ -1,6 +1,6 @@
 import React from 'react'
-import _ from 'lodash'
 import { Virtuoso } from 'react-virtuoso'
+import withAutoSize from './helpers/withAutoSize'
 
 const mainStyle = { width: '100%', height: '100%' }
 
@@ -90,44 +90,4 @@ class VirtualGrid extends React.Component {
     }
 }
 
-export default class VirtualGridAutoSize extends React.Component {
-    state = {
-        width: 0
-    }
-
-    bindRef = ref => {
-        if (!ref || this._div == ref) return
-
-        this._div = ref
-        this._resizeObserver = new ResizeObserver(this.onResize)
-        this._resizeObserver.observe(this._div)
-    }
-
-    componentWillUnmount() {
-        if (this._resizeObserver){
-            if (this._div)
-                this._resizeObserver.unobserve(this._div)
-            this._resizeObserver.disconnect()
-        }
-    }
-
-    onResize = ([div])=>{
-        const { width } = div.contentRect
-        this.computeWidth(width)
-    }
-
-    computeWidth = _.debounce(width=>{
-        if (width != this.state.width)
-            this.setState({ width })
-    }, 50)
-
-    render() {
-        const { width } = this.state
-
-        return (
-            <div ref={this.bindRef} style={mainStyle}>
-                {width ? <VirtualGrid {...this.props} {...this.state} /> : null}
-            </div>
-        )
-    }
-}
+export default withAutoSize(VirtualGrid, false)
