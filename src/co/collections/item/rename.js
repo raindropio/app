@@ -55,7 +55,7 @@ class CollectionsItemRename extends React.PureComponent {
                 <span className='expand'><Icon name='arrow_alt' /></span>
                 
                 <CollectionIcon
-                    src={cover && cover[0]}
+                    cover={cover}
                     _id={_id}
                     active={true} />
 

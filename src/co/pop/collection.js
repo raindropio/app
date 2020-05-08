@@ -366,7 +366,7 @@ export default class PopCollection extends React.Component {
 
         if (typeof this.state.item.parentId == 'number') {
             parent = CollectionsStore.getCollection(this.state.item.parentId);
-            cover = <CollectionIcon className="small-icon" src={(parent.cover||[])[0]} _id={this.state.item.parentId} />;
+            cover = <CollectionIcon className="small-icon" cover={parent.cover} _id={this.state.item.parentId} />;
         }else if (typeof this.state.item.group == 'number') {
             try{
               parent = {
@@ -504,7 +504,7 @@ export default class PopCollection extends React.Component {
 
         if (typeof this.state.item.parentId == 'number') {
             parent = CollectionsStore.getCollection(this.state.item.parentId);
-            parentCover = <CollectionIcon src={(parent.cover||[])[0]} _id={this.state.item.parentId} />;
+            parentCover = <CollectionIcon cover={parent.cover} _id={this.state.item.parentId} />;
         }else if (typeof this.state.item.group == 'number') {
             try{
               parent = {
@@ -523,7 +523,7 @@ export default class PopCollection extends React.Component {
 
         var collectionIcon = t.s("icon");
         if ((this.state.item.cover||[]).length>0)
-            collectionIcon = [<CollectionIcon key="cicon" className="popCollectionCoverImg" src={(this.state.item.cover||[])[0]} _id={this.state.item._id||null} />,<Icon key="carrow" name="arrow" />];
+            collectionIcon = [<CollectionIcon key="cicon" className="popCollectionCoverImg" cover={this.state.item.cover} _id={this.state.item._id||null} />,<Icon key="carrow" name="arrow" />];
 
         return (
             <form ref="form" className="popLayout" onSubmit={this.handleSave.bind(this)}>

@@ -73,7 +73,7 @@ export default class Path extends PureComponent {
 
 			return this.renderPart((
 				<a href={"#/collection/"+item._id+lastPartOfLink} className="di-collection">
-					<CollectionIcon _id={item._id} src={(item.cover||[]).length?item.cover[0]:null} />
+					<CollectionIcon _id={item._id} cover={item.cover} />
 					{item.title}
 				</a>
 			), item._id)

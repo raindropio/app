@@ -1,0 +1,22 @@
+@require "../consts.styl"
+
+.elements-header {
+    background: white
+    display: flex
+    align-items: center
+    padding-left: baseHorizontalGap
+
+    .c-icon {
+        margin-right: (baseHorizontalGap / 2)
+    }
+
+    .title {
+        flex: 1
+        font-weight: 500
+    }
+}
+
+.elements-header-border {
+    box-shadow: inset 0px 1px 0px subSeparatorColorAlpha
+    height: (baseHorizontalGap / 2)
+}

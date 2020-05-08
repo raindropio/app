@@ -6,11 +6,14 @@ const mainStyle = { width: '100%', height: '100%', overflowY: 'overlay' }
 
 class VirtualGrid extends React.PureComponent {
     static defaultProps = {
-        className: '', //optional
-        columnWidth: 0, //required
-        item: undefined, //required
-        computeItemKey: undefined, //required
-        totalCount: 0, //required
+        className: '',
+        columnWidth: 0,             //required
+        item: undefined,            //required
+        header: undefined,          //required
+        empty: undefined,
+        computeItemKey: undefined,  //required
+        totalCount: 0,              //required
+        stickyHeader: false,
     }
 
     //columns and rows count
@@ -49,9 +52,27 @@ class VirtualGrid extends React.PureComponent {
     }
 
     renderRow = row=>{
-        const { columnCount } = this.state
-        const { className, item, computeItemKey } = this.props
+        const { className, item, header, empty, computeItemKey, totalCount } = this.props
 
+        //header
+        if (row == 0)
+            return (
+                <div key='header'>
+                    {header()}
+                </div>
+            )
+
+        //empty
+        if (!totalCount)
+            return (
+                <div key='empty'>
+                    {empty && empty()}
+                </div>
+            )
+
+        //items
+        const { columnCount } = this.state
+        
         const items = []
         for(var column=0; column<columnCount; column++){
             const index = row*columnCount + column
@@ -68,7 +89,7 @@ class VirtualGrid extends React.PureComponent {
 
     render() {
         const { rowCount, columnCount, style } = this.state
-        const { dataKey='', endReached, ...etc } = this.props
+        const { dataKey='', endReached, stickyHeader, ...etc } = this.props
 
         return (
             <Virtuoso
@@ -81,7 +102,8 @@ class VirtualGrid extends React.PureComponent {
                 item={this.renderRow}
 
                 dataKey={dataKey+columnCount}
-                totalCount={rowCount}
+                totalCount={rowCount ? rowCount+1 : 2}
+                topItems={stickyHeader ? 1 : 0}
 
                 rangeChanged={endReached && this.rangeChanged}
                 defaultItemHeight={250}

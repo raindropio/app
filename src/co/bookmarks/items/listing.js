@@ -5,6 +5,7 @@ import Masonry from '~co/virtual/masonry'
 
 import Item from '../item'
 import Empty from '../empty'
+import Header from '../header'
 import Footer from '../footer'
 
 export default class BookmarksItemsListing extends React.Component {
@@ -37,6 +38,10 @@ export default class BookmarksItemsListing extends React.Component {
         <Empty cid={this.props.cid} />
     )
 
+    renderHeader = ()=>(
+        <Header cid={this.props.cid} />
+    )
+
     renderFooter = ()=>(
         <Footer cid={this.props.cid} />
     )
@@ -44,9 +49,6 @@ export default class BookmarksItemsListing extends React.Component {
     render() {
         const { cid, items, view, activeId, selectModeEnabled } = this.props
 
-        if (!items.length)
-            return this.renderEmpty()
-        
         let Component
 
         switch(view) {
@@ -69,11 +71,14 @@ export default class BookmarksItemsListing extends React.Component {
                 dataKey={activeId+selectModeEnabled+cid} //force re-render
 
                 item={this.renderItem}
+                header={this.renderHeader}
+                empty={this.renderEmpty}
                 footer={this.renderFooter}
                 computeItemKey={this.computeItemKey}
 
                 totalCount={items.length}
                 columnWidth={250}
+                stickyHeader={selectModeEnabled}
                 
                 endReached={this.endReached} 
                 />

@@ -37,7 +37,7 @@ export default class CollectionsItemView extends React.PureComponent {
                 </span>
 
                 <CollectionIcon
-                    src={cover && cover[0]}
+                    cover={cover}
                     _id={_id}
                     active={active} />
 

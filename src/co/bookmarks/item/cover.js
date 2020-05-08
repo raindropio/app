@@ -41,9 +41,11 @@ export default class BookmarkItemCover extends React.PureComponent {
 
     //rotate status on error
     onImageLoadError = ()=>{
-        onSrcError(this.props.src)
+        window.requestAnimationFrame(()=>{
+            onSrcError(this.props.src)
 
-        this.setState({n: (this.state.n||0)+1})
+            this.setState({n: (this.state.n||0)+1})
+        })
     }
 
     renderImage = ()=>{

@@ -16,7 +16,7 @@ Design
 
 Bugs
 - Critical
-    - react-mansonry-component not works
+    - virtual grid doesn't render next pages in Firefox
 
 Not ready
 - electron

@@ -30,13 +30,9 @@ export default class BookmarksEmptyView extends React.PureComponent {
                     //trash
                     case (_id==-99):
                         content = (
-                            <div className='centerContentWrap desktop-behavior content-wrap'>
-                                <div className='centerContent'>
-                                    <div className='centerContentBlock'>
-                                        <Icon name='trash' className='svgIcon-size-60' style={{opacity: '.3'}} />
-                                        <h2 className='headLabel'>{t.s('trashEmpty')}</h2>
-                                    </div>
-                                </div>
+                            <div>
+                                <Icon name='trash' className='svgIcon-size-60' style={{opacity: '.3'}} />
+                                <h2 className='headLabel'>{t.s('trashEmpty')}</h2>
                             </div>
                         )
                     break
@@ -44,18 +40,14 @@ export default class BookmarksEmptyView extends React.PureComponent {
                     //search empty
                     case (!searchEmpty):
                         content = (
-                            <div className='centerContentWrap desktop-behavior content-wrap'>
-                                <div className='centerContent'>
-                                    <div className='centerContentBlock'>
-                                        <Icon name='search' className='svgIcon-size-60' style={{opacity: '.3'}} />
-                                        <h2 className='headLabel'>{t.s('nothingFound')}</h2>
-                                        {_id > 0 && (
-                                            <p className='subHeadLabel'>
-                                                <a href='' onClick={this.searchEverywhere}>{t.s('defaultCollection-0')} {t.s('everywhere').toLowerCase()}</a>
-                                            </p>
-                                        )}
-                                    </div>
-                                </div>
+                            <div>
+                                <Icon name='search' className='svgIcon-size-60' style={{opacity: '.3'}} />
+                                <h2 className='headLabel'>{t.s('nothingFound')}</h2>
+                                {_id > 0 && (
+                                    <p className='subHeadLabel'>
+                                        <a href='' onClick={this.searchEverywhere}>{t.s('defaultCollection-0')} {t.s('everywhere').toLowerCase()}</a>
+                                    </p>
+                                )}
                             </div>
                         )
                     break
@@ -63,7 +55,7 @@ export default class BookmarksEmptyView extends React.PureComponent {
                     //noBookmarks
                     default:
                         content = (
-                            <div className='centerContentBlock'>
+                            <div>
                                 <SuperImg src='empty/no_items.png' height='154' />
                                 <h2 className='headLabel'>{t.s('noBookmarks')}</h2>
                                 <p className='subHeadLabel'>
@@ -82,7 +74,7 @@ export default class BookmarksEmptyView extends React.PureComponent {
 
             case 'notFound':
                 content = (
-                    <div className='centerContentBlock'>
+                    <div>
                         <SuperImg src='empty/no_items.png' height='154' />
                         <h2 className='headLabel'>{t.s('removeCollectionSuccess')}</h2>
                         <p className='subHeadLabel'>
@@ -100,7 +92,7 @@ export default class BookmarksEmptyView extends React.PureComponent {
 
             case 'error':
                 content = (
-                    <div className='centerContentBlock'>
+                    <div>
 						<SuperImg src='empty/error.png' className='animation-flying' height='144' />
 						<h2 className='headLabel'>{t.s('error')}</h2>
 						<p className='subHeadLabel'>
@@ -119,9 +111,9 @@ export default class BookmarksEmptyView extends React.PureComponent {
         }
 
         return (
-            <div className='centerContentWrap'><div className='centerContent'>
+            <div className='elements-empty'>
                 {content}
-            </div></div>
+            </div>
         )
     }
 }

@@ -2,13 +2,16 @@ import React from 'react'
 import Masonry from 'react-masonry-css'
 import withAutoSize from './helpers/withAutoSize'
 
+const stickyHeaderStyle = {position: 'sticky', top:0, zIndex: 99}
+
 class VirtualMasonry extends React.PureComponent {
     static defaultProps = {
-        className: '', //optional
-        columnWidth: 0, //required
-        item: undefined, //required
-        totalCount: 0, //required
-        endReached: undefined //optional
+        className: '',
+        columnWidth: 0,         //required
+        item: undefined,        //required
+        totalCount: 0,          //required
+        endReached: undefined,
+        stickyHeader: false,
     }
 
     //columns count
@@ -55,10 +58,14 @@ class VirtualMasonry extends React.PureComponent {
 
     render() {
         const { columnCount } = this.state
-        const { className, footer } = this.props
+        const { className, header, stickyHeader, footer } = this.props
 
         return (
             <div>
+                <div style={stickyHeader ? stickyHeaderStyle : undefined}>
+                    {header && header()}
+                </div>
+
                 <Masonry 
                     breakpointCols={columnCount}
                     className={className}

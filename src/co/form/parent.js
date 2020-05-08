@@ -32,7 +32,7 @@ export default class Parent extends React.Component {
 
 				state._id = parent._id;
 				state.title = parent.title;
-            	state.cover = <CollectionIcon className="fieldIcon" src={(parent.cover||[])[0]} _id={props._id} />;
+            	state.cover = <CollectionIcon className="fieldIcon" cover={parent.cover} _id={props._id} />;
 			break;
 
 			case "group":
