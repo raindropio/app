@@ -1,8 +1,10 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { bookmark, tags, makeIsSelected } from '~data/selectors/bookmarks'
+import { copyTextToClipboard } from '~modules/strings'
 
 import View from './view'
+import Contextmenu from './contextmenu'
 
 class BookmarkItem extends React.Component {
     static defaultProps = {
@@ -49,6 +51,20 @@ class BookmarkItem extends React.Component {
     
         onRemoveClick: ()=>
             this.props.actions.oneRemove(this.props.item._id),
+
+        onCopyLinkClick: ()=>
+            copyTextToClipboard(this.props.item.link),
+
+        onPreviewClick: ()=>
+            this.props.events.onItemClick(this.props.item),
+
+        onCacheClick: ()=>{},
+
+        onCreateScreenshotClick: ()=>
+            this.props.actions.oneScreenshot(this.props.item._id),
+
+        onReparseClick: ()=>
+            this.props.actions.oneReparse(this.props.item._id),
     
         onContextMenu: (e)=>{
             e.preventDefault()
@@ -77,11 +93,20 @@ class BookmarkItem extends React.Component {
         const { item, ...props } = this.props
 
         return (
-            <View 
-                {...item}
-                {...props}
-                {...this.handlers}
-                />
+            <>
+                <View 
+                    {...item}
+                    {...props}
+                    {...this.handlers}
+                    />
+
+                {this.state.menu && (
+                    <Contextmenu 
+                        {...item}
+                        {...props}
+                        {...this.handlers} />
+                )}
+            </>
         )
     }
 }

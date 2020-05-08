@@ -9,7 +9,7 @@ import Icon from '~co/common/icon'
 
 export default class BookmarkItemView extends React.PureComponent {
     render() {
-        const { link, title, excerpt, body, cover, domain, tags, type, view, access, created } = this.props
+        const { link, title, excerpt, body, cover, domain, tags, type, view, access, created, reparse } = this.props
         const { active, selected, important, broken } = this.props
         const { onClick, onEditClick, onSelectClick, onImportantClick, onContextMenu, onKeyUp } = this.props
 
@@ -35,6 +35,14 @@ export default class BookmarkItemView extends React.PureComponent {
                                 <div className='info-important'>
                                     <span className='info-img'>
                                         <Icon name='important' size='micro' />
+                                    </span>
+                                </div>
+                            )}
+
+                            {reparse && (
+                                <div className='info-important'>
+                                    <span className='info-img'>
+                                        <Icon name='progress' size='micro' />
                                     </span>
                                 </div>
                             )}

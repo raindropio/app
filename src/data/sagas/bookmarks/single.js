@@ -9,7 +9,7 @@ import {
 	BOOKMARK_REMOVE_REQ, BOOKMARK_REMOVE_SUCCESS, BOOKMARK_REMOVE_ERROR,
 	BOOKMARK_UPLOAD_REQ, BOOKMARK_UPLOAD_PROGRESS,
 
-	BOOKMARK_RECOVER, BOOKMARK_IMPORTANT, BOOKMARK_SCREENSHOT, BOOKMARK_MOVE, BOOKMARK_PRELOAD
+	BOOKMARK_RECOVER, BOOKMARK_IMPORTANT, BOOKMARK_SCREENSHOT, BOOKMARK_REPARSE, BOOKMARK_MOVE, BOOKMARK_PRELOAD
 } from '../../constants/bookmarks'
 
 import {
@@ -24,6 +24,7 @@ export default function* () {
 	yield takeEvery(BOOKMARK_RECOVER, recover)
 	yield takeEvery(BOOKMARK_IMPORTANT, important)
 	yield takeEvery(BOOKMARK_SCREENSHOT, screenshot)
+	yield takeEvery(BOOKMARK_REPARSE, reparse)
 	yield takeEvery(BOOKMARK_MOVE, move)
 	yield takeEvery(BOOKMARK_PRELOAD, preload)
 
@@ -270,6 +271,34 @@ function* screenshot({_id, ignore=false, onSuccess, onFail}) {
 			type: BOOKMARK_UPDATE_REQ,
 			_id: item._id,
 			set: setReq,
+			onSuccess
+		})
+	}catch(error){
+		yield put({
+			type: BOOKMARK_UPDATE_ERROR,
+			_id: _id,
+			error,
+			onFail
+		})
+	}
+}
+
+function* reparse({_id, ignore=false, onSuccess, onFail}) {
+	if ((ignore)||(!_id))
+		return;
+
+	try{
+		const state = yield select()
+		const item = getBookmark(state.bookmarks, _id)
+
+		yield put({
+			type: BOOKMARK_UPDATE_REQ,
+			_id: item._id,
+			set: {
+				pleaseParse: {
+					date: new Date()
+				}
+			},
 			onSuccess
 		})
 	}catch(error){
