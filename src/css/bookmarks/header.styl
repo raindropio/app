@@ -1,22 +1,28 @@
 @require "../consts.styl"
 
 .elements-header {
-    background: white
-    display: flex
-    align-items: center
-    padding-left: baseHorizontalGap
+    .header {
+        background: white
+        display: flex
+        align-items: center
+        padding-left: (baseHorizontalGap / 2)
 
-    .c-icon {
-        margin-right: (baseHorizontalGap / 2)
+        .c-icon {
+            margin-left: (baseHorizontalGap / 2)
+        }
+
+        .title {
+            padding-left: (baseHorizontalGap / 2)
+            flex: 1
+            font-weight: 500
+        }
     }
 
-    .title {
-        flex: 1
-        font-weight: 500
+    &:after {
+        display: block
+        content:''
+        width: 100%
+        height: (baseHorizontalGap / 2)
+        box-shadow: inset 0px 1px 0px subSeparatorColorAlpha
     }
-}
-
-.elements-header-border {
-    box-shadow: inset 0px 1px 0px subSeparatorColorAlpha
-    height: (baseHorizontalGap / 2)
 }

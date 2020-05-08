@@ -1,20 +1,60 @@
 import React from 'react'
+import t from '~t'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as bookmarksActions from '~data/actions/bookmarks'
-import { makeSelectModeEnabled } from '~data/selectors/bookmarks'
+import { makeSelectMode } from '~data/selectors/bookmarks'
 import { makeCollection } from '~data/selectors/collections'
 
 import View from './view'
+import SelectMode from './selectMode'
 
 class BookmarksHeader extends React.Component {
     static defaultProps = {
         cid: 0
     }
 
+    handlers = {
+        onCancelSelectModeClick: (e)=>{
+            e.preventDefault()
+            this.props.actions.cancelSelectMode(this.props.cid)
+        },
+
+        onSelectAllClick: (e)=>{
+            e.preventDefault()
+            this.props.actions.selectAll(this.props.cid)
+        },
+
+        onImportantClick: (e)=>{
+            e.preventDefault()
+            this.props.actions.importantSelected(this.props.cid)
+        },
+
+        onAddTagsClick: (e)=>{
+            e.preventDefault()
+        },
+
+        onRemoveClick: (e)=>{
+            e.preventDefault()
+            if (confirm(t.s('areYouSure')))
+                this.props.actions.removeSelected(this.props.cid)
+        },
+
+        onMoreClick: (e)=>{
+            e.preventDefault()
+        },
+    }
+
     render() {
+        let Component
+
+        if (this.props.selectMode.enabled)
+            Component = SelectMode
+        else
+            Component = View
+
         return (
-            <View {...this.props} />
+            <Component {...this.props} {...this.handlers} />
         )
     }
 }
@@ -22,12 +62,12 @@ class BookmarksHeader extends React.Component {
 export default connect(
 	() => {
         const getCollection = makeCollection()
-        const getSelectModeEnabled = makeSelectModeEnabled()
+        const getSelectMode = makeSelectMode()
     
         return (state, { cid })=>{
             return {
-                collection: getCollection(state, cid),
-                selectModeEnabled: getSelectModeEnabled(state, cid)
+                selectMode: getSelectMode(state, cid),
+                collection: getCollection(state, cid)
             }
         }
     },

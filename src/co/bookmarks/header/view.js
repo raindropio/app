@@ -7,8 +7,8 @@ export default class BookmarksHeaderView extends React.PureComponent {
         const { collection } = this.props
 
         return (
-            <>
-                <div className='elements-header'>
+            <div className='elements-header'>
+                <div className='header'>
                     <div className='c-icon'>
                         <CollectionIcon
                             _id={collection._id}
@@ -23,9 +23,7 @@ export default class BookmarksHeaderView extends React.PureComponent {
                         <Icon name={'view_'+collection.view} />
                     </a>
                 </div>
-
-                <div className='elements-header-border' />
-            </>
+            </div>
         )
     }
 }

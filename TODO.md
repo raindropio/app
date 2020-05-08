@@ -27,6 +27,8 @@ Not ready
 - bookmark info important icon should be bright
 - bookmark path
 - empty bookmarks state for search: searchEverywhere click
+- bookmarks selectMode incomplete
+- bookmark view button contextmenu
 
 Good to have
 - Refactor collection/reorder redux to server
