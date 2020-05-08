@@ -9,7 +9,6 @@ listCoverSizeWidthHeight = 50px
         padding: 12px baseHorizontalGap;
         background: white;
         position: relative;
-        transition: padding .2s ease-in-out;
 
         .title, p {
             @extend .text-overflow;
@@ -41,10 +40,8 @@ listCoverSizeWidthHeight = 50px
             position: absolute;
             right: 0;
             bottom: 0;
-            transition: left .2s ease-in-out;
             border-top: 0.5px solid rgba(0,0,0,.07);
             z-index:1;
-            transition: transform .2s ease-in-out;
             //height: 1px;
             left: rem(listCoverSizeWidthHeight + 32px);
         }
@@ -92,10 +89,6 @@ listCoverSizeWidthHeight = 50px
                     letter-spacing: 1px;
                 }
             }
-        }
-        
-        .cover, .cover img {
-            transition: width .2s ease-in-out, height .2s ease-in-out;
         }
 
         .about {

@@ -18,17 +18,21 @@ export default function CollectionsItemContextmenu({
                 {/* Have write access */}
                 { _id>0 ? (access.level>=3 ? (
                     <>
-                        <MenuItem onClick={onCreateNewChildClick}>
-                            <Icon name='new_collection' />
-                            {t.s('createSubFolder')}
-                        </MenuItem>
+                        {onCreateNewChildClick && (
+                            <MenuItem onClick={onCreateNewChildClick}>
+                                <Icon name='new_collection' />
+                                {t.s('createSubFolder')}
+                            </MenuItem>
+                        )}
 
                         <MenuSeparator />
 
-                        <MenuItem onClick={onRenameClick}>
-                            <Icon name='edit' />
-                            {t.s('edit')}
-                        </MenuItem>
+                        {onRenameClick && (
+                            <MenuItem onClick={onRenameClick}>
+                                <Icon name='edit' />
+                                {t.s('edit')}
+                            </MenuItem>
+                        )}
 
                         <MenuItem onClick={onRemoveClick}>
                             <Icon name='trash' />

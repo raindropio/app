@@ -161,7 +161,6 @@ elementInvert()
         max-height: 400px;overflow:hidden;
         min-width: 16px;
         border-radius: 1px;
-        transition: background .2s ease-in-out;
         
         &.is-screenshot {
             object-position: top center;
@@ -422,7 +421,7 @@ html.web:not(.electron) .element {
     .actions {
         display: inline-flex;
         opacity: 0;
-        transition: opacity .15s ease-in-out;
+        transition: opacity .1s linear;
     }
 
     &:hover, &.active {

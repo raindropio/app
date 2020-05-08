@@ -1,13 +1,11 @@
 import React from 'react'
 
 const mainStyle = { width: '100%', height: '100%' }
+let cached = { width: 0, height: 0 }
 
 export default (Component)=>
     class VirtualGridAutoSize extends React.PureComponent {
-        state = {
-            width: 0,
-            height: 0
-        }
+        state = cached
 
         bindRef = ref => {
             if (!ref || this._div == ref) return
@@ -33,8 +31,10 @@ export default (Component)=>
         computeSize = (width, height)=>{
             window.requestAnimationFrame(() => {
                 if (width != this.state.width ||
-                    height != this.state.height)
-                    this.setState({ width, height })
+                    height != this.state.height){
+                    cached = { width, height }
+                    this.setState(cached)
+                }
             })
         }
 

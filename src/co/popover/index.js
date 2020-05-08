@@ -63,9 +63,9 @@ export default class Popover extends React.Component {
         const { offsetWidth, offsetHeight } = this._body.current
 
         if (x + offsetWidth > innerWidth)
-            x = innerWidth - offsetWidth
+            x = innerWidth - offsetWidth - 16
         if (y + offsetHeight > innerHeight)
-            y = innerHeight - offsetHeight 
+            y = innerHeight - offsetHeight - 16
 
         this._body.current.setAttribute('style', `top: ${y}px; left: ${x}px;`)
     }

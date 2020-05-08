@@ -3,7 +3,8 @@ import t from '~t'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as bookmarksActions from '~data/actions/bookmarks'
-import { makeSelectMode } from '~data/selectors/bookmarks'
+import * as collectionsActions from '~data/actions/collections'
+import { makeSelectMode, makeSort, makeSorts } from '~data/selectors/bookmarks'
 import { makeCollection } from '~data/selectors/collections'
 
 import View from './view'
@@ -63,15 +64,20 @@ export default connect(
 	() => {
         const getCollection = makeCollection()
         const getSelectMode = makeSelectMode()
+        const getSort = makeSort()
+        const getSorts = makeSorts()
     
         return (state, { cid })=>{
             return {
                 selectMode: getSelectMode(state, cid),
-                collection: getCollection(state, cid)
+                collection: getCollection(state, cid),
+                sort: getSort(state, cid),
+                sorts: getSorts(state, cid),
             }
         }
     },
 	(dispatch)=>({
-		actions: bindActionCreators(bookmarksActions, dispatch)
+        actions: bindActionCreators(bookmarksActions, dispatch),
+        collectionsActions: bindActionCreators(collectionsActions, dispatch)
     })
 )(BookmarksHeader)

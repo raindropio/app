@@ -2,7 +2,7 @@ import React from 'react'
 import Icon from '~co/common/icon'
 
 export default React.memo(({ _id, cover, className, size, active })=>{
-	if (cover)
+	if (cover && cover[0])
 		return <img src={cover[0]} className={'collectionIcon '+className||''} loading='lazy' />
 
 	var svgIcon = '', prefix = (active ? '_active' : '')
