@@ -18,7 +18,6 @@ export default class BookmarkItemView extends React.PureComponent {
                 <Cover
                     src={cover}
                     link={link}
-                    domain={domain}
                     view={view} />
 
                 <div className='about'>

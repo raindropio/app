@@ -1,8 +1,6 @@
 import React from 'react'
 import getThumbUri from '~data/modules/format/thumb'
 import getScreenshotUri from '~data/modules/format/screenshot'
-import { getColorForString } from '~data/helpers/colors'
-import { getDomain } from '~modules/format/url'
 
 //cache src statuses
 const status = {
@@ -16,12 +14,19 @@ const onSrcError = (src)=>{
         status[src] = 'error'
 }
 
+//cache thumb/screenshot uri
+const thumbs = {}
+const getStellaUri = (uri, screenshot=false)=>{
+    if (!thumbs[uri])
+        thumbs[uri] = screenshot ? getScreenshotUri(uri) : getThumbUri(uri)
+    return thumbs[uri]
+}
+
 //main component
 export default class BookmarkItemCover extends React.PureComponent {
     static defaultProps = {
         src:    '',
         link:   '', //required
-        domain: '',
         view:   'list',
     }
 
@@ -42,23 +47,21 @@ export default class BookmarkItemCover extends React.PureComponent {
     }
 
     renderImage = ()=>{
-        const { src, domain, view, link, ...etc } = this.props
+        const { src, view, link, ...etc } = this.props
         let width, mode, ar, uri
 
         switch(status[src]) {
             case 'error':
                 return (
-                    <Placeholder 
-                        domain={domain}
-                        src={src} />
+                    <span className='cover cover-placeholder' />
                 )
 
             case 'screenshot':
-                uri = getScreenshotUri(link)
+                uri = getStellaUri(link, true)
                 break
 
             default:
-                uri = src
+                uri = getStellaUri(src)
                 break
         }
 
@@ -84,7 +87,7 @@ export default class BookmarkItemCover extends React.PureComponent {
             <img 
                 className='cover' 
                 {...etc}
-                src={`${getThumbUri(uri)}&mode=${mode}&ar=${ar}&width=${width}&dpr=${window.devicePixelRatio}`}
+                src={`${uri}&mode=${mode}&ar=${ar}&width=${width}&dpr=${window.devicePixelRatio}`}
                 onError={this.onImageLoadError} />
         )
     }
@@ -99,9 +102,3 @@ export default class BookmarkItemCover extends React.PureComponent {
         )
     }
 }
-
-const Placeholder = React.memo(({ domain, src })=>(
-    <span 
-        className='cover cover-placeholder'
-        style={{backgroundColor: getColorForString(domain || getDomain(src))}} />
-))
