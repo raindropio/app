@@ -83,7 +83,7 @@ export default class BookmarkItemView extends React.PureComponent {
                             <span 
                                 className='button min default'
                                 onClick={onEditClick}>
-                                <b>{t.s('editMin')}</b>
+                                <b><Icon name='edit' /></b>
                             </span>
 
                             <span
@@ -97,12 +97,11 @@ export default class BookmarkItemView extends React.PureComponent {
                 </div>
 
                 {access.level >= 3 && (
-                    <span
-                        className={`button min selectElement ${selected ? 'active' : 'default'}`}
-                        onClick={onSelectClick}
+                    <label
+                        className={`selectElement ${selected ? 'active' : 'default'}`}
                         title={t.s('select')}>
-                        <b><Icon name='check' /></b>
-                    </span>
+                        <input type='checkbox' checked={selected} onChange={onSelectClick} />
+                    </label>
                 )}
 
                 <SuperLink

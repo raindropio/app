@@ -15,7 +15,7 @@
 		"build": "export NODE_ENV=production  && export APP_PUBLIC_PATH=/ && webpack --config build/config.js",
 		"build:extension": "export NODE_ENV=production  && APP_TARGET='clipper' && webpack --config build/config.js",
 		"build:desktop": "export NODE_ENV=production  && APP_TARGET='desktop' && webpack --config build/config.js",
-		"size": "export NODE_ENV=production && export APP_PUBLIC_PATH=/ && webpack --config build/config.js --profile --json > dist/stats.json && webpack-bundle-analyzer dist/stats.json",
+		"size": "export NODE_ENV=production && export APP_PUBLIC_PATH=/ && webpack --config build/config.js --profile --json > dist/stats.json && webpack-bundle-analyzer dist/stats.json dist/default",
 		"deploy:prod": "git branch -f release/production master && git push --force origin release/production",
 		"preinstall": "command -v link-module-alias && link-module-alias clean || true",
 		"postinstall": "link-module-alias"

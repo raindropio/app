@@ -98,7 +98,7 @@ class VirtualSortable extends React.Component {
     }
 
     render() {
-        const { className, type, listRef, ...other } = this.props
+        const { type, listRef, ...other } = this.props
 
         return (
             <DragDropContext
@@ -106,7 +106,6 @@ class VirtualSortable extends React.Component {
                 onDragUpdate={this.onDragUpdate}
                 onDragEnd={this.onDragEnd}>
                 <Droppable
-                    className={className}
                     droppableId={type}
                     mode='virtual'
                     isCombineEnabled={this.state.isCombineEnabled}

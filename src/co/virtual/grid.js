@@ -101,7 +101,7 @@ class VirtualGrid extends React.PureComponent {
                 style={style}
                 item={this.renderRow}
 
-                dataKey={dataKey+columnCount}
+                dataKey={dataKey+columnCount+(!rowCount?'empty':'')}
                 totalCount={rowCount ? rowCount+1 : 2}
                 topItems={stickyHeader ? 1 : 0}
 

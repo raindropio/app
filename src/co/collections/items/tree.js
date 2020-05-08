@@ -154,16 +154,11 @@ export default class CollectionsTree extends React.Component {
 
     render() {
         if (!this.props.data.length)
-            return (
-                <div className='collections'>
-                    <Empty />
-                </div>
-            )
+            return <Empty />
 
         return (
             <Sortable
                 activeId={this.props.activeId}
-                className='collections'
                 
                 //react-window
                 listRef={this._list}

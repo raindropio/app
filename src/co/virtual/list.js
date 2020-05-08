@@ -48,11 +48,12 @@ export default class VirtualList extends React.PureComponent {
     }
 
     render() {
-        const { endReached, totalCount, stickyHeader, ...etc } = this.props
+        const { endReached, totalCount, stickyHeader, dataKey, ...etc } = this.props
 
         return (
             <Virtuoso
                 {...etc}
+                dataKey={dataKey+(!totalCount?'empty':'')}
                 topItems={stickyHeader ? 1 : 0}
                 totalCount={totalCount ? totalCount+1 : 2}
                 item={this.renderItem}

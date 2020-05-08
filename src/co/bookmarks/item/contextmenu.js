@@ -66,7 +66,7 @@ export default function CollectionsItemContextmenu({
                         <MenuSeparator />
 
                         <MenuItem onClick={onEditClick}>
-                            <Icon name='new_note' />
+                            <Icon name='edit' />
                             {t.s('edit')}
                         </MenuItem>
 

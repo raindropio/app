@@ -38,7 +38,7 @@ export default function CollectionsItemContextmenu({
                 { !system && (
                     <>
                         <MenuItem onClick={onRenameClick}>
-                            <Icon name='new_note' />
+                            <Icon name='edit' />
                             {t.s('edit')} {t.s('group').toLowerCase()}
                         </MenuItem>
 
