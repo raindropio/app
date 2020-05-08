@@ -56,7 +56,18 @@ export default class Popover extends React.Component {
     }
 
     updatePosition = ()=>{
-        this._body.current.setAttribute('style', `top: ${_mousePos.y}px; left: ${_mousePos.x}px;`)
+        let y = _mousePos.y
+        let x = _mousePos.x
+
+        const { innerWidth, innerHeight } = window
+        const { offsetWidth, offsetHeight } = this._body.current
+
+        if (x + offsetWidth > innerWidth)
+            x = innerWidth - offsetWidth
+        if (y + offsetHeight > innerHeight)
+            y = innerHeight - offsetHeight 
+
+        this._body.current.setAttribute('style', `top: ${y}px; left: ${x}px;`)
     }
 
     render() {
