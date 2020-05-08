@@ -2,7 +2,7 @@ import React from 'react'
 import Masonry from 'react-masonry-css'
 import withAutoSize from './helpers/withAutoSize'
 
-class VirtualMasonry extends React.Component {
+class VirtualMasonry extends React.PureComponent {
     static defaultProps = {
         className: '', //optional
         columnWidth: 0, //required
@@ -55,16 +55,20 @@ class VirtualMasonry extends React.Component {
 
     render() {
         const { columnCount } = this.state
-        const { className } = this.props
+        const { className, footer } = this.props
 
         return (
-            <Masonry 
-                breakpointCols={columnCount}
-                className={className}
-                columnClassName=''
-                onScroll={this.onContainerScroll}>
-                {this.renderItems()}
-            </Masonry>
+            <div>
+                <Masonry 
+                    breakpointCols={columnCount}
+                    className={className}
+                    columnClassName=''
+                    onScroll={this.onContainerScroll}>
+                    {this.renderItems()}
+                </Masonry>
+
+                {footer && footer()}
+            </div>
         )
     }
 }

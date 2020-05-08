@@ -44,7 +44,7 @@ class VirtualGrid extends React.PureComponent {
 
     //rendering
     rangeChanged = ({ endIndex })=>{
-        if (endIndex >= this.state.rowCount - 3)
+        if (endIndex >= this.state.rowCount - 4)
             this.props.endReached()
     }
 

@@ -4,6 +4,7 @@ import Grid from '~co/virtual/grid'
 import Masonry from '~co/virtual/masonry'
 
 import Item from '../item'
+import Empty from '../empty'
 import Footer from '../footer'
 
 export default class BookmarksItemsListing extends React.Component {
@@ -11,7 +12,6 @@ export default class BookmarksItemsListing extends React.Component {
         this.props.items[index]
 
     endReached = ()=>
-        this.props.status.nextPage != 'noMore' &&
         this.props.actions.nextPage(this.props.cid)
 
     renderItem = (index)=>{
@@ -23,8 +23,8 @@ export default class BookmarksItemsListing extends React.Component {
                 _id={_id}
                 //collection
                 cid={this.props.cid}
-                view={this.props.collection.view}
-                access={this.props.collection.access}
+                view={this.props.view}
+                access={this.props.access}
                 selectModeEnabled={this.props.selectModeEnabled}
                 //listing specififc
                 active={this.props.activeId == _id}
@@ -33,16 +33,23 @@ export default class BookmarksItemsListing extends React.Component {
         )
     }
 
+    renderEmpty = ()=>(
+        <Empty cid={this.props.cid} />
+    )
+
     renderFooter = ()=>(
         <Footer cid={this.props.cid} />
     )
 
     render() {
-        const { items, collection, activeId, selectModeEnabled } = this.props
+        const { cid, items, view, activeId, selectModeEnabled } = this.props
+
+        if (!items.length)
+            return this.renderEmpty()
         
         let Component
 
-        switch(collection.view) {
+        switch(view) {
             case 'grid':
                 Component = Grid
             break
@@ -58,8 +65,8 @@ export default class BookmarksItemsListing extends React.Component {
 
         return (
             <Component
-                className={`elements view-${collection.view} ${selectModeEnabled&&'select-mode'}`}
-                dataKey={activeId+selectModeEnabled+collection._id} //force re-render
+                className={`elements view-${view} ${selectModeEnabled&&'select-mode'}`}
+                dataKey={activeId+selectModeEnabled+cid} //force re-render
 
                 item={this.renderItem}
                 footer={this.renderFooter}

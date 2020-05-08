@@ -85,7 +85,8 @@ export default class BookmarkItemCover extends React.PureComponent {
 
         return (
             <img 
-                className='cover' 
+                className='cover'
+                loading='lazy'
                 {...etc}
                 src={`${uri}&mode=${mode}&ar=${ar}&width=${width}&dpr=${window.devicePixelRatio}`}
                 onError={this.onImageLoadError} />

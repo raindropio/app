@@ -189,7 +189,7 @@ export const blankSelectMode = Immutable({
 
 export const blankSpace = Immutable({
 	status: {
-		main: 		'idle', //idle/empty/loading/error/loaded,
+		main: 		'idle', //idle/empty/loading/error/loaded/notFound,
 		nextPage: 	'idle', //idle/noMore/loading/error
 	},
 	query: {

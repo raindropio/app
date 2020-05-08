@@ -26,6 +26,7 @@ Not ready
 - bookmark info about cache status, reparse, creatorRef
 - bookmark info important icon should be bright
 - bookmark path
+- empty bookmarks state for search: searchEverywhere click
 
 Good to have
 - Refactor collection/reorder redux to server
