@@ -68,7 +68,8 @@ export default class BookmarksItemsListing extends React.Component {
                 totalCount={items.length}
                 columnWidth={250}
                 
-                endReached={this.endReached} />
+                endReached={this.endReached} 
+                />
         )
     }
 }

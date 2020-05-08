@@ -2,9 +2,9 @@ import React from 'react'
 import { Virtuoso } from 'react-virtuoso'
 import withAutoSize from './helpers/withAutoSize'
 
-const mainStyle = { width: '100%', height: '100%' }
+const mainStyle = { width: '100%', height: '100%', overflowY: 'overlay' }
 
-class VirtualGrid extends React.Component {
+class VirtualGrid extends React.PureComponent {
     static defaultProps = {
         className: '', //optional
         columnWidth: 0, //required
@@ -84,7 +84,7 @@ class VirtualGrid extends React.Component {
                 totalCount={rowCount}
 
                 rangeChanged={endReached && this.rangeChanged}
-                overscan={500}
+                defaultItemHeight={250}
             />
         )
     }

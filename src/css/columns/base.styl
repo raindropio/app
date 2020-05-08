@@ -173,7 +173,6 @@ html.electron {
         display: flex;
         align-items: center;
         overflow: hidden;
-        box-shadow: 0px -1px 0px subSeparatorColorAlpha;
 
         .title {
             @extend .text-overflow;
@@ -209,9 +208,6 @@ html.electron {
     #main header {
         box-shadow: 0px 1px 0px rgba(255,255,255,.05);
     }
-    #main footer {
-        box-shadow: 0px -1px 0px rgba(255,255,255,.05);
-    }
 }
 
 html.retina.chrome {
@@ -225,7 +221,6 @@ html.retina.chrome {
         }
         
         footer {
-            box-shadow: inset 0px 0.5px 0px rgba(0,0,0,.15);
             height: 40px;
         }
     }
@@ -238,10 +233,6 @@ html.retina.chrome {
             
             header.content-border {
                 box-shadow: 0px 0.5px 0px rgba(255,255,255,.1), 0px 20px 30px -19px rgba(255,255,255,.1);
-            }
-            
-            footer {
-                box-shadow: 0px -0.5px 0px rgba(255,255,255,.1);
             }
         }
     }

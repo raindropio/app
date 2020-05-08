@@ -38,7 +38,7 @@ class VirtualMasonry extends React.Component {
         const { height, endReached } = this.props
         const { scrollTop, scrollHeight } = e.target
         
-        if (scrollTop > scrollHeight-height*2)
+        if (scrollTop > scrollHeight-height*3)
             endReached()
     }
 

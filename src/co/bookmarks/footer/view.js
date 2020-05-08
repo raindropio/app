@@ -9,34 +9,37 @@ export default class BookmarksItemsFooter extends React.PureComponent {
 
     render() {
         const { status } = this.props
-
-        if (status.main != 'loaded')
-            return null
+        let content = null
 
         switch(status.nextPage) {
             case 'loading':
-                return (
-                    <div className='loadMore'>
-                        <div className='subHeadLabel'>{t.s('loading')}&hellip;</div>
-                    </div>
+                content = (
+                    <div className='subHeadLabel'>{t.s('loading')}&hellip;</div>
                 )
+                break
 
             case 'error':
-                return (
-                    <div className='loadMore'>
+                content = (
+                    <span>
                         {t.s('server')} <a onClick={this.loadMore}>{t.s('tryAgain')}</a>
-                    </div>
+                    </span>
                 )
+                break
 
             case 'noMore':
-                return null
+                break
 
             default:
-                return (
-                    <div className='loadMore'>
-                        <a className='button default' onClick={this.loadMore}><b>{t.s('more')}</b></a>
-                    </div>
+                content = (
+                    <a className='button default' onClick={this.loadMore}><b>{t.s('more')}</b></a>
                 )
+                break
         }
+
+        return (
+            <div className='loadMore'>
+                {content}
+            </div>
+        )
     }
 }
