@@ -1,10 +1,7 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
 
-import 'react-virtualized/styles.css'
-import AutoSizer from 'react-virtualized/dist/es/AutoSizer'
-import List from 'react-virtualized/dist/es/List'
-import { CellMeasurer, CellMeasurerCache } from 'react-virtualized/dist/es/CellMeasurer'
+import withAutoSize from './helpers/withAutoSize'
+import { FixedSizeList as List } from 'react-window'
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
 
 const emptyObject = {}
@@ -19,11 +16,10 @@ function getStyle({ draggableProps }, snapshot, source) {
     }
 }
 
-export default class VirtualSortable extends React.Component {
+class VirtualSortable extends React.Component {
     static defaultProps = {
         //specific for this component:
         type: 'default',            //optional
-        rowType: undefined,         //func, optional ({ index })
         rowIsDraggable: undefined,  //func, optional ({ index })
         rowIsDroppable: undefined,  //func, optional (from, to)
         onDragStart: undefined,     //func, optional ({ index })
@@ -34,22 +30,6 @@ export default class VirtualSortable extends React.Component {
     state = {
         isCombineEnabled: true
     }
-
-    bindList = (dragProvider) => ref => {
-        if (!ref || this._list == ref) return
-        this._list = ref
-
-        dragProvider.innerRef(ReactDOM.findDOMNode(ref))
-        this.props.innerRef && this.props.innerRef(ref)
-    }
-
-    sizeCache = new CellMeasurerCache({
-        defaultHeight: 32,
-        fixedWidth: true,
-        keyMapper: this.props.rowType ? 
-            (index)=>this.props.rowType({ index }) :
-            undefined
-    })
 
     renderRow = source => {
         //drag disabled
@@ -78,13 +58,7 @@ export default class VirtualSortable extends React.Component {
             style={getStyle(provided, snapshot, source)}
             tabIndex='-1'
             onClick={null}>
-            <CellMeasurer
-                parent={emptyObject}
-                {...source}
-                columnIndex={0}
-                cache={this.sizeCache}>
-                {this.props.rowRenderer(source, provided, snapshot)}
-            </CellMeasurer>
+            {this.props.children(source, provided, snapshot)}
         </div>
     )
 
@@ -124,7 +98,7 @@ export default class VirtualSortable extends React.Component {
     }
 
     render() {
-        const { type, ...other } = this.props
+        const { type, listRef, ...other } = this.props
 
         return (
             <DragDropContext
@@ -136,21 +110,18 @@ export default class VirtualSortable extends React.Component {
                     mode='virtual'
                     isCombineEnabled={this.state.isCombineEnabled}
                     renderClone={this.renderClone}>
-                    {dragProvider =>
-                        <AutoSizer>{size =>
-                            <List
-                                {...size}
-                                {...other}
-                                tabIndex={-1}
-                                rowHeight={this.sizeCache.rowHeight}
-                                deferredMeasurementCache={this.sizeCache}
-                                ref={this.bindList(dragProvider)}
-                                rowRenderer={this.renderRow}
-                                />
-                        }</AutoSizer>
+                    {droppableProvided =>
+                        <List
+                            {...other}
+                            ref={listRef}
+                            outerRef={droppableProvided.innerRef}>
+                            {this.renderRow}
+                        </List>
                     }
                 </Droppable>
             </DragDropContext>
         )
     }
 }
+
+export default withAutoSize(VirtualSortable)

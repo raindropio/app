@@ -6,16 +6,16 @@ import Group from '../group'
 import Empty from './empty'
 
 export default class CollectionsTree extends React.Component {
-    _bindList = ref => this._list = ref
+    _list = React.createRef()
     _scrolled = false
 
     componentDidUpdate() {
         //scroll to active on first paint
-        if (this.props.data.length && !this._scrolled){
+        if (this.props.data.length && !this._scrolled && this._list.current){
             this._scrolled = true
 
             if (this.props.activeId)
-                this._list.scrollToRow(
+                this._list.current.scrollToItem(
                     this.props.data
                         .findIndex(({item})=>item && item._id == this.props.activeId)
                 )
@@ -49,14 +49,7 @@ export default class CollectionsTree extends React.Component {
         )
     }
 
-    noRowsRenderer = ()=>(
-        <Empty />
-    )
-
     //drag/drop
-    rowType = ({ index })=>
-        this.props.data[index].type
-
     rowIsDraggable = ({ index })=>{
         const row = this.props.data[index]
 
@@ -160,26 +153,32 @@ export default class CollectionsTree extends React.Component {
     }
 
     render() {
+        if (!this.props.data.length)
+            return (
+                <div className='collections'>
+                    <Empty />
+                </div>
+            )
+
         return (
             <Sortable
-                innerRef={this._bindList}
-
-                //react-virtualized
-                data={this.props.data}
                 activeId={this.props.activeId}
                 className='collections'
-                rowCount={this.props.data.length}
-                rowRenderer={this.rowRenderer}
-                noRowsRenderer={this.noRowsRenderer}
-                overscanRowCount={5}
+                
+                //react-window
+                listRef={this._list}
+                itemCount={this.props.data.length}
+                itemData={this.props.data} //only used to re-render when data re-ordered from outside
+                itemSize={32}
+                overscanCount={5}
 
                 //custom
-                rowType={this.rowType}
                 rowIsDraggable={this.rowIsDraggable}
                 rowIsDroppable={this.rowIsDroppable}
                 onDragStart={this.onDragStart}
-                onDragEnd={this.onDragEnd}
-                />
+                onDragEnd={this.onDragEnd}>
+                {this.rowRenderer}
+            </Sortable>
         )
     }
 }

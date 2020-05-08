@@ -112,4 +112,4 @@ class VirtualGrid extends React.PureComponent {
     }
 }
 
-export default withAutoSize(VirtualGrid, false)
+export default withAutoSize(VirtualGrid)
