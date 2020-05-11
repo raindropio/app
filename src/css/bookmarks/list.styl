@@ -10,10 +10,6 @@ listCoverSizeWidthHeight = 50px
         background: white;
         position: relative;
 
-        .title, p {
-            @extend .text-overflow;
-        }
-
         .selectElement {
             top: 12px
             left: baseHorizontalGap
@@ -144,6 +140,14 @@ listCoverSizeWidthHeight = 50px
     }
 }
 
+.view-simple {
+    .about {
+        .description {
+            display: none;
+        }
+    }
+}
+
 .mode-disable-cover {
     .view-list, .view-simple {
         .element {
@@ -159,7 +163,7 @@ listCoverSizeWidthHeight = 50px
 }
 
 .mode-disable-description {
-    .view-list, .view-simple {
+    .view-list {
         .element {
             .about .description {
                 display: none;

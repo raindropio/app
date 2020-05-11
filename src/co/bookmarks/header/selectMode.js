@@ -13,12 +13,14 @@ export default class BookmarksHeaderSelectMode extends React.PureComponent {
                 <div className='header'>
                     <a href='' className='button active' onClick={onSelectAllClick}>
                         <Icon name='select_all' />
-                        <span className='hide-on-small-body'>{t.s('selectAll')}</span>
+                        <span className='hide-on-small-body'>{t.s('all')}</span>
                     </a>
 
                     <div className='title'>
                         {selectMode.ids.length} {t.s('elements')}
                     </div>
+
+                    <div className='space' />
 
                     <a className='button active' onClick={onImportantClick}>
                         <Icon name='like' />

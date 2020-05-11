@@ -33,12 +33,11 @@ export default function(state, action) {
 		}
 
 		case COLLECTION_CHANGE_VIEW:{
-			if (action._id<=0){
+			if (action._id<=0)
 				action.ignore = true
-				return state
-					.setIn(['items', action._id, 'view'], action.view)
-			}
+			
 			return state
+				.setIn(['items', action._id, 'view'], action.view)
 		}
 
 		//Create

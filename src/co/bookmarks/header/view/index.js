@@ -21,10 +21,12 @@ export default class BookmarksHeaderView extends React.PureComponent {
                     <div className='title'>
                         {collection.title}
                     </div>
+                    <More {...this.props} />
+
+                    <div className='space' />
 
                     <Sort {...this.props} />
                     <View {...this.props} />
-                    <More {...this.props} />
                 </div>
             </div>
         )

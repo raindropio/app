@@ -1,16 +1,15 @@
 import React from 'react'
 import { withSearch } from '~modules/router'
 
-import Main, { Header, Content } from '~co/screen/splitview/main'
-import Bookmarks from '~co/bookmarks/items'
+import Main from '~co/screen/splitview/main'
+import Header from './header'
+import Content from './content'
 
-function CollectionsMain({ match }){
+function CollectionsMain(props){
     return (
         <Main>
-            <Header></Header>
-            <Content>
-                <Bookmarks cid={match.params.cid} />
-            </Content>
+            <Header {...props} />
+            <Content {...props} />
         </Main>
     )
 }
