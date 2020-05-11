@@ -50,6 +50,7 @@ export default class BookmarksHeaderSort extends React.Component {
                         <Menu>
                             {Object.keys(this.options).map(sort=>(
                                 <MenuItem 
+                                    key={sort}
                                     data-sort={sort}
                                     disabled={sorts[sort] && !sorts[sort].enabled}
                                     onClick={this.onSortClick}>

@@ -1,5 +1,5 @@
 export const 
-	SPACE_PER_PAGE 					= 50,
+	SPACE_PER_PAGE 					= 40,
 
 	//Space
 	SPACE_LOAD_REQ 					= 'SPACE_LOAD_REQ',

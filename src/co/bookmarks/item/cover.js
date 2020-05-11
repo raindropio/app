@@ -1,6 +1,7 @@
 import React from 'react'
 import getThumbUri from '~data/modules/format/thumb'
 import getScreenshotUri from '~data/modules/format/screenshot'
+import getFaviconUri from '~data/modules/format/favicon'
 
 //cache src statuses
 const status = {
@@ -16,9 +17,21 @@ const onSrcError = (src)=>{
 
 //cache thumb/screenshot uri
 const thumbs = {}
-const getStellaUri = (uri, screenshot=false)=>{
+const getStellaUri = (uri, mode='')=>{
     if (!thumbs[uri])
-        thumbs[uri] = screenshot ? getScreenshotUri(uri) : getThumbUri(uri)
+        switch (mode) {
+            case 'screenshot':
+                thumbs[uri] = getScreenshotUri(uri)
+                break
+
+            case 'favicon':
+                thumbs[uri] = getFaviconUri(uri)
+                break
+        
+            default:
+                thumbs[uri] = getThumbUri(uri)
+                break
+        }
     return thumbs[uri]
 }
 
@@ -52,18 +65,28 @@ export default class BookmarkItemCover extends React.PureComponent {
         const { src, view, link, ...etc } = this.props
         let width, mode, ar, uri
 
-        switch(status[src]) {
-            case 'error':
-                return (
-                    <span className='cover cover-placeholder' />
-                )
-
-            case 'screenshot':
-                uri = getStellaUri(link, true)
+        switch(view){
+            //simple always have a favicon
+            case 'simple':
+                uri = getStellaUri(link, 'favicon')
                 break
 
+            //in other view modes we show a thumbnail, screenshot or placeholder, depends on status
             default:
-                uri = getStellaUri(src)
+                switch(status[src]) {
+                    case 'error':
+                        return (
+                            <span className='cover cover-placeholder' />
+                        )
+        
+                    case 'screenshot':
+                        uri = getStellaUri(link, 'screenshot')
+                        break
+        
+                    default:
+                        uri = getStellaUri(src)
+                        break
+                }
                 break
         }
 
@@ -76,6 +99,12 @@ export default class BookmarkItemCover extends React.PureComponent {
 
             case 'masonry':
                 width = 250
+                break;
+
+            case 'simple':
+                width = 16
+                mode = 'crop'
+                ar = '1:1'
                 break;
         
             default:

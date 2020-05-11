@@ -56,16 +56,35 @@ export default class Popover extends React.Component {
     }
 
     updatePosition = ()=>{
+        //use current mouse position
         let y = _mousePos.y
         let x = _mousePos.x
+        
+        //pin to active element, if it over mouse pos
+        try{
+            const { left, top, width, height } = document.activeElement.getBoundingClientRect()
+            if (width < 200 && height < 200){
+                if (top < y && top + height >= y)
+                    y = top + height
 
+                if (left < x && left + width >= x)
+                    x = left
+            }
+        }catch(e){}
+
+        //prevent showing outside of viewport
         const { innerWidth, innerHeight } = window
         const { offsetWidth, offsetHeight } = this._body.current
 
         if (x + offsetWidth > innerWidth)
             x = innerWidth - offsetWidth - 16
+        if (x < 0)
+            x = 16
+
         if (y + offsetHeight > innerHeight)
             y = innerHeight - offsetHeight - 16
+        if (y < 0)
+            y = 16
 
         this._body.current.setAttribute('style', `top: ${y}px; left: ${x}px;`)
     }

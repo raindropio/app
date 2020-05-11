@@ -46,6 +46,7 @@ export default class BookmarksHeaderView extends React.Component {
                         <Menu>
                             {Object.keys(this.options).map(view=>(
                                 <MenuItem 
+                                    key={view}
                                     data-view={view}
                                     onClick={this.onViewClick}>
                                     <Icon name={'view_'+view} />

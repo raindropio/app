@@ -1,4 +1,5 @@
 import React from 'react'
+import t from '~t'
 import Icon from '~co/common/icon'
 import Contextmenu from '~co/collections/item/contextmenu'
 
@@ -16,7 +17,7 @@ export default class BookmarksHeaderView extends React.Component {
         this.setState({ menu: false })
 
     onRemoveClick = ()=>{
-        if (confirm('areYouSure'))
+        if (confirm(t.s('areYouSure')))
             this.props.collectionsActions.oneRemove(this.props.collection._id)
     }
 
