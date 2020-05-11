@@ -67,9 +67,8 @@ export default class BookmarksItemsListing extends React.Component {
 
         return (
             <Component
-                key={cid+view}
                 className={`elements view-${view} ${selectModeEnabled&&'select-mode'}`}
-                dataKey={activeId+selectModeEnabled} //force re-render
+                dataKey={activeId+selectModeEnabled+cid+view} //force re-render
 
                 item={this.renderItem}
                 header={this.renderHeader}

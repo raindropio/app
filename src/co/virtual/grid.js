@@ -75,13 +75,13 @@ class VirtualGrid extends React.PureComponent {
         
         const items = []
         for(var column=0; column<columnCount; column++){
-            const index = row*columnCount + column
+            const index = (row-1)*columnCount + column
             if (computeItemKey(index))
                 items.push(item(index))
         }
 
         return (
-            <div className={className} key={row}>
+            <div className={className} key={row-1}>
                 {items}
             </div>
         )
