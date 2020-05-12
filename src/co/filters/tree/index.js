@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as filtersActions from '~data/actions/filters'
 import * as configActions from '~data/actions/config'
+import * as tagsActions from '~data/actions/tags'
 import { makeFlatFilters } from '~data/selectors/filters'
 
 import Section from '../section'
@@ -71,8 +72,9 @@ export default connect(
     },
 	(dispatch)=>({
 		actions: {
-            ...bindActionCreators(filtersActions, dispatch),
-            ...bindActionCreators(configActions, dispatch)
+            load: bindActionCreators(filtersActions, dispatch).load,
+            ...bindActionCreators(configActions, dispatch),
+            ...bindActionCreators(tagsActions, dispatch)
         }
     }),
     undefined,

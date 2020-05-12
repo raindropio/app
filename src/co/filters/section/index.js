@@ -10,6 +10,10 @@ export default class FiltersSection extends React.PureComponent {
     handlers = {
         onClick: ()=>{
             this.props.actions.sidebarHide(this.props._id, !this.props.hidden)
+        },
+
+        onContextMenu: (e)=>{
+            e.preventDefault()
         }
     }
 

@@ -5,7 +5,7 @@ import t from '~t'
 export default class FiltersSection extends React.Component {
     render() {
         const { _id, hidden } = this.props
-        const { onClick } = this.props
+        const { onClick, onContextMenu } = this.props
         let title
 
         switch (_id) {
@@ -14,7 +14,7 @@ export default class FiltersSection extends React.Component {
         }
 
         return (
-            <div className='group' tabIndex='-1' onClick={onClick}>
+            <div className='group' tabIndex='-1' onClick={onClick} onContextMenu={onContextMenu}>
                 <div className='title'>{title}</div>
                 <span className='toggle'>{t.s(hidden ? 'show' : 'hide')}</span>
             </div>

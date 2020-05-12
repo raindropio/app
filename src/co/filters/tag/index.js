@@ -1,31 +1,77 @@
 import React from 'react'
-import { humanNumber } from '~modules/strings'
+import t from '~t'
 
-import Icon from '~co/common/icon'
-import SuperLink from '~co/common/superLink'
+import Rename from './rename'
+import View from './view'
+import Contextmenu from './contextmenu'
 
-export default class FiltersTag extends React.Component {
+export default class FiltersTag extends React.PureComponent {
+    static defaultProps = {
+        //...item,
+        to:         '',
+        active:     false,
+        actions:    {} //redux tags
+    }
+
+    state = {
+        rename: false,
+        menu: false,
+        sharing: false
+    }
+
+    handlers = {
+        onRenameClick: ()=>
+            this.setState({ rename: true }),
+        
+        onRenameCancel: ()=>
+            this.setState({ rename: false }),
+
+        onRename: (newName, success, fail)=>
+            this.props.actions.oneRename(this.props.name, newName, success, fail),
+    
+        onRemoveClick: ()=>{
+            if (confirm(t.s('areYouSure')))
+                this.props.actions.oneRemove(this.props.name)
+        },
+    
+        onContextMenu: (e)=>{
+            e.preventDefault()
+            e.target.focus()
+            this.setState({ menu: true })
+        },
+    
+        onContextMenuClose: ()=>
+            this.setState({ menu: false }),
+
+        onKeyUp: (e)=>{
+            switch(e.keyCode){
+                case 46: //delete
+                case 8: //backspace
+                    e.preventDefault()
+                    return this.handlers.onRemoveClick()
+    
+                case 13: //enter
+                    e.preventDefault()
+                    return this.handlers.onRenameClick()
+            }
+        }
+    }
+
     render() {
-        const { name, count, to, active } = this.props
+        const Component = (this.state.rename ? Rename : View)
 
         return (
-            <article className={`collection menu-item ${active && 'active'}`}>
-                <span className='expand'>
-                    <Icon name='arrow_alt' />
-                </span>
+            <>
+                <Component 
+                    {...this.props}
+                    {...this.handlers} />
 
-                <div className='title'>{name}</div>
-
-                <div className='space' />
-
-                {count ? <div className='count'>{humanNumber(count)}</div> : null}
-
-                <SuperLink
-                    to={to}
-                    navPrefix='menu-item'
-                    tabIndex={active ? '1' : '-1'}
-					className='permalink' />
-            </article>
+                {this.state.menu && (
+                    <Contextmenu 
+                        {...this.props}
+                        {...this.handlers} />
+                )}
+            </>
         )
     }
 }

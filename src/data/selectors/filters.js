@@ -1,4 +1,3 @@
-import _ from 'lodash-es'
 import { createSelector } from 'reselect'
 import {
 	blankSpace
@@ -6,7 +5,7 @@ import {
 import {getSearch} from './bookmarks/space'
 
 //Filters by collection id
-export const getFilters = ({filters}, spaceId)=>filters.spaces[spaceId] || blankSpace
+export const getFilters = ({filters={}}, spaceId)=>filters.spaces[spaceId] || blankSpace
 
 export const makeFilters = ()=> createSelector(
 	[getFilters, getSearch],

@@ -25,8 +25,10 @@ export default function(state = initialState, action={}){switch (action.type) {
 	}
 
 	case FILTERS_LOAD_REQ:{
-		return state
-			.setIn(['spaces', action.spaceId, 'status'],	blankSpace.status)
+		if (!state.spaces[action.spaceId])
+			return state.setIn(['spaces', action.spaceId], blankSpace)
+		else
+			return state.setIn(['spaces', action.spaceId, 'status'],	blankSpace.status)
 	}
 	
 	case FILTERS_LOAD_SUCCESS:{
