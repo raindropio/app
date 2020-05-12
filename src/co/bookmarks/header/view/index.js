@@ -12,11 +12,13 @@ export default class BookmarksHeaderView extends React.PureComponent {
         return (
             <div className='elements-header'>
                 <div className='header'>
-                    <div className='c-icon'>
-                        <CollectionIcon
-                            _id={collection._id}
-                            cover={collection.cover} />
-                    </div>
+                    {collection._id > 0 && (
+                        <div className='c-icon'>
+                            <CollectionIcon
+                                _id={collection._id}
+                                cover={collection.cover} />
+                        </div>
+                    )}
 
                     <div className='title'>
                         {collection.title}

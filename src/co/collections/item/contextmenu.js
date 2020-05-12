@@ -5,7 +5,7 @@ import Icon from '~co/common/icon'
 
 export default function CollectionsItemContextmenu({
     _id, access, to,
-    onContextMenuClose, onCreateNewChildClick, onRenameClick, onRemoveClick
+    onContextMenuClose, onCreateNewChildClick, onRenameClick, onRemoveClick, onSharing
 }) {
     return (
         <Popover onClose={onContextMenuClose}>
@@ -31,6 +31,13 @@ export default function CollectionsItemContextmenu({
                             <MenuItem onClick={onRenameClick}>
                                 <Icon name='edit' />
                                 {t.s('edit')}
+                            </MenuItem>
+                        )}
+
+                        {onSharing && (
+                            <MenuItem onClick={onSharing}>
+                                <Icon name='sharing' />
+                                {t.s('sharing')}
                             </MenuItem>
                         )}
 

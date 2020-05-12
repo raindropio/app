@@ -41,7 +41,7 @@ export default class BookmarksHeaderSort extends React.Component {
                     <Icon name={'sort_'+sort} />
         
                     <span>
-                        <span className='hide-on-small-body'>{t.s('sortMin')}</span> {(this.options[sort]||'').toLowerCase()}
+                        {this.options[sort]||''}
                     </span>
                 </a>
 

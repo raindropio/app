@@ -4,6 +4,7 @@ import Blank from './blank'
 import View from './view'
 import Rename from './rename'
 import Contextmenu from './contextmenu'
+import Sharing from '../sharing'
 
 export default class CollectionsItem extends React.Component {
     static defaultProps = {
@@ -15,7 +16,8 @@ export default class CollectionsItem extends React.Component {
 
     state = {
         rename: false,
-        menu: false
+        menu: false,
+        sharing: false
     }
 
     handlers = {
@@ -46,6 +48,12 @@ export default class CollectionsItem extends React.Component {
     
         onContextMenuClose: ()=>
             this.setState({ menu: false }),
+
+        onSharing: ()=>
+            this.setState({ sharing: true }),
+    
+        onSharingClose: ()=>
+            this.setState({ sharing: false }),
 
         onCreateNewChildClick: ()=>{
             this.props.actions.addBlank(this.props.item._id, true)
@@ -91,6 +99,12 @@ export default class CollectionsItem extends React.Component {
                         {...props}
                         {...this.handlers}
                         to={`${uriPrefix}${item._id}`} />
+                )}
+
+                {this.state.sharing && (
+                    <Sharing 
+                        _id={item._id}
+                        onClose={this.handlers.onSharingClose} />
                 )}
             </>
         )
