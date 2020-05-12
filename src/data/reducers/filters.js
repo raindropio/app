@@ -1,8 +1,6 @@
 import Immutable from 'seamless-immutable'
 import _ from 'lodash-es'
-import {
-	normalizeArray, normalizeEntity, blankSpace
-} from '../helpers/filters'
+import { blankSpace } from '../helpers/filters'
 
 import {REHYDRATE} from 'redux-persist/src/constants'
 
@@ -32,15 +30,11 @@ export default function(state = initialState, action={}){switch (action.type) {
 	}
 	
 	case FILTERS_LOAD_SUCCESS:{
+		const { spaceId, type, ...items } = action
+
 		return state
-			.setIn(['spaces', action.spaceId, 'status'], 				'loaded')
-			.setIn(['spaces', action.spaceId, 'tags'], 					normalizeArray(action.tags))
-			.setIn(['spaces', action.spaceId, 'types'], 				[
-				...(action.important ? [{name: 'important', count: action.important}] : []),
-				...normalizeArray(action.types),
-				...(action.broken ? [{name: 'broken', count: action.broken}] : []),
-				//...(action.best ? [{name: 'best'}] : []),
-			])
+			.setIn(['spaces', spaceId],					items)
+			.setIn(['spaces', spaceId, 'status'],		'loaded')
 	}
 
 	case FILTERS_LOAD_ERROR:{
@@ -55,8 +49,8 @@ export default function(state = initialState, action={}){switch (action.type) {
 			const path=['spaces', spaceId, 'tags']
 
 			state = state.setIn(path, state.getIn(path).map((item)=>{
-				if (item.name==action.tagName)
-					return item.set('name', action.newName)
+				if (item._id==action.tagName)
+					return item.set('_id', action.newName)
 				return item
 			}))
 		})
@@ -69,7 +63,7 @@ export default function(state = initialState, action={}){switch (action.type) {
 		_.forEach(state.spaces, (space, spaceId)=>{
 			const path=['spaces', spaceId, 'tags']
 
-			state = state.setIn(path, state.getIn(path).filter((item)=>item.name!=action.tagName))
+			state = state.setIn(path, state.getIn(path).filter((item)=>item._id!=action.tagName))
 		})
 
 		return state
@@ -85,5 +79,4 @@ export default function(state = initialState, action={}){switch (action.type) {
 
 const initialState = Immutable({
 	spaces: {},
-
 })

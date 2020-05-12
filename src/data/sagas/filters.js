@@ -29,7 +29,7 @@ function* reloadFilters({spaceId, ignore=false}) {
 	const query = getSpaceQuery(state.bookmarks, spaceId);
 
 	try {
-		const {tags=[], types=[], important={}, broken={}, best={}, result=false, error, errorMessage} = yield call(Api.get, 'filters/'+query.string);
+		const {result=false, error, errorMessage, ...items} = yield call(Api.get, 'filters/'+query.string);
 
 		if (!result)
 			throw new ApiError(error, errorMessage||'cant load filters')
@@ -37,10 +37,7 @@ function* reloadFilters({spaceId, ignore=false}) {
 		yield put({
 			type: FILTERS_LOAD_SUCCESS,
 			spaceId: spaceId,
-			tags, types, 
-			important: important.count, 
-			broken: broken.count, 
-			best: best.count
+			...items
 		});
 	} catch (error) {
 		yield put({

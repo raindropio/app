@@ -6,7 +6,7 @@ import SuperLink from '~co/common/superLink'
 
 export default class FiltersTagView extends React.Component {
     render() {
-        const { name, count, to, active } = this.props
+        const { _id, count, to, active } = this.props
         const { onRenameClick, onContextMenu, onKeyUp } = this.props
 
         return (
@@ -15,7 +15,9 @@ export default class FiltersTagView extends React.Component {
                     <Icon name='arrow_alt' />
                 </span>
 
-                <div className='title'>{name}</div>
+                <Icon name='tag' className='collectionIcon' />
+
+                <div className='title'>{_id}</div>
 
                 <div className='space' />
 

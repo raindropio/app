@@ -24,19 +24,20 @@ export const makeFilters = ()=> createSelector(
 
 export const makeFlatFilters = ()=> createSelector(
 	[getFilters, state=>state.config],
-	(filters, config)=>[
-		...(
-			filters.types.length ? [
-				{ type: 'section', _id: 'types', hidden: config.sidebar_hide_types },
-				...( config.sidebar_hide_types ? [] : filters.types.map(type=>({...type, _id: type.name, type: 'type'})) )
-			] : []
-		),
-		
-		...(
-			filters.tags.length ? [
-				{ type: 'section', _id: 'tags', hidden: config.sidebar_hide_tags },
-				...( config.sidebar_hide_tags ? [] : filters.tags.map(tag=>({...tag, _id: tag.name, type: 'tag'})) )
-			] : []
-		),
-	]
+	(filters, config)=>{
+		return [
+			{ type: 'section', _id: 'types', hidden: config.sidebar_hide_types },
+			...( config.sidebar_hide_types ? [] : [
+				{ type: 'status', _id: 'important', ...filters.important },
+				{ type: 'status', _id: 'broken', ...filters.broken },
+				...filters.types.map(type=>({...type, type: 'type'}))
+			] ),
+			
+			{ type: 'section', _id: 'tags', hidden: config.sidebar_hide_tags },
+			...( config.sidebar_hide_tags ? [] : [
+				...filters.tags.map(tag=>({...tag, type: 'tag'})),
+				{ type: 'status', _id: 'notag', ...filters.notag }
+			] )
+		]
+	}
 )

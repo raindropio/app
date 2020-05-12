@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux'
 import * as bookmarksActions from '~data/actions/bookmarks'
 import { makeBookmarksIds, makeSelectModeEnabled } from '~data/selectors/bookmarks'
 import { makeCollection } from '~data/selectors/collections'
+import parseSearch from '~data/modules/format/parse_search'
 
 import Listing from './listing'
 
@@ -16,10 +17,7 @@ class BookmarksItems extends React.Component {
 
     load = ()=>{
         this.props.actions.load(this.props.cid, this.props.search ? {
-            search: [{
-                key: 'word',
-                val: this.props.search
-            }]
+            search: parseSearch(this.props.search)
         } : {})
     }
 

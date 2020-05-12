@@ -9,6 +9,7 @@ import { makeFlatFilters } from '~data/selectors/filters'
 import Section from '../section'
 import Tag from '../tag'
 import Type from '../type'
+import Status from '../status'
 
 class FiltersCustom extends React.Component {
     static defaultProps = {
@@ -29,12 +30,17 @@ class FiltersCustom extends React.Component {
 
             case 'tag': 
                 Component = Tag
-                uri = '#'+row.name
+                uri = '#'+row._id
             break
 
             case 'type':
                 Component = Type;
-                uri = 'type:'+row.name
+                uri = 'type:'+row._id
+            break
+
+            case 'status':
+                Component = Status
+                uri = row._id+':1'
             break
 
             default: return false
@@ -71,9 +77,9 @@ export default connect(
     },
 	(dispatch)=>({
 		actions: {
-            load: bindActionCreators(filtersActions, dispatch).load,
             ...bindActionCreators(configActions, dispatch),
-            ...bindActionCreators(tagsActions, dispatch)
+            ...bindActionCreators(tagsActions, dispatch),
+            load: bindActionCreators(filtersActions, dispatch).load,
         }
     }),
     undefined,

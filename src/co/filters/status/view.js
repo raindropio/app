@@ -5,10 +5,28 @@ import { humanNumber } from '~modules/strings'
 import Icon from '~co/common/icon'
 import SuperLink from '~co/common/superLink'
 
-export default class FiltersType extends React.Component {
+export default class FiltersStatusView extends React.Component {
     render() {
         const { _id, count, to, active } = this.props
         const { onContextMenu } = this.props
+        let icon, title
+
+        switch (_id) {
+            case 'important':
+                icon = 'like'
+                title = t.s('favoriteSites')
+                break
+
+            case 'notag':
+                icon = 'tag'
+                title = t.s('noTags')
+                break
+        
+            default:
+                icon = _id
+                title = t.s(_id)
+                break
+        }
 
         return (
             <article className={`collection menu-item ${active && 'active'}`}>
@@ -16,9 +34,9 @@ export default class FiltersType extends React.Component {
                     <Icon name='arrow_alt' />
                 </span>
 
-                <Icon name={_id} className='collectionIcon' />
+                <Icon name={icon} className='collectionIcon' />
 
-                <div className='title'>{t.s(_id)}</div>
+                <div className='title'>{title}</div>
 
                 <div className='space' />
 

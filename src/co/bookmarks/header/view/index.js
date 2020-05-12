@@ -1,4 +1,5 @@
 import React from 'react'
+import t from '~t'
 import CollectionIcon from '~co/collections/item/icon'
 
 import Sort from './sort'
@@ -7,7 +8,11 @@ import More from './more'
 
 export default class BookmarksHeaderView extends React.PureComponent {
     render() {
-        const { collection } = this.props
+        const { collection, isSearching } = this.props
+
+        let title = collection.title
+        if (collection._id == 0 && isSearching)
+            title = t.s('defaultCollection-0')
 
         return (
             <div className='elements-header'>
@@ -21,7 +26,7 @@ export default class BookmarksHeaderView extends React.PureComponent {
                     )}
 
                     <div className='title'>
-                        {collection.title}
+                        {title}
                     </div>
                     <More {...this.props} />
 

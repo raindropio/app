@@ -27,11 +27,11 @@ export default class FiltersTag extends React.PureComponent {
             this.setState({ rename: false }),
 
         onRename: (newName, success, fail)=>
-            this.props.actions.oneRename(this.props.name, newName, success, fail),
+            this.props.actions.oneRename(this.props._id, newName, success, fail),
     
         onRemoveClick: ()=>{
             if (confirm(t.s('areYouSure')))
-                this.props.actions.oneRemove(this.props.name)
+                this.props.actions.oneRemove(this.props._id)
         },
     
         onContextMenu: (e)=>{

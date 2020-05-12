@@ -6,7 +6,7 @@ import SuperInput from '~co/common/superInput'
 
 export default class FiltersTagRename extends React.PureComponent {
     state = {
-        name: this.props.name,
+        name: this.props._id,
         loading: false
     }
 
@@ -27,7 +27,7 @@ export default class FiltersTagRename extends React.PureComponent {
 
     save = ()=>{
         //cancel
-        if (!this.state.name.trim() || this.state.name == this.props.name)
+        if (!this.state.name.trim() || this.state.name == this.props._id)
             return this.props.onRenameCancel()
 
         //update collection

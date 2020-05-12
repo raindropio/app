@@ -30,6 +30,9 @@ Not ready
 - bookmarks selectMode incomplete
 - bookmark view button contextmenu
 
+Server
+- Replace all tags with space to _
+
 Good to have
 - Refactor collection/reorder redux to server
 - Expand tree for selected id
@@ -45,3 +48,8 @@ Translation
 
 Ideas
 - Move all logic of Cover to Cloduflare worker
+
+
+Changes
+- data
+    - filters reducer structure
