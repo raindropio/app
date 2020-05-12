@@ -28,15 +28,44 @@ export const makeFlatFilters = ()=> createSelector(
 		return [
 			{ type: 'section', _id: 'types', hidden: config.sidebar_hide_types },
 			...( config.sidebar_hide_types ? [] : [
-				{ type: 'status', _id: 'important', ...filters.important },
-				{ type: 'status', _id: 'broken', ...filters.broken },
-				...filters.types.map(type=>({...type, type: 'type'}))
+				//important
+				{
+					type: 'status', 
+					_id: 'important',
+					query: '❤',
+					...filters.important
+				},
+				//broken
+				{
+					type: 'status',
+					_id: 'broken',
+					query: '☠',
+					...filters.broken
+				},
+				//each type
+				...filters.types.map(type=>({
+					...type,
+					query: `type:${type._id}`,
+					type: 'type'
+				}))
 			] ),
 			
 			{ type: 'section', _id: 'tags', hidden: config.sidebar_hide_tags },
 			...( config.sidebar_hide_tags ? [] : [
-				...filters.tags.map(tag=>({...tag, type: 'tag'})),
-				{ type: 'status', _id: 'notag', ...filters.notag }
+				//tags
+				...filters.tags.map(tag=>({
+					...tag,
+					query: `#${tag._id}`,
+					type: 'tag'
+				})),
+
+				//notag
+				{
+					type: 'status',
+					_id: 'notag',
+					query: 'notag:1',
+					...filters.notag
+				}
 			] )
 		]
 	}

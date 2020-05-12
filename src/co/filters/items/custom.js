@@ -22,27 +22,12 @@ class FiltersCustom extends React.Component {
     }
 
     rowRenderer = (row)=>{
-        let uri=''
-
         let Component
         switch(row.type) {
             case 'section': Component = Section; break
-
-            case 'tag': 
-                Component = Tag
-                uri = '#'+row._id
-            break
-
-            case 'type':
-                Component = Type;
-                uri = 'type:'+row._id
-            break
-
-            case 'status':
-                Component = Status
-                uri = row._id+':1'
-            break
-
+            case 'tag': Component = Tag; break
+            case 'type': Component = Type; break
+            case 'status': Component = Status; break
             default: return false
         }
 
@@ -52,8 +37,8 @@ class FiltersCustom extends React.Component {
             <Component 
                 {...etc}
                 {...row}
-                to={`${uriPrefix}0/${encodeURIComponent(uri)}`}
-                active={uri == decodeURIComponent(activeId)} />
+                to={`${uriPrefix}0/${encodeURIComponent(row.query)}`}
+                active={row.query == decodeURIComponent(activeId)} />
         )
     }
 
