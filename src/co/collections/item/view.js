@@ -30,7 +30,7 @@ export default class CollectionsItemView extends React.PureComponent {
 
         return (
             <article
-                className={`collection have-actions ${active && 'active'} ${expandable && (expanded ? 'expanded' : 'collapsed')} ${isDragging && 'is-dragging'} ${isDropping && 'is-drag-over'}`}
+                className={`collection menu-item have-actions ${active && 'active'} ${expandable && (expanded ? 'expanded' : 'collapsed')} ${isDragging && 'is-dragging'} ${isDropping && 'is-drag-over'}`}
                 style={{'--accentColor': color, '--level': level}}>
                 <span className='expand' onMouseUp={onExpandClick}>
                     <Icon name='arrow_alt' />
@@ -53,7 +53,7 @@ export default class CollectionsItemView extends React.PureComponent {
 				<div className='actions'><Icon name='more_horizontal' onClick={onContextMenu} /></div>
 
                 <SuperLink
-					navPrefix='collection'
+					navPrefix='menu-item'
                     to={to}
                     tabIndex={active ? '1' : '-1'}
 					onClick={onClick}

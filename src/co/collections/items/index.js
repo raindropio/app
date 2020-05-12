@@ -10,9 +10,10 @@ import Tree from './tree'
 class CollectionsItems extends React.Component {
     static defaultProps = {
         uriPrefix:          '',
-        activeId:         undefined,
+        activeId:           undefined,
         options:            {}, //hideIds[], showGroups:true
-        events:             {}  //onItemClick, onGroupClick
+        events:             {}, //onItemClick, onGroupClick
+        additionals:        {}  //{count:0, rowRenderer({index})}
     }
 
     componentDidMount() {

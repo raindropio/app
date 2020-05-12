@@ -22,3 +22,22 @@ export const makeFilters = ()=> createSelector(
 			return filters
 	}
 )
+
+export const makeFlatFilters = ()=> createSelector(
+	[getFilters, state=>state.config],
+	(filters, config)=>[
+		...(
+			filters.types.length ? [
+				{ type: 'section', _id: 'types', hidden: config.sidebar_hide_types },
+				...( config.sidebar_hide_types ? [] : filters.types.map(type=>({...type, type: 'type'})) )
+			] : []
+		),
+		
+		...(
+			filters.tags.length ? [
+				{ type: 'section', _id: 'tags', hidden: config.sidebar_hide_tags },
+				...( config.sidebar_hide_tags ? [] : filters.tags.map(tag=>({...tag, type: 'tag'})) )
+			] : []
+		),
+	]
+)

@@ -81,7 +81,7 @@ export const makeTree = ()=> createSelector(
 			sections = [{
 				_id: 'g-1',
 				title: 'default',
-				data: makeGroupTree([0, -1].filter(filterIds), items, sortedItems),
+				data: makeGroupTree([0, -1, -99].filter(filterIds), items, sortedItems),
 				system: true
 			}]
 	
@@ -97,13 +97,6 @@ export const makeTree = ()=> createSelector(
 					hidden: hidden,
 					sort: group.sort
 				})
-			})
-	
-			sections.push({
-				_id: 'g-2',
-				title: 'default',
-				data: makeGroupTree([-99].filter(filterIds), items, sortedItems),
-				system: true
 			})
 		}else{
 			const filtered = _.filter(items, ({title})=>title.toLowerCase().includes(search))

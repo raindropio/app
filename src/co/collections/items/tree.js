@@ -26,6 +26,13 @@ export default class CollectionsTree extends React.Component {
     rowRenderer = ({ index }, provided, { isDragging, combineTargetFor })=>{
         const row = this.props.data[index]
 
+        if (!row){
+            if (this.props.additionals)
+                return this.props.additionals.rowRenderer({ index: index - this.props.data.length })
+
+            return null
+        }
+
         let Component
         switch(row.type) {
             case 'group': Component = Group; break
@@ -54,42 +61,46 @@ export default class CollectionsTree extends React.Component {
         const row = this.props.data[index]
 
         //disable for system collections
-        switch(row.type){
-            case 'collection':
-                if (row.item._id <= 0)
-                    if (row.item._id==-101)
-                        return true
-                    else
-                        return false
-            break
+        if (row)
+            switch(row.type){
+                case 'collection':
+                    if (row.item._id <= 0)
+                        if (row.item._id==-101)
+                            return true
+                        else
+                            return false
+                    return true
 
-            case 'group':
-                return row.system ? false : true
-        }
+                case 'group':
+                    return row.system ? false : true
+            }
 
-        return true
+        return false
     }
 
     rowIsDroppable = (from)=>{
         const origin = this.props.data[from.index]
 
-        switch(origin.type){
-            case 'group': return false
-            case 'collection': return origin.item.access.draggable
-        }
+        if (origin)
+            switch(origin.type){
+                case 'collection': return origin.item.access.draggable
+            }
+
+        return false
     }
 
     onDragStart = ({ index })=>{
         const row = this.props.data[index]
 
-        switch(row.type) {
-            case 'collection':{
-                const { item } = row
+        if (row)
+            switch(row.type) {
+                case 'collection':{
+                    const { item } = row
 
-                if (item.expanded)
-                    this.props.actions.oneToggle(item._id)
-            }break
-        }
+                    if (item.expanded)
+                        this.props.actions.oneToggle(item._id)
+                }break
+            }
     }
 
     onDragEnd = (from, to, action)=>{
@@ -162,7 +173,7 @@ export default class CollectionsTree extends React.Component {
                 
                 //react-window
                 listRef={this._list}
-                itemCount={this.props.data.length}
+                itemCount={this.props.data.length + (this.props.additionals?this.props.additionals.count:0)}
                 itemData={this.props.data} //only used to re-render when data re-ordered from outside
                 itemSize={32}
                 overscanCount={5}

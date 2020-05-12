@@ -4,7 +4,8 @@ import { withSearch } from '~modules/router'
 
 import Icon from '~co/common/icon'
 import Sidebar, { Header, Content } from '~co/screen/splitview/sidebar'
-import Tree from '~co/collections/items'
+import CollectionsTree from '~co/collections/items'
+import FiltersTree from '~co/filters/tree'
 import Profile from './profile'
 
 class CollectionsSidebar extends React.Component {
@@ -17,6 +18,12 @@ class CollectionsSidebar extends React.Component {
     }
 
     render() {
+        const { match } = this.props
+
+        let activeId = match.params.cid
+        if (activeId=='0' && match.params.search)
+            activeId = match.params.search
+
         return (
             <Sidebar>
                 <Header title={<Profile />}>
@@ -30,11 +37,18 @@ class CollectionsSidebar extends React.Component {
                 </Header>
 
                 <Content>
-                    <Tree 
-                        ref={this.tree}
+                    <FiltersTree
                         uriPrefix='/collection/'
-                        activeId={this.props.match.params.cid}
-                        events={this.events} />
+                        activeId={activeId}>
+                        {additionals=>
+                            <CollectionsTree 
+                                ref={this.tree}
+                                uriPrefix='/collection/'
+                                activeId={activeId}
+                                events={this.events}
+                                additionals={additionals} />
+                        }
+                    </FiltersTree>
                 </Content>
             </Sidebar>
         )

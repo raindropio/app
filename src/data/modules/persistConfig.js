@@ -32,6 +32,7 @@ export default {
 	whitelist: [
 		'config',
 		'collections',
+		'filters',
 		'local',
 
 		//app specifics
