@@ -53,3 +53,4 @@ Ideas
 Changes
 - data
     - filters reducer structure
+    - bookmarks search now is string, not array!

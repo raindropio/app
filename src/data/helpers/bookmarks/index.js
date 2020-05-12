@@ -1,11 +1,11 @@
 import Immutable from 'seamless-immutable'
 import _ from 'lodash-es'
-import {SPACE_PER_PAGE} from '../constants/bookmarks'
-import normalizeURL from '../modules/format/url'
-import normalizeDomain from '../modules/format/domain'
 
 const emptyArray = []
 const emptyObject = {}
+
+export * from './blankSpace'
+export * from './getSpaceQuery'
 
 //Iterator by spaceId prefixes and original
 export const iterateSpaceId = (spaceId, func)=>{
@@ -95,28 +95,6 @@ export const shouldLoadMoreSpace = ({spaces={}}, spaceId)=>{
 	return true
 }
 
-export const getSpaceQuery = ({spaces={}}, spaceId)=>{
-	if (typeof spaces[spaceId] == 'undefined')
-		return {string: parseInt(spaceId), object:blankSpace.query}
-
-	const query = spaces[spaceId].query || blankSpace.query
-	const entities = _.compact(_.map(query, (val,key)=>{
-		if (val)
-			switch(key){
-				case 'page':
-				case 'sort':
-					return key+'='+encodeURIComponent(val);
-				case 'search':{
-					if ((val||[]).length)
-						return 'search='+encodeURIComponent(JSON.stringify(val))
-				}
-			}
-	}))
-	entities.push('perpage='+SPACE_PER_PAGE)
-
-	return {string: parseInt(spaceId)+'?'+entities.join('&'), object: query}
-}
-
 export const normalizeBookmark = (item={}, options)=>{
 	if (Immutable.isImmutable(item))
 		return item
@@ -188,28 +166,7 @@ export const blankSelectMode = Immutable({
 	ids: emptyArray
 })
 
-export const blankSpace = Immutable({
-	status: {
-		main: 		'idle', //idle/empty/loading/error/loaded/notFound,
-		nextPage: 	'idle', //idle/noMore/loading/error
-	},
-	query: {
-		search: 	emptyArray,
-		sort: 		'sort',
-		page: 		0
-	},
-	sorts: {
-		'score':		{ enabled: false },
-		'-created':		{ enabled: true },
-		'created':		{ enabled: true },
-		'title':		{ enabled: true },
-		'-title':		{ enabled: true },
-		'domain':		{ enabled: true },
-		'-domain':		{ enabled: true },
-		'sort':			{ enabled: true },
-	},
-	ids: emptyArray
-})
+
 
 export const blankDraft = Immutable({
 	status: 'idle', //idle/loading/loaded/removed/error/saving/errorSaving
