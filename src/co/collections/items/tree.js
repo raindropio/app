@@ -26,18 +26,13 @@ export default class CollectionsTree extends React.Component {
     rowRenderer = ({ index }, provided, { isDragging, combineTargetFor })=>{
         const row = this.props.data[index]
 
-        if (!row){
-            if (this.props.additionals)
-                return this.props.additionals.rowRenderer({ index: index - this.props.data.length })
-
-            return null
-        }
-
         let Component
         switch(row.type) {
             case 'group': Component = Group; break
             case 'collection': Component = Item; break
-            default: return null
+            default:
+                if (this.props.customRowRenderer)
+                    return this.props.customRowRenderer(row)
         }
 
         return (
@@ -173,7 +168,7 @@ export default class CollectionsTree extends React.Component {
                 
                 //react-window
                 listRef={this._list}
-                itemCount={this.props.data.length + (this.props.additionals?this.props.additionals.count:0)}
+                itemCount={this.props.data.length}
                 itemData={this.props.data} //only used to re-render when data re-ordered from outside
                 itemSize={32}
                 overscanCount={5}

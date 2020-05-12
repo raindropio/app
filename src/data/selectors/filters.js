@@ -28,14 +28,14 @@ export const makeFlatFilters = ()=> createSelector(
 		...(
 			filters.types.length ? [
 				{ type: 'section', _id: 'types', hidden: config.sidebar_hide_types },
-				...( config.sidebar_hide_types ? [] : filters.types.map(type=>({...type, type: 'type'})) )
+				...( config.sidebar_hide_types ? [] : filters.types.map(type=>({...type, _id: type.name, type: 'type'})) )
 			] : []
 		),
 		
 		...(
 			filters.tags.length ? [
 				{ type: 'section', _id: 'tags', hidden: config.sidebar_hide_tags },
-				...( config.sidebar_hide_tags ? [] : filters.tags.map(tag=>({...tag, type: 'tag'})) )
+				...( config.sidebar_hide_tags ? [] : filters.tags.map(tag=>({...tag, _id: tag.name, type: 'tag'})) )
 			] : []
 		),
 	]

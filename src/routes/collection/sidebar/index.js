@@ -5,7 +5,7 @@ import { withSearch } from '~modules/router'
 import Icon from '~co/common/icon'
 import Sidebar, { Header, Content } from '~co/screen/splitview/sidebar'
 import CollectionsTree from '~co/collections/items'
-import FiltersTree from '~co/filters/tree'
+import Filters from '~co/filters/items/custom'
 import Profile from './profile'
 
 class CollectionsSidebar extends React.Component {
@@ -37,18 +37,21 @@ class CollectionsSidebar extends React.Component {
                 </Header>
 
                 <Content>
-                    <FiltersTree
+                    <Filters
                         uriPrefix='/collection/'
                         activeId={activeId}>
-                        {additionals=>
+                        {(customRows, customRowRenderer)=>
                             <CollectionsTree 
                                 ref={this.tree}
+                                
                                 uriPrefix='/collection/'
                                 activeId={activeId}
                                 events={this.events}
-                                additionals={additionals} />
+
+                                customRows={customRows}
+                                customRowRenderer={customRowRenderer} />
                         }
-                    </FiltersTree>
+                    </Filters>
                 </Content>
             </Sidebar>
         )

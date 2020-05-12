@@ -10,7 +10,7 @@ import Section from '../section'
 import Tag from '../tag'
 import Type from '../type'
 
-class FiltersTree extends React.Component {
+class FiltersCustom extends React.Component {
     static defaultProps = {
         uriPrefix:          '',
         activeId:           ''
@@ -20,8 +20,7 @@ class FiltersTree extends React.Component {
         this.props.actions.load(0)
     }
 
-    rowRenderer = ({ index })=>{
-        const row = this.props.data[index]||{}
+    rowRenderer = (row)=>{
         let uri=''
 
         let Component
@@ -53,10 +52,10 @@ class FiltersTree extends React.Component {
     }
 
     render() {
-        return this.props.children({
-            count: this.props.data.length,
-            rowRenderer: this.rowRenderer
-        })
+        return this.props.children(
+            this.props.data,
+            this.rowRenderer
+        )
     }
 }
 
@@ -79,4 +78,4 @@ export default connect(
     }),
     undefined,
     { forwardRef: true }
-)(FiltersTree)
+)(FiltersCustom)

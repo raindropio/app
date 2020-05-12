@@ -13,7 +13,8 @@ class CollectionsItems extends React.Component {
         activeId:           undefined,
         options:            {}, //hideIds[], showGroups:true
         events:             {}, //onItemClick, onGroupClick
-        additionals:        {}  //{count:0, rowRenderer({index})}
+        customRows:         undefined, //[] additional items in tree
+        customRowRenderer:  undefined, //(row) renderer for additional items
     }
 
     componentDidMount() {
@@ -47,7 +48,13 @@ class CollectionsItems extends React.Component {
     }
 
     render() {
-        return <Tree {...this.props} />
+        const { customRows, ...etc } = this.props
+
+        return (
+            <Tree 
+                {...etc}
+                data={customRows ? [ ...this.props.data, ...customRows ] : this.props.data} />
+        )
     }
 }
 
