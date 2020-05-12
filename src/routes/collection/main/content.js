@@ -5,7 +5,9 @@ import Bookmarks from '~co/bookmarks/items'
 function CollectionsMainContent({ match }){
     return (
         <Content>
-            <Bookmarks cid={match.params.cid} />
+            <Bookmarks 
+                cid={match.params.cid}
+                search={match.params.search} />
         </Content>
     )
 }

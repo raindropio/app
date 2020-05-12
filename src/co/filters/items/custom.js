@@ -34,7 +34,7 @@ class FiltersCustom extends React.Component {
 
             case 'type':
                 Component = Type;
-                uri = '~'+row.name
+                uri = 'type:'+row.name
             break
 
             default: return false

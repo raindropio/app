@@ -1,24 +1,24 @@
 import React from 'react'
-import ReactDom from 'react-dom'
 import _ from 'lodash'
 import Icon from '~icon'
-import Preloader from './preloader'
+import Preloader from '../common/preloader'
 
-export default class CommonSearchInput extends React.PureComponent {
-    constructor(props) {
-        super(props)
-        
-        this.state = {
-            value: props.value,
-            focus: false,
-            filled: false
-        }
+export default class SearchView extends React.PureComponent {
+    state = {
+        value: this.props.value,
+        focus: false,
+        filled: false
     }
 
-    _bindInput = (r)=>this._input=r
+    _input = React.createRef()
 
     componentDidMount() {
-        this._input && this._input.select()
+        this._input.current && this._input.current.value && this._input.current.select()
+    }
+
+    componentDidUpdate(prev) {
+        if (prev.value != this.props.value)
+            this.setState({ value: this.props.value })
     }
 
     onChange = ({target})=>
@@ -48,14 +48,14 @@ export default class CommonSearchInput extends React.PureComponent {
         }
 
         this.props.onButtonClick && this.props.onButtonClick(id)
-        this._input.focus()
+        this._input.current.focus()
     }
 
     onFocus = ()=>this.setState({focus: true})
     onBlur = ()=>this.setState({focus: false})
 
     renderButton = ({id, icon, iconSize='micro'})=>(
-        <a className='search-button button toolbar-button' href='' data-id={id} key={id} tabIndex="-1" onClick={this.onButtonClick}>
+        <a className='search-button button toolbar-button' href='' data-id={id} key={id} tabIndex='-1' onClick={this.onButtonClick}>
             <Icon name={icon} size={iconSize} />
         </a>
     )
@@ -82,7 +82,7 @@ export default class CommonSearchInput extends React.PureComponent {
                     </span>
     
                     <input
-                        ref={this._bindInput}
+                        ref={this._input}
                         className='searchInput'
                         type='search'
                         spellCheck='false'

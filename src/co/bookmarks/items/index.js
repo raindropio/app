@@ -14,13 +14,23 @@ class BookmarksItems extends React.Component {
         events:     {}  //onItemClick
     }
 
+    load = ()=>{
+        this.props.actions.load(this.props.cid, this.props.search ? {
+            search: [{
+                key: 'word',
+                val: this.props.search
+            }]
+        } : {})
+    }
+
     componentDidMount() {
-        this.props.actions.load(this.props.cid)
+        this.load()
     }
 
     componentDidUpdate(prev) {
-        if (prev.cid != this.props.cid)
-            this.props.actions.load(this.props.cid)
+        if (prev.cid != this.props.cid ||
+            prev.search != this.props.search)
+            this.load()
     }
     
     render() {

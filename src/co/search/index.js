@@ -1,22 +1,20 @@
 import React from 'react'
-import View from './view'
+import Input from './input'
 
 export default class Search extends React.Component {
-    state = {
-        focus: false
-    }
-
     handlers = {
-        onInputFocus: ()=>
-            this.setState({ focus: true }),
+        onChange: ()=>{
 
-        onInputBlur: ()=>
-            this.setState({ focus: false })
+        }
     }
 
     render() {
         return (
-            <View {...this.state} {...this.handlers} />
+            <div className='search'>
+                <Input 
+                    {...this.props}
+                    {...this.handlers} />
+            </div>
         )
     }
 }
