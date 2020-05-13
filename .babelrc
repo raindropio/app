@@ -15,7 +15,8 @@
                     {
                         "targets": {
                             "esmodules": true
-                        }
+                        },
+                        "modules": false
                     }
                 ]
             ],

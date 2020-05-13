@@ -3,13 +3,12 @@ import t from '~t'
 import Popover, { Menu, MenuItem, MenuSeparator } from '~co/popover'
 import Icon from '~co/common/icon'
 
-export default function CollectionsItemContextmenu({
+export default function BookmarksItemContextmenu({
     link, important, access, reparse, cache,
     onContextMenuClose, onRemoveClick, onCopyLinkClick, onPreviewClick, onCacheClick,
     onSelectClick, onImportantClick, onCreateScreenshotClick, onReparseClick,
     onEditClick
 }) {
-    console.log(cache)
     return (
         <Popover onClose={onContextMenuClose}>
             <Menu>

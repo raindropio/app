@@ -25,7 +25,7 @@ export default class CollectionRoute extends React.PureComponent {
 
             switch(mode) {
                 case 'append':
-                    if (this.state.search.includes(value))
+                    if (new RegExp(`${value}\\b`,'i').test(this.state.search))
                         return
 
                     cid = this.state.cid

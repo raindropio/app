@@ -37,17 +37,12 @@ export default class BookmarksEmptyView extends React.PureComponent {
                         )
                     break
 
-                    //search empty
+                    //search nothing found
                     case (!searchEmpty):
                         content = (
                             <div>
                                 <Icon name='search' className='svgIcon-size-60' style={{opacity: '.3'}} />
                                 <h2 className='headLabel'>{t.s('nothingFound')}</h2>
-                                {_id > 0 && (
-                                    <p className='subHeadLabel'>
-                                        <a href='' onClick={this.searchEverywhere}>{t.s('defaultCollection-0')} {t.s('everywhere').toLowerCase()}</a>
-                                    </p>
-                                )}
                             </div>
                         )
                     break

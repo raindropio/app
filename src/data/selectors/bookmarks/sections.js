@@ -2,7 +2,7 @@ import Immutable from 'seamless-immutable'
 import { createSelector } from 'reselect'
 import {store} from '../../index.js'
 import {
-	bookmarksIds
+	bookmarksIds, query
 } from './space'
 
 const oneJanuary = new Date(new Date().getFullYear(),0,1)
@@ -155,5 +155,37 @@ export const makeBookmarksWithSectionsBlocked = () => createSelector(
 			})
 
 		return sections
+	}
+)
+
+//Fast bookmark ids with sections
+//Section only showed when searching, this section appears when results start appear from other collections (!=spaceId)
+//This section appears as 'other' item
+export const makeBookmarksFlatSections = () => createSelector(
+	[
+		(_, spaceId)=>spaceId,
+		query,
+		bookmarksIds,
+		({bookmarks={}})=>bookmarks.elements
+	],
+	(spaceId, query, ids=[], elements=[])=>{
+		if (!spaceId || spaceId == '0' || spaceId == '0s' ||
+			!query.search.length ||
+			query.sort != 'score')
+			return ids
+
+		let breakIndex = ids.findIndex(id=>{
+			if (elements[id].collectionId != spaceId)
+				return true
+		})
+
+		if (breakIndex == -1)
+			return ids
+
+		return [
+			...ids.slice(0, breakIndex),
+			'other',
+			...ids.slice(breakIndex),
+		]
 	}
 )

@@ -23,7 +23,10 @@ function* reloadFilters({ spaceId, ignore=false }) {
 	const query = getSpaceQuery(state.bookmarks, spaceId);
 
 	try {
-		const {result=false, error, errorMessage, ...items} = yield call(Api.get, 'filters/'+query.string+((query.string||'').includes('?')?'&':'?')+'tagsSort='+state.config.tags_sort);
+		const {result=false, error, errorMessage, ...items} = yield call(
+			Api.get, 
+			'filters/'+query.string+'?tagsSort='+state.config.tags_sort
+		)
 
 		if (!result)
 			throw new ApiError(error, errorMessage||'cant load filters')

@@ -2,14 +2,15 @@ import React from 'react'
 import t from '~t'
 import { ShortDate } from '~modules/format/date'
 
-import Cover from './cover'
-import Tags from './tags'
 import SuperLink from '~co/common/superLink'
 import Icon from '~co/common/icon'
+import Cover from './cover'
+import Tags from './tags'
+import Path from './path'
 
 export default class BookmarkItemView extends React.PureComponent {
     render() {
-        const { link, title, excerpt, body, cover, domain, tags, type, view, access, created, reparse } = this.props
+        const { link, title, excerpt, body, cover, domain, tags, type, view, access, created, reparse, collectionId, cid } = this.props
         const { active, selected, important, broken } = this.props
         const { onClick, onTagClick, onEditClick, onSelectClick, onImportantClick, onContextMenu, onKeyUp } = this.props
 
@@ -33,6 +34,8 @@ export default class BookmarkItemView extends React.PureComponent {
 
                     <div className='info-wrap'>
                         <div className='info info-domain'>
+                            {cid != collectionId && <Path collectionId={collectionId} />}
+
                             {important && (
                                 <div className='info-important'>
                                     <span className='info-img'>

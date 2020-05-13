@@ -457,47 +457,23 @@ html.electron .section {
 }
 
 .section {
-    @extend .disable-select;
-    
-    //@extend .miniHeader;
-    //text-transform: capitalize;
     padding: rem(8px) baseHorizontalGap;
     padding-top: rem(8px * 2);
-    //padding-bottom: 0;
     @extend .font-weight-semibold;
-    font-size: rem(10px);
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    box-shadow: inset 0px -1px 0px subSeparatorColorAlpha;
-    opacity: 1;
-    color: lighten(black, 50%);
-    width: 100%;
-    position: relative;
-    z-index:2;
-    
+    font-size: rem(15px);
+    box-shadow: inset 0px -1px 0px subSeparatorColorAlpha, inset 0px 1px 0px subSeparatorColorAlpha;
+    min-height: 100px
     display: flex;
-    align-items: center;
-    
-    &:first-child {
-        //box-shadow:none !important;
-        //padding-top: rem(12px);
-            padding-top:0;
-    }
-    
-    &:empty {
-        padding-top:7px;
-        padding-bottom:0;
-    }
+    background-color: rgba(0,0,0,.05)
 
-    &:not(:first-child).other {
-        padding-top: 50px;
-        background-color: rgba(0,0,0,.05)
+    &:after {
+        display: none
     }
 }
 
 html.retina.chrome {
     .section {
-        box-shadow: inset 0px -0.5px 0px rgba(0,0,0,.15);
+        box-shadow: inset 0px -0.5px 0px rgba(0,0,0,.15), inset 0px 0.5px 0px rgba(0,0,0,.15);
     }
     
     .themeDark .section {

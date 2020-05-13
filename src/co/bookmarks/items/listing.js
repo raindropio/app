@@ -7,8 +7,18 @@ import Item from '../item'
 import Empty from '../empty'
 import Header from '../header'
 import Footer from '../footer'
+import Section from '../section'
 
 export default class BookmarksItemsListing extends React.Component {
+    state = {
+        itemsCheckpoint: 0
+    }
+
+    componentDidUpdate(prev) {
+        if (prev.items != this.props.items)
+            this.setState({ itemsCheckpoint: this.state.itemsCheckpoint+1 })
+    }
+
     computeItemKey = (index)=>
         this.props.items[index]
 
@@ -17,6 +27,13 @@ export default class BookmarksItemsListing extends React.Component {
 
     renderItem = (index)=>{
         const _id = this.props.items[index]
+
+        if (typeof _id == 'string')
+            return (
+                <Section 
+                    key={_id}
+                    type={_id} />
+            )
 
         return (
             <Item
@@ -47,7 +64,7 @@ export default class BookmarksItemsListing extends React.Component {
     )
 
     render() {
-        const { cid, items, view, activeId, selectModeEnabled } = this.props
+        const { items, view, activeId, selectModeEnabled } = this.props
 
         let Component
 
@@ -68,7 +85,7 @@ export default class BookmarksItemsListing extends React.Component {
         return (
             <Component
                 className={`elements view-${view} ${selectModeEnabled&&'select-mode'}`}
-                dataKey={activeId+selectModeEnabled+cid+view} //force re-render
+                dataKey={activeId+selectModeEnabled+view+this.state.itemsCheckpoint} //force re-render
 
                 item={this.renderItem}
                 header={this.renderHeader}
@@ -78,7 +95,7 @@ export default class BookmarksItemsListing extends React.Component {
 
                 totalCount={items.length}
                 columnWidth={250}
-                stickyHeader={selectModeEnabled}
+                stickyHeader={true}
                 
                 endReached={this.endReached} 
                 />
