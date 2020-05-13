@@ -1,41 +1,30 @@
 import React from 'react'
-import _ from 'lodash'
 import Icon from '~icon'
 import Preloader from '../common/preloader'
 
 export default class SearchView extends React.PureComponent {
+    static defaultProps = {
+        autoFocus: false,
+        value: '',
+        onChange: undefined, //(val, callback)
+        onSubmit: undefined,
+    }
+
     state = {
-        value: this.props.value,
-        focus: false,
-        filled: false
+        focus: false
     }
 
     _input = React.createRef()
 
     componentDidMount() {
-        this._input.current && this._input.current.value && this._input.current.select()
+        if (this.props.autoFocus)
+            this._input.current && this._input.current.value && this._input.current.select()
     }
-
-    componentDidUpdate(prev) {
-        if (prev.value != this.props.value)
-            this.setState({ value: this.props.value })
-    }
-
-    onChange = ({target})=>
-        this.setState({ value: target.value }, this.onSearch)
 
     onSubmit = (e)=>{
-        e.preventDefault()
-        this.onSearch()
+        e && e.preventDefault && e.preventDefault()
+        this.props.onSubmit()
     }
-
-    onSearch = _.debounce(()=>{
-        const filled = this.state.value ? true : false
-        if (this.state.filled != filled)
-            this.setState({ filled })
-
-        this.props.onChange(this.state.value)
-    }, 500)
 
     onButtonClick = (e)=>{
         e.preventDefault()
@@ -43,16 +32,16 @@ export default class SearchView extends React.PureComponent {
         const id = e.target.getAttribute('data-id')
         switch(id) {
             case 'reset':
-                this.setState({ value: '' }, this.onSearch)
+                this.props.onChange('', this.props.onSubmit)
             break
         }
 
-        this.props.onButtonClick && this.props.onButtonClick(id)
         this._input.current.focus()
     }
 
-    onFocus = ()=>this.setState({focus: true})
-    onBlur = ()=>this.setState({focus: false})
+    onInputChange = (e)=>this.props.onChange(e.target.value)
+    onInputFocus = ()=>this.setState({focus: true})
+    onInputBlur = ()=>this.setState({focus: false})
 
     renderButton = ({id, icon, iconSize='micro'})=>(
         <a className='search-button button toolbar-button' href='' data-id={id} key={id} tabIndex='-1' onClick={this.onButtonClick}>
@@ -60,19 +49,13 @@ export default class SearchView extends React.PureComponent {
         </a>
     )
 
-    renderCancel = ()=>this.state.filled && this.renderButton({
+    renderCancel = ()=>this.props.value && this.renderButton({
         id: 'reset',
         icon: 'close'
     })
 
-    renderCustomButtons = ()=>{
-        const buttons = typeof this.props.buttons == 'function' ? this.props.buttons(this.state.filled) : this.props.buttons
-  
-        return Array.isArray(buttons) && buttons.map(this.renderButton)
-    }
-
     render() {
-        const { value, loading, count, onChange, onButtonClick, buttons=[], ...original } = this.props
+        const { loading, ...original } = this.props
 
         return (
             <div className='search-input' data-active={this.state.focus}>
@@ -87,18 +70,10 @@ export default class SearchView extends React.PureComponent {
                         type='search'
                         spellCheck='false'
                         {...original}
-                        value={this.state.value}
-                        onFocus={this.onFocus}
-                        onBlur={this.onBlur}
-                        onChange={this.onChange} />
+                        onChange={this.onInputChange}
+                        onFocus={this.onInputFocus}
+                        onBlur={this.onInputBlur} />
 
-                    {(this.state.filled && count === 0) && (
-                        <div className='search-input-nofound'>
-                            0️⃣
-                        </div>
-                    )}
-
-                    {this.renderCustomButtons()}
                     {this.renderCancel()}
                 </form>
             </div>

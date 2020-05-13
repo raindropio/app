@@ -10,7 +10,9 @@ export default class FiltersTag extends React.PureComponent {
         //...item,
         to:         '',
         active:     false,
-        actions:    {} //redux tags
+        canAppend:  false,
+        actions:    {}, //redux tags
+        events:     {}  //onItemClick, onItemAppendClick
     }
 
     state = {
@@ -20,6 +22,12 @@ export default class FiltersTag extends React.PureComponent {
     }
 
     handlers = {
+        onClick: ()=>
+            this.props.events.onItemClick(this.props.query),
+
+        onAppendClick: this.props.events.onItemAppendClick ? ()=>
+            this.props.events.onItemAppendClick(this.props.query) : undefined,
+
         onRenameClick: ()=>
             this.setState({ rename: true }),
         

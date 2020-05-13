@@ -38,6 +38,10 @@ class BookmarkItem extends React.Component {
             }
         },
 
+        onTagClick: (tagName)=>{
+            this.props.events.onTagClick && this.props.events.onTagClick(tagName)
+        },
+
         onEditClick: ()=>{
 
         },

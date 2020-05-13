@@ -4,7 +4,7 @@ import _ from 'lodash-es'
 
 const rules = [
     { regex: /(#)([^\s#]*)/gmi, override_key: 'tag' },
-    { regex: /(\w+):(.+)/gmi },
+    { regex: /(\w+):([a-z0-9]+)/gmi },
 ]
 
 const hardcoded = [

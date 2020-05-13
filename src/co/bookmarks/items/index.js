@@ -11,13 +11,16 @@ class BookmarksItems extends React.Component {
     static defaultProps = {
         cid:        0,
         activeId:   0,
-        events:     {}  //onItemClick
+        events:     {}  //onItemClick, onTagClick
     }
 
     load = ()=>{
-        this.props.actions.load(this.props.cid, this.props.search ? {
-            search: this.props.search
-        } : {})
+        const { actions, cid, search, default_sort } = this.props
+
+        actions.load(cid, {
+            search,
+            sort: search ? 'score' : default_sort
+        })
     }
 
     componentDidMount() {
@@ -50,7 +53,8 @@ export default connect(
                 items: getBookmarkIds(state, cid),
                 view,
                 access,
-                selectModeEnabled: getSelectModeEnabled(state, cid)
+                selectModeEnabled: getSelectModeEnabled(state, cid),
+                default_sort: state.config.raindrops_sort
             }
         }
     },

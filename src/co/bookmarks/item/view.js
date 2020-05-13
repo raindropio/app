@@ -11,7 +11,7 @@ export default class BookmarkItemView extends React.PureComponent {
     render() {
         const { link, title, excerpt, body, cover, domain, tags, type, view, access, created, reparse } = this.props
         const { active, selected, important, broken } = this.props
-        const { onClick, onEditClick, onSelectClick, onImportantClick, onContextMenu, onKeyUp } = this.props
+        const { onClick, onTagClick, onEditClick, onSelectClick, onImportantClick, onContextMenu, onKeyUp } = this.props
 
         return (
             <article className={`element ${active&&'active'} ${selected&&'checked'} ${important&&'important'} ${broken&&'broken'}`}>
@@ -27,7 +27,9 @@ export default class BookmarkItemView extends React.PureComponent {
                         {body && <p className='description from-body'>{body}</p>}
                     </div>
 
-                    <Tags tags={tags} />
+                    <Tags 
+                        tags={tags}
+                        onTagClick={onTagClick} />
 
                     <div className='info-wrap'>
                         <div className='info info-domain'>

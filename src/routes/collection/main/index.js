@@ -1,14 +1,10 @@
 import React from 'react'
-import { withSearch } from '~modules/router'
 
 import Main from '~co/screen/splitview/main'
 import Header from './header'
 import Content from './content'
 
-function CollectionsMain(props){
-    if (props.match.params.search)
-        props.match.params.search = decodeURIComponent(props.match.params.search)
-
+export default function CollectionsMain(props) {
     return (
         <Main>
             <Header {...props} />
@@ -16,5 +12,3 @@ function CollectionsMain(props){
         </Main>
     )
 }
-
-export default withSearch(CollectionsMain)

@@ -2,14 +2,23 @@ import React from 'react'
 import { Content } from '~co/screen/splitview/main'
 import Bookmarks from '~co/bookmarks/items'
 
-function CollectionsMainContent({ match }){
-    return (
-        <Content>
-            <Bookmarks 
-                cid={match.params.cid}
-                search={match.params.search} />
-        </Content>
-    )
-}
+export default class CollectionsMainContent extends React.Component {
+    events = {
+        onTagClick: (tagName)=>{
+            this.props.onSearch('#'+tagName, 'append')
+        }
+    }
 
-export default CollectionsMainContent
+    render() {
+        const { cid, search } = this.props
+
+        return (
+            <Content>
+                <Bookmarks 
+                    cid={cid}
+                    search={search}
+                    events={this.events} />
+            </Content>
+        )
+    }
+}

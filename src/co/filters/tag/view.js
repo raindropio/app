@@ -6,8 +6,8 @@ import SuperLink from '~co/common/superLink'
 
 export default class FiltersTagView extends React.Component {
     render() {
-        const { _id, count, to, active } = this.props
-        const { onRenameClick, onContextMenu, onKeyUp } = this.props
+        const { _id, count, active, canAppend } = this.props
+        const { onClick, onAppendClick, onRenameClick, onContextMenu, onKeyUp } = this.props
 
         return (
             <article className={`collection menu-item ${active && 'active'} have-actions`}>
@@ -22,12 +22,15 @@ export default class FiltersTagView extends React.Component {
                 <div className='space' />
 
                 {count ? <div className='count'>{humanNumber(count)}</div> : null}
-                <div className='actions'><Icon name='more_horizontal' onClick={onContextMenu} /></div>
+                <div className='actions'>
+                    {canAppend && onAppendClick && <Icon name='add' onClick={onAppendClick} />}
+                    <Icon name='more_horizontal' onClick={onContextMenu} />
+                </div>
 
                 <SuperLink
-                    to={to}
                     navPrefix='menu-item'
                     tabIndex={active ? '1' : '-1'}
+                    onClick={onClick}
                     onDoubleClick={onRenameClick}
                     onContextMenu={onContextMenu}
                     onKeyUp={onKeyUp}

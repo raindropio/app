@@ -35,6 +35,12 @@ export const makeFlatFilters = ()=> createSelector(
 					query: '❤',
 					...filters.important
 				},
+				//each type
+				...filters.types.map(type=>({
+					...type,
+					query: `type:${type._id}`,
+					type: 'type'
+				})),
 				//broken
 				{
 					type: 'status',
@@ -42,12 +48,6 @@ export const makeFlatFilters = ()=> createSelector(
 					query: '☠',
 					...filters.broken
 				},
-				//each type
-				...filters.types.map(type=>({
-					...type,
-					query: `type:${type._id}`,
-					type: 'type'
-				}))
 			] ),
 			
 			{ type: 'section', _id: 'tags', hidden: config.sidebar_hide_tags },

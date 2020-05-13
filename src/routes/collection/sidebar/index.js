@@ -1,6 +1,5 @@
 import React from 'react'
 import t from '~t'
-import { withSearch } from '~modules/router'
 
 import Icon from '~co/common/icon'
 import Sidebar, { Header, Content } from '~co/screen/splitview/sidebar'
@@ -8,21 +7,27 @@ import CollectionsTree from '~co/collections/items'
 import Filters from '~co/filters/items/custom'
 import Profile from './profile'
 
-class CollectionsSidebar extends React.Component {
+export default class CollectionsSidebar extends React.Component {
     tree = React.createRef()
 
-    events = {}
+    filtersEvents = {
+        onItemClick: query=>
+            this.props.onSearch(query),
+
+        onItemAppendClick: query=>
+            this.props.onSearch(query, 'append'),
+    }
 
     onCreateClick = (e)=>{
         return this.tree.current.createNewCollection(e)
     }
 
     render() {
-        const { match } = this.props
+        const { cid, search } = this.props
 
-        let activeId = match.params.cid
-        if (activeId=='0' && match.params.search)
-            activeId = match.params.search
+        let activeId = cid
+        if (activeId=='0' && search)
+            activeId = search
 
         return (
             <Sidebar>
@@ -38,15 +43,14 @@ class CollectionsSidebar extends React.Component {
 
                 <Content>
                     <Filters
-                        uriPrefix='/collection/'
-                        activeId={activeId}>
+                        activeId={search}
+                        events={this.filtersEvents}>
                         {(customRows, customRowRenderer)=>
                             <CollectionsTree 
                                 ref={this.tree}
                                 
                                 uriPrefix='/collection/'
                                 activeId={activeId}
-                                events={this.events}
 
                                 customRows={customRows}
                                 customRowRenderer={customRowRenderer} />
@@ -57,5 +61,3 @@ class CollectionsSidebar extends React.Component {
         )
     }
 }
-
-export default withSearch(CollectionsSidebar)

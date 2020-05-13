@@ -13,8 +13,8 @@ import Status from '../status'
 
 class FiltersCustom extends React.Component {
     static defaultProps = {
-        uriPrefix:          '',
-        activeId:           ''
+        activeId:           '',
+        events:             {} //onItemClick, onItemAppendClick
     }
 
     componentDidMount() {
@@ -31,14 +31,15 @@ class FiltersCustom extends React.Component {
             default: return false
         }
 
-        const { data, activeId, uriPrefix, ...etc } = this.props
+        const { data, activeId, ...etc } = this.props
+        const active = activeId.includes(row.query)
 
         return (
             <Component 
                 {...etc}
                 {...row}
-                to={`${uriPrefix}0/${encodeURIComponent(row.query)}`}
-                active={row.query == decodeURIComponent(activeId)} />
+                active={active}
+                canAppend={activeId && !active} />
         )
     }
 

@@ -1,10 +1,9 @@
 import React from 'react'
-import { withSearch } from '~modules/router'
 import Reader from '~co/screen/splitview/reader'
 
 import Header from './header'
 
-class CollectionsReader extends React.Component {
+export default class CollectionsReader extends React.Component {
     state = {
         support: ['web', 'edit', 'cache', 'preview'],
         fullscreen: false
@@ -25,7 +24,7 @@ class CollectionsReader extends React.Component {
     }
 
     render() {
-        const { id, tab='preview' } = this.props.search.params
+        const { id, tab='preview' } = this.props
 
         return (
             <Reader 
@@ -39,5 +38,3 @@ class CollectionsReader extends React.Component {
         )
     }
 }
-
-export default withSearch(CollectionsReader)
