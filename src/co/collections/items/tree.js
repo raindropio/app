@@ -9,7 +9,11 @@ export default class CollectionsTree extends React.Component {
     _list = React.createRef()
     _scrolled = false
 
-    componentDidUpdate() {
+    state = {
+        dataCheckpoint: 0
+    }
+
+    componentDidUpdate(prev) {
         //scroll to active on first paint
         if (this.props.data.length && !this._scrolled && this._list.current){
             this._scrolled = true
@@ -20,19 +24,27 @@ export default class CollectionsTree extends React.Component {
                         .findIndex(({item})=>item && item._id == this.props.activeId)
                 )
         }
+
+        if (prev.data != this.props.data ||
+            prev.customRows != this.props.customRows)
+            this.setState({ dataCheckpoint: this.state.dataCheckpoint+1 })
     }
     
     //rendering rows
     rowRenderer = ({ index }, provided, { isDragging, combineTargetFor })=>{
         const row = this.props.data[index]
 
+        if (!row)
+            if (this.props.customRowRenderer)
+                return this.props.customRowRenderer(
+                    this.props.customRows[index - this.props.data.length]
+                )
+
         let Component
         switch(row.type) {
             case 'group': Component = Group; break
             case 'collection': Component = Item; break
-            default:
-                if (this.props.customRowRenderer)
-                    return this.props.customRowRenderer(row)
+            default: return null
         }
 
         return (
@@ -159,17 +171,20 @@ export default class CollectionsTree extends React.Component {
     }
 
     render() {
-        if (!this.props.data.length)
+        const { data, activeId, customRows=[] } = this.props
+        const { dataCheckpoint } = this.state
+
+        if (!data.length)
             return <Empty />
 
         return (
             <Sortable
-                activeId={this.props.activeId}
+                activeId={activeId}
                 
                 //react-window
                 listRef={this._list}
-                itemCount={this.props.data.length}
-                itemData={this.props.data} //only used to re-render when data re-ordered from outside
+                itemCount={data.length + customRows.length}
+                itemData={dataCheckpoint} //only used to re-render when data re-ordered from outside
                 itemSize={32}
                 overscanCount={5}
 

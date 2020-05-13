@@ -75,15 +75,16 @@ export default function(state = initialState, action={}){switch (action.type) {
 			state = state.setIn(
 				path, 
 				_.orderBy(
-					state.getIn(path),
+					state.getIn(path)
+						.map(item=>({ ...item, _title: item._id.toLowerCase() })),
 
 					...(action.method == '-count' ?
 						[
-							[ 'count', '_id' ],
+							[ 'count', '_title' ],
 							[ 'desc', 'asc' ]
 						] :
 						[
-							[ '_id' ],
+							[ '_title' ],
 							[ 'asc' ]
 						]
 					)

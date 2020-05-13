@@ -48,12 +48,12 @@ class CollectionsItems extends React.Component {
     }
 
     render() {
-        const { customRows, ...etc } = this.props
+        const { ...etc } = this.props
 
         return (
             <Tree 
                 {...etc}
-                data={customRows ? [ ...this.props.data, ...customRows ] : this.props.data} />
+                data={this.props.data} />
         )
     }
 }
