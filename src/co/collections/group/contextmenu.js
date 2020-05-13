@@ -43,7 +43,7 @@ export default function CollectionsItemContextmenu({
                         </MenuItem>
 
                         <MenuItem onClick={onToggleClick}>
-                            <Icon name='sort' />
+                            <Icon name={hidden ? 'show' : 'hide'} />
                             {t.s(hidden ? 'show' : 'hide')} {t.s('group').toLowerCase()}
                         </MenuItem>
 

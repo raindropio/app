@@ -1,7 +1,5 @@
 import { createSelector } from 'reselect'
-import {
-	blankSpace
-} from '../helpers/filters'
+import { blankSpace } from '../helpers/filters'
 import {getSearch} from './bookmarks/space'
 
 //Filters by collection id

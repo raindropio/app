@@ -44,6 +44,7 @@ const initialState = Immutable({
 	last_collection:	0,
 	raindrops_view:		'',
 	raindrops_sort:		'',
+	tags_sort:			'_id',
 	sidebar_hide_tags:	false,
 	sidebar_hide_types:	false
 })

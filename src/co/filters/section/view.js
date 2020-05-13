@@ -1,10 +1,11 @@
 import React from 'react'
 import _ from 'lodash'
 import t from '~t'
+import Icon from '~co/common/icon'
 
 export default class FiltersSection extends React.Component {
     render() {
-        const { _id, hidden } = this.props
+        const { _id } = this.props
         const { onClick, onContextMenu } = this.props
         let title
 
@@ -14,9 +15,9 @@ export default class FiltersSection extends React.Component {
         }
 
         return (
-            <div className='group' tabIndex='-1' onClick={onClick} onContextMenu={onContextMenu}>
-                <div className='title'>{title}</div>
-                <span className='toggle'>{t.s(hidden ? 'show' : 'hide')}</span>
+            <div className='group' tabIndex='-1' onContextMenu={onContextMenu}>
+                <div className='title' onClick={onClick} >{title}</div>
+                <div className='toggle'><Icon name='more_horizontal' onClick={onContextMenu} /></div>
             </div>
         )
     }

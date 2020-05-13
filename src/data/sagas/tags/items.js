@@ -4,7 +4,8 @@ import Api from '../../modules/api'
 
 import {
 	TAGS_LOAD_REQ, TAGS_LOAD_SUCCESS, TAGS_LOAD_ERROR,
-	TAGS_SUGGESTED_LOAD_SUCCESS, TAGS_SUGGESTED_LOAD_ERROR
+	TAGS_SUGGESTED_LOAD_SUCCESS, TAGS_SUGGESTED_LOAD_ERROR,
+	TAGS_REORDER,
 } from '../../constants/tags'
 
 import {
@@ -12,9 +13,8 @@ import {
 	BOOKMARK_UPDATE_SUCCESS, BOOKMARK_REMOVE_SUCCESS
 } from '../../constants/bookmarks'
 
-import {
-	COLLECTION_REMOVE_SUCCESS
-} from '../../constants/collections'
+import { COLLECTION_REMOVE_SUCCESS } from '../../constants/collections'
+import { USER_UPDATE_REQ } from '../../constants/user'
 
 //Requests
 export default function* () {
@@ -28,6 +28,9 @@ export default function* () {
 
 	//Load Suggested tags for bookmark
 	yield takeEvery(BOOKMARK_DRAFT_LOAD_SUCCESS, loadSuggestedTags)
+
+	//Reorder persist
+	yield takeLatest([TAGS_REORDER], reorder)
 }
 
 function* reloadTags({force=false}, {ignore=false}) {
@@ -39,7 +42,7 @@ function* reloadTags({force=false}, {ignore=false}) {
 		return;
 
 	try {
-		const {items=[]} = yield call(Api.get, 'tags');
+		const {items=[]} = yield call(Api.get, 'tags?tagsSort='+state.config.tags_sort)
 
 		yield put({
 			type: TAGS_LOAD_SUCCESS,
@@ -84,4 +87,15 @@ function* loadSuggestedTags({_id, item, ignore=false, dontLoadSuggestedTags=fals
 			error
 		});
 	}
+}
+
+function* reorder({ method }) {
+	yield put({
+		type: USER_UPDATE_REQ,
+		user: {
+			config: {
+				tags_sort: method
+			}
+		}
+	})
 }

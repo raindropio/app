@@ -3,7 +3,7 @@ import Icon from '~co/common/icon'
 
 export default class CollectionsGroupView extends React.Component {
     render() {
-        const { title, hidden, system, active } = this.props
+        const { title, system, active } = this.props
         const { isDragging, isDropping } = this.props
         const { onClick, onContextMenu } = this.props
 

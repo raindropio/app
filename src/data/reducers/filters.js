@@ -8,9 +8,7 @@ import {
 	FILTERS_LOAD_REQ, FILTERS_LOAD_SUCCESS, FILTERS_LOAD_ERROR
 } from '../constants/filters'
 
-import {
-	TAG_RENAME_SUCCESS, TAG_REMOVE_SUCCESS
-} from '../constants/tags'
+import { TAG_RENAME_SUCCESS, TAG_REMOVE_SUCCESS, TAGS_REORDER } from '../constants/tags'
 
 export default function(state = initialState, action={}){switch (action.type) {
 	case REHYDRATE:{
@@ -67,6 +65,33 @@ export default function(state = initialState, action={}){switch (action.type) {
 		})
 
 		return state
+	}
+
+	//reorder
+	case TAGS_REORDER:{
+		_.forEach(state.spaces, (space, spaceId)=>{
+			const path=['spaces', spaceId, 'tags']
+
+			state = state.setIn(
+				path, 
+				_.orderBy(
+					state.getIn(path),
+
+					...(action.method == '-count' ?
+						[
+							[ 'count', '_id' ],
+							[ 'desc', 'asc' ]
+						] :
+						[
+							[ '_id' ],
+							[ 'asc' ]
+						]
+					)
+				)
+			)
+		})
+
+		return state	
 	}
 
 	case 'RESET':{

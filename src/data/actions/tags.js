@@ -2,7 +2,8 @@ import wrapFunc from '../utils/wrapFunc'
 import { 
 	TAGS_LOAD_REQ,
 	TAG_RENAME_REQ,
-	TAG_REMOVE_REQ
+	TAG_REMOVE_REQ,
+	TAGS_REORDER
 } from '../constants/tags'
 
 export const load = ()=>({
@@ -22,4 +23,9 @@ export const oneRename = (tagName, newName, onSuccess, onFail)=>({
 	newName,
 	onSuccess: wrapFunc(onSuccess),
 	onFail: wrapFunc(onFail)
+})
+
+export const reorder = (method)=>({
+	type: TAGS_REORDER,
+	method
 })

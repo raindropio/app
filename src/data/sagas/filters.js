@@ -3,14 +3,8 @@ import Api from '../modules/api'
 import ApiError from '../modules/error'
 import { getSpaceQuery } from '../helpers/bookmarks'
 
-import {
-	BOOKMARK_UPDATE_SUCCESS,
-	BOOKMARK_REMOVE_SUCCESS
-} from '../constants/bookmarks'
-
-import {
-	FILTERS_LOAD_REQ, FILTERS_LOAD_SUCCESS, FILTERS_LOAD_ERROR
-} from '../constants/filters'
+import { BOOKMARK_UPDATE_SUCCESS, BOOKMARK_REMOVE_SUCCESS } from '../constants/bookmarks'
+import { FILTERS_LOAD_REQ, FILTERS_LOAD_SUCCESS, FILTERS_LOAD_ERROR } from '../constants/filters'
 
 //Requests
 export default function* () {
@@ -21,7 +15,7 @@ export default function* () {
 	], reloadFilters)
 }
 
-function* reloadFilters({spaceId, ignore=false}) {
+function* reloadFilters({ spaceId, ignore=false }) {
 	if ((ignore)||(typeof spaceId == 'undefined'))
 		return;
 
@@ -29,7 +23,7 @@ function* reloadFilters({spaceId, ignore=false}) {
 	const query = getSpaceQuery(state.bookmarks, spaceId);
 
 	try {
-		const {result=false, error, errorMessage, ...items} = yield call(Api.get, 'filters/'+query.string);
+		const {result=false, error, errorMessage, ...items} = yield call(Api.get, 'filters/'+query.string+((query.string||'').includes('?')?'&':'?')+'tagsSort='+state.config.tags_sort);
 
 		if (!result)
 			throw new ApiError(error, errorMessage||'cant load filters')
