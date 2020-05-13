@@ -4,13 +4,14 @@ import { ShortDate } from '~modules/format/date'
 
 import SuperLink from '~co/common/superLink'
 import Icon from '~co/common/icon'
+import SafeHtml from '~co/common/safeHtml'
 import Cover from './cover'
 import Tags from './tags'
 import Path from './path'
 
 export default class BookmarkItemView extends React.PureComponent {
     render() {
-        const { link, title, excerpt, body, cover, domain, tags, type, view, access, created, reparse, collectionId, cid } = this.props
+        const { link, title, excerpt, highlight, cover, domain, tags, type, view, access, created, reparse, collectionId, cid } = this.props
         const { active, selected, important, broken } = this.props
         const { onClick, onTagClick, onEditClick, onSelectClick, onImportantClick, onContextMenu, onKeyUp } = this.props
 
@@ -22,16 +23,19 @@ export default class BookmarkItemView extends React.PureComponent {
                     view={view} />
 
                 <div className='about'>
-                    <span className='title'>{title}</span>
+                    {/* Text */}
+                    <SafeHtml tagName='span' className='title'>{highlight.title || title}</SafeHtml>
                     <div>
-                        <p className='description'>{excerpt}</p>
-                        {body && <p className='description from-body'>{body}</p>}
+                        <SafeHtml tagName='p' className='description'>{highlight.excerpt || excerpt}</SafeHtml>
+                        {highlight.body && <SafeHtml tagName='p' className='description from-body'>{highlight.body}</SafeHtml>}
                     </div>
 
+                    {/* Tags */}
                     <Tags 
                         tags={tags}
                         onTagClick={onTagClick} />
 
+                    {/* Info */}
                     <div className='info-wrap'>
                         <div className='info info-domain'>
                             {cid != collectionId && <Path collectionId={collectionId} />}

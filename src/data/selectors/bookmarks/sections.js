@@ -169,13 +169,15 @@ export const makeBookmarksFlatSections = () => createSelector(
 		({bookmarks={}})=>bookmarks.elements
 	],
 	(spaceId, query, ids=[], elements=[])=>{
-		if (!spaceId || spaceId == '0' || spaceId == '0s' ||
+		const cid = parseInt(spaceId)
+
+		if (!cid ||
 			!query.search.length ||
 			query.sort != 'score')
 			return ids
 
 		let breakIndex = ids.findIndex(id=>{
-			if (elements[id].collectionId != spaceId)
+			if (elements[id].collectionId != cid)
 				return true
 		})
 

@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { bookmark, tags, makeIsSelected } from '~data/selectors/bookmarks'
+import { bookmark, tags, makeIsSelected, makeHighlight } from '~data/selectors/bookmarks'
 import { copyTextToClipboard } from '~modules/strings'
 
 import View from './view'
@@ -118,6 +118,7 @@ class BookmarkItem extends React.Component {
 export default connect(
 	() => {
         const getIsSelected = makeIsSelected()
+        const getHighlight = makeHighlight()
     
         return (state, { _id, cid, selectModeEnabled })=>{
             const item = bookmark(state, _id)
@@ -125,7 +126,8 @@ export default connect(
             return {
                 item,
                 tags: tags(state, _id),
-                selected: selectModeEnabled ? getIsSelected(state, cid, _id) : false
+                selected: selectModeEnabled ? getIsSelected(state, cid, _id) : false,
+                highlight: getHighlight(state, _id),
             }
         }
     }
