@@ -33,7 +33,7 @@
 		"~routes": "src/routes"
 	},
 	"dependencies": {
-		"date-fns": "2.12.x",
+		"date-fns": "2.13.x",
 		"ismobilejs": "^1.1.1",
 		"localforage": "1.7.x",
 		"lodash-es": "4.17.x",
@@ -46,9 +46,9 @@
 		"react-helmet": "6.0.x",
 		"react-masonry-css": "^1.0.14",
 		"react-portal": "^4.2.1",
-		"react-router-dom": "5.1.x",
-		"react-virtuoso": "^0.16.2",
-		"react-window": "^1.8.5",
+		"react-router-dom": "5.2.x",
+		"react-virtuoso": "0.16.x",
+		"react-window": "1.8.x",
 		"string": "3.3.x",
 		"validator": "13.0.x"
 	},
@@ -73,7 +73,7 @@
 		"babel-plugin-lodash": "3.3.x",
 		"clean-webpack-plugin": "^3.0.0",
 		"css-loader": "3.5.x",
-		"eslint": "6.x",
+		"eslint": "7.x",
 		"eslint-plugin-react": "7.x",
 		"extract-text-webpack-plugin": "3.0.x",
 		"file-loader": "6.0.x",
@@ -89,11 +89,11 @@
 		"stylus": "0.54.x",
 		"stylus-loader": "3.0.x",
 		"svg-sprite-loader": "4.2.x",
-		"terser-webpack-plugin": "^2.3.5",
+		"terser-webpack-plugin": "3.0.x",
 		"webpack": "4.43.x",
 		"webpack-bundle-analyzer": "3.7.x",
 		"webpack-cli": "^3.3.11",
-		"webpack-dev-server": "3.10.x",
+		"webpack-dev-server": "3.11.x",
 		"write-file-webpack-plugin": "4.5.x"
 	}
 }

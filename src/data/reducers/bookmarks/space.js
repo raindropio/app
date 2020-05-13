@@ -42,7 +42,6 @@ export default function(state, action) {switch (action.type) {
 			.setIn(['spaces', action.spaceId, 'status', 'nextPage'], 	'noMore')
 			.setIn(['spaces', action.spaceId, 'query', 'search'], 		query.search||blankSpace.query.search)
 			.setIn(['spaces', action.spaceId, 'query', 'sort'], 		query.sort||blankSpace.query.sort)
-			.setIn(['spaces', action.spaceId, 'query', 'page'], 		query.page||blankSpace.query.page)
 	}
 
 	case SPACE_LOAD_SUCCESS:{
