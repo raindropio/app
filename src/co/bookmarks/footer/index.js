@@ -8,7 +8,8 @@ import View from './view'
 
 class BookmarksFooter extends React.Component {
     static defaultProps = {
-        cid:        0
+        cid:        0,
+        compact:    false
     }
     
     render() {

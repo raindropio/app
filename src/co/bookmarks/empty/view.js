@@ -1,7 +1,5 @@
 import React from 'react'
 import t from '~t'
-import environment from '~modules/environment'
-import config from '~config'
 
 import { Link } from 'react-router-dom'
 import Preloader from '~co/common/preloader'
@@ -19,7 +17,7 @@ export default class BookmarksEmptyView extends React.PureComponent {
     }
 
     render() {
-        const { status, cid, searchEmpty } = this.props
+        const { status, cid, searchEmpty, compact } = this.props
         let content = null
 
         switch(status.main) {
@@ -49,18 +47,15 @@ export default class BookmarksEmptyView extends React.PureComponent {
 
                     //noBookmarks
                     default:
+                        if (compact)
+                            return null
+
                         content = (
                             <div>
-                                <SuperImg src='empty/no_items.png' height='154' />
                                 <h2 className='headLabel'>{t.s('noBookmarks')}</h2>
                                 <p className='subHeadLabel'>
                                     {t.s('noItemsTip')}
                                 </p>
-        
-                                <br/>{environment.isClipper() ? null : <a className='button active' href={config.links.download}>{t.s('install') + ' ' + t.s('browserExtension').toLowerCase()}</a>}
-                                <br/><Link className='button active' to='/settings/import' target='_blank'>{t.s('importBookmarks')}&nbsp;{t.s('elements2')}</Link>
-        
-                                {parseInt(cid)>0?<p className='subHeadLabel'>{t.s('importSuccessInfo')}</p>:null}
                             </div>
                         )
                     break
@@ -88,7 +83,6 @@ export default class BookmarksEmptyView extends React.PureComponent {
             case 'error':
                 content = (
                     <div>
-						<SuperImg src='empty/error.png' className='animation-flying' height='144' />
 						<h2 className='headLabel'>{t.s('error')}</h2>
 						<p className='subHeadLabel'>
 							<Link to='/'>{t.s('goHome')}</Link>,&nbsp;
@@ -99,10 +93,11 @@ export default class BookmarksEmptyView extends React.PureComponent {
                 break
 
             default:
-                content = (
+                return null
+                /*content = (
                     <Preloader/>
                 )
-                break
+                break*/
         }
 
         return (

@@ -1,6 +1,6 @@
 import React from 'react'
 import { Content } from '~co/screen/splitview/main'
-import Bookmarks from '~co/bookmarks/items'
+import Bookmarks from '~co/bookmarks'
 
 export default class CollectionsMainContent extends React.Component {
     events = {

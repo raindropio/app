@@ -21,15 +21,15 @@ const
 	_getCollectionById = ({collections={}}, collectionId)=>collections.items[parseInt(collectionId)]
 
 //Tree
-const getChildrens = (items, item, level=0)=>{
+const getChildrens = (items, item, level=0, overrideExpanded=false)=>{
 	var childrens = []
 	childrens.push({item, level})
 
-	if ((item._id>0)&&(item.expanded))
-	items.forEach((i)=>{
-		if (i.parentId==item._id)
-			childrens.push(...getChildrens(items, i, level+1))
-	})
+	if ((item._id>0)&&(overrideExpanded||item.expanded))
+		items.forEach((i)=>{
+			if (i.parentId==item._id)
+				childrens.push(...getChildrens(items, i, level+1, overrideExpanded))
+		})
 
 	return childrens
 }
@@ -211,3 +211,17 @@ export const getSharingSendInvitesTo = (state, _id) =>
 
 export const getSharingSendInvitesStatus = (state, _id) =>
 	state.collections.sharing.sendInvitesStatus[_id] || blankSharing.sendInvitesStatus
+
+//Collection itself and all childrens
+export const makeBranchIds = () => createSelector(
+	[_collectionsItems, (state, cid)=>cid],
+	(items, cid)=>{
+		const item = items[cid]
+
+		if (!items[cid] || items[cid]._id <= 0)
+			return [cid]
+
+		return getChildrens(_.sortBy(items, ({sort})=>sort), item, 0, true)
+			.map(({item})=>item._id)
+	}
+)

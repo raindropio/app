@@ -9,10 +9,11 @@ export default class VirtualList extends React.PureComponent {
         item: undefined,            //required
         computeItemKey: undefined,  //required
         totalCount: 0,              //required
-        header: undefined,          //required
+        header: undefined,          //
         empty: undefined,           //
         endReached: undefined,      //
         stickyHeader: false,
+        disableVirtualization: false
     }
 
     rangeChanged = ({ endIndex })=>{
@@ -23,7 +24,7 @@ export default class VirtualList extends React.PureComponent {
     renderItem = index=>{
         const { header, item, empty, totalCount } = this.props
         
-        if (index == 0)
+        if (header && index == 0)
             return (
                 <div key='header'>
                     {header()}
@@ -37,31 +38,51 @@ export default class VirtualList extends React.PureComponent {
                 </div>
             )
 
-        return item(index-1)
+        return item(index-(header?1:0))
     }
 
     computeItemKey = index=>{
-        const { totalCount, computeItemKey } = this.props
-        if (index == 0) return 'header'
+        const { header, totalCount, computeItemKey } = this.props
+        if (header && index == 0) return 'header'
         if (!totalCount) return 'empty'
-        return computeItemKey(index-1)
+        return computeItemKey ? computeItemKey(index-(header?1:0)) : index
     }
 
     render() {
-        const { endReached, totalCount, stickyHeader, dataKey, ...etc } = this.props
+        const { endReached, totalCount, header, stickyHeader, dataKey, disableVirtualization, ...etc } = this.props
+        const Component = disableVirtualization ? NonVirtualList : Virtuoso
 
         return (
-            <Virtuoso
+            <Component
                 {...etc}
                 dataKey={dataKey+(!totalCount?'empty':'')}
-                topItems={stickyHeader ? 1 : 0}
-                totalCount={totalCount ? totalCount+1 : 2}
+                topItems={header && stickyHeader ? 1 : 0}
+                totalCount={totalCount ? (totalCount+(header?1:0)) : (1+(header?1:0))}
                 item={this.renderItem}
                 computeItemKey={this.computeItemKey}
                 defaultItemHeight={80}
                 style={mainStyle}
                 rangeChanged={endReached && this.rangeChanged}
             />
+        )
+    }
+}
+
+export class NonVirtualList extends React.Component {
+    render() {
+        const { totalCount, item, className, footer } = this.props
+
+        let items = []
+        if (totalCount)
+            for(var i = 0; i<totalCount; i++)
+                items.push(item(i))
+
+        return (
+            <div className={className}>
+                {items}
+
+                {footer && footer()}
+            </div>
         )
     }
 }

@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as bookmarksActions from '~data/actions/bookmarks'
 import * as collectionsActions from '~data/actions/collections'
-import { makeSelectMode, makeSort, makeSorts, getSearchEmpty } from '~data/selectors/bookmarks'
+import { makeSelectMode, makeSort, makeSorts, getSearchEmpty, makeStatus } from '~data/selectors/bookmarks'
 import { makeCollection } from '~data/selectors/collections'
 
 import View from './view'
@@ -66,9 +66,11 @@ export default connect(
         const getSelectMode = makeSelectMode()
         const getSort = makeSort()
         const getSorts = makeSorts()
+        const getStatus = makeStatus()
     
         return (state, { cid })=>{
             return {
+                status: getStatus(state, cid),
                 selectMode: getSelectMode(state, cid),
                 collection: getCollection(state, cid),
                 sort: getSort(state, cid),

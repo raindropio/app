@@ -1,5 +1,6 @@
 import React from 'react'
 import t from '~t'
+import { Link } from 'react-router-dom'
 
 export default class BookmarksFooterView extends React.PureComponent {
     loadMore = (e)=>{
@@ -8,7 +9,7 @@ export default class BookmarksFooterView extends React.PureComponent {
     }
 
     render() {
-        const { status } = this.props
+        const { status, compact, cid } = this.props
         let content = null
 
         switch(status.nextPage) {
@@ -30,11 +31,17 @@ export default class BookmarksFooterView extends React.PureComponent {
                 break
 
             default:
-                content = (
-                    <a className='button default' onClick={this.loadMore}><b>{t.s('more')}</b></a>
-                )
+                if (status.main == 'loaded')
+                    content = (
+                        <a className='button default' onClick={this.loadMore}><b>{t.s('more')}</b></a>
+                    )
                 break
         }
+
+        if (compact && status.main == 'loaded' && status.nextPage != 'noMore')
+            content = (
+                <Link to={`/collection/${cid}`} className='button default' href='/'><b>{t.s('showAll')}</b></Link>
+            )
 
         return (
             <div className='loadMore'>

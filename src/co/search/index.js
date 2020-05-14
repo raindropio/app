@@ -13,7 +13,7 @@ export default class Search extends React.Component {
     }
 
     componentDidMount() {
-        this.handlers.onSubmitBounced = _.debounce(this.handlers.onSubmit, 250)
+        this.handlers.onSubmitBounced = _.debounce(this.handlers.onSubmit, 250, { maxWait: 1000 })
     }
 
     componentDidUpdate(prev) {

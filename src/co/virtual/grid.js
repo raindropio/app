@@ -1,5 +1,6 @@
 import React from 'react'
 import { Virtuoso } from 'react-virtuoso'
+import { NonVirtualList } from './list'
 import withAutoSize from './helpers/withAutoSize'
 
 const mainStyle = { width: '100%', height: '100%', overflowY: 'overlay' }
@@ -14,6 +15,7 @@ class VirtualGrid extends React.PureComponent {
         computeItemKey: undefined,  //required
         totalCount: 0,              //required
         stickyHeader: false,
+        disableVirtualization: false
     }
 
     //columns and rows count
@@ -89,10 +91,11 @@ class VirtualGrid extends React.PureComponent {
 
     render() {
         const { rowCount, columnCount, style } = this.state
-        const { dataKey='', endReached, stickyHeader, ...etc } = this.props
+        const { dataKey='', endReached, stickyHeader, disableVirtualization, ...etc } = this.props
+        const Component = disableVirtualization ? NonVirtualList : Virtuoso
 
         return (
-            <Virtuoso
+            <Component
                 {...etc}
 
                 className={undefined}

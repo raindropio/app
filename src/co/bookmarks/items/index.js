@@ -11,6 +11,7 @@ class BookmarksItems extends React.Component {
     static defaultProps = {
         cid:        0,
         activeId:   0,
+        compact:    false,
         events:     {}  //onItemClick, onTagClick
     }
 

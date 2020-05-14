@@ -52,7 +52,7 @@ export default class BookmarksItemsListing extends React.Component {
     }
 
     renderEmpty = ()=>(
-        <Empty cid={this.props.cid} />
+        <Empty cid={this.props.cid} compact={this.props.compact} />
     )
 
     renderHeader = ()=>(
@@ -60,11 +60,11 @@ export default class BookmarksItemsListing extends React.Component {
     )
 
     renderFooter = ()=>(
-        <Footer cid={this.props.cid} />
+        <Footer cid={this.props.cid} compact={this.props.compact} />
     )
 
     render() {
-        const { items, view, activeId, selectModeEnabled } = this.props
+        const { items, view, activeId, selectModeEnabled, compact } = this.props
 
         let Component
 
@@ -93,9 +93,10 @@ export default class BookmarksItemsListing extends React.Component {
                 footer={this.renderFooter}
                 computeItemKey={this.computeItemKey}
 
-                totalCount={items.length}
+                totalCount={compact ? Math.min(items.length, 7) : items.length}
                 columnWidth={250}
                 stickyHeader={true}
+                disableVirtualization={compact}
                 
                 endReached={this.endReached} 
                 />

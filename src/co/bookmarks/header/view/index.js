@@ -8,7 +8,7 @@ import More from './more'
 
 export default class BookmarksHeaderView extends React.PureComponent {
     render() {
-        const { collection, isSearching } = this.props
+        const { collection, isSearching, status } = this.props
 
         let title = collection.title
         if (collection._id == 0 && isSearching)
@@ -21,7 +21,8 @@ export default class BookmarksHeaderView extends React.PureComponent {
                         <div className='c-icon'>
                             <CollectionIcon
                                 _id={collection._id}
-                                cover={collection.cover} />
+                                cover={collection.cover}
+                                loading={status.main=='loading'} />
                         </div>
                     )}
 
