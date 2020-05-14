@@ -70,7 +70,7 @@ export default class VirtualList extends React.PureComponent {
 
 export class NonVirtualList extends React.Component {
     render() {
-        const { totalCount, item, className, footer } = this.props
+        const { totalCount, item, className, style, footer } = this.props
 
         let items = []
         if (totalCount)
@@ -78,7 +78,7 @@ export class NonVirtualList extends React.Component {
                 items.push(item(i))
 
         return (
-            <div className={className}>
+            <div className={className} style={{...style, height: 'auto'}}>
                 {items}
 
                 {footer && footer()}

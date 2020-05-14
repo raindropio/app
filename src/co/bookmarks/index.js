@@ -33,7 +33,8 @@ class Bookmarks extends React.Component {
                 totalCount={ids.length}
                 dataKey={ids}
                 item={this.renderSpace}
-                computeItemKey={this.indexToId} />
+                computeItemKey={this.indexToId}
+                disableVirtualization={true} />
         )
     }
 }
@@ -42,9 +43,9 @@ export default connect(
 	() => {
         const getBranchIds = makeBranchIds()
     
-        return (state, { cid })=>{
+        return (state, { cid, search })=>{
             return {
-                ids: getBranchIds(state, cid)
+                ids: search ? [ cid ] : getBranchIds(state, cid)
             }
         }
     }

@@ -2,7 +2,6 @@ import React from 'react'
 import t from '~t'
 
 import { Link } from 'react-router-dom'
-import Preloader from '~co/common/preloader'
 import SuperImg from '~co/common/superImg'
 import Icon from '~co/common/icon'
 
@@ -93,7 +92,7 @@ export default class BookmarksEmptyView extends React.PureComponent {
                 break
 
             default:
-                return null
+                break
                 /*content = (
                     <Preloader/>
                 )
