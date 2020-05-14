@@ -28,12 +28,12 @@ export default class CollectionRoute extends React.PureComponent {
                     if (new RegExp(`${value}\\b`,'i').test(this.state.search))
                         return
 
-                    cid = parseInt(this.state.cid)+'s'
+                    cid = this.state.cid
                     search = (this.state.search||'').trim()+' '+value
                 break
 
                 case 'current':
-                    cid = parseInt(this.state.cid)+'s'
+                    cid = this.state.cid
                     search = value
                 break
 

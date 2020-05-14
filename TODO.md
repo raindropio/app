@@ -17,6 +17,7 @@ Design
 Bugs
 - Critical
     - virtual grid doesn't render next pages in Firefox
+    - change search when results same count (1=1) sometime doesnt show up new results
 
 Not ready
 - electron

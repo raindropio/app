@@ -18,7 +18,8 @@ export const isQueryChanged = (state, spaceId, nextToCheck)=>{
 export const replaceBookmarksSpace = (state, clean, spaceId)=>{
 	const space = state.getIn(['spaces', spaceId])||{}
 	
-	if (!_.isEqual((space['ids']||[]).slice(0, clean['ids'].length), clean['ids']))
+	if (!clean['ids'].length ||
+		!_.isEqual((space['ids']||[]).slice(0, clean['ids'].length), clean['ids']))
 		state = state
 			.setIn(['spaces', spaceId, 'ids'], clean['ids'])
 			.setIn(['spaces', spaceId, 'query', 'page'], 0)
