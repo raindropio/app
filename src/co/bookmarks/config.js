@@ -1,4 +1,8 @@
 export default {
+    compact: {
+        count: 7
+    },
+
     size: {
         list: {
             cover: {

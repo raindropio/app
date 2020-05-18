@@ -9,7 +9,8 @@ import View from './view'
 class BookmarksFooter extends React.Component {
     static defaultProps = {
         cid:        0,
-        compact:    false
+        compact:    false,
+        more:       false //useful when compact is true, means that full items count more that showed right now
     }
     
     render() {

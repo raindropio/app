@@ -2,6 +2,7 @@ import React from 'react'
 import List from '~co/virtual/list'
 import Grid from '~co/virtual/grid'
 import Masonry from '~co/virtual/masonry'
+import config from '../config'
 
 import Item from '../item'
 import Empty from '../empty'
@@ -60,7 +61,10 @@ export default class BookmarksItemsListing extends React.Component {
     )
 
     renderFooter = ()=>(
-        <Footer cid={this.props.cid} compact={this.props.compact} />
+        <Footer 
+            cid={this.props.cid}
+            compact={this.props.compact}
+            more={this.props.items.length > config.compact.count} />
     )
 
     render() {
@@ -93,7 +97,7 @@ export default class BookmarksItemsListing extends React.Component {
                 footer={this.renderFooter}
                 computeItemKey={this.computeItemKey}
 
-                totalCount={compact ? Math.min(items.length, 7) : items.length}
+                totalCount={compact ? Math.min(items.length, config.compact.count) : items.length}
                 columnWidth={250}
                 stickyHeader={true}
                 disableVirtualization={compact}

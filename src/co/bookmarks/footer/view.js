@@ -9,7 +9,7 @@ export default class BookmarksFooterView extends React.PureComponent {
     }
 
     render() {
-        const { status, compact, cid } = this.props
+        const { status, compact, more, cid } = this.props
         let content = null
 
         switch(status.nextPage) {
@@ -33,14 +33,15 @@ export default class BookmarksFooterView extends React.PureComponent {
             default:
                 if (status.main == 'loaded')
                     content = (
-                        <a className='button default' onClick={this.loadMore}><b>{t.s('more')}</b></a>
+                        <a className='button flat' onClick={this.loadMore}><b>{t.s('more')}&hellip;</b></a>
                     )
                 break
         }
 
-        if (compact && status.main == 'loaded' && status.nextPage != 'noMore')
+        if ((compact && status.main == 'loaded' && status.nextPage != 'noMore') ||
+            (compact && more))
             content = (
-                <Link to={`/collection/${cid}full`} className='button default' href='/'><b>{t.s('showAll')}</b></Link>
+                <Link to={`/collection/${cid}full`} className='button flat' href='/'><b>{t.s('more')}&hellip;</b></Link>
             )
 
         return (
