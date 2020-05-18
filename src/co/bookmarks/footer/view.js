@@ -40,7 +40,7 @@ export default class BookmarksFooterView extends React.PureComponent {
 
         if (compact && status.main == 'loaded' && status.nextPage != 'noMore')
             content = (
-                <Link to={`/collection/${cid}`} className='button default' href='/'><b>{t.s('showAll')}</b></Link>
+                <Link to={`/collection/${cid}full`} className='button default' href='/'><b>{t.s('showAll')}</b></Link>
             )
 
         return (

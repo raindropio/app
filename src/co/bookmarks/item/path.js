@@ -10,7 +10,7 @@ class BookmarksItemPath extends React.Component {
         const { _id, title } = this.props
 
         return (
-            <Link to={`/collection/${_id}full`} className='info info-path'>
+            <Link to={`/collection/${_id}`} className='info info-path'>
                 <span className='info-img'>
                     <CollectionIcon {...this.props} size='16' />
                 </span>

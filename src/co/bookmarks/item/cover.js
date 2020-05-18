@@ -2,6 +2,7 @@ import React from 'react'
 import getThumbUri from '~data/modules/format/thumb'
 import getScreenshotUri from '~data/modules/format/screenshot'
 import getFaviconUri from '~data/modules/format/favicon'
+import config from '../config'
 
 //cache src statuses
 const status = {
@@ -63,7 +64,9 @@ export default class BookmarkItemCover extends React.PureComponent {
 
     renderImage = ()=>{
         const { src, view, link, ...etc } = this.props
-        let width, mode, ar, uri
+        let { width, height } = (config.size[view] || {}).cover || {}
+        let mode = 'crop'
+        let ar, uri
 
         switch(view){
             //simple always have a favicon
@@ -90,36 +93,12 @@ export default class BookmarkItemCover extends React.PureComponent {
                 break
         }
 
-        switch (view) {
-            case 'grid':
-                width = 250
-                mode = 'crop'
-                ar = '16:9'
-                break;
-
-            case 'masonry':
-                width = 250
-                break;
-
-            case 'simple':
-                width = 16
-                mode = 'crop'
-                ar = '1:1'
-                break;
-        
-            default:
-                width = 50
-                mode = 'crop'
-                ar = '1:1'
-                break;
-        }
-
         return (
             <img 
                 className='cover'
                 loading='lazy'
                 {...etc}
-                src={`${uri}&mode=${mode}&ar=${ar}&width=${width}&dpr=${window.devicePixelRatio}`}
+                src={`${uri}&mode=${mode}&ar=${ar}&width=${width}&height=${height}&dpr=${window.devicePixelRatio}`}
                 onError={this.onImageLoadError} />
         )
     }
