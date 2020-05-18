@@ -35,13 +35,15 @@ export default function(state, action) {switch (action.type) {
 
 		if (isQueryChanged(state, action.spaceId, query)){
 			state = replaceBookmarksSpace(state, normalizeBookmarks([]), action.spaceId)
+
+			return state
+				.setIn(['spaces', action.spaceId, 'status', 'main'], 		'loading')
+				.setIn(['spaces', action.spaceId, 'status', 'nextPage'], 	'noMore')
+				.setIn(['spaces', action.spaceId, 'query', 'search'], 		query.search||blankSpace.query.search)
+				.setIn(['spaces', action.spaceId, 'query', 'sort'], 		query.sort||blankSpace.query.sort)
 		}
 		
 		return state
-			.setIn(['spaces', action.spaceId, 'status', 'main'], 		'loading')
-			.setIn(['spaces', action.spaceId, 'status', 'nextPage'], 	'noMore')
-			.setIn(['spaces', action.spaceId, 'query', 'search'], 		query.search||blankSpace.query.search)
-			.setIn(['spaces', action.spaceId, 'query', 'sort'], 		query.sort||blankSpace.query.sort)
 	}
 
 	case SPACE_LOAD_SUCCESS:{

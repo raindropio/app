@@ -13,7 +13,7 @@ export default class Search extends React.Component {
     }
 
     componentDidMount() {
-        this.handlers.onSubmitBounced = _.debounce(this.handlers.onSubmit, 250, { maxWait: 1000 })
+        this.onSubmitBounced = _.debounce(this.handlers.onSubmit, 250, { maxWait: 1000 })
     }
 
     componentDidUpdate(prev) {
@@ -25,7 +25,7 @@ export default class Search extends React.Component {
         onChange: (value, callback)=>{
             this.setState({ value }, ()=>{
                 if (this.state.value.length>1)
-                    this.handlers.onSubmitBounced()
+                    this.onSubmitBounced()
                 else if (!this.state.value)
                     this.handlers.onSubmit()
 

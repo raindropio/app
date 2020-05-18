@@ -40,7 +40,7 @@ export const makeStatusNextPage = () => createSelector(
 
 export const makeBookmarksLastChange = () => createSelector(
 	[({bookmarks={}})=>bookmarks.elements],
-	(elements)=>new Date()
+	()=>new Date().getTime()
 )
 
 

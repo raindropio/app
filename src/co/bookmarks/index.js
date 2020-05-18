@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { makeBranchIds } from '~data/selectors/collections'
+import { makeBookmarksLastChange } from '~data/selectors/bookmarks'
 
 import List from '~co/virtual/list'
 import Items from './items'
@@ -23,7 +24,7 @@ class Bookmarks extends React.Component {
         this.props.ids[index]
 
     render() {
-        const { ids } = this.props
+        const { cid, ids, lastChange } = this.props
 
         if (ids.length<=1)
             return this.renderSpace(0)
@@ -31,10 +32,9 @@ class Bookmarks extends React.Component {
         return (
             <List 
                 totalCount={ids.length}
-                dataKey={ids}
+                dataKey={cid+lastChange}
                 item={this.renderSpace}
-                computeItemKey={this.indexToId}
-                disableVirtualization={true} />
+                computeItemKey={this.indexToId} />
         )
     }
 }
@@ -42,10 +42,12 @@ class Bookmarks extends React.Component {
 export default connect(
 	() => {
         const getBranchIds = makeBranchIds()
+        const getBookmarksLastChange = makeBookmarksLastChange()
     
         return (state, { cid, search })=>{
             return {
-                ids: search ? [ cid ] : getBranchIds(state, cid)
+                ids: search ? [ cid ] : getBranchIds(state, cid),
+                lastChange: getBookmarksLastChange(state)
             }
         }
     }
