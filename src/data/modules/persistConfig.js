@@ -32,6 +32,7 @@ export default {
 	whitelist: [
 		'config',
 		'collections',
+		'bookmarks',
 		'filters',
 		'local',
 
@@ -41,6 +42,6 @@ export default {
 	throttle,
 	storage,
 	transforms: [ImmutableTransform],
-	debug: false,
+	debug: true,
 	stateReconciler: false
 }

@@ -10,6 +10,7 @@ import {
 	actualizeSpaceStatus,
 	replaceBookmarksSpace
 } from './utils'
+import {REHYDRATE} from 'redux-persist/src/constants'
 import {
 	SPACE_PER_PAGE,
 	SPACE_LOAD_REQ, SPACE_LOAD_SUCCESS, SPACE_LOAD_ERROR,
@@ -24,6 +25,23 @@ import {
 import { COLLECTION_REMOVE_SUCCESS } from '../../constants/collections'
 
 export default function(state, action) {switch (action.type) {
+	case REHYDRATE:{
+		const { spaces={}, elements={}, meta={} } = action.payload && action.payload.bookmarks||{}
+
+		_.forEach(spaces, (space, _id)=>{
+			if (space.status.main != 'loaded' ||
+				space.status.nextPage == 'error' ||
+				space.status.nextPage == 'loading')
+				return
+
+			state = state.setIn(['spaces', _id], space)
+		})
+
+		return state
+			.set('elements', elements)
+			.set('meta', meta)
+	}
+
 	//Load bookmarks
 	case SPACE_LOAD_REQ:{
 		if (!shouldLoadSpace(state, action.spaceId)){
