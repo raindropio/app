@@ -39,6 +39,7 @@ class Bookmarks extends React.Component {
             <List 
                 totalCount={ids.length}
                 dataKey={cid+lastChange}
+                defaultItemHeight={0} //important
                 item={this.renderSpace}
                 computeItemKey={this.indexToId} />
         )

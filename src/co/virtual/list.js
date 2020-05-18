@@ -14,7 +14,8 @@ export default class VirtualList extends React.PureComponent {
         empty: undefined,           //
         endReached: undefined,      //
         stickyHeader: false,
-        disableVirtualization: false
+        disableVirtualization: false,
+        defaultItemHeight: 80
     }
 
     rangeChanged = ({ endIndex })=>{
@@ -61,7 +62,6 @@ export default class VirtualList extends React.PureComponent {
                 totalCount={totalCount ? (totalCount+(header?1:0)) : (1+(header?1:0))}
                 item={this.renderItem}
                 computeItemKey={this.computeItemKey}
-                defaultItemHeight={80}
                 style={mainStyle}
                 rangeChanged={endReached && this.rangeChanged}
             />
