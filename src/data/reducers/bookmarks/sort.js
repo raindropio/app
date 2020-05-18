@@ -10,6 +10,8 @@ export default function(state, action) {switch (action.type) {
 
         const space = state.getIn(['spaces', action.spaceId])
 
+        if (!space) return state
+
         //Available sorts
         const sorts = blankSpace.sorts
             .setIn(
