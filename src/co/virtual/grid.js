@@ -3,7 +3,8 @@ import { Virtuoso } from 'react-virtuoso'
 import { NonVirtualList } from './list'
 import withAutoSize from './helpers/withAutoSize'
 
-const mainStyle = { width: '100%', height: '100%', overflowY: 'overlay' }
+const mainStyle = { width: '100%', height: '100%' }
+const stickyHeaderStyle = {position: 'sticky', top:0, zIndex: 99}
 
 class VirtualGrid extends React.PureComponent {
     static defaultProps = {
@@ -20,7 +21,7 @@ class VirtualGrid extends React.PureComponent {
 
     //columns and rows count
     measure = ()=>{
-        const { width, columnWidth, totalCount } = this.props
+        const { width, columnWidth, totalCount, disableVirtualization } = this.props
         const columnCount = parseInt(width / columnWidth)
 
         return {
@@ -28,7 +29,8 @@ class VirtualGrid extends React.PureComponent {
             rowCount: Math.ceil(totalCount / columnCount),
             style: {
                 ...mainStyle,
-                '--grid-columns': columnCount
+                '--grid-columns': columnCount,
+                ...(!disableVirtualization ? { overflowY: 'overlay' } : { })
             }
         }
     }
@@ -54,12 +56,12 @@ class VirtualGrid extends React.PureComponent {
     }
 
     renderRow = row=>{
-        const { className, item, header, empty, computeItemKey, totalCount } = this.props
+        const { className, item, header, empty, computeItemKey, totalCount, disableVirtualization } = this.props
 
         //header
         if (row == 0)
             return (
-                <div key='header'>
+                <div key='header' style={disableVirtualization ? stickyHeaderStyle : undefined}>
                     {header()}
                 </div>
             )

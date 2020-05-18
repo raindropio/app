@@ -43,10 +43,18 @@ export default connect(
 	() => {
         const getBranchIds = makeBranchIds()
         const getBookmarksLastChange = makeBookmarksLastChange()
+        const cacheIntToArray = {}
     
         return (state, { cid, search })=>{
+            let ids
+
+            if (search)
+                ids = cacheIntToArray[cid] = cacheIntToArray[cid] || [ cid ]
+            else
+                ids = getBranchIds(state, cid)
+
             return {
-                ids: search ? [ cid ] : getBranchIds(state, cid),
+                ids,
                 lastChange: getBookmarksLastChange(state)
             }
         }

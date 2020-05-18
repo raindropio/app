@@ -2,6 +2,7 @@ import React from 'react'
 import { Virtuoso } from 'react-virtuoso'
 
 const mainStyle = { width: '100%', height: '100%' }
+const stickyHeaderStyle = {position: 'sticky', top:0, zIndex: 99}
 
 export default class VirtualList extends React.PureComponent {
     static defaultProps = {
@@ -22,11 +23,11 @@ export default class VirtualList extends React.PureComponent {
     }
 
     renderItem = index=>{
-        const { header, item, empty, totalCount } = this.props
+        const { header, item, empty, totalCount, disableVirtualization } = this.props
         
         if (header && index == 0)
             return (
-                <div key='header'>
+                <div key='header' style={disableVirtualization ? stickyHeaderStyle : undefined}>
                     {header()}
                 </div>
             )
