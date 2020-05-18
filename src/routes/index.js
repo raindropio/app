@@ -14,7 +14,7 @@ export default ()=>(
         <Document>
             <Switch>
                 <Route path='/account' component={Account} />
-                <Route path='/collection/:cid/:search?' component={Collection} />
+                <Route path='/collection/:cid(-?\d+):modifier?/:search?' component={Collection} />
                 {/*<Route path='/settings' component={Settings} />*/}
 
                 {/* Redirects */}

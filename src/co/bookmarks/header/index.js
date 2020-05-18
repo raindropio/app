@@ -12,7 +12,8 @@ import SelectMode from './selectMode'
 
 class BookmarksHeader extends React.Component {
     static defaultProps = {
-        cid: 0
+        cid: 0,
+        compact: false
     }
 
     handlers = {

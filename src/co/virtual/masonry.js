@@ -2,6 +2,7 @@ import React from 'react'
 import Masonry from 'react-masonry-css'
 import withAutoSize from './helpers/withAutoSize'
 
+const mainStyle = { overflowY: 'overlay' }
 const stickyHeaderStyle = {position: 'sticky', top:0, zIndex: 99}
 
 class VirtualMasonry extends React.PureComponent {
@@ -58,10 +59,10 @@ class VirtualMasonry extends React.PureComponent {
 
     render() {
         const { columnCount } = this.state
-        const { className, header, stickyHeader, footer } = this.props
+        const { className, header, stickyHeader, footer, disableVirtualization } = this.props
 
         return (
-            <div>
+            <>
                 <div style={stickyHeader ? stickyHeaderStyle : undefined}>
                     {header && header()}
                 </div>
@@ -70,12 +71,13 @@ class VirtualMasonry extends React.PureComponent {
                     breakpointCols={columnCount}
                     className={className}
                     columnClassName=''
-                    onScroll={this.onContainerScroll}>
+                    onScroll={this.onContainerScroll}
+                    style={disableVirtualization ? undefined : mainStyle}>
                     {this.renderItems()}
                 </Masonry>
 
                 {footer && footer()}
-            </div>
+            </>
         )
     }
 }

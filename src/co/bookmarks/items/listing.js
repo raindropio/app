@@ -56,7 +56,7 @@ export default class BookmarksItemsListing extends React.Component {
     )
 
     renderHeader = ()=>(
-        <Header cid={this.props.cid} />
+        <Header cid={this.props.cid} compact={this.props.compact} />
     )
 
     renderFooter = ()=>(

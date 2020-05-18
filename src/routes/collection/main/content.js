@@ -10,13 +10,14 @@ export default class CollectionsMainContent extends React.Component {
     }
 
     render() {
-        const { cid, search } = this.props
+        const { cid, search, full } = this.props
 
         return (
             <Content>
                 <Bookmarks 
                     cid={cid}
                     search={search}
+                    full={full}
                     events={this.events} />
             </Content>
         )

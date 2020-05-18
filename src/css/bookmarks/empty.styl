@@ -6,6 +6,8 @@
     padding: 20px
 
     &:empty {
+        //otherwise virtualized list glitches:
         padding: 0
+        min-height: 1px
     }
 }

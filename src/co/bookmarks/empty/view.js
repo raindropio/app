@@ -46,17 +46,15 @@ export default class BookmarksEmptyView extends React.PureComponent {
 
                     //noBookmarks
                     default:
-                        if (compact)
-                            return null
-
-                        content = (
-                            <div>
-                                <h2 className='headLabel'>{t.s('noBookmarks')}</h2>
-                                <p className='subHeadLabel'>
-                                    {t.s('noItemsTip')}
-                                </p>
-                            </div>
-                        )
+                        if (!compact)
+                            content = (
+                                <div>
+                                    <h2 className='headLabel'>{t.s('noBookmarks')}</h2>
+                                    <p className='subHeadLabel'>
+                                        {t.s('noItemsTip')}
+                                    </p>
+                                </div>
+                            )
                     break
                 }
             }break
@@ -90,13 +88,6 @@ export default class BookmarksEmptyView extends React.PureComponent {
 					</div>
                 )
                 break
-
-            default:
-                break
-                /*content = (
-                    <Preloader/>
-                )
-                break*/
         }
 
         return (

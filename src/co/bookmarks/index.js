@@ -7,6 +7,12 @@ import List from '~co/virtual/list'
 import Items from './items'
 
 class Bookmarks extends React.Component {
+    static defaultProps = {
+        cid: 0,
+        search: '',
+        full: false //don't show nested folders in compact mode
+    }
+
     renderSpace = (index)=>{
         const { ids, ...etc } = this.props
         const cid = ids[index]
@@ -45,10 +51,10 @@ export default connect(
         const getBookmarksLastChange = makeBookmarksLastChange()
         const cacheIntToArray = {}
     
-        return (state, { cid, search })=>{
+        return (state, { cid, search, full })=>{
             let ids
 
-            if (search)
+            if (search || full)
                 ids = cacheIntToArray[cid] = cacheIntToArray[cid] || [ cid ]
             else
                 ids = getBranchIds(state, cid)

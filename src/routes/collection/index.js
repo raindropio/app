@@ -15,6 +15,7 @@ export default class CollectionRoute extends React.PureComponent {
     static getDerivedStateFromProps({ match }) {
         return {
             cid: match.params.cid,
+            full: match.params.modifier == 'full',
             search: decodeURIComponent(match.params.search||'')
         }
     }
