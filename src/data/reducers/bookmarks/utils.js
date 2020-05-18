@@ -5,7 +5,11 @@ import {
 } from '../../helpers/bookmarks'
 
 export const isQueryChanged = (state, spaceId, nextToCheck)=>{
-	const prevQuery = state.getIn(['spaces', spaceId, 'query'])||blankSpace.query
+	const space = state.getIn(['spaces', spaceId])
+	if (!space)
+		return true
+
+	const prevQuery = space.query||blankSpace.query
 	var nextQuery = prevQuery
 	_.forEach(nextToCheck, (val,key)=>{
 		if (!_.isEqual(prevQuery[key], val))
