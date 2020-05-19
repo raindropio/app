@@ -12,6 +12,8 @@ import {
 	SELECT_MODE_SCREENSHOT_SELECTED,
 	SELECT_MODE_APPENDTAGS_SELECTED,
 	SELECT_MODE_MOVE_SELECTED,
+	SELECT_MODE_REMOVETAGS_SELECTED,
+	SELECT_MODE_REPARSE_SELECTED,
 
 	SELECT_MODE_DISABLE,
 
@@ -24,8 +26,8 @@ export default function* () {
 	yield takeEvery(
 		SELECT_MODE_IMPORTANT_SELECTED, 
 		updateBookmarks({
-			set: ()=>({
-				important: true
+			set: ({ important })=>({
+				important
 			})
 		})
 	)
@@ -64,12 +66,38 @@ export default function* () {
 		})
 	)
 
+	//Remove tags
+	yield takeEvery(
+		SELECT_MODE_REMOVETAGS_SELECTED,
+		updateBookmarks({
+			set: ()=>({
+				tags: []
+			}),
+			mutate: (_, item)=>({
+				...item,
+				tags: []
+			})
+		})
+	)
+
 	//Move selected
 	yield takeEvery(
 		SELECT_MODE_MOVE_SELECTED,
 		updateBookmarks({
 			set: ({ to })=>({
 				collectionId: to
+			})
+		})
+	)
+
+	//Reparse selected
+	yield takeEvery(
+		SELECT_MODE_REPARSE_SELECTED, 
+		updateBookmarks({
+			set: ()=>({
+				pleaseParse: {
+					date: new Date()
+				}
 			})
 		})
 	)

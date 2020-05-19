@@ -3,7 +3,7 @@ import {
 	SELECT_MODE_ENABLE, SELECT_MODE_DISABLE,
 	SELECT_MODE_SELECT_BOOKMARK, SELECT_MODE_UNSELECT_BOOKMARK, 
 	SELECT_MODE_SELECT_ALL, SELECT_MODE_UNSELECT_ALL,
-	SELECT_MODE_IMPORTANT_SELECTED, SELECT_MODE_REMOVE_SELECTED, SELECT_MODE_SCREENSHOT_SELECTED, SELECT_MODE_APPENDTAGS_SELECTED, SELECT_MODE_MOVE_SELECTED
+	SELECT_MODE_IMPORTANT_SELECTED, SELECT_MODE_REMOVE_SELECTED, SELECT_MODE_SCREENSHOT_SELECTED, SELECT_MODE_APPENDTAGS_SELECTED, SELECT_MODE_REMOVETAGS_SELECTED, SELECT_MODE_MOVE_SELECTED, SELECT_MODE_REPARSE_SELECTED
 } from '../../constants/bookmarks'
 
 //Select Mode
@@ -41,9 +41,10 @@ export const unselectAll = (spaceId)=>({
 
 
 //Select mode actions
-export const importantSelected = (spaceId, onSuccess, onFail)=>({
+export const importantSelected = (spaceId, important=true, onSuccess, onFail)=>({
 	type: SELECT_MODE_IMPORTANT_SELECTED,
 	spaceId: String(spaceId),
+	important,
 	onSuccess: wrapFunc(onSuccess),
 	onFail: wrapFunc(onFail)
 })
@@ -63,6 +64,13 @@ export const appendTagsSelected = (spaceId, tags, onSuccess, onFail)=>({
 	onFail: wrapFunc(onFail)
 })
 
+export const removeTagsSelected = (spaceId, onSuccess, onFail)=>({
+	type: SELECT_MODE_REMOVETAGS_SELECTED,
+	spaceId: String(spaceId),
+	onSuccess: wrapFunc(onSuccess),
+	onFail: wrapFunc(onFail)
+})
+
 export const removeSelected = (spaceId, onSuccess, onFail)=>({
 	type: SELECT_MODE_REMOVE_SELECTED,
 	spaceId: String(spaceId),
@@ -74,6 +82,13 @@ export const moveSelected = (spaceId, to, onSuccess, onFail)=>({
 	type: SELECT_MODE_MOVE_SELECTED,
 	spaceId: String(spaceId),
 	to: parseInt(to),
+	onSuccess: wrapFunc(onSuccess),
+	onFail: wrapFunc(onFail)
+})
+
+export const reparseSelected = (spaceId, onSuccess, onFail)=>({
+	type: SELECT_MODE_REPARSE_SELECTED,
+	spaceId: String(spaceId),
 	onSuccess: wrapFunc(onSuccess),
 	onFail: wrapFunc(onFail)
 })

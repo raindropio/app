@@ -13,6 +13,11 @@ export default class BookmarksHeaderSelectAll extends React.Component {
     }
 
     render() {
+        const { collection } = this.props
+
+        if (!collection.count)
+            return null
+
         return (
             <a href='' className='button default' onClick={this.onSelectAllClick}>
                 <Icon name='select_all' />

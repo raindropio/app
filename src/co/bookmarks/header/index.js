@@ -33,11 +33,31 @@ class BookmarksHeader extends React.Component {
 
         onImportantClick: (e)=>{
             e.preventDefault()
-            this.props.actions.importantSelected(this.props.cid)
+            this.props.actions.importantSelected(this.props.cid, true)
+        },
+
+        onImportantRemoveClick: (e)=>{
+            e.preventDefault()
+            this.props.actions.importantSelected(this.props.cid, false)
+        },
+
+        onScreenshotClick: (e)=>{
+            e.preventDefault()
+            this.props.actions.screenshotSelected(this.props.cid)
         },
 
         onAddTagsClick: (e)=>{
             e.preventDefault()
+        },
+
+        onRemoveTagsClick: (e)=>{
+            e.preventDefault()
+            this.props.actions.removeTagsSelected(this.props.cid, [])
+        },
+
+        onReparseClick: (e)=>{
+            e.preventDefault()
+            this.props.actions.reparseSelected(this.props.cid)
         },
 
         onRemoveClick: (e)=>{
@@ -46,7 +66,7 @@ class BookmarksHeader extends React.Component {
                 this.props.actions.removeSelected(this.props.cid)
         },
 
-        onMoreClick: (e)=>{
+        onOpenAllClick: (e)=>{
             e.preventDefault()
         },
     }

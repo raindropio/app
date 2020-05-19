@@ -3,43 +3,20 @@ import _ from 'lodash'
 import t from '~t'
 import Icon from '~co/common/icon'
 
+import Checkbox from './checkbox'
+import More from './more'
+
 export default class BookmarksHeaderSelectMode extends React.PureComponent {
-    _allCheckbox = React.createRef()
-
-    componentDidMount() {
-        this.updateCheckbox()
-    }
-
-    componentDidUpdate(prev) {
-        if (prev.selectMode.all != this.props.selectMode.all ||
-            prev.selectMode.ids.length != this.props.selectMode.ids.length)
-            this.updateCheckbox()
-    }
-
-    updateCheckbox = ()=>{
-        const { all, ids } = this.props.selectMode
-        this._allCheckbox.current.indeterminate = !all && ids.length != 0 ? true : undefined
-    }
-
-    onInputClick = ()=>
-        this.props.onSelectAllClick()
-
     render() {
         const { selectMode, collection } = this.props
-        const { onSelectAllClick, onCancelSelectModeClick, onImportantClick, onAddTagsClick, onRemoveClick, onMoreClick } = this.props
+        const { onSelectAllClick, onCancelSelectModeClick, onImportantClick, onAddTagsClick, onRemoveClick, onOpenAllClick } = this.props
 
         let title = collection._id ? t.s('in') + ' ' + collection.title : ''
 
         return (
             <div className='elements-header select-mode'>
                 <div className='header'>
-                    <label className='button flat'>
-                        <input 
-                            ref={this._allCheckbox}
-                            type='checkbox'
-                            checked={selectMode.all}
-                            onChange={this.onInputClick} />
-                    </label>
+                    <Checkbox {...this.props} />
 
                     <div className='title' onClick={onSelectAllClick}>
                         {selectMode.all ? <span className='selected-all-badge'>{t.s('all')}</span> : selectMode.ids.length} {title}
@@ -69,9 +46,15 @@ export default class BookmarksHeaderSelectMode extends React.PureComponent {
                         </span>
                     </a>
 
-					<a className='button active' onClick={onMoreClick}>
-                        {t.s('more')}<Icon name='arrow'/>
+                    <a className='button active' onClick={onOpenAllClick}>
+                        <Icon name='open' />
+                        
+                        <span className='hide-on-small-body'>
+                            {t.s('open')}
+                        </span>
                     </a>
+
+					<More {...this.props} />
 
                     <a href='' className='button default' onClick={onCancelSelectModeClick}>
                         <Icon name='close' />
