@@ -3,23 +3,14 @@ import t from '~t'
 import Icon from '~co/common/icon'
 
 export default class BookmarksHeaderSelectAll extends React.Component {
-    state = {
-        menu: false
-    }
-
-    onSelectAllClick = (e)=>{
-        e.preventDefault()
-        this.props.actions.selectAll(this.props.cid)
-    }
-
     render() {
-        const { collection } = this.props
+        const { collection, onSelectAllClick } = this.props
 
         if (!collection.count)
             return null
 
         return (
-            <a href='' className='button default' onClick={this.onSelectAllClick}>
+            <a href='' className='button default' onClick={onSelectAllClick}>
                 <Icon name='select_all' />
                 <span className='hide-on-small-body'>{t.s('select')} {t.s('all')}</span>
             </a>

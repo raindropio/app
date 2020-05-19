@@ -1,5 +1,4 @@
 import React from 'react'
-import t from '~t'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as bookmarksActions from '~data/actions/bookmarks'
@@ -16,61 +15,6 @@ class BookmarksHeader extends React.Component {
         compact: false
     }
 
-    handlers = {
-        onCancelSelectModeClick: (e)=>{
-            e.preventDefault()
-            this.props.actions.cancelSelectMode(this.props.cid)
-        },
-
-        onSelectAllClick: (e)=>{
-            e && e.preventDefault && e.preventDefault()
-
-            if (this.props.selectMode.all)
-                this.props.actions.unselectAll(this.props.cid)
-            else
-                this.props.actions.selectAll(this.props.cid)
-        },
-
-        onImportantClick: (e)=>{
-            e.preventDefault()
-            this.props.actions.importantSelected(this.props.cid, true)
-        },
-
-        onImportantRemoveClick: (e)=>{
-            e.preventDefault()
-            this.props.actions.importantSelected(this.props.cid, false)
-        },
-
-        onScreenshotClick: (e)=>{
-            e.preventDefault()
-            this.props.actions.screenshotSelected(this.props.cid)
-        },
-
-        onAddTagsClick: (e)=>{
-            e.preventDefault()
-        },
-
-        onRemoveTagsClick: (e)=>{
-            e.preventDefault()
-            this.props.actions.removeTagsSelected(this.props.cid, [])
-        },
-
-        onReparseClick: (e)=>{
-            e.preventDefault()
-            this.props.actions.reparseSelected(this.props.cid)
-        },
-
-        onRemoveClick: (e)=>{
-            e.preventDefault()
-            if (confirm(t.s('areYouSure')))
-                this.props.actions.removeSelected(this.props.cid)
-        },
-
-        onOpenAllClick: (e)=>{
-            e.preventDefault()
-        },
-    }
-
     render() {
         let Component
 
@@ -80,7 +24,7 @@ class BookmarksHeader extends React.Component {
             Component = View
 
         return (
-            <Component {...this.props} {...this.handlers} />
+            <Component {...this.props} />
         )
     }
 }

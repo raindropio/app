@@ -28,7 +28,7 @@ export default class BookmarksHeaderSort extends React.Component {
         this.setState({ menu: false })
 
     onSortClick = (e)=>{
-        this.props.actions.changeSort(this.props.cid, e.target.getAttribute('data-sort'))
+        this.props.onSortChange(e.target.getAttribute('data-sort'))
     }
 
     render() {

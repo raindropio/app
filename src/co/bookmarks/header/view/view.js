@@ -24,7 +24,7 @@ export default class BookmarksHeaderView extends React.Component {
         this.setState({ menu: false })
 
     onViewClick = (e)=>{
-        this.props.collectionsActions.oneChangeView(this.props.cid, e.target.getAttribute('data-view'))
+        this.props.onViewChange(e.target.getAttribute('data-view'))
     }
 
     render() {

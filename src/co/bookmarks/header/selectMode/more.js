@@ -19,7 +19,7 @@ export default class BookmarksSelectModeMore extends React.Component {
 
         return (
             <>
-                <a className='button active' onClick={this.onContextMenuClick}>
+                <a className='button default' onClick={this.onContextMenuClick}>
                     {t.s('more')}<Icon name='arrow'/>
                 </a>
 

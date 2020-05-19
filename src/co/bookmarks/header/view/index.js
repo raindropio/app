@@ -1,14 +1,41 @@
 import React from 'react'
 import t from '~t'
-import CollectionIcon from '~co/collections/item/icon'
-import { Link } from 'react-router-dom'
+import getLinks from '~data/modules/bookmarks/getLinks'
 
+import { Link } from 'react-router-dom'
+import CollectionIcon from '~co/collections/item/icon'
 import SelectAll from './selectAll'
 import Sort from './sort'
 import View from './view'
 import More from './more'
 
 export default class BookmarksHeaderView extends React.PureComponent {
+    handlers = {
+        onSelectAllClick: (e)=>{
+            e && e.preventDefault && e.preventDefault()
+            this.props.actions.selectAll(this.props.cid)
+        },
+
+        onOpenAllClick: (e)=>{
+            e && e.preventDefault && e.preventDefault()
+
+            getLinks(this.props.cid).forEach(link => window.open(link))
+        },
+
+        onRemoveClick: ()=>{
+            if (confirm(t.s('areYouSure')))
+                this.props.collectionsActions.oneRemove(this.props.collection._id)
+        },
+
+        onSortChange: (sort)=>{
+            this.props.actions.changeSort(this.props.cid, sort)
+        },
+
+        onViewChange: (view)=>{
+            this.props.collectionsActions.oneChangeView(this.props.cid, view)
+        }
+    }
+
     render() {
         const { collection, isSearching, status, compact } = this.props
 
@@ -31,13 +58,13 @@ export default class BookmarksHeaderView extends React.PureComponent {
                     <div className='title'>
                         {compact ? <Link to={'/collection/'+collection._id+'full'}>{title}</Link> : title}
                     </div>
-                    <More {...this.props} />
+                    <More {...this.props} {...this.handlers} />
 
                     <div className='space' />
                         
-                    <Sort {...this.props} />
-                    <View {...this.props} />
-                    <SelectAll {...this.props} />
+                    <Sort {...this.props} {...this.handlers} />
+                    <View {...this.props} {...this.handlers} />
+                    <SelectAll {...this.props} {...this.handlers} />
                 </div>
             </div>
         )

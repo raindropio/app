@@ -35,7 +35,10 @@ export default function(state, action) {switch (action.type) {
 				space.status.nextPage == 'loading')
 				return
 
-			state = state.setIn(['spaces', _id], space)
+			state = state
+				.setIn(['spaces', _id], space)
+				.setIn(['spaces', _id, 'ids'], space.ids.slice(0, SPACE_PER_PAGE))
+				.setIn(['spaces', _id, 'query', 'page'], 0)
 		})
 
 		return state
