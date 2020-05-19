@@ -18,6 +18,9 @@ Bugs
 - Critical
     - virtual grid doesn't render next pages in Firefox
     - change search when results same count (1=1) sometime doesnt show up new results
+- Medium
+    - update collection counter, because it stale when have been 0 in cache but loaded more; also remove not always fix counter
+        - maybe just request this info from server when needed?
 
 Not ready
 - electron

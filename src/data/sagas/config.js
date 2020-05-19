@@ -2,14 +2,10 @@ import { put, takeLatest } from 'redux-saga/effects'
 import { CONFIG_SET_LASTCOLLECTION } from '../constants/config'
 import { USER_UPDATE_REQ } from '../constants/user'
 import { COLLECTION_CHANGE_VIEW } from '../constants/collections'
-import { BOOKMARK_CREATE_SUCCESS, BOOKMARK_UPDATE_SUCCESS, SPACE_CHANGE_SORT } from '../constants/bookmarks'
+import { SPACE_CHANGE_SORT } from '../constants/bookmarks'
 
 export default function* () {
-    yield takeLatest([
-        CONFIG_SET_LASTCOLLECTION,
-        BOOKMARK_CREATE_SUCCESS,
-        BOOKMARK_UPDATE_SUCCESS
-    ], userUpdate('spaceId', 'last_collection'))
+    yield takeLatest(CONFIG_SET_LASTCOLLECTION, userUpdate('spaceId', 'last_collection'))
 
     yield takeLatest(COLLECTION_CHANGE_VIEW, userUpdate('view', 'raindrops_view'))
 

@@ -1,4 +1,4 @@
-import { call, put, takeEvery, takeLatest, all, select } from 'redux-saga/effects'
+import { call, put, takeEvery, takeLatest, debounce, all, select } from 'redux-saga/effects'
 import _ from 'lodash-es'
 import Api from '../../modules/api'
 
@@ -20,7 +20,7 @@ import { USER_UPDATE_REQ } from '../../constants/user'
 export default function* () {
 	//Reload Tags
 	yield takeLatest([TAGS_LOAD_REQ, BOOKMARK_DRAFT_LOAD_REQ], reloadTags, {force: false})
-	yield takeLatest([
+	yield debounce(1000, [
 		BOOKMARK_UPDATE_SUCCESS,
 		BOOKMARK_REMOVE_SUCCESS,
 		COLLECTION_REMOVE_SUCCESS

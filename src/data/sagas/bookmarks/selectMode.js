@@ -4,6 +4,8 @@ import _ from 'lodash-es'
 import Api from '../../modules/api'
 import ApiError from '../../modules/error'
 
+import { getSpaceQuery } from '../../helpers/bookmarks'
+
 import {
 	SELECT_MODE_IMPORTANT_SELECTED,
 	SELECT_MODE_REMOVE_SELECTED,
@@ -16,19 +18,6 @@ import {
 	BOOKMARK_UPDATE_SUCCESS,
 	BOOKMARK_REMOVE_SUCCESS,
 } from '../../constants/bookmarks'
-
-function byCollectionId(state) {
-	const { ids } = state.bookmarks.selectMode
-
-	return _.toPairs(
-		_.groupBy(
-			_.pick(state.bookmarks.elements, ids),
-			'collectionId'
-		)
-	).map(([cid, items])=>
-		[ cid, items.map(({_id})=>_id) ]
-	)
-}
 
 export default function* () {
 	//Make Important Selected
@@ -95,40 +84,34 @@ const updateBookmarks = ({validate, set, mutate}) => (
 			//Validate
 			typeof validate == 'function' && validate(action)
 
-			//Send update request
+			//Prepare
 			const state = yield select()
 			const fields = set(action)
 
-			for(const [collectionId, ids] of byCollectionId(state)){
-				const { result=false, modified=0, error, errorMessage } = yield call(Api.put, `raindrops/${collectionId}`, {
-					...fields,
-					ids
-				})
-
-				if (!result)
-					throw new ApiError(error, errorMessage||'cant update selected bookmarks')
-
-				if (modified)
-					yield put(batchActions([
-						{
-							type: SELECT_MODE_DISABLE
-						},
-						..._.map(ids, (_id)=>{
-							let item = {...state.bookmarks.elements[_id], ...state.bookmarks.meta[_id]}
-		
-							if (mutate)
-								item = mutate(action, item)
-							else
-								item = {...item, ...fields}
-		
-							return {
-								type: BOOKMARK_UPDATE_SUCCESS,
-								_id,
-								item
-							}
-						})
-					]))
-			}
+			//Send update request
+			const changed = yield batchApiRequestHelper('put', fields)
+			
+			//Update local state
+			if (changed.length)
+				yield put(batchActions([
+					{
+						type: SELECT_MODE_DISABLE
+					},
+					..._.map(changed, (_id)=>{
+						let item = {...state.bookmarks.elements[_id], ...state.bookmarks.meta[_id]}
+	
+						if (mutate)
+							item = mutate(action, item)
+						else
+							item = {...item, ...fields}
+	
+						return {
+							type: BOOKMARK_UPDATE_SUCCESS,
+							_id,
+							item
+						}
+					})
+				]))
 
 			typeof onSuccess == 'function' && onSuccess()
 		}catch(e){
@@ -140,29 +123,81 @@ const updateBookmarks = ({validate, set, mutate}) => (
 
 function* removeBookmarks({onSuccess, onFail}) {
 	try{
-		const state = yield select()
+		const changed = yield batchApiRequestHelper('del')
 
-		for(const [collectionId, ids] of byCollectionId(state)){
-			const { result=false, modified=0, error, errorMessage } = yield call(Api.del, `raindrops/${collectionId}`, { ids })
-			if (!result)
-				throw new ApiError(error, errorMessage||'cant remove selected bookmarks')
-
-			if (modified)
-				yield put(batchActions([
-					{
-						type: SELECT_MODE_DISABLE
-					},
-					..._.map(ids, (_id)=>({
-						type: BOOKMARK_REMOVE_SUCCESS,
-						_id
-					}))
-				]))
-		}
+		if (changed.length)
+			yield put(batchActions([
+				//turn off select mode
+				{
+					type: SELECT_MODE_DISABLE
+				},
+				..._.map(changed, (_id)=>({
+					type: BOOKMARK_REMOVE_SUCCESS,
+					_id
+				}))
+			]))
 
 		if (typeof onSuccess == 'function')
 			onSuccess()
 	}catch(e){
+		console.log(e)
+
 		if (typeof onFail == 'function')
 			onFail()
 	}
+}
+
+//Returns array of affected id's
+function* batchApiRequestHelper(method, body={}) {
+	const state = yield select()
+	const { bookmarks } = state
+	const { spaceId, ids, all } = bookmarks.selectMode
+
+	//fail when nothing selected
+	if (!all && !ids.length)
+		throw new ApiError('ids', 'nothing selected')
+
+	//operations should be splited by collections
+	let groupByCollection = []
+
+	//all bookmarks
+	if (parseInt(spaceId)==0 || all)
+		groupByCollection = [
+			[parseInt(spaceId), ids]
+		]
+	//per collection
+	else
+		groupByCollection = _.toPairs(
+			_.groupBy(
+				_.pick(bookmarks.elements, ids),
+				'collectionId'
+			)
+		).map(([cid, items])=>
+			[ cid, items.map(({_id})=>_id) ]
+		)
+
+	let changed = []
+
+	//apply for each collection
+	for(const [collectionId, ids] of groupByCollection){
+		const query = getSpaceQuery(bookmarks, collectionId).string
+
+		//send request
+		const { result=false, modified=0, error, errorMessage } = yield call(
+			Api[method],
+			`raindrops/${query}${query.includes('?')?'&':'?'}dangerAll=true`,
+			{
+				...body,
+				...(all ? {} : { ids })
+			}
+		)
+
+		if (!result)
+			throw new ApiError(error, errorMessage||'cant bulk change')
+
+		if (modified)
+			changed.push(...(all ? state.bookmarks.spaces[spaceId].ids : ids))
+	}
+
+	return changed
 }

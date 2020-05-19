@@ -14,14 +14,6 @@ export default class SuperLink extends React.PureComponent {
 		e.target.focus()
 	}
 
-	onDoubleClick = (e)=>{
-		if (typeof this.props.onDoubleClick == 'function')
-			this.props.onDoubleClick(e);
-		else
-			if (e.target.getAttribute('href'))
-				window.open(e.target.href)
-	}
-
 	onKeyDown = (e)=>{
 		switch(e.keyCode){
 			case 38: //top
@@ -67,7 +59,6 @@ export default class SuperLink extends React.PureComponent {
 		return <Component
 					{...other}
 					href={this.props.href}
-					onDoubleClick={this.onDoubleClick}
 					className={className+' superLink'}
 					onMouseDown={this.onMouseDown}
 					onFocus={this.onFocus}

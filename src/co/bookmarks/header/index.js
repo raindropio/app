@@ -23,8 +23,12 @@ class BookmarksHeader extends React.Component {
         },
 
         onSelectAllClick: (e)=>{
-            e.preventDefault()
-            this.props.actions.selectAll(this.props.cid)
+            e && e.preventDefault && e.preventDefault()
+
+            if (this.props.selectMode.all)
+                this.props.actions.unselectAll(this.props.cid)
+            else
+                this.props.actions.selectAll(this.props.cid)
         },
 
         onImportantClick: (e)=>{

@@ -1,4 +1,4 @@
-import { call, put, takeLatest, select } from 'redux-saga/effects'
+import { call, put, debounce, select } from 'redux-saga/effects'
 import Api from '../modules/api'
 import ApiError from '../modules/error'
 import { getSpaceQuery } from '../helpers/bookmarks'
@@ -8,7 +8,7 @@ import { FILTERS_LOAD_REQ, FILTERS_LOAD_SUCCESS, FILTERS_LOAD_ERROR } from '../c
 
 //Requests
 export default function* () {
-	yield takeLatest([
+	yield debounce(1000, [
 		FILTERS_LOAD_REQ,
 		BOOKMARK_UPDATE_SUCCESS,
 		BOOKMARK_REMOVE_SUCCESS

@@ -1,4 +1,4 @@
-import { all, call, put, takeEvery, takeLatest, select } from 'redux-saga/effects'
+import { all, call, put, takeEvery, select } from 'redux-saga/effects'
 import Api from '../../modules/api'
 import ApiError from '../../modules/error'
 import _ from 'lodash-es'

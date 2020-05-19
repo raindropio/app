@@ -1,6 +1,6 @@
 import _ from 'lodash-es'
 
-import { blankSelectMode, blankSpace } from '../../helpers/bookmarks'
+import { blankSelectMode } from '../../helpers/bookmarks'
 
 import {
 	SELECT_MODE_ENABLE,
@@ -41,11 +41,12 @@ export default function(state, action) {switch (action.type) {
 			.set('selectMode', blankSelectMode)
 			.setIn(['selectMode', 'enabled'], true)
 			.setIn(['selectMode', 'spaceId'], action.spaceId)
-			.setIn(['selectMode', 'ids'], _.uniq([action._id].concat(getIds(state, action.spaceId))))
+			.setIn(['selectMode', 'ids'], _.uniq([action._id].concat(getEstimatedIds(state, action.spaceId))))
 	}
 
 	case SELECT_MODE_UNSELECT_BOOKMARK:{
-		const ids = _.filter(getIds(state, action.spaceId), (id)=>id!=action._id)
+		let ids = _.filter(getEstimatedIds(state, action.spaceId), (id)=>id!=action._id)
+		
 		if (!ids.length)
 			return state
 				.set('selectMode', blankSelectMode)
@@ -83,8 +84,12 @@ export default function(state, action) {switch (action.type) {
 	}
 }}
 
-const getIds = (state, spaceId)=>{
+const getEstimatedIds = (state, spaceId)=>{
 	if (state.selectMode.spaceId!=spaceId)
 		return blankSelectMode.ids
+
+	if (state.selectMode.enabled && state.selectMode.all)
+		return state.spaces[state.selectMode.spaceId].ids
+
 	return state.selectMode.ids
 }

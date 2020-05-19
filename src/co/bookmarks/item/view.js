@@ -119,7 +119,7 @@ export default class BookmarkItemView extends React.PureComponent {
                     tabIndex={active ? '200' : '-1'}
 					onClick={onClick}
                     onContextMenu={onContextMenu}
-					onKeyUp={onKeyUp}
+                    onKeyUp={onKeyUp}
 					className='permalink' />
             </article>
         )

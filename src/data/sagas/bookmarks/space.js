@@ -1,10 +1,7 @@
-import { call, put, takeEvery, select, takeLatest } from 'redux-saga/effects'
+import { call, put, takeEvery, select, debounce } from 'redux-saga/effects'
 import Api from '../../modules/api'
 import ApiError from '../../modules/error'
-import { 
-	getSpaceQuery,
-	iterateSpaceId
-} from '../../helpers/bookmarks'
+import { getSpaceQuery } from '../../helpers/bookmarks'
 
 import {
 	SPACE_LOAD_REQ, SPACE_LOAD_SUCCESS, SPACE_LOAD_ERROR,
@@ -31,8 +28,8 @@ export default function* () {
 		SPACE_CHANGE_SORT
 	], loadSpace)
 
-	yield takeLatest(BOOKMARK_UPDATE_SUCCESS, maybeRefeshSpace)
-	yield takeLatest(COLLECTION_REMOVE_SUCCESS, onCollectionRemove)
+	yield debounce(1000, BOOKMARK_UPDATE_SUCCESS, maybeRefeshSpace)
+	yield debounce(1000, COLLECTION_REMOVE_SUCCESS, onCollectionRemove)
 }
 
 function* loadSpace({spaceId, ignore=false}) {
