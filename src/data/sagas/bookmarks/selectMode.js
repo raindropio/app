@@ -1,4 +1,5 @@
 import { call, put, takeEvery, select, all } from 'redux-saga/effects'
+import { batchActions } from 'redux-batched-actions'
 import _ from 'lodash-es'
 import Api from '../../modules/api'
 import ApiError from '../../modules/error'
@@ -13,10 +14,8 @@ import {
 	SELECT_MODE_DISABLE,
 
 	BOOKMARK_UPDATE_SUCCESS,
-	BOOKMARK_REMOVE_SUCCESS
+	BOOKMARK_REMOVE_SUCCESS,
 } from '../../constants/bookmarks'
-
-import { getSpaceQuery } from '../../helpers/bookmarks'
 
 function byCollectionId(state) {
 	const { ids } = state.bookmarks.selectMode
@@ -100,9 +99,6 @@ const updateBookmarks = ({validate, set, mutate}) => (
 			const state = yield select()
 			const fields = set(action)
 
-			//Generate side effects
-			let mutations = []
-
 			for(const [collectionId, ids] of byCollectionId(state)){
 				const { result=false, modified=0, error, errorMessage } = yield call(Api.put, `raindrops/${collectionId}`, {
 					...fields,
@@ -113,7 +109,10 @@ const updateBookmarks = ({validate, set, mutate}) => (
 					throw new ApiError(error, errorMessage||'cant update selected bookmarks')
 
 				if (modified)
-					mutations.push(
+					yield put(batchActions([
+						{
+							type: SELECT_MODE_DISABLE
+						},
 						..._.map(ids, (_id)=>{
 							let item = {...state.bookmarks.elements[_id], ...state.bookmarks.meta[_id]}
 		
@@ -122,20 +121,14 @@ const updateBookmarks = ({validate, set, mutate}) => (
 							else
 								item = {...item, ...fields}
 		
-							return put({
+							return {
 								type: BOOKMARK_UPDATE_SUCCESS,
 								_id,
 								item
-							})
+							}
 						})
-					)
+					]))
 			}
-
-			mutations.unshift(put({
-				type: SELECT_MODE_DISABLE
-			}))
-
-			yield all(mutations)
 
 			typeof onSuccess == 'function' && onSuccess()
 		}catch(e){
@@ -148,47 +141,23 @@ const updateBookmarks = ({validate, set, mutate}) => (
 function* removeBookmarks({onSuccess, onFail}) {
 	try{
 		const state = yield select()
-		const { spaceId, all } = state.bookmarks.selectMode
 
-		//All
-		if (all){
-			const { result=false, modified=0, error, errorMessage } = yield call(Api.del, `raindrops/${getSpaceQuery(state.bookmarks, spaceId).string}`)
-
+		for(const [collectionId, ids] of byCollectionId(state)){
+			const { result=false, modified=0, error, errorMessage } = yield call(Api.del, `raindrops/${collectionId}`, { ids })
 			if (!result)
-				throw new ApiError(error, errorMessage||'cant remove all bookmarks')
+				throw new ApiError(error, errorMessage||'cant remove selected bookmarks')
 
-			/*if (modified)
-				yield all([
-					put({
-						type: SPACE_REMOVE_ALL_BOOKMARKS_SUCCESS,
-						removed: modified,
-						spaceId
-					}),
-					put({
+			if (modified)
+				yield put(batchActions([
+					{
 						type: SELECT_MODE_DISABLE
-					})
-				])*/
+					},
+					..._.map(ids, (_id)=>({
+						type: BOOKMARK_REMOVE_SUCCESS,
+						_id
+					}))
+				]))
 		}
-		//selected specific ids
-		else
-			for(const [collectionId, ids] of byCollectionId(state)){
-				const { result=false, modified=0, error, errorMessage } = yield call(Api.del, `raindrops/${collectionId}`, { ids })
-				if (!result)
-					throw new ApiError(error, errorMessage||'cant remove selected bookmarks')
-
-				if (modified)
-					yield all([
-						_.map(ids, (_id)=>
-							put({
-								type: BOOKMARK_REMOVE_SUCCESS,
-								_id
-							})
-						),
-						put({
-							type: SELECT_MODE_DISABLE
-						})
-					])
-			}
 
 		if (typeof onSuccess == 'function')
 			onSuccess()

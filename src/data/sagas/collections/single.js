@@ -1,4 +1,5 @@
 import { call, put, takeEvery, select, all } from 'redux-saga/effects'
+import { batchActions } from 'redux-batched-actions'
 import _ from 'lodash-es'
 import Api from '../../modules/api'
 import ApiError from '../../modules/error'
@@ -213,33 +214,27 @@ function* addBlank({ siblingId, asChild, ignore=false }) {
 
 	//as root
 	if (!item.parentId)
-		actions.push(
-			put({
-				type: GROUP_APPEND_COLLECTION,
-				_id: groupId,
-				collectionId: item._id,
-				...(after ? { after } : {}),
-				ignore: true
-			})
-		)
-	else if (after)
-		actions.push(
-			put({
-				type: COLLECTIONS_EXPAND_TO,
-				_id: after,
-				self: true
-			})
-		)
-	
-	actions.push(
-		put({
-			type: COLLECTION_CREATE_SUCCESS,
-			_id: -101,
-			item: item
+		actions.push({
+			type: GROUP_APPEND_COLLECTION,
+			_id: groupId,
+			collectionId: item._id,
+			...(after ? { after } : {}),
+			ignore: true
 		})
-	)
+	else if (after)
+		actions.push({
+			type: COLLECTIONS_EXPAND_TO,
+			_id: after,
+			self: true
+		})
+	
+	actions.push({
+		type: COLLECTION_CREATE_SUCCESS,
+		_id: -101,
+		item: item
+	})
 
-	yield all(actions)
+	yield put(batchActions(actions))
 }
 
 function* createFromBlank({ obj, ignore=false, onSuccess, onFail }) {
@@ -350,20 +345,20 @@ function* reorderCollection({_id=0, ignore=false, to, after, before}) {
 				if ( _.findIndex(state.collections.groups, ({_id})=>_id==to) ==-1 )
 					throw new ApiError('not_found', 'group not found')
 
-				yield all([
+				yield put(batchActions([
 					//make root
-					put({
+					{
 						type: COLLECTION_UPDATE_REQ,
 						_id: _id,
 						set: { parentId: 'root' }
-					}),
+					},
 					//append collection to particular group
-					put({
+					{
 						type: GROUP_APPEND_COLLECTION,
 						_id: to,
 						collectionId: _id
-					})
-				])
+					}
+				]))
 			break;
 
 			case 'moveToCollection':
@@ -372,30 +367,30 @@ function* reorderCollection({_id=0, ignore=false, to, after, before}) {
 
 				yield onlyForProUsersCheck()
 
-				yield all([
+				yield put(batchActions([
 					//remove collection from groups
-					put({
+					{
 						type: GROUP_REMOVE_COLLECTION,
 						_id: to,
 						collectionId: _id
-					}),
+					},
 
 					//make root
-					put({
+					{
 						type: COLLECTION_UPDATE_REQ,
 						_id: _id,
 						set: {
 							parentId: parseInt(to),
 							order: 0
 						}
-					}),
+					},
 
-					put({
+					{
 						type: COLLECTIONS_EXPAND_TO,
 						_id: parseInt(to),
 						self: true
-					})
-				])
+					}
+				]))
 			break;
 
 			case 'reorder':{
@@ -407,35 +402,29 @@ function* reorderCollection({_id=0, ignore=false, to, after, before}) {
 
 				//remove from groups
 				if (_id > 0)
-					actions.push(
-						put({
-							type: GROUP_REMOVE_COLLECTION,
-							collectionId: collection._id
-						})
-					)
+					actions.push({
+						type: GROUP_REMOVE_COLLECTION,
+						collectionId: collection._id
+					})
 
 				//Move to root collection
 				if (!target.parentId){
 					//make original also root
 					if (collection.parentId)
-						actions.push(
-							put({
-								type: COLLECTION_UPDATE_REQ,
-								_id: _id,
-								set: { parentId: 'root' }
-							}),
-						)
-
-					actions.push(
-						put({
-							type: GROUP_APPEND_COLLECTION,
-							_id: findGroupByCollection(state.collections.groups, target._id)._id,
-							collectionId: _id,
-							after: parseInt(after),
-							before: parseInt(before),
-							ignore: _id<=0 //useful to give ability dragging of blank collection (-101)
+						actions.push({
+							type: COLLECTION_UPDATE_REQ,
+							_id: _id,
+							set: { parentId: 'root' }
 						})
-					)
+
+					actions.push({
+						type: GROUP_APPEND_COLLECTION,
+						_id: findGroupByCollection(state.collections.groups, target._id)._id,
+						collectionId: _id,
+						after: parseInt(after),
+						before: parseInt(before),
+						ignore: _id<=0 //useful to give ability dragging of blank collection (-101)
+					})
 				}
 				//Make nested children and reorder
 				else{
@@ -460,19 +449,17 @@ function* reorderCollection({_id=0, ignore=false, to, after, before}) {
 						}
 					)
 
-					actions.push(
-						put({
-							type: COLLECTION_UPDATE_REQ,
-							_id: collection._id,
-							set: {
-								parentId: parseInt(target.parentId),
-								order
-							}
-						})
-					)
+					actions.push({
+						type: COLLECTION_UPDATE_REQ,
+						_id: collection._id,
+						set: {
+							parentId: parseInt(target.parentId),
+							order
+						}
+					})
 				}
 
-				yield all(actions)
+				yield put(batchActions(actions))
 			}
 		}
 	} catch(error) {

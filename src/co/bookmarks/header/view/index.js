@@ -35,9 +35,9 @@ export default class BookmarksHeaderView extends React.PureComponent {
 
                     <div className='space' />
                         
-                    <SelectAll {...this.props} />
                     <Sort {...this.props} />
                     <View {...this.props} />
+                    <SelectAll {...this.props} />
                 </div>
             </div>
         )

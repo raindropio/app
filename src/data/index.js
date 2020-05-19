@@ -1,14 +1,10 @@
-import {
-	applyMiddleware, 
-	combineReducers, 
-	compose,
-	createStore
-} from 'redux'
+import { applyMiddleware, combineReducers, compose, createStore } from 'redux'
 import createSagaMiddleware from 'redux-saga'
+import { batchDispatchMiddleware } from 'redux-batched-actions'
 import { persistStore, persistReducer } from 'redux-persist'
 import persistConfig from './modules/persistConfig'
 
-//Utils
+//Roots
 const getRootSaga = ()=>
 	require('./sagas').default
 const getRootReducer = (additional={})=>
@@ -20,9 +16,15 @@ const sagaMiddleware = createSagaMiddleware()
 //Configure store
 var store, persistor;
 const withLocalReducer = (additional)=>{
-	store = createStore(getRootReducer(additional), composeEnhancers(
-		applyMiddleware(sagaMiddleware)//should be last!!!
-	))
+	store = createStore(
+		getRootReducer(additional),
+		composeEnhancers(
+			applyMiddleware(
+				batchDispatchMiddleware,
+				sagaMiddleware //should be last!!!
+			)
+		)
+	)
 
 	//Configure middlewares
 	persistor = persistStore(store)

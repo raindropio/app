@@ -50,6 +50,7 @@ export default class BookmarksHeaderSelectMode extends React.PureComponent {
 
                     <a href='' className='button default' onClick={onCancelSelectModeClick}>
                         <Icon name='close' />
+                        <span className='hide-on-small-body'>{t.s('cancel')}</span>
                     </a>
                 </div>
             </div>
