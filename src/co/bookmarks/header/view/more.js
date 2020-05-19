@@ -8,17 +8,23 @@ export default class BookmarksHeaderView extends React.Component {
         menu: false
     }
 
-    onContextMenuClick = (e)=>{
-        e.preventDefault()
-        this.setState({ menu: true })
-    }
-
-    onContextMenuClose = ()=>
-        this.setState({ menu: false })
-
-    onRemoveClick = ()=>{
-        if (confirm(t.s('areYouSure')))
-            this.props.collectionsActions.oneRemove(this.props.collection._id)
+    handlers = {
+        onContextMenuClick: (e)=>{
+            e.preventDefault()
+            this.setState({ menu: true })
+        },
+    
+        onContextMenuClose: ()=>
+            this.setState({ menu: false }),
+    
+        onRemoveClick: ()=>{
+            if (confirm(t.s('areYouSure')))
+                this.props.collectionsActions.oneRemove(this.props.collection._id)
+        },
+    
+        onOpenAllClick: ()=>{
+            
+        }
     }
 
     render() {
@@ -27,16 +33,15 @@ export default class BookmarksHeaderView extends React.Component {
 
         return (
             <>
-                <a href='' className='button default' onClick={this.onContextMenuClick}>
+                <a href='' className='button default' onClick={this.handlers.onContextMenuClick}>
                     <Icon name='more_horizontal' />
                 </a>
 
                 {menu && (
                     <Contextmenu 
                         {...collection}
-                        to={`/collection/${collection._id}`}
-                        onRemoveClick={this.onRemoveClick}
-                        onContextMenuClose={this.onContextMenuClose} />
+                        {...this.handlers}
+                        to={`/collection/${collection._id}`} />
                 )}
             </>
         )

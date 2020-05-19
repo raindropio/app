@@ -178,7 +178,7 @@ function* removeBookmark({_id, ignore=false, onSuccess, onFail}) {
 
 		yield put({
 			type: BOOKMARK_REMOVE_SUCCESS,
-			_id: _id,
+			_id,
 			onSuccess, onFail
 		});
 	} catch (error) {

@@ -3,6 +3,7 @@ import t from '~t'
 import CollectionIcon from '~co/collections/item/icon'
 import { Link } from 'react-router-dom'
 
+import SelectAll from './selectAll'
 import Sort from './sort'
 import View from './view'
 import More from './more'
@@ -33,7 +34,8 @@ export default class BookmarksHeaderView extends React.PureComponent {
                     <More {...this.props} />
 
                     <div className='space' />
-
+                        
+                    <SelectAll {...this.props} />
                     <Sort {...this.props} />
                     <View {...this.props} />
                 </div>

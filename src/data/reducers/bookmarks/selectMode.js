@@ -1,8 +1,6 @@
 import _ from 'lodash-es'
 
-import {
-	blankSelectMode
-} from '../../helpers/bookmarks'
+import { blankSelectMode, blankSpace } from '../../helpers/bookmarks'
 
 import {
 	SELECT_MODE_ENABLE,
@@ -21,6 +19,7 @@ import {
 export default function(state, action) {switch (action.type) {
 	case SELECT_MODE_ENABLE:{
 		return state
+			.set('selectMode', blankSelectMode)
 			.setIn(['selectMode', 'enabled'], true)
 			.setIn(['selectMode', 'spaceId'], action.spaceId)
 			.setIn(['selectMode', 'ids'], blankSelectMode.ids)
@@ -29,12 +28,17 @@ export default function(state, action) {switch (action.type) {
 	case SELECT_MODE_DISABLE:
 	case SPACE_LOAD_REQ:
 	case SPACE_RELOAD_REQ:{
-		return state
-			.set('selectMode', blankSelectMode)
-	}
+		if (!action.ignore)
+			return state
+				.set('selectMode', blankSelectMode)
+	}break
 
 	case SELECT_MODE_SELECT_BOOKMARK:{
+		if (state.selectMode.enabled && state.selectMode.all)
+			return state
+
 		return state
+			.set('selectMode', blankSelectMode)
 			.setIn(['selectMode', 'enabled'], true)
 			.setIn(['selectMode', 'spaceId'], action.spaceId)
 			.setIn(['selectMode', 'ids'], _.uniq([action._id].concat(getIds(state, action.spaceId))))
@@ -47,6 +51,7 @@ export default function(state, action) {switch (action.type) {
 				.set('selectMode', blankSelectMode)
 
 		return state
+			.set('selectMode', blankSelectMode)
 			.setIn(['selectMode', 'enabled'], true)
 			.setIn(['selectMode', 'spaceId'], action.spaceId)
 			.setIn(['selectMode', 'ids'], ids)
@@ -54,19 +59,27 @@ export default function(state, action) {switch (action.type) {
 
 	case SELECT_MODE_SELECT_ALL:{
 		return state
+			.set('selectMode', blankSelectMode)
+			.setIn(['selectMode', 'enabled'], true)
 			.setIn(['selectMode', 'spaceId'], action.spaceId)
-			.setIn(['selectMode', 'ids'], state.getIn(['spaces', action.spaceId, 'ids'])||[])
+			.setIn(['selectMode', 'ids'], [])
+			.setIn(['selectMode', 'all'], true)
 	}
 
 	case SELECT_MODE_UNSELECT_ALL:{
 		return state
+			.set('selectMode', blankSelectMode)
+			.setIn(['selectMode', 'enabled'], true)
 			.setIn(['selectMode', 'spaceId'], action.spaceId)
-			.setIn(['selectMode', 'ids'], blankSelectMode.ids)
+			.setIn(['selectMode', 'all'], false)
 	}
 
 	case BOOKMARK_REMOVE_SUCCESS:{
 		return state
-			.setIn(['selectMode', 'ids'], _.filter(state.selectMode.ids, (id)=>id!=action._id))
+			.setIn(
+				['selectMode', 'ids'], 
+				_.without(state.selectMode.ids, [action._id])
+			)
 	}
 }}
 

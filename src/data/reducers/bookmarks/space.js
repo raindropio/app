@@ -29,7 +29,8 @@ export default function(state, action) {switch (action.type) {
 		const { spaces={}, elements={}, meta={} } = action.payload && action.payload.bookmarks||{}
 
 		_.forEach(spaces, (space, _id)=>{
-			if (space.status.main != 'loaded' ||
+			if (!space.status ||
+				space.status.main != 'loaded' ||
 				space.status.nextPage == 'error' ||
 				space.status.nextPage == 'loading')
 				return

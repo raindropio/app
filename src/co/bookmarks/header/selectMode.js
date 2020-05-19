@@ -5,7 +5,7 @@ import Icon from '~co/common/icon'
 
 export default class BookmarksHeaderSelectMode extends React.PureComponent {
     render() {
-        const { selectMode } = this.props
+        const { selectMode, collection } = this.props
         const { onSelectAllClick, onCancelSelectModeClick, onImportantClick, onAddTagsClick, onRemoveClick, onMoreClick } = this.props
 
         return (
@@ -17,7 +17,7 @@ export default class BookmarksHeaderSelectMode extends React.PureComponent {
                     </a>
 
                     <div className='title'>
-                        {selectMode.ids.length} {t.s('elements')}
+                        {selectMode.all ? t.s('all') : selectMode.ids.length} {t.s('in')} {collection.title}
                     </div>
 
                     <div className='space' />

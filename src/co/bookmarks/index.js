@@ -30,7 +30,7 @@ class Bookmarks extends React.Component {
         this.props.ids[index]
 
     render() {
-        const { cid, ids, lastChange } = this.props
+        const { ids, dataKey } = this.props
 
         if (ids.length<=1)
             return this.renderSpace(0)
@@ -38,8 +38,8 @@ class Bookmarks extends React.Component {
         return (
             <List 
                 totalCount={ids.length}
-                dataKey={cid+lastChange}
-                defaultItemHeight={0} //important
+                dataKey={dataKey} //re-render on items change
+                defaultItemHeight={0} //fix initial render
                 item={this.renderSpace}
                 computeItemKey={this.indexToId} />
         )
@@ -50,19 +50,23 @@ export default connect(
 	() => {
         const getBranchIds = makeBranchIds()
         const getBookmarksLastChange = makeBookmarksLastChange()
-        const cacheIntToArray = {}
+        const cache = {}
     
         return (state, { cid, search, full })=>{
-            let ids
+            const lastChange = getBookmarksLastChange(state)
 
             if (search || full)
-                ids = cacheIntToArray[cid] = cacheIntToArray[cid] || [ cid ]
-            else
-                ids = getBranchIds(state, cid)
-
-            return {
-                ids,
-                lastChange: getBookmarksLastChange(state)
+                return {
+                    ids: cache[cid] = cache[cid] || [ cid ],
+                    dataKey: cid+lastChange
+                }
+            else{
+                const ids = getBranchIds(state, cid)
+                
+                return {
+                    ids,
+                    dataKey: ids.join('')+lastChange
+                }
             }
         }
     }

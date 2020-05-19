@@ -13,10 +13,12 @@ import {
 	SELECT_MODE_DISABLE,
 
 	BOOKMARK_UPDATE_SUCCESS,
-	BOOKMARK_REMOVE_SUCCESS,
+	BOOKMARK_REMOVE_SUCCESS
 } from '../../constants/bookmarks'
 
-function* byCollectionId(state) {
+import { getSpaceQuery } from '../../helpers/bookmarks'
+
+function byCollectionId(state) {
 	const { ids } = state.bookmarks.selectMode
 
 	return _.toPairs(
@@ -101,7 +103,7 @@ const updateBookmarks = ({validate, set, mutate}) => (
 			//Generate side effects
 			let mutations = []
 
-			for(const [collectionId, ids] of yield byCollectionId(state)){
+			for(const [collectionId, ids] of byCollectionId(state)){
 				const { result=false, modified=0, error, errorMessage } = yield call(Api.put, `raindrops/${collectionId}`, {
 					...fields,
 					ids
@@ -146,29 +148,47 @@ const updateBookmarks = ({validate, set, mutate}) => (
 function* removeBookmarks({onSuccess, onFail}) {
 	try{
 		const state = yield select()
+		const { spaceId, all } = state.bookmarks.selectMode
 
-		//Mutations
-		let mutations = []
+		//All
+		if (all){
+			const { result=false, modified=0, error, errorMessage } = yield call(Api.del, `raindrops/${getSpaceQuery(state.bookmarks, spaceId).string}`)
 
-		for(const [collectionId, ids] of yield byCollectionId(state)){
-			const { result=false, modified=0, error, errorMessage } = yield call(Api.del, `raindrops/${collectionId}`, { ids })
 			if (!result)
-				throw new ApiError(error, errorMessage||'cant remove selected bookmarks')
+				throw new ApiError(error, errorMessage||'cant remove all bookmarks')
 
-			if (modified)
-				mutations = _.map(ids, (_id)=>
+			/*if (modified)
+				yield all([
 					put({
-						type: BOOKMARK_REMOVE_SUCCESS,
-						_id
+						type: SPACE_REMOVE_ALL_BOOKMARKS_SUCCESS,
+						removed: modified,
+						spaceId
+					}),
+					put({
+						type: SELECT_MODE_DISABLE
 					})
-				)
+				])*/
 		}
+		//selected specific ids
+		else
+			for(const [collectionId, ids] of byCollectionId(state)){
+				const { result=false, modified=0, error, errorMessage } = yield call(Api.del, `raindrops/${collectionId}`, { ids })
+				if (!result)
+					throw new ApiError(error, errorMessage||'cant remove selected bookmarks')
 
-		mutations.unshift(put({
-			type: SELECT_MODE_DISABLE
-		}))
-
-		yield all(mutations)
+				if (modified)
+					yield all([
+						_.map(ids, (_id)=>
+							put({
+								type: BOOKMARK_REMOVE_SUCCESS,
+								_id
+							})
+						),
+						put({
+							type: SELECT_MODE_DISABLE
+						})
+					])
+			}
 
 		if (typeof onSuccess == 'function')
 			onSuccess()

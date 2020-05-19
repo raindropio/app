@@ -163,6 +163,7 @@ export const normalizeMeta = (item={})=>{
 export const blankSelectMode = Immutable({
 	enabled: false,
 	spaceId: null,
+	all: false,
 	ids: emptyArray
 })
 

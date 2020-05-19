@@ -32,6 +32,9 @@ export const makeIsSelected = ()=>createSelector(
 		if (selectMode.spaceId != spaceId)
 			return false;
 
+		if (selectMode.all)
+			return true;
+
 		if (selectMode.ids.indexOf(_id)!=-1)
 			return true;
 

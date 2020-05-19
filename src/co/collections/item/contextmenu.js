@@ -5,7 +5,7 @@ import Icon from '~co/common/icon'
 
 export default function CollectionsItemContextmenu({
     _id, access, to,
-    onContextMenuClose, onCreateNewChildClick, onRenameClick, onRemoveClick, onSharing
+    onContextMenuClose, onCreateNewChildClick, onRenameClick, onRemoveClick, onSharing, onOpenAllClick
 }) {
     return (
         <Popover onClose={onContextMenuClose}>
@@ -14,6 +14,11 @@ export default function CollectionsItemContextmenu({
                     <Icon name='open' />
                     {t.s('openInBrowser')}
                 </MenuItem>
+
+                {onOpenAllClick && <MenuItem onClick={onOpenAllClick} target='_blank'>
+                    <Icon name='open' />
+                    {t.s('openLinksInNewTab')}
+                </MenuItem>}
 
                 {/* Have write access */}
                 { _id>0 ? (access.level>=3 ? (
