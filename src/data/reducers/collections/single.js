@@ -78,7 +78,13 @@ export default function(state, action) {
 			if (action._id == -99)
 				state = state.setIn(['items', -99, 'count'], 0)
 			else
-				state = state.set('items', state.items.without(action._id))
+				state = state
+					.set('items', 
+						state.items
+							.without(action._id)
+							.setIn([0, 'count'], (state.items.getIn([0, 'count'])||0) - state.items[action._id].count)
+							.setIn([-99, 'count'], (state.items.getIn([-99, 'count'])||0) + state.items[action._id].count)
+					)
 
 			return actualizeStatus(state)
 		}
