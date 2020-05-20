@@ -17,7 +17,7 @@ export default function* () {
 		3500,
 		[BOOKMARK_CREATE_SUCCESS, BOOKMARK_UPDATE_SUCCESS, BOOKMARK_REMOVE_SUCCESS, COLLECTION_REMOVE_SUCCESS],
 		function*() {
-			yield reloadFilters({ spaceId:[0,'0s'] })
+			yield reloadFilters({ spaceId:0 })
 		}
 	)
 }
@@ -31,9 +31,11 @@ function* reloadFilters(params) {
 	for(const spaceId of (Array.isArray(params.spaceId) ? params.spaceId : [params.spaceId])){
 		if (spaceId && !state.bookmarks.spaces[spaceId]) continue
 
-		const query = getSpaceQuery(state.bookmarks, spaceId);
-
 		try {
+			const query = parseInt(spaceId) ? 
+				getSpaceQuery(state.bookmarks, spaceId) : 
+				{ string:'0' } //ignore search query for all bookmarks
+
 			const {result=false, error, errorMessage, ...items} = yield call(
 				Api.get, 
 				'filters/'+query.string+'?tagsSort='+state.config.tags_sort
