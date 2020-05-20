@@ -153,7 +153,6 @@ function* updateBookmark({_id, set={}, ignore=false, onSuccess, onFail}) {
 
 		yield put({
 			type: BOOKMARK_UPDATE_SUCCESS,
-			_id: _id,
 			item: item,
 			onSuccess, onFail
 		});

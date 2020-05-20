@@ -183,9 +183,17 @@ export default function(state, action) {switch (action.type) {
 	}
 
 	case BOOKMARK_UPDATE_SUCCESS:{
-		if (action.movedFromSpaceId){
-			state = actualizeSpaceStatus(state, action.movedFromSpaceId)
-			state = actualizeSpaceStatus(state, action.spaceId)
+		const movedFromSpaceId = action.movedFromSpaceId ? (Array.isArray(action.movedFromSpaceId) ? action.movedFromSpaceId : [action.movedFromSpaceId]) : []
+
+		if (movedFromSpaceId.length){
+			movedFromSpaceId.forEach(movedFromSpaceId=>{
+				state = actualizeSpaceStatus(state, movedFromSpaceId)
+			});
+
+			(Array.isArray(action.spaceId) ? action.spaceId : [action.spaceId]).forEach(spaceId=>{
+				state = actualizeSpaceStatus(state, spaceId)
+			})
+			
 			state = actualizeSpaceStatus(state, '0')
 		}
 
@@ -193,9 +201,10 @@ export default function(state, action) {switch (action.type) {
 	}
 
 	case BOOKMARK_REMOVE_SUCCESS:{
-		(Array.isArray(action.spaceId) ? action.spaceId : [action.spaceId]).forEach(spaceId=>{
-			state = actualizeSpaceStatus(state, spaceId)
-		})
+		if (action.spaceId)
+			(Array.isArray(action.spaceId) ? action.spaceId : [action.spaceId]).forEach(spaceId=>{
+				state = actualizeSpaceStatus(state, spaceId)
+			})
 		
 		state = actualizeSpaceStatus(state, '-99')
 

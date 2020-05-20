@@ -1,4 +1,4 @@
-import { call, put, takeEvery, select, debounce } from 'redux-saga/effects'
+import { call, put, takeEvery, select, debounce, all } from 'redux-saga/effects'
 import Api from '../../modules/api'
 import ApiError from '../../modules/error'
 import { getSpaceQuery } from '../../helpers/bookmarks'
@@ -63,9 +63,20 @@ function* loadSpace({spaceId, ignore=false}) {
 
 function* maybeRefeshSpace({spaceId, movedFromSpaceId}) {
 	//Bookmark is moved from one collection, to another, now we need to refresh destination collection
-	if (movedFromSpaceId){
-		yield put({type: SPACE_REFRESH_REQ, spaceId: String(parseInt(spaceId))});
-		yield put({type: SPACE_REFRESH_REQ, spaceId: String(parseInt(spaceId)+'s')});
+	if (movedFromSpaceId && movedFromSpaceId.length){
+		const operations = [];
+
+		(Array.isArray(spaceId) ? spaceId : [spaceId])
+			.forEach(_id => {
+				operations.push(
+					...[
+						put({type: SPACE_REFRESH_REQ, spaceId: String(parseInt(_id))}),
+						put({type: SPACE_REFRESH_REQ, spaceId: String(parseInt(_id+'s'))})
+					]
+				)
+			})
+
+		yield all(operations)
 	}
 }
 

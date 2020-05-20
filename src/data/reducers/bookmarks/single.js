@@ -59,22 +59,31 @@ export default function(state, action) {
 			if (typeof action.onSuccess == 'function')
 				action.onSuccess()
 
-			const updatedItem = normalizeBookmark(action.item)
-			const originalItem = state.elements[updatedItem._id]
-
 			//propogate collection id for next listeners
-			action.spaceId = String(updatedItem.collectionId)
+			action.spaceId = []
+			action.movedFromSpaceId = [];
 
-			//Maybe bookmark moved to another collection
-			if (originalItem.collectionId != updatedItem.collectionId){
-				//Remove from original collection
-				action.movedFromSpaceId = String(originalItem.collectionId)
-				state = removeIdFromSpace(state, action.movedFromSpaceId, originalItem._id)
-			}
+			(Array.isArray(action.item) ? action.item : [action.item]).forEach(item=>{
+				const updatedItem = normalizeBookmark(item)
+				const originalItem = state.elements[updatedItem._id]
 
-			//Update in spaces
-			state = state.setIn(['elements', updatedItem._id], updatedItem)
-			state = state.setIn(['meta', updatedItem._id], normalizeMeta(action.item))
+				action.spaceId.push(String(updatedItem.collectionId))
+
+				//Maybe bookmark moved to another collection
+				if (originalItem.collectionId != updatedItem.collectionId){
+					//Remove from original collection
+					action.movedFromSpaceId.push(String(originalItem.collectionId))
+					state = removeIdFromSpace(state, String(originalItem.collectionId), originalItem._id)
+				}
+
+				//Update in spaces
+				state = state.setIn(['elements', updatedItem._id], updatedItem)
+				state = state.setIn(['meta', updatedItem._id], normalizeMeta(item))
+			})
+
+			//clean
+			action.spaceId = _.uniq(action.spaceId)
+			action.movedFromSpaceId = _.uniq(action.movedFromSpaceId)
 
 			return state
 		}

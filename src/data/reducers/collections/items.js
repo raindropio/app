@@ -133,12 +133,17 @@ export default function(state, action) {switch (action.type) {
 
 	case BOOKMARK_UPDATE_SUCCESS:{
 		//bookmark is moved from one to another
-		if (action.movedFromSpaceId){
-			state = decreaseCount(state, action.movedFromSpaceId)
-			state = increaseCount(state, action.spaceId)
+		if (action.movedFromSpaceId && action.movedFromSpaceId.length){
+			(Array.isArray(action.movedFromSpaceId) ? action.movedFromSpaceId : [action.movedFromSpaceId]).forEach(movedFromSpaceId=>{
+				state = decreaseCount(state, movedFromSpaceId)
+			});
 
+			(Array.isArray(action.spaceId) ? action.spaceId : [action.spaceId]).forEach(spaceId=>{
+				state = increaseCount(state, spaceId)
+			})
+			
 			//recovered from Trash
-			if (action.movedFromSpaceId=='-99')
+			if ((Array.isArray(action.movedFromSpaceId) ? action.movedFromSpaceId : [action.movedFromSpaceId]).includes('-99'))
 				state = increaseCount(state, '0')
 		}
 		return actualizeStatus(state)

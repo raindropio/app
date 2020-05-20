@@ -1,5 +1,4 @@
 import { call, put, takeEvery, select, all } from 'redux-saga/effects'
-import { batchActions } from 'redux-batched-actions'
 import _ from 'lodash-es'
 import Api from '../../modules/api'
 import ApiError from '../../modules/error'
@@ -121,25 +120,26 @@ const updateBookmarks = ({validate, set, mutate}) => (
 			
 			//Update local state
 			if (changed.length)
-				yield put(batchActions([
-					{
+				yield all([
+					//turn off select mode
+					put({
 						type: SELECT_MODE_DISABLE
-					},
-					..._.map(changed, (_id)=>{
-						let item = {...state.bookmarks.elements[_id], ...state.bookmarks.meta[_id]}
-	
-						if (mutate)
-							item = mutate(action, item)
-						else
-							item = {...item, ...fields}
-	
-						return {
-							type: BOOKMARK_UPDATE_SUCCESS,
-							_id,
-							item
-						}
+					}),
+					//update local state
+					put({
+						type: BOOKMARK_UPDATE_SUCCESS,
+						item: changed.map(_id => {
+							let item = {
+								...state.bookmarks.elements[_id],
+								...state.bookmarks.meta[_id]
+							}
+
+							return mutate ? 
+								mutate(action, item) :
+								{...item, ...fields}
+						})
 					})
-				]))
+				])
 
 			typeof onSuccess == 'function' && onSuccess()
 		}catch(e){

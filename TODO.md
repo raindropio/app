@@ -48,6 +48,7 @@ Good to have
 - Group is not empty alert on remove
 - When collection removed increment Trash counter
 - Change cover img width depends on config
+- Combined count on each level of collections tree
 
 Translation
 - leave

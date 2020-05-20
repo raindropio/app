@@ -145,18 +145,22 @@ export default function(state, action) {switch (action.type) {
 
 	//Update drafts also
 	case BOOKMARK_UPDATE_SUCCESS:{
-		if (state.drafts.byId[action._id]){
-			const updatedItem = normalizeBookmark(action.item, {flat: false})
-			const draftItem = state.getIn(['drafts', 'byId', action._id, 'item'])
+		(Array.isArray(action.item) ? action.item : [action.item]).forEach(item=>{
+			const draft = state.drafts.byId[item._id]
+			if (!draft) return
 
-			if (draftItem)
-			_.forEach(updatedItem, (val,field)=>{
-				if (val != draftItem[field])
-					state = state.setIn(['drafts', 'byId', action._id, 'item', field], updatedItem[field])
-			})
+			if (draft.item){
+				const updatedItem = normalizeBookmark(item, {flat: false})
+				
+				_.forEach(updatedItem, (val,field)=>{
+					if (val != draft.item[field])
+						state = state.setIn(['drafts', 'byId', item._id, 'item', field], updatedItem[field])
+				})
+			}
 
-			state = state.setIn(['drafts', 'byId', action._id, 'status'], updatedItem.collectionId!=-99 ? 'loaded' : 'removed')
-		}
+			if (item.collectionId || item.collection)
+				state = state.setIn(['drafts', 'byId', item._id, 'status'], parseInt(item.collectionId||item.collection.$id)!=-99 ? 'loaded' : 'removed')
+		})
 
 		return state
 	}
