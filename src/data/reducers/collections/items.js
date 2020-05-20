@@ -4,12 +4,7 @@ import {
 	shouldLoadItems,
 	findParentIds
 } from '../../helpers/collections'
-import {
-	increaseCount,
-	decreaseCount,
-	updateCollections,
-	actualizeStatus
-} from './utils'
+import { updateCollections, actualizeStatus } from './utils'
 
 import {REHYDRATE} from 'redux-persist/src/constants'
 
@@ -19,10 +14,6 @@ import {
 	COLLECTIONS_REORDER,
 	COLLECTIONS_EXPAND_TO, COLLECTIONS_COLLAPSE_ALL
 } from '../../constants/collections'
-
-import {
-	BOOKMARK_CREATE_SUCCESS, BOOKMARK_UPDATE_SUCCESS, BOOKMARK_REMOVE_SUCCESS
-} from '../../constants/bookmarks'
 
 export default function(state, action) {switch (action.type) {
 	case REHYDRATE:{
@@ -121,47 +112,5 @@ export default function(state, action) {switch (action.type) {
 		})
 
 		return state
-	}
-
-	//Actions on bookmarks change
-	case BOOKMARK_CREATE_SUCCESS:{
-		state = increaseCount(state, action.spaceId)
-		state = increaseCount(state, '0')
-		
-		return actualizeStatus(state)
-	}
-
-	case BOOKMARK_UPDATE_SUCCESS:{
-		//bookmark is moved from one to another
-		if (action.movedFromSpaceId && action.movedFromSpaceId.length){
-			(Array.isArray(action.movedFromSpaceId) ? action.movedFromSpaceId : [action.movedFromSpaceId]).forEach(movedFromSpaceId=>{
-				state = decreaseCount(state, movedFromSpaceId)
-			});
-
-			(Array.isArray(action.spaceId) ? action.spaceId : [action.spaceId]).forEach(spaceId=>{
-				state = increaseCount(state, spaceId)
-			})
-			
-			//recovered from Trash
-			if ((Array.isArray(action.movedFromSpaceId) ? action.movedFromSpaceId : [action.movedFromSpaceId]).includes('-99'))
-				state = increaseCount(state, '0')
-		}
-		return actualizeStatus(state)
-	}
-
-	case BOOKMARK_REMOVE_SUCCESS:{
-		//Decrease counter in changed collection(s)
-		(Array.isArray(action.spaceId) ? action.spaceId : [action.spaceId]).forEach(spaceId=>{
-			state = decreaseCount(state, spaceId)
-		})
-
-		//Increase counter in Trash collection
-		//And Decrease overall counter
-		if (action.spaceId!='-99'){
-			state = increaseCount(state, '-99')
-			state = decreaseCount(state, '0')
-		}
-
-		return actualizeStatus(state);
 	}
 }}

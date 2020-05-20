@@ -24,24 +24,6 @@ export const updateCollections = (state, clean)=>{
 	return state
 }
 
-export const modifyItem = (state, _id, func)=>{
-	if (state.status!='loaded')
-		return state
-
-	if (state.items[_id])
-		state = state.setIn(['items', _id], func(state.items[_id]))
-
-	return state
-}
-
-export const increaseCount = (state, _id)=>(
-	modifyItem(state, _id, (item)=>item.set('count', item.count+1))
-)
-
-export const decreaseCount = (state, _id)=>(
-	modifyItem(state, _id, (item)=>item.set('count', item.count-1))
-)
-
 export const removeCollectionFromGroups = (state, collectionId)=>{
 	_.forEach(state.groups, ({collections=[]}, index)=>{
 		state = state.setIn(['groups', index, 'collections'], collections.filter((_id)=>_id!=collectionId))

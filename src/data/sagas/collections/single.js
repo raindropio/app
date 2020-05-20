@@ -26,7 +26,11 @@ import {
 	GROUP_APPEND_COLLECTION, GROUP_REMOVE_COLLECTION
 } from '../../constants/collections'
 
-import { SPACE_LOAD_REQ, SPACE_RELOAD_REQ, SPACE_REFRESH_REQ } from '../../constants/bookmarks'
+import {
+	BOOKMARK_CREATE_SUCCESS,
+	BOOKMARK_UPDATE_SUCCESS,
+	BOOKMARK_REMOVE_SUCCESS
+} from '../../constants/bookmarks'
 
 //Requests
 export default function* () {
@@ -43,39 +47,58 @@ export default function* () {
 	yield takeEvery(COLLECTION_REORDER, reorderCollection)
 	yield takeEvery(COLLECTION_CHANGE_VIEW, changeViewCollection)
 
-	//effects
-	yield takeEvery([ SPACE_LOAD_REQ, SPACE_RELOAD_REQ, SPACE_REFRESH_REQ ], actualizeCollectionCount)
+	//update collections count on bookmarks add/remove/reload
+	yield takeEvery([ BOOKMARK_CREATE_SUCCESS, BOOKMARK_REMOVE_SUCCESS ], actualizeCollectionCount)
+
+	//update collections count on bookmark move
+	yield takeEvery(BOOKMARK_UPDATE_SUCCESS, function*(params){
+		const movedFromSpaceId = params.movedFromSpaceId ? (Array.isArray(params.movedFromSpaceId) ? params.movedFromSpaceId : [params.movedFromSpaceId]) : []
+
+		if (movedFromSpaceId.length)
+			yield actualizeCollectionCount(params)
+	})
 }
 
-function* actualizeCollectionCount(params) {
-	const cid = params._id || params.spaceId
-	const ids = (Array.isArray(cid) ? cid : [cid])
-	const system = ids.map(_id=>parseInt(_id)).find(_id=>_id<=0)
+function* actualizeCollectionCount({ ignore, spaceId, movedFromSpaceId }) {
+	if (ignore)
+		return;
+
+	let collections = (Array.isArray(spaceId) ? spaceId : [spaceId])
+	if (movedFromSpaceId)
+		collections.push(...(Array.isArray(movedFromSpaceId) ? movedFromSpaceId : [movedFromSpaceId]))
+
+	const operations = []
 	
-	for(const _id of ids){
+	//affected collections
+	for(const _id of collections){
 		if (_id<=0) continue
 
 		const { item={}, result=false } = yield call(Api.get, `collection/${_id}`)
 
 		if (result)
-			yield put({
+			operations.push(put({
 				type: COLLECTION_UPDATE_COUNT,
 				_id,
 				count: item.count
-			})
+			}))
 	}
 
-	if (system){
-		const { items={}, result=false } = yield call(Api.get, 'stat')
-		if (result)
-			yield all(items.map(({_id, count})=>
+	//system collections
+	const { items={}, result=false } = yield call(Api.get, 'stat')
+	if (result)
+		operations.push(
+			...items.map(({_id, count})=>
 				put({
 					type: COLLECTION_UPDATE_COUNT,
 					_id,
 					count
 				})
-			))
-	}
+			)
+		)
+
+	//run
+	if (operations.length)
+		yield all(operations)
 }
 
 function* createCollection({obj={}, ignore=false, after, fromBlank=false, onSuccess, onFail}) {
