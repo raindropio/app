@@ -4,12 +4,22 @@ import ApiError from '../modules/error'
 import { getSpaceQuery } from '../helpers/bookmarks'
 
 import { FILTERS_LOAD_REQ, FILTERS_LOAD_SUCCESS, FILTERS_LOAD_ERROR } from '../constants/filters'
+import { BOOKMARK_CREATE_SUCCESS, BOOKMARK_UPDATE_SUCCESS, BOOKMARK_REMOVE_SUCCESS } from '../constants/bookmarks'
+import { COLLECTION_REMOVE_SUCCESS } from '../constants/collections'
 
 //Requests
 export default function* () {
-	yield debounce(1000, [
-		FILTERS_LOAD_REQ
-	], reloadFilters)
+	yield debounce(1000, [FILTERS_LOAD_REQ], reloadFilters)
+
+	//update filters on bookmarks/collections change
+	//with delay, to give server a time to recalculate them
+	yield debounce(
+		3500,
+		[BOOKMARK_CREATE_SUCCESS, BOOKMARK_UPDATE_SUCCESS, BOOKMARK_REMOVE_SUCCESS, COLLECTION_REMOVE_SUCCESS],
+		function*() {
+			yield reloadFilters({ spaceId:[0,'0s'] })
+		}
+	)
 }
 
 function* reloadFilters(params) {
@@ -19,6 +29,8 @@ function* reloadFilters(params) {
 	const state = yield select()
 
 	for(const spaceId of (Array.isArray(params.spaceId) ? params.spaceId : [params.spaceId])){
+		if (spaceId && !state.bookmarks.spaces[spaceId]) continue
+
 		const query = getSpaceQuery(state.bookmarks, spaceId);
 
 		try {

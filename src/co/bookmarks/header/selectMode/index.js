@@ -66,10 +66,10 @@ export default class BookmarksHeaderSelectMode extends React.PureComponent {
     }
 
     render() {
-        const { selectMode, collection } = this.props
+        const { selectMode, collection, isSearching } = this.props
         const { onSelectAllClick, onCancelSelectModeClick, onImportantClick, onAddTagsClick, onRemoveClick, onOpenSelectedClick } = this.handlers
 
-        let title = collection._id ? t.s('in') + ' ' + collection.title : ''
+        let title = collection._id ? (t.s('in') + ' ' + collection.title + (isSearching?' / '+t.s('defaultCollection-0'):'')) : ''
 
         return (
             <div className='elements-header select-mode'>
