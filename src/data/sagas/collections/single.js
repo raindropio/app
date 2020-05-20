@@ -18,12 +18,15 @@ import {
 	COLLECTION_CREATE_REQ, COLLECTION_CREATE_SUCCESS, COLLECTION_CREATE_ERROR,
 	COLLECTION_UPDATE_REQ, COLLECTION_UPDATE_SUCCESS, COLLECTION_UPDATE_ERROR,
 	COLLECTION_REMOVE_REQ, COLLECTION_REMOVE_SUCCESS, COLLECTION_REMOVE_ERROR,
+	COLLECTION_UPDATE_COUNT,
 	COLLECTION_ADD_BLANK, COLLECTION_CREATE_FROM_BLANK, COLLECTION_REMOVE_BLANK,
 
 	COLLECTION_TOGGLE, COLLECTION_REORDER, COLLECTION_CHANGE_VIEW, COLLECTIONS_EXPAND_TO,
 
 	GROUP_APPEND_COLLECTION, GROUP_REMOVE_COLLECTION
 } from '../../constants/collections'
+
+import { SPACE_LOAD_REQ, SPACE_RELOAD_REQ, SPACE_REFRESH_REQ } from '../../constants/bookmarks'
 
 //Requests
 export default function* () {
@@ -39,6 +42,40 @@ export default function* () {
 	yield takeEvery(COLLECTION_TOGGLE, toggleCollection)
 	yield takeEvery(COLLECTION_REORDER, reorderCollection)
 	yield takeEvery(COLLECTION_CHANGE_VIEW, changeViewCollection)
+
+	//effects
+	yield takeEvery([ SPACE_LOAD_REQ, SPACE_RELOAD_REQ, SPACE_REFRESH_REQ ], actualizeCollectionCount)
+}
+
+function* actualizeCollectionCount(params) {
+	const cid = params._id || params.spaceId
+	const ids = (Array.isArray(cid) ? cid : [cid])
+	const system = ids.map(_id=>parseInt(_id)).find(_id=>_id<=0)
+	
+	for(const _id of ids){
+		if (_id<=0) continue
+
+		const { item={}, result=false } = yield call(Api.get, `collection/${_id}`)
+
+		if (result)
+			yield put({
+				type: COLLECTION_UPDATE_COUNT,
+				_id,
+				count: item.count
+			})
+	}
+
+	if (system){
+		const { items={}, result=false } = yield call(Api.get, 'stat')
+		if (result)
+			yield all(items.map(({_id, count})=>
+				put({
+					type: COLLECTION_UPDATE_COUNT,
+					_id,
+					count
+				})
+			))
+	}
 }
 
 function* createCollection({obj={}, ignore=false, after, fromBlank=false, onSuccess, onFail}) {

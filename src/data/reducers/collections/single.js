@@ -6,6 +6,7 @@ import {
 	COLLECTION_TOGGLE, COLLECTION_CHANGE_VIEW,
 	COLLECTION_CREATE_SUCCESS, COLLECTION_CREATE_ERROR,
 	COLLECTION_UPDATE_REQ, COLLECTION_UPDATE_SUCCESS, COLLECTION_UPDATE_ERROR,
+	COLLECTION_UPDATE_COUNT,
 	COLLECTION_REMOVE_SUCCESS, COLLECTION_REMOVE_ERROR
 } from '../../constants/collections'
 import {
@@ -60,6 +61,12 @@ export default function(state, action) {
 				action.onSuccess(updatedItem)
 
 			return actualizeStatus(state)
+		}
+
+		case COLLECTION_UPDATE_COUNT:{
+			state = state.setIn(['items', action._id, 'count'], parseInt(action.count)||0)
+
+			return actualizeStatus(state) 
 		}
 
 		//Remove
