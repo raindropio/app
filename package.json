@@ -55,7 +55,6 @@
 	"optionalDependencies": {
 		"react-redux": "7.2.x",
 		"redux": "4.x",
-		"redux-batched-actions": "0.5.x",
 		"redux-persist": "6.0.x",
 		"redux-saga": "1.1.x",
 		"reselect": "4.x",

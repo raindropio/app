@@ -1,5 +1,4 @@
 import { call, put, takeEvery, select, all } from 'redux-saga/effects'
-import { batchActions } from 'redux-batched-actions'
 import _ from 'lodash-es'
 import Api from '../../modules/api'
 import ApiError from '../../modules/error'
@@ -294,7 +293,7 @@ function* addBlank({ siblingId, asChild, ignore=false }) {
 		item: item
 	})
 
-	yield put(batchActions(actions))
+	yield all(actions.map(action=>put(action)))
 }
 
 function* createFromBlank({ obj, ignore=false, onSuccess, onFail }) {
@@ -405,20 +404,20 @@ function* reorderCollection({_id=0, ignore=false, to, after, before}) {
 				if ( _.findIndex(state.collections.groups, ({_id})=>_id==to) ==-1 )
 					throw new ApiError('not_found', 'group not found')
 
-				yield put(batchActions([
+				yield all([
 					//make root
-					{
+					put({
 						type: COLLECTION_UPDATE_REQ,
 						_id: _id,
 						set: { parentId: 'root' }
-					},
+					}),
 					//append collection to particular group
-					{
+					put({
 						type: GROUP_APPEND_COLLECTION,
 						_id: to,
 						collectionId: _id
-					}
-				]))
+					})
+				])
 			break;
 
 			case 'moveToCollection':
@@ -427,30 +426,30 @@ function* reorderCollection({_id=0, ignore=false, to, after, before}) {
 
 				yield onlyForProUsersCheck()
 
-				yield put(batchActions([
+				yield all([
 					//remove collection from groups
-					{
+					put({
 						type: GROUP_REMOVE_COLLECTION,
 						_id: to,
 						collectionId: _id
-					},
+					}),
 
 					//make root
-					{
+					put({
 						type: COLLECTION_UPDATE_REQ,
 						_id: _id,
 						set: {
 							parentId: parseInt(to),
 							order: 0
 						}
-					},
+					}),
 
-					{
+					put({
 						type: COLLECTIONS_EXPAND_TO,
 						_id: parseInt(to),
 						self: true
-					}
-				]))
+					})
+				])
 			break;
 
 			case 'reorder':{
@@ -519,7 +518,7 @@ function* reorderCollection({_id=0, ignore=false, to, after, before}) {
 					})
 				}
 
-				yield put(batchActions(actions))
+				yield all(actions.map(action=>put(action)))
 			}
 		}
 	} catch(error) {

@@ -1,6 +1,5 @@
 import { applyMiddleware, combineReducers, compose, createStore } from 'redux'
 import createSagaMiddleware from 'redux-saga'
-import { batchDispatchMiddleware } from 'redux-batched-actions'
 import { persistStore, persistReducer } from 'redux-persist'
 import persistConfig from './modules/persistConfig'
 
@@ -20,7 +19,6 @@ const withLocalReducer = (additional)=>{
 		getRootReducer(additional),
 		composeEnhancers(
 			applyMiddleware(
-				batchDispatchMiddleware,
 				sagaMiddleware //should be last!!!
 			)
 		)
