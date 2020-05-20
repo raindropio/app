@@ -193,7 +193,10 @@ export default function(state, action) {switch (action.type) {
 	}
 
 	case BOOKMARK_REMOVE_SUCCESS:{
-		state = actualizeSpaceStatus(state, action.spaceId)
+		(Array.isArray(action.spaceId) ? action.spaceId : [action.spaceId]).forEach(spaceId=>{
+			state = actualizeSpaceStatus(state, spaceId)
+		})
+		
 		state = actualizeSpaceStatus(state, '-99')
 
 		return state

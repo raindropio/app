@@ -21,6 +21,8 @@ Bugs
 - Medium
     - update collection counter, because it stale when have been 0 in cache but loaded more; also remove not always fix counter
         - maybe just request this info from server when needed?
+- Minor
+    - in search results when change bookmark, `highlight` data lost
 
 Not ready
 - electron

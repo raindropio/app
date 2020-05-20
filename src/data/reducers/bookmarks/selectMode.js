@@ -79,7 +79,7 @@ export default function(state, action) {switch (action.type) {
 		return state
 			.setIn(
 				['selectMode', 'ids'], 
-				_.without(state.selectMode.ids, [action._id])
+				_.without(state.selectMode.ids, ...(Array.isArray(action._id) ? action._id : [action._id]))
 			)
 	}
 }}

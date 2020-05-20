@@ -5,8 +5,7 @@ import {
 } from '../../helpers/bookmarks'
 import {
 	insertIdToSpace,
-	removeIdFromSpace,
-	removeIdFromAllSpaces
+	removeIdFromSpace
 } from './utils'
 import {
 	BOOKMARK_CREATE_SUCCESS, BOOKMARK_CREATE_ERROR,
@@ -85,15 +84,25 @@ export default function(state, action) {
 			if (typeof action.onSuccess == 'function')
 				action.onSuccess()
 
-			const item = state.elements[parseInt(action._id)]
-			if (item){
-				action.spaceId = String(item.collectionId)
-				state = removeIdFromAllSpaces(state, item._id)
+			const ids = Array.isArray(action._id) ? action._id : [action._id]
 
-				//move to trash
-				if (action.spaceId != '-99')
-					state = insertIdToSpace(state, '-99', item._id)
-			}
+			//get spaceId
+			action.spaceId = _.uniq(
+				ids.map(_id=>
+					state.elements[_id] && state.elements[_id].collectionId
+				).filter(collectionId=>collectionId)
+			)
+			
+			//remove from spaces
+			_.forEach(state.spaces, (s, spaceId)=>{
+				if (s.ids && s.ids.length)
+					state = state.setIn(['spaces', spaceId, 'ids'], _.without(s.ids, ...ids))
+			})
+
+			//remove from store
+			state = state
+				.set('elements', state.elements.without(ids))
+				.set('meta', state.meta.without(ids))
 
 			return state
 		}

@@ -151,19 +151,20 @@ const updateBookmarks = ({validate, set, mutate}) => (
 
 function* removeBookmarks({onSuccess, onFail}) {
 	try{
-		const changed = yield batchApiRequestHelper('del')
+		const removed = yield batchApiRequestHelper('del')
 
-		if (changed.length)
-			yield put(batchActions([
+		if (removed.length)
+			yield all([
 				//turn off select mode
-				{
+				put({
 					type: SELECT_MODE_DISABLE
-				},
-				..._.map(changed, (_id)=>({
+				}),
+				//remove from local state
+				put({
 					type: BOOKMARK_REMOVE_SUCCESS,
-					_id
-				}))
-			]))
+					_id: removed
+				})
+			])
 
 		if (typeof onSuccess == 'function')
 			onSuccess()
@@ -179,25 +180,25 @@ function* removeBookmarks({onSuccess, onFail}) {
 function* batchApiRequestHelper(method, body={}) {
 	const state = yield select()
 	const { bookmarks } = state
-	const { spaceId, ids, all } = bookmarks.selectMode
+	const { selectMode } = bookmarks
 
 	//fail when nothing selected
-	if (!all && !ids.length)
+	if (!selectMode.all && !selectMode.ids.length)
 		throw new ApiError('ids', 'nothing selected')
 
 	//operations should be splited by collections
 	let groupByCollection = []
 
 	//all bookmarks
-	if (parseInt(spaceId)==0 || all)
+	if (parseInt(selectMode.spaceId)==0 || selectMode.all)
 		groupByCollection = [
-			[parseInt(spaceId), ids]
+			[parseInt(selectMode.spaceId), selectMode.ids]
 		]
 	//per collection
 	else
 		groupByCollection = _.toPairs(
 			_.groupBy(
-				_.pick(bookmarks.elements, ids),
+				_.pick(bookmarks.elements, selectMode.ids),
 				'collectionId'
 			)
 		).map(([cid, items])=>
@@ -211,20 +212,19 @@ function* batchApiRequestHelper(method, body={}) {
 		const query = getSpaceQuery(bookmarks, collectionId).string
 
 		//send request
-		const { result=false, modified=0, error, errorMessage } = yield call(
+		const { result=false, error, errorMessage } = yield call(
 			Api[method],
 			`raindrops/${query}${query.includes('?')?'&':'?'}dangerAll=true`,
 			{
 				...body,
-				...(all ? {} : { ids })
+				...(selectMode.all ? {} : { ids })
 			}
 		)
 
 		if (!result)
 			throw new ApiError(error, errorMessage||'cant bulk change')
 
-		if (modified)
-			changed.push(...(all ? state.bookmarks.spaces[spaceId].ids : ids))
+		changed.push(...(selectMode.all ? state.bookmarks.spaces[collectionId].ids : ids))
 	}
 
 	return changed

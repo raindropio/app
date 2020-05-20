@@ -145,8 +145,10 @@ export default function(state, action) {switch (action.type) {
 	}
 
 	case BOOKMARK_REMOVE_SUCCESS:{
-		//Decrease counter in changed collection
-		state = decreaseCount(state, action.spaceId)
+		//Decrease counter in changed collection(s)
+		(Array.isArray(action.spaceId) ? action.spaceId : [action.spaceId]).forEach(spaceId=>{
+			state = decreaseCount(state, spaceId)
+		})
 
 		//Increase counter in Trash collection
 		//And Decrease overall counter

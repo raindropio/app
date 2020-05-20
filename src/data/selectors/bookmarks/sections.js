@@ -177,7 +177,7 @@ export const makeBookmarksFlatSections = () => createSelector(
 			return ids
 
 		let breakIndex = ids.findIndex(id=>{
-			if (elements[id].collectionId != cid)
+			if (elements[id] && elements[id].collectionId != cid)
 				return true
 		})
 

@@ -163,8 +163,10 @@ export default function(state, action) {switch (action.type) {
 
 	//Remove draft
 	case BOOKMARK_REMOVE_SUCCESS:{
-		if (state.drafts.byId[action._id])
-			return state.setIn(['drafts', 'byId', action._id, 'status'], 'removed')
+		(Array.isArray(action._id) ? action._id : [action._id]).forEach(_id=>{
+			if (state.drafts.byId[_id])
+				state = state.setIn(['drafts', 'byId', _id, 'status'], 'removed')
+		})
 
 		return state
 	}

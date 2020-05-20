@@ -15,32 +15,35 @@ export default function* () {
 	], reloadFilters)
 }
 
-function* reloadFilters({ spaceId, ignore=false }) {
-	if ((ignore)||(typeof spaceId == 'undefined'))
+function* reloadFilters(params) {
+	if ((params.ignore)||(typeof params.spaceId == 'undefined'))
 		return;
 
 	const state = yield select()
-	const query = getSpaceQuery(state.bookmarks, spaceId);
 
-	try {
-		const {result=false, error, errorMessage, ...items} = yield call(
-			Api.get, 
-			'filters/'+query.string+'?tagsSort='+state.config.tags_sort
-		)
+	for(const spaceId of (Array.isArray(params.spaceId) ? params.spaceId : [params.spaceId])){
+		const query = getSpaceQuery(state.bookmarks, spaceId);
 
-		if (!result)
-			throw new ApiError(error, errorMessage||'cant load filters')
+		try {
+			const {result=false, error, errorMessage, ...items} = yield call(
+				Api.get, 
+				'filters/'+query.string+'?tagsSort='+state.config.tags_sort
+			)
 
-		yield put({
-			type: FILTERS_LOAD_SUCCESS,
-			spaceId: spaceId,
-			...items
-		});
-	} catch (error) {
-		yield put({
-			type: FILTERS_LOAD_ERROR,
-			spaceId: spaceId,
-			error
-		});
+			if (!result)
+				throw new ApiError(error, errorMessage||'cant load filters')
+
+			yield put({
+				type: FILTERS_LOAD_SUCCESS,
+				spaceId,
+				...items
+			});
+		} catch (error) {
+			yield put({
+				type: FILTERS_LOAD_ERROR,
+				spaceId,
+				error
+			});
+		}
 	}
 }

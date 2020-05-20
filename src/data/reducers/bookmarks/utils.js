@@ -84,10 +84,3 @@ export const removeIdFromSpace = (state, spaceId, _id)=>{
 
 	return state
 }
-
-export const removeIdFromAllSpaces = (state, _id)=>{
-	_.forEach(state.spaces, (s, spaceId)=>{
-		state = removeIdFromSpace(state, spaceId, _id)
-	})
-	return state
-}
