@@ -1,6 +1,7 @@
 import React from 'react'
 import { findDOMNode } from 'react-dom'
 import { DragSource, DropTarget } from 'react-dnd'
+import { getEmptyImage } from 'react-dnd-html5-backend'
 import { type as collectionType } from '~co/collections/item/viewWithDrop'
 import _ from 'lodash'
 import View from './view'
@@ -11,11 +12,20 @@ export const type = 'bookmark'
 class BookmarkItemViewWithDnd extends React.Component {
     _view = React.createRef()
 
-    render() {
-        const { connectDrop, connectDrag, ...props } = this.props
+    componentDidMount() {
+        const { connectPreview } = this.props
+        connectPreview && connectPreview(getEmptyImage())
+    }
 
-        if (this._view.current)
-            connectDrop(connectDrag(this._view))
+    render() {
+        const { connectDrop, connectDrag, connectPreview, canDrag, ...props } = this.props
+
+        if (canDrag && this._view.current)
+            connectDrop(
+                connectDrag(
+                    this._view
+                )
+            )
 
         return (
             <View 
@@ -108,32 +118,31 @@ export default DropTarget(
                 if (monitor.didDrop()){
                     const target = monitor.getDropResult()
 
-                    switch(target.type) {
-                        //bookmark reorder
-                        case type:
-                            origin.onReorder({
-                                order: target.index,
-                                collectionId: target.collectionId
-                            })
-                            return
-
-                        case collectionType:
-                            origin.onMove(target._id)
-                            return
-                    }
+                    //move to other collection
+                    if (target.type == collectionType &&
+                        target._id != origin.originalCollectionId)
+                        origin.onMove(target._id)
+                    //bookmark reorder
+                    else
+                        origin.onReorder({
+                            order: target.index,
+                            collectionId: target.collectionId
+                        })
                 }
-                
                 //cancel reorder
-                origin.onReorder({
-                    order: origin.originalIndex,
-                    collectionId: origin.originalCollectionId,
-                    dry: true
-                })
+                else
+                    origin.onReorder({
+                        order: origin.originalIndex,
+                        collectionId: origin.originalCollectionId,
+                        dry: true
+                    })
             }
         },
         (connect, monitor) => ({
             connectDrag:    connect.dragSource(),
-            isDragging:     monitor.isDragging()
+            connectPreview: connect.dragPreview(),
+            isDragging:     monitor.isDragging(),
+            canDrag:        monitor.canDrag()
         })
     )(BookmarkItemViewWithDnd)
 )
