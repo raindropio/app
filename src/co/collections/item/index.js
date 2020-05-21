@@ -1,7 +1,7 @@
 import React from 'react'
 import t from '~t'
 import Blank from './blank'
-import View from './view'
+import ViewWithDrop from './viewWithDrop'
 import Rename from './rename'
 import Contextmenu from './contextmenu'
 import Sharing from '../sharing'
@@ -83,7 +83,7 @@ export default class CollectionsItem extends React.Component {
 
         const Component = item._id == -101 ?
             Blank :
-            (this.state.rename ? Rename : View)
+            (this.state.rename ? Rename : ViewWithDrop)
 
         return (
             <>

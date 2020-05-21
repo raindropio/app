@@ -11,12 +11,15 @@ import Path from './path'
 
 export default class BookmarkItemView extends React.PureComponent {
     render() {
+        const { innerRef, isDragging } = this.props
         const { link, title, excerpt, highlight, cover, domain, tags, type, view, access, created, reparse, collectionId, cid } = this.props
         const { active, selected, important, broken } = this.props
         const { onClick, onTagClick, onEditClick, onSelectClick, onImportantClick, onContextMenu, onKeyUp } = this.props
 
         return (
-            <article className={`element ${active&&'active'} ${selected&&'checked'} ${important&&'important'} ${broken&&'broken'}`}>
+            <article 
+                ref={innerRef}
+                className={`element ${active&&'active'} ${selected&&'checked'} ${important&&'important'} ${broken&&'broken'} ${isDragging&&'is-dragging'}`}>
                 <Cover
                     src={cover}
                     link={link}

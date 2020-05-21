@@ -1,8 +1,6 @@
 //react
 import React from 'react'
 import { render } from 'react-dom'
-import { DndProvider } from 'react-dnd'
-import HTML5Backend from 'react-dnd-html5-backend'
 
 //redux
 import { Provider } from 'react-redux'
@@ -18,12 +16,11 @@ import Routes from './routes'
 const { store, persistor } = withLocalReducer(localReducers)
 
 render(
+	//add other global components in co/screen/basic
 	<Provider store={store}>
 		<PersistGate loading={<Loading />} persistor={persistor}>
 			<Translate Loading={Loading}>
-				<DndProvider backend={HTML5Backend}>
-					<Routes />
-				</DndProvider>
+				<Routes />
 			</Translate>
 		</PersistGate>
 	</Provider>,

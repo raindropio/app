@@ -8,6 +8,7 @@ import {
 	BOOKMARK_UPDATE_REQ, BOOKMARK_UPDATE_SUCCESS, BOOKMARK_UPDATE_ERROR,
 	BOOKMARK_REMOVE_REQ, BOOKMARK_REMOVE_SUCCESS, BOOKMARK_REMOVE_ERROR,
 	BOOKMARK_UPLOAD_REQ, BOOKMARK_UPLOAD_PROGRESS,
+	BOOKMARK_REORDER,
 
 	BOOKMARK_RECOVER, BOOKMARK_IMPORTANT, BOOKMARK_SCREENSHOT, BOOKMARK_REPARSE, BOOKMARK_MOVE, BOOKMARK_PRELOAD
 } from '../../constants/bookmarks'
@@ -27,6 +28,7 @@ export default function* () {
 	yield takeEvery(BOOKMARK_REPARSE, reparse)
 	yield takeEvery(BOOKMARK_MOVE, move)
 	yield takeEvery(BOOKMARK_PRELOAD, preload)
+	yield takeEvery(BOOKMARK_REORDER, reorder)
 
 	//single
 	yield takeEvery(BOOKMARK_CREATE_REQ, createBookmark)
@@ -142,10 +144,6 @@ function* updateBookmark({_id, set={}, ignore=false, onSuccess, onFail}) {
 		return;
 
 	try{
-		const originalReq = yield call(Api.get, 'raindrop/'+_id)
-		if (!originalReq.result)
-			throw new ApiError(originalReq.error, originalReq.errorMessage||'cant find bookmark')
-
 		const {item={}, result=false, error, errorMessage} = yield call(Api.put, 'raindrop/'+_id, set)
 
 		if (!result)
@@ -337,4 +335,17 @@ function* preload({link}) {
 	try{
 		yield call(Api.get, 'parse?url='+encodeURIComponent(link))
 	} catch(error){}
+}
+
+function* reorder({ _id, dry, ignore, order, collectionId }) {
+	if (dry || ignore) return
+
+	yield put({
+		type: BOOKMARK_UPDATE_REQ,
+		_id: _id,
+		set: {
+			order,
+			collectionId
+		}
+	})
 }

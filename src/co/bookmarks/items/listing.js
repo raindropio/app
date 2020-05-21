@@ -45,6 +45,7 @@ export default class BookmarksItemsListing extends React.Component {
                 view={this.props.view}
                 access={this.props.access}
                 selectModeEnabled={this.props.selectModeEnabled}
+                reorderable={this.props.sort=='sort'}
                 //listing specififc
                 active={this.props.activeId == _id}
                 events={this.props.events}

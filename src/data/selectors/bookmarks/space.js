@@ -23,6 +23,13 @@ export const makeBookmarksCount = ()=>createSelector(
 	(ids)=>ids.length
 )
 
+//Specific item in space
+export const makeBookmarkIndex = ()=>createSelector(
+	[bookmarksIds, (state, spaceId, _id)=>_id],
+	(ids, _id)=>ids.indexOf(_id)
+)
+
+//Space itself
 export const makeStatus = () => createSelector(
 	[_spaceById],
 	(space={})=>(space.status||blankSpace.status)

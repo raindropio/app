@@ -25,11 +25,12 @@ export default class CollectionsItemView extends React.PureComponent {
 
     render() {
         const { _id, title, count, color, cover, level, active, expanded, expandable, to } = this.props
-        const { isDragging, isDropping } = this.props
+        const { innerRef, isDragging, isDropping } = this.props
         const { onClick, onExpandClick, onRenameClick, onContextMenu, onKeyUp } = this.props
 
         return (
             <article
+                ref={innerRef}
                 className={`collection menu-item have-actions ${active && 'active'} ${expandable && (expanded ? 'expanded' : 'collapsed')} ${isDragging && 'is-dragging'} ${isDropping && 'is-drag-over'}`}
                 style={{'--accentColor': color, '--level': level}}>
                 <span className='expand' onMouseUp={onExpandClick}>

@@ -13,6 +13,7 @@ import {
 	BOOKMARK_REMOVE_SUCCESS, BOOKMARK_REMOVE_ERROR,
 	BOOKMARK_UPLOAD_PROGRESS,
 	BOOKMARK_IMPORTANT,
+	BOOKMARK_REORDER
 } from '../../constants/bookmarks'
 
 import {
@@ -126,6 +127,46 @@ export default function(state, action) {
 		//Important
 		case BOOKMARK_IMPORTANT:{
 			return state.setIn(['elements', action._id, 'important'], !state.elements[action._id].important)
+		}
+
+		//Reorder
+		case BOOKMARK_REORDER:{
+			const from = state.getIn(['elements', action._id, 'collectionId'])
+			const to = action.collectionId || from
+			if (!from) return state
+
+			//source space and bookmark
+			const source = [...state.spaces[from].ids]
+			const sourceOrder = source.indexOf(action._id)
+
+			//bookmark not found
+			if (sourceOrder == -1){
+				action.ignore = true
+				return state
+			}
+
+			//nothing changed
+			if (from == to && sourceOrder == action.order)
+				return state
+
+			//remove from source collection
+			source.splice(sourceOrder, 1)
+
+			//same collection
+			if (from == to)
+				source.splice(action.order, 0, action._id)
+			//different collection
+			else {
+				const target = [...state.spaces[to].ids]
+
+				target.splice(action.order, 0, action._id)
+
+				state = state.setIn(['spaces', to, 'ids'], target)
+			}
+
+			return state
+				.setIn(['elements', action._id, 'collectionId'], to)
+				.setIn(['spaces', from, 'ids'], source)
 		}
 
 		//Update tags

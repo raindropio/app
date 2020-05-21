@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as bookmarksActions from '~data/actions/bookmarks'
-import { makeBookmarksFlatSections, makeSelectModeEnabled } from '~data/selectors/bookmarks'
+import { makeBookmarksFlatSections, makeSelectModeEnabled, makeSort } from '~data/selectors/bookmarks'
 import { makeCollection } from '~data/selectors/collections'
 
 import Listing from './listing'
@@ -46,6 +46,7 @@ export default connect(
         const getBookmarkIds = makeBookmarksFlatSections()
         const getCollection = makeCollection()
         const getSelectModeEnabled = makeSelectModeEnabled()
+        const getSort = makeSort()
     
         return (state, { cid })=>{
             const { view, access } = getCollection(state, cid)
@@ -54,6 +55,7 @@ export default connect(
                 items: getBookmarkIds(state, cid),
                 view,
                 access,
+                sort: getSort(state, cid),
                 selectModeEnabled: getSelectModeEnabled(state, cid),
                 default_sort: state.config.raindrops_sort
             }
