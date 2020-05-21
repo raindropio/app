@@ -95,6 +95,13 @@ class BookmarkItem extends React.Component {
 
         onReorder: (details)=>
             this.props.actions.oneReorder(this.props.item._id, details),
+
+        onMove: (to)=>{
+            if (this.props.selectModeEnabled)
+                this.props.actions.moveSelected(this.props.cid, to)
+            else
+                this.props.actions.oneMove(this.props.item._id, to)
+        }
     }
 
     render() {

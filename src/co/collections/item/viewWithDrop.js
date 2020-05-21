@@ -29,13 +29,20 @@ export default DropTarget(
     [bookmarkType],
     //logic of drop
     {
-        canDrop(props, monitor) {
-            console.log(props)
+        canDrop({ access, _id }) {
+            if (!_id || access.level<3)
+                return false
+
+            return true
+        },
+
+        drop(props) {
+            return { type, ...props }
         }
     },
     //injected props
     (connect, monitor)=>({
         connectDrop:    connect.dropTarget(),
-        dndIsDropping:     monitor.isOver()
+        dndIsDropping:  monitor.canDrop() && monitor.isOver()
     })
 )(CollectionItemViewWithDrop)

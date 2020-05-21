@@ -1,6 +1,7 @@
 import React from 'react'
 import { findDOMNode } from 'react-dom'
 import { DragSource, DropTarget } from 'react-dnd'
+import { type as collectionType } from '~co/collections/item/viewWithDrop'
 import _ from 'lodash'
 import View from './view'
 
@@ -86,14 +87,21 @@ export default DropTarget(
     DragSource(
         type,
         {
-            beginDrag: ({ index, _id, collectionId, onReorder }) => ({
+            beginDrag: ({ index, _id, collectionId, access, onReorder, onMove }) => ({
                 index,
                 _id,
                 collectionId,
+                access,
+
                 originalIndex: index,
                 originalCollectionId: collectionId,
-                onReorder
+
+                onReorder,
+                onMove
             }),
+            canDrag: ({ access }) => {
+                return access.level>=3
+            },
             endDrag: (props, monitor) => {
                 const origin = monitor.getItem()
                 
@@ -107,6 +115,10 @@ export default DropTarget(
                                 order: target.index,
                                 collectionId: target.collectionId
                             })
+                            return
+
+                        case collectionType:
+                            origin.onMove(target._id)
                             return
                     }
                 }

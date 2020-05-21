@@ -62,7 +62,9 @@ class CollectionsItemBlank extends React.PureComponent {
                 onSubmit={this.onSubmit}>
                 <span className='expand'><Icon name='arrow_alt' /></span>
                 
-                <CollectionIcon _id={_id} />
+                <CollectionIcon 
+                    _id={_id}
+                    loading={loading} />
 
                 <input
                     type='text'
