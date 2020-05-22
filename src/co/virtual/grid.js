@@ -2,6 +2,7 @@ import React from 'react'
 import { Virtuoso } from 'react-virtuoso'
 import { NonVirtualList } from './list'
 import withAutoSize from './helpers/withAutoSize'
+import superScrollToIndex from './helpers/superScrollToIndex'
 
 const mainStyle = { width: '100%', height: '100%' }
 const stickyHeaderStyle = {position: 'sticky', top:0, zIndex: 99}
@@ -17,6 +18,23 @@ class VirtualGrid extends React.PureComponent {
         totalCount: 0,              //required
         stickyHeader: false,
         disableVirtualization: false
+    }
+
+    _grid = React.createRef()
+
+    //scroll to index
+    _visible = { startIndex:-1, endIndex:-1 }
+
+    scrollToIndex = (to)=>{
+        if (!this._grid.current)
+            return
+
+        superScrollToIndex(
+            this._grid.current.scrollToIndex,
+            this._visible.startIndex,
+            this._visible.endIndex,
+            Math.ceil(to / this.state.columnCount)
+        )
     }
 
     //columns and rows count
@@ -50,7 +68,9 @@ class VirtualGrid extends React.PureComponent {
     }
 
     //rendering
-    rangeChanged = ({ endIndex })=>{
+    rangeChanged = ({ startIndex, endIndex })=>{
+        this._visible = { startIndex, endIndex }
+
         if (endIndex >= this.state.rowCount - 4)
             this.props.endReached()
     }
@@ -99,6 +119,7 @@ class VirtualGrid extends React.PureComponent {
         return (
             <Component
                 {...etc}
+                ref={this._grid}
 
                 className={undefined}
                 computeItemKey={undefined}

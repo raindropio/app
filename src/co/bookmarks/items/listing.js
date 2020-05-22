@@ -15,9 +15,27 @@ export default class BookmarksItemsListing extends React.Component {
         itemsCheckpoint: 0
     }
 
+    _list = React.createRef()
+
     componentDidUpdate(prev) {
         if (prev.items != this.props.items)
             this.setState({ itemsCheckpoint: this.state.itemsCheckpoint+1 })
+
+        if (prev.activeId != this.props.activeId)
+            this.scrollToActive()
+    }
+
+    componentDidMount() {
+        this.scrollToActive()
+    }
+
+    scrollToActive = ()=>{
+        setTimeout(() => {
+            if (this.props.activeId && this._list.current)
+                this._list.current.scrollToIndex(
+                    this.props.items.indexOf(parseInt(this.props.activeId))
+                )
+        }, 300)
     }
 
     computeItemKey = (index)=>
@@ -89,6 +107,7 @@ export default class BookmarksItemsListing extends React.Component {
 
         return (
             <Component
+                ref={this._list}
                 className={`elements view-${view} ${selectModeEnabled&&'select-mode'}`}
                 dataKey={activeId+selectModeEnabled+view+this.state.itemsCheckpoint} //force re-render
 

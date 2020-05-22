@@ -1,5 +1,6 @@
 import React from 'react'
 import { Virtuoso } from 'react-virtuoso'
+import superScrollToIndex from './helpers/superScrollToIndex'
 
 const mainStyle = { width: '100%', height: '100%' }
 const stickyHeaderStyle = {position: 'sticky', top:0, zIndex: 99}
@@ -18,7 +19,26 @@ export default class VirtualList extends React.PureComponent {
         defaultItemHeight: 80
     }
 
-    rangeChanged = ({ endIndex })=>{
+    _list = React.createRef()
+
+    //scroll to index
+    _visible = { startIndex:-1, endIndex:-1 }
+
+    scrollToIndex = (to)=>{
+        if (!this._list.current)
+            return
+
+        superScrollToIndex(
+            this._list.current.scrollToIndex,
+            this._visible.startIndex,
+            this._visible.endIndex,
+            to+(this.props.header?1:0)
+        )
+    }
+
+    rangeChanged = ({ startIndex, endIndex })=>{
+        this._visible = { startIndex, endIndex }
+
         if (endIndex >= this.props.totalCount - 20)
             this.props.endReached()
     }
@@ -57,6 +77,7 @@ export default class VirtualList extends React.PureComponent {
         return (
             <Component
                 {...etc}
+                ref={this._list}
                 dataKey={dataKey+(!totalCount?'empty':'')}
                 topItems={header && stickyHeader ? 1 : 0}
                 totalCount={totalCount ? (totalCount+(header?1:0)) : (1+(header?1:0))}

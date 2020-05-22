@@ -3,7 +3,7 @@ import React from 'react'
 const mainStyle = { width: '100%', height: '100%' }
 let cached = { width: 0, height: 0 }
 
-export default (Component)=>
+export default (Component)=>{
     class VirtualGridAutoSize extends React.PureComponent {
         state = cached
 
@@ -40,6 +40,7 @@ export default (Component)=>
 
         render() {
             const { width } = this.state
+            const { forwardedRef, ...etc } = this.props
 
             return (
                 <div 
@@ -47,11 +48,17 @@ export default (Component)=>
                     style={mainStyle}>
                     {width ? (
                         <Component 
-                            {...this.props}
+                            {...etc}
                             {...this.state}
+                            ref={forwardedRef}
                             containerRef={this._div} />
                     ) : null}
                 </div>
             )
         }
     }
+
+    return React.forwardRef((props, ref) => {
+        return <VirtualGridAutoSize {...props} forwardedRef={ref} />
+    })
+}

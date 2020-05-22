@@ -15,10 +15,14 @@ class VirtualMasonry extends React.PureComponent {
         stickyHeader: false,
     }
 
+    scrollToIndex = (to)=>{
+        //not implemented
+    }
+
     //columns count
     measure = ()=>{
         const { width, columnWidth } = this.props
-        const columnCount = parseInt(width / columnWidth)
+        const columnCount = Math.max(parseInt(width / columnWidth), 2)
 
         return {
             columnCount
