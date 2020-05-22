@@ -18,7 +18,7 @@ class BookmarkItemViewWithDnd extends React.Component {
     }
 
     render() {
-        const { connectDrop, connectDrag, connectPreview, canDrag, ...props } = this.props
+        const { connectDrop, connectDrag, canDrag, ...props } = this.props
 
         if (canDrag && this._view.current)
             connectDrop(
@@ -97,11 +97,12 @@ export default DropTarget(
     DragSource(
         type,
         {
-            beginDrag: ({ index, _id, collectionId, access, onReorder, onMove }) => ({
+            beginDrag: ({ index, _id, collectionId, access, reorderable, onReorder, onMove }) => ({
                 index,
                 _id,
                 collectionId,
                 access,
+                reorderable,
 
                 originalIndex: index,
                 originalCollectionId: collectionId,
@@ -114,28 +115,24 @@ export default DropTarget(
             },
             endDrag: (props, monitor) => {
                 const origin = monitor.getItem()
-                
-                if (monitor.didDrop()){
-                    const target = monitor.getDropResult()
 
+                const target = monitor.getDropResult() || {}
+
+                switch(target.type) {
                     //move to other collection
-                    if (target.type == collectionType &&
-                        target._id != origin.originalCollectionId)
-                        origin.onMove(target._id)
+                    case collectionType:
+                        if (target._id != origin.originalCollectionId)
+                            origin.onMove(target._id)
+                        break
+
                     //bookmark reorder
-                    else
+                    default:
                         origin.onReorder({
-                            order: target.index,
-                            collectionId: target.collectionId
+                            order: origin.index,
+                            collectionId: origin.collectionId
                         })
+                        break
                 }
-                //cancel reorder
-                else
-                    origin.onReorder({
-                        order: origin.originalIndex,
-                        collectionId: origin.originalCollectionId,
-                        dry: true
-                    })
             }
         },
         (connect, monitor) => ({
