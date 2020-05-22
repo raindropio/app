@@ -33,10 +33,9 @@ class BookmarkItem extends React.Component {
                 return this.handlers.onSelectClick()
             }
                 
-            if (this.props.events.onItemClick){
-                e.preventDefault()
-                this.props.events.onItemClick(this.props.item)
-            }
+            if (this.props.events.onItemClick)
+                if (this.props.events.onItemClick(this.props.item) === true)
+                    e.preventDefault()
         },
 
         onTagClick: (tagName)=>{
@@ -44,7 +43,7 @@ class BookmarkItem extends React.Component {
         },
 
         onEditClick: ()=>{
-
+            this.props.events.onItemEditClick && this.props.events.onItemEditClick(this.props.item)
         },
 
         onSelectClick: ()=>{

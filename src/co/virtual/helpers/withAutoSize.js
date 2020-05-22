@@ -29,13 +29,13 @@ export default (Component)=>
         }
 
         computeSize = (width, height)=>{
-            window.requestAnimationFrame(() => {
+            //window.requestAnimationFrame(() => {
                 if (width != this.state.width ||
                     height != this.state.height){
                     cached = { width, height }
                     this.setState(cached)
                 }
-            })
+            //})
         }
 
         render() {

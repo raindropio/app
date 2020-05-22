@@ -6,7 +6,7 @@ export const Context = React.createContext({})
 export default class ScreenSplitView extends React.Component {
     state = {
         sidebar: {
-            force: false,
+            force: true,
 
             toggle: (e)=>{
                 e && e.preventDefault && e.preventDefault()

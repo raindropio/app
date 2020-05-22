@@ -23,6 +23,7 @@ Not ready
 - electron
 - bookmark info about cache status, creatorRef
 - bookmark info important icon should be bright
+- bookmark drag preview
 
 Server
 - Replace all tags with space to _

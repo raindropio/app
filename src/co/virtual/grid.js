@@ -22,7 +22,7 @@ class VirtualGrid extends React.PureComponent {
     //columns and rows count
     measure = ()=>{
         const { width, columnWidth, totalCount, disableVirtualization } = this.props
-        const columnCount = parseInt(width / columnWidth)
+        const columnCount = Math.max(parseInt(width / columnWidth), 2)
 
         return {
             columnCount,

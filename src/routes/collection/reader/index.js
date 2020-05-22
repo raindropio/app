@@ -11,24 +11,24 @@ export default class CollectionsReader extends React.Component {
 
     actions = {
         back: ()=>
-            this.props.search.delete(['id', 'tab']),
+            this.props.onReader(),
 
         fullscreenToggle: ()=>
             this.setState({ fullscreen: !this.state.fullscreen }),
 
         setTab: (tab)=>
-            this.props.search.set('tab', tab, true),
+            this.props.onReader({ ...this.props.reader, tab }),
         
         important: ()=>{},
         remove: ()=>{}
     }
 
     render() {
-        const { id, tab='preview' } = this.props
+        const { reader: {bookmark, tab='preview'} } = this.props
 
         return (
             <Reader 
-                show={id?true:false}
+                show={bookmark?true:false}
                 fullscreen={this.state.fullscreen}>
                 <Header
                     {...this.state}

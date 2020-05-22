@@ -52,20 +52,20 @@ export default connect(
         const getBookmarksLastChange = makeBookmarksLastChange()
         const cache = {}
     
-        return (state, { cid, search, full })=>{
+        return (state, { cid, search, full, activeId })=>{
             const lastChange = getBookmarksLastChange(state)
 
             if (search || full)
                 return {
                     ids: cache[cid] = cache[cid] || [ cid ],
-                    dataKey: cid+lastChange
+                    dataKey: cid+lastChange+activeId
                 }
             else{
                 const ids = getBranchIds(state, cid)
                 
                 return {
                     ids,
-                    dataKey: ids.join('')+lastChange
+                    dataKey: ids.join('')+lastChange+activeId
                 }
             }
         }

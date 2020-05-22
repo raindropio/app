@@ -99,7 +99,7 @@ export default class BookmarksItemsListing extends React.Component {
                 computeItemKey={this.computeItemKey}
 
                 totalCount={compact ? Math.min(items.length, config.compact.count) : items.length}
-                columnWidth={250}
+                columnWidth={config.size[view].cover.width}
                 stickyHeader={true}
                 disableVirtualization={compact}
                 

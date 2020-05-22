@@ -9,14 +9,17 @@ import Reader from './reader'
 export default class CollectionRoute extends React.PureComponent {
 	state = {
         cid: 0,
-        search: ''
+        full: false,
+        search: '',
+        reader: {}
     }
 
-    static getDerivedStateFromProps({ match }) {
+    static getDerivedStateFromProps({ match, location }) {
         return {
             cid: match.params.cid,
             full: match.params.modifier == 'full',
-            search: decodeURIComponent(match.params.search||'')
+            search: decodeURIComponent(match.params.search||''),
+            reader: Object.fromEntries(new URLSearchParams(location.search))
         }
     }
 
@@ -45,6 +48,15 @@ export default class CollectionRoute extends React.PureComponent {
             }
 
             this.props.history.push(`/collection/${cid}/${encodeURIComponent(search)}`)
+        },
+
+        onReader: (update)=>{
+            const params = new URLSearchParams('')
+
+            for(const key in update||{})
+                params.set(key, update[key])
+
+            this.props.history[this.props.location.search ? 'replace' : 'push'](this.props.match.url+'?'+params.toString())
         }
     }
 
