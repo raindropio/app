@@ -430,10 +430,14 @@ html.web:not(.electron) .element {
     color: rgba(0,0,0,0.5);
 }
 
-html:not(.blur) #main .element {
-    &.active {
-        &[data-is-focus="true"] {
-            elementInvert()
+html:not(.blur) #main {
+    .view-list, .view-simple {
+        .element {
+            &.active {
+                &[data-is-focus="true"] {
+                    elementInvert()
+                }
+            }
         }
     }
 }

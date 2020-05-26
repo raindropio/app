@@ -4,7 +4,7 @@ import { NonVirtualList } from './list'
 import withAutoSize from './helpers/withAutoSize'
 import superScrollToIndex from './helpers/superScrollToIndex'
 
-const mainStyle = { width: '100%', height: '100%' }
+const mainStyle = { width: '100%', height: '100%', scrollBehavior: 'smooth'}
 const stickyHeaderStyle = {position: 'sticky', top:0, zIndex: 99}
 
 class VirtualGrid extends React.PureComponent {
@@ -60,6 +60,7 @@ class VirtualGrid extends React.PureComponent {
 
         //scroll to index
         if (prev.scrollToIndex != this.props.scrollToIndex &&
+            this.props.scrollToIndex >= 0 &&
             this._grid.current)
             setTimeout(() => {
                 superScrollToIndex(

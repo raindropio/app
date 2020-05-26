@@ -2,7 +2,7 @@ import React from 'react'
 import { Virtuoso } from 'react-virtuoso'
 import superScrollToIndex from './helpers/superScrollToIndex'
 
-const mainStyle = { width: '100%', height: '100%' }
+const mainStyle = { width: '100%', height: '100%', scrollBehavior: 'smooth' }
 const stickyHeaderStyle = {position: 'sticky', top:0, zIndex: 99}
 
 export default class VirtualList extends React.PureComponent {
@@ -27,6 +27,7 @@ export default class VirtualList extends React.PureComponent {
 
     componentDidUpdate(prev) {
         if (prev.scrollToIndex != this.props.scrollToIndex &&
+            this.props.scrollToIndex >= 0 &&
             this._list.current)
             superScrollToIndex(
                 this._list.current.scrollToIndex,
