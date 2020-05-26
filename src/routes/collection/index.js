@@ -54,7 +54,8 @@ export default class CollectionRoute extends React.PureComponent {
             const params = new URLSearchParams('')
 
             for(const key in update||{})
-                params.set(key, update[key])
+                if (update[key])
+                    params.set(key, update[key])
 
             const search = params.toString()
 

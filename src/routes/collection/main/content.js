@@ -10,11 +10,21 @@ export default class CollectionsMainContent extends React.Component {
 
         onItemClick: (item)=>{
             const { reader } = this.props
-            if (!reader.bookmark) return
+            
+            if (reader.bookmark){
+                this.props.onReader({ ...reader, bookmark: item._id })
+                return true
+            } else if (item.type != 'link'){
+                this.events.onItemPreviewClick(item)
+                return true
+            }
+        },
 
-            this.props.onReader({ ...reader, bookmark: item._id })
-
-            return true
+        onItemPreviewClick: (item, tab='')=>{
+            this.props.onReader({
+                bookmark: item._id,
+                tab
+            })
         },
 
         onItemEditClick: (item)=>{

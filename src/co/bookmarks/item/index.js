@@ -60,9 +60,10 @@ class BookmarkItem extends React.Component {
             copyTextToClipboard(this.props.item.link),
 
         onPreviewClick: ()=>
-            this.props.events.onItemClick(this.props.item),
+            this.props.events.onItemPreviewClick && this.props.events.onItemPreviewClick(this.props.item),
 
-        onCacheClick: ()=>{},
+        onCacheClick: ()=>
+            this.props.events.onItemPreviewClick && this.props.events.onItemPreviewClick(this.props.item, 'cache'),
 
         onCreateScreenshotClick: ()=>
             this.props.actions.oneScreenshot(this.props.item._id),

@@ -12,7 +12,7 @@ class BookmarksItems extends React.Component {
         cid:        0,
         activeId:   0,
         compact:    false,
-        events:     {}  //onItemClick, onItemEditClick, onTagClick
+        events:     {}  //onItemClick, onItemEditClick, onItemPreviewClick, onTagClick
     }
 
     load = ()=>{

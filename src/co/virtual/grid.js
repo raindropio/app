@@ -6,16 +6,23 @@ class VirtualGrid extends React.PureComponent {
     static defaultProps = {
         //...same as List
         columnWidth: 0, //required
+        defaultItemHeight: 250
     }
 
     //measure columns and rows on container size change
-    static getDerivedStateFromProps({ width, columnWidth, totalCount, disableVirtualization }) {
+    static getDerivedStateFromProps({ width, columnWidth, totalCount, disableVirtualization }, state) {
         const columnCount = Math.max(parseInt(width / columnWidth), 2)
+        const rowCount = Math.ceil(totalCount / columnCount)
+
+        if (rowCount == state.rowCount &&
+            columnCount == state.columnCount)
+            return null
 
         return {
             columnCount,
-            rowCount: Math.ceil(totalCount / columnCount),
+            rowCount,
             style: {
+                width: width+'px',
                 '--grid-columns': columnCount,
                 ...(!disableVirtualization ? { overflowY: 'overlay' } : { })
             }
@@ -26,8 +33,6 @@ class VirtualGrid extends React.PureComponent {
 
     renderRow = row=>{
         const { className, item, computeItemKey } = this.props
-
-        //items
         const { columnCount } = this.state
         
         const items = []
@@ -61,7 +66,6 @@ class VirtualGrid extends React.PureComponent {
                 dataKey={dataKey+columnCount+(!rowCount?'empty':'')}
                 totalCount={rowCount}
 
-                defaultItemHeight={250}
                 scrollToIndex={scrollToIndex >= 0 ? Math.ceil(scrollToIndex / columnCount) : -1}
             />
         )

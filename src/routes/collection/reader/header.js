@@ -28,30 +28,46 @@ const defaultTabs = [
 ]
 
 export default class ReaderHeader extends React.PureComponent {
+    onImportantClick = (e)=>{
+        e.preventDefault()
+        this.props.actions.oneImportant(this.props.item._id)
+    }
+
+    onRemoveClick = (e)=>{
+        e.preventDefault()
+        this.props.actions.oneRemove(this.props.item._id)
+    }
+
     render() {
-        const { link, important, tab, support, actions } = this.props
+        const { item, tab, tabs, access } = this.props
+        const { setTab, onBackClick, onFullscreenToggleClick } = this.props
 
         return (
             <Header
-                onBackClick={actions.back}
-                onFullscreenClick={actions.fullscreenToggle}>
+                onBackClick={onBackClick}
+                onFullscreenClick={onFullscreenToggleClick}>
                 <div className='maxCenter'>
                     <Tabs
-                        items={defaultTabs.filter(({key})=> support.includes(key) )}
+                        items={defaultTabs.filter(({key})=> tabs.includes(key) )}
                         active={tab}
-                        onChange={actions.setTab}
+                        onChange={setTab}
                         className='hide-on-clipper' />
                 </div>
         
-                <a href={link} target='_blank' className='button hide-on-extension' title={t.s('open')}>
+                <a href={item.link} target='_blank' className='button hide-on-extension' title={t.s('open')}>
                     <Icon name='open' />
                 </a>
-				<a className={'button '+(important ? 'active' : '')} onClick={actions.important}  title={t.s('add') +' ' + t.s('to') + ' ' + t.s('favoriteSites').toLowerCase()}>
-                    <Icon name={'like'+(important ? '_active' : '')} />
-                </a>
-				<a className='button' title={t.s('remove')} onClick={actions.remove}>
-                    <Icon name='trash' />
-                </a>
+				
+                {access.level >= 3 && (
+                    <>
+                        <a className={'button '+(item.important ? 'active' : '')} onClick={this.onImportantClick}  title={t.s('add') +' ' + t.s('to') + ' ' + t.s('favoriteSites').toLowerCase()}>
+                            <Icon name={'like'+(item.important ? '_active' : '')} />
+                        </a>
+                        <a className='button' title={t.s('remove')} onClick={this.onRemoveClick}>
+                            <Icon name='trash' />
+                        </a>
+                    </>
+                )}
             </Header>
         )
     }

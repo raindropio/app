@@ -1,40 +1,66 @@
 import React from 'react'
-import Reader from '~co/screen/splitview/reader'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import * as bookmarksActions from '~data/actions/bookmarks'
+import { makeBookmark } from '~data/selectors/bookmarks'
+import { makeCollection } from '~data/selectors/collections'
 
-import Header from './header'
+import Wrap from './wrap'
 
-export default class CollectionsReader extends React.Component {
+class CollectionsReader extends React.Component {
+    static defaultProps = {
+        reader: {} //bookmark, tab
+    }
+
     state = {
-        support: ['web', 'edit', 'cache', 'preview'],
         fullscreen: false
     }
 
-    actions = {
-        back: ()=>
+    handlers = {
+        onBackClick: ()=>
             this.props.onReader(),
 
-        fullscreenToggle: ()=>
+        onFullscreenToggleClick: ()=>
             this.setState({ fullscreen: !this.state.fullscreen }),
 
         setTab: (tab)=>
             this.props.onReader({ ...this.props.reader, tab }),
-        
-        important: ()=>{},
-        remove: ()=>{}
     }
 
     render() {
-        const { reader: {bookmark, tab='preview'} } = this.props
-
         return (
-            <Reader 
-                show={bookmark?true:false}
-                fullscreen={this.state.fullscreen}>
-                <Header
-                    {...this.state}
-                    tab={tab}
-                    actions={this.actions} />
-            </Reader>
+            <Wrap {...this.state} {...this.props} {...this.handlers} />
         )
     }
 }
+
+export default connect(
+    ()=>{
+        const getBookmark = makeBookmark()
+        const getCollection = makeCollection()
+
+        return (state, { reader })=>{
+            const item = getBookmark(state, parseInt(reader.bookmark))
+            const { access } = getCollection(state, item.collectionId)
+
+            //available tabs
+            const tab = reader.tab || 'preview'
+            const tabs = [
+                'web', 
+                ...access.level>=3?['edit']:[], 
+                ...item.cache && access.level>=3?['cache']:[],
+                ...item.type!='link'?['preview']:[],
+            ]
+
+            return {
+                item,
+                tab: tabs.includes(tab) ? tab : tabs[0],
+                tabs,
+                access
+            }
+        }
+    },
+    (dispatch)=>({
+		actions: bindActionCreators(bookmarksActions, dispatch)
+    }),
+)(CollectionsReader)

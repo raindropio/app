@@ -15,7 +15,7 @@ export default class VirtualList extends React.PureComponent {
         disableVirtualization: false,
         defaultItemHeight: 80,
         scrollToIndex: -1,
-        overscan: 1000
+        overscan: 500
     }
 
     _list = React.createRef()
@@ -24,7 +24,7 @@ export default class VirtualList extends React.PureComponent {
     _visible = { startIndex:-1, endIndex:-1 }
 
     componentDidUpdate(prev) {
-        const { scrollToIndex=-1, totalCount } = this.props
+        const { scrollToIndex, totalCount } = this.props
 
         if (prev.scrollToIndex != scrollToIndex &&
             scrollToIndex >= 0 &&
@@ -73,7 +73,7 @@ export default class VirtualList extends React.PureComponent {
                 {...etc}
                 ref={this._list}
                 dataKey={dataKey+(!totalCount?'empty':'')}
-                totalCount={totalCount}
+                totalCount={totalCount||1}
                 item={this.renderItem}
                 computeItemKey={this.computeItemKey}
                 style={{...mainStyle, ...style}}
