@@ -31,7 +31,7 @@ export default class CollectionsMainContent extends React.Component {
                     cid={cid}
                     search={search}
                     full={full}
-                    activeId={bookmark}
+                    activeId={bookmark && parseInt(bookmark)}
                     events={this.events} />
             </Content>
         )

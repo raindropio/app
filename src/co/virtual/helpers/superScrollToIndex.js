@@ -5,6 +5,9 @@ export default (func, start, end, pos)=>{
     if (pos < end && pos > start)
         return
 
+    if (pos < 0)
+        return
+
     const startGap = Math.pow(start-pos, 2)
     const endGap = Math.pow(end-pos, 2)
     const min = Math.min(startGap, endGap)

@@ -17,25 +17,14 @@ class VirtualGrid extends React.PureComponent {
         computeItemKey: undefined,  //required
         totalCount: 0,              //required
         stickyHeader: false,
-        disableVirtualization: false
+        disableVirtualization: false,
+        scrollToIndex: -1
     }
 
     _grid = React.createRef()
 
     //scroll to index
     _visible = { startIndex:-1, endIndex:-1 }
-
-    scrollToIndex = (to)=>{
-        if (!this._grid.current)
-            return
-
-        superScrollToIndex(
-            this._grid.current.scrollToIndex,
-            this._visible.startIndex,
-            this._visible.endIndex,
-            Math.ceil(to / this.state.columnCount)
-        )
-    }
 
     //columns and rows count
     measure = ()=>{
@@ -53,18 +42,33 @@ class VirtualGrid extends React.PureComponent {
         }
     }
 
+    getRowIndex = (index)=>
+        Math.ceil(index / this.state.columnCount)
+
     state = this.measure()
 
     componentDidUpdate(prev) {
-        if (prev.width == this.props.width &&
-            prev.columnWidth == this.props.columnWidth &&
-            prev.totalCount == this.props.totalCount)
-            return
+        //measure columns and rows on container size change
+        if (prev.width != this.props.width ||
+            prev.columnWidth != this.props.columnWidth ||
+            prev.totalCount != this.props.totalCount){
+            const m = this.measure()
+            if (m.columnCount != this.state.columnCount ||
+                m.rowCount != this.state.rowCount)
+                this.setState(m)
+        }
 
-        const m = this.measure()
-        if (m.columnCount != this.state.columnCount ||
-            m.rowCount != this.state.rowCount)
-            this.setState(m)
+        //scroll to index
+        if (prev.scrollToIndex != this.props.scrollToIndex &&
+            this._grid.current)
+            setTimeout(() => {
+                superScrollToIndex(
+                    this._grid.current.scrollToIndex,
+                    this._visible.startIndex,
+                    this._visible.endIndex,
+                    this.getRowIndex(this.props.scrollToIndex)
+                )
+            })
     }
 
     //rendering
@@ -113,7 +117,7 @@ class VirtualGrid extends React.PureComponent {
 
     render() {
         const { rowCount, columnCount, style } = this.state
-        const { dataKey='', endReached, stickyHeader, disableVirtualization, ...etc } = this.props
+        const { dataKey='', endReached, stickyHeader, disableVirtualization, scrollToIndex, ...etc } = this.props
         const Component = disableVirtualization ? NonVirtualList : Virtuoso
 
         return (
@@ -133,6 +137,7 @@ class VirtualGrid extends React.PureComponent {
 
                 rangeChanged={endReached && this.rangeChanged}
                 defaultItemHeight={250}
+                initialTopMostItemIndex={scrollToIndex >= 0 ? this.getRowIndex(scrollToIndex) : undefined}
             />
         )
     }

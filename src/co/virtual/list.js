@@ -16,7 +16,8 @@ export default class VirtualList extends React.PureComponent {
         endReached: undefined,      //
         stickyHeader: false,
         disableVirtualization: false,
-        defaultItemHeight: 80
+        defaultItemHeight: 80,
+        scrollToIndex: -1
     }
 
     _list = React.createRef()
@@ -24,16 +25,15 @@ export default class VirtualList extends React.PureComponent {
     //scroll to index
     _visible = { startIndex:-1, endIndex:-1 }
 
-    scrollToIndex = (to)=>{
-        if (!this._list.current)
-            return
-
-        superScrollToIndex(
-            this._list.current.scrollToIndex,
-            this._visible.startIndex,
-            this._visible.endIndex,
-            to+(this.props.header?1:0)
-        )
+    componentDidUpdate(prev) {
+        if (prev.scrollToIndex != this.props.scrollToIndex &&
+            this._list.current)
+            superScrollToIndex(
+                this._list.current.scrollToIndex,
+                this._visible.startIndex,
+                this._visible.endIndex,
+                this.props.scrollToIndex+(this.props.header?1:0)
+            )
     }
 
     rangeChanged = ({ startIndex, endIndex })=>{
@@ -71,7 +71,7 @@ export default class VirtualList extends React.PureComponent {
     }
 
     render() {
-        const { endReached, totalCount, header, stickyHeader, dataKey, disableVirtualization, ...etc } = this.props
+        const { endReached, totalCount, header, stickyHeader, dataKey, disableVirtualization, scrollToIndex, ...etc } = this.props
         const Component = disableVirtualization ? NonVirtualList : Virtuoso
 
         return (
@@ -85,6 +85,7 @@ export default class VirtualList extends React.PureComponent {
                 computeItemKey={this.computeItemKey}
                 style={mainStyle}
                 rangeChanged={endReached && this.rangeChanged}
+                initialTopMostItemIndex={scrollToIndex >= 0 ? scrollToIndex : undefined}
             />
         )
     }
