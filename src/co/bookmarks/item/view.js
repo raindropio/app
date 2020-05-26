@@ -14,7 +14,7 @@ export default class BookmarkItemView extends React.PureComponent {
         const { innerRef, isDragging } = this.props
         const { link, title, excerpt, highlight, cover, domain, tags, type, view, access, created, reparse, collectionId, cid } = this.props
         const { active, selected, important, broken } = this.props
-        const { onClick, onTagClick, onEditClick, onSelectClick, onImportantClick, onContextMenu, onKeyUp } = this.props
+        const { onClick, onTagClick, onEditClick, onPreviewClick, onSelectClick, onImportantClick, onContextMenu, onKeyUp } = this.props
 
         return (
             <article 
@@ -76,12 +76,11 @@ export default class BookmarkItemView extends React.PureComponent {
 
                 <div className='actions'>
                     <a 
-                        href={link}
+                        onClick={onPreviewClick}
                         tabIndex='-1'
-                        target='_blank'
                         className='button min default'
-                        title={t.s('openInBrowser')}>
-                        <b><Icon name='open' /></b>
+                        title={t.s('preview')}>
+                        <b><Icon name='show' /></b>
                     </a>
 
                     {access.level >= 3 && (

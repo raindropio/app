@@ -32,7 +32,7 @@ export default {
 	whitelist: [
 		'config',
 		'collections',
-		//'bookmarks',
+		'bookmarks',
 		'filters',
 		'local',
 

@@ -6,7 +6,7 @@ import Tabs from '~co/common/tabs'
 
 const defaultTabs = [
     {
-        key: 'preview',
+        key: 'html',
         title: t.s('preview'),
         icon: 'article'
     },

@@ -178,3 +178,8 @@ export const blankDraft = Immutable({
 export const blankMeta = normalizeMeta()
 
 export const blankBookmark = normalizeBookmark()
+
+export const blankHtml = Immutable({
+	status: 'idle', //idle/loading/loaded/error
+	html: ''
+})

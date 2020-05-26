@@ -10,7 +10,7 @@ viewerSize(size)
     font-size: (15px + (size * 2) );
   }
 
-#reader[data-tab="preview"] {
+.preview {
   &.vfontcolor-night {
     background: darken(darkBackground,10%);
     color: #ADADAD;
@@ -61,7 +61,6 @@ viewerSize(size)
       box-shadow: 0px -1px 0px rgba(255,255,255,.05), inset 1px 0px 0px rgba(255,255,255,.05);
     }
     
-    .preview {
       a {
         color: colorYellowForDark;
       }
@@ -86,7 +85,7 @@ viewerSize(size)
       code, pre {
         background: darken(darkBackground,25%);
       }
-    }
+    
   }
     
   &.vfontcolor-sunset {
@@ -94,14 +93,12 @@ viewerSize(size)
     header {
       background: inherit;
     }
-    .preview {
       code, pre {
         background: darken(sunsetBackground,2%);
       }
-    }
   }
 
-  &.vfontcolor-sunset .preview, &.vfontcolor-night .preview {
+  &.vfontcolor-sunset , &.vfontcolor-night  {
     .table {
       tr:nth-child(odd) > td {
         background-color: rgba(255,255,255,.05);
@@ -109,7 +106,7 @@ viewerSize(size)
     }
   }
 
-  &.vfontfamily-default .preview {
+  &.vfontfamily-default {
     h1 {
       font-weight: 300;
     }
@@ -122,51 +119,51 @@ viewerSize(size)
     }
   }
   
-  &.vfontfamily-georgia .preview {
+  &.vfontfamily-georgia {
     font-family: Charter, Georgia, sans;
   }
 
-  &.vfontfamily-helvetica .preview {
+  &.vfontfamily-helvetica {
     font-family: "Helvetica", sans-serif;
   }
 
-  &.vfontfamily-verdana .preview {
+  &.vfontfamily-verdana {
     font-family: "Verdana", sans-serif;
   }
 
-  &.vfontsize-1 .preview {
+  &.vfontsize-1 {
     viewerSize(1);
   }
 
-  &.vfontsize-2 .preview {
+  &.vfontsize-2 {
     viewerSize(2);
   }
 
-  &.vfontsize-3 .preview {
+  &.vfontsize-3 {
     viewerSize(3);
   }
 
-  &.vfontsize-4 .preview {
+  &.vfontsize-4 {
     viewerSize(4);
   }
 
-  &.vfontsize-5 .preview {
+  &.vfontsize-5 {
     viewerSize(5);
   }
 
-  &.vfontsize-6 .preview {
+  &.vfontsize-6 {
     viewerSize(6);
   }
 
-  &.vfontsize-7 .preview {
+  &.vfontsize-7 {
     viewerSize(7);
   }
 
-  &.vfontsize-8 .preview {
+  &.vfontsize-8 {
     viewerSize(8);
   }
   
-  &.vfontsize-9 .preview {
+  &.vfontsize-9 {
     viewerSize(9);
   }
 }
@@ -280,7 +277,7 @@ viewerSize(size)
   margin:0 auto;
   transition: opacity .15s ease-in-out;
 
-  &.loading {
+  &.loading, &.idle {
     opacity: 0;
   }
 

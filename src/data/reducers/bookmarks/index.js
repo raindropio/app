@@ -4,6 +4,7 @@ import single from './single'
 import draft from './draft'
 import selectMode from './selectMode'
 import sort from './sort'
+import html from './html'
 
 import {
 	blankSelectMode
@@ -30,6 +31,10 @@ export default function(state = initialState, action={}){
 	const caseSort = sort(state,action)
 	if (caseSort) state = caseSort
 
+	//Html
+	const caseHtml = html(state,action)
+	if (caseHtml) state = caseHtml
+
 	switch (action.type) {
 		case 'RESET':{
 			return initialState
@@ -49,6 +54,7 @@ const initialState = Immutable({
 
 	elements: {},
 	meta: {},
+	html: {},
 
 	selectMode: blankSelectMode
 })

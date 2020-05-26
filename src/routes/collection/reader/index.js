@@ -5,7 +5,9 @@ import * as bookmarksActions from '~data/actions/bookmarks'
 import { makeBookmark } from '~data/selectors/bookmarks'
 import { makeCollection } from '~data/selectors/collections'
 
-import Wrap from './wrap'
+import Reader from '~co/screen/splitview/reader'
+import Header from './header'
+import Content from './content'
 
 class CollectionsReader extends React.Component {
     static defaultProps = {
@@ -28,8 +30,16 @@ class CollectionsReader extends React.Component {
     }
 
     render() {
+        const { item } = this.props
+        const { fullscreen } = this.state
+
         return (
-            <Wrap {...this.state} {...this.props} {...this.handlers} />
+            <Reader 
+                show={item._id?true:false}
+                fullscreen={fullscreen}>
+                <Header {...this.props} {...this.handlers} />
+                <Content key={item._id} {...this.props} />
+            </Reader>
         )
     }
 }
@@ -44,12 +54,12 @@ export default connect(
             const { access } = getCollection(state, item.collectionId)
 
             //available tabs
-            const tab = reader.tab || 'preview'
+            const tab = reader.tab || 'html'
             const tabs = [
                 'web', 
                 ...access.level>=3?['edit']:[], 
                 ...item.cache && access.level>=3?['cache']:[],
-                ...item.type!='link'?['preview']:[],
+                ...item.type!='link'?['html']:[],
             ]
 
             return {
