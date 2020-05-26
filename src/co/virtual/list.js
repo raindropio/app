@@ -2,7 +2,7 @@ import React from 'react'
 import { Virtuoso } from 'react-virtuoso'
 import superScrollToIndex from './helpers/superScrollToIndex'
 
-const mainStyle = { width: '100%', height: '100%', scrollBehavior: 'smooth' }
+const mainStyle = { width: '100%', height: '100%' }
 const stickyHeaderStyle = {position: 'sticky', top:0, zIndex: 99}
 
 export default class VirtualList extends React.PureComponent {
@@ -17,7 +17,8 @@ export default class VirtualList extends React.PureComponent {
         stickyHeader: false,
         disableVirtualization: false,
         defaultItemHeight: 80,
-        scrollToIndex: -1
+        scrollToIndex: -1,
+        overscan: 1000
     }
 
     _list = React.createRef()
@@ -26,21 +27,24 @@ export default class VirtualList extends React.PureComponent {
     _visible = { startIndex:-1, endIndex:-1 }
 
     componentDidUpdate(prev) {
-        if (prev.scrollToIndex != this.props.scrollToIndex &&
-            this.props.scrollToIndex >= 0 &&
+        const { scrollToIndex=-1, totalCount, header } = this.props
+
+        if (prev.scrollToIndex != scrollToIndex &&
+            scrollToIndex >= 0 &&
+            scrollToIndex <= totalCount &&
             this._list.current)
             superScrollToIndex(
                 this._list.current.scrollToIndex,
                 this._visible.startIndex,
                 this._visible.endIndex,
-                this.props.scrollToIndex+(this.props.header?1:0)
+                scrollToIndex+(header?1:0)
             )
     }
 
     rangeChanged = ({ startIndex, endIndex })=>{
         this._visible = { startIndex, endIndex }
 
-        if (endIndex >= this.props.totalCount - 20)
+        if (endIndex >= this.props.totalCount - (endIndex - startIndex)*2)
             this.props.endReached()
     }
 
@@ -72,7 +76,7 @@ export default class VirtualList extends React.PureComponent {
     }
 
     render() {
-        const { endReached, totalCount, header, stickyHeader, dataKey, disableVirtualization, scrollToIndex, ...etc } = this.props
+        const { endReached, totalCount, header, stickyHeader, dataKey, disableVirtualization, scrollToIndex=0, style={}, ...etc } = this.props
         const Component = disableVirtualization ? NonVirtualList : Virtuoso
 
         return (
@@ -84,7 +88,7 @@ export default class VirtualList extends React.PureComponent {
                 totalCount={totalCount ? (totalCount+(header?1:0)) : (1+(header?1:0))}
                 item={this.renderItem}
                 computeItemKey={this.computeItemKey}
-                style={mainStyle}
+                style={{...mainStyle, ...style}}
                 rangeChanged={endReached && this.rangeChanged}
                 initialTopMostItemIndex={scrollToIndex >= 0 ? scrollToIndex : undefined}
             />
