@@ -9,17 +9,12 @@ class VirtualGrid extends React.PureComponent {
     }
 
     //measure columns and rows on container size change
-    static getDerivedStateFromProps({ width, columnWidth, totalCount, disableVirtualization }, state) {
+    static getDerivedStateFromProps({ width, columnWidth, totalCount, disableVirtualization }) {
         const columnCount = Math.max(parseInt(width / columnWidth), 2)
-        const rowCount = Math.ceil(totalCount / columnCount)
-
-        if (columnCount == state.columnCount &&
-            rowCount == state.rowCount)
-            return null
 
         return {
             columnCount,
-            rowCount,
+            rowCount: Math.ceil(totalCount / columnCount),
             style: {
                 '--grid-columns': columnCount,
                 ...(!disableVirtualization ? { overflowY: 'overlay' } : { })

@@ -3,7 +3,6 @@ import { Virtuoso } from 'react-virtuoso'
 import superScrollToIndex from './helpers/superScrollToIndex'
 
 const mainStyle = { width: '100%', height: '100%' }
-const stickyHeaderStyle = {position: 'sticky', top:0, zIndex: 99}
 
 export default class VirtualList extends React.PureComponent {
     static defaultProps = {
@@ -11,10 +10,8 @@ export default class VirtualList extends React.PureComponent {
         item: undefined,            //required
         computeItemKey: undefined,  //required
         totalCount: 0,              //required
-        header: undefined,          //
         empty: undefined,           //
         endReached: undefined,      //
-        stickyHeader: false,
         disableVirtualization: false,
         defaultItemHeight: 80,
         scrollToIndex: -1,
@@ -27,7 +24,7 @@ export default class VirtualList extends React.PureComponent {
     _visible = { startIndex:-1, endIndex:-1 }
 
     componentDidUpdate(prev) {
-        const { scrollToIndex=-1, totalCount, header } = this.props
+        const { scrollToIndex=-1, totalCount } = this.props
 
         if (prev.scrollToIndex != scrollToIndex &&
             scrollToIndex >= 0 &&
@@ -37,7 +34,7 @@ export default class VirtualList extends React.PureComponent {
                 this._list.current.scrollToIndex,
                 this._visible.startIndex,
                 this._visible.endIndex,
-                scrollToIndex+(header?1:0)
+                scrollToIndex
             )
     }
 
@@ -49,15 +46,8 @@ export default class VirtualList extends React.PureComponent {
     }
 
     renderItem = index=>{
-        const { header, item, empty, totalCount, disableVirtualization } = this.props
+        const { item, empty, totalCount } = this.props
         
-        if (header && index == 0)
-            return (
-                <div key='header' style={disableVirtualization ? stickyHeaderStyle : undefined}>
-                    {header()}
-                </div>
-            )
-
         if (!totalCount)
             return (
                 <div key='empty'>
@@ -65,18 +55,17 @@ export default class VirtualList extends React.PureComponent {
                 </div>
             )
 
-        return item(index-(header?1:0))
+        return item(index)
     }
 
     computeItemKey = index=>{
-        const { header, totalCount, computeItemKey } = this.props
-        if (header && index == 0) return 'header'
+        const { totalCount, computeItemKey } = this.props
         if (!totalCount) return 'empty'
-        return computeItemKey ? computeItemKey(index-(header?1:0)) : index
+        return computeItemKey ? computeItemKey(index) : index
     }
 
     render() {
-        const { endReached, totalCount, header, stickyHeader, dataKey, disableVirtualization, scrollToIndex=0, style={}, ...etc } = this.props
+        const { endReached, totalCount, dataKey, disableVirtualization, scrollToIndex=0, style={}, ...etc } = this.props
         const Component = disableVirtualization ? NonVirtualList : Virtuoso
 
         return (
@@ -84,8 +73,7 @@ export default class VirtualList extends React.PureComponent {
                 {...etc}
                 ref={this._list}
                 dataKey={dataKey+(!totalCount?'empty':'')}
-                topItems={header && stickyHeader ? 1 : 0}
-                totalCount={totalCount ? (totalCount+(header?1:0)) : (1+(header?1:0))}
+                totalCount={totalCount}
                 item={this.renderItem}
                 computeItemKey={this.computeItemKey}
                 style={{...mainStyle, ...style}}

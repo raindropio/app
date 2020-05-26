@@ -88,25 +88,27 @@ export default class BookmarksItemsListing extends React.Component {
         }
 
         return (
-            <Component
-                className={`elements view-${view} ${selectModeEnabled&&'select-mode'}`}
-                dataKey={activeId+selectModeEnabled+view+this.state.itemsCheckpoint} //force re-render
+            <div className='elements'>
+                {this.renderHeader()}
 
-                item={this.renderItem}
-                header={this.renderHeader}
-                empty={this.renderEmpty}
-                footer={this.renderFooter}
-                computeItemKey={this.computeItemKey}
+                <Component
+                    className={`items view-${view} ${selectModeEnabled&&'select-mode'}`}
+                    dataKey={activeId+selectModeEnabled+view+this.state.itemsCheckpoint} //force re-render
 
-                totalCount={compact ? Math.min(items.length, config.compact.count) : items.length}
-                columnWidth={config.size[view].cover.width}
-                stickyHeader={true}
-                disableVirtualization={compact}
-                
-                scrollToIndex={activeId && items.length ? items.indexOf(activeId) : -1}
-                
-                endReached={this.endReached}
-                />
+                    item={this.renderItem}
+                    empty={this.renderEmpty}
+                    footer={this.renderFooter}
+                    computeItemKey={this.computeItemKey}
+
+                    totalCount={compact ? Math.min(items.length, config.compact.count) : items.length}
+                    columnWidth={config.size[view].cover.width}
+                    disableVirtualization={compact}
+                    
+                    scrollToIndex={activeId && items.length ? items.indexOf(activeId) : -1}
+                    
+                    endReached={this.endReached}
+                    />
+            </div>
         )
     }
 }
