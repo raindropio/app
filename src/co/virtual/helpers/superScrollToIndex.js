@@ -10,5 +10,5 @@ export default (func, start, end, pos)=>{
     const min = Math.min(startGap, endGap)
     const onTop = (min == startGap)
 
-    func({ index: onTop ? pos-1 : pos+1, align: onTop ? 'start' : 'end' })
+    func({ index: onTop ? pos : pos+1, align: onTop ? 'start' : 'end' })
 }

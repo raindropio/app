@@ -56,7 +56,9 @@ export default class CollectionRoute extends React.PureComponent {
             for(const key in update||{})
                 params.set(key, update[key])
 
-            this.props.history[this.props.location.search ? 'replace' : 'push'](this.props.match.url+'?'+params.toString())
+            const search = params.toString()
+
+            this.props.history[search && this.props.location.search ? 'replace' : 'push'](this.props.match.url+'?'+search)
         }
     }
 
