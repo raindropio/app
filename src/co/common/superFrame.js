@@ -6,28 +6,28 @@ export let isNative = ('plugins' in document.createElement('webview'))
 
 export default class SuperFrame extends React.Component {
 	state = {
-		loading: true
+		status: 'loading'
 	}
 
 	componentDidUpdate(prev) {
 		if (prev.src != this.props.src)
-			this.setState({ loading: true })
+			this.setState({ status: 'loading' })
 	}
 
 	onLoad = ()=>
-		this.setState({ loading: false })
+		this.setState({ status: 'loaded' })
 
 	onError = ()=>
-		this.setState({ loading: false })
+		this.setState({ status: 'error' })
 
 	render() {
 		const { src, disableSandbox=false } = this.props
-		const { loading } = this.state
+		const { status } = this.state
 
 		const Component = isNative ? 'webview' : 'iframe'
 
 		return (
-			<div className={`superFrame ${loading && 'status-loading'}`}>
+			<div className={`superFrame status-${status}`}>
 				<Component 
 					tabIndex='-1' 
 					allowtransparency='false'
@@ -38,7 +38,8 @@ export default class SuperFrame extends React.Component {
 					onLoad={this.onLoad}
 					onError={this.onError} />
 
-				{loading ? <div className='superFrame-loading'><Preloader /></div> : null}
+				{status=='loading' ? <div className='superFrame-overlay'><Preloader /></div> : null}
+				{status=='error' ? <div className='superFrame-overlay'>Error!</div> : null}
 			</div>
 		)
 	}

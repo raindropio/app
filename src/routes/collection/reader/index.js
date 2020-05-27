@@ -54,12 +54,11 @@ export default connect(
             const { access } = getCollection(state, item.collectionId)
 
             //available tabs
-            const tab = reader.tab || 'html'
+            const tab = reader.tab
             const tabs = [
-                'web', 
+                'preview', 
                 ...access.level>=3?['edit']:[], 
                 ...item.cache && access.level>=3?['cache']:[],
-                ...item.type!='link'?['html']:[],
             ]
 
             return {

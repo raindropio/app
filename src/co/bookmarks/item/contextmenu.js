@@ -25,7 +25,7 @@ export default function BookmarksItemContextmenu({
                 <MenuSeparator />
 
                 <MenuItem onClick={onPreviewClick}>
-                    <Icon name='article' />
+                    <Icon name='show' />
                     {t.s('open')+' '+t.s('preview').toLowerCase()}
                 </MenuItem>
 

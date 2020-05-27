@@ -8,9 +8,14 @@ export default ({ tab, ...props })=>{
     let content
 
     switch(tab) {
-        case 'html': content = <HTML {...props} />; break
+        case 'preview':
+            if (props.item.type == 'link')
+                content = <Web {...props} />
+            else
+                content = <HTML {...props} />
+        break
+
         case 'cache': content = <Cache {...props} />; break
-        case 'web': content = <Web {...props} />; break
     }
 
     return (
