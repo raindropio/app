@@ -65,26 +65,6 @@ export default {
         }
     },
 
-    thumb: function(s,width) {
-        try{
-            s = s.trim();
-        } catch(e) {if(e)s="";}
-
-        if (typeof width == "undefined")
-            width = 230;
-
-        if (s!="") {
-            if (s.indexOf('http')!=0)
-                return this.fixURL(s);
-            else if (s.indexOf('stella.raindrop.io')!=-1 || s.indexOf('raindrop.io/screenshot')!=-1)
-                return s;
-            else
-                return config.thumbService+"?url=" + encodeURIComponent(s) + "&width=" + width;
-        }
-        else
-            return "about:blank";
-    },
-
     cleanDomain: function(domain) {
         try{
             var temp = domain.split('.'), maxSize = 2;

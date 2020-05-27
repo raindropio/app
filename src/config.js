@@ -1,22 +1,12 @@
 var home = 'raindrop.io';
 var host = 'https://'+home;
 
-if(typeof window != 'undefined'){
-    if (window.location.protocol.indexOf('http')==0)
-        host = window.location.protocol+'//'+home;
-}
-
 export default {
     home: home,
 	host: host,
     apiPrefix: __DEV__ ? 'http://localhost:3000/v1/' : 'https://api.raindrop.io/v1/',
-    screenshotService: 'https://stella.raindrop.io/imager/screenshot.jpg?width=460&url=',
-    thumbService: 'https://stella.raindrop.io/imager/thumb.jpg',
-    contentTypes: ['link', 'article', 'image', 'video'],
 
-    proPage: host + '/pro',
-
-    collectionExpandPrefix: 'collection_expanded_',
+    webPreview: '//web-preview-prod.exentrich.workers.dev/',
 
     'links': {
         'download': 'https://raindrop.io/download',
