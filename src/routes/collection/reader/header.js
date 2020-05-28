@@ -8,7 +8,7 @@ const defaultTabs = [
     {
         key: 'preview',
         title: t.s('preview'),
-        icon: 'article'
+        icon: 'show'
     },
     {
         key: 'cache',
@@ -18,7 +18,7 @@ const defaultTabs = [
     {
         key: 'edit',
         title: t.s('editMin'),
-        icon: 'info'
+        icon: 'edit'
     }
 ]
 
