@@ -24,7 +24,13 @@ export default class CollectionsItem extends React.Component {
         onClick: this.props.events.onItemClick ?
             (e)=>{
                 e.preventDefault()
-                this.props.events.onItemClick(this.props.item)
+
+                if (this.props.item._id == -100)
+                    return this.props.actions.oneCreate({
+                        title: this.props.item.title
+                    }, this.props.events.onItemClick)
+                else
+                    this.props.events.onItemClick(this.props.item)
             } : undefined,
     
         onExpandClick: ()=>
