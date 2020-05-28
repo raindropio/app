@@ -22,9 +22,10 @@ export default class CollectionsItem extends React.Component {
 
     handlers = {
         onClick: this.props.events.onItemClick ?
-            ()=>
-                this.props.events.onItemClick(this.props.item) :
-            undefined,
+            (e)=>{
+                e.preventDefault()
+                this.props.events.onItemClick(this.props.item)
+            } : undefined,
     
         onExpandClick: ()=>
             this.props.actions.oneToggle(this.props.item._id),

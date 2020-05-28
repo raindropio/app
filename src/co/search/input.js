@@ -43,6 +43,15 @@ export default class SearchView extends React.PureComponent {
     onInputFocus = ()=>this.setState({focus: true})
     onInputBlur = ()=>this.setState({focus: false})
 
+    onInputKeyDown = (e)=>{
+        switch(e.key) {
+            case 'Escape':
+                if (this.props.value)
+                    e.stopPropagation()
+            break
+        }
+    }
+
     renderButton = ({id, icon, iconSize='micro'})=>(
         <a className='search-button button toolbar-button' href='' data-id={id} key={id} tabIndex='-1' onClick={this.onButtonClick}>
             <Icon name={icon} size={iconSize} />
@@ -72,7 +81,8 @@ export default class SearchView extends React.PureComponent {
                         {...original}
                         onChange={this.onInputChange}
                         onFocus={this.onInputFocus}
-                        onBlur={this.onInputBlur} />
+                        onBlur={this.onInputBlur}
+                        onKeyDown={this.onInputKeyDown} />
 
                     {this.renderCancel()}
                 </form>

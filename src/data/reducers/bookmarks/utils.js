@@ -42,7 +42,7 @@ export const actualizeSpaceStatus = (state, spaceId)=>{
 		var newMainStatus = '',
 			newNextPageStatus = ''
 
-		if (space){
+		if (space && space.status){
 			if ((space.status.main=='loaded')&&(space.ids.length==0)){
 				newMainStatus = 'empty'
 				newNextPageStatus = 'noMore'

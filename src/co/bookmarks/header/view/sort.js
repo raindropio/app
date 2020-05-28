@@ -1,6 +1,6 @@
 import React from 'react'
 import t from '~t'
-import Popover, { Menu, MenuItem } from '~co/popover'
+import Popover, { Menu, MenuItem } from '~co/overlay/popover'
 import Icon from '~co/common/icon'
 
 export default class BookmarksHeaderSort extends React.Component {

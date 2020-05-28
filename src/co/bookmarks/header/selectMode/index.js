@@ -4,6 +4,7 @@ import t from '~t'
 import getLinks from '~data/modules/bookmarks/getLinks'
 
 import Icon from '~co/common/icon'
+import Move from './move'
 import Checkbox from './checkbox'
 import More from './more'
 
@@ -21,6 +22,10 @@ export default class BookmarksHeaderSelectMode extends React.PureComponent {
                 this.props.actions.unselectAll(this.props.cid)
             else
                 this.props.actions.selectAll(this.props.cid)
+        },
+
+        onMove: (to)=>{
+            this.props.actions.moveSelected(this.props.cid, to)
         },
 
         onImportantClick: (e)=>{
@@ -67,14 +72,16 @@ export default class BookmarksHeaderSelectMode extends React.PureComponent {
 
     render() {
         const { selectMode, collection, isSearching } = this.props
-        const { onSelectAllClick, onCancelSelectModeClick, onImportantClick, onAddTagsClick, onRemoveClick, onOpenSelectedClick } = this.handlers
+        const { onSelectAllClick, onCancelSelectModeClick, onAddTagsClick, onRemoveClick, onOpenSelectedClick } = this.handlers
 
         let title = collection._id ? (t.s('in') + ' ' + collection.title + (isSearching?' / '+t.s('defaultCollection-0'):'')) : ''
 
         return (
             <div className='elements-header select-mode'>
                 <div className='header'>
-                    <Checkbox {...this.props} {...this.handlers} />
+                    <Checkbox 
+                        {...this.props}
+                        {...this.handlers} />
 
                     <div className='title' onClick={onSelectAllClick}>
                         {selectMode.all ? <span className='selected-all-badge'>{t.s('all')}</span> : selectMode.ids.length} {title}
@@ -82,13 +89,8 @@ export default class BookmarksHeaderSelectMode extends React.PureComponent {
 
                     <div className='space' />
 
-                    <a className='button default' onClick={onImportantClick}>
-                        <Icon name='like' />
-
-                        <span className='hide-on-small-body'>
-                            {_.capitalize(t.s('to')) + ' ' + t.s('favoriteSites').toLowerCase()}
-                        </span>
-                    </a>
+                    <Move 
+                        {...this.handlers} />
 
 					<a className='button default' onClick={onAddTagsClick}>
                         <Icon name='tag' />

@@ -1,5 +1,5 @@
 import {
-	APP_SET_THEME
+	APP_SET_THEME,
 } from '../constants'
 
 export const setTheme = (name)=>({

@@ -1,7 +1,7 @@
 import React from 'react'
 import t from '~t'
 import config from '~config'
-import Popover, { Menu, MenuItem, MenuSeparator } from '~co/popover'
+import Popover, { Menu, MenuItem, MenuSeparator } from '~co/overlay/popover'
 import Icon from '~co/common/icon'
 
 export default function SidebarProfileMenu({

@@ -70,7 +70,8 @@ export const makeTree = ()=> createSelector(
 		const search = options.search ? (options.search||'').trim().toLowerCase() : ''
 
 		const filterIds = (_id)=>(
-			hideIds.indexOf(typeof _id == 'object' ? _id.item._id : _id)==-1
+			!hideIds.length ||
+			!hideIds.includes(typeof _id == 'object' ? _id.item._id : _id)
 		)
 
 		const sortedItems = _.sortBy(items, ({sort})=>sort)
@@ -99,7 +100,9 @@ export const makeTree = ()=> createSelector(
 				})
 			})
 		}else{
-			const filtered = _.filter(items, ({title})=>title.toLowerCase().includes(search))
+			const filtered = _.filter(items, ({_id, title})=>
+				_id>0 && title.toLowerCase().includes(search)
+			)
 
 			filtered.unshift(normalizeCollection({
 				_id: -100,

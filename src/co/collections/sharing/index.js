@@ -1,5 +1,5 @@
 import React from 'react'
-import Popover from '~co/popover/index'
+import Popover from '~co/overlay/popover'
 import Title from './title'
 import Public from './public'
 import Collaborators from './collaborators'

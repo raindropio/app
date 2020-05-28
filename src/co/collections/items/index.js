@@ -5,14 +5,16 @@ import { bindActionCreators } from 'redux'
 import * as collectionsActions from '~data/actions/collections'
 import { makeTreeFlat, makeCollectionsStatus } from '~data/selectors/collections'
 
+import withPause from '~co/common/withPause'
 import Tree from './tree'
 
 class CollectionsItems extends React.Component {
     static defaultProps = {
         uriPrefix:          '',
         activeId:           undefined,
-        options:            {}, //hideIds[], showGroups:true
+        options:            {}, //hideIds[], showGroups:true, search:''
         events:             {}, //onItemClick, onGroupClick
+        
         customRows:         undefined, //[] additional items in tree
         customRowRenderer:  undefined, //(row) renderer for additional items
     }
@@ -59,7 +61,7 @@ class CollectionsItems extends React.Component {
 }
 
 export default connect(
-	() => {
+    () => {
         const getTree = makeTreeFlat()
         const getCollectionsStatus = makeCollectionsStatus()
     
@@ -72,9 +74,9 @@ export default connect(
             }
         }
     },
-	(dispatch)=>({
-		actions: bindActionCreators(collectionsActions, dispatch)
+    (dispatch)=>({
+        actions: bindActionCreators(collectionsActions, dispatch)
     }),
     undefined,
     { forwardRef: true }
-)(CollectionsItems)
+)(withPause(CollectionsItems))

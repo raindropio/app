@@ -87,12 +87,6 @@ export default class BookmarkItemView extends React.PureComponent {
                         <>
                             <span 
                                 className='button min default'
-                                onClick={onImportantClick}>
-                                <b><Icon name={'like'+(important?'_active':'')} /></b>
-                            </span>
-
-                            <span 
-                                className='button min default'
                                 onClick={onEditClick}>
                                 <b><Icon name='edit' /></b>
                             </span>
