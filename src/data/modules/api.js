@@ -52,19 +52,23 @@ function* post(url, data) {
 }
 
 /*
-	file: {uri, name, type:'image/jpeg'}
+	url, {
+		file: {uri, name, type:'image/jpeg'}
+	}
 */
-function* upload(url, file) {
+function* upload(url, _body) {
 	const body = new FormData()
-	body.append('file', file, file.name);
+
+	for (const key in _body ) {
+		const val = _body[key]
+		body.append(key, val)
+	}
 
 	const res = yield req(url, {
-		method: 'POST',
-		headers: {
-			'Content-Type': 'multipart/form-data'
-		},
+		method: 'PUT',
 		body
 	})
+
 	const json = yield res.json()
 	checkJSON(json)
 

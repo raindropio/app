@@ -6,6 +6,7 @@ import { makeBookmarksFlatSections, makeSelectModeEnabled, makeSort } from '~dat
 import { makeCollection } from '~data/selectors/collections'
 
 import Listing from './listing'
+import Upload from '~co/bookmarks/upload'
 
 class BookmarksItems extends React.Component {
     static defaultProps = {
@@ -13,15 +14,6 @@ class BookmarksItems extends React.Component {
         activeId:   0,
         compact:    false,
         events:     {}  //onItemClick, onItemEditClick, onItemPreviewClick, onTagClick
-    }
-
-    load = ()=>{
-        const { actions, cid, search, default_sort } = this.props
-
-        actions.load(cid, {
-            search,
-            sort: search ? 'score' : default_sort
-        })
     }
 
     componentDidMount() {
@@ -33,10 +25,25 @@ class BookmarksItems extends React.Component {
             prev.search != this.props.search)
             this.load()
     }
-    
+
+    load = ()=>{
+        const { actions, cid, search, default_sort } = this.props
+
+        actions.load(cid, {
+            search,
+            sort: search ? 'score' : default_sort
+        })
+    }
+
     render() {
         return (
-            <Listing {...this.props} />
+            <Upload cid={this.props.cid}>
+                {drop=>
+                    <Listing 
+                        {...this.props}
+                        {...drop} />
+                }
+            </Upload>
         )
     }
 }

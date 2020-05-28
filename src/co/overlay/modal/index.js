@@ -6,13 +6,8 @@ import Content from './content'
 
 export default class Popover extends React.Component {
     static defaultProps = {
+        closable: true,
         onClose: undefined      //func, required
-    }
-
-    store = {
-        close: ()=>{
-            this.props.onClose()
-        }
     }
 
     onContainerKeyDown = (e)=>{
@@ -25,11 +20,11 @@ export default class Popover extends React.Component {
     }
 
     render() {
-        const { children, onClose, ...etc } = this.props
+        const { children, onClose, closable, ...etc } = this.props
 
         return (
             <Portal>
-                <Context.Provider value={this.store}>
+                <Context.Provider value={{ onClose, closable }}>
                     <div className='modal' onKeyDown={this.onContainerKeyDown}>
                         <div className='modal-body' {...etc}>
                             {children}

@@ -32,7 +32,7 @@ export default class SuperFrame extends React.Component {
 					tabIndex='-1' 
 					allowtransparency='false'
 					plugins='true'
-					src={isNative ? src : `${config.webPreview}${src}`} 
+					src={isNative || src.includes('raindrop.io') ? src : `${config.webPreview}${src}`} 
 					sandbox={!disableSandbox && 'allow-same-origin allow-forms allow-scripts allow-popups'} 
 					target='_self'
 					onLoad={this.onLoad}

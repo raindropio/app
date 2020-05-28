@@ -70,6 +70,7 @@ export default class BookmarksItemsListing extends React.Component {
 
     render() {
         const { items, view, activeId, selectModeEnabled, compact } = this.props
+        const { isDropping, dropHandlers } = this.props
 
         let Component
 
@@ -88,7 +89,7 @@ export default class BookmarksItemsListing extends React.Component {
         }
 
         return (
-            <div className='elements'>
+            <div className={`elements ${isDropping && 'is-drag-over'}`} {...dropHandlers}>
                 {this.renderHeader()}
 
                 <Component

@@ -57,6 +57,15 @@ elementInvert()
     .items {
         flex: 1
     }
+
+    &.is-drag-over:after {
+        background: rgba(74,116,226,.1)
+		left:0;top:0;right:0;bottom:0;
+		content: ""
+		position: absolute
+		z-index:1
+		pointer-events: none
+    }
 }
 
 .view-sort-sort {

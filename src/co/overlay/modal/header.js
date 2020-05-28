@@ -14,9 +14,11 @@ class ModalHeader extends React.Component {
 
                 {this.props.children}
 
-                <a className='button default' onClick={this.context.close}>
-                    <Icon name='close' />
-                </a>
+                {this.context.closable ? (
+                    <a className='button default modal-close' onClick={this.context.onClose}>
+                        <Icon name='close' />
+                    </a>
+                ) : null}
             </header>
         )
     }
