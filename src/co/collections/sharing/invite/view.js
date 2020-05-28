@@ -29,6 +29,9 @@ export default class CollectionSharingInviteView extends React.PureComponent {
         this.setState({ role: this.state.role=='viewer' ? 'member' : 'viewer' })
 
     onInviteClick = ()=>{
+        if (!this.state.emails)
+            return
+            
         const { onInvite } = this.props
         onInvite(this.state.emails, this.state.role)
     }

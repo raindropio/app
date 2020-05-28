@@ -2,6 +2,7 @@ import React from 'react'
 import { Header } from '~co/screen/splitview/main'
 import Icon from '~co/common/icon'
 import Search from '~co/search'
+import Share from './share'
 
 export default class CollectionsMainHeader extends React.Component {
     searchEvents = {
@@ -19,11 +20,8 @@ export default class CollectionsMainHeader extends React.Component {
                     value={search}
                     events={this.searchEvents} />
     
-                {cid > 0 && (
-                    <a href='' className='button default'>
-                        <Icon name='share' />
-                    </a>
-                )}
+                <Share 
+                    cid={cid} />
     
                 <a href='' className='button active'>
                     <b>
