@@ -11,7 +11,7 @@ export default class CollectionsMainHeader extends React.Component {
     }
 
     render() {
-        const { search } = this.props
+        const { cid, search } = this.props
 
         return (
             <Header>
@@ -19,9 +19,11 @@ export default class CollectionsMainHeader extends React.Component {
                     value={search}
                     events={this.searchEvents} />
     
-                <a href='' className='button default'>
-                    <Icon name='share' />
-                </a>
+                {cid > 0 && (
+                    <a href='' className='button default'>
+                        <Icon name='share' />
+                    </a>
+                )}
     
                 <a href='' className='button active'>
                     <b>
