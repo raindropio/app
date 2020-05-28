@@ -4,7 +4,6 @@ import t from '~t'
 import config from '~config'
 
 import helpers from './helpers'
-import collectionsHelpers from '~modules/collections'
 import Preloader from '~co/common/preloader'
 import UserStore from '~stores/user'
 
