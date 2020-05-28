@@ -23,28 +23,28 @@ export default function CollectionsItemContextmenu({
                 {/* Have write access */}
                 { _id>0 ? (access.level>=3 ? (
                     <>
-                        {onCreateNewChildClick && (
+                        {onCreateNewChildClick ? (
                             <MenuItem onClick={onCreateNewChildClick}>
                                 <Icon name='new_collection' />
                                 {t.s('createSubFolder')}
                             </MenuItem>
-                        )}
+                        ) : null}
 
                         <MenuSeparator />
 
-                        {onRenameClick && (
+                        {onRenameClick ? (
                             <MenuItem onClick={onRenameClick}>
                                 <Icon name='edit' />
                                 {t.s('edit')}
                             </MenuItem>
-                        )}
+                        ) : null}
 
-                        {onSharing && (
+                        {onSharing ? (
                             <MenuItem onClick={onSharing}>
                                 <Icon name='sharing' />
                                 {t.s('sharing')}
                             </MenuItem>
-                        )}
+                        ) : null}
 
                         <MenuItem onClick={onRemoveClick}>
                             <Icon name='trash' />
@@ -60,12 +60,12 @@ export default function CollectionsItemContextmenu({
                     </MenuItem>
                 )) : null}
 
-                { _id==-99 && (
+                { _id==-99 ? (
                     <MenuItem onClick={onRemoveClick}>
                         <Icon name='trash' />
                         {t.s('removeIt')} {t.s('all').toLowerCase()} {t.s('in')} {t.s('defaultCollection--99').toLowerCase()}
                     </MenuItem>
-                ) }
+                ) : null}
             </Menu>
         </Popover>
     )

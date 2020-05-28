@@ -24,7 +24,7 @@ export default class BookmarksSelectModeMore extends React.Component {
                     <Icon name='more_horizontal'/>
                 </a>
 
-                {this.state.menu && (
+                {this.state.menu ? (
                     <Popover onClose={this.onContextMenuClose}>
                         <Menu>
                             <MenuItem onClick={onScreenshotClick}>
@@ -57,7 +57,7 @@ export default class BookmarksSelectModeMore extends React.Component {
                             </MenuItem>
                         </Menu>
                     </Popover>
-                )}
+                ) : null}
             </>
         )
     }

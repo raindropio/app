@@ -115,12 +115,12 @@ class BookmarkItem extends React.Component {
                     {...this.handlers}
                     />
 
-                {this.state.menu && (
+                {this.state.menu ? (
                     <Contextmenu 
                         {...item}
                         {...props}
                         {...this.handlers} />
-                )}
+                ) : null}
             </>
         )
     }

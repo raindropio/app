@@ -25,14 +25,14 @@ export default class BookmarksHeaderView extends React.Component {
                     <Icon name='more_horizontal' />
                 </a>
 
-                {menu && (
+                {menu ? (
                     <Contextmenu 
                         {...collection}
                         onContextMenuClose={this.onContextMenuClose}
                         onRemoveClick={onRemoveClick}
                         onOpenAllClick={onOpenAllClick}
                         to={`/collection/${collection._id}`} />
-                )}
+                ) : null}
             </>
         )
     }

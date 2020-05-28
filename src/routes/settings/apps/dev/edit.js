@@ -84,12 +84,12 @@ export default class AppsDevEdit extends React.PureComponent {
                         <div className="edit-form">
                             <h4>{t.s('edit')}</h4>
                         
-                            {this.state.client._id && (
+                            {this.state.client._id ? (
                                 <Form 
                                     {...this.state}
                                     onSubmit={this.onSubmit}
                                     onCover={this.onCover} />
-                            )}
+                            ) : null}
 
                             <div style={{margin: '16px'}}>
                                 <a href="" className="button red standart" onClick={this.onRemove}>{t.s('remove')} this app</a>

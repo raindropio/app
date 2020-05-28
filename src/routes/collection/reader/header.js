@@ -53,7 +53,7 @@ export default class ReaderHeader extends React.PureComponent {
                     <Icon name='open' />
                 </a>
 				
-                {access.level >= 3 && (
+                {access.level >= 3 ? (
                     <>
                         <a className={'button '+(item.important ? 'active' : '')} onClick={this.onImportantClick}  title={t.s('add') +' ' + t.s('to') + ' ' + t.s('favoriteSites').toLowerCase()}>
                             <Icon name={'like'+(item.important ? '_active' : '')} />
@@ -62,7 +62,7 @@ export default class ReaderHeader extends React.PureComponent {
                             <Icon name='trash' />
                         </a>
                     </>
-                )}
+                ) : null}
             </Header>
         )
     }

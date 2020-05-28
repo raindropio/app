@@ -30,7 +30,7 @@ export default class BookmarkItemView extends React.PureComponent {
                     <SafeHtml tagName='span' className='title'>{highlight.title || title}</SafeHtml>
                     <div>
                         <SafeHtml tagName='p' className='description'>{highlight.excerpt || excerpt}</SafeHtml>
-                        {highlight.body && <SafeHtml tagName='p' className='description from-body'>{highlight.body}</SafeHtml>}
+                        {highlight.body ? <SafeHtml tagName='p' className='description from-body'>{highlight.body}</SafeHtml> : null}
                     </div>
 
                     {/* Tags */}
@@ -41,31 +41,31 @@ export default class BookmarkItemView extends React.PureComponent {
                     {/* Info */}
                     <div className='info-wrap'>
                         <div className='info info-domain'>
-                            {cid != collectionId && <Path collectionId={collectionId} />}
+                            {cid != collectionId ? <Path collectionId={collectionId} /> : null}
 
-                            {important && (
+                            {important ? (
                                 <div className='info-important'>
                                     <span className='info-img'>
                                         <Icon name='important' size='micro' />
                                     </span>
                                 </div>
-                            )}
+                            ) : null}
 
-                            {reparse && (
+                            {reparse ? (
                                 <div className='info-important'>
                                     <span className='info-img'>
                                         <Icon name='progress' size='micro' />
                                     </span>
                                 </div>
-                            )}
+                            ) : null}
 
-                            {type != 'link' && (
+                            {type != 'link' ? (
                                 <div className='info-important'>
                                     <span className='info-img'>
                                         <Icon name={type} size='micro' />
                                     </span>
                                 </div>
-                            )}
+                            ) : null}
 
                             <div className='info-domain'>
                                 {domain}&nbsp; ·&nbsp; <ShortDate date={created}/>
@@ -83,7 +83,7 @@ export default class BookmarkItemView extends React.PureComponent {
                         <b><Icon name='show' /></b>
                     </a>
 
-                    {access.level >= 3 && (
+                    {access.level >= 3 ? (
                         <>
                             <span 
                                 className='button min default'
@@ -98,16 +98,16 @@ export default class BookmarkItemView extends React.PureComponent {
                                 <b><Icon name='more_horizontal' /></b>
                             </span>
                         </>
-                    )}
+                    ) : null}
                 </div>
 
-                {access.level >= 3 && (
+                {access.level >= 3 ? (
                     <label
                         className={`selectElement ${selected ? 'active' : 'default'}`}
                         title={t.s('select')}>
                         <input type='checkbox' checked={selected} onChange={onSelectClick} />
                     </label>
-                )}
+                ) : null}
 
                 <SuperLink
 					navPrefix='element'

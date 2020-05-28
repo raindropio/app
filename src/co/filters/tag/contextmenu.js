@@ -9,17 +9,17 @@ export default function CollectionsItemContextmenu({
     return (
         <Popover onClose={onContextMenuClose}>
             <Menu>
-                {onRenameClick && (
+                {onRenameClick ? (
                     <MenuItem onClick={onRenameClick}>
                         <Icon name='edit' />
                         {t.s('edit')}
                     </MenuItem>
-                )}
+                ) : null}
 
-                {onRemoveClick && (<MenuItem onClick={onRemoveClick}>
+                {onRemoveClick ? (<MenuItem onClick={onRemoveClick}>
                     <Icon name='trash' />
                     {t.s('remove')}
-                </MenuItem>)}
+                </MenuItem>) : null}
             </Menu>
         </Popover>
     )

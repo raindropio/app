@@ -75,11 +75,11 @@ export default class CollectionsGroup extends React.PureComponent {
                     {...this.props}
                     {...this.handlers} />
 
-                {this.state.menu && (
+                {this.state.menu ? (
                     <Contextmenu 
                         {...this.props}
                         {...this.handlers} />
-                )}
+                ) : null}
             </>
         )
     }

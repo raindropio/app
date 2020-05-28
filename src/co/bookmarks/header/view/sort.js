@@ -45,7 +45,7 @@ export default class BookmarksHeaderSort extends React.Component {
                     </span>
                 </a>
 
-                {menu && (
+                {menu ? (
                     <Popover onClose={this.onContextMenuClose}>
                         <Menu>
                             {Object.keys(this.options).map(sort=>(
@@ -60,7 +60,7 @@ export default class BookmarksHeaderSort extends React.Component {
                             ))}
                         </Menu>
                     </Popover>
-                )}
+                ) : null}
             </>
         )
     }

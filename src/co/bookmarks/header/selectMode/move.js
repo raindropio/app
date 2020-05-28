@@ -30,12 +30,12 @@ export default class BookmarksSelectModeMove extends React.Component {
                     <span className='hide-on-small-body'>{t.s('move')}</span>
                 </a>
 
-                {this.state.show && (
+                {this.state.show ? (
                     <Picker
                         events={this.events}
                         onClose={this.onClose}
                         />
-                )}
+                ) : null}
             </>
         )
     }

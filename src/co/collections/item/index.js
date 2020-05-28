@@ -100,19 +100,19 @@ export default class CollectionsItem extends React.Component {
                     {...this.handlers}
                     to={`${uriPrefix}${item._id}`} />
 
-                {this.state.menu && (
+                {this.state.menu ? (
                     <Contextmenu 
                         {...item}
                         {...props}
                         {...this.handlers}
                         to={`${uriPrefix}${item._id}`} />
-                )}
+                ) : null}
 
-                {this.state.sharing && (
+                {this.state.sharing ? (
                     <Sharing 
                         _id={item._id}
                         onClose={this.handlers.onSharingClose} />
-                )}
+                ) : null}
             </>
         )
     }

@@ -37,11 +37,11 @@ export default class FiltersType extends React.Component {
 
                 {count ? <div className='count'>{humanNumber(count)}</div> : null}
 
-                {showActions && (
+                {showActions ? (
                     <div className='actions'>
                         <Icon name='add' onClick={onAppendClick} />
                     </div>
-                )}
+                ) : null}
 
                 <SuperLink
                     navPrefix='menu-item'

@@ -63,12 +63,12 @@ class BookmarksUpload extends React.Component {
                     {this.props.children}
                 </DropFile>
 
-                {(total || failed.length) && (
+                {(total || failed.length) ? (
                     <Modal 
                         closable={failed.length}
                         onClose={this.onCancel}>
                         <Header title={t.s('uploadProgress')}>
-                            {uploading && <Preloader className='size-small' />}
+                            {uploading ? <Preloader className='size-small' /> : null}
                         </Header>
 
                         <Content data-indent>
@@ -79,7 +79,7 @@ class BookmarksUpload extends React.Component {
                             )}
                         </Content>
                     </Modal>
-                )}
+                ) : null}
             </>
         )
     }

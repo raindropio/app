@@ -36,7 +36,7 @@ export default function BookmarksItemContextmenu({
                     </MenuItem>
                 ) : null}
 
-                {access.level >= 3 && (
+                {access.level >= 3 ? (
                     <>
                         <MenuSeparator />
 
@@ -55,12 +55,12 @@ export default function BookmarksItemContextmenu({
                             {t.s('clickToMakeScreenshot')}
                         </MenuItem>
 
-                        {!reparse && (
+                        {!reparse ? (
                             <MenuItem onClick={onReparseClick}>
                                 <Icon name='refresh' />
                                 {t.s('refresh')+' '+t.s('preview').toLowerCase()}
                             </MenuItem>
-                        )}
+                        ) : null}
 
                         <MenuSeparator />
 
@@ -74,7 +74,7 @@ export default function BookmarksItemContextmenu({
                             {t.s('remove')}
                         </MenuItem>
                     </>
-                )}
+                ) : null}
             </Menu>
         </Popover>
     )

@@ -100,7 +100,7 @@ export default class AppsDevEdit extends React.PureComponent {
                                 onChange={this.onChange} />
                     </figure>
 
-                    {this.props.acceptTerms && (
+                    {this.props.acceptTerms ? (
                         <figure className="fieldWrap">
                             <div className="field">
                                 <label>
@@ -110,7 +110,7 @@ export default class AppsDevEdit extends React.PureComponent {
                                 </label>
                             </div>
                         </figure>
-                    )}
+                    ) : null}
 
                     {this.state.unsaved && <figure className="fieldColumns">
                         <input type="submit" className="button blue standart" value={t.s('save')} />

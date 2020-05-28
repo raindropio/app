@@ -27,11 +27,11 @@ export default class HeaderShare extends React.Component {
                     <Icon name='share' />
                 </a>
 
-                {show && (
+                {show ? (
                     <Sharing 
                         _id={cid}
                         onClose={this.onSharingClose} />
-                )}
+                ) : null}
             </>
         )
     }

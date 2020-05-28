@@ -41,7 +41,7 @@ export default class BookmarksHeaderView extends React.Component {
                     </span>
                 </a>
 
-                {menu && (
+                {menu ? (
                     <Popover onClose={this.onContextMenuClose}>
                         <Menu>
                             {Object.keys(this.options).map(view=>(
@@ -55,7 +55,7 @@ export default class BookmarksHeaderView extends React.Component {
                             ))}
                         </Menu>
                     </Popover>
-                )}
+                ) : null}
             </>
         )
     }

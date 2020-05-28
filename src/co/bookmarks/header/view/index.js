@@ -46,14 +46,14 @@ export default class BookmarksHeaderView extends React.PureComponent {
         return (
             <div className='elements-header'>
                 <div className='header'>
-                    {(collection._id > 0 || isSearching) && (
+                    {(collection._id > 0 || isSearching) ? (
                         <div className='c-icon'>
                             <CollectionIcon
                                 _id={collection._id}
                                 cover={collection.cover}
                                 loading={status.main=='loading'} />
                         </div>
-                    )}
+                    ) : null}
 
                     <div className='title'>
                         {compact ? <Link to={'/collection/'+collection._id+'full'}>{title}</Link> : title}

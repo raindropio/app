@@ -26,7 +26,7 @@ export default class CollectionSharingCollaboratorsUser extends React.PureCompon
                 </div>
 
                 <div className='actions'>
-                    {role!='owner' && collection.access.level>=3 && (
+                    {role!='owner' && collection.access.level>=3 ? (
                         <label className='but select default onlyicons'>
                             <Icon name='settings' />
                             <Icon name='arrow' />
@@ -43,7 +43,7 @@ export default class CollectionSharingCollaboratorsUser extends React.PureCompon
                                 </optgroup>
                             </select>
                         </label>
-                    )}
+                    ) : null}
                 </div>
             </div>
         )

@@ -35,7 +35,7 @@ export default function CollectionsItemContextmenu({
                 </MenuItem>
 
                 {/* Have write access */}
-                { !system && (
+                { !system ? (
                     <>
                         <MenuItem onClick={onRenameClick}>
                             <Icon name='edit' />
@@ -52,7 +52,7 @@ export default function CollectionsItemContextmenu({
                             {t.s('remove')} {t.s('group').toLowerCase()}
                         </MenuItem>
                     </>
-                )}
+                ) : null}
             </Menu>
         </Popover>
     )
