@@ -43,7 +43,7 @@ export default function(state, action) {switch (action.type) {
 	}break
 
 	case SELECT_MODE_SELECT_BOOKMARK:{
-		if (state.selectMode.enabled && state.selectMode.all)
+		if (state.selectMode.enabled && state.selectMode.all && state.selectMode.spaceId == action.spaceId)
 			return state
 
 		return state
