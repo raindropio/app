@@ -4,8 +4,8 @@ import Popover, { Menu, MenuItem, MenuSeparator } from '~co/overlay/popover'
 import Icon from '~co/common/icon'
 
 export default function CollectionsItemContextmenu({
-    _id, access, to,
-    onContextMenuClose, onCreateNewChildClick, onRenameClick, onRemoveClick, onSharing, onOpenAllClick
+    _id, access, to, count,
+    onContextMenuClose, onCreateNewChildClick, onRenameClick, onIconClick, onRemoveClick, onSharing, onOpenAllClick
 }) {
     return (
         <Popover onClose={onContextMenuClose}>
@@ -15,10 +15,10 @@ export default function CollectionsItemContextmenu({
                     {t.s('openInBrowser')}
                 </MenuItem>
 
-                {onOpenAllClick && <MenuItem onClick={onOpenAllClick} target='_blank'>
+                {onOpenAllClick && count ? <MenuItem onClick={onOpenAllClick} target='_blank'>
                     <Icon name='open' />
                     {t.s('openLinksInNewTab')}
-                </MenuItem>}
+                </MenuItem> : null}
 
                 {/* Have write access */}
                 { _id>0 ? (access.level>=3 ? (
@@ -36,6 +36,13 @@ export default function CollectionsItemContextmenu({
                             <MenuItem onClick={onRenameClick}>
                                 <Icon name='edit' />
                                 {t.s('edit')}
+                            </MenuItem>
+                        ) : null}
+
+                        {onIconClick ? (
+                            <MenuItem onClick={onIconClick}>
+                                <Icon name='image' />
+                                {t.s('changeIcon')}
                             </MenuItem>
                         ) : null}
 

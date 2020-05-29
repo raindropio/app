@@ -33,6 +33,10 @@ export default class BookmarksHeaderView extends React.PureComponent {
 
         onViewChange: (view)=>{
             this.props.collectionsActions.oneChangeView(this.props.cid, view)
+        },
+
+        onRename: (title)=>{
+            this.props.collectionsActions.oneUpdate(this.props.cid, { title })
         }
     }
 

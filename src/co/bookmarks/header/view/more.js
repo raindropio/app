@@ -1,10 +1,13 @@
 import React from 'react'
+import t from '~t'
 import Icon from '~co/common/icon'
 import Contextmenu from '~co/collections/item/contextmenu'
+import ChangeIcon from '~co/collections/changeIcon'
 
 export default class BookmarksHeaderView extends React.Component {
     state = {
-        menu: false
+        menu: false,
+        icon: false
     }
 
     onContextMenuClick = (e)=>{
@@ -15,8 +18,20 @@ export default class BookmarksHeaderView extends React.Component {
     onContextMenuClose = ()=>
         this.setState({ menu: false })
 
+    onRenameClick = ()=>{
+        const title = prompt(t.s('title'), this.props.collection.title)
+        if (title)
+            this.props.onRename(title)
+    }
+
+    onIconClick = ()=>
+        this.setState({ icon: true })
+
+    onIconClose = ()=>
+        this.setState({ icon: false })
+
     render() {
-        const { menu } = this.state
+        const { menu, icon } = this.state
         const { collection, onRemoveClick, onOpenAllClick } = this.props
 
         return (
@@ -31,7 +46,15 @@ export default class BookmarksHeaderView extends React.Component {
                         onContextMenuClose={this.onContextMenuClose}
                         onRemoveClick={onRemoveClick}
                         onOpenAllClick={onOpenAllClick}
+                        onIconClick={this.onIconClick}
+                        onRenameClick={this.onRenameClick}
                         to={`/collection/${collection._id}`} />
+                ) : null}
+
+                {icon ? (
+                    <ChangeIcon
+                        _id={collection._id}
+                        onClose={this.onIconClose} />
                 ) : null}
             </>
         )

@@ -48,20 +48,26 @@
     margin-top: 14px
 }
 
+.nc-section {
+    padding: 0 16px
+    font-size: rem(14px)
+    opacity: .5
+}
+
 .nc-icons {
     display: grid
     grid-template-columns: repeat(10, 1fr)
     grid-column-gap: 4px
     grid-row-gap: 4px
-    padding: 10px
+    padding: 16px
 
     .nc-icon {
+        text-align: center
         padding: 4px
         border-radius: 3px
         transition: opacity .1s ease-in-out, background .1s ease-in-out;
 
         img {
-            display: block
             pointer-events: none
             object-fit: contain
         }

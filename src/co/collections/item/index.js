@@ -5,6 +5,7 @@ import ViewWithDrop from './viewWithDrop'
 import Rename from './rename'
 import Contextmenu from './contextmenu'
 import Sharing from '../sharing'
+import ChangeIcon from '../changeIcon'
 
 export default class CollectionsItem extends React.Component {
     static defaultProps = {
@@ -41,6 +42,12 @@ export default class CollectionsItem extends React.Component {
         
         onRenameCancel: ()=>
             this.setState({ rename: false }),
+
+        onIconClick: ()=>
+            this.setState({ icon: true }),
+
+        onIconClose: ()=>
+            this.setState({ icon: false }),
     
         onRemoveClick: ()=>{
             if (confirm(t.s('areYouSure')))
@@ -112,6 +119,12 @@ export default class CollectionsItem extends React.Component {
                     <Sharing 
                         _id={item._id}
                         onClose={this.handlers.onSharingClose} />
+                ) : null}
+
+                {this.state.icon ? (
+                    <ChangeIcon
+                        _id={item._id}
+                        onClose={this.handlers.onIconClose} />
                 ) : null}
             </>
         )
