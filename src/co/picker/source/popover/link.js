@@ -1,5 +1,6 @@
 import React from 'react'
 import SuperInput from '~co/common/superInput'
+import normalizeUrl from 'normalize-url'
 
 export default class PickerSourceLink extends React.Component {
     state = {
@@ -16,7 +17,7 @@ export default class PickerSourceLink extends React.Component {
         this.setState({ status: 'loading' })
 
         try{
-            await this.props.onLink(this.state.link)
+            await this.props.onLink(normalizeUrl(this.state.link, { defaultProtocol: 'https:' }))
             this.props.onClose()
         } catch (e) {
             this.setState({ status: 'error' })
@@ -31,7 +32,7 @@ export default class PickerSourceLink extends React.Component {
                 <label className='fieldName'>URL</label>
 
                 <SuperInput
-                    type='url'
+                    type='text'
                     required
                     className='field'
                     placeholder='https://'
