@@ -27,7 +27,7 @@ export default function(state, action) {
 		case BOOKMARK_UPDATE_ERROR:
 		case BOOKMARK_REMOVE_ERROR:{
 			if (typeof action.onFail == 'function')
-				action.onFail()
+				action.onFail(action.error)
 
 			return state
 		}

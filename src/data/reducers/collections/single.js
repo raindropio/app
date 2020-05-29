@@ -20,7 +20,7 @@ export default function(state, action) {
 		case COLLECTION_UPDATE_ERROR:
 		case COLLECTION_REMOVE_ERROR:{
 			if (typeof action.onFail == 'function')
-				action.onFail()
+				action.onFail(action.error)
 
 			return state
 		}

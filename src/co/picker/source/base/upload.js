@@ -49,8 +49,8 @@ export default class PickerSourceBaseUpload extends React.Component {
                 .then(()=>{
                     this.setState({ done: [...this.state.done, file.name] }, res)
                 })
-                .catch(()=>{
-                    this.setState({ failed: [...this.state.failed, file.name] }, res)
+                .catch(e=>{
+                    this.setState({ failed: [...this.state.failed, { name: file.name, message: e.message }] }, res)
                 })
         })
 
@@ -77,8 +77,8 @@ export default class PickerSourceBaseUpload extends React.Component {
                 <Content data-indent>
                     {done.length} {t.s('of')} {files.length} {t.s('saved').toLowerCase()}
 
-                    {failed.map(name=>
-                        <div key={name}><b>{name}</b> &mdash; {t.s('fileUploadUnable')}</div>
+                    {failed.map(({name, message})=>
+                        <div key={name}><b>{name}</b> &mdash; {message||t.s('fileUploadUnable')}</div>
                     )}
                 </Content>
             </Modal>

@@ -9,7 +9,7 @@ export default function(state, action) {
 		case TAG_RENAME_ERROR:
 		case TAG_REMOVE_ERROR:{
 			if (typeof action.onFail == 'function')
-				action.onFail()
+				action.onFail(action.error)
 
 			return state
 		}

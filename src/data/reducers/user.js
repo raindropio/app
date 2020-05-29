@@ -82,7 +82,7 @@ export default function(state = initialState, action){switch (action.type) {
 
 	case USER_LOAD_ERROR:{
 		if (typeof action.onFail == 'function')
-			action.onFail()
+			action.onFail(action.error)
 
 		if (action.way)
 			state = state.setIn(['errorReason', action.way], action.error)

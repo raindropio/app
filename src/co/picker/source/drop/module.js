@@ -12,6 +12,7 @@ export default class DropFile extends React.Component {
     dropHandlers = {
         onDrop: (e)=>{
             e.preventDefault()
+            e.stopPropagation()
 
             let files = []
 
@@ -24,9 +25,14 @@ export default class DropFile extends React.Component {
                 this.props.onDropFiles(files)
 
             this.setState({ isDropping: false })
+
+            return false
         },
     
         onDragOver: (e)=>{
+            e.preventDefault()
+            e.stopPropagation()
+
             let containFiles = false
 
             for(const item of e.dataTransfer.items)
@@ -37,6 +43,8 @@ export default class DropFile extends React.Component {
 
             if (containFiles)
                 this.setState({ isDropping: true })
+
+            return false
         },
     
         onDragLeave: ()=>{

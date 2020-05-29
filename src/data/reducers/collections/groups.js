@@ -38,7 +38,7 @@ export default function(state, action) {
 
 		case GROUPS_SAVE_ERROR:{
 			if (typeof action.onFail == 'function')
-				action.onFail()
+				action.onFail(action.error)
 
 			return state
 		}

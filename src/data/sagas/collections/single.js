@@ -21,6 +21,7 @@ import {
 	COLLECTION_ADD_BLANK, COLLECTION_CREATE_FROM_BLANK, COLLECTION_REMOVE_BLANK,
 
 	COLLECTION_TOGGLE, COLLECTION_REORDER, COLLECTION_CHANGE_VIEW, COLLECTIONS_EXPAND_TO,
+	COLLECTION_COVER_UPLOAD_REQ,
 
 	GROUP_APPEND_COLLECTION, GROUP_REMOVE_COLLECTION
 } from '../../constants/collections'
@@ -45,6 +46,7 @@ export default function* () {
 	yield takeEvery(COLLECTION_TOGGLE, toggleCollection)
 	yield takeEvery(COLLECTION_REORDER, reorderCollection)
 	yield takeEvery(COLLECTION_CHANGE_VIEW, changeViewCollection)
+	yield takeEvery(COLLECTION_COVER_UPLOAD_REQ, uploadCover)
 
 	//update collections count on bookmarks add/remove/reload
 	yield takeEvery([ BOOKMARK_CREATE_SUCCESS, BOOKMARK_REMOVE_SUCCESS ], actualizeCollectionCount)
@@ -334,6 +336,30 @@ function* removeBlank({ ignore=false }) {
 		type: COLLECTION_REMOVE_SUCCESS,
 		_id: -101
 	})
+}
+
+function* uploadCover({ _id=0, cover, ignore=false, onSuccess, onFail }) {
+	if (ignore) return
+
+	try{
+		const { item={}, result=false, error, errorMessage } = yield call(Api.upload, `collection/${_id}/cover`, { cover })
+		if (!result)
+			throw new ApiError(error, errorMessage||'cant upload collection cover')
+
+		yield put({
+			type: COLLECTION_UPDATE_REQ,
+			_id,
+			item: item,
+			onSuccess, onFail
+		});
+	} catch (error) {
+		yield put({
+			type: COLLECTION_UPDATE_ERROR,
+			_id,
+			error,
+			onSuccess, onFail
+		});
+	}
 }
 
 function* toggleCollection({_id=0, expanded, ignore=false}) {

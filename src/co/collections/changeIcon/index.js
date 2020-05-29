@@ -15,9 +15,10 @@ class CollectionChangeIcon extends React.Component {
             this.props.actions.oneUpdate(this.props._id, { cover: [link] }, res, rej)
         )
 
-    onFile = ()=>{
-
-    }
+    onFile = (file)=>
+        new Promise((res, rej)=>
+            this.props.actions.oneCoverUpload(this.props._id, file, res, rej)
+        )
 
     render() {
         return (
