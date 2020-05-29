@@ -23,9 +23,9 @@ export default class CollectionsSidebar extends React.Component {
     }
 
     render() {
-        const { cid, search } = this.props
+        const { spaceId, search } = this.props
 
-        let activeId = cid
+        let activeId = spaceId
         if (activeId=='0' && search)
             activeId = search
 
@@ -49,7 +49,7 @@ export default class CollectionsSidebar extends React.Component {
                             <CollectionsTree 
                                 ref={this.tree}
                                 
-                                uriPrefix='/collection/'
+                                uriPrefix='/space/'
                                 activeId={activeId}
 
                                 customRows={customRows}

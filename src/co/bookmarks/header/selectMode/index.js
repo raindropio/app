@@ -12,35 +12,35 @@ export default class BookmarksHeaderSelectMode extends React.PureComponent {
     handlers = {
         onCancelSelectModeClick: (e)=>{
             e.preventDefault()
-            this.props.actions.cancelSelectMode(this.props.cid)
+            this.props.actions.cancelSelectMode(this.props.spaceId)
         },
 
         onSelectAllClick: (e)=>{
             e && e.preventDefault && e.preventDefault()
 
             if (this.props.selectMode.all)
-                this.props.actions.unselectAll(this.props.cid)
+                this.props.actions.unselectAll(this.props.spaceId)
             else
-                this.props.actions.selectAll(this.props.cid)
+                this.props.actions.selectAll(this.props.spaceId)
         },
 
         onMove: (to)=>{
-            this.props.actions.moveSelected(this.props.cid, to)
+            this.props.actions.moveSelected(this.props.spaceId, to)
         },
 
         onImportantClick: (e)=>{
             e.preventDefault()
-            this.props.actions.importantSelected(this.props.cid, true)
+            this.props.actions.importantSelected(this.props.spaceId, true)
         },
 
         onImportantRemoveClick: (e)=>{
             e.preventDefault()
-            this.props.actions.importantSelected(this.props.cid, false)
+            this.props.actions.importantSelected(this.props.spaceId, false)
         },
 
         onScreenshotClick: (e)=>{
             e.preventDefault()
-            this.props.actions.screenshotSelected(this.props.cid)
+            this.props.actions.screenshotSelected(this.props.spaceId)
         },
 
         onAddTagsClick: (e)=>{
@@ -49,24 +49,24 @@ export default class BookmarksHeaderSelectMode extends React.PureComponent {
 
         onRemoveTagsClick: (e)=>{
             e.preventDefault()
-            this.props.actions.removeTagsSelected(this.props.cid, [])
+            this.props.actions.removeTagsSelected(this.props.spaceId, [])
         },
 
         onReparseClick: (e)=>{
             e.preventDefault()
-            this.props.actions.reparseSelected(this.props.cid)
+            this.props.actions.reparseSelected(this.props.spaceId)
         },
 
         onRemoveClick: (e)=>{
             e.preventDefault()
             if (confirm(t.s('areYouSure')))
-                this.props.actions.removeSelected(this.props.cid)
+                this.props.actions.removeSelected(this.props.spaceId)
         },
 
         onOpenSelectedClick: (e)=>{
             e.preventDefault()
 
-            getLinks(this.props.cid, true).forEach(link => window.open(link))
+            getLinks(this.props.spaceId, true).forEach(link => window.open(link))
         }
     }
 

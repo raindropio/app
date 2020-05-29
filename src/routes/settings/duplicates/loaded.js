@@ -54,7 +54,7 @@ export default class Loaded extends React.PureComponent {
 
 			var actions = (
 				<div className='actions'>
-					<a href={'#/collection/0/'+encodeURIComponent(JSON.stringify([{key:'word',val:item.link}]))} className='button min default'>
+					<a href={'#/space/0/'+encodeURIComponent(JSON.stringify([{key:'word',val:item.link}]))} className='button min default'>
 						<b>{t.s('show')+' '+t.s('elements2')}</b>
 					</a>
 				</div>

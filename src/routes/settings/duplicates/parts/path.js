@@ -72,7 +72,7 @@ export default class Path extends PureComponent {
 			//	lastPartOfLink="/"+encodeURIComponent(JSON.stringify([{key:"word",val:link}]));
 
 			return this.renderPart((
-				<a href={"#/collection/"+item._id+lastPartOfLink} className="di-collection">
+				<a href={"#/space/"+item._id+lastPartOfLink} className="di-collection">
 					<CollectionIcon _id={item._id} cover={item.cover} />
 					{item.title}
 				</a>

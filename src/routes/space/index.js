@@ -6,9 +6,9 @@ import Sidebar from './sidebar'
 import Main from './main'
 import Reader from './reader'
 
-export default class CollectionRoute extends React.PureComponent {
+export default class SpaceRoute extends React.PureComponent {
 	state = {
-        cid: 0,
+        spaceId: 0,
         full: false,
         search: '',
         reader: {}
@@ -16,7 +16,7 @@ export default class CollectionRoute extends React.PureComponent {
 
     static getDerivedStateFromProps({ match, location }) {
         return {
-            cid: match.params.cid,
+            spaceId: match.params.spaceId,
             full: match.params.modifier == 'full',
             search: decodeURIComponent(match.params.search||''),
             reader: Object.fromEntries(new URLSearchParams(location.search))
@@ -25,29 +25,29 @@ export default class CollectionRoute extends React.PureComponent {
 
     handlers = {
         onSearch: (value, mode='')=>{
-            let cid, search
+            let spaceId, search
 
             switch(mode) {
                 case 'append':
                     if (new RegExp(`${value}\\b`,'i').test(this.state.search))
                         return
 
-                    cid = this.state.cid
+                    spaceId = this.state.spaceId
                     search = (this.state.search||'').trim()+' '+value
                 break
 
                 case 'current':
-                    cid = this.state.cid
+                    spaceId = this.state.spaceId
                     search = value
                 break
 
                 default:
-                    cid = 0
+                    spaceId = 0
                     search = value
                 break
             }
 
-            this.props.history.push(`/collection/${cid}/${encodeURIComponent(search)}`)
+            this.props.history.push(`/space/${spaceId}/${encodeURIComponent(search)}`)
         },
 
         onReader: (update)=>{

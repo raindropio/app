@@ -11,9 +11,9 @@ export default class PickerIconReset extends React.Component {
         return (
             <a 
                 href=''
-                className='button default'
+                className='button active'
                 onClick={this.onClick}>
-                <b>{t.s('remove')}</b>
+                {t.s('remove')}
             </a>
         )
     }

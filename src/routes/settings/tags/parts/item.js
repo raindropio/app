@@ -62,7 +62,7 @@ export default class Item extends React.PureComponent {
 					<div hidden={!needUpdate || loading}><a tabIndex="-1" className="button active" onClick={this.onSubmit}><b>{t.s("save")}</b></a></div>
 					{loading?<Preloader className="size-small" />:null}
 
-					<a tabIndex="-1" href={"#/collection/0/"+encodeURIComponent(JSON.stringify([{key:"tag",val:item.title}]))} className="button active">{item.count}&nbsp;{t.s("elements2")}</a>
+					<a tabIndex="-1" href={"#/space/0/"+encodeURIComponent(JSON.stringify([{key:"tag",val:item.title}]))} className="button active">{item.count}&nbsp;{t.s("elements2")}</a>
 					<a tabIndex="-1" className="button default" onClick={this.removeItem}><b><Icon name='trash'/></b></a>
 				</div>
 			</form>

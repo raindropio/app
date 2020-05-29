@@ -16,10 +16,10 @@ export default class HeaderAdd extends React.Component {
         this.setState({ show: false })
     
     render() {
-        const { cid } = this.props
+        const { spaceId } = this.props
         const { show } = this.state
 
-        if (cid == -99) return null
+        if (spaceId == -99) return null
 
         return (
             <>
@@ -34,7 +34,7 @@ export default class HeaderAdd extends React.Component {
 
                 {show ? (
                     <Add 
-                        cid={cid}
+                        spaceId={spaceId}
                         onClose={this.onAddClose} />
                 ) : null}
             </>

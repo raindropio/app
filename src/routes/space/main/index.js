@@ -8,12 +8,12 @@ import Content from './content'
 
 class CollectionsMain extends React.Component {
     componentDidMount() {
-        this.props.setLastCollection(this.props.cid)
+        this.props.setLastCollection(this.props.spaceId)
     }
 
     componentDidUpdate(prev) {
-        if (prev.cid != this.props.cid)
-            this.props.setLastCollection(this.props.cid)
+        if (prev.spaceId != this.props.spaceId)
+            this.props.setLastCollection(this.props.spaceId)
     }
 
     render() {

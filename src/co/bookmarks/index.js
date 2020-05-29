@@ -8,20 +8,20 @@ import Items from './items'
 
 class Bookmarks extends React.Component {
     static defaultProps = {
-        cid: 0,
+        spaceId: 0,
         search: '',
         full: false //don't show nested folders in compact mode
     }
 
     renderSpace = (index)=>{
         const { ids, ...etc } = this.props
-        const cid = ids[index]
+        const spaceId = ids[index]
 
         return (
             <Items 
-                key={cid}
+                key={spaceId}
                 {...etc}
-                cid={cid}
+                spaceId={spaceId}
                 compact={ids.length>1} />
         )
     }
@@ -53,16 +53,16 @@ export default connect(
         const getBookmarksLastChange = makeBookmarksLastChange()
         const cache = {}
     
-        return (state, { cid, search, full, activeId })=>{
+        return (state, { spaceId, search, full, activeId })=>{
             const lastChange = getBookmarksLastChange(state)
 
             if (search || full)
                 return {
-                    ids: cache[cid] = cache[cid] || [ cid ],
-                    dataKey: cid+lastChange+activeId
+                    ids: cache[spaceId] = cache[spaceId] || [ spaceId ],
+                    dataKey: spaceId+lastChange+activeId
                 }
             else{
-                const ids = getBranchIds(state, cid)
+                const ids = getBranchIds(state, spaceId)
                 
                 return {
                     ids,

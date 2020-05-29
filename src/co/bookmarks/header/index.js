@@ -11,7 +11,7 @@ import SelectMode from './selectMode'
 
 class BookmarksHeader extends React.Component {
     static defaultProps = {
-        cid: 0,
+        spaceId: 0,
         compact: false
     }
 
@@ -37,14 +37,14 @@ export default connect(
         const getSorts = makeSorts()
         const getStatus = makeStatus()
     
-        return (state, { cid })=>{
+        return (state, { spaceId })=>{
             return {
-                status: getStatus(state, cid),
-                selectMode: getSelectMode(state, cid),
-                collection: getCollection(state, cid),
-                sort: getSort(state, cid),
-                sorts: getSorts(state, cid),
-                isSearching: !getSearchEmpty(state, cid)
+                status: getStatus(state, spaceId),
+                selectMode: getSelectMode(state, spaceId),
+                collection: getCollection(state, spaceId),
+                sort: getSort(state, spaceId),
+                sorts: getSorts(state, spaceId),
+                isSearching: !getSearchEmpty(state, spaceId)
             }
         }
     },

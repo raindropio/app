@@ -12,7 +12,7 @@ import Path from './path'
 export default class BookmarkItemView extends React.PureComponent {
     render() {
         const { innerRef, isDragging } = this.props
-        const { link, title, excerpt, highlight, cover, domain, tags, type, view, access, created, reparse, collectionId, cid } = this.props
+        const { link, title, excerpt, highlight, cover, domain, tags, type, view, access, created, reparse, collectionId, spaceId } = this.props
         const { active, selected, important, broken } = this.props
         const { onClick, onTagClick, onEditClick, onPreviewClick, onSelectClick, onImportantClick, onContextMenu, onKeyUp } = this.props
 
@@ -41,7 +41,7 @@ export default class BookmarkItemView extends React.PureComponent {
                     {/* Info */}
                     <div className='info-wrap'>
                         <div className='info info-domain'>
-                            {cid != collectionId ? <Path collectionId={collectionId} /> : null}
+                            {spaceId != collectionId ? <Path collectionId={collectionId} /> : null}
 
                             {important ? (
                                 <div className='info-important'>

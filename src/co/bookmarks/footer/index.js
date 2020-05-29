@@ -8,7 +8,7 @@ import View from './view'
 
 class BookmarksFooter extends React.Component {
     static defaultProps = {
-        cid:        0,
+        spaceId:        0,
         compact:    false,
         more:       false //useful when compact is true, means that full items count more that showed right now
     }
@@ -24,8 +24,8 @@ export default connect(
 	() => {
         const getStatus = makeStatus()
     
-        return (state, { cid })=>({
-            status: getStatus(state, cid),
+        return (state, { spaceId })=>({
+            status: getStatus(state, spaceId),
         })
     },
 	(dispatch)=>({

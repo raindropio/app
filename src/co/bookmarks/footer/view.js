@@ -5,11 +5,11 @@ import { Link } from 'react-router-dom'
 export default class BookmarksFooterView extends React.PureComponent {
     loadMore = (e)=>{
         e.preventDefault()
-        this.props.actions.nextPage(this.props.cid)
+        this.props.actions.nextPage(this.props.spaceId)
     }
 
     render() {
-        const { status, compact, more, cid } = this.props
+        const { status, compact, more, spaceId } = this.props
         let content = null
 
         switch(status.nextPage) {
@@ -41,7 +41,7 @@ export default class BookmarksFooterView extends React.PureComponent {
         if ((compact && status.main == 'loaded' && status.nextPage != 'noMore') ||
             (compact && more))
             content = (
-                <Link to={`/collection/${cid}full`} className='button flat' href='/'><b>{t.s('more')}&hellip;</b></Link>
+                <Link to={`/space/${spaceId}full`} className='button flat' href='/'><b>{t.s('more')}&hellip;</b></Link>
             )
 
         return (

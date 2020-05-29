@@ -4,17 +4,17 @@ import { HashRouter as Router, Route, Redirect, Switch } from 'react-router-dom'
 import Document from './_document'
 
 import Account from './account'
-import Collection from './collection'
+import Space from './space'
 //import Settings from './settings'
 
-import Home from './_home'
+import None from './_none'
 
 export default ()=>(
     <Router>
         <Document>
             <Switch>
                 <Route path='/account' component={Account} />
-                <Route path='/collection/:cid(-?\d+):modifier?/:search?' component={Collection} />
+                <Route path='/space/:spaceId(-?\d+):modifier?/:search?' component={Space} />
                 {/*<Route path='/settings' component={Settings} />*/}
 
                 {/* Redirects */}
@@ -22,7 +22,7 @@ export default ()=>(
 				<Route path='/app/tags'><Redirect to='/settings/tags' /></Route>
 				<Route path='/app/libroken'><Redirect to='/settings/libroken' /></Route>
                 
-                <Route component={Home} />
+                <Route component={None} />
             </Switch>
         </Document>
     </Router>

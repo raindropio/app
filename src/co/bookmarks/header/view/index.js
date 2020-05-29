@@ -13,13 +13,13 @@ export default class BookmarksHeaderView extends React.PureComponent {
     handlers = {
         onSelectAllClick: (e)=>{
             e && e.preventDefault && e.preventDefault()
-            this.props.actions.selectAll(this.props.cid)
+            this.props.actions.selectAll(this.props.spaceId)
         },
 
         onOpenAllClick: (e)=>{
             e && e.preventDefault && e.preventDefault()
 
-            getLinks(this.props.cid).forEach(link => window.open(link))
+            getLinks(this.props.spaceId).forEach(link => window.open(link))
         },
 
         onRemoveClick: ()=>{
@@ -28,15 +28,15 @@ export default class BookmarksHeaderView extends React.PureComponent {
         },
 
         onSortChange: (sort)=>{
-            this.props.actions.changeSort(this.props.cid, sort)
+            this.props.actions.changeSort(this.props.spaceId, sort)
         },
 
         onViewChange: (view)=>{
-            this.props.collectionsActions.oneChangeView(this.props.cid, view)
+            this.props.collectionsActions.oneChangeView(this.props.spaceId, view)
         },
 
         onRename: (title)=>{
-            this.props.collectionsActions.oneUpdate(this.props.cid, { title })
+            this.props.collectionsActions.oneUpdate(this.props.spaceId, { title })
         }
     }
 
@@ -60,7 +60,7 @@ export default class BookmarksHeaderView extends React.PureComponent {
                     ) : null}
 
                     <div className='title'>
-                        {compact ? <Link to={'/collection/'+collection._id+'full'}>{title}</Link> : title}
+                        {compact ? <Link to={'/space/'+collection._id+'full'}>{title}</Link> : title}
                     </div>
                     <More {...this.props} {...this.handlers} />
 

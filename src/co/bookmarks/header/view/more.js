@@ -48,7 +48,7 @@ export default class BookmarksHeaderView extends React.Component {
                         onOpenAllClick={onOpenAllClick}
                         onIconClick={this.onIconClick}
                         onRenameClick={this.onRenameClick}
-                        to={`/collection/${collection._id}`} />
+                        to={`/space/${collection._id}`} />
                 ) : null}
 
                 {icon ? (

@@ -10,7 +10,7 @@ import PickerSourceDrop from '~co/picker/source/drop'
 
 class BookmarksItems extends React.Component {
     static defaultProps = {
-        cid:        0,
+        spaceId:    0,
         activeId:   0,
         compact:    false,
         events:     {}  //onItemClick, onItemEditClick, onItemPreviewClick, onTagClick
@@ -21,15 +21,15 @@ class BookmarksItems extends React.Component {
     }
 
     componentDidUpdate(prev) {
-        if (prev.cid != this.props.cid ||
+        if (prev.spaceId != this.props.spaceId ||
             prev.search != this.props.search)
             this.load()
     }
 
     load = ()=>{
-        const { actions, cid, search, default_sort } = this.props
+        const { actions, spaceId, search, default_sort } = this.props
 
-        actions.load(cid, {
+        actions.load(spaceId, {
             search,
             sort: search ? 'score' : default_sort
         })
@@ -38,7 +38,7 @@ class BookmarksItems extends React.Component {
     onUploadFile = (file)=>
         new Promise((res, rej)=>{
             this.props.actions.oneUpload({
-                collectionId: this.props.cid,
+                collectionId: this.props.spaceId,
                 file
             }, res, rej)
         })
@@ -63,15 +63,15 @@ export default connect(
         const getSelectModeEnabled = makeSelectModeEnabled()
         const getSort = makeSort()
     
-        return (state, { cid })=>{
-            const { view, access } = getCollection(state, cid)
+        return (state, { spaceId })=>{
+            const { view, access } = getCollection(state, spaceId)
 
             return {
-                items: getBookmarkIds(state, cid),
+                items: getBookmarkIds(state, spaceId),
                 view,
                 access,
-                sort: getSort(state, cid),
-                selectModeEnabled: getSelectModeEnabled(state, cid),
+                sort: getSort(state, spaceId),
+                selectModeEnabled: getSelectModeEnabled(state, spaceId),
                 default_sort: state.config.raindrops_sort
             }
         }

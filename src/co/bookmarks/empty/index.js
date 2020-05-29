@@ -8,7 +8,7 @@ import View from './view'
 
 class BookmarksEmpty extends React.Component {
     static defaultProps = {
-        cid:        0,
+        spaceId:        0,
         compact:    false
     }
 
@@ -23,9 +23,9 @@ export default connect(
 	() => {
         const getStatus = makeStatus()
     
-        return (state, { cid })=>({
-            status: getStatus(state, cid),
-            searchEmpty: getSearchEmpty(state, cid)
+        return (state, { spaceId })=>({
+            status: getStatus(state, spaceId),
+            searchEmpty: getSearchEmpty(state, spaceId)
         })
     },
 	(dispatch)=>({

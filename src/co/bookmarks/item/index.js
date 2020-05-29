@@ -12,7 +12,7 @@ class BookmarkItem extends React.Component {
         _id:                0,
         active:             false,
         //collection
-        cid:                0,
+        spaceId:            0,
         view:               '', //list, grid, etc...
         access:             {}, //{ level }...
         selectModeEnabled:  false,
@@ -47,7 +47,7 @@ class BookmarkItem extends React.Component {
         },
 
         onSelectClick: ()=>{
-            this.props.actions[this.props.selected ? 'unselectOne' : 'selectOne'](this.props.cid, this.props.item._id)
+            this.props.actions[this.props.selected ? 'unselectOne' : 'selectOne'](this.props.spaceId, this.props.item._id)
         },
 
         onImportantClick: ()=>
@@ -98,7 +98,7 @@ class BookmarkItem extends React.Component {
 
         onMove: (to)=>{
             if (this.props.selectModeEnabled)
-                this.props.actions.moveSelected(this.props.cid, to)
+                this.props.actions.moveSelected(this.props.spaceId, to)
             else
                 this.props.actions.oneMove(this.props.item._id, to)
         }
@@ -132,15 +132,15 @@ export default connect(
         const getHighlight = makeHighlight()
         const getIndex = makeBookmarkIndex()
     
-        return (state, { _id, cid, selectModeEnabled })=>{
+        return (state, { _id, spaceId, selectModeEnabled })=>{
             const item = bookmark(state, _id)
     
             return {
                 item,
                 tags: tags(state, _id),
-                selected: selectModeEnabled ? getIsSelected(state, cid, _id) : false,
+                selected: selectModeEnabled ? getIsSelected(state, spaceId, _id) : false,
                 highlight: getHighlight(state, _id),
-                index: getIndex(state, cid, _id)
+                index: getIndex(state, spaceId, _id)
             }
         }
     }

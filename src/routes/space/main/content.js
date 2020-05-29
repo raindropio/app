@@ -33,12 +33,12 @@ export default class CollectionsMainContent extends React.Component {
     }
 
     render() {
-        const { cid, search, full, reader: { bookmark } } = this.props
+        const { spaceId, search, full, reader: { bookmark } } = this.props
 
         return (
             <Content>
                 <Bookmarks 
-                    cid={cid}
+                    spaceId={spaceId}
                     search={search}
                     full={full}
                     activeId={bookmark && parseInt(bookmark)}

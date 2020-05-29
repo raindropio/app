@@ -24,7 +24,7 @@ export default class BookmarksItemsListing extends React.Component {
         this.props.items[index]
 
     endReached = ()=>
-        this.props.actions.nextPage(this.props.cid)
+        this.props.actions.nextPage(this.props.spaceId)
 
     renderItem = (index)=>{
         const _id = this.props.items[index]
@@ -41,7 +41,7 @@ export default class BookmarksItemsListing extends React.Component {
                 key={_id}
                 _id={_id}
                 //collection
-                cid={this.props.cid}
+                spaceId={this.props.spaceId}
                 view={this.props.view}
                 access={this.props.access}
                 selectModeEnabled={this.props.selectModeEnabled}
@@ -54,16 +54,16 @@ export default class BookmarksItemsListing extends React.Component {
     }
 
     renderEmpty = ()=>(
-        <Empty cid={this.props.cid} compact={this.props.compact} />
+        <Empty spaceId={this.props.spaceId} compact={this.props.compact} />
     )
 
     renderHeader = ()=>(
-        <Header cid={this.props.cid} compact={this.props.compact} />
+        <Header spaceId={this.props.spaceId} compact={this.props.compact} />
     )
 
     renderFooter = ()=>(
         <Footer 
-            cid={this.props.cid}
+            spaceId={this.props.spaceId}
             compact={this.props.compact}
             more={this.props.items.length > config.compact.count} />
     )

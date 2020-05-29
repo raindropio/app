@@ -14,7 +14,7 @@ export default class Popover extends React.Component {
         switch(e.key) {
             case 'Escape':
                 e.stopPropagation()
-                this.store.close()
+                this.props.onClose()
             break
         }
     }

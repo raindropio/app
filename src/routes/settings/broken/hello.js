@@ -13,7 +13,7 @@ export default (props) => {
 						<SuperImg src="empty/brokenTip.png" />
 
 						<h2 className="headLabel">Go to particular collection and click on "Broken" filter<br/> to find broken links</h2>
-						<a className="button active" href="#/collection/0/%5B%7B%22key%22%3A%22broken%22%2C%22val%22%3A%221%22%7D%5D">
+						<a className="button active" href="#/space/0/%5B%7B%22key%22%3A%22broken%22%2C%22val%22%3A%221%22%7D%5D">
 							{t.s('show')+" "+t.s("all").toLowerCase()}&nbsp;{brokenLabel.toLowerCase()}&nbsp;({props.count})
 						</a>
 

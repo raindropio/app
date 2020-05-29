@@ -8,7 +8,7 @@ import Icon from '~co/common/icon'
 export default class BookmarksEmptyView extends React.PureComponent {
     reload = (e)=>{
         e.preventDefault()
-        this.props.actions.reload(this.props.cid)
+        this.props.actions.reload(this.props.spaceId)
     }
 
     searchEverywhere = ()=>{
@@ -16,12 +16,12 @@ export default class BookmarksEmptyView extends React.PureComponent {
     }
 
     render() {
-        const { status, cid, searchEmpty, compact } = this.props
+        const { status, spaceId, searchEmpty, compact } = this.props
         let content = null
 
         switch(status.main) {
             case 'empty':{
-				const _id = parseInt(cid)
+				const _id = parseInt(spaceId)
 
                 switch(true) {
                     //trash
