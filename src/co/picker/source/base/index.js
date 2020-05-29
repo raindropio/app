@@ -23,6 +23,7 @@ export default Component =>
                 <>
                     <Component 
                         {...this.props}
+                        files={this.state.files}
                         onDropFiles={this.onDropFiles} />
 
                     <Upload

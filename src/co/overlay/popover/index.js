@@ -13,6 +13,8 @@ let _lastPos = { x:-1, y:-1 }
 
 export default class Popover extends React.Component {
     static defaultProps = {
+        closable: true,
+        hidden: false,
         onClose: undefined      //func, required
     }
 
@@ -51,6 +53,9 @@ export default class Popover extends React.Component {
 
     //click outside
     onBodyMouseDown = (e)=>{
+        if (!this.props.closable)
+            return
+        
         const { clientX, clientY } = e
         const { offsetWidth, offsetHeight } = this._container.current
         const { left, top } = this._container.current.getBoundingClientRect()
@@ -118,6 +123,7 @@ export default class Popover extends React.Component {
                 <Context.Provider value={this.store}>
                     <div
                         ref={this._container}
+                        hidden={this.props.hidden}
                         className='pop-body'>
                         {this.props.children}
                     </div>
