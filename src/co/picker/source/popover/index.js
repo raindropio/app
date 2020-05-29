@@ -18,7 +18,7 @@ class PickerSourcePopover extends React.Component {
                 closable={!this.props.files.length}
                 hidden={this.props.files.length}
                 onClose={this.props.onClose}>
-                <DropModule onDropFile={this.props.onDropFiles}>
+                <DropModule onDropFiles={this.props.onDropFiles}>
                     {({ isDropping, dropHandlers })=>
                         <div 
                             className={`superForm form-link-or-file ${isDropping && 'is-dropping'}`}
