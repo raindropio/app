@@ -1,7 +1,8 @@
 import React from 'react'
 import { Header } from '~co/screen/splitview/main'
-import Icon from '~co/common/icon'
 import Search from '~co/search'
+
+import Add from './add'
 import Share from './share'
 
 export default class CollectionsMainHeader extends React.Component {
@@ -23,11 +24,8 @@ export default class CollectionsMainHeader extends React.Component {
                 <Share 
                     cid={cid} />
     
-                <a href='' className='button active'>
-                    <b>
-                        <Icon name='add' />
-                    </b>
-                </a>
+                <Add
+                    cid={cid} />
             </Header>
         )
     }

@@ -6,7 +6,7 @@ import { makeBookmarksFlatSections, makeSelectModeEnabled, makeSort } from '~dat
 import { makeCollection } from '~data/selectors/collections'
 
 import Listing from './listing'
-import Upload from '~co/bookmarks/upload'
+import PickerSourceDrop from '~co/picker/source/drop'
 
 class BookmarksItems extends React.Component {
     static defaultProps = {
@@ -35,15 +35,23 @@ class BookmarksItems extends React.Component {
         })
     }
 
+    onUploadFile = (file)=>
+        new Promise((res, rej)=>{
+            this.props.actions.oneUpload({
+                collectionId: this.props.cid,
+                file
+            }, res, rej)
+        })
+
     render() {
         return (
-            <Upload cid={this.props.cid}>
+            <PickerSourceDrop onFile={this.onUploadFile}>
                 {drop=>
                     <Listing 
                         {...this.props}
                         {...drop} />
                 }
-            </Upload>
+            </PickerSourceDrop>
         )
     }
 }

@@ -2,7 +2,7 @@ import React from 'react'
 
 export default class DropFile extends React.Component {
     static defaultProps = {
-        onDropFile: undefined //required func
+        onDropFiles: undefined //required func
     }
 
     state = {
@@ -21,7 +21,7 @@ export default class DropFile extends React.Component {
             }
 
             if (files.length)
-                this.props.onDropFile(files)
+                this.props.onDropFiles(files)
 
             this.setState({ isDropping: false })
         },
