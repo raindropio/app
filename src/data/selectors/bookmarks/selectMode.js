@@ -41,3 +41,5 @@ export const makeIsSelected = ()=>createSelector(
 		return false;
 	}
 )
+
+export const selectModeWorking = ({bookmarks}) => bookmarks.selectMode.working

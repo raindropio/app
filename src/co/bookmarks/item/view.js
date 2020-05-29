@@ -13,8 +13,8 @@ export default class BookmarkItemView extends React.PureComponent {
     render() {
         const { innerRef, isDragging } = this.props
         const { link, title, excerpt, highlight, cover, domain, tags, type, view, access, created, reparse, collectionId, spaceId } = this.props
-        const { active, selected, important, broken } = this.props
-        const { onClick, onTagClick, onEditClick, onPreviewClick, onSelectClick, onImportantClick, onContextMenu, onKeyUp } = this.props
+        const { active, selected, selectDisabled, important, broken } = this.props
+        const { onClick, onTagClick, onEditClick, onPreviewClick, onSelectClick, onRemoveClick, onContextMenu, onKeyUp } = this.props
 
         return (
             <article 
@@ -91,11 +91,17 @@ export default class BookmarkItemView extends React.PureComponent {
                                 <b><Icon name='edit' /></b>
                             </span>
 
-                            <span
+                            {/*<span
                                 className='button min default'
                                 onClick={onContextMenu}
                                 title={t.s('helpContextD')}>
                                 <b><Icon name='more_horizontal' /></b>
+                            </span>*/}
+
+                            <span 
+                                className='button min default'
+                                onClick={onRemoveClick}>
+                                <b><Icon name='trash' /></b>
                             </span>
                         </>
                     ) : null}
@@ -105,7 +111,7 @@ export default class BookmarkItemView extends React.PureComponent {
                     <label
                         className={`selectElement ${selected ? 'active' : 'default'}`}
                         title={t.s('select')}>
-                        <input type='checkbox' checked={selected} onChange={onSelectClick} />
+                        <input type='checkbox' checked={selected} disabled={selectDisabled} onChange={onSelectClick} />
                     </label>
                 ) : null}
 

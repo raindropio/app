@@ -13,6 +13,7 @@ import {
 	SELECT_MODE_MOVE_SELECTED,
 	SELECT_MODE_REMOVETAGS_SELECTED,
 	SELECT_MODE_REPARSE_SELECTED,
+	SELECT_MODE_FAIL_SELECTED,
 
 	SELECT_MODE_DISABLE,
 
@@ -145,6 +146,10 @@ const updateBookmarks = ({validate, set, mutate}) => (
 		}catch(e){
 			console.log(e)
 			typeof onFail == 'function' && onFail()
+
+			yield put({
+				type: SELECT_MODE_FAIL_SELECTED
+			})
 		}
 	}
 )
@@ -173,6 +178,10 @@ function* removeBookmarks({onSuccess, onFail}) {
 
 		if (typeof onFail == 'function')
 			onFail()
+
+		yield put({
+			type: SELECT_MODE_FAIL_SELECTED
+		})
 	}
 }
 

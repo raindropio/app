@@ -1,5 +1,4 @@
 import React from 'react'
-import _ from 'lodash'
 import t from '~t'
 import getLinks from '~data/modules/bookmarks/getLinks'
 
@@ -7,6 +6,7 @@ import Icon from '~co/common/icon'
 import Move from './move'
 import Checkbox from './checkbox'
 import More from './more'
+import Working from './working'
 
 export default class BookmarksHeaderSelectMode extends React.PureComponent {
     handlers = {
@@ -59,8 +59,9 @@ export default class BookmarksHeaderSelectMode extends React.PureComponent {
 
         onRemoveClick: (e)=>{
             e.preventDefault()
-            if (confirm(t.s('areYouSure')))
-                this.props.actions.removeSelected(this.props.spaceId)
+            if (!confirm(t.s('areYouSure'))) return
+
+            this.props.actions.removeSelected(this.props.spaceId)
         },
 
         onOpenSelectedClick: (e)=>{
@@ -75,6 +76,9 @@ export default class BookmarksHeaderSelectMode extends React.PureComponent {
         const { onSelectAllClick, onCancelSelectModeClick, onAddTagsClick, onRemoveClick, onOpenSelectedClick } = this.handlers
 
         let title = collection._id ? (t.s('in') + ' ' + collection.title + (isSearching?' / '+t.s('defaultCollection-0'):'')) : ''
+
+        if (selectMode.working)
+            return <Working {...this.props} />
 
         return (
             <div className='elements-header select-mode'>

@@ -164,7 +164,8 @@ export const blankSelectMode = Immutable({
 	enabled: false,
 	spaceId: null,
 	all: false,
-	ids: emptyArray
+	ids: emptyArray,
+	working: false
 })
 
 

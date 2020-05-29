@@ -10,6 +10,15 @@ import {
 	SELECT_MODE_SELECT_ALL,
 	SELECT_MODE_UNSELECT_ALL,
 
+	SELECT_MODE_IMPORTANT_SELECTED,
+	SELECT_MODE_SCREENSHOT_SELECTED,
+	SELECT_MODE_REMOVE_SELECTED,
+	SELECT_MODE_APPENDTAGS_SELECTED,
+	SELECT_MODE_REMOVETAGS_SELECTED,
+	SELECT_MODE_MOVE_SELECTED,
+	SELECT_MODE_REPARSE_SELECTED,
+	SELECT_MODE_FAIL_SELECTED,
+
 	SPACE_LOAD_REQ,
 	SPACE_RELOAD_REQ,
 
@@ -74,6 +83,30 @@ export default function(state, action) {switch (action.type) {
 			.setIn(['selectMode', 'spaceId'], action.spaceId)
 			.setIn(['selectMode', 'all'], false)
 	}
+
+	case SELECT_MODE_IMPORTANT_SELECTED:
+		return state.setIn(['selectMode', 'working'], 'important')
+
+	case SELECT_MODE_SCREENSHOT_SELECTED:
+		return state.setIn(['selectMode', 'working'], 'screenshot')
+
+	case SELECT_MODE_REMOVE_SELECTED:
+		return state.setIn(['selectMode', 'working'], 'remove')
+
+	case SELECT_MODE_APPENDTAGS_SELECTED:
+		return state.setIn(['selectMode', 'working'], 'appendTags')
+
+	case SELECT_MODE_REMOVETAGS_SELECTED:
+		return state.setIn(['selectMode', 'working'], 'removeTags')
+
+	case SELECT_MODE_MOVE_SELECTED:
+		return state.setIn(['selectMode', 'working'], 'move')
+
+	case SELECT_MODE_REPARSE_SELECTED:
+		return state.setIn(['selectMode', 'working'], 'reparse')
+
+	case SELECT_MODE_FAIL_SELECTED:
+		return state.setIn(['selectMode', 'working'], '')
 
 	case BOOKMARK_REMOVE_SUCCESS:{
 		return state
