@@ -23,7 +23,7 @@ export default class FiltersTagView extends React.Component {
 
                 {count ? <div className='count'>{humanNumber(count)}</div> : null}
                 <div className='actions'>
-                    {canAppend && onAppendClick && <Icon name='add' onClick={onAppendClick} />}
+                    {canAppend && onAppendClick && <Icon name='search_add' onClick={onAppendClick} />}
                     <Icon name='more_horizontal' onClick={onContextMenu} />
                 </div>
 

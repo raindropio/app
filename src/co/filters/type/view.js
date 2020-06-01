@@ -39,7 +39,7 @@ export default class FiltersType extends React.Component {
 
                 {showActions ? (
                     <div className='actions'>
-                        <Icon name='add' onClick={onAppendClick} />
+                        <Icon name='search_add' onClick={onAppendClick} />
                     </div>
                 ) : null}
 
