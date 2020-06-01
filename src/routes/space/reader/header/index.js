@@ -3,6 +3,7 @@ import t from '~t'
 import { Header } from '~co/screen/splitview/reader'
 import Icon from '~co/common/icon'
 import Tabs from '~co/common/tabs'
+import Settings from './settings'
 
 const defaultTabs = [
     {
@@ -41,6 +42,9 @@ export default class ReaderHeader extends React.PureComponent {
             <Header
                 onBackClick={onBackClick}
                 onFullscreenClick={onFullscreenToggleClick}>
+                <Settings
+                    tab={tab} />
+
                 <div className='maxCenter'>
                     <Tabs
                         items={defaultTabs.filter(({key})=> tabs.includes(key) )}

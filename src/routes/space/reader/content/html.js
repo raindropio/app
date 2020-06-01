@@ -13,11 +13,12 @@ class ReaderHTML extends React.Component {
     render() {
         const {
             item: { type, title, domain, created  },
-            html: { html, status }
+            html: { html, status },
+            font_color, font_family, font_size
         } = this.props
 
         return (
-            <div className={`preview preview-type-${type} vfontcolor- vfontsize-1 vfontfamily-default`}>
+            <div className={`preview preview-type-${type} vfontcolor-${font_color} vfontsize-${font_size} vfontfamily-${font_family||'default'}`}>
                 {status=='loading' ? <div className='centerContentWrap status-loading'><Preloader /></div> : null}
 
                 <div className={`previewContent ${status}`}>
@@ -36,7 +37,11 @@ class ReaderHTML extends React.Component {
 export default connect(
     ()=>{
         return (state, { item })=>({
-            html: getHtml(state, item._id)
+            html: getHtml(state, item._id),
+
+            font_size: state.config.font_size,
+            font_color: state.config.font_color,
+            font_family: state.config.font_family
         })
     }
 )(ReaderHTML)
