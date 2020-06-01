@@ -8,6 +8,7 @@ import SourcePicker from '~co/picker/source/popover'
 class BookmarksAdd extends React.Component {
     static defaultProps = {
         spaceId: 0,
+        onCreateItem: undefined,
         onClose: undefined
     }
 
@@ -16,7 +17,10 @@ class BookmarksAdd extends React.Component {
             this.props.actions.oneUpload({
                 collectionId: this.props.spaceId,
                 file
-            }, res, rej)
+            }, (item)=>{
+                this.props.onCreateItem && this.props.onCreateItem(item)
+                res(item)
+            }, rej)
         })
 
     onLink = link=>
@@ -24,7 +28,10 @@ class BookmarksAdd extends React.Component {
             this.props.actions.oneCreate({
                 collectionId: this.props.spaceId,
                 link
-            }, res, rej)
+            }, (item)=>{
+                this.props.onCreateItem && this.props.onCreateItem(item)
+                res(item)
+            }, rej)
         })
 
     render() {

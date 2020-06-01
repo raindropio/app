@@ -13,19 +13,15 @@ export default class CollectionsMainHeader extends React.Component {
     }
 
     render() {
-        const { spaceId, search } = this.props
-
         return (
             <Header>
                 <Search 
-                    value={search}
+                    value={this.props.search}
                     events={this.searchEvents} />
     
-                <Share 
-                    spaceId={spaceId} />
+                <Share {...this.props} />
     
-                <Add
-                    spaceId={spaceId} />
+                <Add {...this.props} />
             </Header>
         )
     }

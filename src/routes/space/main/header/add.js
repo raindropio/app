@@ -14,6 +14,9 @@ export default class HeaderAdd extends React.Component {
 
     onAddClose = ()=>
         this.setState({ show: false })
+
+    onCreateItem = item=>
+        this.props.onReader({ bookmark: item._id, tab: 'edit' })
     
     render() {
         const { spaceId } = this.props
@@ -35,6 +38,7 @@ export default class HeaderAdd extends React.Component {
                 {show ? (
                     <Add 
                         spaceId={spaceId}
+                        onCreateItem={this.onCreateItem}
                         onClose={this.onAddClose} />
                 ) : null}
             </>
