@@ -143,12 +143,12 @@ const updateBookmarks = ({validate, set, mutate}) => (
 				])
 
 			typeof onSuccess == 'function' && onSuccess()
-		}catch(e){
-			console.log(e)
-			typeof onFail == 'function' && onFail()
+		}catch(error){
+			typeof onFail == 'function' && onFail(error)
 
 			yield put({
-				type: SELECT_MODE_FAIL_SELECTED
+				type: SELECT_MODE_FAIL_SELECTED,
+				error
 			})
 		}
 	}
@@ -173,14 +173,12 @@ function* removeBookmarks({onSuccess, onFail}) {
 
 		if (typeof onSuccess == 'function')
 			onSuccess()
-	}catch(e){
-		console.log(e)
-
-		if (typeof onFail == 'function')
-			onFail()
+	}catch(error){
+		typeof onFail == 'function' && onFail(error)
 
 		yield put({
-			type: SELECT_MODE_FAIL_SELECTED
+			type: SELECT_MODE_FAIL_SELECTED,
+			error
 		})
 	}
 }

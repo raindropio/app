@@ -4,6 +4,7 @@ import groups from './groups'
 import single from './single'
 import drafts from './drafts'
 import sharing from './sharing'
+import selectMode from './selectMode'
 
 export default function* () {
 	yield all([
@@ -11,6 +12,7 @@ export default function* () {
 		groups(),
 		single(),
 		drafts(),
-		sharing()
+		sharing(),
+		selectMode()
 	])
 }

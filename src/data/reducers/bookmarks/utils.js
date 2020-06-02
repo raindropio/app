@@ -24,7 +24,8 @@ export const replaceBookmarksSpace = (state, clean, spaceId)=>{
 	const existing = (space['ids']||[])
 	
 	//reset only when items changed
-	if (existing.length != clean['ids'].length ||
+	if (!existing.length ||
+		existing.length != clean['ids'].length ||
 		!_.isEqual(existing.slice(0, clean['ids'].length), clean['ids']))
 		state = state
 			.setIn(['spaces', spaceId, 'ids'], clean['ids'])
@@ -66,10 +67,10 @@ export const actualizeSpaceStatus = (state, spaceId)=>{
 export const insertIdToSpace = (state, spaceId, _id)=>{
 	iterateSpaceId(spaceId, (cleanSpaceId)=>{
 		const space = state.getIn(['spaces', cleanSpaceId])
-		if (space)
+		if (space && space.status)
 			if (space.status.main=='loaded' || space.status.main=='empty'){
 				state = state
-					.setIn(['spaces', cleanSpaceId, 'ids'], _.uniq([_id].concat(space.ids)))
+					.setIn(['spaces', cleanSpaceId, 'ids'], _.uniq([_id].concat(space.ids||[])))
 			}
 	})
 

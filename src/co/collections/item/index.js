@@ -11,6 +11,7 @@ export default class CollectionsItem extends React.Component {
     static defaultProps = {
         item:       {},
         active:     false,
+        multiselect:false,
         events:     {}, //same as ...items/index
         actions:    {} //redux collections
     }
@@ -102,6 +103,9 @@ export default class CollectionsItem extends React.Component {
         },
     
         onKeyUp: (e)=>{
+            if (this.props.multiselect)
+                return
+
             switch(e.keyCode){
                 case 37: //left
                 case 39: //right

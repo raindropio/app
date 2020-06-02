@@ -11,7 +11,8 @@ import {
 	COLLECTION_COVER_UPLOAD_REQ,
 	COLLECTIONS_DEFAULTS_CHANGE, COLLECTIONS_EXPAND_TO, COLLECTIONS_COLLAPSE_ALL,
 	GROUP_CREATE, GROUP_TOGGLE, GROUP_REORDER, GROUP_REMOVE, GROUP_RENAME,
-	COLLECTIONS_SELECT_ONE, COLLECTIONS_UNSELECT_ONE, COLLECTIONS_SELECT_ALL, COLLECTIONS_UNSELECT_ALL
+	COLLECTIONS_SELECT_ONE, COLLECTIONS_UNSELECT_ONE, COLLECTIONS_SELECT_ALL, COLLECTIONS_UNSELECT_ALL,
+	COLLECTIONS_SELECTED_MERGE, COLLECTIONS_SELECTED_REMOVE
 } from '../constants/collections'
 
 //All
@@ -19,8 +20,10 @@ export const load = ()=>({
 	type: COLLECTIONS_LOAD_REQ
 })
 
-export const refresh = ()=>({
-	type: COLLECTIONS_REFRESH_REQ
+export const refresh = (onSuccess, onFail)=>({
+	type: COLLECTIONS_REFRESH_REQ,
+	onSuccess: wrapFunc(onSuccess),
+	onFail: wrapFunc(onFail)
 })
 
 //High level API
@@ -208,6 +211,14 @@ export const selectAll = (groupId)=>({
 
 export const unselectAll = ()=>({
 	type: COLLECTIONS_UNSELECT_ALL
+})
+
+export const mergeSelected = ()=>({
+	type: COLLECTIONS_SELECTED_MERGE
+})
+
+export const removeSelected = ()=>({
+	type: COLLECTIONS_SELECTED_REMOVE
 })
 
 //Low level API

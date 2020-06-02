@@ -30,7 +30,7 @@ class CollectionsItems extends React.Component {
 			groupTitle: t.s('myCollections')
         })
         
-        this.props.actions.load()
+        this.props.actions.refresh()
     }
 
     componentDidUpdate({ activeId, status, selectMode }) {

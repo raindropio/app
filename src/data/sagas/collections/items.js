@@ -25,7 +25,7 @@ export default function* () {
 	yield takeEvery(COLLECTIONS_REORDER, reorderAll)
 }
 
-function* loadItems({dontLoadCollections=false}) {
+function* loadItems({ dontLoadCollections=false, onSuccess, onFail }) {
 	if (dontLoadCollections)
 		return;
 
@@ -70,10 +70,12 @@ function* loadItems({dontLoadCollections=false}) {
 				...child.items||[]
 			],
 			groups: user.user.groups,
-			user: user.user
+			user: user.user,
+			onSuccess,
+			onFail
 		});
 	} catch (error) {
-		yield put({type: COLLECTIONS_LOAD_ERROR, error});
+		yield put({ type: COLLECTIONS_LOAD_ERROR, error, onSuccess, onFail });
 	}
 }
 

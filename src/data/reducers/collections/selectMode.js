@@ -2,10 +2,17 @@ import _ from 'lodash'
 import { blankSelectMode } from '../../helpers/collections'
 import {
 	COLLECTIONS_LOAD_REQ,
+	COLLECTIONS_REFRESH_REQ,
+
 	COLLECTIONS_SELECT_ONE,
 	COLLECTIONS_UNSELECT_ONE,
 	COLLECTIONS_SELECT_ALL,
 	COLLECTIONS_UNSELECT_ALL,
+
+	COLLECTIONS_SELECTED_MERGE,
+    COLLECTIONS_SELECTED_REMOVE,
+	COLLECTIONS_SELECTED_FAILED,
+	
 	COLLECTION_REMOVE_SUCCESS
 } from '../../constants/collections'
 
@@ -28,14 +35,10 @@ export default function(state, action) {switch (action.type) {
     }
 
 	case COLLECTIONS_LOAD_REQ:
-    case COLLECTIONS_UNSELECT_ALL:{
-		if (state.selectMode.enabled &&
-			state.selectMode.working)
-			return state
-
+	case COLLECTIONS_REFRESH_REQ:
+    case COLLECTIONS_UNSELECT_ALL:
 		return state
 			.set('selectMode', blankSelectMode)
-	}
 
 	case COLLECTIONS_SELECT_ONE:{
 		if (state.selectMode.enabled &&
@@ -59,4 +62,13 @@ export default function(state, action) {switch (action.type) {
 			.setIn(['selectMode', 'ids'], ids)
 			.setIn(['selectMode', 'enabled'], ids.length?true:false)
 	}
+
+	case COLLECTIONS_SELECTED_MERGE:
+		return state.setIn(['selectMode', 'working'], 'merge')
+	
+	case COLLECTIONS_SELECTED_REMOVE:
+		return state.setIn(['selectMode', 'working'], 'remove')
+
+	case COLLECTIONS_SELECTED_FAILED:
+		return state.setIn(['selectMode', 'working'], '')
 }}

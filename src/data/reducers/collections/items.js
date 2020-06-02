@@ -42,6 +42,9 @@ export default function(state, action) {switch (action.type) {
 	}
 
 	case COLLECTIONS_LOAD_SUCCESS:{
+		if (typeof action.onSuccess == 'function')
+			action.onSuccess()
+
 		state = updateCollections(state, normalizeCollections(action.items, action.groups))
 		state = state.set('status', 'loaded')
 
@@ -49,6 +52,8 @@ export default function(state, action) {switch (action.type) {
 	}
 
 	case COLLECTIONS_LOAD_ERROR:{
+		if (typeof action.onFail == 'function')
+			action.onFail(action.error)
 		//state = updateCollections(state, normalizeCollections())
 
 		return state
