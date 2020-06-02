@@ -33,16 +33,20 @@ class CollectionsItems extends React.Component {
         this.props.actions.load()
     }
 
-    componentDidUpdate({ activeId, status }) {
+    componentDidUpdate({ activeId, status, selectMode }) {
         //expand tree to active id
         if (activeId != this.props.activeId ||
             (status != this.props.status && this.props.status == 'loaded') )
             if (typeof this.props.activeId != 'object')
                 this.props.actions.expandTo(this.props.activeId)
 
-        //reset selection
+        //reset selection when active change
         if (activeId != this.props.activeId)
             this.props.actions.unselectAll()
+
+        //append current active when select mode enabled
+        if (!selectMode.enabled && this.props.selectMode.enabled)
+            this.props.actions.selectOne(this.props.activeId)
     }
 
     componentWillUnmount() {

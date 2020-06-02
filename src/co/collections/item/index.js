@@ -61,8 +61,10 @@ export default class CollectionsItem extends React.Component {
         onExpandClick: ()=>
             this.props.actions.oneToggle(this.props.item._id),
     
-        onRenameClick: ()=>
-            this.setState({ rename: true }),
+        onRenameClick: ()=>{
+            if (!this.props.multiselect)
+                this.setState({ rename: true })
+        },
         
         onRenameCancel: ()=>
             this.setState({ rename: false }),

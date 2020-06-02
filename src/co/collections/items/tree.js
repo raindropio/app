@@ -85,6 +85,10 @@ export default class CollectionsTree extends React.Component {
 
     //drag/drop
     rowIsDraggable = ({ index })=>{
+        //disable when multiselect
+        if (typeof this.props.activeId == 'object')
+            return false
+
         const row = this.props.data[index]
 
         //disable for system collections
