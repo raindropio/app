@@ -24,7 +24,7 @@ export default class CollectionsItemView extends React.PureComponent {
 	}
 
     render() {
-        const { _id, title, count, color, cover, level, active, expanded, expandable, to } = this.props
+        const { _id, title, count, color, cover, level, active, expanded, expandable, to, multiselect } = this.props
         const { innerRef, isDragging, isDropping } = this.props
         const { onClick, onExpandClick, onRenameClick, onContextMenu, onKeyUp } = this.props
 
@@ -36,6 +36,8 @@ export default class CollectionsItemView extends React.PureComponent {
                 <span className='expand' onMouseUp={onExpandClick}>
                     <Icon name='arrow_alt' />
                 </span>
+
+                {_id > 0 && multiselect ? <input type='checkbox' checked={active} onChange={onClick} /> : null}
 
                 <CollectionIcon
                     cover={cover}
@@ -51,12 +53,13 @@ export default class CollectionsItemView extends React.PureComponent {
                 {this.renderStatus()}
 
                 {count ? <div className='count'>{humanNumber(count)}</div> : null}
-				<div className='actions'><Icon name='more_horizontal' onClick={onContextMenu} /></div>
+				{!multiselect ? <div className='actions'><Icon name='more_horizontal' onClick={onContextMenu} /></div> : null}
 
                 <SuperLink
 					navPrefix='menu-item'
                     to={to}
                     tabIndex={active ? '1' : '-1'}
+                    focusable={!multiselect}
 					onClick={onClick}
 					onDoubleClick={onRenameClick}
                     onContextMenu={onContextMenu}

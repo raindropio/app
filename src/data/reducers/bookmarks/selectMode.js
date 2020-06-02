@@ -31,7 +31,6 @@ export default function(state, action) {switch (action.type) {
 			.set('selectMode', blankSelectMode)
 			.setIn(['selectMode', 'enabled'], true)
 			.setIn(['selectMode', 'spaceId'], action.spaceId)
-			.setIn(['selectMode', 'ids'], blankSelectMode.ids)
 	}
 
 	case SELECT_MODE_DISABLE:

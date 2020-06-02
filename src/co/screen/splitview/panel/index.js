@@ -22,7 +22,7 @@ export default class SplitViewPanel extends React.Component {
 
     onChange = ()=>{
         const { show=true } = this.props
-        this.context.update('reader', { show })
+        this.context.update('panel', { show })
     }
     
     render() {

@@ -34,6 +34,9 @@ export default class CollectionsGroup extends React.PureComponent {
                 this.props.actions.groupCreate(title)
         },
 
+        onSelectAll: ()=>
+            this.props.actions.selectAll(this.props._id),
+
         onRenameClick: ()=>{
             const title = prompt(t.s('enterTitle'), this.props.title)
 

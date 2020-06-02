@@ -18,7 +18,7 @@ export default class CollectionsTree extends React.Component {
         if (this.props.data.length && !this._scrolled && this._list.current){
             this._scrolled = true
 
-            if (this.props.activeId)
+            if (this.props.activeId && typeof this.props.activeId != 'object')
                 this._list.current.scrollToItem(
                     this.props.data
                         .findIndex(({item})=>item && item._id == this.props.activeId)
@@ -40,11 +40,29 @@ export default class CollectionsTree extends React.Component {
                     this.props.customRows[index - this.props.data.length]
                 )
 
-        let Component
+        let Component, active = false, multiselect = false
         switch(row.type) {
-            case 'group': Component = Group; break
-            case 'collection': Component = Item; break
-            default: return null
+            case 'group':
+                Component = Group
+            break
+
+            case 'collection':
+                Component = Item
+                
+                switch(typeof this.props.activeId){
+                    case 'object':
+                        active = this.props.activeId.includes(row.item._id)
+                        multiselect = true
+                    break
+
+                    default:
+                        active = this.props.activeId == row.item._id
+                    break
+                }
+            break
+
+            default:
+                return null
         }
 
         return (
@@ -53,9 +71,11 @@ export default class CollectionsTree extends React.Component {
                 {...row}
                 //tree specififc
                 uriPrefix={this.props.uriPrefix}
-                active={row.item && this.props.activeId == row.item._id}
+                active={active}
+                multiselect={multiselect}
                 events={this.props.events}
                 actions={this.props.actions}
+                handlers={this.props.handlers}
                 //drag/drop specific
                 isDragging={isDragging}
                 isDropping={combineTargetFor?true:false}

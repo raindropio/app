@@ -3,15 +3,16 @@ import t from '~t'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as collectionsActions from '~data/actions/collections'
-import { makeTreeFlat, makeCollectionsStatus } from '~data/selectors/collections'
+import { makeTreeFlat, makeCollectionsStatus, selectMode } from '~data/selectors/collections'
 
 import withPause from '~co/common/withPause'
 import Tree from './tree'
+import SelectMode from './selectMode'
 
 class CollectionsItems extends React.Component {
     static defaultProps = {
         uriPrefix:          '',
-        activeId:           undefined,
+        activeId:           undefined, //string||number||array
         options:            {}, //hideIds[], showGroups:true, search:''
         events:             {}, //onItemClick, onGroupClick
         
@@ -36,26 +37,43 @@ class CollectionsItems extends React.Component {
         //expand tree to active id
         if (activeId != this.props.activeId ||
             (status != this.props.status && this.props.status == 'loaded') )
-            this.props.actions.expandTo(this.props.activeId)
+            if (typeof this.props.activeId != 'object')
+                this.props.actions.expandTo(this.props.activeId)
+
+        //reset selection
+        if (activeId != this.props.activeId)
+            this.props.actions.unselectAll()
+    }
+
+    componentWillUnmount() {
+        this.props.actions.unselectAll()
     }
 
     createNewCollection = (e)=>{
         let asChild = false
-        if (e) {
+        if (typeof e == 'object' && e.preventDefault) {
             e.preventDefault()
             asChild = e.shiftKey ? true : false
         }
 
-        this.props.actions.addBlank(this.props.activeId, asChild)
+        if (typeof this.props.activeId != 'object')
+            this.props.actions.addBlank(this.props.activeId, asChild)
     }
 
     render() {
-        const { ...etc } = this.props
+        const { selectMode, activeId, ...etc } = this.props
 
         return (
-            <Tree 
-                {...etc}
-                data={this.props.data} />
+            <>
+                <SelectMode 
+                    selectMode={selectMode}
+                    {...etc} />
+                    
+                <Tree 
+                    {...etc}
+                    activeId={selectMode.enabled ? selectMode.ids : activeId}
+                    data={this.props.data} />
+            </>
         )
     }
 }
@@ -70,7 +88,8 @@ export default connect(
     
             return {
                 data: getTree(state, props),
-                status
+                status,
+                selectMode: selectMode(state)
             }
         }
     },

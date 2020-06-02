@@ -11,7 +11,8 @@ export default class SuperLink extends React.PureComponent {
 	}
 
 	onMouseDown = (e)=>{
-		e.target.focus()
+		if (this.props.focusable !== false)
+			e.target.focus()
 	}
 
 	onKeyDown = (e)=>{

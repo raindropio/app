@@ -22,17 +22,41 @@ export default class CollectionsItem extends React.Component {
     }
 
     handlers = {
-        onClick: this.props.events.onItemClick ?
-            (e)=>{
-                e.preventDefault()
+        onClick: (e)=>{
+            const { item, multiselect, events, actions } = this.props
 
-                if (this.props.item._id == -100)
-                    return this.props.actions.oneCreate({
-                        title: this.props.item.title
-                    }, this.props.events.onItemClick)
+            //create new
+            if (item._id == -100){
+                e.preventDefault()
+                return actions.oneCreate({ title: item.title }, events.onItemClick)
+            }
+
+            //select
+            if (item._id > 0)
+                if (multiselect || e.metaKey || e.ctrlKey || e.shiftKey){
+                    e.preventDefault()
+                    return this.handlers.onSelectClick()
+                }
+
+            //click on item
+            if (events.onItemClick){
+                if (events.onItemClick(item)!='continue')
+                    e.preventDefault()
                 else
-                    this.props.events.onItemClick(this.props.item)
-            } : undefined,
+                    return
+            }
+
+            //otherwise usual click on href
+        },
+
+        onSelectClick: ()=>{
+            const { active, multiselect, actions: { selectOne, unselectOne } } = this.props
+
+            if (active && multiselect)
+                unselectOne(this.props.item._id)
+            else
+                selectOne(this.props.item._id)
+        },
     
         onExpandClick: ()=>
             this.props.actions.oneToggle(this.props.item._id),
@@ -57,7 +81,9 @@ export default class CollectionsItem extends React.Component {
         onContextMenu: (e)=>{
             e.preventDefault()
             e.target.focus()
-            this.setState({ menu: true })
+            
+            if (!this.props.multiselect)
+                this.setState({ menu: true })
         },
     
         onContextMenuClose: ()=>

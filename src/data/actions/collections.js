@@ -11,6 +11,7 @@ import {
 	COLLECTION_COVER_UPLOAD_REQ,
 	COLLECTIONS_DEFAULTS_CHANGE, COLLECTIONS_EXPAND_TO, COLLECTIONS_COLLAPSE_ALL,
 	GROUP_CREATE, GROUP_TOGGLE, GROUP_REORDER, GROUP_REMOVE, GROUP_RENAME,
+	COLLECTIONS_SELECT_ONE, COLLECTIONS_UNSELECT_ONE, COLLECTIONS_SELECT_ALL, COLLECTIONS_UNSELECT_ALL
 } from '../constants/collections'
 
 //All
@@ -187,6 +188,26 @@ export const expandTo = (_id, self)=>({
 //Toggle all collections
 export const toggle = ()=>({
 	type: COLLECTIONS_COLLAPSE_ALL
+})
+
+//Select mode
+export const selectOne = (_id)=>({
+	type: COLLECTIONS_SELECT_ONE,
+	_id: parseInt(_id)
+})
+
+export const unselectOne = (_id)=>({
+	type: COLLECTIONS_UNSELECT_ONE,
+	_id: parseInt(_id)
+})
+
+export const selectAll = (groupId)=>({
+	type: COLLECTIONS_SELECT_ALL,
+	groupId
+})
+
+export const unselectAll = ()=>({
+	type: COLLECTIONS_UNSELECT_ALL
 })
 
 //Low level API

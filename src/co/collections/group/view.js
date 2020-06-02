@@ -5,7 +5,7 @@ export default class CollectionsGroupView extends React.Component {
     render() {
         const { title, system, active } = this.props
         const { isDragging, isDropping } = this.props
-        const { onClick, onContextMenu } = this.props
+        const { onClick, onContextMenu, onCreateNewCollectionClick } = this.props
 
         if (system) return null
 
@@ -14,6 +14,7 @@ export default class CollectionsGroupView extends React.Component {
                 className={`group ${active && 'active'} ${isDragging && 'is-dragging'} ${isDropping && 'is-drag-over'}`}
                 onContextMenu={onContextMenu}>
                 <div className='title' onClick={onClick}>{title}</div>
+                <div className='toggle'><Icon name='add' onClick={onCreateNewCollectionClick} /></div>
                 <div className='toggle'><Icon name='more_horizontal' onClick={onContextMenu} /></div>
             </div>
         )

@@ -57,7 +57,7 @@ groupActive(){
     background: colorTheme;
     color: white;
 
-    input,.toggle {
+    input[type='text'],.toggle {
     	color: inherit;
     	opacity:1;
     }
@@ -130,7 +130,7 @@ img.collectionIcon {
 		flex: 1;
 	}
 	
-	input {
+	input[type='text'] {
 		color: currentColor;
 		flex: 1;
 		min-width: 0;
@@ -145,6 +145,10 @@ img.collectionIcon {
 			box-shadow: 0 0 0 2px rgba(colorTheme, .5);
 			animation: inputFocusAnimation .15s ease-in-out;
 		}
+	}
+
+	input[type='checkbox'] {
+		margin-right: 8px
 	}
 	
 	.count {
@@ -299,7 +303,8 @@ section:first-child .group {
 .group {
 	cursor: default;
 	@extend .disable-select;
-	padding-top: rem(8px);
+	padding-top: rem(6px);
+	padding-bottom: rem(2px);
 	//@extend .font-weight-semibold;
 	padding-left: 20px;
 	font-size: rem(13px);
@@ -333,7 +338,7 @@ section:first-child .group {
 		display:flex;
 	}
 	
-	input {
+	input[type='text'] {
 		width: 100%;
 		display: block;
 		height: rem(groupHeight);
@@ -351,7 +356,8 @@ section:first-child .group {
 	.toggle {
 		height: rem(groupHeight);
     	line-height: rem(groupHeight);
-		padding:0 (sidebarRightGap - 4px);
+		padding:0 4px;
+		padding-right: (sidebarRightGap - 4px)
 		display:none;
 		color: black;
 		opacity: .55;
@@ -386,12 +392,12 @@ section:first-child .group {
 
 html.mac.web {
 	.collection {
-		.title, input {
+		.title, input[type='text'] {
 			font-size: rem(13.5px);
 		}
 	}
 	
-	.group, .group input {
+	.group, .group input[type='text'] {
 		font-size: rem(12.5px);
 	}
 }
@@ -436,6 +442,37 @@ html.mac.web {
 .picker-search-input {
 	padding: 12px 16px
 	padding-top: 0
+}
+
+.collections-select-mode {
+	position: absolute
+	z-index: 3
+	top: 1px
+	left: 7px
+	right: 7px
+	background: white
+	box-shadow: 0 0 0 1px rgba(0,0,0,.15), 0 3px 15px rgba(0,0,0,.1)
+	border-radius: 4px
+
+	.collections-select-mode-header {
+		display: flex
+		align-items: center
+		padding: 0 12px
+		padding-top: 10px
+
+		.title {
+			flex: 1
+            font-weight: 500
+            font-size: rem(14px)
+            @extend .text-overflow
+		}
+	}
+
+	.collections-select-mode-actions {
+		display: flex
+		align-items: center
+		padding: 0 4px
+	}
 }
 
 html:not(.blur) .collection-new-form {

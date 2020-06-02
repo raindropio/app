@@ -3,23 +3,29 @@ import t from '~t'
 
 import Icon from '~co/common/icon'
 import Sidebar, { Header, Content } from '~co/screen/splitview/sidebar'
-import CollectionsTree from '~co/collections/items'
+import Collections from '~co/collections/items'
 import Filters from '~co/filters/items/custom'
 import Profile from './profile'
 
 export default class CollectionsSidebar extends React.Component {
-    tree = React.createRef()
+    //collections
+    collections = React.createRef()
 
+    collectionsEvents = {
+        
+    }
+
+    onCreateCollectionClick = (e)=>{
+        return this.collections.current.createNewCollection(e)
+    }
+
+    //filters
     filtersEvents = {
         onItemClick: query=>
             this.props.onSearch(query),
 
         onItemAppendClick: query=>
             this.props.onSearch(query, 'append'),
-    }
-
-    onCreateClick = (e)=>{
-        return this.tree.current.createNewCollection(e)
     }
 
     render() {
@@ -36,7 +42,7 @@ export default class CollectionsSidebar extends React.Component {
                         href=''
                         className='button flat'
                         title={`${t.s('createNewCollection')}\nShift+click: ${t.s('createSubFolder').toLowerCase()}`}
-                        onClick={this.onCreateClick}>
+                        onClick={this.onCreateCollectionClick}>
                         <b><Icon name='new_collection' /></b>
                     </a>
                 </Header>
@@ -46,8 +52,9 @@ export default class CollectionsSidebar extends React.Component {
                         activeId={search}
                         events={this.filtersEvents}>
                         {(customRows, customRowRenderer)=>
-                            <CollectionsTree 
-                                ref={this.tree}
+                            <Collections 
+                                ref={this.collections}
+                                events={this.collectionsEvents}
                                 
                                 uriPrefix='/space/'
                                 activeId={activeId}

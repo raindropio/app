@@ -6,6 +6,9 @@ import drafts from './drafts'
 import sharing from './sharing'
 import defaults from './defaults'
 import reorder from './reorder'
+import selectMode from './selectMode'
+
+import { blankSelectMode } from '../../helpers/collections'
 
 export default function(state = initialState, action={}){
 	//Items
@@ -36,6 +39,10 @@ export default function(state = initialState, action={}){
 	const caseReorder = reorder(state,action);
 	if (caseReorder) state = caseReorder;
 
+	//Reorder items when needed
+	const caseSelectMode = selectMode(state,action);
+	if (caseSelectMode) state = caseSelectMode;
+
 	switch (action.type) {
 		case 'RESET':{
 			return initialState
@@ -58,6 +65,7 @@ const initialState = Immutable({
 		sendInvitesStatus: {},
 		items: {}
 	},
+	selectMode: blankSelectMode,
 
 	defaults: [
 		{

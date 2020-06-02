@@ -193,3 +193,9 @@ export const blankSharing = Immutable({
 	sendInvitesTo: [],
 	sendInvitesStatus: 'idle',
 })
+
+export const blankSelectMode = Immutable({
+	enabled: false,
+	ids: [],
+	working: false
+})

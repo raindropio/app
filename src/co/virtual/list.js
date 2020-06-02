@@ -34,7 +34,8 @@ export default class VirtualList extends React.PureComponent {
                 this._list.current.scrollToIndex,
                 this._visible.startIndex,
                 this._visible.endIndex,
-                scrollToIndex
+                scrollToIndex,
+                prev.scrollToIndex != -1 ? 'smooth' : 'auto'
             )
     }
 
@@ -65,7 +66,7 @@ export default class VirtualList extends React.PureComponent {
     }
 
     render() {
-        const { endReached, totalCount, dataKey, disableVirtualization, scrollToIndex=0, style={}, ...etc } = this.props
+        const { endReached, totalCount, dataKey, disableVirtualization, style={}, ...etc } = this.props
         const Component = disableVirtualization ? NonVirtualList : Virtuoso
 
         return (
@@ -78,7 +79,6 @@ export default class VirtualList extends React.PureComponent {
                 computeItemKey={this.computeItemKey}
                 style={{...mainStyle, ...style}}
                 rangeChanged={endReached && this.rangeChanged}
-                initialTopMostItemIndex={scrollToIndex >= 0 ? scrollToIndex : undefined}
             />
         )
     }

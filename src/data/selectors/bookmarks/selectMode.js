@@ -35,7 +35,7 @@ export const makeIsSelected = ()=>createSelector(
 		if (selectMode.all)
 			return true;
 
-		if (selectMode.ids.indexOf(_id)!=-1)
+		if (selectMode.ids.includes(_id))
 			return true;
 
 		return false;

@@ -1,15 +1,7 @@
 import Immutable from 'seamless-immutable'
 import { createSelector } from 'reselect'
 import _ from 'lodash-es'
-import {
-	getCollection,
-	getGroup,
-	getPath,
-	normalizeCollection,
-	blankDraft,
-	blankCollection,
-	blankSharing
-} from '../helpers/collections'
+import { normalizeCollection } from '../../helpers/collections'
 
 //Defaults
 const
@@ -17,8 +9,7 @@ const
 	emptyArray = Immutable([]),
 	_collectionsItems = ({collections={}})=>collections.items,
 	_collectionsGroups = ({collections={}})=>collections.groups,
-	_collectionsStatus = ({collections={}})=>collections.status,
-	_getCollectionById = ({collections={}}, collectionId)=>collections.items[parseInt(collectionId)]
+	_collectionsStatus = ({collections={}})=>collections.status
 
 //Tree
 const getChildrens = (items, item, level=0, overrideExpanded=false)=>{
@@ -143,77 +134,6 @@ export const makeCollectionsStatus = ()=> createSelector(
 	[_collectionsStatus],
 	(status)=>status
 )
-
-//Single, super fast
-export const collection = (state, _id) => state.collections.items[_id] ? state.collections.items[_id] : blankCollection
-
-//More safe, slower
-export const makeCollection = ()=> createSelector(
-	[_getCollectionById, (state,_id)=>_id ],
-	getCollection
-)
-
-//Group
-export const group = createSelector(
-	[_collectionsGroups, (state,_id)=>_id],
-	getGroup
-)
-
-//Path
-export const makeCollectionPath = ()=>createSelector(
-	[_collectionsItems, _collectionsGroups, (state, objectId)=>objectId, (state,collectionId,options)=>options],
-	getPath
-)
-
-//Draft
-export const makeDraftItem = ()=>createSelector(
-	[({collections={}}, _id)=>{
-		if (!collections.getIn(['drafts', _id, 'item']))
-			return normalizeCollection({_id: _id})
-
-		return collections.drafts[_id].item
-	}],
-	(item)=>item
-)
-
-//Draft Status
-export const makeDraftStatus = ()=>createSelector(
-	[({collections={}}, _id)=>{
-		if (!collections.getIn(['drafts', _id, 'status']))
-			return blankDraft.status
-
-		return collections.drafts[_id].status
-	}],
-	(status)=>status
-)
-
-//Sharing
-export const getSharing = (state, _id) =>
-	state.collections.sharing.items[_id] || blankSharing.items
-
-export const getSharingStatus = (state, _id) =>
-	state.collections.sharing.status[_id] || blankSharing.status
-
-export const makeSharingByRole = ()=>createSelector(
-	[getSharing],
-	(sharing)=>{
-		return _.groupBy(sharing, 'role')
-	}
-)
-
-export const makeCollaboratorByUserId = ()=>createSelector(
-	[getSharing, (state, cId, userId)=>userId],
-	(sharing, userId)=>_.find(sharing, ['_id', userId])
-)
-
-export const getSharingCount = (state, _id)=>
-	getSharing(state, _id).length
-
-export const getSharingSendInvitesTo = (state, _id) =>
-	state.collections.sharing.sendInvitesTo[_id] || blankSharing.sendInvitesTo
-
-export const getSharingSendInvitesStatus = (state, _id) =>
-	state.collections.sharing.sendInvitesStatus[_id] || blankSharing.sendInvitesStatus
 
 //Collection itself and all childrens
 export const makeBranchIds = () => createSelector(
