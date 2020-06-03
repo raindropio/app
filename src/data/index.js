@@ -10,7 +10,11 @@ const getRootReducer = (additional={})=>
 	persistReducer(persistConfig, combineReducers({...require('./reducers').default, ...additional}))
 
 const composeEnhancers = process.env.NODE_ENV!='production' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose : compose
-const sagaMiddleware = createSagaMiddleware()
+const sagaMiddleware = createSagaMiddleware({
+	onError(err) {
+		console.log('sage error', err)
+	}
+})
 
 //Configure store
 var store, persistor;

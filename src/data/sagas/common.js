@@ -15,10 +15,8 @@ function* checkAuth(action={}) {
 	const { error, ...etc } = action
 
 	if (error instanceof ApiError == false){
-		console.log('redux:', etc)
-		console.trace(error)
-	}else
 		throw error
+	}
 
 	if (error instanceof ApiError &&
 		error.code=='not_authorized'){

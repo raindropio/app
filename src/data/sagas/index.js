@@ -1,4 +1,4 @@
-import { all } from 'redux-saga/effects'
+import { all, spawn } from 'redux-saga/effects'
 import common from './common'
 import user from './user'
 import collections from './collections'
@@ -9,16 +9,17 @@ import covers from './covers'
 import config from './config'
 
 const root = function* () {
+	//spawn prevents the root sage from failing
 	yield all([
-		user(),
-		config(),
-		collections(),
-		bookmarks(),
-		filters(),
-		tags(),
-		covers(),
+		spawn(user),
+		spawn(config),
+		spawn(collections),
+		spawn(bookmarks),
+		spawn(filters),
+		spawn(tags),
+		spawn(covers),
 
-		common()
+		spawn(common)
 	])
 }
 
