@@ -212,20 +212,35 @@ export default function(state, action) {switch (action.type) {
 	}
 
 	case COLLECTION_REMOVE_SUCCESS:{
-		let ids = state.getIn(['spaces', action._id, 'ids'])
+		let spaces = Array.isArray(action._id) ? action._id : [action._id]
+		spaces.push(...spaces.map(space=>space+'s'))
 
-		if (state.getIn(['spaces', action._id+'s']))
-			ids = [ ...ids, ...state.getIn(['spaces', action._id+'s', 'ids']) ]
-
-		//reset space
-		state = state
-			.setIn(['spaces', action._id], blankSpace)
-			.setIn(['spaces', action._id+'s'], blankSpace)
+		let ids = []
 		
-		//remove from all
+		for(const id of spaces){
+			const spaceId = String(id)
+
+			const space = state.getIn(['spaces', spaceId])
+			if (!space) continue
+
+			//collect all bookmark ids
+			ids.push(...space.ids)
+
+			//mark space as 'notFound'
+			state = state
+				.setIn(['spaces', spaceId], blankSpace.setIn(['status', 'main'], 'notFound'))
+		}
+		
+		//remove elements
 		state = state
-			.setIn(['spaces', '0', 'ids'], _.difference(state.getIn(['spaces', '0', 'ids']), ids) )
-			.setIn(['spaces', '0s', 'ids'], _.difference(state.getIn(['spaces', '0s', 'ids']), ids) )
+			.set('elements', state.elements.without(ids))
+			.set('meta', state.meta.without(ids))
+
+		//remove from *all bookmarks* ids
+		for(const spaceId of [0, '0s'])
+			if (state.spaces[spaceId])
+				state = state
+					.setIn(['spaces', spaceId, 'ids'], _.without(state.getIn(['spaces', spaceId, 'ids']), ...ids) )
 		
 		return state
 	}

@@ -11,6 +11,10 @@ import selectMode from './selectMode'
 import { blankSelectMode } from '../../helpers/collections'
 
 export default function(state = initialState, action={}){
+	//Single (should be first)
+	const caseSingle = single(state,action);
+	if (caseSingle) state = caseSingle;
+	
 	//Items
 	const caseItems = items(state,action);
 	if (caseItems) state = caseItems;
@@ -18,10 +22,6 @@ export default function(state = initialState, action={}){
 	//Groups
 	const caseGroups = groups(state,action);
 	if (caseGroups) state = caseGroups;
-
-	//Single
-	const caseSingle = single(state,action);
-	if (caseSingle) state = caseSingle;
 
 	//Drafts
 	const caseDrafts = drafts(state,action);

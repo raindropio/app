@@ -16,11 +16,11 @@ export default function(state, action) {switch (action.type) {
         const sorts = blankSpace.sorts
             .setIn(
                 ['sort', 'enabled'],
-                parseInt(action.spaceId) != 0 && !space.getIn(['query', 'search']).length
+                parseInt(action.spaceId) != 0 && !space.getIn(['query', 'search']).length ? true : false
             )
             .setIn(
                 ['score', 'enabled'],
-                space.getIn(['query', 'search']).length
+                space.getIn(['query', 'search']).length ? true : false
             )
 
         //Sort value

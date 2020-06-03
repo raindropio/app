@@ -98,6 +98,19 @@ export const getPath = (allCollections, allGroups, objectId, options={})=>{
 	return Immutable(parents)
 }
 
+export const getChildrens = (items, item, level=0, overrideExpanded=false)=>{
+	var childrens = []
+	childrens.push({item, level})
+
+	if ((item._id>0)&&(overrideExpanded||item.expanded))
+		items.forEach((i)=>{
+			if (i.parentId==item._id)
+				childrens.push(...getChildrens(items, i, level+1, overrideExpanded))
+		})
+
+	return childrens
+}
+
 export const isGroupId = (_id)=>/^g\d+$/.test((_id||'').toString())
 
 export const shouldLoadItems = (state)=>{
@@ -197,5 +210,5 @@ export const blankSharing = Immutable({
 export const blankSelectMode = Immutable({
 	enabled: false,
 	ids: [],
-	working: false
+	working: ''
 })

@@ -13,10 +13,6 @@ import {
 	BOOKMARK_UPDATE_SUCCESS
 } from '../../constants/bookmarks'
 
-import {
-	COLLECTION_REMOVE_SUCCESS
-} from '../../constants/collections'
-
 //Requests
 export default function* () {
 	//space
@@ -29,7 +25,6 @@ export default function* () {
 	], loadSpace)
 
 	yield debounce(1000, BOOKMARK_UPDATE_SUCCESS, maybeRefeshSpace)
-	yield debounce(1000, COLLECTION_REMOVE_SUCCESS, onCollectionRemove)
 }
 
 function* loadSpace({spaceId, ignore=false}) {
@@ -78,8 +73,4 @@ function* maybeRefeshSpace({spaceId, movedFromSpaceId}) {
 
 		yield all(operations)
 	}
-}
-
-function* onCollectionRemove({_id}) {
-	yield put({type: SPACE_REFRESH_REQ, spaceId: String(_id)});
 }

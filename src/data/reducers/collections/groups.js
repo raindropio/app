@@ -144,7 +144,12 @@ export default function(state, action) {
 
 		//Apply changes after collections change
 		case COLLECTION_REMOVE_SUCCESS:{
-			return removeCollectionFromGroups(state, action._id)
+			let collections = Array.isArray(action._id) ? action._id : [action._id]
+
+			for(const _id of collections)
+				state = removeCollectionFromGroups(state, _id)
+
+			return state
 		}
 	}
 }

@@ -56,11 +56,14 @@ export default function(state, action) {switch (action.type) {
 
 	case COLLECTIONS_UNSELECT_ONE:
 	case COLLECTION_REMOVE_SUCCESS:{
-		const ids = state.selectMode.ids.length ? _.without(state.selectMode.ids, action._id) : []
+		const ids = state.selectMode.ids.length ? 
+			_.without(state.selectMode.ids, ...(Array.isArray(action._id) ? action._id : [action._id]))
+			: []
 
 		return state
 			.setIn(['selectMode', 'ids'], ids)
-			.setIn(['selectMode', 'enabled'], ids.length?true:false)
+			.setIn(['selectMode', 'enabled'], ids.length ? true : false)
+			.setIn(['selectMode', 'working'], ids.length ? state.selectMode.working : '')
 	}
 
 	case COLLECTIONS_SELECTED_MERGE:

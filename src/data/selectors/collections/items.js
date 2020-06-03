@@ -1,7 +1,7 @@
 import Immutable from 'seamless-immutable'
 import { createSelector } from 'reselect'
 import _ from 'lodash-es'
-import { normalizeCollection } from '../../helpers/collections'
+import { normalizeCollection, getChildrens } from '../../helpers/collections'
 
 //Defaults
 const
@@ -12,18 +12,6 @@ const
 	_collectionsStatus = ({collections={}})=>collections.status
 
 //Tree
-const getChildrens = (items, item, level=0, overrideExpanded=false)=>{
-	var childrens = []
-	childrens.push({item, level})
-
-	if ((item._id>0)&&(overrideExpanded||item.expanded))
-		items.forEach((i)=>{
-			if (i.parentId==item._id)
-				childrens.push(...getChildrens(items, i, level+1, overrideExpanded))
-		})
-
-	return childrens
-}
 
 const makeGroupTree = (groupIds, items=[], sortedItems)=>{
 	var results = []

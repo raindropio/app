@@ -95,12 +95,15 @@ export default function(state, action) {switch (action.type) {
 
 	//Remove draft
 	case COLLECTION_REMOVE_SUCCESS:{
-		if (state.drafts[action._id]){
-			state = state
-					.setIn(['drafts', action._id, 'status'], 'removed')
-					.setIn(['drafts', action._id, 'item'], undefined)
-					.setIn(['drafts', action._id, 'changedFields'], [])
-		}
+		let collections = Array.isArray(action._id) ? action._id : [action._id]
+
+		for(const _id of collections)
+			if (state.drafts[_id]){
+				state = state
+						.setIn(['drafts', _id, 'status'], 'removed')
+						.setIn(['drafts', _id, 'item'], undefined)
+						.setIn(['drafts', _id, 'changedFields'], [])
+			}
 
 		return state
 	}

@@ -23,7 +23,7 @@ export default class CollectionsItemContextmenu extends React.Component {
                         {t.s('openLinksInNewTab')}
                     </MenuItem> : null}
 
-                    { _id>0 ? (
+                    { _id>0 && onSelectClick ? (
                         <>
                             <MenuItem onClick={onSelectClick}>
                                 <Icon name='select_all' />

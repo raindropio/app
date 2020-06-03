@@ -1,7 +1,5 @@
 import _ from 'lodash'
-import {
-	normalizeCollection
-} from '../../helpers/collections'
+import { normalizeCollection, getChildrens } from '../../helpers/collections'
 import {
 	COLLECTION_TOGGLE, COLLECTION_CHANGE_VIEW,
 	COLLECTION_CREATE_SUCCESS, COLLECTION_CREATE_ERROR,
@@ -9,9 +7,7 @@ import {
 	COLLECTION_UPDATE_COUNT,
 	COLLECTION_REMOVE_SUCCESS, COLLECTION_REMOVE_ERROR
 } from '../../constants/collections'
-import {
-	actualizeStatus
-} from './utils'
+import { actualizeStatus } from './utils'
 
 export default function(state, action) {
 	switch (action.type) {
@@ -74,17 +70,38 @@ export default function(state, action) {
 			if (typeof action.onSuccess == 'function')
 				action.onSuccess()
 
-			//change trash counter to 0
-			if (action._id == -99)
-				state = state.setIn(['items', -99, 'count'], 0)
-			else
-				state = state
-					.set('items', 
-						state.items
-							.without(action._id)
-							.setIn([0, 'count'], (state.items.getIn([0, 'count'])||0) - state.items[action._id].count)
-							.setIn([-99, 'count'], (state.items.getIn([-99, 'count'])||0) + state.items[action._id].count)
-					)
+			//find all childrens
+			action._id = Array.isArray(action._id) ? action._id : [action._id]
+
+			let items = _.values(state.items)
+			for(const _id of [...action._id]){
+				action._id.push(
+					...getChildrens(items, { _id }, 0, true)
+						.map(({ _id, item }) => _id || item._id)
+				)
+			}
+			action._id = _.uniq(action._id)
+			
+			//count and remove all
+			let count = 0
+			for(const _id of action._id){
+				if (!state.items[_id]) continue
+
+				//change trash counter to 0
+				if (_id == -99){
+					state = state.setIn(['items', -99, 'count'], 0)
+					continue
+				}
+				
+				//remove collection (with childrens)
+				count += state.items[_id].count
+				state = state.set('items', state.items.without(_id))
+			}
+
+			//update counters
+			state = state
+				.setIn(['items', 0, 'count'], (state.items.getIn([0, 'count'])||0) - count)
+				.setIn(['items', -99, 'count'], (state.items.getIn([-99, 'count'])||0) + count)
 
 			return actualizeStatus(state)
 		}

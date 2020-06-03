@@ -9,7 +9,7 @@ import {
     COLLECTIONS_SELECTED_FAILED,
 
     COLLECTIONS_UNSELECT_ALL,
-    COLLECTIONS_REFRESH_REQ
+    COLLECTION_REMOVE_SUCCESS
 } from '../../constants/collections'
 
 export default function* () {
@@ -26,7 +26,7 @@ function* remove({ onSuccess, onFail }) {
 
         //split by 100 items
         for(const ids of _.chunk(selectMode.ids, 100)){
-            const { result=false, error, errorMessage } = yield call(
+            const { result=false, error, errorMessage, ...etc } = yield call(
                 Api.del,
                 'collections',
                 { ids }
@@ -34,14 +34,14 @@ function* remove({ onSuccess, onFail }) {
     
             if (!result)
                 throw new ApiError(error, errorMessage||'cant bulk remove')
+
+            yield put({
+                type: COLLECTION_REMOVE_SUCCESS,
+                _id: etc.ids
+            })
         }
 
-        yield all([
-            //turn off select mode
-            put({ type: COLLECTIONS_UNSELECT_ALL }),
-            //reload collections
-            put({ type: COLLECTIONS_REFRESH_REQ, onSuccess, onFail })
-        ])
+        onSuccess && onFail(onSuccess)
     } catch(error) {
         onFail && onFail(error)
 

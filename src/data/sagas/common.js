@@ -13,8 +13,12 @@ export default common
 
 function* checkAuth(action={}) {
 	const { error, ...etc } = action
-	console.log('redux:', etc)
-	console.trace(error)
+
+	if (error instanceof ApiError == false){
+		console.log('redux:', etc)
+		console.trace(error)
+	}else
+		throw error
 
 	if (error instanceof ApiError &&
 		error.code=='not_authorized'){

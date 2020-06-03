@@ -8,9 +8,9 @@ import config from './config'
 
 export default {
 	user,
+	collections, //before bookmarks!
 	bookmarks,
 	filters,
-	collections,
 	tags,
 	covers,
 	config
