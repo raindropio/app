@@ -19,24 +19,38 @@ export const getGroup = (groups, _id)=>{
 	return _.find(groups, (g)=>g._id == _id) || normalizeGroup()
 }
 
-export const findParentIds = (collections, findId)=>{
+export const findParentIds = (items, findId)=>{
 	let parents = []
 
-	if (!collections[findId])
+	if (!items[findId])
 		return parents
 
-	const { parentId } = collections[findId]
+	const { parentId } = items[findId]
 	if (parentId)
-		_.forEach(collections, item=>{
+		_.forEach(items, item=>{
 			if (item._id == parentId){
 				parents.push(item._id)
 
 				if (item.parentId)
-					parents.push(...findParentIds(collections, item._id))
+					parents.push(...findParentIds(items, item._id))
 			}
 		})
 
 	return parents
+}
+
+export const findOutermost = (items, ids)=>{
+	let to = null, lowest=-1
+
+	for(const id of ids){
+		const levels = findParentIds(items, id).length
+		if (levels < lowest || lowest == -1){
+			to = id
+			lowest = levels
+		}
+	}
+
+	return to
 }
 
 export const getPath = (allCollections, allGroups, objectId, options={})=>{
@@ -159,13 +173,21 @@ export const normalizeCollections = (items=[], groups=[])=>{
 		collectionsIdsInGroups = _.flatten(_.map(cleanGroups, ({collections})=>collections))
 		
 	const notInGroups = _.without(_.difference(rootCollectionsIds, collectionsIdsInGroups), collectionsIdsInGroups)
-	if (notInGroups.length)
-		cleanGroups = cleanGroups.concat([
-			normalizeGroup({
-				title: 'My Collections',
-				collections: notInGroups
-			}, cleanGroups.length)
-		])
+	if (notInGroups.length){
+		//create group if no one exists
+		if (!cleanGroups.length)
+			cleanGroups = cleanGroups.concat([
+				normalizeGroup({
+					title: 'My Collections',
+					collections: []
+				}, cleanGroups.length)
+			])
+
+		cleanGroups = cleanGroups.setIn(
+			[0, 'collections'],
+			[...cleanGroups[0].collections, ...notInGroups]
+		)
+	}
 
 	return Immutable({
 		items: _.zipObject(

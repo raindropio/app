@@ -24,6 +24,7 @@ Not ready
 - bookmark info about cache status, creatorRef
 - bookmark info important icon should be bright
 - bookmark drag preview
+- selectAll collections in group should select childrens too
 
 Server
 - Replace all tags with space to _
@@ -36,6 +37,7 @@ Good to have
 - Combined count on each level of collections tree
 - data: combine logic of bookmarkMove and bookmarkReorder
 - When collection removed open next collection
+- Show (?) icon in Filters and Tags sidebar sections, click opens help page about those items
 
 Translation
 - leave

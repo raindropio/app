@@ -24,9 +24,15 @@ export default function(state, action) {switch (action.type) {
 
 		let ids = []
 
-		for(const group of state.groups)
-			if (!action.groupId || action.groupId == group._id)
-				ids.push(...group.collections)
+		if (action.groupId){
+			for(const group of state.groups)
+				if (action.groupId == group._id)
+					ids.push(...group.collections)
+		} else
+			ids = _.filter(
+				_.map(state.items, ({ _id })=>_id),
+				_id => _id > 0
+			)
 
 		return state
 			.set('selectMode', blankSelectMode)

@@ -12,17 +12,16 @@ export default class CollectionsSelectMode extends React.Component {
         this.props.actions.unselectAll()
 
     onMergeSelected = ()=>{
-        const { actions: { mergeSelected } } = this.props
+        const { selectMode: { ids }, actions: { mergeSelected } } = this.props
         
-        if (confirm(t.s('areYouSure')))
+        if (confirm(`${t.s('areYouSure')}\n${t.s('merge')} ${ids.length} ${t.s('collectionsCount')}`))
             mergeSelected()
     }
 
     onRemoveSelected = ()=>{
         const { selectMode: { ids }, actions: { removeSelected } } = this.props
 
-        if (confirm(`${t.s('areYouSure')}
-        ${t.s('remove')} ${ids.length} ${t.s('collectionsCount')} + ${t.s('all').toLowerCase()} ${t.s('nestedCollections').toLowerCase()}`))
+        if (confirm(`${t.s('areYouSure')}\n${t.s('remove')} ${ids.length} ${t.s('collectionsCount')}`))
             removeSelected()
     }
 
@@ -50,11 +49,13 @@ export default class CollectionsSelectMode extends React.Component {
                         </div>
 
                         <div className='collections-select-mode-actions'>
-                            <a className='button default active' onClick={this.onMergeSelected}>
-                                <Icon name='duplicates' />
-                                
-                                <span className='hide-on-small-body'>{t.s('merge')}</span>
-                            </a>
+                            {ids.length > 1 ? (
+                                <a className='button default active' onClick={this.onMergeSelected}>
+                                    <Icon name='duplicates' />
+                                    
+                                    <span className='hide-on-small-body'>{t.s('merge')}</span>
+                                </a>
+                            ) : null}
 
                             <a className='button default active' onClick={this.onRemoveSelected}>
                                 <Icon name='trash' />

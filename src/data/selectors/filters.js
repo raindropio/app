@@ -27,12 +27,12 @@ export const makeFlatFilters = ()=> createSelector(
 			{ type: 'section', _id: 'types', hidden: config.sidebar_hide_types },
 			...( config.sidebar_hide_types ? [] : [
 				//important
-				{
+				...(filters.important && filters.important.count ? [{
 					type: 'status', 
 					_id: 'important',
 					query: '❤',
 					...filters.important
-				},
+				}] : []),
 				//each type
 				...filters.types.map(type=>({
 					...type,
@@ -40,12 +40,12 @@ export const makeFlatFilters = ()=> createSelector(
 					type: 'type'
 				})),
 				//broken
-				{
+				...(filters.broken && filters.broken.count ? [{
 					type: 'status',
 					_id: 'broken',
 					query: '☠',
 					...filters.broken
-				},
+				}] : []),
 			] ),
 			
 			{ type: 'section', _id: 'tags', hidden: config.sidebar_hide_tags },
@@ -58,12 +58,12 @@ export const makeFlatFilters = ()=> createSelector(
 				})),
 
 				//notag
-				{
+				...(filters.notag && filters.notag.count ? [{
 					type: 'status',
 					_id: 'notag',
 					query: 'notag:1',
 					...filters.notag
-				}
+				}] : [])
 			] )
 		]
 	}

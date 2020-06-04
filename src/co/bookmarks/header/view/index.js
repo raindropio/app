@@ -16,6 +16,11 @@ export default class BookmarksHeaderView extends React.PureComponent {
             this.props.actions.selectAll(this.props.spaceId)
         },
 
+        onSelectEnableClick: (e)=>{
+            e && e.preventDefault && e.preventDefault()
+            this.props.actions.startSelectMode(this.props.spaceId)
+        },
+
         onOpenAllClick: (e)=>{
             e && e.preventDefault && e.preventDefault()
 
@@ -51,7 +56,7 @@ export default class BookmarksHeaderView extends React.PureComponent {
             <div className='elements-header'>
                 <div className='header'>
                     {(collection._id > 0 || isSearching) ? (
-                        <div className='c-icon'>
+                        <div className='c-icon' onClick={this.handlers.onSelectEnableClick}>
                             <CollectionIcon
                                 _id={collection._id}
                                 cover={collection.cover}

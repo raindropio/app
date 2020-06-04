@@ -21,8 +21,9 @@ function* get(url, overrideOptions={}) {
 	return json;
 }
 
-function* put(url, data) {
+function* put(url, data={}, options={}) {
 	const res = yield req(url, {
+		...options,
 		method: 'PUT',
 		headers: {
 			'Accept': 'application/json',
@@ -36,8 +37,9 @@ function* put(url, data) {
 	return json;
 }
 
-function* post(url, data) {
+function* post(url, data={}, options={}) {
 	const res = yield req(url, {
+		...options,
 		method: 'POST',
 		headers: {
 			'Accept': 'application/json',
@@ -75,8 +77,9 @@ function* upload(url, _body) {
 	return json;
 }
 
-function* del(url, data) {
+function* del(url, data={}, options={}) {
 	const res = yield req(url, {
+		...options,
 		method: 'DELETE',
 		headers: {
 			'Accept': 'application/json',
@@ -90,7 +93,7 @@ function* del(url, data) {
 	return json;
 }
 
-function* req(url, options) {
+function* req(url, options={}) {
 	var finalURL = API_ENDPOINT_URL + url
 
 	if (url.indexOf('/') == 0)
@@ -102,7 +105,7 @@ function* req(url, options) {
 		try{
 			const winner = yield race({
 				req: call(fetchWrap, finalURL, {...defaultOptions, ...options}),
-				t: delay(API_TIMEOUT)
+				...( options.timeout !== 0 ? { t: delay(API_TIMEOUT) } : {}) //timeout could be turned off if options.timeout=0
 			})
 
 			if (!winner.req)
