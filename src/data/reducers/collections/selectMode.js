@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import { blankSelectMode } from '../../helpers/collections'
+import { blankSelectMode, getChildrens } from '../../helpers/collections'
 import {
 	COLLECTIONS_LOAD_REQ,
 	COLLECTIONS_REFRESH_REQ,
@@ -15,6 +15,11 @@ import {
 	
 	COLLECTION_REMOVE_SUCCESS
 } from '../../constants/collections'
+
+function getChildIds(state, _id) {
+	return getChildrens(_.values(state.items), { _id }, 0, true)
+		.map(({ _id, item }) => _id || item._id)
+}
 
 export default function(state, action) {switch (action.type) {
     case COLLECTIONS_SELECT_ALL:{
@@ -54,16 +59,28 @@ export default function(state, action) {switch (action.type) {
 		if (action._id <= 0)
 			return state
 
+		const ids = [
+			action._id,
+			...(action.childrens ? getChildIds(state, action._id) : [])
+		]
+
+		//expand selected
+		for(const _id of ids)
+			state = state.setIn(['items', _id, 'expanded'], true)
+
 		return state
 			.set('selectMode', blankSelectMode)
 			.setIn(['selectMode', 'enabled'], true)
-			.setIn(['selectMode', 'ids'], _.uniq([...state.selectMode.ids, action._id]))
+			.setIn(['selectMode', 'ids'], _.uniq([...state.selectMode.ids, ...ids]))
 	}
 
 	case COLLECTIONS_UNSELECT_ONE:
 	case COLLECTION_REMOVE_SUCCESS:{
 		const ids = state.selectMode.ids.length ? 
-			_.without(state.selectMode.ids, ...(Array.isArray(action._id) ? action._id : [action._id]))
+			_.without(
+				state.selectMode.ids, 
+				...(Array.isArray(action._id) ? action._id : [action._id, ...(action.childrens ? getChildIds(state, action._id) : [])])
+			)
 			: []
 
 		return state

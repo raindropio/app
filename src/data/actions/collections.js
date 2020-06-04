@@ -194,14 +194,16 @@ export const toggle = ()=>({
 })
 
 //Select mode
-export const selectOne = (_id)=>({
+export const selectOne = (_id, childrens=true)=>({
 	type: COLLECTIONS_SELECT_ONE,
-	_id: parseInt(_id)
+	_id: parseInt(_id),
+	childrens
 })
 
-export const unselectOne = (_id)=>({
+export const unselectOne = (_id, childrens=true)=>({
 	type: COLLECTIONS_UNSELECT_ONE,
-	_id: parseInt(_id)
+	_id: parseInt(_id),
+	childrens
 })
 
 export const selectAll = (groupId)=>({
