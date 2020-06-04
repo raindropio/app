@@ -62,7 +62,6 @@ export default class BookmarksEmptyView extends React.PureComponent {
             case 'notFound':
                 content = (
                     <div>
-                        <SuperImg src='empty/no_items.png' height='154' />
                         <h2 className='headLabel'>{t.s('removeCollectionSuccess')}</h2>
                         <p className='subHeadLabel'>
                             {t.s('or')} {t.s('nothingFound').toLowerCase()}

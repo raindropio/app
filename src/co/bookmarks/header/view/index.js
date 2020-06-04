@@ -46,34 +46,49 @@ export default class BookmarksHeaderView extends React.PureComponent {
     }
 
     render() {
-        const { collection, isSearching, status, compact } = this.props
+        let {
+            collection: {
+                _id, title, cover, count
+            },
+            isSearching,
+            status,
+            compact
+        } = this.props
 
-        let title = collection.title
-        if (collection._id == 0 && isSearching)
+        //removed or not found collection
+        if (!title)
+            return null
+
+        if (_id == 0 && isSearching)
             title = t.s('defaultCollection-0')
 
         return (
             <div className='elements-header'>
                 <div className='header'>
-                    {(collection._id > 0 || isSearching) ? (
+                    {(_id > 0 || isSearching) ? (
                         <div className='c-icon' onClick={this.handlers.onSelectEnableClick}>
                             <CollectionIcon
-                                _id={collection._id}
-                                cover={collection.cover}
+                                _id={_id}
+                                cover={cover}
                                 loading={status.main=='loading'} />
                         </div>
                     ) : null}
 
                     <div className='title'>
-                        {compact ? <Link to={'/space/'+collection._id+'full'}>{title}</Link> : title}
+                        {compact ? <Link to={'/space/'+_id+'full'}>{title}</Link> : title}
                     </div>
+
                     <More {...this.props} {...this.handlers} />
 
                     <div className='space' />
-                        
-                    <Sort {...this.props} {...this.handlers} />
-                    <View {...this.props} {...this.handlers} />
-                    <SelectAll {...this.props} {...this.handlers} />
+                    
+                    {count ? (
+                        <>
+                            <Sort {...this.props} {...this.handlers} />
+                            <View {...this.props} {...this.handlers} />
+                            <SelectAll {...this.props} {...this.handlers} />
+                        </>
+                    ) : null}
                 </div>
             </div>
         )
