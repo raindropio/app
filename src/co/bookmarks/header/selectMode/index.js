@@ -88,7 +88,9 @@ export default class BookmarksHeaderSelectMode extends React.PureComponent {
                         {...this.handlers} />
 
                     <div className='title' onClick={onSelectAllClick}>
-                        {selectMode.all ? <span className='selected-all-badge'>{t.s('all')}</span> : selectMode.ids.length} {title}
+                        <span className={selectMode.all ? 'selected-all-badge' : ''}>
+                            {selectMode.all ? t.s('all') : selectMode.ids.length} {title}
+                        </span>
                     </div>
 
                     <div className='space' />

@@ -82,7 +82,7 @@ export default class BookmarksHeaderView extends React.PureComponent {
 
                     <div className='space' />
                     
-                    {count ? (
+                    {status.main == 'loaded' ? (
                         <>
                             <Sort {...this.props} {...this.handlers} />
                             <View {...this.props} {...this.handlers} />

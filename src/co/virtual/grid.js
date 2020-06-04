@@ -22,7 +22,6 @@ class VirtualGrid extends React.PureComponent {
             columnCount,
             rowCount,
             style: {
-                width: width+'px',
                 '--grid-columns': columnCount,
                 ...(!disableVirtualization ? { overflowY: 'overlay' } : { })
             }
