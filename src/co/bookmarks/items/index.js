@@ -27,11 +27,11 @@ class BookmarksItems extends React.Component {
     }
 
     load = ()=>{
-        const { actions, spaceId, search, default_sort } = this.props
+        const { actions, spaceId, search, sort } = this.props
 
         actions.load(spaceId, {
             search,
-            sort: search ? 'score' : default_sort
+            sort: search ? 'score' : sort
         })
     }
 
@@ -71,8 +71,7 @@ export default connect(
                 view,
                 access,
                 sort: getSort(state, spaceId),
-                selectModeEnabled: getSelectModeEnabled(state, spaceId),
-                default_sort: state.config.raindrops_sort
+                selectModeEnabled: getSelectModeEnabled(state, spaceId)
             }
         }
     },
