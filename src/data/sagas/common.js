@@ -1,16 +1,16 @@
+import * as Sentry from '@sentry/minimal'
 import { put, takeEvery } from 'redux-saga/effects'
 import ApiError from '../modules/error'
 
-import {
-	USER_NOT_AUTHORIZED
-} from '../constants/user'
+import { USER_NOT_AUTHORIZED, USER_LOAD_SUCCESS, USER_UPDATE_SUCCESS } from '../constants/user'
 
 //Requests
-const common = function* common () {
+export default function* () {
 	yield takeEvery(action => action.error, checkAuth)
+	yield takeEvery([USER_LOAD_SUCCESS, USER_UPDATE_SUCCESS], thirdPartyUserUpdate)
 }
-export default common
 
+//Auth / error check
 function* checkAuth(action={}) {
 	const { error, ...etc } = action
 
@@ -23,4 +23,11 @@ function* checkAuth(action={}) {
 		yield put({type: 'RESET'})
 		yield put({type: USER_NOT_AUTHORIZED})
 	}
+}
+
+//Send additional info to 3rd-party scripts
+function thirdPartyUserUpdate({ user }) {
+	Sentry.configureScope(scope => {
+		scope.setUser(user)
+	})
 }

@@ -38,19 +38,6 @@ export default {
         return host;
     },
 
-    fixURL: function(s) {
-        try{
-            s = s.trim();
-        } catch(e) {if(e)s="";}
-
-        if (s.indexOf('//')==0)
-            return "http:"+s;
-        else if (s.indexOf('/')==0)/*((s.indexOf('http://')!=0)&&(s.indexOf('https://')!=0)&&(s.indexOf('chrome-extension://')!=0))*/
-            return config.host+s;
-        else
-            return s;
-    },
-
     favIcon: function(s,size) {
         switch(size){
             case "retina":

@@ -75,7 +75,7 @@ class SettingsSidebar extends React.Component {
         
                     <section>
                         <div className='group'>
-                            <div className='title'>{_.capitalize(config.home)}</div>
+                            <div className='title'>Raindrop.io</div>
                         </div>
         
                         {this.renderItem('https://raindropio.canny.io/feature-requests', t.s('pro_nextFeatures'), 'tools')}

@@ -51,3 +51,4 @@ Changes
     - bookmarks search now is string, not array!
     - bookmarks.importantSelected action arguments changed
     - test upload files!
+    - new optionalDependencie: @sentry/minimal

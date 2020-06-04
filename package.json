@@ -33,6 +33,7 @@
 		"~routes": "src/routes"
 	},
 	"dependencies": {
+		"@sentry/browser": "5.x",
 		"date-fns": "2.13.x",
 		"ismobilejs": "^1.1.1",
 		"localforage": "1.7.x",
@@ -59,7 +60,8 @@
 		"redux-persist": "6.0.x",
 		"redux-saga": "1.1.x",
 		"reselect": "4.x",
-		"seamless-immutable": "7.x"
+		"seamless-immutable": "7.x",
+		"@sentry/minimal": "5.x"
 	},
 	"devDependencies": {
 		"@babel/core": "7.x",

@@ -1,12 +1,11 @@
-var home = 'raindrop.io';
-var host = 'https://'+home;
-
 export default {
-    home: home,
-	host: host,
-    apiPrefix: __DEV__ ? 'http://localhost:3000/v1/' : 'https://api.raindrop.io/v1/',
-
     webPreview: '//web-preview-prod.exentrich.workers.dev/',
+
+    vendors: {
+        sentry: {
+            dsn: 'https://c647a147102b4de68dd9dd8690e06840@o199199.ingest.sentry.io/5264532'
+        }
+    },
 
     'links': {
         'download': 'https://raindrop.io/download',
