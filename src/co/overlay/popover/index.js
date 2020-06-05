@@ -4,12 +4,9 @@ import Context from './context'
 
 //save mouse position
 let _mousePos = { x:-1, y:-1 }
-document.body.addEventListener('mousemove', function(e){
+document.body.addEventListener('mousedown', function(e){
     _mousePos = { x: e.pageX, y: e.pageY }
 })
-
-//last popover position
-let _lastPos = { x:-1, y:-1 }
 
 export default class Popover extends React.Component {
     static defaultProps = {
@@ -20,7 +17,7 @@ export default class Popover extends React.Component {
 
     _container = React.createRef()
 
-    initPos = _lastPos //when popover called from another popover, it's useful to show it on the same pos as previous
+    initPos = { x:-1, y:-1 }
 
     store = {
         close: ()=>{
@@ -38,8 +35,6 @@ export default class Popover extends React.Component {
     }
 
     componentWillUnmount() {
-        _lastPos = {x:-1, y:-1}
-
         if (this._resizeObserver){
             if (this._container.current)
                 this._resizeObserver.unobserve(this._container.current)
@@ -112,9 +107,6 @@ export default class Popover extends React.Component {
             y = 10
 
         this._container.current.setAttribute('style', `top: ${y}px; left: ${x}px;`)
-
-        //save to global variable
-        _lastPos = { y, x }
     }
 
     render() {

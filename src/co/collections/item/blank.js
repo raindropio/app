@@ -72,7 +72,7 @@ class CollectionsItemBlank extends React.PureComponent {
                     autoFocus
                     disabled={loading}
                     value={title}
-                    placeholder={t.s('enterTitle')}
+                    placeholder={t.s('collectionNew')}
                     onKeyUp={this.onKeyUp}
                     onChange={this.onChange}
                     onBlur={this.create} 

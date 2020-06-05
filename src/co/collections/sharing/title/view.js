@@ -1,9 +1,10 @@
 import React from 'react'
+import t from '~t'
+import { Header } from '~co/overlay/modal'
 
 export default function CollectionSharingTitleView({ title }) {
     return (
-        <div className='separator'>
-            {title}
-        </div>
+        <Header title={title+' '+t.s('sharing').toLowerCase()}>
+        </Header>
     )
 }
