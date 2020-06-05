@@ -1,6 +1,12 @@
 import React from 'react'
+import { connect } from 'react-redux'
+import { unselectAll, selectAll } from '~data/actions/bookmarks'
 
-export default class BookmarksHeaderSelectModeCheckbox extends React.PureComponent {
+class BookmarksHeaderSelectModeCheckbox extends React.Component {
+    static defaultProps = {
+        selectMode: {}
+    }
+
     _allCheckbox = React.createRef()
 
     componentDidMount() {
@@ -18,8 +24,12 @@ export default class BookmarksHeaderSelectModeCheckbox extends React.PureCompone
         this._allCheckbox.current.indeterminate = !all && ids.length != 0 ? true : undefined
     }
 
-    onInputClick = ()=>
-        this.props.onSelectAllClick()
+    onInputClick = ()=>{
+        if (this.props.selectMode.all)
+            this.props.unselectAll(this.props.selectMode.spaceId)
+        else
+            this.props.selectAll(this.props.selectMode.spaceId)
+    }
 
     render() {
         const { selectMode } = this.props
@@ -35,3 +45,8 @@ export default class BookmarksHeaderSelectModeCheckbox extends React.PureCompone
         )
     }
 }
+
+export default connect(
+	undefined,
+	{ unselectAll, selectAll }
+)(BookmarksHeaderSelectModeCheckbox)

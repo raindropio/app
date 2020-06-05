@@ -1,13 +1,14 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
-import * as bookmarksActions from '~data/actions/bookmarks'
-import * as collectionsActions from '~data/actions/collections'
-import { makeSelectMode, makeSort, makeSorts, getSearchEmpty, makeStatus } from '~data/selectors/bookmarks'
 import { makeCollection } from '~data/selectors/collections'
+import { makeStatus } from '~data/selectors/bookmarks'
 
+import Icon from './icon'
+import Title from './title'
+import More from './more'
+import Sort from './sort'
 import View from './view'
-import SelectMode from './selectMode'
+import SelectAll from './selectAll'
 
 class BookmarksHeader extends React.Component {
     static defaultProps = {
@@ -16,15 +17,29 @@ class BookmarksHeader extends React.Component {
     }
 
     render() {
-        let Component
+        let { collection: { title }, status } = this.props
 
-        if (this.props.selectMode.enabled)
-            Component = SelectMode
-        else
-            Component = View
+        //removed or not found collection
+        if (!title) return null
 
         return (
-            <Component {...this.props} />
+            <div className='elements-header'>
+                <div className='header'>
+                    <Icon {...this.props} />
+
+                    <Title {...this.props} />
+
+                    <More {...this.props} />
+
+                    <div className='space' />
+                    
+                    {status.main == 'loaded' ? (<>
+                        <Sort {...this.props} />
+                        <View {...this.props} />
+                        <SelectAll {...this.props} />
+                    </>) : null}
+                </div>
+            </div>
         )
     }
 }
@@ -32,24 +47,11 @@ class BookmarksHeader extends React.Component {
 export default connect(
 	() => {
         const getCollection = makeCollection()
-        const getSelectMode = makeSelectMode()
-        const getSort = makeSort()
-        const getSorts = makeSorts()
         const getStatus = makeStatus()
     
-        return (state, { spaceId })=>{
-            return {
-                status: getStatus(state, spaceId),
-                selectMode: getSelectMode(state, spaceId),
-                collection: getCollection(state, spaceId),
-                sort: getSort(state, spaceId),
-                sorts: getSorts(state, spaceId),
-                isSearching: !getSearchEmpty(state, spaceId)
-            }
-        }
-    },
-	(dispatch)=>({
-        actions: bindActionCreators(bookmarksActions, dispatch),
-        collectionsActions: bindActionCreators(collectionsActions, dispatch)
-    })
+        return (state, { spaceId })=>({
+            collection: getCollection(state, spaceId),
+            status: getStatus(state, spaceId),
+        })
+    }
 )(BookmarksHeader)

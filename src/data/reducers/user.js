@@ -10,10 +10,8 @@ import {
 	USER_LOGIN_NATIVE,
 	USER_SUBSCRIPTION_LOAD_REQ, USER_SUBSCRIPTION_LOAD_SUCCESS, USER_SUBSCRIPTION_LOAD_ERROR
 } from '../constants/user'
-
-import {
-	COLLECTIONS_LOAD_SUCCESS
-} from '../constants/collections'
+import { REHYDRATE } from 'redux-persist/src/constants'
+import { COLLECTIONS_LOAD_SUCCESS } from '../constants/collections'
 
 import Immutable from 'seamless-immutable'
 import { 
@@ -23,7 +21,17 @@ import {
 } from '../helpers/user'
 
 export default function(state = initialState, action){switch (action.type) {
-	//do not rehydrate!
+	case REHYDRATE:{
+		const { current, status=initialState.status } = action.payload && action.payload.user||{}
+
+		if (!current)
+			return state
+			
+		return state
+			.set('fromCache', true)
+			.set('current', current)
+			.set(['status', 'authorized'], status.authorized)
+	}
 
 	//Load
 	case USER_LOAD_REQ:{
@@ -75,7 +83,7 @@ export default function(state = initialState, action){switch (action.type) {
 		if (typeof action.onSuccess == 'function')
 			action.onSuccess()
 
-		return state
+		return initialState
 			.set('status', initialState.status.set('authorized', 'yes'))
 			.set('current', normalizeUser(action.user))
 	}
@@ -84,20 +92,18 @@ export default function(state = initialState, action){switch (action.type) {
 		if (typeof action.onFail == 'function')
 			action.onFail(action.error)
 
+		state = initialState
+
 		if (action.way)
 			state = state.setIn(['errorReason', action.way], action.error)
 
 		return setSpecificStatus(state, action.way, 'error')
-			.set('current', blankCurrent)
-			.set('subscription', blankSubscription)
 	}
 
 	//happen on logout too
 	case USER_NOT_AUTHORIZED:{
-		return state
+		return initialState
 			.set('status', initialState.status.set('authorized', 'no'))
-			.set('current', blankCurrent)
-			.set('subscription', blankSubscription)
 	}
 
 	case USER_SUBSCRIPTION_LOAD_REQ:{

@@ -34,6 +34,7 @@ export default {
 		'collections',
 		'bookmarks',
 		'filters',
+		'user',
 		'local',
 
 		//app specifics

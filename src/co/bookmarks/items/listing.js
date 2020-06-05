@@ -7,6 +7,7 @@ import config from '../config'
 import Item from '../item'
 import Empty from '../empty'
 import Header from '../header'
+import SelectMode from '../selectMode'
 import Footer from '../footer'
 import Section from '../section'
 
@@ -57,9 +58,12 @@ export default class BookmarksItemsListing extends React.Component {
         <Empty spaceId={this.props.spaceId} compact={this.props.compact} />
     )
 
-    renderHeader = ()=>(
-        <Header spaceId={this.props.spaceId} compact={this.props.compact} />
-    )
+    renderHeader = ()=>
+        this.props.selectModeEnabled ? (
+            <SelectMode spaceId={this.props.spaceId} />
+        ): (
+            <Header spaceId={this.props.spaceId} compact={this.props.compact} />
+        )
 
     renderFooter = ()=>(
         <Footer 

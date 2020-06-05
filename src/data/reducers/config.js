@@ -35,6 +35,12 @@ const mutate = (state, key='', val='')=>{
 		case 'string':	modified = String(val || ''); break
 		case 'number':	modified = parseInt(val || 0); break
 		case 'boolean':	modified = Boolean(val); break
+		case 'object':
+			switch(initialState[key].constructor) {
+				case Array: if (val.constructor == Array) modified = val; break
+				case Object: if (val.constructor == Object) modified = val; break
+			}
+		break
 		default:		return state //ignore
 	}
 	return state.set(key, modified)
@@ -42,8 +48,12 @@ const mutate = (state, key='', val='')=>{
 
 const initialState = Immutable({
 	last_collection:	0,
+
 	raindrops_view:		'',
 	raindrops_sort:		'sort',
+	raindrops_hide:		[],
+	raindrops_grid_size:2,
+	
 	tags_sort:			'_id',
 	sidebar_hide_tags:	false,
 	sidebar_hide_types:	false,

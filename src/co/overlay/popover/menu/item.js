@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import Icon from '~co/common/icon'
 import Context from '../context'
 
 export class MenuItem extends React.Component {
@@ -15,7 +16,7 @@ export class MenuItem extends React.Component {
     }
 
     render() {
-        const { children, ...etc } = this.props
+        const { children, checked=false, ...etc } = this.props
         const Component = etc.to ? Link : 'a'
         
         return (
@@ -23,7 +24,16 @@ export class MenuItem extends React.Component {
                 {...etc}
                 className='contextMenuItem'
                 onClick={this.onClick}>
-                {children}
+                <span className='itemContent'>
+                    {children}
+                </span>
+                
+
+                {checked ? (
+                    <Icon 
+                        name='check_active'
+                        className='itemCheckedIcon' />
+                ) : null}
             </Component>
         )
     }

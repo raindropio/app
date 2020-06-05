@@ -1,10 +1,19 @@
 import React from 'react'
 import t from '~t'
+import getLinks from '~data/modules/bookmarks/getLinks'
+import { connect } from 'react-redux'
+import { oneRemove, oneUpdate } from '~data/actions/collections'
+
 import Icon from '~co/common/icon'
 import Contextmenu from '~co/collections/item/contextmenu'
 import ChangeIcon from '~co/collections/changeIcon'
 
-export default class BookmarksHeaderView extends React.Component {
+class BookmarksHeaderMore extends React.Component {
+    static defaultProps = {
+        spaceId: 0,
+        collection: {}
+    }
+
     state = {
         menu: false,
         icon: false
@@ -21,7 +30,17 @@ export default class BookmarksHeaderView extends React.Component {
     onRenameClick = ()=>{
         const title = prompt(t.s('title'), this.props.collection.title)
         if (title)
-            this.props.onRename(title)
+            this.props.oneUpdate(this.props.spaceId, { title })
+    }
+
+    onOpenAllClick = (e)=>{
+        e.preventDefault()
+        getLinks(this.props.spaceId).forEach(link => window.open(link))
+    }
+
+    onRemoveClick = ()=>{
+        if (confirm(t.s('areYouSure')))
+            this.props.oneRemove(this.props.collection._id)
     }
 
     onIconClick = ()=>
@@ -32,7 +51,7 @@ export default class BookmarksHeaderView extends React.Component {
 
     render() {
         const { menu, icon } = this.state
-        const { collection, onRemoveClick, onOpenAllClick } = this.props
+        const { collection } = this.props
 
         return (
             <>
@@ -44,8 +63,8 @@ export default class BookmarksHeaderView extends React.Component {
                     <Contextmenu 
                         {...collection}
                         onContextMenuClose={this.onContextMenuClose}
-                        onRemoveClick={onRemoveClick}
-                        onOpenAllClick={onOpenAllClick}
+                        onRemoveClick={this.onRemoveClick}
+                        onOpenAllClick={this.onOpenAllClick}
                         onIconClick={this.onIconClick}
                         onRenameClick={this.onRenameClick}
                         to={`/space/${collection._id}`} />
@@ -60,3 +79,8 @@ export default class BookmarksHeaderView extends React.Component {
         )
     }
 }
+
+export default connect(
+	undefined,
+	{ oneRemove, oneUpdate }
+)(BookmarksHeaderMore)

@@ -1,9 +1,17 @@
 import React from 'react'
 import t from '~t'
+import { connect } from 'react-redux'
+import { makeSort, makeSorts } from '~data/selectors/bookmarks'
+import { changeSort } from '~data/actions/bookmarks'
+
 import Popover, { Menu, MenuItem } from '~co/overlay/popover'
 import Icon from '~co/common/icon'
 
-export default class BookmarksHeaderSort extends React.Component {
+class BookmarksHeaderSort extends React.Component {
+    static defaultProps = {
+        spaceId: 0
+    }
+
     state = {
         menu: false
     }
@@ -27,9 +35,8 @@ export default class BookmarksHeaderSort extends React.Component {
     onContextMenuClose = ()=>
         this.setState({ menu: false })
 
-    onSortClick = (e)=>{
-        this.props.onSortChange(e.target.getAttribute('data-sort'))
-    }
+    onSortClick = (e)=>
+        this.props.changeSort(this.props.spaceId, e.target.getAttribute('data-sort'))
 
     render() {
         const { menu } = this.state
@@ -48,14 +55,15 @@ export default class BookmarksHeaderSort extends React.Component {
                 {menu ? (
                     <Popover onClose={this.onContextMenuClose}>
                         <Menu>
-                            {Object.keys(this.options).map(sort=>(
+                            {Object.keys(this.options).map(item=>(
                                 <MenuItem 
-                                    key={sort}
-                                    data-sort={sort}
-                                    disabled={sorts[sort] && !sorts[sort].enabled}
+                                    key={item}
+                                    data-sort={item}
+                                    checked={item==sort}
+                                    disabled={sorts[item] && !sorts[item].enabled}
                                     onClick={this.onSortClick}>
-                                    <Icon name={'sort_'+sort} />
-                                    {this.options[sort]}
+                                    <Icon name={'sort_'+item} />
+                                    {this.options[item]}
                                 </MenuItem>
                             ))}
                         </Menu>
@@ -65,3 +73,16 @@ export default class BookmarksHeaderSort extends React.Component {
         )
     }
 }
+
+export default connect(
+	() => {
+        const getSort = makeSort()
+        const getSorts = makeSorts()
+    
+        return (state, { spaceId })=>({
+            sort: getSort(state, spaceId),
+            sorts: getSorts(state, spaceId)
+        })
+    },
+	{ changeSort }
+)(BookmarksHeaderSort)

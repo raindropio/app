@@ -1,10 +1,17 @@
 import React from 'react'
 import t from '~t'
 import _ from 'lodash'
+import { connect } from 'react-redux'
+import * as actions from '~data/actions/bookmarks'
+
 import Popover, { Menu, MenuItem, MenuSeparator } from '~co/overlay/popover'
 import Icon from '~co/common/icon'
 
-export default class BookmarksSelectModeMore extends React.Component {
+class BookmarksSelectModeMore extends React.Component {
+    static defaultProps = {
+        selectMode: {}
+    }
+    
     state = {
         menu: false
     }
@@ -15,9 +22,32 @@ export default class BookmarksSelectModeMore extends React.Component {
     onContextMenuClose = ()=>
         this.setState({menu: false})
 
-    render() {
-        const { onScreenshotClick, onImportantClick, onImportantRemoveClick, onRemoveTagsClick, onReparseClick } = this.props
+    onImportantClick = (e)=>{
+        e.preventDefault()
+        this.props.importantSelected(this.props.spaceId, true)
+    }
 
+    onImportantRemoveClick = (e)=>{
+        e.preventDefault()
+        this.props.importantSelected(this.props.spaceId, false)
+    }
+
+    onScreenshotClick = (e)=>{
+        e.preventDefault()
+        this.props.screenshotSelected(this.props.spaceId)
+    }
+
+    onRemoveTagsClick = (e)=>{
+        e.preventDefault()
+        this.props.removeTagsSelected(this.props.spaceId, [])
+    }
+
+    onReparseClick = (e)=>{
+        e.preventDefault()
+        this.props.reparseSelected(this.props.spaceId)
+    }
+
+    render() {
         return (
             <>
                 <a className='button default' onClick={this.onContextMenuClick}>
@@ -27,31 +57,31 @@ export default class BookmarksSelectModeMore extends React.Component {
                 {this.state.menu ? (
                     <Popover onClose={this.onContextMenuClose}>
                         <Menu>
-                            <MenuItem onClick={onScreenshotClick}>
+                            <MenuItem onClick={this.onScreenshotClick}>
                                 <Icon name='web' />
                                 {t.s('clickToMakeScreenshot')}
                             </MenuItem>
 
-                            <MenuItem onClick={onReparseClick}>
+                            <MenuItem onClick={this.onReparseClick}>
                                 <Icon name='refresh' />
                                 {t.s('refresh')+' '+t.s('preview').toLowerCase()}
                             </MenuItem>
 
                             <MenuSeparator />
 
-                            <MenuItem onClick={onImportantClick}>
+                            <MenuItem onClick={this.onImportantClick}>
                                 <Icon name='like_active' />
                                 {_.capitalize(t.s('to')) + ' ' + t.s('favoriteSites').toLowerCase()}
                             </MenuItem>
 
-                            <MenuItem onClick={onImportantRemoveClick}>
+                            <MenuItem onClick={this.onImportantRemoveClick}>
                                 <Icon name='like' />
                                 {t.s('remove')} {t.s('from')} {t.s('favoriteSites').toLowerCase()}
                             </MenuItem>
 
                             <MenuSeparator />
 
-                            <MenuItem onClick={onRemoveTagsClick}>
+                            <MenuItem onClick={this.onRemoveTagsClick}>
                                 <Icon name='tag' />
                                 {t.s('remove')} {t.s('tags').toLowerCase()}
                             </MenuItem>
@@ -62,3 +92,8 @@ export default class BookmarksSelectModeMore extends React.Component {
         )
     }
 }
+
+export default connect(
+	undefined,
+	actions
+)(BookmarksSelectModeMore)

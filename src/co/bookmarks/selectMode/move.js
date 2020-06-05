@@ -1,9 +1,16 @@
 import React from 'react'
 import t from '~t'
+import { connect } from 'react-redux'
+import { moveSelected } from '~data/actions/bookmarks'
+
 import Icon from '~co/common/icon'
 import Picker from '~co/collections/picker'
 
-export default class BookmarksSelectModeMove extends React.Component {
+class BookmarksSelectModeMove extends React.Component {
+    static defaultProps = {
+        selectMode: {}
+    }
+
     state = {
         show: false
     }
@@ -15,8 +22,8 @@ export default class BookmarksSelectModeMove extends React.Component {
         this.setState({ show: false })
 
     events = {
-        onItemClick: (item)=>{
-            this.props.onMove(item._id)
+        onItemClick: ({ _id })=>{
+            this.props.moveSelected(this.props.selectMode.spaceId, _id)
             this.onClose()
         }
     }
@@ -40,3 +47,8 @@ export default class BookmarksSelectModeMove extends React.Component {
         )
     }
 }
+
+export default connect(
+	undefined,
+	{ moveSelected }
+)(BookmarksSelectModeMove)

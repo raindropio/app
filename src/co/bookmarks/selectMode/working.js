@@ -4,6 +4,10 @@ import _ from 'lodash'
 import CollectionIcon from '~co/collections/item/icon'
 
 export default class BookmarksHeaderSelectModeLoading extends React.Component {
+    static defaultProps = {
+        selectMode: {}
+    }
+    
     strings = {
         move: t.s('move'),
         important: _.capitalize(t.s('to')) + ' ' + t.s('favoriteSites').toLowerCase(),
@@ -15,7 +19,7 @@ export default class BookmarksHeaderSelectModeLoading extends React.Component {
     }
 
     render() {
-        const { selectMode } = this.props
+        const { selectMode: { working } } = this.props
 
         return (
             <div className='elements-header select-mode'>
@@ -26,7 +30,7 @@ export default class BookmarksHeaderSelectModeLoading extends React.Component {
                     </div>
     
                     <div className='title'>
-                        {this.strings[selectMode.working] || t.s('loading')}…
+                        {this.strings[working] || t.s('loading')}…
                     </div>
                 </div>
             </div>

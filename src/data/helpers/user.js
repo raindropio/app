@@ -6,7 +6,6 @@ export const normalizeUser = (user={})=>{
 		email: 				user.email||'',
 		email_MD5: 			user.email_MD5||'',
 		fullName: 			user.fullName||'',
-		groups: 			user.groups||[],
 		password: 			user.password||false,
 		pro: 				user.pro||false,
 		proExpire: 			user.proExpire||null,

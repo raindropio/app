@@ -85,3 +85,8 @@ export const makeSearchWord = ()=> createSelector(
 		return (_.find(search, ({key})=>key=='word')||{val:''}).val
 	}
 )
+
+
+//View specific
+export const getGridSize = (state, spaceId)=>state.config.raindrops_grid_size
+export const getItemHide = (state, spaceId)=>state.config.raindrops_hide

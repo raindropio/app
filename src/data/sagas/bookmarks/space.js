@@ -9,9 +9,11 @@ import {
 	SPACE_REFRESH_REQ,
 	SPACE_NEXTPAGE_REQ, SPACE_NEXTPAGE_SUCCESS, SPACE_NEXTPAGE_ERROR,
 	SPACE_CHANGE_SORT,
+	SPACE_CHANGE_VIEW_CONFIG,
 
 	BOOKMARK_UPDATE_SUCCESS
 } from '../../constants/bookmarks'
+import { USER_UPDATE_REQ } from '../../constants/user'
 
 //Requests
 export default function* () {
@@ -25,6 +27,8 @@ export default function* () {
 	], loadSpace)
 
 	yield debounce(1000, BOOKMARK_UPDATE_SUCCESS, maybeRefeshSpace)
+
+	yield takeEvery(SPACE_CHANGE_VIEW_CONFIG, viewConfig)
 }
 
 function* loadSpace({spaceId, ignore=false}) {
@@ -73,4 +77,13 @@ function* maybeRefeshSpace({spaceId, movedFromSpaceId}) {
 
 		yield all(operations)
 	}
+}
+
+function* viewConfig({ spaceId, ...config }) {
+	yield put({
+		type: USER_UPDATE_REQ,
+		user: {
+			config
+		}
+	})
 }
