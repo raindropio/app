@@ -37,7 +37,9 @@ export default class CollectionsSidebar extends React.Component {
 
         return (
             <Sidebar>
-                <Header title={<Profile />}>
+                <Header>
+                    <Profile />
+                    
                     <a 
                         href=''
                         className='button flat'

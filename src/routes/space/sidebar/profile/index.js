@@ -26,9 +26,9 @@ class SidebarProfile extends React.PureComponent {
 
         return (
             <>
-                <a href='' className='button' onClick={this.onProfileClick}>
-                    <Avatar src={user.email_MD5} />
-                    {user.fullName}
+                <a href='' className='button min' style={{flex:1}} onClick={this.onProfileClick}>
+                    <Avatar src={user.email_MD5} size='40' />
+                    <span>{user.fullName}</span>
                 </a>
                 
                 {menu && <Contextmenu {...this.props} onMenuClose={this.onMenuClose} />}
