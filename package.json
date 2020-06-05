@@ -39,7 +39,7 @@
 		"ismobilejs": "^1.1.1",
 		"localforage": "1.7.x",
 		"lodash-es": "4.17.x",
-		"normalize-url": "^5.0.0",
+		"normalize-url": "4.x",
 		"react": "16.13.x",
 		"react-autosize-textarea": "7.0.x",
 		"react-beautiful-dnd": "^13.0.0",
