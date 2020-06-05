@@ -73,7 +73,7 @@ export default class BookmarksItemsListing extends React.Component {
     )
 
     render() {
-        const { items, view, activeId, selectModeEnabled, compact } = this.props
+        const { items, view, viewHide, activeId, selectModeEnabled, compact } = this.props
         const { isDropping, dropHandlers } = this.props
 
         let Component
@@ -93,7 +93,13 @@ export default class BookmarksItemsListing extends React.Component {
         }
 
         return (
-            <div className={`elements ${isDropping && 'is-drag-over'}`} {...dropHandlers}>
+            <div 
+                className={`
+                    elements
+                    ${isDropping && 'is-drag-over'}
+                    ${viewHide.map(field=>`hide-${field}`).join(' ')}
+                `}
+                {...dropHandlers}>
                 {this.renderHeader()}
 
                 <Component
