@@ -166,6 +166,12 @@ export const normalizeCollections = (items=[], groups=[])=>{
 	const ids = _.map(cleanCollections, (c)=>c._id)
 	var cleanGroups = normalizeGroups(groups)
 
+	//remove not existing collections from groups
+	if (cleanGroups.length)
+		for (const i in cleanGroups)
+			cleanGroups = cleanGroups
+				.setIn([i, 'collections'], cleanGroups[i].collections.filter(_id=>ids.includes(_id)))
+
 	//find collections not pinned to group
 	var rootCollectionsIds = _.compact(_.map(cleanCollections, (item)=>{
 			if (item._id>0 && !item.parentId) return item._id

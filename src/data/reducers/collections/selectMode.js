@@ -29,27 +29,18 @@ export default function(state, action) {switch (action.type) {
 
 		let ids = []
 
-		//in specific group
-		if (action.groupId){
-			for(const group of state.groups)
-				if (action.groupId == group._id){
-					ids.push(...group.collections)
+		for(const group of state.groups)
+			if (!action.groupId || action.groupId == group._id){
+				ids.push(...group.collections)
 
-					for(const id of group.collections)
-						ids.push(...getChildIds(state, id))
-				}
-		}
-		//all
-		else
-			ids = _.filter(
-				_.map(state.items, ({ _id })=>_id),
-				_id => _id > 0
-			)
+				for(const id of group.collections)
+					ids.push(...getChildIds(state, id))
+			}
 
 		return state
 			.set('selectMode', blankSelectMode)
 			.setIn(['selectMode', 'enabled'], true)
-			.setIn(['selectMode', 'ids'], ids)
+			.setIn(['selectMode', 'ids'], _.uniq(ids))
     }
 
 	case COLLECTIONS_LOAD_REQ:
@@ -84,9 +75,11 @@ export default function(state, action) {switch (action.type) {
 	case COLLECTIONS_UNSELECT_ONE:
 	case COLLECTION_REMOVE_SUCCESS:{
 		const ids = state.selectMode.ids.length ? 
-			_.without(
-				state.selectMode.ids, 
-				...(Array.isArray(action._id) ? action._id : [action._id, ...(action.childrens ? getChildIds(state, action._id) : [])])
+			_.uniq(
+				_.without(
+					state.selectMode.ids, 
+					...(Array.isArray(action._id) ? action._id : [action._id, ...(action.childrens ? getChildIds(state, action._id) : [])])
+				)
 			)
 			: []
 
