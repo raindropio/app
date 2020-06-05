@@ -20,6 +20,8 @@ import {
 	removeCollectionFromGroups
 } from './utils'
 
+import ApiError from '../../modules/error'
+
 export default function(state, action) {
 	switch (action.type) {
 		//Saved
@@ -103,9 +105,23 @@ export default function(state, action) {
 
 		//Remove group
 		case GROUP_REMOVE:{
-			return state
-				.set('groups', _.filter(state.groups, ({_id, collections=[]}) => (_id!=action._id || collections.length) ))
-		}
+			const group = _.find(state.groups, ({ _id })=>_id==action._id)
+
+			if (!group){
+				action.ignore = true
+
+				if (typeof action.onFail == 'function')
+					action.onFail(new ApiError('not_found', 'group not found'))
+			} else if (group.collections.length){
+				action.ignore = true
+
+				if (typeof action.onFail == 'function')
+					action.onFail(new ApiError('fail', 'non-empty group'))
+			}
+			else
+				return state
+					.set('groups', _.filter(state.groups, ({_id, collections=[]}) => (_id!=action._id || collections.length) ))
+		}break
 
 		//Append collection to group
 		case GROUP_APPEND_COLLECTION:{

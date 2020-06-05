@@ -29,11 +29,18 @@ export default function(state, action) {switch (action.type) {
 
 		let ids = []
 
+		//in specific group
 		if (action.groupId){
 			for(const group of state.groups)
-				if (action.groupId == group._id)
+				if (action.groupId == group._id){
 					ids.push(...group.collections)
-		} else
+
+					for(const id of group.collections)
+						ids.push(...getChildIds(state, id))
+				}
+		}
+		//all
+		else
 			ids = _.filter(
 				_.map(state.items, ({ _id })=>_id),
 				_id => _id > 0

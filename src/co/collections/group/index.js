@@ -49,7 +49,9 @@ export default class CollectionsGroup extends React.PureComponent {
         },
 
         onRemoveClick: ()=>{
-            this.props.actions.groupRemove(this.props._id)
+            this.props.actions.groupRemove(this.props._id, undefined, ()=>{
+                alert(t.s('removeGroupError'))
+            })
         },
 
         onCollapseAllClick: ()=>{

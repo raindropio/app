@@ -32,6 +32,11 @@ class BookmarkItem extends React.Component {
                 e.preventDefault()
                 return this.handlers.onSelectClick()
             }
+
+            if (e.metaKey || e.ctrlKey || e.shiftKey){
+                e.preventDefault()
+                this.handlers.onSelectClick()
+            }
                 
             if (this.props.events.onItemClick)
                 if (this.props.events.onItemClick(this.props.item) === true)

@@ -1,4 +1,3 @@
-- sentry
 - font-size setting change support
 - persist lang change
 - show count for duplicates
@@ -13,9 +12,6 @@ Design
 Bugs
 - Critical
     - virtual grid doesn't render next pages in Firefox
-    - change search when results same count (1=1) sometime doesnt show up new results
-- Medium
-    - when move all bookmarks to another collection, counter doesn't update
 - Minor
     - in search results when change bookmark, `highlight` data lost
 
@@ -24,7 +20,6 @@ Not ready
 - bookmark info about cache status, creatorRef
 - bookmark info important icon should be bright
 - bookmark drag preview
-- selectAll collections in group should select childrens too
 
 Server
 - Replace all tags with space to _
@@ -32,7 +27,6 @@ Server
 Good to have
 - Refactor collection/reorder redux to server
 - Logic for moving to several parents in the end of the list
-- Group is not empty alert on remove
 - Change cover img width depends on config
 - Combined count on each level of collections tree
 - data: combine logic of bookmarkMove and bookmarkReorder
