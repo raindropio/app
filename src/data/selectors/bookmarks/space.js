@@ -1,8 +1,7 @@
 import { createSelector } from 'reselect'
 import _ from 'lodash-es'
-import {
-	blankSpace
-} from '../../helpers/bookmarks'
+import { blankSpace } from '../../helpers/bookmarks'
+import { makeCollection } from '../collections'
 
 const
 	_spaceById = ({bookmarks}, spaceId)=>bookmarks.spaces[spaceId]
@@ -89,4 +88,12 @@ export const makeSearchWord = ()=> createSelector(
 
 //View specific
 export const getGridSize = (state, spaceId)=>state.config.raindrops_grid_size
-export const getItemHide = (state, spaceId)=>state.config.raindrops_hide
+
+export const makeViewHide = ()=> createSelector(
+	[state=>state.config.raindrops_hide, makeCollection()],
+	(hide=[], { view })=>(
+		hide
+			.filter(key=>key.startsWith(view+'_'))
+			.map(key=>key.replace(`${view}_`, ''))
+	)
+)

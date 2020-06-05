@@ -1,7 +1,7 @@
 import React from 'react'
 import t from '~t'
 import { connect } from 'react-redux'
-import { getItemHide, getGridSize } from '~data/selectors/bookmarks'
+import { makeViewHide, getGridSize } from '~data/selectors/bookmarks'
 import { changeGridSize } from '~data/actions/bookmarks'
 
 import Slider from '~co/common/slider'
@@ -16,9 +16,17 @@ class BookmarksHeaderViewGridSize extends React.Component {
         this.props.changeGridSize(this.props.spaceId, val)
 
     render() {
-        const { collection: { view }, itemHide, gridSize } = this.props
+        const { collection: { view }, viewHide, gridSize } = this.props
 
-        if (itemHide.includes(`${view}_cover`)) return null
+        switch(view) {
+            case 'grid':
+            case 'masonry':
+                if (viewHide.includes('cover')) return null
+            break
+
+            default:
+                return null
+        }
 
         return (
             <>
@@ -42,8 +50,10 @@ class BookmarksHeaderViewGridSize extends React.Component {
 
 export default connect(
 	() => {
+        const getViewHide = makeViewHide()
+
         return (state, { spaceId })=>({
-            itemHide: getItemHide(state, spaceId),
+            viewHide: getViewHide(state, spaceId),
             gridSize: getGridSize(state, spaceId)
         })
     },

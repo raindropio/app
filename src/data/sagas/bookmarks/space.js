@@ -1,3 +1,4 @@
+import _ from 'lodash'
 import { call, put, takeEvery, select, debounce, all } from 'redux-saga/effects'
 import Api from '../../modules/api'
 import ApiError from '../../modules/error'
@@ -9,7 +10,8 @@ import {
 	SPACE_REFRESH_REQ,
 	SPACE_NEXTPAGE_REQ, SPACE_NEXTPAGE_SUCCESS, SPACE_NEXTPAGE_ERROR,
 	SPACE_CHANGE_SORT,
-	SPACE_CHANGE_VIEW_CONFIG,
+	SPACE_VIEW_TOGGLE,
+	SPACE_VIEW_CONFIG,
 
 	BOOKMARK_UPDATE_SUCCESS
 } from '../../constants/bookmarks'
@@ -28,7 +30,8 @@ export default function* () {
 
 	yield debounce(1000, BOOKMARK_UPDATE_SUCCESS, maybeRefeshSpace)
 
-	yield takeEvery(SPACE_CHANGE_VIEW_CONFIG, viewConfig)
+	yield takeEvery(SPACE_VIEW_TOGGLE, viewToggle)
+	yield takeEvery(SPACE_VIEW_CONFIG, viewConfig)
 }
 
 function* loadSpace({spaceId, ignore=false}) {
@@ -77,6 +80,23 @@ function* maybeRefeshSpace({spaceId, movedFromSpaceId}) {
 
 		yield all(operations)
 	}
+}
+
+function* viewToggle({ spaceId, field }) {
+	const { config, collections } = yield select()
+	const collection = collections.items[parseInt(spaceId)]
+
+	if (!collection) return
+
+	let raindrops_hide = [ ...config.raindrops_hide ]
+	let view_field = `${collection.view}_${field}`
+
+	if (raindrops_hide.includes(view_field))
+		raindrops_hide = _.without(raindrops_hide, view_field)
+	else
+		raindrops_hide.push(view_field)
+
+	yield viewConfig({ spaceId, raindrops_hide })
 }
 
 function* viewConfig({ spaceId, ...config }) {

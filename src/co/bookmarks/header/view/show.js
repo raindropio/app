@@ -2,8 +2,8 @@ import React from 'react'
 import _ from 'lodash'
 import t from '~t'
 import { connect } from 'react-redux'
-import { getItemHide } from '~data/selectors/bookmarks'
-import { changeItemHide } from '~data/actions/bookmarks'
+import { makeViewHide } from '~data/selectors/bookmarks'
+import { viewToggle } from '~data/actions/bookmarks'
 
 class BookmarksHeaderViewShow extends React.Component {
     static defaultProps = {
@@ -11,26 +11,19 @@ class BookmarksHeaderViewShow extends React.Component {
         collection: {}
     }
 
-    onClick = (key)=>{
-        let itemHide = [...this.props.itemHide]
-
-        if (itemHide.includes(key))
-            itemHide = itemHide.filter(i=>i!=key)
-        else
-            itemHide.push(key)
-
-        this.props.changeItemHide(this.props.spaceId, itemHide)
+    onClick = (field)=>{
+        this.props.viewToggle(this.props.spaceId, field)
     }
 
     render() {
-        const { collection: { view }, itemHide=[] } = this.props
+        const { viewHide=[] } = this.props
 
         const options = [
-            [`${view}_cover`, t.s('cover')],
-            [`${view}_title`, t.s('title')],
-            [`${view}_excerpt`, t.s('description')],
-            [`${view}_tags`, t.s('tags')],
-            [`${view}_info`, _.capitalize(t.s('elements')) + ' ' + t.s('info').toLowerCase()]
+            ['cover', t.s('cover')],
+            ['title', t.s('title')],
+            ['excerpt', t.s('description')],
+            ['tags', t.s('tags')],
+            ['info', _.capitalize(t.s('elements')) + ' ' + t.s('info').toLowerCase()]
         ]
 
         return (
@@ -44,7 +37,7 @@ class BookmarksHeaderViewShow extends React.Component {
                         key={key}
                         className='fieldLink fieldColumns'
                         onClick={()=>this.onClick(key)}>
-                        <span className={'extra-checkbox '+(!itemHide.includes(key)?'active':'')} />
+                        <span className={'extra-checkbox '+(!viewHide.includes(key)?'active':'')} />
                         <span>{title}</span>
                     </div>
                 )}
@@ -55,9 +48,11 @@ class BookmarksHeaderViewShow extends React.Component {
 
 export default connect(
 	() => {
+        const getViewHide = makeViewHide()
+
         return (state, { spaceId })=>({
-            itemHide: getItemHide(state, spaceId)
+            viewHide: getViewHide(state, spaceId)
         })
     },
-	{ changeItemHide }
+	{ viewToggle }
 )(BookmarksHeaderViewShow)

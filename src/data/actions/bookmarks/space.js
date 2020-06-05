@@ -5,7 +5,8 @@ import {
 	SPACE_ACTUALIZE_REQ,
 	SPACE_NEXTPAGE_REQ,
 	SPACE_CHANGE_SORT,
-	SPACE_CHANGE_VIEW_CONFIG
+	SPACE_VIEW_TOGGLE,
+	SPACE_VIEW_CONFIG
 } from '../../constants/bookmarks'
 
 //Loading
@@ -41,14 +42,14 @@ export const changeSort = (spaceId, sort)=>({
 	sort
 })
 
-export const changeItemHide = (spaceId, raindrops_hide)=>({
-	type: SPACE_CHANGE_VIEW_CONFIG,
+export const viewToggle = (spaceId, field)=>({
+	type: SPACE_VIEW_TOGGLE,
 	spaceId: String(spaceId),
-	raindrops_hide
+	field
 })
 
 export const changeGridSize = (spaceId, raindrops_grid_size)=>({
-	type: SPACE_CHANGE_VIEW_CONFIG,
+	type: SPACE_VIEW_CONFIG,
 	spaceId: String(spaceId),
 	raindrops_grid_size
 })
