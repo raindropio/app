@@ -69,8 +69,7 @@ popShadowRetina = 0px 0px 0px 0.5px rgba(0,0,0,0.3), 0px 20px 50px 0px rgba(0,0,
 	//@extend .disable-select;
 	//top:0;left:0;
 	z-index: 999;
-	background: rgba(250,250,250,.85)
-	backdrop-filter: blur(10px)
+	background: rgb(250,250,250)
 	box-shadow: popShadow;
 	border-radius: 2px;
 	position: fixed;
@@ -137,6 +136,13 @@ popShadowRetina = 0px 0px 0px 0.5px rgba(0,0,0,0.3), 0px 20px 50px 0px rgba(0,0,
 		animation: popDirReverse .2s ease-in-out;
 		opacity: 0;
 		transition: none !important;
+	}
+}
+
+@supports (backdrop-filter: none) {
+	.pop-body {
+		background: rgba(250,250,250,.85)
+		backdrop-filter: blur(10px)
 	}
 }
 
