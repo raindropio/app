@@ -62,7 +62,6 @@ export default class BookmarkItemCover extends React.PureComponent {
     renderImage = ()=>{
         const { src, view, link, gridSize, ...etc } = this.props
         let { width, height } = size(view, gridSize)
-        let mode = 'crop'
         let uri
 
         switch(view){
@@ -95,7 +94,7 @@ export default class BookmarkItemCover extends React.PureComponent {
                 className='cover'
                 loading='lazy'
                 {...etc}
-                src={`${uri}&mode=${mode}&width=${width}&height=${height}&dpr=${window.devicePixelRatio}`}
+                src={`${uri}&mode=crop&format=auto&width=${width||''}&height=${height||''}&dpr=${window.devicePixelRatio||1}`}
                 onError={this.onImageLoadError} />
         )
     }

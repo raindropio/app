@@ -38,7 +38,6 @@ gridItemBorder = 3px;
             overflow: hidden;
             border-top-left-radius: 2px; 
             border-top-right-radius: 2px;
-            padding-top: 56.25%; //16x9
             
             /*&:before {
                 position: absolute;
@@ -51,18 +50,13 @@ gridItemBorder = 3px;
 
         .cover {
             width: 100%;
-            height: 100%;
-            position: absolute;
-            top: 0; right:0; bottom: 0; left: 0;
+            height: auto;
             border-top-left-radius: 2px;
             border-top-right-radius: 2px;
             border-bottom-left-radius: 0;
             border-bottom-right-radius: 0;
+            object-fit: initial;
 
-            &.cover-scale-down {
-                //object-position: gridItemPaddingHorizontal calc(100% - 11px);
-            }
-            
             &.cover-placeholder {
                 .full-size {
                     display: block;
