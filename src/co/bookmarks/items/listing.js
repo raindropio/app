@@ -2,7 +2,6 @@ import React from 'react'
 import List from '~co/virtual/list'
 import Grid from '~co/virtual/grid'
 import Masonry from '~co/virtual/masonry'
-import config from '../config'
 
 import Item from '../item'
 import Empty from '../empty'
@@ -10,6 +9,7 @@ import Header from '../header'
 import SelectMode from '../selectMode'
 import Footer from '../footer'
 import Section from '../section'
+import coverSize from '../item/cover/size'
 
 export default class BookmarksItemsListing extends React.Component {
     state = {
@@ -69,11 +69,11 @@ export default class BookmarksItemsListing extends React.Component {
         <Footer 
             spaceId={this.props.spaceId}
             compact={this.props.compact}
-            more={this.props.items.length > config.compact.count} />
+            more={this.props.items.length > this.props.compactLimit} />
     )
 
     render() {
-        const { items, view, viewHide, activeId, selectModeEnabled, compact } = this.props
+        const { items, view, viewHide, gridSize, activeId, selectModeEnabled, compact } = this.props
         const { isDropping, dropHandlers } = this.props
 
         let Component
@@ -111,8 +111,8 @@ export default class BookmarksItemsListing extends React.Component {
                     footer={this.renderFooter}
                     computeItemKey={this.computeItemKey}
 
-                    totalCount={compact ? Math.min(items.length, config.compact.count) : items.length}
-                    columnWidth={config.size[view].cover.width}
+                    totalCount={compact ? Math.min(items.length, this.props.compactLimit) : items.length}
+                    columnWidth={coverSize(view, gridSize).width}
                     disableVirtualization={compact}
                     
                     scrollToIndex={activeId && items.length ? items.indexOf(activeId) : -1}

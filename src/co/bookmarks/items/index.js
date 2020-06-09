@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as bookmarksActions from '~data/actions/bookmarks'
-import { makeBookmarksFlatSections, makeSelectModeEnabled, makeSort, makeViewHide } from '~data/selectors/bookmarks'
+import { makeBookmarksFlatSections, makeSelectModeEnabled, makeSort, makeViewHide, getGridSize } from '~data/selectors/bookmarks'
 import { makeCollection } from '~data/selectors/collections'
 
 import Listing from './listing'
@@ -10,10 +10,11 @@ import PickerSourceDrop from '~co/picker/source/drop'
 
 class BookmarksItems extends React.Component {
     static defaultProps = {
-        spaceId:    0,
-        activeId:   0,
-        compact:    false,
-        events:     {}  //onItemClick, onItemEditClick, onItemPreviewClick, onTagClick
+        spaceId:        0,
+        activeId:       0,
+        compact:        false,
+        compactLimit:   7,
+        events:         {}  //onItemClick, onItemEditClick, onItemPreviewClick, onTagClick
     }
 
     componentDidMount() {
@@ -69,10 +70,14 @@ export default connect(
 
             return {
                 items: getBookmarkIds(state, spaceId),
+
                 view,
                 viewHide: getViewHide(state, spaceId),
+                gridSize: getGridSize(state, spaceId),
+
                 access,
                 sort: getSort(state, spaceId),
+
                 selectModeEnabled: getSelectModeEnabled(state, spaceId)
             }
         }

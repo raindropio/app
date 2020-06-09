@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { bookmark, tags, makeIsSelected, makeHighlight, makeBookmarkIndex, selectModeWorking } from '~data/selectors/bookmarks'
+import { bookmark, tags, makeIsSelected, makeHighlight, makeBookmarkIndex, selectModeWorking, getGridSize } from '~data/selectors/bookmarks'
 import { copyTextToClipboard } from '~modules/strings'
 
 import ViewWithDnd from './viewWithDnd'
@@ -146,7 +146,8 @@ export default connect(
                 selected: selectModeEnabled ? getIsSelected(state, spaceId, _id) : false,
                 selectDisabled: selectModeWorking(state) ? true : false,
                 highlight: getHighlight(state, _id),
-                index: getIndex(state, spaceId, _id)
+                index: getIndex(state, spaceId, _id),
+                gridSize: getGridSize(state, spaceId)
             }
         }
     }

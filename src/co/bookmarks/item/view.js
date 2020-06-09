@@ -13,7 +13,7 @@ export default class BookmarkItemView extends React.PureComponent {
     render() {
         const { innerRef, isDragging } = this.props
         const { link, title, excerpt, highlight, cover, domain, tags, type, view, access, created, reparse, collectionId, spaceId } = this.props
-        const { active, selected, selectDisabled, important, broken } = this.props
+        const { active, selected, selectDisabled, important, broken, gridSize } = this.props
         const { onClick, onTagClick, onEditClick, onPreviewClick, onSelectClick, onRemoveClick, onContextMenu, onKeyUp } = this.props
 
         return (
@@ -23,7 +23,8 @@ export default class BookmarkItemView extends React.PureComponent {
                 <Cover
                     src={cover}
                     link={link}
-                    view={view} />
+                    view={view}
+                    gridSize={gridSize} />
 
                 <div className='about'>
                     {/* Text */}
