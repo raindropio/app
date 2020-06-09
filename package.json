@@ -50,7 +50,7 @@
 		"react-masonry-css": "^1.0.14",
 		"react-portal": "^4.2.1",
 		"react-router-dom": "5.2.x",
-		"react-virtuoso": "0.16.x",
+		"react-virtuoso": "0.17.x",
 		"react-window": "1.8.x",
 		"string": "3.3.x",
 		"validator": "13.0.x"

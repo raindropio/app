@@ -7961,10 +7961,10 @@ react-side-effect@^2.1.0:
   resolved "https://registry.yarnpkg.com/react-side-effect/-/react-side-effect-2.1.0.tgz#1ce4a8b4445168c487ed24dab886421f74d380d3"
   integrity sha512-IgmcegOSi5SNX+2Snh1vqmF0Vg/CbkycU9XZbOHJlZ6kMzTmi3yc254oB1WCkgA7OQtIAoLmcSFuHTc/tlcqXg==
 
-react-virtuoso@0.16.x:
-  version "0.16.7"
-  resolved "https://registry.yarnpkg.com/react-virtuoso/-/react-virtuoso-0.16.7.tgz#2aef6c461e3e8f6df0906e32ab604268814c7ae7"
-  integrity sha512-zYwdyDtOR8uDjFjP5yzHe1tE6a0quzZDHco46/YRzmz91bhKBJf3zXeGKPUBPRdgsGx+/W3H6GzNOaoZ9XJ8pg==
+react-virtuoso@0.17.x:
+  version "0.17.0"
+  resolved "https://registry.yarnpkg.com/react-virtuoso/-/react-virtuoso-0.17.0.tgz#12c20860e4b359fb932434052305cc79999a88e3"
+  integrity sha512-Etp3zPQoGPBNphqHZguU/g3+Nb9la5Y3oTQ9Bf65PppS1dNTdMS7crU8NcICr2ptHuuNROHqidoWChDg2MKlZw==
   dependencies:
     "@scarf/scarf" "^1.0.5"
     resize-observer-polyfill "^1.5.1"

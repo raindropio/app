@@ -38,6 +38,7 @@ gridItemBorder = 3px;
             overflow: hidden;
             border-top-left-radius: 2px; 
             border-top-right-radius: 2px;
+            padding-top: 56.25%; //16x9 aspect-ratio
             
             /*&:before {
                 position: absolute;
@@ -51,11 +52,15 @@ gridItemBorder = 3px;
         .cover {
             width: 100%;
             height: auto;
+            position: absolute;
+            top: 0; right:0; bottom: 0; left: 0;
+            object-fit: initial;
+
             border-top-left-radius: 2px;
             border-top-right-radius: 2px;
             border-bottom-left-radius: 0;
             border-bottom-right-radius: 0;
-            object-fit: initial;
+           
 
             &.cover-placeholder {
                 .full-size {
@@ -186,9 +191,6 @@ html.retina.chrome {
 
         .cover {
             position: static
-            height: auto !important;
-            object-fit: cover !important;
-            object-position: top center;
         }
     }
 }
