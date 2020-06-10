@@ -50,19 +50,20 @@
 		"react-masonry-css": "^1.0.14",
 		"react-portal": "^4.2.1",
 		"react-router-dom": "5.2.x",
+		"react-textarea-autosize": "^8.0.1",
 		"react-virtuoso": "0.17.x",
 		"react-window": "1.8.x",
 		"string": "3.3.x",
 		"validator": "13.0.x"
 	},
 	"optionalDependencies": {
+		"@sentry/minimal": "5.x",
 		"react-redux": "7.2.x",
 		"redux": "4.x",
 		"redux-persist": "6.0.x",
 		"redux-saga": "1.1.x",
 		"reselect": "4.x",
-		"seamless-immutable": "7.x",
-		"@sentry/minimal": "5.x"
+		"seamless-immutable": "7.x"
 	},
 	"devDependencies": {
 		"@babel/core": "7.x",

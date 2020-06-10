@@ -1,5 +1,6 @@
 import React from 'react'
 import { Content } from '~co/screen/splitview/reader'
+import Edit from './edit'
 import HTML from './html'
 import Cache from './cache'
 import Web from './web'
@@ -8,6 +9,8 @@ export default ({ tab, ...props })=>{
     let content
 
     switch(tab) {
+        case 'edit': content = <Edit {...props} />; break
+
         case 'preview':
             if (props.item.type == 'link')
                 content = <Web {...props} />

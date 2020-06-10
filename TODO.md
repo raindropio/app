@@ -14,6 +14,7 @@ Bugs
     - virtual grid doesn't render next pages in Firefox
 - Minor
     - in search results when change bookmark, `highlight` data lost
+    - search as type sometime doesn't recognize last type
 
 Not ready
 - electron

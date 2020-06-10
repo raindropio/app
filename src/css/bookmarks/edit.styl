@@ -1,17 +1,10 @@
 coverMargin = 7px;
 
-.bookmarkEditWrap {
-	margin: 0 auto;
-	max-width: 400px;
-}
-
 .bookmarkEdit {
-	margin: 20px 0;
-	box-shadow: 0 0 0 1px rgba(0,0,0,.1), 0 1px 1px rgba(0,0,0,.1);
-	border-radius: 2px;
-	overflow: hidden;
-	//padding-left: 4px;
-	//animation: bookmarkEditAppear .2s ease-in-out;
+	width: 100%
+	max-width: 450px
+	margin: 0 auto;
+	border-radius: 2px
 		
 	&.inline {
 		margin:0;
@@ -184,41 +177,6 @@ coverMargin = 7px;
 	}
 }
 
-#reader {
-	&[data-tab="edit"] .readerContent {
-		padding:0 20px;
-	}
-
-	.bookmarkEditWrap {
-		margin-top: 2px;
-		margin-bottom: 20px;
-		box-shadow: 0 0 0 1px rgba(0,0,0,.1), 0 1px 2px rgba(0,0,0,.1);
-		border-radius: 2px;
-	}
-	
-	.bookmarkEditCoverWrap {
-		display: block;
-		
-		
-		.bookmarkEditCover {
-			background: rgba(0,0,0,.03);
-			padding-top: 1px;
-			max-width: 100%;
-		}
-	}
-	
-	.bookmarkEdit {
-		margin: 0;
-		box-shadow: 0 1px 0 rgba(0,0,0,.07);
-		border-radius: 0;
-	}
-	
-	.bookmarkEditAdvice {
-		background: rgba(0,0,0,.02);
-	}
-}
-
-
 tagPaddingVertical = 6px;
 
 .editTags {
@@ -295,10 +253,6 @@ tagPaddingVertical = 6px;
 }
 
 .themeDark {
-	#reader .bookmarkEdit {
-		box-shadow: 0 0 0 1px rgba(255,255,255,.1), 0 1px 1px rgba(255,255,255,.1);
-	}
-	
 	.editTags .tag {
 		background: colorYellowForDark;
 		box-shadow: none;

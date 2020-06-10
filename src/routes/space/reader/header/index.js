@@ -7,6 +7,11 @@ import Settings from './settings'
 
 const defaultTabs = [
     {
+        key: 'edit',
+        title: t.s('editMin'),
+        icon: 'edit'
+    },
+    {
         key: 'preview',
         title: t.s('preview'),
         icon: 'show'
@@ -15,11 +20,6 @@ const defaultTabs = [
         key: 'cache',
         title: t.s('permanentCopy'),
         icon: 'cloud'
-    },
-    {
-        key: 'edit',
-        title: t.s('editMin'),
-        icon: 'edit'
     }
 ]
 
