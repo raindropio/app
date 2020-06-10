@@ -28,26 +28,32 @@ class VirtualGrid extends React.Component {
         defaultItemHeight: 250
     }
 
+    state = {}
+
     //measure columns and rows on container size change
-    static getDerivedStateFromProps({ width, columnWidth, totalCount, disableVirtualization }, state) {
-        const columnCount = Math.max(parseInt(width / columnWidth), 2)
-        const rowCount = Math.ceil(totalCount / columnCount)
+    static getDerivedStateFromProps({ width, columnWidth, totalCount, disableVirtualization, ...etc }, state) {
+        let columnCount = Math.max(parseInt(width / columnWidth), 2)
+        let rowCount = Math.ceil(totalCount / columnCount)
+
+        let scrollToIndex = (etc.scrollToIndex||0) >= 0 ? parseInt(etc.scrollToIndex / columnCount) : -1
 
         if (rowCount == state.rowCount &&
-            columnCount == state.columnCount)
+            columnCount == state.columnCount &&
+            scrollToIndex == state.scrollToIndex)
             return null
 
         return {
             columnCount,
             rowCount,
+            scrollToIndex,
             style: {
+                width: '100%',
+                height: '100%',
                 '--grid-columns': columnCount,
                 ...(!disableVirtualization ? { overflowY: 'overlay' } : { })
             }
         }
     }
-
-    state = {}
 
     renderRow = row=>{
         const { className, item, computeItemKey } = this.props
@@ -64,8 +70,8 @@ class VirtualGrid extends React.Component {
     }
 
     render() {
-        const { rowCount, columnCount, style } = this.state
-        const { dataKey='', scrollToIndex=0, ...etc } = this.props
+        const { rowCount, columnCount, scrollToIndex, style } = this.state
+        const { dataKey='', ...etc } = this.props
 
         return (
             <List
@@ -80,7 +86,7 @@ class VirtualGrid extends React.Component {
                 dataKey={dataKey+columnCount+(!rowCount?'empty':'')}
                 totalCount={rowCount}
 
-                scrollToIndex={scrollToIndex >= 0 ? Math.ceil(scrollToIndex / columnCount) : -1}
+                scrollToIndex={scrollToIndex}
             />
         )
     }

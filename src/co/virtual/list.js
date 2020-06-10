@@ -15,7 +15,7 @@ export default class VirtualList extends React.PureComponent {
         disableVirtualization: false,
         defaultItemHeight: 80,
         scrollToIndex: -1,
-        overscan: 500
+        overscan: 0                 //dont override! otherwise scrolltoindex not always work
     }
 
     _list = React.createRef()
@@ -34,16 +34,19 @@ export default class VirtualList extends React.PureComponent {
                 this._list.current.scrollToIndex,
                 this._visible.startIndex,
                 this._visible.endIndex,
-                scrollToIndex,
-                prev.scrollToIndex != -1 ? 'smooth' : 'auto'
+                scrollToIndex
             )
     }
 
-    rangeChanged = ({ startIndex, endIndex })=>{
+    rangeChanged = (range)=>{
+        const { startIndex, endIndex } = range
         this._visible = { startIndex, endIndex }
 
         if (endIndex >= this.props.totalCount - (endIndex - startIndex)*2)
             this.props.endReached()
+
+        if (this.props.rangeChanged)
+            this.props.rangeChanged(range)
     }
 
     renderItem = index=>{
@@ -66,7 +69,7 @@ export default class VirtualList extends React.PureComponent {
     }
 
     render() {
-        const { endReached, totalCount, dataKey, disableVirtualization, style={}, ...etc } = this.props
+        const { endReached, totalCount, dataKey, disableVirtualization, style, ...etc } = this.props
         const Component = disableVirtualization ? NonVirtualList : Virtuoso
 
         return (
@@ -77,7 +80,7 @@ export default class VirtualList extends React.PureComponent {
                 totalCount={totalCount||1}
                 item={this.renderItem}
                 computeItemKey={this.computeItemKey}
-                style={{...mainStyle, ...style}}
+                style={style || mainStyle}
                 rangeChanged={endReached && this.rangeChanged}
             />
         )
