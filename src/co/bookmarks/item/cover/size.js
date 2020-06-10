@@ -15,7 +15,8 @@ export default function(view, amplifier=1) {
 
         default:
             return {
-                width: 56
+                width: 56,
+                ar: '7:6'
             }
     }
 }

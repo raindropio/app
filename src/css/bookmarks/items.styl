@@ -192,26 +192,24 @@ elementInvert()
         border-bottom-right-radius: 3px
         box-shadow: 1px 1px 1px subSeparatorColorAlpha
     }
+
+    .cover-wrap {
+        border-radius: 2px
+        overflow: hidden
+    }
     
     .cover {
-        object-fit: cover;
-        object-position: center;
         background-size: cover;
         background-postion: center;
         display: block;
         overflow:hidden;
         min-width: 16px;
-        border-radius: 2px;
         
         &.is-screenshot {
             object-position: top center;
             background-postion: top center;
         }
         
-        &.cover-scale-down {
-            object-fit: scale-down;
-        }
-
         &.cover-placeholder {
             background: #A7ABB1;
             opacity: .2;
