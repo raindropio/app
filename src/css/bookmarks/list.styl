@@ -7,13 +7,12 @@ listCoverSizeWidthHeight = 48px
     .element {
         display: flex;
         align-items: center;
-        padding: 12px baseHorizontalGap;
-        background: white;
+        padding: baseHorizontalGap;
         position: relative;
 
         .selectElement {
-            top: 12px
-            left: baseHorizontalGap
+            top: 1px
+            left: 0
         }
         
         .rating {
@@ -40,7 +39,7 @@ listCoverSizeWidthHeight = 48px
             border-top: 0.5px solid rgba(0,0,0,.07);
             z-index:1;
             //height: 1px;
-            left: rem(listCoverSizeWidthWidth + 32px);
+            left: 0;
         }
 
         .cover {
@@ -63,10 +62,6 @@ listCoverSizeWidthHeight = 48px
             }*/
         }
         
-        &.checked {
-            background: white !important;
-        }
-
         .cover {
             margin-right: 16px;
         }
@@ -208,10 +203,7 @@ html.retina.chrome {
     .view-list, .view-simple {
         .element {
             background: darkBackground;
-            
-            &.checked {
-                background: lighten(darkBackground,10%);
-            }
+        
             
             &:after {
                 border-color: rgba(255,255,255,.07);

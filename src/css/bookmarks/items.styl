@@ -183,7 +183,7 @@ elementInvert()
         opacity: 0;
         transition: opacity .1s ease-in-out;
         left:0;top:0;
-        background: white
+        background: inherit
         width: 24px
         height: 24px
         display: flex
@@ -201,7 +201,7 @@ elementInvert()
         display: block;
         overflow:hidden;
         min-width: 16px;
-        border-radius: 1px;
+        border-radius: 2px;
         
         &.is-screenshot {
             object-position: top center;
@@ -392,18 +392,20 @@ elementInvert()
         }
     }
     
-    &.active:not([data-is-focus="true"]) {
+    &.active:not([data-is-focus="true"]), &.checked:not([data-is-focus="true"]) {
         background: #EAEAEA !important;
     }
 
     /*&[data-is-focus="true"]:not(.active):not(:active), &.active:not(:active) {
         background: #EAEAEA;
     }*/
+
+    &.active, &.checked {
+        background: #EAEAEA;
+    }
     
 
     &.active {
-        background: #EAEAEA;
-
         &[data-is-focus="true"] {
             //transition: background .1s ease-in-out;
             background: colorTheme !important;
@@ -415,12 +417,6 @@ elementInvert()
         background: colorTheme !important;
         background: var(--accentColor, colorTheme) !important;
     }
-    
-    &.checked {
-        .selectElement {
-        }
-    }
-
     
     &.is-dragging {
         box-shadow: 0 1px 3px rgba(0,0,0,.15), 0 3px 15px rgba(0,0,0,.1);
@@ -478,12 +474,10 @@ html.web:not(.electron) .element {
 }
 
 html:not(.blur) #main {
-    .view-list, .view-simple {
-        .element {
-            &.active {
-                &[data-is-focus="true"] {
-                    elementInvert()
-                }
+    .element {
+        &.active {
+            &[data-is-focus="true"] {
+                elementInvert()
             }
         }
     }

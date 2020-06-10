@@ -6,9 +6,11 @@ gridItemPaddingHorizontal = rem(11px);
 gridItemBorder = 3px;
 
 .view-grid, .view-masonry {
-    display: flex;
-    padding-left: gridItemGap
-    padding-right: gridItemGap
+    display: grid
+    grid-template-columns: repeat(var(--grid-columns, 1), minmax(0, 1fr))
+    column-gap: gridItemGap * 2
+    padding: 0 gridItemGap * 2
+    padding-top: gridItemGap * 2
     width: 100%
     height: 100%
 
@@ -18,17 +20,14 @@ gridItemBorder = 3px;
     }
 
     .element {
-        width: calc(100% / var(--grid-columns, 1));
         display: flex;
         flex-direction: column;
-        padding: gridItemBorder;
-        border: (gridItemGap - (gridItemBorder)) solid white;/*gridBackground*/
-        border-radius: gridItemGap;
+        border-radius: 3px;
         //box-shadow: 0px 1px 0px subSeparatorColor, 1px 0 0px subSeparatorColor, inset 1px 0 0px subSeparatorColor;
             
         .selectElement {
-            left: gridItemBorder;
-            top: gridItemBorder;
+            left: 0;
+            top: 0;
         }
             
         .cover-wrap {
@@ -74,16 +73,12 @@ gridItemBorder = 3px;
         .permalink {
             border-radius: 2px;
             box-shadow: inset 0px 0px 0px 1px rgba(0,0,0,0.15), inset 0px -1px 0px rgba(0,0,0,0.05), 0px 1px 0px rgba(0,0,0,.05);
-            left:gridItemBorder;top:gridItemBorder;right:gridItemBorder;bottom:gridItemBorder;
         }
 
         .about {
             padding: rem(10px) gridItemPaddingHorizontal;
             flex: 1;
-            border-bottom-left-radius: 2px;
-            border-bottom-right-radius: 2px;
             //box-shadow: 0px -1px 0px subSeparatorColorAlpha;
-            background: white;
 
             .info {
                 margin-top: rem(1px);
@@ -137,15 +132,6 @@ gridItemBorder = 3px;
             
             .actions .button:not(.active) {
                 color: rgba(0,0,0,0.5);
-            }
-        }
-        
-        &.active[data-is-focus="true"] {
-            .cover {
-                border-radius: 0;
-            }
-            .permalink {
-                box-shadow:none;
             }
         }
     }

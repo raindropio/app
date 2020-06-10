@@ -1,4 +1,4 @@
-export default (func, start, end, pos, behavior)=>{
+export default (func, start, end, pos, align)=>{
     if (!func)
         return
 
@@ -16,5 +16,5 @@ export default (func, start, end, pos, behavior)=>{
     const min = Math.min(startGap, endGap)
     const onTop = (min == startGap)
 
-    func({ index: pos, align: onTop ? 'start' : 'end', behavior })
+    func({ index: pos, align: align || (onTop ? 'start' : 'end') })
 }

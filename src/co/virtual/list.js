@@ -14,8 +14,7 @@ export default class VirtualList extends React.PureComponent {
         endReached: undefined,      //
         disableVirtualization: false,
         defaultItemHeight: 80,
-        scrollToIndex: -1,
-        overscan: 0                 //dont override! otherwise scrolltoindex not always work
+        scrollToIndex: -1
     }
 
     _list = React.createRef()
@@ -24,10 +23,14 @@ export default class VirtualList extends React.PureComponent {
     _visible = { startIndex:-1, endIndex:-1 }
 
     componentDidUpdate(prev) {
+        if (prev.scrollToIndex != this.props.scrollToIndex)
+            this._scrollToIndex()
+    }
+
+    _scrollToIndex() {
         const { scrollToIndex, totalCount } = this.props
 
-        if (prev.scrollToIndex != scrollToIndex &&
-            scrollToIndex >= 0 &&
+        if (scrollToIndex >= 0 &&
             scrollToIndex <= totalCount &&
             this._list.current)
             superScrollToIndex(
@@ -53,11 +56,7 @@ export default class VirtualList extends React.PureComponent {
         const { item, empty, totalCount } = this.props
         
         if (!totalCount)
-            return (
-                <div key='empty'>
-                    {empty && empty()}
-                </div>
-            )
+            return empty ? empty() : null
 
         return item(index)
     }
@@ -69,7 +68,7 @@ export default class VirtualList extends React.PureComponent {
     }
 
     render() {
-        const { endReached, totalCount, dataKey, disableVirtualization, style, ...etc } = this.props
+        const { endReached, totalCount, dataKey, disableVirtualization, style, scrollToIndex, ...etc } = this.props
         const Component = disableVirtualization ? NonVirtualList : Virtuoso
 
         return (
@@ -82,6 +81,8 @@ export default class VirtualList extends React.PureComponent {
                 computeItemKey={this.computeItemKey}
                 style={style || mainStyle}
                 rangeChanged={endReached && this.rangeChanged}
+                initialTopMostItemIndex={scrollToIndex > -1 && scrollToIndex}
+                overscan={0} //dont override! otherwise scrolltoindex unstable
             />
         )
     }

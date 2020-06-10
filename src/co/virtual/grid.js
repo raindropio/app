@@ -55,6 +55,19 @@ class VirtualGrid extends React.Component {
         }
     }
 
+    _computeItemKey = (row)=>{
+        const { computeItemKey } = this.props
+        const { columnCount } = this.state
+
+        let key = ''
+        for(var column=0; column<columnCount; column++){
+            const index = row*columnCount + column
+            key += computeItemKey(index)+'_'
+        }
+
+        return key||row
+    }
+
     renderRow = row=>{
         const { className, item, computeItemKey } = this.props
         const { columnCount } = this.state
@@ -78,7 +91,7 @@ class VirtualGrid extends React.Component {
                 {...etc}
 
                 className={undefined}
-                computeItemKey={undefined}
+                computeItemKey={this._computeItemKey}
 
                 style={style}
                 item={this.renderRow}
@@ -92,4 +105,4 @@ class VirtualGrid extends React.Component {
     }
 }
 
-export default withAutoSize(VirtualGrid)
+export default withAutoSize(VirtualGrid, 'grid')

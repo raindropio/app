@@ -1,10 +1,11 @@
 import React from 'react'
 
 const mainStyle = { width: '100%', height: '100%' }
+const cache = {}
 
-export default (Component)=>{
+export default (Component, cacheId='')=>{
     class VirtualGridAutoSize extends React.Component {
-        state = { width: 0, height: 0 }
+        state = cache[cacheId] || { width: 0, height: 0 }
 
         bindRef = ref => {
             if (!ref || this._div == ref) return
@@ -31,7 +32,8 @@ export default (Component)=>{
             //window.requestAnimationFrame(() => {
                 if (width != this.state.width ||
                     height != this.state.height){
-                    this.setState({ width, height })
+                    cache[cacheId] = { width, height }
+                    this.setState(cache[cacheId])
                 }
             //})
         }
