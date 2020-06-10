@@ -7,7 +7,7 @@ export default function(url='') {
         return ''
 
     if (finalURL.includes(STELLA_BASE_URL))
-        return finalURL
+        return ''
 
     return THUMB_URL+encodeURIComponent(finalURL)
 }
