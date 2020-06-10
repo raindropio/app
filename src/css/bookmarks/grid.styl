@@ -227,3 +227,17 @@ html.retina.chrome {
         }
     }
 }
+
+.virtuoso-grid {
+    height: 100%
+}
+
+.virtuoso-grid-list {
+    display: grid
+	grid-template-columns: repeat(var(--virtuoso-columns, 2), 1fr)
+	grid-auto-rows: 300px
+}
+
+.virtuoso-grid-item {
+    overflow: hidden
+}

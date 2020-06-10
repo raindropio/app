@@ -3,20 +3,19 @@ export default function(view, amplifier=1) {
         case 'simple':
             return {
                 width: 16,
-                height: 16
+                ar: '1:1'
             }
 
         case 'grid':
         case 'masonry':
             return {
                 width: 194 + (amplifier * 30),
-                height: (view == 'grid' ? 96 + (amplifier * 30) : undefined)
+                ar: view == 'grid' ? '16:9' : undefined
             }
 
         default:
             return {
-                width: 56,
-                height: 48
+                width: 56
             }
     }
 }

@@ -3,7 +3,7 @@ import React from 'react'
 const mainStyle = { width: '100%', height: '100%' }
 
 export default (Component)=>{
-    class VirtualGridAutoSize extends React.PureComponent {
+    class VirtualGridAutoSize extends React.Component {
         state = { width: 0, height: 0 }
 
         bindRef = ref => {

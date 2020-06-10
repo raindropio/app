@@ -2,7 +2,26 @@ import React from 'react'
 import List from './list'
 import withAutoSize from './helpers/withAutoSize'
 
-class VirtualGrid extends React.PureComponent {
+class VirtualGridRow extends React.Component {
+    render() {
+        const { className, row, item, computeItemKey, columnCount } = this.props
+        
+        const items = []
+        for(var column=0; column<columnCount; column++){
+            const index = row*columnCount + column
+            if (computeItemKey(index))
+                items.push(item(index))
+        }
+
+        return (
+            <div className={className}>
+                {items}
+            </div>
+        )
+    }
+}
+
+class VirtualGrid extends React.Component {
     static defaultProps = {
         //...same as List
         columnWidth: 0, //required
@@ -33,18 +52,14 @@ class VirtualGrid extends React.PureComponent {
     renderRow = row=>{
         const { className, item, computeItemKey } = this.props
         const { columnCount } = this.state
-        
-        const items = []
-        for(var column=0; column<columnCount; column++){
-            const index = row*columnCount + column
-            if (computeItemKey(index))
-                items.push(item(index))
-        }
 
         return (
-            <div className={className} key={row}>
-                {items}
-            </div>
+            <VirtualGridRow 
+                row={row}
+                className={className}
+                item={item}
+                computeItemKey={computeItemKey}
+                columnCount={columnCount} />
         )
     }
 
