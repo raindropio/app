@@ -62,6 +62,7 @@ export default class BookmarkItemCover extends React.PureComponent {
     renderImage = ()=>{
         const { src, view, link, gridSize, ...etc } = this.props
         let { width, ar } = size(view, gridSize)
+        let format = 'jpeg' //replace to webp when find way to check support browser
         let uri
 
         switch(view){
@@ -94,7 +95,7 @@ export default class BookmarkItemCover extends React.PureComponent {
                 className='cover'
                 loading='lazy'
                 {...etc}
-                src={`${uri}&mode=crop&format=auto&width=${width||''}&ar=${ar||''}&dpr=${window.devicePixelRatio||1}`}
+                src={`${uri}&mode=crop&format=${format}&width=${width||''}&ar=${ar||''}&dpr=${window.devicePixelRatio||1}`}
                 onError={this.onImageLoadError} />
         )
     }

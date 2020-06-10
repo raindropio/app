@@ -23,6 +23,7 @@ Not ready
 
 Server
 - Replace all tags with space to _
+- Send screenshot without ?width, then in data/getscreenshot remove regex
 
 Good to have
 - Refactor collection/reorder redux to server
