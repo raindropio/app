@@ -3,6 +3,7 @@ export default function(view, amplifier=1) {
         case 'simple':
             return {
                 width: 16,
+                height: 16,
                 ar: '1:1'
             }
 
@@ -16,6 +17,7 @@ export default function(view, amplifier=1) {
         default:
             return {
                 width: 56,
+                height: 48,
                 ar: '7:6'
             }
     }

@@ -2,6 +2,7 @@ import React from 'react'
 import t from '~t'
 
 import TextareaAutosize from 'react-textarea-autosize'
+import Cover from './cover'
 import Collection from './collection'
 
 export default class BookmarkEditForm extends React.Component {
@@ -19,7 +20,9 @@ export default class BookmarkEditForm extends React.Component {
 
         return (
             <div className='bookmarkEdit'>
-                <form className='superForm' onSubmit={onSubmit}>
+                <Cover {...this.props} />
+
+                <form className='edit-form superForm' onSubmit={onSubmit}>
                     <div className='fieldWrap'>
                         <label className='fieldName'>{t.s('title')}</label>
 
@@ -50,6 +53,7 @@ export default class BookmarkEditForm extends React.Component {
                             autoComplete='off'
                             autoFocus={autoFocus=='excerpt'}
                             name='excerpt'
+                            maxlength='10000'
                             defaultValue={excerpt}
                             onChange={this.onChangeField}
                             onBlur={onSubmit} />

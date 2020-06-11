@@ -193,25 +193,6 @@ elementInvert()
         box-shadow: 1px 1px 1px subSeparatorColorAlpha
     }
 
-    .cover-wrap {
-    }
-    
-    .cover {
-        background: #EDEEEF;
-        background-size: cover;
-        background-postion: center;
-        display: block;
-        min-width: 16px;
-        
-        &.is-screenshot {
-            object-position: top center;
-            background-postion: top center;
-        }
-        
-        &.cover-placeholder {
-        }
-    }
-
     .tags {
         @extend .font-weight-normal;
         z-index: 1;
@@ -416,6 +397,15 @@ elementInvert()
         box-shadow: 0 1px 3px rgba(0,0,0,.15), 0 3px 15px rgba(0,0,0,.1);
         z-index: 9999;
         //opacity: 0;
+    }
+}
+
+.cover-wrap {
+    .cover {
+        background: #EDEEEF
+        display: block
+        min-width: 16px
+        border-radius: 2px
     }
 }
 

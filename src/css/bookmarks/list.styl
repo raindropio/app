@@ -1,8 +1,5 @@
 @require "../consts.styl";
 
-listCoverSizeWidthWidth = 56px
-listCoverSizeWidthHeight = 48px
-
 .view-list, .view-simple {
     .element {
         display: flex;
@@ -42,24 +39,10 @@ listCoverSizeWidthHeight = 48px
             left: 0;
         }
 
-        .cover {
-            width: rem(listCoverSizeWidthWidth);
-            height: rem(listCoverSizeWidthHeight);
-        }
-
         .cover-wrap {
-            //display:none;
             flex-shrink: 0;
             position:relative;
-            align-self: flex-start;
-
-            /*&:before {
-                content: "";
-                position:absolute;
-                left:0;top:0;right:0;bottom:0;
-                border-radius:2px;
-                box-shadow: inset 0px 0px 0px 1px rgba(0,0,0,.1);
-            }*/
+            align-self: flex-start
         }
         
         .cover {

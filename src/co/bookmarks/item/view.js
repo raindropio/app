@@ -21,7 +21,7 @@ export default class BookmarkItemView extends React.PureComponent {
                 ref={innerRef}
                 className={`element ${active&&'active'} ${selected&&'checked'} ${important&&'important'} ${broken&&'broken'} ${isDragging&&'is-dragging'}`}>
                 <Cover
-                    src={cover}
+                    cover={cover}
                     link={link}
                     view={view}
                     gridSize={gridSize} />

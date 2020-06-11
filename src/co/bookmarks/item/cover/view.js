@@ -3,17 +3,18 @@ import getThumbUri from '~data/modules/format/thumb'
 import getScreenshotUri from '~data/modules/format/screenshot'
 import getFaviconUri from '~data/modules/format/favicon'
 import size from './size'
+import transparentPng from '~assets/images/empty/transparent.png'
 
-//cache src statuses
+//cache cover statuses
 const status = {
     '': 'error' //undefined/error
 }
 
-const onSrcError = (src)=>{
-    if (!status[src])
-        status[src] = 'screenshot'
+const onCoverError = (cover)=>{
+    if (!status[cover])
+        status[cover] = 'screenshot'
     else
-        status[src] = 'error'
+        status[cover] = 'error'
 }
 
 //cache thumb/screenshot uri
@@ -39,7 +40,7 @@ const getStellaUri = (uri, mode='')=>{
 //main component
 export default class BookmarkItemCover extends React.PureComponent {
     static defaultProps = {
-        src:    '',
+        cover:  '',
         link:   '', //required
         view:   'list',
     }
@@ -47,22 +48,21 @@ export default class BookmarkItemCover extends React.PureComponent {
     constructor(props) {
         super(props)
 
-        if (!props.src)
-            onSrcError(props.src)
+        if (!props.cover)
+            onCoverError(props.cover)
 
         this.state = {}
     }
 
     //rotate status on error
     onImageLoadError = ()=>{
-        onSrcError(this.props.src)
+        onCoverError(this.props.cover)
         this.setState({n: (this.state.n||0)+1})
     }
 
     renderImage = ()=>{
-        const { src, view, link, gridSize, ...etc } = this.props
-        let { width, ar } = size(view, gridSize)
-        let format = 'jpeg' //replace to webp when find way to check support browser
+        const { cover, view, link, gridSize, ...etc } = this.props
+        let { width, height, ar } = size(view, gridSize) //use height only for img element
         let uri
 
         switch(view){
@@ -73,10 +73,15 @@ export default class BookmarkItemCover extends React.PureComponent {
 
             //in other view modes we show a thumbnail, screenshot or placeholder, depends on status
             default:
-                switch(status[src]) {
+                switch(status[cover]) {
                     case 'error':
                         return (
-                            <span className='cover cover-placeholder' />
+                            <img 
+                                src={transparentPng}
+                                className='cover cover-placeholder'
+                                data-ar={ar}
+                                width={width}
+                                height={height} />
                         )
         
                     case 'screenshot':
@@ -84,19 +89,28 @@ export default class BookmarkItemCover extends React.PureComponent {
                         break
         
                     default:
-                        uri = getStellaUri(src)
+                        uri = getStellaUri(cover)
                         break
                 }
                 break
         }
 
         return (
-            <img 
-                className='cover'
-                loading='lazy'
-                {...etc}
-                src={`${uri}&mode=crop&format=${format}&width=${width||''}&ar=${ar||''}&dpr=${window.devicePixelRatio||1}`}
-                onError={this.onImageLoadError} />
+            <>
+                <source
+                    srcSet={`${uri}&mode=crop&format=webp&width=${width||''}&ar=${ar||''}&dpr=${window.devicePixelRatio||1} ${window.devicePixelRatio||1}x`}
+                    type='image/webp' />
+
+                <img 
+                    className='cover'
+                    data-ar={ar}
+                    loading='lazy'
+                    width={width}
+                    height={height}
+                    {...etc}
+                    src={`${uri}&mode=crop&width=${width||''}&ar=${ar||''}&dpr=${window.devicePixelRatio||1}`}
+                    onError={this.onImageLoadError} />
+            </>
         )
     }
 
@@ -104,9 +118,9 @@ export default class BookmarkItemCover extends React.PureComponent {
         const { className='' } = this.props
 
         return (
-            <div className={'cover-wrap '+className}>
+            <picture className={'cover-wrap '+className}>
                 {this.renderImage()}
-            </div>
+            </picture>
         )
     }
 }

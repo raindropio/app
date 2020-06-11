@@ -47,11 +47,19 @@ export default function(state, action) {switch (action.type) {
 			return state
 		}
 
-		return state
-			.setIn(
-				['drafts', 'byId', action._id, 'status'],
-				'loading'
+		if (state.elements[action._id])
+			return state.setIn(
+				['drafts', 'byId', action._id],
+				blankDraft
+					.set('status', state.elements[action._id].collectionId!=-99 ? 'loaded' : 'removed')
+					.set('item', {...state.elements[action._id], ...state.meta[action._id]})
 			)
+		else
+			return state
+				.setIn(
+					['drafts', 'byId', action._id, 'status'],
+					'loading'
+				)
 	}
 
 	case BOOKMARK_DRAFT_LOAD_SUCCESS:{
