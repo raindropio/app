@@ -73,10 +73,14 @@ export default class BookmarksItemsListing extends React.Component {
     )
 
     render() {
-        const { items, view, viewHide, gridSize, activeId, selectModeEnabled, compact } = this.props
+        const { items, viewHide, gridSize, activeId, selectModeEnabled, compact } = this.props
+        let { view } = this.props
         const { isDropping, dropHandlers } = this.props
 
         let Component
+
+        // if (view == 'masonry' && compact)
+        //     view = 'grid'
 
         switch(view) {
             case 'grid':

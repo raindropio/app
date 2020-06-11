@@ -1,6 +1,6 @@
 import React from 'react'
 
-const mainStyle = { width: '100%', height: '100%' }
+const mainStyle = { width: '100%', height: '100%', flex: 1, minHeight: 0 }
 const cache = {}
 
 export default (Component, cacheId='')=>{

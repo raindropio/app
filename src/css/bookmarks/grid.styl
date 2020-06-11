@@ -5,6 +5,11 @@ gridItemGap = 8px;
 gridItemPaddingHorizontal = rem(11px);
 gridItemBorder = 3px;
 
+.view-masonry .element {
+    margin: 0 gridItemGap
+    margin-top: gridItemGap * 2
+}
+
 .view-grid, .view-masonry {
     display: grid
     grid-template-columns: repeat(var(--grid-columns, 1), minmax(0, 1fr))

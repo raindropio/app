@@ -12,6 +12,7 @@ export default class VirtualList extends React.PureComponent {
         totalCount: 0,              //required
         empty: undefined,           //
         endReached: undefined,      //
+        footer: undefined,
         disableVirtualization: false,
         defaultItemHeight: 80,
         scrollToIndex: -1
