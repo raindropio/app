@@ -1,9 +1,12 @@
 import React from 'react'
+import { connect } from 'react-redux'
+import { oneCoverUpload } from '~data/actions/bookmarks'
+
 import Cover from '~co/bookmarks/item/cover'
 import Icon from '~co/common/icon'
 import ImagePicker from '~co/picker/image'
 
-export default class BookmarkEditFormCover extends React.Component {
+class BookmarkEditFormCover extends React.Component {
     state = {
         modal: false
     }
@@ -13,8 +16,35 @@ export default class BookmarkEditFormCover extends React.Component {
         this.setState({ modal: true })
     }
 
-    onModalClose = ()=>
-        this.setState({ modal: false })
+    handlers = {
+        onClose: ()=>
+            this.setState({ modal: false }),
+
+        onLink: async(link)=>{
+            let media = [...this.props.item.media]
+            let coverId = media.findIndex(item=>item.link == link)
+
+            if (coverId == -1){
+                media = [ ...media, { link } ]
+                coverId = media.length - 1
+            }
+
+            this.props.onChange({
+                coverId,
+                media
+            })
+            this.props.onSubmit()
+        },
+
+        onScreenshot: async()=>{
+            this.handlers.onLink('<screenshot>')
+        },
+
+        onFile: (file)=>
+            new Promise((res, rej)=>
+                this.props.oneCoverUpload(this.props.item._id, file, res, rej)
+            )
+    }
 
     render() {
         const { item: { cover, link, media } } = this.props
@@ -38,9 +68,14 @@ export default class BookmarkEditFormCover extends React.Component {
                 {this.state.modal && (
                     <ImagePicker
                         items={media}
-                        onClose={this.onModalClose} />
+                        {...this.handlers} />
                 )}
             </div>
         )
     }
 }
+
+export default connect(
+	undefined,
+	{ oneCoverUpload },
+)(BookmarkEditFormCover)
