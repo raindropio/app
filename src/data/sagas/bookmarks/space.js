@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import { call, put, takeEvery, select, debounce, all } from 'redux-saga/effects'
+import { call, put, takeEvery, select, throttle, all } from 'redux-saga/effects'
 import Api from '../../modules/api'
 import ApiError from '../../modules/error'
 import { getSpaceQuery } from '../../helpers/bookmarks'
@@ -28,7 +28,7 @@ export default function* () {
 		SPACE_CHANGE_SORT
 	], loadSpace)
 
-	yield debounce(1000, BOOKMARK_UPDATE_SUCCESS, maybeRefeshSpace)
+	yield throttle(1000, BOOKMARK_UPDATE_SUCCESS, maybeRefeshSpace)
 
 	yield takeEvery(SPACE_VIEW_TOGGLE, viewToggle)
 	yield takeEvery(SPACE_VIEW_CONFIG, viewConfig)

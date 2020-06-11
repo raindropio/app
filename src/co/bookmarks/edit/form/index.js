@@ -20,15 +20,19 @@ export default class BookmarkEditForm extends React.Component {
         }
     }
 
+    onSubmitForm = e=>{
+        e.preventDefault()
+        this.props.onSubmit()
+    }
+
     render() {
         const { autoFocus, status, unsaved, item: { title, excerpt, link } } = this.props
-        const { onSubmit } = this.props
 
         return (
             <div className='bookmarkEdit'>
                 <Cover {...this.props} />
 
-                <form className='edit-form superForm' onSubmit={onSubmit}>
+                <form className='edit-form superForm' onSubmit={this.onSubmitForm}>
                     <div className='fieldWrap'>
                         <label className='fieldName'>{t.s('title')}</label>
 
@@ -44,7 +48,7 @@ export default class BookmarkEditForm extends React.Component {
                             placeholder={t.s('title')}
                             defaultValue={title}
                             onChange={this.onChangeField}
-                            onBlur={onSubmit}
+                            onBlur={this.onSubmitForm}
                             onKeyDown={this.onKeyDownField} />
                     </div>
 
@@ -63,7 +67,7 @@ export default class BookmarkEditForm extends React.Component {
                             maxLength='10000'
                             defaultValue={excerpt}
                             onChange={this.onChangeField}
-                            onBlur={onSubmit}
+                            onBlur={this.onSubmitForm}
                             onKeyDown={this.onKeyDownField} />
                     </div>
 
@@ -82,7 +86,7 @@ export default class BookmarkEditForm extends React.Component {
                             name='link'
                             value={link}
                             onChange={this.onChangeField}
-                            onBlur={onSubmit}
+                            onBlur={this.onSubmitForm}
                             onKeyDown={this.onKeyDownField} />
                     </div>
 

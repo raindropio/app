@@ -6,7 +6,6 @@ import * as bookmarksActions from '~data/actions/bookmarks'
 import { makeDraftItem, makeDraftStatus, makeDraftUnsaved } from '~data/selectors/bookmarks'
 
 import Form from './form'
-import Removed from './removed'
 import Error from './error'
 
 class EditBookmarkContainer extends React.Component {
@@ -68,9 +67,6 @@ class EditBookmarkContainer extends React.Component {
 		switch(status){
 			case 'error':
 				return <Error />
-
-			case 'removed':
-				return <Removed {...this.props} {...this.handlers} />
 
 			default:
 				return <Form {...this.props} {...this.handlers} />
