@@ -20,13 +20,13 @@ export default class Popover extends React.Component {
     }
 
     render() {
-        const { children, onClose, closable, ...etc } = this.props
+        const { children, onClose, closable, className='', ...etc } = this.props
 
         return (
             <Portal>
                 <Context.Provider value={{ onClose, closable }}>
                     <div className='modal' onKeyDown={this.onContainerKeyDown}>
-                        <div className='modal-body' {...etc}>
+                        <div className={'modal-body '+className} {...etc}>
                             {children}
                         </div>
                     </div>

@@ -1,0 +1,17 @@
+.image-picker {
+    .items {
+        width: 500px
+        max-width: 100%
+        display: grid
+        grid-template-columns: repeat(auto-fit, 128px)
+        grid-auto-rows: 1fr
+        grid-gap: 16px
+
+        .item {
+            img {
+                display: block
+                max-width: 100%
+            }
+        }
+    }
+}
