@@ -6,7 +6,10 @@ class ReaderEdit extends React.Component {
         const { item: { _id } } = this.props
 
         return (
-            <Edit _id={_id} />
+            <>
+                <br/>
+                <Edit _id={_id} />
+            </>
         )
 	}
 }
