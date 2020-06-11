@@ -76,7 +76,7 @@ export default class SearchView extends React.PureComponent {
                     <input
                         ref={this._input}
                         className='searchInput'
-                        type='search'
+                        type='text'
                         spellCheck='false'
                         {...original}
                         onChange={this.onInputChange}

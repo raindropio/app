@@ -3,7 +3,7 @@ import t from '~t'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import * as bookmarksActions from '~data/actions/bookmarks'
-import { makeDraftItem, makeDraftStatus } from '~data/selectors/bookmarks'
+import { makeDraftItem, makeDraftStatus, makeDraftUnsaved } from '~data/selectors/bookmarks'
 
 import Form from './form'
 import Removed from './removed'
@@ -14,12 +14,16 @@ class EditBookmarkContainer extends React.Component {
 		_id: 0
 	}
 
-	async componentWillUnmount() {
-		await this.handlers.onSubmit()
-	}
-
 	componentDidMount() {
 		this.handlers.onLoad()
+
+		window.addEventListener('beforeunload', this.onWindowClose)
+	}
+
+	async componentWillUnmount() {
+		await this.handlers.onSubmit()
+		
+		window.removeEventListener('beforeunload', this.onWindowClose)
 	}
 
 	componentDidUpdate(prev) {
@@ -32,6 +36,15 @@ class EditBookmarkContainer extends React.Component {
         
         if (_id != prev._id)
             this.handlers.onLoad()
+	}
+
+	onWindowClose = (e)=>{
+		if (this.props.unsaved){
+			this.handlers.onSubmit()
+			
+			e.preventDefault()
+			e.returnValue = ''
+		}
 	}
 
 	handlers = {
@@ -68,18 +81,14 @@ class EditBookmarkContainer extends React.Component {
 const makeMapStateToProps = () => {
 	const 
 		getDraftItem = makeDraftItem(),
-		getDraftStatus = makeDraftStatus()
+		getDraftStatus = makeDraftStatus(),
+		getDraftUnsaved = makeDraftUnsaved()
 
-	const mapStateToProps = (state, {_id})=>{
-		const item = getDraftItem(state, {_id})
-		
-		return {
-			status: getDraftStatus(state, {_id}),
-			item
-		}
-	}
-
-	return mapStateToProps
+	return (state, props)=>({
+		status: getDraftStatus(state, props),
+		item: getDraftItem(state, props),
+		unsaved: getDraftUnsaved(state, props)
+	})
 }
 
 export default connect(

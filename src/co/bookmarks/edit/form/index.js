@@ -9,13 +9,19 @@ export default class BookmarkEditForm extends React.Component {
     onChangeField = e=>
         this.props.onChange({ [e.target.getAttribute('name')]: e.target.value })
 
-    onPreventMultilineField = e=>{
-        if (e.keyCode == 13)
+    onKeyDownField = e=>{
+        if (e.keyCode == 13 &&
+            (
+                e.target.getAttribute('data-multiline') == null ||
+                e.metaKey || e.ctrlKey || e.shiftKey
+            )){
             e.preventDefault()
+            this.props.onSubmit()
+        }
     }
 
     render() {
-        const { autoFocus, status, item: { title, excerpt, link } } = this.props
+        const { autoFocus, status, unsaved, item: { title, excerpt, link } } = this.props
         const { onSubmit } = this.props
 
         return (
@@ -39,7 +45,7 @@ export default class BookmarkEditForm extends React.Component {
                             defaultValue={title}
                             onChange={this.onChangeField}
                             onBlur={onSubmit}
-                            onKeyDown={this.onPreventMultilineField} />
+                            onKeyDown={this.onKeyDownField} />
                     </div>
 
                     <div className='fieldWrap'>
@@ -47,6 +53,7 @@ export default class BookmarkEditForm extends React.Component {
 
                         <TextareaAutosize
                             type='text'
+                            data-multiline
                             tabIndex='5000'
                             className='field'
                             disabled={status=='loading'}
@@ -56,7 +63,8 @@ export default class BookmarkEditForm extends React.Component {
                             maxLength='10000'
                             defaultValue={excerpt}
                             onChange={this.onChangeField}
-                            onBlur={onSubmit} />
+                            onBlur={onSubmit}
+                            onKeyDown={this.onKeyDownField} />
                     </div>
 
                     <Collection 
@@ -75,8 +83,18 @@ export default class BookmarkEditForm extends React.Component {
                             value={link}
                             onChange={this.onChangeField}
                             onBlur={onSubmit}
-                            onKeyDown={this.onPreventMultilineField} />
+                            onKeyDown={this.onKeyDownField} />
                     </div>
+
+                    {(unsaved || status == 'saving') && (
+                        <div className='fieldColumns'>
+                            <input
+                                type='submit'
+                                className='button active standart input'
+                                disabled={status == 'saving'}
+                                value={status == 'saving' ? t.s('loading')+'…' : t.s('save')} />
+                        </div>
+                    )}
                 </form>
             </div>
         )

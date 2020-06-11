@@ -22,6 +22,10 @@ export default class VirtualList extends React.PureComponent {
     //scroll to index
     _visible = { startIndex:-1, endIndex:-1 }
 
+    componentDidMount() {
+        this._scrollToIndex()
+    }
+
     componentDidUpdate(prev) {
         if (prev.scrollToIndex != this.props.scrollToIndex)
             this._scrollToIndex()
@@ -68,7 +72,7 @@ export default class VirtualList extends React.PureComponent {
     }
 
     render() {
-        const { endReached, totalCount, dataKey, disableVirtualization, style, scrollToIndex, ...etc } = this.props
+        const { endReached, totalCount, dataKey, disableVirtualization, style, ...etc } = this.props
         const Component = disableVirtualization ? NonVirtualList : Virtuoso
 
         return (
@@ -81,7 +85,6 @@ export default class VirtualList extends React.PureComponent {
                 computeItemKey={this.computeItemKey}
                 style={style || mainStyle}
                 rangeChanged={endReached && this.rangeChanged}
-                initialTopMostItemIndex={scrollToIndex > -1 && scrollToIndex}
                 overscan={0} //dont override! otherwise scrolltoindex unstable
             />
         )

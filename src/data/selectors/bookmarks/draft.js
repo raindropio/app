@@ -39,3 +39,13 @@ export const makeDraftStatus = ()=>createSelector(
 	}],
 	(status)=>status
 )
+
+//Unsaved
+export const makeDraftUnsaved = ()=>createSelector(
+	[({bookmarks={}}, {_id, link})=>{
+		const byId = ()=>(_id ? bookmarks.getIn(['drafts', 'byId', _id, 'changedFields']) : false)
+		const byLink = ()=>(typeof link != 'undefined' ? getDraftByLink(bookmarks, link).changedFields : false)
+		return byId() || byLink() || blankDraft.changedFields
+	}],
+	(changedFields=[])=>changedFields.length>0
+)
