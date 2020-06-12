@@ -1,8 +1,7 @@
 import React from 'react'
 import { usePositioner, useResizeObserver, useMasonry } from 'masonic'
 import withAutoSize from './helpers/withAutoSize'
-
-const mainStyle = {width: '100%', height: '100%', overflowY: 'overlay'}
+import withContainer from './helpers/withContainer'
 
 class VirtualMasonry extends React.Component {
     static defaultProps = {
@@ -18,35 +17,30 @@ class VirtualMasonry extends React.Component {
         scrollToIndex: undefined,//not supported yet!
         computeItemKey: undefined,
         disableVirtualization: false,
-    }
-    
-    containerRef = React.createRef()
 
-    state = {
         scrollTop: 0,
         isScrolling: false
     }
 
-    static getDerivedStateFromProps(props, state) {
-        if (state.totalCount === props.totalCount)
-            return null
-        
-        let i=0
-        return {
-            totalCount: props.totalCount,
-            items: Array.from(Array(props.totalCount), () => ({id: i++}))
-        }
+    //items
+    getItems = ()=>{
+        let i = 0
+        return Array.from(Array(this.props.totalCount), () => ({id: i++}))
+    }
+    
+    state = {
+        items: this.getItems()
     }
 
-    onScroll = (e)=>{
-        this.setState({ scrollTop: e.target.scrollTop, isScrolling: true }, ()=>{
-            clearTimeout(this._scrollStop)
-            this._scrollStop = setTimeout(() => {
-                this.setState({ isScrolling: false })
-            }, 100)
-        })
+    componentDidUpdate(prev) {
+        if (prev.totalCount === this.props.totalCount &&
+            prev.dataKey === this.props.dataKey)
+            return
+
+        this.setState({ items: this.getItems() })
     }
 
+    //rendering
     onRender = (startIndex, endIndex)=>{
         if (endIndex >= this.props.totalCount - (endIndex - startIndex)*2)
             this.props.endReached()
@@ -60,38 +54,35 @@ class VirtualMasonry extends React.Component {
         undefined
 
     render() {
-        const { footer, disableVirtualization, ...etc } = this.props
-
-        let columnCount = parseInt(this.props.width / this.props.columnWidth)
+        const { footer, totalCount, empty, ...etc } = this.props
+        const columnCount = parseInt(this.props.width / this.props.columnWidth) <= 1 ? 2 : undefined
 
         return (
-            <div 
-                style={disableVirtualization ? undefined : mainStyle}
-                ref={this.containerRef}
-                onScroll={this.onScroll}>
-                <VirtualMasonryInner 
-                    {...etc}
-                    {...this.state}
-                    columnCount={columnCount <= 1 ? 2 : undefined}
-                    itemKey={this.itemKey}
-                    renderItem={this.renderItem}
-                    onRender={this.onRender} />
+            <>
+                {(!totalCount && empty) ? empty() : (
+                    <VirtualMasonryInner 
+                        {...etc}
+                        {...this.state}
+                        columnCount={columnCount}
+                        itemKey={this.itemKey}
+                        renderItem={this.renderItem}
+                        onRender={this.onRender} />
+                )}
                 
                 {footer && footer()}
-            </div>
+            </>
         )
     }
 }
 
-const VirtualMasonryInner = ({ width, height, scrollTop, isScrolling, columnWidth, columnCount, items, renderItem, className, itemKey, defaultItemHeight, onRender, dataKey }) => {
-    const positioner = usePositioner({ width, columnCount, columnWidth }, [dataKey])
+const VirtualMasonryInner = ({ width, height, scrollTop, isScrolling, columnWidth, columnCount, items, renderItem, itemKey, defaultItemHeight, onRender, dataKey }) => {
+    const positioner = usePositioner({ width, columnCount, columnWidth })
     const resizeObserver = useResizeObserver(positioner)
   
     return useMasonry({
         positioner,
         resizeObserver,
 
-        className,
         items,
         itemKey,
         render: renderItem,
@@ -107,4 +98,4 @@ const VirtualMasonryInner = ({ width, height, scrollTop, isScrolling, columnWidt
     })
 }
 
-export default withAutoSize(VirtualMasonry, 'masonry')
+export default withAutoSize(withContainer(VirtualMasonry), 'masonry')
