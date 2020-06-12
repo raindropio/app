@@ -1,9 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { bookmark, tags, makeIsSelected, makeHighlight, makeBookmarkIndex, selectModeWorking, getGridSize } from '~data/selectors/bookmarks'
+import { bookmark, tags, makeIsSelected, makeHighlight, selectModeWorking, getGridSize } from '~data/selectors/bookmarks'
 import { copyTextToClipboard } from '~modules/strings'
 
-import ViewWithDnd from './viewWithDnd'
+import View from './view'
 import Contextmenu from './contextmenu'
 
 class BookmarkItem extends React.Component {
@@ -96,16 +96,6 @@ class BookmarkItem extends React.Component {
                     e.preventDefault()
                     return this.handlers.onClick()
             }
-        },
-
-        onReorder: (details)=>
-            this.props.actions.oneReorder(this.props.item._id, details),
-
-        onMove: (to)=>{
-            if (this.props.selectModeEnabled)
-                this.props.actions.moveSelected(this.props.spaceId, to)
-            else
-                this.props.actions.oneMove(this.props.item._id, to)
         }
     }
 
@@ -114,7 +104,7 @@ class BookmarkItem extends React.Component {
 
         return (
             <>
-                <ViewWithDnd 
+                <View 
                     {...item}
                     {...props}
                     {...this.handlers}
@@ -135,7 +125,6 @@ export default connect(
 	() => {
         const getIsSelected = makeIsSelected()
         const getHighlight = makeHighlight()
-        const getIndex = makeBookmarkIndex()
     
         return (state, { _id, spaceId, selectModeEnabled })=>{
             const item = bookmark(state, _id)
@@ -146,7 +135,6 @@ export default connect(
                 selected: selectModeEnabled ? getIsSelected(state, spaceId, _id) : false,
                 selectDisabled: selectModeWorking(state) ? true : false,
                 highlight: getHighlight(state, _id),
-                index: getIndex(state, spaceId, _id),
                 gridSize: getGridSize(state, spaceId)
             }
         }

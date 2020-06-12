@@ -44,8 +44,6 @@
 		"react": "16.13.x",
 		"react-autosize-textarea": "7.0.x",
 		"react-beautiful-dnd": "^13.0.0",
-		"react-dnd": "10.0.x",
-		"react-dnd-html5-backend": "10.0.x",
 		"react-dom": "16.13.x",
 		"react-helmet": "6.0.x",
 		"react-portal": "^4.2.1",

@@ -15,6 +15,7 @@ Bugs
 - Minor
     - in search results when change bookmark, `highlight` data lost
     - search as type sometime doesn't recognize last type
+    - masonry keyboard navigation unordered
 
 Not ready
 - electron
@@ -34,6 +35,7 @@ Good to have
 - data: combine logic of bookmarkMove and bookmarkReorder
 - When collection removed open next collection
 - Show (?) icon in Filters and Tags sidebar sections, click opens help page about those items
+- bookmarks/item remove selectDisabled, and move this logic to /items + css
 
 Translation
 - leave
