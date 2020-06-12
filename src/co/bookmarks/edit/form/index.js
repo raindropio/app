@@ -96,7 +96,7 @@ export default class BookmarkEditForm extends React.Component {
                                 type='submit'
                                 className='button active standart input'
                                 disabled={status == 'saving'}
-                                value={status == 'saving' ? t.s('loading')+'…' : t.s('save')} />
+                                value={t.s('save') + (status == 'saving' ? '…' : '')} />
                         </div>
                     )}
                 </form>

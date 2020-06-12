@@ -1,6 +1,7 @@
 import React from 'react'
 
 const mainStyle = {width: '100%', height: '100%', overflowY: 'overlay'}
+const cache = {}
 
 export default (Component)=>
     class WithContainer extends React.Component {
@@ -12,7 +13,7 @@ export default (Component)=>
         }
         
         bindContainer = r => {
-            if (!r) return
+            if (!r || cache[this.props.className]) return
             
             this._container = r
 
@@ -20,12 +21,16 @@ export default (Component)=>
             const paddingHorizontal = parseInt(style.getPropertyValue('padding-left')) + parseInt(style.getPropertyValue('padding-right'))
             const paddingVertical = parseInt(style.getPropertyValue('padding-top')) + parseInt(style.getPropertyValue('padding-bottom'))
 
+            if (this.props.className)
+                cache[this.props.className] = { paddingHorizontal, paddingVertical }
+
             this.setState({ paddingHorizontal, paddingVertical })
         }
 
         state = {
             scrollTop: 0,
-            isScrolling: false
+            isScrolling: false,
+            ...(cache[this.props.className]||{})
         }
 
         onScroll = (e)=>{
