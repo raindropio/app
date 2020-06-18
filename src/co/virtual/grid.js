@@ -2,50 +2,34 @@ import React from 'react'
 import List from './list'
 import withAutoSize from './helpers/withAutoSize'
 
-class VirtualGridRow extends React.Component {
-    render() {
-        const { className, row, item, computeItemKey, columnCount } = this.props
-        
-        const items = []
-        for(var column=0; column<columnCount; column++){
-            const index = row*columnCount + column
-            if (computeItemKey(index))
-                items.push(item(index))
-        }
-
-        return (
-            <div className={className}>
-                {items}
-            </div>
-        )
-    }
-}
-
 class VirtualGrid extends React.Component {
     static defaultProps = {
         //...same as List
         columnWidth: 0, //required
-        defaultItemHeight: 250
+        defaultItemHeight: 250 //required
     }
 
     state = {}
 
     //measure columns and rows on container size change
-    static getDerivedStateFromProps({ width, columnWidth, totalCount, disableVirtualization, ...etc }, state) {
+    static getDerivedStateFromProps({ width, height, columnWidth, defaultItemHeight, totalCount, disableVirtualization, ...etc }, state) {
         let columnCount = Math.max(parseInt(width / columnWidth), 2)
-        let rowCount = Math.ceil(totalCount / columnCount)
 
-        let scrollToIndex = (etc.scrollToIndex||0) >= 0 ? parseInt(etc.scrollToIndex / columnCount) : -1
+        let perRow = columnCount * Math.max(parseInt(height / defaultItemHeight), 1)
+        let rowCount = Math.ceil(totalCount / perRow)
+
+        let scrollToIndex = (etc.scrollToIndex||0) >= 0 ? parseInt(etc.scrollToIndex / perRow) : -1
 
         if (rowCount == state.rowCount &&
-            columnCount == state.columnCount &&
+            perRow == state.perRow &&
             scrollToIndex == state.scrollToIndex)
             return null
 
         return {
-            columnCount,
             rowCount,
+            perRow,
             scrollToIndex,
+            defaultItemHeight: defaultItemHeight * (perRow/columnCount),
             style: {
                 width: '100%',
                 height: '100%',
@@ -55,35 +39,30 @@ class VirtualGrid extends React.Component {
         }
     }
 
-    _computeItemKey = (row)=>{
-        const { computeItemKey } = this.props
-        const { columnCount } = this.state
+    getItems = (row)=>{
+        const { perRow } = this.state
 
-        let key = ''
-        for(var column=0; column<columnCount; column++){
-            const index = row*columnCount + column
-            key += computeItemKey(index)+'_'
+        let items = []
+        for(var column=0; column<perRow; column++){
+            const index = row*perRow + column
+            items.push(index)
         }
 
-        return key||row
+        return items
     }
 
     renderRow = row=>{
         const { className, item, computeItemKey } = this.props
-        const { columnCount } = this.state
-
+        
         return (
-            <VirtualGridRow 
-                row={row}
-                className={className}
-                item={item}
-                computeItemKey={computeItemKey}
-                columnCount={columnCount} />
+            <div className={className}>
+                {this.getItems(row).filter(computeItemKey).map(item)}
+            </div>
         )
     }
 
     render() {
-        const { rowCount, columnCount, scrollToIndex, style } = this.state
+        const { rowCount, perRow, scrollToIndex, style, defaultItemHeight } = this.state
         const { dataKey='', ...etc } = this.props
 
         return (
@@ -91,13 +70,14 @@ class VirtualGrid extends React.Component {
                 {...etc}
 
                 className={undefined}
-                computeItemKey={this._computeItemKey}
+                computeItemKey={undefined}
 
                 style={style}
                 item={this.renderRow}
 
-                dataKey={dataKey+columnCount+(!rowCount?'empty':'')}
+                dataKey={dataKey+perRow+(!rowCount?'empty':'')}
                 totalCount={rowCount}
+                defaultItemHeight={defaultItemHeight}
 
                 scrollToIndex={scrollToIndex}
             />

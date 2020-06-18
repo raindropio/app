@@ -15,7 +15,8 @@ export default class VirtualList extends React.PureComponent {
         footer: undefined,
         disableVirtualization: false,
         defaultItemHeight: 80,
-        scrollToIndex: -1
+        scrollToIndex: -1,
+        overscan: 500
     }
 
     _list = React.createRef()
@@ -83,7 +84,6 @@ export default class VirtualList extends React.PureComponent {
                 style={style || mainStyle}
                 rangeChanged={endReached && this.rangeChanged}
                 initialTopMostItemIndex={scrollToIndex > -1 ? scrollToIndex : undefined}
-                overscan={0} //dont override! otherwise scrolltoindex unstable
             />
         )
     }

@@ -27,6 +27,10 @@ export default class BookmarksItemsListing extends React.Component {
     endReached = ()=>
         this.props.actions.nextPage(this.props.spaceId)
 
+    onDragEnd = (_id, order)=>{
+        this.props.actions.oneReorder(_id, { order, collectionId: parseInt(this.props.spaceId) })
+    }
+
     renderItem = (index)=>{
         const _id = this.props.items[index]
 
@@ -122,6 +126,7 @@ export default class BookmarksItemsListing extends React.Component {
                     scrollToIndex={activeId && items.length ? items.indexOf(activeId) : -1}
                     
                     endReached={this.endReached}
+                    onDragEnd={this.onDragEnd}
                     />
             </div>
         )
