@@ -54,12 +54,10 @@ export const onePreload = ({link})=>({
 	link
 })
 
-export const oneReorder = (_id, { order, collectionId, dry=false })=>({
+export const oneReorder = (_id, toId)=>({
 	type: BOOKMARK_REORDER,
 	_id: parseInt(_id),
-	collectionId: parseInt(collectionId),
-	order,
-	dry
+	toId: parseInt(toId)
 })
 
 export const oneCoverUpload = (_id, cover, onSuccess, onFail)=>({

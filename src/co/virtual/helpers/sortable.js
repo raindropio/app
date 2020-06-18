@@ -1,34 +1,32 @@
 import React from 'react'
 import { ReactSortable } from 'react-sortablejs'
 
-let _selected = {}
+let _selected = -1
 
-export default class VirtualSortable extends React.Component {
+export default class VirtualSortable extends React.PureComponent {
     static defaultProps = {
         group:          'virtual',
-        className:      undefined,
-        totalCount:     0,
-        
+        className:      undefined,        
         computeItemKey: undefined,  //(index)
         onSort:         undefined   //(fromId, toId)
     }
 
     getItems = ()=>{
-        const { totalCount, computeItemKey } = this.props
+        const { children, computeItemKey } = this.props
 
         const items = []
-        for(var index=0; index<totalCount; index++){
+        for(var index=0; index < children.length; index++){
             const id = computeItemKey(index)
 
             if (id)
-                items.push({ index, id })
+                items.push({ id })
         }
 
         return items
     }
 
     componentDidUpdate(prev) {
-        if (prev.totalCount != this.props.totalCount)
+        if (prev.children != this.props.children)
             this.setState({ items: this.getItems() })
     }
 
@@ -39,16 +37,18 @@ export default class VirtualSortable extends React.Component {
     onSetItems = (items)=>
         this.setState({ items })
 
-    onChoose = ({ oldDraggableIndex })=>{
-        _selected = this.state.items[oldDraggableIndex]
-    }
+    onChoose = ({ oldDraggableIndex })=>
+        _selected = this.state.items[oldDraggableIndex].id
 
     onEnd = ({ newDraggableIndex })=>{
-        const { id } = _selected
-        this.props.onSort(id, this.state.items[newDraggableIndex])
+        this.props.onSort(
+            _selected,
+            this.props.computeItemKey(newDraggableIndex)
+        )
     }
 
     onSort = (e)=>{
+        //sort in the same group
         if (e.from == e.to)
             this.onEnd(e)
     }

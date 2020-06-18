@@ -1,5 +1,6 @@
 import React from 'react'
 import { Virtuoso } from 'react-virtuoso'
+import Sortable from './helpers/sortable'
 import superScrollToIndex from './helpers/superScrollToIndex'
 
 const mainStyle = { width: '100%', height: '100%' }
@@ -16,7 +17,10 @@ export default class VirtualList extends React.PureComponent {
         disableVirtualization: false,
         defaultItemHeight: 80,
         scrollToIndex: -1,
-        overscan: 500
+        overscan: 500,
+
+        sortable: false,
+        onSort: undefined           //(fromId, toId)
     }
 
     _list = React.createRef()
@@ -69,6 +73,24 @@ export default class VirtualList extends React.PureComponent {
         return computeItemKey ? computeItemKey(index) : index
     }
 
+    renderContainer = ({ children, listRef, ...etc })=>{
+        const { sortable, computeItemKey, onSort } = this.props
+
+        const Component = <div ref={listRef} {...etc}>{children}</div>
+
+        // if (sortable)
+        //     return (
+        //         <Sortable
+        //             tag={Component}
+        //             computeItemKey={computeItemKey}
+        //             onSort={onSort}>
+        //             {children}
+        //         </Sortable>
+        //     )
+        
+        return Component
+    }
+
     render() {
         const { endReached, totalCount, dataKey, disableVirtualization, style, scrollToIndex, ...etc } = this.props
         const Component = disableVirtualization ? NonVirtualList : Virtuoso
@@ -84,6 +106,7 @@ export default class VirtualList extends React.PureComponent {
                 style={style || mainStyle}
                 rangeChanged={endReached && this.rangeChanged}
                 initialTopMostItemIndex={scrollToIndex > -1 ? scrollToIndex : undefined}
+                ListContainer={this.renderContainer}
             />
         )
     }

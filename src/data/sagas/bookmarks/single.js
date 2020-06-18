@@ -318,8 +318,8 @@ function* preload({link}) {
 	} catch(error){}
 }
 
-function* reorder({ _id, dry, ignore, order, collectionId }) {
-	if (dry || ignore) return
+function* reorder({ _id, ignore, order, collectionId }) {
+	if (ignore || typeof order == 'undefined') return
 
 	yield put({
 		type: BOOKMARK_UPDATE_REQ,

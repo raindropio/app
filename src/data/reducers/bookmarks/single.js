@@ -132,37 +132,36 @@ export default function(state, action) {
 		//Reorder
 		case BOOKMARK_REORDER:{
 			const from = state.getIn(['elements', action._id, 'collectionId'])
-			const to = action.collectionId || from
+			const to = state.getIn(['elements', action.toId, 'collectionId'])
 			if (!from) return state
 
-			//source space and bookmark
-			const source = [...state.spaces[from].ids]
-			const sourceOrder = source.indexOf(action._id)
+			//source/target space and bookmark
+			const [ source, target ] = [ [...state.spaces[from].ids], [...state.spaces[to].ids] ]
+			const [ sourceOrder, targetOrder ] = [ source.indexOf(action._id), target.indexOf(action.toId) ]
 
-			//bookmark not found
-			if (sourceOrder == -1){
+			//bookmark not found or nothing changed
+			if (sourceOrder == -1 || targetOrder == -1 ||
+				(from == to && sourceOrder == targetOrder)){
 				action.ignore = true
 				return state
 			}
-
-			//nothing changed
-			if (from == to && sourceOrder == action.order)
-				return state
 
 			//remove from source collection
 			source.splice(sourceOrder, 1)
 
 			//same collection
 			if (from == to)
-				source.splice(action.order, 0, action._id)
+				source.splice(targetOrder, 0, action._id)
 			//different collection
 			else {
-				const target = [...state.spaces[to].ids]
-
-				target.splice(action.order, 0, action._id)
+				target.splice(targetOrder, 0, action._id)
 
 				state = state.setIn(['spaces', to, 'ids'], target)
 			}
+
+			//details for saga
+			action.order = targetOrder
+			action.collectionId = to
 
 			return state
 				.setIn(['elements', action._id, 'collectionId'], to)

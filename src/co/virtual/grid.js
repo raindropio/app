@@ -1,5 +1,6 @@
 import React from 'react'
 import List from './list'
+import Sortable from './helpers/sortable'
 import withAutoSize from './helpers/withAutoSize'
 
 class VirtualGrid extends React.Component {
@@ -39,27 +40,8 @@ class VirtualGrid extends React.Component {
         }
     }
 
-    getItems = (row)=>{
-        const { perRow } = this.state
-
-        let items = []
-        for(var column=0; column<perRow; column++){
-            const index = row*perRow + column
-            items.push(index)
-        }
-
-        return items
-    }
-
-    renderRow = row=>{
-        const { className, item, computeItemKey } = this.props
-        
-        return (
-            <div className={className}>
-                {this.getItems(row).filter(computeItemKey).map(item)}
-            </div>
-        )
-    }
+    renderRow = row => 
+        <VirtualGridRow {...this.props} {...this.state} row={row} />
 
     render() {
         const { rowCount, perRow, scrollToIndex, style, defaultItemHeight } = this.state
@@ -71,6 +53,7 @@ class VirtualGrid extends React.Component {
 
                 className={undefined}
                 computeItemKey={undefined}
+                sortable={false}
 
                 style={style}
                 item={this.renderRow}
@@ -82,6 +65,68 @@ class VirtualGrid extends React.Component {
                 scrollToIndex={scrollToIndex}
             />
         )
+    }
+}
+
+class VirtualGridRow extends React.Component {
+    static defaultProps = {
+        dataKey: '',
+        row: -1,
+        perRow: 0,
+        item: {},
+        computeItemKey: undefined,
+        className: '',
+        onSort: undefined, //(fromId, toId)
+    }
+
+    state = {
+        items: []
+    }
+
+    static getDerivedStateFromProps({ row, perRow, computeItemKey, dataKey }, { _prevProps={} }) {
+        if (row == _prevProps.row &&
+            perRow == _prevProps.perRow &&
+            dataKey == _prevProps.dataKey)
+            return null
+
+        let items = []
+        for(var column=0; column<perRow; column++){
+            const index = row*perRow + column
+            const id = computeItemKey(index)
+
+            if (id)
+                items.push({ index, id })
+        }
+
+        return { items, _prevProps: {row, perRow, dataKey} }
+    }
+
+    getSortableId = (index)=>{
+        return this.state.items[index].id
+    }
+
+    renderItem = ({ index })=>
+        this.props.item(index)
+
+    render() {
+        const { className, sortable, onSort } = this.props
+        const { items } = this.state
+
+        if (sortable)
+            return (
+                <Sortable
+                    className={className}
+                    computeItemKey={this.getSortableId}
+                    onSort={onSort}>
+                    {items.map(this.renderItem)}
+                </Sortable>
+            )
+        else
+            return (
+                <div className={className}>
+                    {items.map(this.renderItem)}
+                </div>
+            )
     }
 }
 
