@@ -21,7 +21,7 @@ class VirtualGrid extends React.Component {
     static getDerivedStateFromProps({ width, height, columnWidth, defaultItemHeight, totalCount, disableVirtualization, ...etc }, state) {
         let columnCount = Math.max(parseInt(width / columnWidth), 2)
 
-        let perRow = disableVirtualization ? totalCount : Math.min(totalCount, columnCount * Math.max(parseInt(height / defaultItemHeight), 1))
+        let perRow = disableVirtualization ? columnCount : Math.min(totalCount, columnCount * Math.max(parseInt(height / defaultItemHeight), 1))
         let rowCount = Math.ceil(totalCount / perRow)
 
         let scrollToIndex = (etc.scrollToIndex||0) >= 0 ? parseInt(etc.scrollToIndex / perRow) : -1
