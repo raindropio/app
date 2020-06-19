@@ -7,7 +7,7 @@ export default (props) => {
 
 	return (
 		<div className="translateFromTopSlightly">
-			<div className="centerContentWrap desktop-behavior">
+			<div className="centerContentWrap">
 				<div className="centerContent">
 					<div className="centerContentBlock">
 						<SuperImg src="empty/brokenTip.png" />

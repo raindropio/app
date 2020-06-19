@@ -34,44 +34,9 @@ buttonColorDefaultPlain = #737373;
 
 layoutTransitionSpeed = .3s;
 
-rem($fontValue)
-    ($fontValue / baseFontSize) rem
-
-/*
-.font-weight-normal {
-    font-family: wf_segoe-ui_normal, "Segoe UI", RainSego, Segoe, "Segoe WP", -apple-system, sans-serif;
-    font-weight: normal;
-}
-
-.font-weight-semibold {
-    font-family: 'Segoe UI Semibold', 'RainSego Semibold', WOL_SB, "Segoe UI", -apple-system, sans-serif;
-    font-weight: normal;
-}
-
-.font-weight-light {
-    font-family: 'Segoe UI Light', 'RainSego Light', "Segoe UI", -apple-system, sans-serif;
-    font-weight: normal;
-}
-*/
-
 .disable-transition, .disable-transition * {
     transition: none !important;
     animation: none !important;
-}
-
-.font-weight-normal {
-    font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;
-}
-
-.font-weight-semibold {
-    @extend .font-weight-normal;
-    font-weight: 500 !important;
-}
-
-.font-weight-light {
-    @extend .font-weight-normal;
-    font-weight: 300 !important;
-    letter-spacing: 0.5px;
 }
 
 .text-overflow {
@@ -79,27 +44,4 @@ rem($fontValue)
     overflow: hidden;
     text-overflow: ellipsis;
     word-wrap: break-word;
-}
-
-.disable-select {
-	user-select: none;
-}
-
-.desktop-behavior, .desktop-behavior * {
-	user-select: none;
-	cursor: default;
-}
-.desktop-behavior img {
-	pointer-events: none;
-}
-
-.miniHeader {
-    @extend .font-weight-semibold !optional;
-    font-size: rem(10px);
-    text-transform: uppercase;
-    opacity: .5;
-    margin:0;
-    padding:0;
-    display:block;
-    letter-spacing: 1px;
 }

@@ -64,7 +64,8 @@ groupActive(){
 }
 
 img.collectionIcon {
-	width: rem(20px);height:rem(20px);
+	width: 20px
+	height:20px
 	object-fit: cover;
 }
 
@@ -73,26 +74,23 @@ img.collectionIcon {
 }
 
 .collection {
-	@extend .disable-select;
 	display: flex;
 	align-items: center;
 	position: relative;
-	padding: rem(collectionPaddingVertical) 0px;
+	padding: collectionPaddingVertical 0px;
 	padding-right: (sidebarRightGap - 8px);
 	//transition: background .01s linear, color .01s linear;
 	padding-left: calc(var(--level) * 21px);
 
-	.expand {
-		@extend .disable-select;
-		
+	.expand {		
 		opacity: .4;
 		color: inherit;
 		position:relative;
 		z-index:1;
 		outline: none;
 		box-sizing: initial;
-		padding: rem(collectionPaddingVertical) 0px;
-		margin: rem(collectionPaddingVertical * -1) 0px;
+		padding: collectionPaddingVertical 0px;
+		margin: (collectionPaddingVertical * -1) 0px;
 
 		* {
 			pointer-events: none;
@@ -106,7 +104,7 @@ img.collectionIcon {
 	.expand {visibility: hidden;}
 	
 	.collectionIcon {
-		margin-right: rem(10px);
+		margin-right: 10px
 		&.svgIcon {
 			opacity: .5;
 			//transition: opacity .15s ease-in-out;
@@ -123,7 +121,7 @@ img.collectionIcon {
 	.title {
 		@extend .text-overflow;
 		min-width:0;
-		font-size: rem(14px);
+		font-size: 14px
 	}
 
 	.space {
@@ -134,7 +132,7 @@ img.collectionIcon {
 		color: currentColor;
 		flex: 1;
 		min-width: 0;
-		font-size: rem(14px);
+		font-size: 14px
 		background: transparent;
 		appearance: none;
 		padding:0;margin:0;border:0;box-shadow:none;
@@ -154,7 +152,7 @@ img.collectionIcon {
 	.count {
 		@extend .text-overflow;
 		opacity: .6;
-		font-size: rem(11px);
+		font-size: 11px
 		padding: 0px 6px;
 		text-align:right;
 		margin-top: -1px;
@@ -302,12 +300,10 @@ section:first-child .group {
 
 .group {
 	cursor: default;
-	@extend .disable-select;
-	padding-top: rem(6px);
-	padding-bottom: rem(2px);
-	//@extend .font-weight-semibold;
+	padding-top: 6px
+	padding-bottom: 2px
 	padding-left: 20px;
-	font-size: rem(13px);
+	font-size: 13px
 	color: #767676;
 	display: flex;
 	align-items: center;
@@ -327,8 +323,8 @@ section:first-child .group {
 		@extend .text-overflow;
 		flex: 1;
 		min-width:0;
-		height: rem(groupHeight);
-		line-height: rem(groupHeight);
+		height: groupHeight
+		line-height: groupHeight
 		padding-right: 16px;
 	}
 	
@@ -341,21 +337,21 @@ section:first-child .group {
 	input[type='text'] {
 		width: 100%;
 		display: block;
-		height: rem(groupHeight);
-		line-height: rem(groupHeight);
+		height: groupHeight
+		line-height: groupHeight
 		background: transparent;
 		box-shadow: none;border:0;
 		appearance: none;
 		margin:0;padding:0;
 		padding-bottom: 1px;
-		font-size: rem(13px);
+		font-size: 13px
 		flex:1;
 		margin-right: 16px;
 	}
 
 	.toggle {
-		height: rem(groupHeight);
-    	line-height: rem(groupHeight);
+		height: groupHeight
+    	line-height: groupHeight
 		padding:0 4px;
 		padding-right: (sidebarRightGap - 4px)
 		display:none;
@@ -393,12 +389,12 @@ section:first-child .group {
 html.mac.web {
 	.collection {
 		.title, input[type='text'] {
-			font-size: rem(13.5px);
+			font-size: 13.5px
 		}
 	}
 	
 	.group, .group input[type='text'] {
-		font-size: rem(12.5px);
+		font-size: 12.5px
 	}
 }
 
@@ -462,7 +458,7 @@ html.mac.web {
 		.title {
 			flex: 1
             font-weight: 500
-            font-size: rem(14px)
+            font-size: 14px
             @extend .text-overflow
 		}
 	}

@@ -33,7 +33,7 @@ html.scrollbar-obtrusive:not(.mobile) {
 
     ::-webkit-scrollbar {
         width: 0;
-        height: rem(scrollBarWidth);
+        height: scrollBarWidth
         will-change: width;
         background: transparent;
         transition: width .2s ease-in-out;
@@ -42,13 +42,13 @@ html.scrollbar-obtrusive:not(.mobile) {
         background: transparent;
     }
     :hover::-webkit-scrollbar, body::-webkit-scrollbar {
-        width: rem(scrollBarWidth);
+        width: scrollBarWidth
     }
 
     ::-webkit-scrollbar-thumb {
         //border-radius: scrollBarWidth;
         border: 3px solid rgba(0,0,0,0);
-        border-radius: rem(scrollBarWidth);
+        border-radius: scrollBarWidth
         box-shadow: inset 0px 0px 0px 7px rgba(0,0,0,.2);
         transition: box-shadow .2s ease-in-out;
     }
@@ -80,16 +80,8 @@ html.scrollbar-obtrusive:not(.mobile) {
     box-sizing: border-box;
 }
 
-input:-webkit-autofill {
-     transition: background-color 9999s ease-out;
-}
-
 input, textarea, select, button {
-    color: inherit;
-    -webkit-user-select: text !important;
-    -moz-user-select: text !important;
-    -ms-user-select: text !important;
-    user-select: text !important;
+    color: inherit
 }
 
 figure {
@@ -101,97 +93,44 @@ progress::-webkit-progress-value {
 }
 
 html {    
-    &:not(.mobile) {
-        font-size: baseFontSize;
-    }
-    &.mobile {
-        font-size: (baseFontSize+1px);
-    }
-    
-    &[font-size=xs] {
-        font-size: (baseFontSize - 2px);
-    }
-    
-    &[font-size=m] {
-        font-size: (baseFontSize + 2px);
-    }
-    
-    &[font-size=l] {
-        font-size: (baseFontSize + 4px);
-    }
+    font-size: baseFontSize
 }
 
-html, body, input, textarea, select, button {
-    @extend .font-weight-normal;
+body, input, textarea, select, button {
+    font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;
 }
 
 input, textarea, select, button {
-    font-size: 1rem;
+    font-size: 1rem
 }
 
-html, body {
-    width: 100%;
-    height: 100%;
-    will-change: width;
-    overflow: hidden;
-    -webkit-tap-highlight-color: transparent;
-}
-
-#react {
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
+html, body, #react {
+    width: 100%
+    height: 100%
+    overflow: hidden
 }
 
 body {
-    //background: contentBackground;
-    font-size: 100%;
-    margin:0;
-    -moz-osx-font-smoothing: grayscale;
-    -webkit-text-size-adjust: 100%;
-    -ms-text-size-adjust: 100%;
-    
-    > canvas {
-        visibility: hidden;
-    }
-}
-
-html.mobile body {
-    height: 100%;
-    overflow: hidden;
-    width: 100%;
-    position: fixed;
+    margin:0
 }
 
 a {
-    color: colorLink;
-    text-decoration: none;
+    color: colorLink
+    text-decoration: none
 }
 a:hover {
-    color: #157CE3;
-}
-
-html.electron {
-    a {
-        cursor: default;
-    }
-    
-    &.windows body {
-        border-top: 1px solid rgba(0,0,0,.1);
-    }
+    color: #157CE3
 }
 
 input, textarea {
-    outline:none;
+    outline:none
 }
 
-
-
 .headLabel, .extraHeadLabel {
-    font-size: rem(18px);
+    font-size: 18px
     font-weight:normal;
-    margin: rem(10px) 0;
-    margin-top: rem(20px);
+    margin: 10px 0;
+    margin-top: 20px
 
     .preloader {
         vertical-align: -7px;
@@ -199,14 +138,14 @@ input, textarea {
 }
 
 .extraHeadLabel {
-    @extend .font-weight-light;
-    font-size: rem(32px);
+    font-weight: 300
+    font-size: 32px
     max-width: 700px;
 }
 
 .mediumHeadLabel {
     font-weight: normal;
-    font-size: rem(17px);
+    font-size: 17px
     color: rgba(0,0,0,.6);
 }
 .themeDark .mediumHeadLabel {
@@ -214,8 +153,8 @@ input, textarea {
 }
 
 .subHeadLabel {
-    font-size: rem(14px);
-    font-weight: normal;
+    font-size: 14px
+    font-weight: normal
     margin:0;
     color: #878787;
     max-width: 320px;
@@ -230,8 +169,8 @@ input, textarea {
     display: block;
 
     svg {
-        width: rem(94px);
-        height: rem(11px);
+        width: 94px
+        height: 11px
         opacity: .6;
     }
 }

@@ -7,7 +7,7 @@ export default class ImportDone extends React.Component {
 
 	render() {
 		return (
-			<div className="centerContentWrap desktop-behavior">
+			<div className="centerContentWrap">
 				<div className="centerContent">
 					<div className="centerContentBlock">
 						<Icon name="24_cloud_active" className="svgIcon-size-60 color-theme" />

@@ -24,7 +24,7 @@ class About extends React.Component {
 				<Header title={t.s('about')} />
 
 				<Content>
-					<div className='centerContentWrap desktop-behavior'>
+					<div className='centerContentWrap'>
 						<div className='centerContent'>
 							<div className='centerContentBlock'>
 								<SuperImg src='marketing/logoIcon.png' height='72' />

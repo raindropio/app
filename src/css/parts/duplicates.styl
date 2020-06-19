@@ -18,18 +18,17 @@
 .duplicate-items {
 	padding: 8px 16px;
 	overflow: hidden;
-	padding-left: rem(82px);
+	padding-left: 82px
 }
 
 .duplicate-item {
-	font-size: rem(13px);
+	font-size: 13px
 	display: flex;
 	align-items: center;
 	//color: rgba(0,0,0,.6);
 		opacity: .6;
 
 	.di-date {
-		@extend .disable-select;
 		width: 140px;
 		padding: 8px 0;
 		
@@ -87,7 +86,7 @@
 	&[data-selected="true"] {
 		opacity: 1;
 		.di-date {
-			@extend .font-weight-semibold !optional;
+			font-weight: 500
 		}
 	}
 }

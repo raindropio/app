@@ -97,7 +97,7 @@ export default class ImportBookmarks extends React.Component {
 
 	render() {
 		return (
-			<div className="centerContentWrap desktop-behavior">
+			<div className="centerContentWrap">
 				<div className="centerContent">
 					<div className="centerContentBlock">
 						<h1 className="extraHeadLabel"><Preloader/> {t.s("importing")+" "+t.s("elements5")+"..."}</h1>

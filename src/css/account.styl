@@ -11,9 +11,6 @@ html.electron .accountPage {
 }
 
 .accountPage {
-	//-webkit-user-select: none;
-	//animation: fadeBrightAppear .5s ease-in-out;
-	
 	&.centerContentWrap .centerContent {
 		//text-align: left;
 		
@@ -43,7 +40,7 @@ html.electron .accountPage {
 		//cursor: pointer;
 		display: block;
 		text-align: center;
-		margin: rem(20px) 0px;
+		margin: 20px 0px;
 		position: relative;
 		z-index: 2;
 		
@@ -52,7 +49,7 @@ html.electron .accountPage {
 			
 			svg {
 				width: auto;
-        		height: rem(16px);
+        		height: 16px
         	}
 		}
 	}
@@ -82,7 +79,7 @@ html.electron .accountPage {
 		
 		.loginButton {
 			margin: 0 10px;
-			@extend .font-weight-semibold;
+			font-weight: 500
 		}
 		
 		&.socialLoginWrap {
@@ -205,7 +202,7 @@ html.electron .accountPage {
 	}
 	
 	.acceptLicence {
-		font-size: rem(12px);
+		font-size: 12px
 	    font-weight: normal;
 	    margin: 16px 0;
 	    color: #878787;

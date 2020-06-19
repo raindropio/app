@@ -12,14 +12,13 @@ tabBarDefaultOpacity = .4;
 
     box-shadow: inset -1px 0px 0px separatorColor;
     z-index: 10;
-    will-change: transform;
     display: flex;
     flex-direction: column;
     transition: transform layoutTransitionSpeed ease-in-out, width layoutTransitionSpeed ease-in-out;
 
     > header {
         .headerWrap {
-            height: rem(headerHeight);
+            height: headerHeight
             display: flex;
             align-items: center;
             padding-left: 21px;
@@ -42,7 +41,7 @@ tabBarDefaultOpacity = .4;
         
         .selectButton {
             margin: 2px 14px;
-            font-size: rem(14px);
+            font-size: 14px
             
             .fieldIcon {
                 opacity: .6;
@@ -61,7 +60,7 @@ tabBarDefaultOpacity = .4;
             color: colorTheme;
         }   
         .title {
-            @extend .font-weight-semibold !optional;
+            font-weight: 500
         }
     }
     
@@ -86,8 +85,7 @@ tabBarDefaultOpacity = .4;
             }
             
             b {
-                font-weight: normal;
-                @extend .font-weight-semibold;
+                font-weight: 500
             }
         }
         
@@ -143,16 +141,15 @@ tabBarDefaultOpacity = .4;
         border-top: 0.5px solid separatorColor;
         display: flex;
         align-items: center;
-        height: rem(40px);
+        height: 40px
         
         .item {
-            @extend .desktop-behavior;
             flex: 1 1;
             width: 25%;
             color: black;
             opacity: tabBarDefaultOpacity;
             transition: color .2s ease-in-out, opacity .2s ease-in-out, background .2s ease-in-out;
-            font-size: rem(10px);
+            font-size: 10px
             text-align: center;
             
             .title {
@@ -193,7 +190,6 @@ tabBarDefaultOpacity = .4;
                 
                 .title {
                     animation: tabBarTitleActiveAppear .2s ease-in-out;
-                    //@extend .font-weight-semibold;
                 }
                 
                 /*&:before {
@@ -206,18 +202,6 @@ tabBarDefaultOpacity = .4;
             }
         }
     }
-    
-    /*&:before {
-        @extend .disable-select;
-        content:"";
-        right:-4px;
-        top:0;
-        bottom:0;
-        width:6px;
-        z-index:2;
-        position: absolute;
-        cursor: col-resize;
-    }*/
 }
 
 #addNewURL b {

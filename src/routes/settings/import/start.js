@@ -25,7 +25,7 @@ export default class ImportStart extends React.Component {
 
 	render() {
 		return (
-			<div className="centerContentWrap desktop-behavior">
+			<div className="centerContentWrap">
 				<div className="centerContent">
 					<div className="centerContentBlock">
 						<h1 className="extraHeadLabel">{t.format("importBookmarksD", "Pocket, Pinboard, Diigo, Instapaper")}</h1>

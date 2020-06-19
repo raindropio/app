@@ -103,7 +103,6 @@ elementInvert()
 }
 
 .element {
-    @extend .disable-select;
     position: relative;
     //transition: background .05s linear, color .05s linear;
 
@@ -129,12 +128,12 @@ elementInvert()
     }
     
     .title {
-        @extend .font-weight-semibold !optional;
-        font-size: rem(15px);
+        font-weight: 500
+        font-size: 15px
         //margin-top: -3px;
-        max-height: rem(42px);
+        max-height: 42px
         overflow: hidden;
-        line-height: rem(19px);
+        line-height: 19px
 
         .typeIcon {
             opacity: .4;
@@ -144,12 +143,12 @@ elementInvert()
         }
     }
     p {
-        font-size: rem(14px);
+        font-size: 14px
         /*color: gray;*/
         margin: 3px 0;
-        max-height: rem(38px);
+        max-height: 38px
         overflow: hidden;
-        line-height: rem(19px);
+        line-height: 19px
         color: #545454;
 
         &.from-body {
@@ -194,7 +193,6 @@ elementInvert()
     }
 
     .tags {
-        @extend .font-weight-normal;
         z-index: 1;
         position: relative;
 
@@ -248,7 +246,7 @@ elementInvert()
 
     .info {
         color: lighten(black,55%);
-        font-size: rem(13px);
+        font-size: 13px
         display: flex;
         align-items: center;
         white-space: nowrap;
@@ -268,7 +266,7 @@ elementInvert()
         }
         
         .info-important {
-            @extend .font-weight-semibold  !optional;
+            font-weight: 500
         }
         
         .info-img {
@@ -412,10 +410,10 @@ elementInvert()
 html.mac.web {
     .element {
         .title {
-            font-size: rem(14.5px);
+            font-size: 14.5px
         }
         p {
-            font-size: rem(13.5px);
+            font-size: 13.5px
         }
     }
 }
@@ -480,10 +478,10 @@ html.electron .section {
 }
 
 .section {
-    padding: rem(8px) baseHorizontalGap;
-    padding-top: rem(8px * 2);
-    @extend .font-weight-semibold;
-    font-size: rem(15px);
+    padding: 8px baseHorizontalGap;
+    padding-top: 8px * 2
+    font-weight: 500
+    font-size: 15px
     box-shadow: inset 0px -1px 0px subSeparatorColorAlpha, inset 0px 1px 0px subSeparatorColorAlpha;
     min-height: 100px
     display: flex;

@@ -9,7 +9,7 @@ export default () => {
 			<Header title={t.s('duplicates')} />
 
 			<Content>
-				<div className='centerContentWrap desktop-behavior'>
+				<div className='centerContentWrap'>
 					<div className='centerContent'>
 						<div className='centerContentBlock'>
 							<SuperImg src='empty/duplicate.png' />

@@ -26,23 +26,11 @@ mainCollapsedWidth = (400px);
         box-shadow layoutTransitionSpeed ease-in-out;
 }
 
-/*html.clipper {
-    #markup {
-        margin-top: rem(clipperToolbarHeight);
-        height: "calc(100% - %s)" % rem(clipperToolbarHeight);
-    }
-}*/
-
 @require "sidebar.styl";
 
 #sidebar, #main, #reader, #panel {
     header, footer {
-        -webkit-user-select: none;
         overflow: hidden;
-        
-        * {
-            -webkit-user-select: none;
-        }
 
         &:empty {
             display: none
@@ -84,7 +72,6 @@ html.electron {
     right: 0;
     display: flex;
     flex-direction: column;
-    will-change: left, right;
 
     header {
         flex-shrink: 0;
@@ -104,12 +91,11 @@ html.electron {
         }
         
         h1 {
-            @extend .disable-select;
             @extend .text-overflow;
             cursor: default;
             flex: 1;
-            font-size: rem(16px);
-            line-height: rem(23px);
+            font-size: 16px
+            line-height: 23px
             font-weight: normal;
             margin:0;
             margin-bottom: 2px;
@@ -177,7 +163,7 @@ html.electron {
         .title {
             @extend .text-overflow;
             flex: 1 1;
-            font-size: rem(14px);
+            font-size: 14px
         }
         
         .center {

@@ -9,12 +9,11 @@ html.electron .button {
 }
 
 .button {
-	@extend .disable-select;
-	height: rem(48px);
-	padding: rem(14px) 12px;
+	height: 48px
+	padding: 14px 12px;
 	display: inline-flex;
 	color: buttonColorDefault;
-	font-size: rem(13px);
+	font-size: 13px
 	flex-shrink:2;
 	min-width:0;
 	outline: none;
@@ -24,7 +23,7 @@ html.electron .button {
 	box-shadow: none;
 	transition: background .1s ease-in-out, color .1s ease-in-out;
 	
-	line-height: rem(16px);
+	line-height: 16px
     align-items: center;
     cursor: pointer;
     position: relative;
@@ -38,9 +37,9 @@ html.electron .button {
 	b, &.input {
 		font-weight: normal;
 		display: block;
-    	padding: rem(2px) 8px;
-    	margin: rem(-2px);
-    	border-radius: rem(2px);
+    	padding: 2px 8px;
+    	margin: -2px
+    	border-radius: 2px
     	
     	.svgIcon {
     		vertical-align: middle;
@@ -56,7 +55,7 @@ html.electron .button {
 	.badge {
 		position: absolute;
 		bottom:10px;right:8px;
-		font-size: rem(9px);
+		font-size: 9px
 		
 		background: buttonColorDefault;
 		color: white !important;
@@ -94,7 +93,7 @@ html.electron .button {
 	
 	&.flat {
 		b {
-			padding: rem(1px) 4px;
+			padding: 1px 4px;
 			background: rgba(0,0,0,.07);
 			
 			.icon-add {
@@ -104,20 +103,20 @@ html.electron .button {
 	}
 
 	&.active {
-		@extend .font-weight-semibold !optional;
+		font-weight: 500
 		color: colorTheme;
 		color: var(--accentColor, colorTheme);
 	}
 	
 	&.active b, &.active.input {
-		@extend .font-weight-semibold !optional;
+		font-weight: 500
 		color: white !important;
 		background: colorTheme;
 		background: var(--accentColor, colorTheme);
 	}
 	
 	&.blue {
-		@extend .font-weight-semibold !optional;
+		font-weight: 500
 		color: white;
 		background: colorTheme;
 		background: var(--accentColor, colorTheme);
@@ -129,7 +128,7 @@ html.electron .button {
 	}
 	
 	&.red {
-		@extend .font-weight-semibold !optional;
+		font-weight: 500
 		color: white;
 		background: colorRed;
 		border-radius: 2px;
@@ -256,7 +255,6 @@ html.retina.chrome {
 }
 
 .fab {
-	@extend .disable-select;
 	position: absolute;
 	width: 48px;
 	height: 48px;

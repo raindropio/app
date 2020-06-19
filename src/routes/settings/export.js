@@ -39,7 +39,7 @@ class Export extends React.Component {
 				<Header title={`${t.s('exportBookmarks')} ${t.s('elements2')}`} />
 
 				<Content>
-					<div className='centerContentWrap desktop-behavior'>
+					<div className='centerContentWrap'>
 						<div className='centerContent'>
 							<div className='centerContentBlock'>
 								{content}

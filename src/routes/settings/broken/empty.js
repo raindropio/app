@@ -4,7 +4,7 @@ import SuperImg from '~co/common/superImg'
 
 export default () => {
 	return (
-		<div className="centerContentWrap desktop-behavior">
+		<div className="centerContentWrap">
 			<div className="centerContent">
 				<div className="centerContentBlock">
 					<SuperImg src="empty/broken.png" />
