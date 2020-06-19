@@ -207,7 +207,7 @@ export default class CollectionsTree extends React.Component {
                 item={this.rowRenderer}
                 totalCount={data.length + customRows.length}
                 dataKey={activeId+dataCheckpoint} //only used to re-render when data re-ordered from outside
-                itemHeight={32}
+                defaultItemHeight={32}
                 overscan={200}
 
                 //custom

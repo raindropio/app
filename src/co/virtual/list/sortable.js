@@ -68,9 +68,11 @@ class ListContainer extends React.Component {
     }
     
     bindRef = (innerRef, listRef) => (ref) => {
-        listRef && listRef(ref)
-        innerRef && innerRef(ref)
+        if (!ref || ref == this._div) return
+
         this._div = ref
+        listRef && listRef(this._div)
+        innerRef && innerRef(this._div)
     }
 
     //rbdnd specific
@@ -116,7 +118,7 @@ class ListContainer extends React.Component {
             {...provided.draggableProps}
             {...provided.dragHandleProps}
             ref={provided.innerRef}>
-            {this.props.item(parseInt(draggableId), emptyObject, emptyObject)}
+            {this.props.item(parseInt(draggableId), provided, snapshot)}
         </div>
     )
 
@@ -137,11 +139,11 @@ class ListContainer extends React.Component {
                     getContainerForClone={this.getContainerForClone}>
                     {({ innerRef, droppableProps, placeholder }) => (
                         <div
-                            {...etc}
                             {...droppableProps}
+                            {...etc}
                             ref={this.bindRef(innerRef, listRef)}>
                             {children}
-                            {disableVirtualization && placeholder}
+                            {disableVirtualization ? placeholder : null}
                         </div>
                     )}
                 </Droppable>
