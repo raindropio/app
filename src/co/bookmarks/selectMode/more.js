@@ -11,6 +11,8 @@ class BookmarksSelectModeMore extends React.Component {
     static defaultProps = {
         selectMode: {}
     }
+
+    pin = React.createRef()
     
     state = {
         menu: false
@@ -50,12 +52,12 @@ class BookmarksSelectModeMore extends React.Component {
     render() {
         return (
             <>
-                <a className='button default' onClick={this.onContextMenuClick}>
+                <a ref={this.pin} className='button default' onClick={this.onContextMenuClick}>
                     <Icon name='more_horizontal'/>
                 </a>
 
                 {this.state.menu ? (
-                    <Popover onClose={this.onContextMenuClose}>
+                    <Popover pin={this.pin} onClose={this.onContextMenuClose}>
                         <Menu>
                             <MenuItem onClick={this.onScreenshotClick}>
                                 <Icon name='web' />

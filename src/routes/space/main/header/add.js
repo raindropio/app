@@ -8,6 +8,8 @@ export default class HeaderAdd extends React.Component {
         show: false
     }
 
+    pin = React.createRef()
+
     onAddClick = (e)=>{
         e.preventDefault()
         this.setState({ show: true })
@@ -28,7 +30,7 @@ export default class HeaderAdd extends React.Component {
         return (
             <>
                 <a 
-                    href=''
+                    ref={this.pin}
                     className='button active'
                     onClick={this.onAddClick}>
                     <b>
@@ -39,6 +41,7 @@ export default class HeaderAdd extends React.Component {
 
                 {show ? (
                     <Add 
+                        pin={this.pin}
                         spaceId={spaceId}
                         onCreateItem={this.onCreateItem}
                         onClose={this.onAddClose} />

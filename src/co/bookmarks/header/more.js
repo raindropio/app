@@ -14,6 +14,8 @@ class BookmarksHeaderMore extends React.Component {
         collection: {}
     }
 
+    pin = React.createRef()
+
     state = {
         menu: false,
         icon: false
@@ -55,13 +57,14 @@ class BookmarksHeaderMore extends React.Component {
 
         return (
             <>
-                <a href='' className='button default' onClick={this.onContextMenuClick}>
+                <a ref={this.pin} className='button default' onClick={this.onContextMenuClick}>
                     <Icon name='more_horizontal' />
                 </a>
 
                 {menu ? (
                     <Contextmenu 
                         {...collection}
+                        pin={this.pin}
                         onContextMenuClose={this.onContextMenuClose}
                         onRemoveClick={this.onRemoveClick}
                         onOpenAllClick={this.onOpenAllClick}

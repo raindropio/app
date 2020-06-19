@@ -15,6 +15,8 @@ export default class PickerImage extends React.Component {
         onClose: undefined
     }
 
+    pinAdd = React.createRef()
+
     state = {
         add: false
     }
@@ -80,7 +82,7 @@ export default class PickerImage extends React.Component {
                         ) : null}
 
                         <a 
-                            href=''
+                            ref={this.pinAdd}
                             className='item'
                             title={t.s('coverUpload')}
                             onClick={this.onAddClick}>
@@ -90,6 +92,7 @@ export default class PickerImage extends React.Component {
                         {this.state.add ? (
                             <PickerSource 
                                 {...this.handlers}
+                                pin={this.pinAdd}
                                 onClose={this.onAddClose} />
                         ) : null}
                     </div>

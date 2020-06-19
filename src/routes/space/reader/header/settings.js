@@ -12,6 +12,8 @@ class ReaderHeaderSettings extends React.Component {
         show: false
     }
 
+    pin = React.createRef()
+
     onSettingsClick = (e)=>{
         e.preventDefault()
         this.setState({ show: true })
@@ -31,12 +33,12 @@ class ReaderHeaderSettings extends React.Component {
 
         return (
             <>
-                <a href='' className='button' onClick={this.onSettingsClick}>
+                <a ref={this.pin} className='button' onClick={this.onSettingsClick}>
                     <Icon name={tab == 'preview' ? 'fonts' : 'settings'} />
                 </a>
 
                 {this.state.show && (
-                    <Popover onClose={this.onSettingsClose}>
+                    <Popover pin={this.pin} onClose={this.onSettingsClose}>
                         <div className='popBodyPreview'>
                             <div className='popBodyPreviewSwitch pop-block-shadow'>
                                 <a className={'auto '+(font_color==''?'active':'')} data-key='font_color' data-val='' onClick={this.onSettingChange}></a>

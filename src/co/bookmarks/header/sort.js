@@ -12,6 +12,8 @@ class BookmarksHeaderSort extends React.Component {
         spaceId: 0
     }
 
+    pin = React.createRef()
+
     state = {
         menu: false
     }
@@ -44,7 +46,7 @@ class BookmarksHeaderSort extends React.Component {
 
         return (
             <>
-                <a href='' className={'button default '+(sort!='sort'?'active':'')} onClick={this.onContextMenuClick}>
+                <a ref={this.pin} className={'button default '+(sort!='sort'?'active':'')} onClick={this.onContextMenuClick}>
                     <Icon name={'sort_'+sort} />
         
                     <span>
@@ -53,7 +55,7 @@ class BookmarksHeaderSort extends React.Component {
                 </a>
 
                 {menu ? (
-                    <Popover onClose={this.onContextMenuClose}>
+                    <Popover pin={this.pin} onClose={this.onContextMenuClose}>
                         <Menu>
                             {Object.keys(this.options).map(item=>(
                                 <MenuItem 

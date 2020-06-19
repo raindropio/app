@@ -9,12 +9,14 @@ import File from './file'
 class PickerSourcePopover extends React.Component {
     static defaultProps = {
         //..same as ../base
+        pin: undefined,
         onClose: undefined
     }
 
     render() {
         return (
             <Popover 
+                pin={this.props.pin}
                 closable={!this.props.files.length}
                 hidden={this.props.files.length}
                 onClose={this.props.onClose}>

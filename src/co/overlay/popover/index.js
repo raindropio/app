@@ -10,6 +10,7 @@ document.body.addEventListener('mousedown', function(e){
 
 export default class Popover extends React.Component {
     static defaultProps = {
+        pin: undefined,         //react ref
         closable: true,
         hidden: false,
         onClose: undefined      //func, required
@@ -79,14 +80,9 @@ export default class Popover extends React.Component {
 
             //pin to active element, if it over mouse pos
             try{
-                const { left, top, width, height } = document.activeElement.getBoundingClientRect()
-                if (width < 200 && height < 200){
-                    if (top < this.initPos.y && top + height >= this.initPos.y)
-                        this.initPos.y = top + height
-
-                    if (left < this.initPos.x && left + width >= this.initPos.x)
-                        this.initPos.x = left
-                }
+                const { left, top, height } = this.props.pin.current.getBoundingClientRect()
+                this.initPos.y = top + height
+                this.initPos.x = left
             }catch(e){}
         }
 

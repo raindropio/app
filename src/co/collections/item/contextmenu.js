@@ -7,11 +7,12 @@ export default class CollectionsItemContextmenu extends React.Component {
     render() {
         const {
             _id, access, to, count,
+            pin,
             onContextMenuClose, onCreateNewChildClick, onRenameClick, onIconClick, onRemoveClick, onSharing, onOpenAllClick, onSelectClick
         } = this.props
 
         return (
-            <Popover onClose={onContextMenuClose}>
+            <Popover pin={pin} onClose={onContextMenuClose}>
                 <Menu>
                     <MenuItem href={`https://app.raindrop.io/#${to}`} target='_blank'>
                         <Icon name='open' />

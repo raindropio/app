@@ -7,6 +7,7 @@ import SourcePicker from '~co/picker/source/popover'
 
 class BookmarksAdd extends React.Component {
     static defaultProps = {
+        pin: undefined, //pin to dom element
         spaceId: 0,
         onCreateItem: undefined,
         onClose: undefined
@@ -35,10 +36,11 @@ class BookmarksAdd extends React.Component {
         })
 
     render() {
-        const { onClose } = this.props
+        const { pin, onClose } = this.props
 
         return (
             <SourcePicker
+                pin={pin}
                 onLink={this.onLink}
                 onFile={this.onFile}
                 onClose={onClose} />

@@ -7,6 +7,8 @@ export default class PickerIconAdd extends React.Component {
         add: false
     }
 
+    pin = React.createRef()
+
     onAddClick = (e)=>{
         e.preventDefault()
         this.setState({ add: true })
@@ -19,7 +21,7 @@ export default class PickerIconAdd extends React.Component {
         return (
             <>
                 <a 
-                    href=''
+                    ref={this.pin}
                     className='button active'
                     onClick={this.onAddClick}>
                     <Icon name='add_active' />
@@ -28,6 +30,7 @@ export default class PickerIconAdd extends React.Component {
                 {this.state.add ? (
                     <PickerSource 
                         {...this.props}
+                        pin={this.pin}
                         onClose={this.onAddClose} />
                 ) : null}
             </>

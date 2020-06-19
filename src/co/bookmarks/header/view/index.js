@@ -13,6 +13,8 @@ class BookmarksHeaderView extends React.Component {
         collection: {}
     }
 
+    pin = React.createRef()
+
     state = {
         menu: false
     }
@@ -31,7 +33,7 @@ class BookmarksHeaderView extends React.Component {
 
         return (
             <>
-                <a href='' className='button default' onClick={this.onMenuClick}>
+                <a ref={this.pin} className='button default' onClick={this.onMenuClick}>
                     <Icon name={'view_'+view} />
         
                     <span>
@@ -40,7 +42,7 @@ class BookmarksHeaderView extends React.Component {
                 </a>
 
                 {menu ? (
-                    <Popover onClose={this.onMenuClose}>
+                    <Popover pin={this.pin} onClose={this.onMenuClose}>
                         <Menu {...this.props} />
                         
                         <div className='superForm'>
