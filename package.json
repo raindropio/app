@@ -35,7 +35,7 @@
 	},
 	"dependencies": {
 		"@sentry/browser": "5.x",
-		"date-fns": "2.13.x",
+		"date-fns": "2.14.x",
 		"ismobilejs": "^1.1.1",
 		"localforage": "1.7.x",
 		"lodash-es": "4.17.x",
@@ -45,14 +45,14 @@
 		"react-autosize-textarea": "7.0.x",
 		"react-beautiful-dnd": "^13.0.0",
 		"react-dom": "16.13.x",
-		"react-helmet": "6.0.x",
+		"react-helmet": "6.1.x",
 		"react-portal": "^4.2.1",
 		"react-router-dom": "5.2.x",
 		"react-sortablejs": "^2.0.11",
 		"react-textarea-autosize": "^8.0.1",
 		"react-virtuoso": "0.17.x",
 		"string": "3.3.x",
-		"validator": "13.0.x"
+		"validator": "13.1.x"
 	},
 	"optionalDependencies": {
 		"@sentry/minimal": "5.x",
@@ -75,7 +75,7 @@
 		"babel-loader": "8.x",
 		"babel-plugin-lodash": "3.3.x",
 		"clean-webpack-plugin": "^3.0.0",
-		"css-loader": "3.5.x",
+		"css-loader": "3.6.x",
 		"eslint": "7.x",
 		"eslint-plugin-react": "7.x",
 		"extract-text-webpack-plugin": "3.0.x",
@@ -91,10 +91,10 @@
 		"style-loader": "1.2.x",
 		"stylus": "0.54.x",
 		"stylus-loader": "3.0.x",
-		"svg-sprite-loader": "4.2.x",
+		"svg-sprite-loader": "5.0.x",
 		"terser-webpack-plugin": "3.0.x",
 		"webpack": "4.43.x",
-		"webpack-bundle-analyzer": "3.7.x",
+		"webpack-bundle-analyzer": "3.8.x",
 		"webpack-cli": "^3.3.11",
 		"webpack-dev-server": "3.11.x",
 		"write-file-webpack-plugin": "4.5.x"

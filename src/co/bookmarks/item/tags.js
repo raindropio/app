@@ -11,7 +11,7 @@ class BookmarksItemTag extends React.PureComponent {
         const { tag } = this.props
         
         return (
-            <a href='' key={tag} onClick={this.onClick}>
+            <a href='' tabIndex='-1' key={tag} onClick={this.onClick}>
                 <Icon name='tag' size='micro' />
                 {tag}
             </a>
