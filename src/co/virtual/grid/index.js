@@ -1,3 +1,4 @@
+import styles from './index.module.css'
 import React from 'react'
 import ListBase from '../list/base'
 import Sortable from './sortable'
@@ -119,14 +120,14 @@ class VirtualGridRow extends React.Component {
         if (rowIsDraggable && rowIsDraggable(0))
             return (
                 <Sortable
-                    className={className}
+                    className={className+' '+styles.grid}
                     items={items}
                     onDragEnd={onDragEnd}
                     renderItem={this.renderItem} />
             )
         else
             return (
-                <div className={className}>
+                <div className={className+' '+styles.grid}>
                     {items.map(this.renderItem)}
                 </div>
             )

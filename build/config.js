@@ -152,6 +152,7 @@ module.exports = {
 
 			{
 				test: /\.(styl|css)$/,
+				exclude: /\.module\.css$/,
 				sideEffects: true,
 				use: [
 					...(isProd ? [{
@@ -163,6 +164,27 @@ module.exports = {
 					}] : ['style-loader']),
 					'css-loader',
 					'stylus-loader'
+				]
+			},
+
+			{
+				test: /\.(css)$/,
+				include: /\.module\.css$/,
+				sideEffects: true,
+				use: [
+					...(isProd ? [{
+						loader: MiniCssExtractPlugin.loader,
+						options: {
+							esModule: true,
+							hmr: !isProd
+						},
+					}] : ['style-loader']),
+					{
+						loader: 'css-loader',
+						options: {
+							modules: true,
+						}
+					}
 				]
 			},
 

@@ -1,3 +1,4 @@
+import styles from './sortable.module.css'
 import React from 'react'
 import { ReactSortable } from 'react-sortablejs'
 
@@ -35,7 +36,7 @@ export default class VirtualSortable extends React.PureComponent {
             <ReactSortable 
                 group={type}
                 className={className}
-                chosenClass='is-dragging'
+                ghostClass={styles.ghost}
 
                 animation={150}
 

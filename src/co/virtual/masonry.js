@@ -22,9 +22,13 @@ class VirtualMasonry extends React.Component {
     }
 
     //items
+    itemKey = this.props.computeItemKey ?
+        (data, index)=>this.props.computeItemKey(index) :
+        undefined
+
     getItems = ()=>{
         let i = 0
-        return Array.from(Array(this.props.totalCount), () => ({id: i++}))
+        return Array.from(Array(this.props.totalCount), () => ({id: this.itemKey(null, i) || i++}))
     }
     
     state = {
@@ -45,12 +49,8 @@ class VirtualMasonry extends React.Component {
             this.props.endReached()
     }
 
-    renderItem = ({ index })=>
-        this.props.item(index)
-
-    itemKey = this.props.computeItemKey ?
-        (data, index)=>this.props.computeItemKey(index) :
-        undefined
+    renderItem = ({ index }, provider={}, snapshot={})=>
+        this.props.item(index, provider, snapshot)
 
     render() {
         const { footer, ...etc } = this.props
