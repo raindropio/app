@@ -28,6 +28,7 @@ class BookmarkEditFormCollection extends React.Component {
     events = {
         onItemClick: ({ _id })=>{
             this.props.onChange({ collectionId: _id })
+            this.props.onSubmit()
             this.onPickerClose()
         }
     }

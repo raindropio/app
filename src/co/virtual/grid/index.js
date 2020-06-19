@@ -21,7 +21,7 @@ class VirtualGrid extends React.Component {
     static getDerivedStateFromProps({ width, height, columnWidth, defaultItemHeight, totalCount, disableVirtualization, ...etc }, state) {
         let columnCount = Math.max(parseInt(width / columnWidth), 2)
 
-        let perRow = columnCount * Math.max(parseInt(height / defaultItemHeight), 1)
+        let perRow = disableVirtualization ? totalCount : Math.min(totalCount, columnCount * Math.max(parseInt(height / defaultItemHeight), 1))
         let rowCount = Math.ceil(totalCount / perRow)
 
         let scrollToIndex = (etc.scrollToIndex||0) >= 0 ? parseInt(etc.scrollToIndex / perRow) : -1
@@ -80,6 +80,7 @@ class VirtualGridRow extends React.Component {
         dataKey: '',
         row: -1,
         perRow: 0,
+        totalCount: 0,
         item: {},
         computeItemKey: undefined,
         className: ''
@@ -96,7 +97,7 @@ class VirtualGridRow extends React.Component {
             return null
 
         let items = []
-        for(var column=0; column<perRow; column++){
+        for(var column=0; column < perRow; column++){
             const index = row*perRow + column
             const id = computeItemKey(index)
 
@@ -122,8 +123,9 @@ class VirtualGridRow extends React.Component {
                 <Sortable
                     className={className+' '+styles.grid}
                     items={items}
-                    onDragEnd={onDragEnd}
-                    renderItem={this.renderItem} />
+                    onDragEnd={onDragEnd}>
+                    {items.map(this.renderItem)}
+                </Sortable>
             )
         else
             return (

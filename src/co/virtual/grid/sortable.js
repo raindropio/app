@@ -10,7 +10,6 @@ export default class VirtualSortable extends React.PureComponent {
         type:          'default',
         className:      undefined,        
         items:          undefined,  //[{ id }]
-        renderItem:     undefined,  //items.map(renderItem)
         onDragEnd:      undefined,  //(fromIndex, toIndex)
     }
 
@@ -30,7 +29,7 @@ export default class VirtualSortable extends React.PureComponent {
     }
 
     render() {
-        const { className, type, items, renderItem } = this.props
+        const { className, type, items, children } = this.props
 
         return (
             <ReactSortable 
@@ -46,7 +45,7 @@ export default class VirtualSortable extends React.PureComponent {
                 onChoose={this.onChoose}
                 onAdd={this.onEnd}
                 onSort={this.onSort}>
-                {items.map(renderItem)}
+                {children}
             </ReactSortable>
         )
     }
