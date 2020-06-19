@@ -6,8 +6,12 @@ import withAutoSize from '../helpers/withAutoSize'
 class VirtualGrid extends React.Component {
     static defaultProps = {
         //...same as List
-        columnWidth: 0, //required
-        defaultItemHeight: 250 //required
+        columnWidth: 0,             //required
+        defaultItemHeight: 250,     //required
+
+        type: undefined,            //
+        rowIsDraggable: undefined,  //func, optional (index)
+        onDragEnd: undefined,       //func (fromIndex,toIndex)
     }
 
     state = {}
@@ -63,6 +67,8 @@ class VirtualGrid extends React.Component {
                 defaultItemHeight={defaultItemHeight}
 
                 scrollToIndex={scrollToIndex}
+
+                onSort={this.onSort}
             />
         )
     }
@@ -75,8 +81,7 @@ class VirtualGridRow extends React.Component {
         perRow: 0,
         item: {},
         computeItemKey: undefined,
-        className: '',
-        onSort: undefined, //(fromId, toId)
+        className: ''
     }
 
     state = {
@@ -101,25 +106,23 @@ class VirtualGridRow extends React.Component {
         return { items, _prevProps: {row, perRow, dataKey} }
     }
 
-    getSortableId = (index)=>{
-        return this.state.items[index].id
-    }
+    getSortableId = (index)=>
+        this.state.items[index].id
 
-    renderItem = ({ index })=>
-        this.props.item(index, {}, {})
+    renderItem = ({ index }, provided={}, snapshot={})=>
+        this.props.item(index, provided, snapshot)
 
     render() {
-        const { className, sortable, onSort } = this.props
+        const { className, rowIsDraggable, onDragEnd } = this.props
         const { items } = this.state
 
-        if (sortable)
+        if (rowIsDraggable && rowIsDraggable(0))
             return (
                 <Sortable
                     className={className}
-                    computeItemKey={this.getSortableId}
-                    onSort={onSort}>
-                    {items.map(this.renderItem)}
-                </Sortable>
+                    items={items}
+                    onDragEnd={onDragEnd}
+                    renderItem={this.renderItem} />
             )
         else
             return (

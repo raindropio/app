@@ -2,50 +2,25 @@ import React from 'react'
 import { ReactSortable } from 'react-sortablejs'
 
 let _selected = -1
+const emptyFunc = ()=>{}
 
 export default class VirtualSortable extends React.PureComponent {
     static defaultProps = {
-        group:          'virtual',
+        type:          'default',
         className:      undefined,        
-        computeItemKey: undefined,  //(index)
-        onSort:         undefined   //(fromId, toId)
+        items:          undefined,  //[{ id }]
+        renderItem:     undefined,  //items.map(renderItem)
+        onDragEnd:      undefined,  //(fromIndex, toIndex)
     }
-
-    getItems = ()=>{
-        const { children, computeItemKey } = this.props
-
-        const items = []
-        for(var index=0; index < children.length; index++){
-            const id = computeItemKey(index)
-
-            if (id)
-                items.push({ id })
-        }
-
-        return items
-    }
-
-    componentDidUpdate(prev) {
-        if (prev.children != this.props.children)
-            this.setState({ items: this.getItems() })
-    }
-
-    state = {
-        items: this.getItems()
-    }
-
-    onSetItems = (items)=>
-        this.setState({ items })
 
     onChoose = ({ oldDraggableIndex })=>
-        _selected = this.state.items[oldDraggableIndex].id
+        _selected = this.props.items[oldDraggableIndex].index
 
-    onEnd = ({ newDraggableIndex })=>{
-        this.props.onSort(
+    onEnd = ({ newDraggableIndex })=>
+        this.props.onDragEnd(
             _selected,
-            this.props.computeItemKey(newDraggableIndex)
+            this.props.items[newDraggableIndex].index
         )
-    }
 
     onSort = (e)=>{
         //sort in the same group
@@ -54,24 +29,23 @@ export default class VirtualSortable extends React.PureComponent {
     }
 
     render() {
-        const { className, group, children } = this.props
-        const { items } = this.state
+        const { className, type, items, renderItem } = this.props
 
         return (
             <ReactSortable 
-                group={group}
+                group={type}
                 className={className}
                 chosenClass='is-dragging'
 
                 animation={150}
 
                 list={items}
-                setList={this.onSetItems}
+                setList={emptyFunc}
 
                 onChoose={this.onChoose}
                 onAdd={this.onEnd}
                 onSort={this.onSort}>
-                {children}
+                {items.map(renderItem)}
             </ReactSortable>
         )
     }
