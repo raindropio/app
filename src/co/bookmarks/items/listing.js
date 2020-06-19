@@ -133,7 +133,12 @@ export default class BookmarksItemsListing extends React.Component {
                         rowIsDraggable={this.rowIsDraggable}
                         onDragEnd={this.onDragEnd}
                         />
-                ) : this.renderEmpty()}
+                ) : (
+                    <>
+                        {this.renderEmpty()}
+                        {this.renderFooter()}
+                    </>
+                )}
             </div>
         )
     }
