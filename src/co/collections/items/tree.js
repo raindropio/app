@@ -196,7 +196,7 @@ export default class CollectionsTree extends React.Component {
 
     render() {
         const { data, activeId, customRows=[] } = this.props
-        const { dataCheckpoint } = this.state
+        const { dataCheckpoint, scrollToIndex } = this.state
 
         if (!data.length)
             return <Empty />
@@ -207,6 +207,7 @@ export default class CollectionsTree extends React.Component {
                 item={this.rowRenderer}
                 totalCount={data.length + customRows.length}
                 dataKey={activeId+dataCheckpoint} //only used to re-render when data re-ordered from outside
+                scrollToIndex={scrollToIndex}
                 defaultItemHeight={32}
                 overscan={200}
 

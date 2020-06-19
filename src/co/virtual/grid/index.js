@@ -106,7 +106,7 @@ class VirtualGridRow extends React.Component {
     }
 
     renderItem = ({ index })=>
-        this.props.item(index)
+        this.props.item(index, {}, {})
 
     render() {
         const { className, sortable, onSort } = this.props
