@@ -74,7 +74,6 @@ class PickerIcon extends React.Component {
 
                 <Content>
                     <Items
-                        key={search} 
                         {...this.props}
                         {...this.handlers} />
                 </Content>

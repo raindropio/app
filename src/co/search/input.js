@@ -32,7 +32,7 @@ export default class SearchView extends React.PureComponent {
         const id = e.target.getAttribute('data-id')
         switch(id) {
             case 'reset':
-                this.props.onChange('', this.props.onSubmit)
+                this.onReset()
             break
         }
 
@@ -42,12 +42,15 @@ export default class SearchView extends React.PureComponent {
     onInputChange = (e)=>this.props.onChange(e.target.value)
     onInputFocus = ()=>this.setState({focus: true})
     onInputBlur = ()=>this.setState({focus: false})
+    onReset = ()=>this.props.onChange('', this.props.onSubmit)
 
     onInputKeyDown = (e)=>{
         switch(e.key) {
             case 'Escape':
-                if (this.props.value)
+                if (this.props.value){
                     e.stopPropagation()
+                    this.onReset()
+                }
             break
         }
     }

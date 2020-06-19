@@ -10,7 +10,15 @@ export default class Popover extends React.Component {
         onClose: undefined      //func, required
     }
 
-    onContainerKeyDown = (e)=>{
+    componentDidMount() {
+        window.addEventListener('keydown', this.onWindowKeyDown)
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener('keydown', this.onWindowKeyDown)
+    }
+
+    onWindowKeyDown = (e)=>{
         switch(e.key) {
             case 'Escape':
                 e.stopPropagation()
@@ -25,7 +33,7 @@ export default class Popover extends React.Component {
         return (
             <Portal>
                 <Context.Provider value={{ onClose, closable }}>
-                    <div className='modal' onKeyDown={this.onContainerKeyDown}>
+                    <div className='modal'>
                         <div className={'modal-body '+className} {...etc}>
                             {children}
                         </div>

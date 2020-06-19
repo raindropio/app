@@ -31,8 +31,8 @@ export default class Popover extends React.Component {
         this._resizeObserver.observe(this._container.current)
 
         window.addEventListener('resize', this.updatePosition)
+        window.addEventListener('keydown', this.onWindowKeyDown)
         document.body.addEventListener('mousedown', this.onBodyMouseDown)
-        document.body.addEventListener('keydown', this.onBodyKeyDown)
     }
 
     componentWillUnmount() {
@@ -43,8 +43,8 @@ export default class Popover extends React.Component {
         }
 
         window.removeEventListener('resize', this.updatePosition)
+        window.removeEventListener('keydown', this.onWindowKeyDown)
         document.body.removeEventListener('mousedown', this.onBodyMouseDown)
-        document.body.removeEventListener('keydown', this.onBodyKeyDown)
     }
 
     //click outside
@@ -61,7 +61,7 @@ export default class Popover extends React.Component {
             this.store.close()
     }
 
-    onBodyKeyDown = (e)=>{
+    onWindowKeyDown = (e)=>{
         switch(e.key) {
             case 'Escape':
                 e.preventDefault()
