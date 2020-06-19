@@ -26,12 +26,14 @@ class VirtualGrid extends React.Component {
 
         let scrollToIndex = (etc.scrollToIndex||0) >= 0 ? parseInt(etc.scrollToIndex / perRow) : -1
 
-        if (rowCount == state.rowCount &&
+        if (columnCount == state.columnCount &&
+            rowCount == state.rowCount &&
             perRow == state.perRow &&
             scrollToIndex == state.scrollToIndex)
             return null
 
         return {
+            columnCount,
             rowCount,
             perRow,
             scrollToIndex,
