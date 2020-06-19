@@ -28,7 +28,7 @@ export default function(state, action) {switch (action.type) {
 
         //Reset to default if sort value is disabled, or unavailable
         if (!sorts[sort] || !sorts[sort].enabled)
-            sort = '-created'
+            sort = sorts['sort'].enabled ? 'sort' : '-created'
 
         return state
             .setIn(['spaces', action.spaceId, 'sorts'], sorts)
