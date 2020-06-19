@@ -1,7 +1,7 @@
 import React from 'react'
-import List from './list'
-import Sortable from './helpers/sortable'
-import withAutoSize from './helpers/withAutoSize'
+import ListBase from '../list/base'
+import Sortable from './sortable'
+import withAutoSize from '../helpers/withAutoSize'
 
 class VirtualGrid extends React.Component {
     static defaultProps = {
@@ -48,7 +48,7 @@ class VirtualGrid extends React.Component {
         const { dataKey='', ...etc } = this.props
 
         return (
-            <List
+            <ListBase
                 {...etc}
 
                 className={undefined}
@@ -58,7 +58,7 @@ class VirtualGrid extends React.Component {
                 style={style}
                 item={this.renderRow}
 
-                dataKey={dataKey+perRow+(!rowCount?'empty':'')}
+                dataKey={dataKey+perRow}
                 totalCount={rowCount}
                 defaultItemHeight={defaultItemHeight}
 

@@ -51,7 +51,6 @@
 		"react-sortablejs": "^2.0.11",
 		"react-textarea-autosize": "^8.0.1",
 		"react-virtuoso": "0.17.x",
-		"react-window": "1.8.x",
 		"string": "3.3.x",
 		"validator": "13.0.x"
 	},

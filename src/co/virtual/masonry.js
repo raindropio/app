@@ -13,7 +13,6 @@ class VirtualMasonry extends React.Component {
         defaultItemHeight: 80,
         endReached: undefined,
         footer: undefined,
-        empty: undefined,       //not supported yet!
         scrollToIndex: undefined,//not supported yet!
         computeItemKey: undefined,
         disableVirtualization: false,
@@ -54,20 +53,18 @@ class VirtualMasonry extends React.Component {
         undefined
 
     render() {
-        const { footer, totalCount, empty, ...etc } = this.props
+        const { footer, ...etc } = this.props
         const columnCount = parseInt(this.props.width / this.props.columnWidth) <= 1 ? 2 : undefined
 
         return (
             <>
-                {(!totalCount && empty) ? empty() : (
-                    <VirtualMasonryInner 
-                        {...etc}
-                        {...this.state}
-                        columnCount={columnCount}
-                        itemKey={this.itemKey}
-                        renderItem={this.renderItem}
-                        onRender={this.onRender} />
-                )}
+                <VirtualMasonryInner 
+                    {...etc}
+                    {...this.state}
+                    columnCount={columnCount}
+                    itemKey={this.itemKey}
+                    renderItem={this.renderItem}
+                    onRender={this.onRender} />
                 
                 {footer && footer()}
             </>

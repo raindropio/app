@@ -27,6 +27,10 @@ export default class BookmarksItemsListing extends React.Component {
     endReached = ()=>
         this.props.actions.nextPage(this.props.spaceId)
 
+    //dnd
+    rowIsDraggable = ()=>
+        this.props.sort=='sort'
+
     onSort = (fromId, toId)=>
         this.props.actions.oneReorder(fromId, toId)
 
@@ -76,14 +80,12 @@ export default class BookmarksItemsListing extends React.Component {
 
     render() {
         const { items, viewHide, gridSize, activeId, selectModeEnabled, compact } = this.props
-        let { view } = this.props
         const { isDropping, dropHandlers } = this.props
 
+        //specific view
+        let { view } = this.props
+    
         let Component
-
-        // if (view == 'masonry' && compact)
-        //     view = 'grid'
-
         switch(view) {
             case 'grid':
                 Component = Grid
@@ -108,26 +110,28 @@ export default class BookmarksItemsListing extends React.Component {
                 {...dropHandlers}>
                 {this.renderHeader()}
 
-                <Component
-                    className={`items view-${view} ${selectModeEnabled&&'select-mode'}`}
-                    dataKey={activeId+selectModeEnabled+view+this.state.itemsCheckpoint} //force re-render
+                {items.length ? (
+                    <Component
+                        className={`items view-${view} ${selectModeEnabled&&'select-mode'}`}
+                        dataKey={activeId+selectModeEnabled+view+this.state.itemsCheckpoint} //force re-render
 
-                    item={this.renderItem}
-                    empty={this.renderEmpty}
-                    footer={this.renderFooter}
-                    computeItemKey={this.computeItemKey}
+                        item={this.renderItem}
+                        footer={this.renderFooter}
+                        computeItemKey={this.computeItemKey}
 
-                    totalCount={compact ? Math.min(items.length, this.props.compactLimit) : items.length}
-                    columnWidth={coverSize(view, gridSize).width}
-                    disableVirtualization={compact}
-                    
-                    scrollToIndex={activeId && items.length ? items.indexOf(activeId) : -1}
-                    
-                    endReached={this.endReached}
+                        totalCount={compact ? Math.min(items.length, this.props.compactLimit) : items.length}
+                        columnWidth={coverSize(view, gridSize).width}
+                        disableVirtualization={compact}
+                        
+                        scrollToIndex={activeId && items.length ? items.indexOf(activeId) : -1}
+                        
+                        endReached={this.endReached}
 
-                    sortable={this.props.sort=='sort'}
-                    onSort={this.onSort}
-                    />
+                        //dnd
+                        type='bookmarks'
+                        rowIsDraggable={this.rowIsDraggable}
+                        />
+                ) : this.renderEmpty()}
             </div>
         )
     }

@@ -1,17 +1,15 @@
 import React from 'react'
 import { Virtuoso } from 'react-virtuoso'
-import Sortable from './helpers/sortable'
-import superScrollToIndex from './helpers/superScrollToIndex'
+import superScrollToIndex from '../helpers/superScrollToIndex'
 
 const mainStyle = { width: '100%', height: '100%' }
 
-export default class VirtualList extends React.PureComponent {
+export default class VirtualListBase extends React.PureComponent {
     static defaultProps = {
         className: '',              //
         item: undefined,            //required
         computeItemKey: undefined,  //required
         totalCount: 0,              //required
-        empty: undefined,           //
         endReached: undefined,      //
         footer: undefined,
         disableVirtualization: false,
@@ -58,55 +56,17 @@ export default class VirtualList extends React.PureComponent {
             this.props.rangeChanged(range)
     }
 
-    renderItem = index=>{
-        const { item, empty, totalCount } = this.props
-        
-        if (!totalCount)
-            return empty ? empty() : null
-
-        return item(index)
-    }
-
-    computeItemKey = index=>{
-        const { totalCount, computeItemKey } = this.props
-        if (!totalCount) return 'empty'
-        return computeItemKey ? computeItemKey(index) : index
-    }
-
-    renderContainer = ({ children, listRef, ...etc })=>{
-        const { sortable, computeItemKey, onSort } = this.props
-
-        const Component = <div ref={listRef} {...etc}>{children}</div>
-
-        // if (sortable)
-        //     return (
-        //         <Sortable
-        //             tag={Component}
-        //             computeItemKey={computeItemKey}
-        //             onSort={onSort}>
-        //             {children}
-        //         </Sortable>
-        //     )
-        
-        return Component
-    }
-
     render() {
-        const { endReached, totalCount, dataKey, disableVirtualization, style, scrollToIndex, ...etc } = this.props
+        const { endReached, disableVirtualization, style, scrollToIndex, ...etc } = this.props
         const Component = disableVirtualization ? NonVirtualList : Virtuoso
 
         return (
             <Component
                 {...etc}
                 ref={this._list}
-                dataKey={dataKey+(!totalCount?'empty':'')}
-                totalCount={totalCount||1}
-                item={this.renderItem}
-                computeItemKey={this.computeItemKey}
                 style={style || mainStyle}
                 rangeChanged={endReached && this.rangeChanged}
                 initialTopMostItemIndex={scrollToIndex > -1 ? scrollToIndex : undefined}
-                ListContainer={this.renderContainer}
             />
         )
     }
@@ -115,6 +75,7 @@ export default class VirtualList extends React.PureComponent {
 export class NonVirtualList extends React.Component {
     render() {
         const { totalCount, item, className, style, footer } = this.props
+        const { ScrollContainer = 'div' } = this.props
 
         let items = []
         if (totalCount)
@@ -123,7 +84,9 @@ export class NonVirtualList extends React.Component {
 
         return (
             <div className={className} style={{...style, height: 'auto'}}>
-                {items}
+                <ScrollContainer>
+                    {items}
+                </ScrollContainer>
 
                 {footer && footer()}
             </div>

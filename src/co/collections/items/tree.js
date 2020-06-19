@@ -1,28 +1,28 @@
 import React from 'react'
 
-import Sortable from '~co/virtual/sortable'
+import List from '~co/virtual/list'
 import Item from '../item'
 import Group from '../group'
 import Empty from './empty'
 
 export default class CollectionsTree extends React.Component {
-    _list = React.createRef()
     _scrolled = false
 
     state = {
-        dataCheckpoint: 0
+        dataCheckpoint: 0,
+        scrollToIndex: -1
     }
 
     componentDidUpdate(prev) {
         //scroll to active on first paint
-        if (this.props.data.length && !this._scrolled && this._list.current){
+        if (this.props.data.length && !this._scrolled){
             this._scrolled = true
 
             if (this.props.activeId && typeof this.props.activeId != 'object')
-                this._list.current.scrollToItem(
-                    this.props.data
+                this.setState({
+                    scrollToIndex: this.props.data
                         .findIndex(({item})=>item && item._id == this.props.activeId)
-                )
+                })
         }
 
         if (prev.data != this.props.data ||
@@ -31,7 +31,8 @@ export default class CollectionsTree extends React.Component {
     }
     
     //rendering rows
-    rowRenderer = ({ index }, provided, { isDragging, combineTargetFor })=>{
+    rowRenderer = (index, provided, snapshot={})=>{
+        const { isDragging, combineTargetFor } = snapshot
         const row = this.props.data[index]
 
         if (!row)
@@ -84,7 +85,7 @@ export default class CollectionsTree extends React.Component {
     }
 
     //drag/drop
-    rowIsDraggable = ({ index })=>{
+    rowIsDraggable = (index)=>{
         //disable when multiselect
         if (typeof this.props.activeId == 'object')
             return false
@@ -110,7 +111,7 @@ export default class CollectionsTree extends React.Component {
     }
 
     rowIsDroppable = (from)=>{
-        const origin = this.props.data[from.index]
+        const origin = this.props.data[from]
 
         if (origin)
             switch(origin.type){
@@ -120,7 +121,7 @@ export default class CollectionsTree extends React.Component {
         return false
     }
 
-    onDragStart = ({ index })=>{
+    onDragStart = (index)=>{
         const row = this.props.data[index]
 
         if (row)
@@ -135,22 +136,22 @@ export default class CollectionsTree extends React.Component {
     }
 
     onDragEnd = (from, to, action)=>{
-        const origin = this.props.data[from.index]
-        const target = this.props.data[to.index]
+        const origin = this.props.data[from]
+        const target = this.props.data[to]
 
         switch (origin.type) {
             case 'collection':{
                 if (action=='move')
                     if (target.type == 'collection'){
-                        if (to.index >= from.index)
+                        if (to >= from)
                             this.props.actions.oneReorder(origin.item._id, { after: target.item._id })
-                        else if (to.index <= from.index)
+                        else if (to <= from)
                             this.props.actions.oneReorder(origin.item._id, { before: target.item._id })
                     }
                     else {
                         //to end of previous group
-                        if (to.index < from.index){
-                            for(let i=to.index-1; i>0; i--)
+                        if (to < from){
+                            for(let i=to-1; i>0; i--)
                                 if (this.props.data[i].type=='collection'){
                                     this.props.actions.oneReorder(origin.item._id, { after: this.props.data[i].item._id })
                                     break
@@ -168,20 +169,20 @@ export default class CollectionsTree extends React.Component {
             case 'group':{
                 let after, before
 
-                if (to.index > from.index) {
+                if (to > from) {
                     if (target.type == 'group')
                         after = target._id
                     else
-                        for(let i=to.index-1; i>0; i--)
+                        for(let i=to-1; i>0; i--)
                             if (this.props.data[i].type=='group'){
                                 after=this.props.data[i]._id
                                 break
                             }
-                } else if (to.index < from.index) {
+                } else if (to < from) {
                     if (target.type == 'group')
                         before = target._id
                     else
-                        for(let i=to.index+1; i<this.props.data.length; i++)
+                        for(let i=to+1; i<this.props.data.length; i++)
                             if (this.props.data[i].type=='group'){
                                 before=this.props.data[i]._id
                                 break
@@ -202,23 +203,19 @@ export default class CollectionsTree extends React.Component {
             return <Empty />
 
         return (
-            <Sortable
-                activeId={activeId}
-                
-                //react-window
-                listRef={this._list}
-                itemCount={data.length + customRows.length}
-                itemData={dataCheckpoint} //only used to re-render when data re-ordered from outside
-                itemSize={32}
-                overscanCount={5}
+            <List                
+                //react-virtuoso
+                item={this.rowRenderer}
+                totalCount={data.length + customRows.length}
+                dataKey={activeId+dataCheckpoint} //only used to re-render when data re-ordered from outside
+                itemHeight={32}
+                overscan={200}
 
                 //custom
                 rowIsDraggable={this.rowIsDraggable}
                 rowIsDroppable={this.rowIsDroppable}
                 onDragStart={this.onDragStart}
-                onDragEnd={this.onDragEnd}>
-                {this.rowRenderer}
-            </Sortable>
+                onDragEnd={this.onDragEnd} />
         )
     }
 }
