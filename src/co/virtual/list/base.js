@@ -3,6 +3,7 @@ import { Virtuoso } from 'react-virtuoso'
 import superScrollToIndex from '../helpers/superScrollToIndex'
 
 const mainStyle = { width: '100%', height: '100%' }
+const emptyObject = {}
 
 export default class VirtualListBase extends React.PureComponent {
     static defaultProps = {
@@ -75,18 +76,18 @@ export default class VirtualListBase extends React.PureComponent {
 export class NonVirtualList extends React.Component {
     render() {
         const { totalCount, item, className, style, footer } = this.props
-        const { ScrollContainer = 'div' } = this.props
+        const { ListContainer = 'div' } = this.props
 
         let items = []
         if (totalCount)
             for(var i = 0; i<totalCount; i++)
-                items.push(item(i))
+                items.push(item(i, emptyObject, emptyObject))
 
         return (
             <div className={className} style={{...style, height: 'auto'}}>
-                <ScrollContainer>
+                <ListContainer>
                     {items}
-                </ScrollContainer>
+                </ListContainer>
 
                 {footer && footer()}
             </div>

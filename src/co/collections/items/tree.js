@@ -31,8 +31,7 @@ export default class CollectionsTree extends React.Component {
     }
     
     //rendering rows
-    rowRenderer = (index, provided, snapshot={})=>{
-        const { isDragging, combineTargetFor } = snapshot
+    rowRenderer = (index, provided, { isDragging, combineTargetFor })=>{
         const row = this.props.data[index]
 
         if (!row)

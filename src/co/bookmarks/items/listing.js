@@ -31,10 +31,10 @@ export default class BookmarksItemsListing extends React.Component {
     rowIsDraggable = ()=>
         this.props.sort=='sort'
 
-    onSort = (fromId, toId)=>
-        this.props.actions.oneReorder(fromId, toId)
+    onDragEnd = (from, toIndex)=>
+        this.props.actions.oneReorder(this.computeItemKey(from), this.computeItemKey(toIndex))
 
-    renderItem = (index)=>{
+    renderItem = (index, provided, { isDragging })=>{
         const _id = this.props.items[index]
 
         if (typeof _id == 'string')
@@ -55,6 +55,7 @@ export default class BookmarksItemsListing extends React.Component {
                 selectModeEnabled={this.props.selectModeEnabled}
                 //listing specififc
                 active={this.props.activeId == _id}
+                isDragging={isDragging}
                 events={this.props.events}
                 actions={this.props.actions} />
         )
@@ -130,6 +131,7 @@ export default class BookmarksItemsListing extends React.Component {
                         //dnd
                         type='bookmarks'
                         rowIsDraggable={this.rowIsDraggable}
+                        onDragEnd={this.onDragEnd}
                         />
                 ) : this.renderEmpty()}
             </div>

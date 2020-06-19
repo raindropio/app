@@ -15,8 +15,8 @@ export default class VirtuosoWithDnd extends React.Component {
         onLongHover: undefined,     //func, optional (fromIndex, toIndex), not works properly when content is changed!!!
     }
 
-    renderScrollContainer = container=>(
-        <ScrollContainer
+    renderListContainer = container=>(
+        <ListContainer
             {...this.props}
             container={container} />
     )
@@ -48,7 +48,7 @@ export default class VirtuosoWithDnd extends React.Component {
             <>
                 <Base
                     {...this.props}
-                    ScrollContainer={this.renderScrollContainer}
+                    ListContainer={this.renderListContainer}
                     ItemContainer={ItemContainer}
                     item={this.item} />
 
@@ -62,37 +62,18 @@ export default class VirtuosoWithDnd extends React.Component {
     }
 }
 
-class ScrollContainer extends React.Component {
+class ListContainer extends React.Component {
     state = {
         isCombineEnabled: this.props.rowIsDroppable ? true: false
     }
     
-    bindRef = (innerRef) => (ref) => {
-        if (!ref || this._div === ref) return
-
+    bindRef = (innerRef, listRef) => (ref) => {
+        listRef && listRef(ref)
+        innerRef && innerRef(ref)
         this._div = ref
-        innerRef(this._div)
-    }
-
-    //virtuoso specific
-    onScroll = ({ target: { scrollTop } })=>
-        this.props.container && this.props.container.reportScrollTop && this.props.container.reportScrollTop(scrollTop)
-
-    scrollTo = scrollTop =>{
-        this._div.scrollTo(scrollTop)
     }
 
     //rbdnd specific
-    renderClone = (provided, snapshot, { draggableId })=>(
-        <div 
-            className={this.props.className}
-            ref={provided.innerRef}
-            {...provided.draggableProps}
-            {...provided.dragHandleProps}>
-            {this.props.item(parseInt(draggableId))}
-        </div>
-    )
-
     onDragStart = ({ source })=>{
         this.props.onDragStart && this.props.onDragStart(source.index)
     }
@@ -128,11 +109,20 @@ class ScrollContainer extends React.Component {
             this.props.onDragEnd(source.index, destination.index, 'move')
     }
 
-    render() {
-        const { container: { scrollTo, reportScrollTop, children, ...etc } } = this.props
-        const { type, disableVirtualization } = this.props
+    getContainerForClone = ()=>this._div
 
-        scrollTo && scrollTo(this.scrollTo)
+    renderClone = (provided, snapshot, { draggableId })=>(
+        <div 
+            {...provided.draggableProps}
+            {...provided.dragHandleProps}
+            ref={provided.innerRef}>
+            {this.props.item(parseInt(draggableId), emptyObject, emptyObject)}
+        </div>
+    )
+
+    render() {
+        const { container: { listRef, children, ...etc } } = this.props
+        const { type, disableVirtualization } = this.props
 
         return (
             <DragDropContext
@@ -143,13 +133,13 @@ class ScrollContainer extends React.Component {
                     droppableId={type}
                     mode={disableVirtualization ? 'standard' : 'virtual'}
                     isCombineEnabled={this.state.isCombineEnabled}
-                    renderClone={!disableVirtualization && this.renderClone}>
+                    renderClone={!disableVirtualization && this.renderClone}
+                    getContainerForClone={this.getContainerForClone}>
                     {({ innerRef, droppableProps, placeholder }) => (
                         <div
                             {...etc}
                             {...droppableProps}
-                            ref={this.bindRef(innerRef)}
-                            onScroll={this.onScroll}>
+                            ref={this.bindRef(innerRef, listRef)}>
                             {children}
                             {disableVirtualization && placeholder}
                         </div>

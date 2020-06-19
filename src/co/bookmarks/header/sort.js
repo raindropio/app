@@ -44,7 +44,7 @@ class BookmarksHeaderSort extends React.Component {
 
         return (
             <>
-                <a href='' className='button default' onClick={this.onContextMenuClick}>
+                <a href='' className={'button default '+(sort!='sort'?'active':'')} onClick={this.onContextMenuClick}>
                     <Icon name={'sort_'+sort} />
         
                     <span>
