@@ -3,7 +3,6 @@
 - show count for duplicates
 - fix user load for duplicates, broken
 - migrate to css modules
-- load exact width covers instead hard-coded
 - Toasts!
 
 Design
@@ -12,6 +11,8 @@ Design
 Bugs
 - Critical
     - virtual grid doesn't render next pages in Firefox
+    - Collection share via link, link is incorrect
+    - Such tagname kils app "$%^&()(#@#$!. a"
 - Minor
     - in search results when change bookmark, `highlight` data lost
     - search as type sometime doesn't recognize last type
@@ -21,7 +22,6 @@ Not ready
 - electron
 - bookmark info about cache status, creatorRef
 - bookmark info important icon should be bright
-- bookmark drag preview
 
 Server
 - Replace all tags with space to _
@@ -30,7 +30,6 @@ Server
 Good to have
 - Refactor collection/reorder redux to server
 - Logic for moving to several parents in the end of the list
-- Change cover img width depends on config
 - Combined count on each level of collections tree
 - data: combine logic of bookmarkMove and bookmarkReorder
 - When collection removed open next collection

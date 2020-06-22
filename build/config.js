@@ -7,8 +7,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const TerserJSPlugin = require('terser-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
-//const WriteFilePlugin = require('write-file-webpack-plugin')
-const LodashModuleReplacementPlugin = require('lodash-webpack-plugin')
 
 //Params
 process.env.APP_TARGET = process.env.APP_TARGET || 'default'

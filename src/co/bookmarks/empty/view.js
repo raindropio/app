@@ -81,7 +81,6 @@ export default class BookmarksEmptyView extends React.PureComponent {
                     <div>
 						<h2 className='headLabel'>{t.s('error')}</h2>
 						<p className='subHeadLabel'>
-                            {parseInt(spaceId) ? (<span><Link to='/space/0'>{t.s('allBookmarks')}</Link>,&nbsp;</span>) : null}
 							<a onClick={this.reload}>{t.s('refresh')}</a>
 						</p>
 					</div>
