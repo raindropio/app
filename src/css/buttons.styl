@@ -52,22 +52,6 @@ html.electron .button {
 		justify-content: center
 	}
 	
-	.badge {
-		position: absolute;
-		bottom:10px;right:8px;
-		font-size: 9px
-		
-		background: buttonColorDefault;
-		color: white !important;
-		border-radius: 30px;
-		
-		min-width: 13px;
-		padding: 0 2px;
-		height: 13px;
-		line-height: 13px;
-		text-align: center;
-	}
-	
 	&.input {
 		margin:0;
 	}
@@ -79,7 +63,6 @@ html.electron .button {
 	span:not(.svgIcon):not(:first-child):last-child {
 		margin-left: 6px;
 	}
-
 	
 	&.default b, &.default.input {
 		background: white;
@@ -180,10 +163,6 @@ html.electron .button {
 		}
 	}
 	
-	&.display-block {
-		display: block;
-	}
-	
 	&.facebook {
 		color: #3b5998;
 	}
@@ -199,89 +178,4 @@ html.electron .button {
 
 html.electron .button {
 	cursor: default;
-}
-
-html.retina.chrome {
-	.button {
-		&.default b, &.default.input {
-			box-shadow: 0px 0px 0px 0.5px rgba(0,0,0,.16), 0px 1px 0px rgba(0,0,0,.1);
-			
-			&:active {
-				box-shadow: 0px 0px 0px 0.5px rgba(0,0,0,.16), inset 0px 0.5px 0px rgba(0,0,0,.1);
-			}
-		}
-	}
-}
-
-.themeDark {
-	#main, #panel, #sidebar, #reader, .pop-body {
-		.button, .tabs .item {
-			color: rgba(255,255,255,.6);
-
-			&.blue {
-				color: darkBackground
-			}
-
-			&.flat {
-				b {
-					background: rgba(255,255,255,.1);
-				}
-			}
-			
-			&.default b, &.default.input {
-				background: lighten(darkBackground, 10%);
-				box-shadow: 0px 0px 0px 1px rgba(255,255,255,.15);
-				
-				&:active {
-					background: lighten(darkBackground,5%);
-					box-shadow: 0px 0px 0px 1px rgba(255,255,255,.15);
-				}
-			}
-			
-			&.active {
-				color: colorYellowForDark;
-				
-				&.input {
-					color: darkBackground !important;
-				}
-				
-				b {
-					color: darkBackground !important;
-					background: colorYellowForDark;
-				}
-			}
-		}
-	}
-}
-
-.fab {
-	position: absolute;
-	width: 48px;
-	height: 48px;
-	background: contentBackground;
-	box-shadow: 0px 0px 0px 1px rgba(0,0,0,0.10), 0px 1px 1px 0px rgba(0,0,0,0.15);
-	border-radius: 50%;
-	z-index: 20;
-	right: 16px;
-	bottom: 40px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	
-	* {
-		pointer-events: none;
-	}
-
-	&.fab-fixed {
-		position:fixed;
-	}
-
-	&.active {
-		color: colorTheme;
-		color: var(--accentColor, colorTheme);
-	}
-
-	&:active {
-		background: darken(contentBackground,5%);
-	}
 }

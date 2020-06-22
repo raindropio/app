@@ -11,22 +11,8 @@ elementInvert()
     .actions .button.active {
         color: white !important;
     }
-    
-    .rating {
-        box-shadow: 1px 0 0 rgba(255,255,255,.2);
-    }
-    
-    .rating .svgIcon {
-        color: white;
-    }
-    
-    .title {
-        .typeIcon {
-            opacity:1;
-        }
-    }
 
-    .domain, p, a, .action-small, .info {
+    .domain, p, a, .info {
         color: rgba(255,255,255,.6) !important;
     }
     
@@ -42,10 +28,6 @@ elementInvert()
     p.from-body {
         border-color: white
     }
-    
-    em {
-        //color: rgba(0,0,0,.7);
-    }
 
 .elements {
     position: relative
@@ -56,15 +38,6 @@ elementInvert()
 
     .items {
         flex: 1
-    }
-
-    &.is-drag-over:after {
-        background: rgba(74,116,226,.1)
-		left:0;top:0;right:0;bottom:0;
-		content: ""
-		position: absolute
-		z-index:1
-		pointer-events: none
     }
 
     &.hide-title {
@@ -98,49 +71,16 @@ elementInvert()
     }
 }
 
-.view-sort-sort {
-    box-shadow: 0px -1px 0px subSeparatorColorAlpha;
-}
-
 .element {
-    position: relative;
-    //transition: background .05s linear, color .05s linear;
-
-    em {
-        font-weight: bold;
-        //background: colorYellowLight;
-        //box-shadow: 0 0 1px 1px colorYellowLight;
-        //border-radius: 3px;
-        font-style: normal;
-    }
-
-    .typeMiniIcon {
-        margin-right: 8px;
-        
-        &:empty {
-            display: none;
-        }
-    }
-    
-    a {
-        color: colorTheme;
-        color: var(--accentColor, colorTheme);
-    }
+    position: relative
     
     .title {
         font-weight: 500
-        font-size: 15px
+        font-size: 14px
         //margin-top: -3px;
         max-height: 42px
         overflow: hidden;
         line-height: 19px
-
-        .typeIcon {
-            opacity: .4;
-            vertical-align: -4px;
-            margin-right: 6px;
-            margin-left: -2px;
-        }
     }
     p {
         font-size: 14px
@@ -193,10 +133,11 @@ elementInvert()
     }
 
     .tags {
-        z-index: 1;
-        position: relative;
+        z-index: 1
+        position: relative
 
         a {
+            color: var(--accentColor, colorTheme)
             margin-right: 6px;
 
             &:hover {
@@ -210,33 +151,6 @@ elementInvert()
         
         &:empty {
             display:none;
-        }
-    }
-    .tagsBaloons {
-        margin-top: -1px;
-        padding-left: 5px;
-        display: inline-block;
-        
-        span {
-            vertical-align: 1px;
-            display: inline-block;
-            width: 7px;height: 7px;
-            border-radius: 7px;
-            box-shadow: 0px 0px 0px 1px white;
-            margin-left:-4px;
-        }
-    }
-
-    .domain {
-        margin-bottom: -2px;
-
-        .domainFavIcon {
-            height: 15px;
-            display: inline-block;
-
-            img {
-                margin-top: -2px;
-            }
         }
     }
 
@@ -260,11 +174,7 @@ elementInvert()
                 margin:0;
             }
         }
-        
-        .typeMiniIcon {
-            margin-right:0;
-        }
-        
+
         .info-important {
             font-weight: 500
         }
@@ -280,7 +190,7 @@ elementInvert()
                 margin-top: -13px;
             }
             
-            img, .info-img-placeholder {
+            img {
                 width: 16px;
                 height: 16px;
                 border-radius: 2px;
@@ -296,10 +206,6 @@ elementInvert()
                 width: 16px;
                 margin-left: -3px;
             }
-        }
-        
-        .info-img-placeholder {
-            margin-right:0;
         }
 
         &.info-path .info-img {
@@ -323,19 +229,11 @@ elementInvert()
         }
     }
 
-    .about.dark {
-        transition: background .15s ease-in-out;
-        elementInvert()
-    }
-    
     .permalink {
         outline: none;
         position: absolute;
         left:0;right: 0;bottom:0;top:0;
     }
-    /*&:hover .permalink {
-        background: rgba(0,0,0,.04);
-    }*/
             
     .button {
         height: 36px;
@@ -355,29 +253,14 @@ elementInvert()
         }
     }
     
-    .rating {
-        margin-right: 10px;
-        padding-right: 10px;
-        box-shadow: 1px 0 0 rgba(0,0,0,.1);
-        .svgIcon {
-            color: colorBlue;
-            margin-right: 4px;
-        }
-    }
-    
     &.active:not([data-is-focus="true"]), &.checked:not([data-is-focus="true"]) {
         background: #EAEAEA !important;
     }
-
-    /*&[data-is-focus="true"]:not(.active):not(:active), &.active:not(:active) {
-        background: #EAEAEA;
-    }*/
 
     &.active, &.checked {
         background: #EAEAEA;
     }
     
-
     &.active {
         &[data-is-focus="true"] {
             //transition: background .1s ease-in-out;
@@ -407,19 +290,7 @@ elementInvert()
     }
 }
 
-html.mac.web {
-    .element {
-        .title {
-            font-size: 14.5px
-        }
-        p {
-            font-size: 13.5px
-        }
-    }
-}
-
 .select-mode .element {
-    //opacity: .7;
     .selectElement {
         opacity:1 !important;
     }
@@ -434,9 +305,7 @@ html.mac.web {
             opacity: 1;
         }
     }
-}
 
-html.web:not(.electron) .element {
     .actions {
         display: inline-flex;
         opacity: 0;
@@ -451,10 +320,6 @@ html.web:not(.electron) .element {
     }
 }
 
-#mainBody .element .actions a {
-    color: rgba(0,0,0,0.5);
-}
-
 html:not(.blur) #main {
     .element {
         &.active {
@@ -463,18 +328,6 @@ html:not(.blur) #main {
             }
         }
     }
-}
-
-.elements:active .element.active:not(:active) {
-    background: transparent !important;
-}
-
-.element .domain {
-    @extend .text-overflow;
-}
-
-html.electron .section {
-    -webkit-app-region: drag;
 }
 
 .section {
@@ -492,29 +345,9 @@ html.electron .section {
     }
 }
 
-html.retina.chrome {
-    .section {
-        box-shadow: inset 0px -0.5px 0px rgba(0,0,0,.15), inset 0px 0.5px 0px rgba(0,0,0,.15);
-    }
-    
-    .themeDark .section {
-        box-shadow: inset 0px -0.5px 0px rgba(255,255,255,.1);
-    }
-
-    .view-sort-sort {
-        box-shadow: 0px -0.5px 0px rgba(0,0,0,.15);
-    }
-    
-    .themeDark .view-sort-sort {
-        box-shadow: 0px -0.5px 0px rgba(255,255,255,.1);
-    }
-}
-
-
 .mode-reader .element .actions {
     display: none !important;
 }
-
 
 .loadMore {
     width: 100%;
@@ -538,35 +371,5 @@ html.retina.chrome {
             height: 28px;
             line-height: 28px;
         }
-    }
-}
-
-
-.themeDark {
-    .element {
-        elementInvert()
-    }
-    
-    .element {
-        .title {
-            color: rgba(255,255,255,.8);
-        }
-
-        &.active, &.checked {
-            background: lighten(darkBackground,10%) !important;
-        }
-        
-        .tags a, a.typeMiniIcon, .rating .svgIcon {
-            color: colorYellowForDark !important;
-        }
-        
-        .actions .button.default.active b {
-            background: colorYellowForDark !important;
-            box-shadow: none !important;
-        }
-    }
-    
-    .section {
-        box-shadow: inset 0px -17px 0px -16px rgba(255,255,255,.05);
     }
 }

@@ -15,7 +15,6 @@ import Import from './import'
 import Export from './export'
 import Duplicates from './duplicates'
 import Broken from './broken'
-import Tags from './tags'
 
 import Integrations from './integrations'
 import Apps from './apps'
@@ -38,7 +37,6 @@ export default ()=>{
 					<Route path={`${path}/export`} component={Export} />
 					<Route path={`${path}/duplicates`} component={Duplicates} />
 					<Route path={`${path}/libroken`} component={Broken} />
-					<Route path={`${path}/tags`} component={Tags} />
 
 					<Route path={`${path}/integrations`} component={Integrations} />
 					<Route path={`${path}/apps`} component={Apps} />

@@ -12,6 +12,8 @@ class SidebarProfile extends React.PureComponent {
         menu: false
     }
 
+    pin = React.createRef()
+
     onProfileClick = (e)=>{
         e.preventDefault()
         this.setState({menu: true})
@@ -26,12 +28,12 @@ class SidebarProfile extends React.PureComponent {
 
         return (
             <>
-                <a href='' className='button min' style={{flex:1}} onClick={this.onProfileClick}>
+                <a ref={this.pin} className='button min' style={{flex:1}} onClick={this.onProfileClick}>
                     <Avatar src={user.email_MD5} size='40' />
                     <span>{user.fullName}</span>
                 </a>
                 
-                {menu && <Contextmenu {...this.props} onMenuClose={this.onMenuClose} />}
+                {menu && <Contextmenu pin={this.pin} {...this.props} onMenuClose={this.onMenuClose} />}
             </>
         )
     }

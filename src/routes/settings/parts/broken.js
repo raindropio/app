@@ -1,6 +1,5 @@
 import React from 'react'
 import t from '~t'
-import Toasts from '~actions/toast'
 import UserStore from '~stores/user'
 
 export default class CommonBroken extends React.Component {
@@ -39,7 +38,7 @@ export default class CommonBroken extends React.Component {
 
     onChange = (broken_level)=>{
         UserStore.onUpdateConfig({ broken_level })
-        Toasts.show({text: t.s("importingInfo1")})
+        alert(t.s("importingInfo1"))
     }
 
     renderLevel = ({ id, title, description })=>(

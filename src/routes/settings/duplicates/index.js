@@ -7,7 +7,6 @@ import Empty from './empty'
 import Buy from './buy'
 
 import Pop from '~actions/pop'
-import Toast from '~actions/toast'
 import duplicatesActions from '~actions/duplicates'
 import duplicatesStore from '~stores/duplicates'
 import UserStore from '~stores/user'
@@ -30,11 +29,11 @@ class Duplicates extends React.Component {
 
 		duplicatesStore.onRemoveSelected()
 			.then(()=>{
-				Toast.show({title: t.s('bookmarksRemoved')});
+				alert(t.s('bookmarksRemoved'));
 				Pop.close();
 			})
 			.catch(()=>{
-				Toast.show({title: t.s('error'), status:'error'});
+				alert(t.s('error'))
 				Pop.close();
 			})
 	}

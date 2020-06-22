@@ -16,11 +16,6 @@ viewerSize(size)
     color: #ADADAD;
     box-shadow: inset 1px 0px 0px rgba(255,255,255,.05);
     
-    .fab {
-      background: lighten(darkBackground, 10%);
-      color: rgba(255,255,255,.8) !important;
-    }
-
     .readerContent {
       &::-webkit-scrollbar-thumb, ::-webkit-scrollbar-thumb {
         box-shadow: inset 0px 0px 0px 4px rgba(255,255,255,.3);
@@ -219,53 +214,6 @@ viewerSize(size)
         a {
           cursor: zoom-out;
         }
-      }
-    }
-  }
-}
-
-
-.previewContent {
-  &.next {
-    &.loading {
-      animation: translateToTopSlightly .15s ease-in-out;
-    }
-    
-    &.done {
-      animation: translateFromBottomSlightly .2s ease-in-out;
-    }
-  }
-
-  &.prev {
-    &.loading {
-      animation: translateToBottomSlightly .15s ease-in-out;
-    }
-    
-    &.done {
-      animation: translateFromTopSlightly .2s ease-in-out;
-    }
-  }
-}
-
-.mode-reader-modal {
-  .previewContent {
-    &.next {
-      &.loading {
-        animation: translateToRightSlightly .15s ease-in-out;
-      }
-      
-      &.done {
-        animation: translateFromLeftSlightly .2s ease-in-out;
-      }
-    }
-
-    &.prev {
-      &.loading {
-        animation: translateToLeftSlightly .15s ease-in-out;
-      }
-      
-      &.done {
-        animation: translateFromRightSlightly .2s ease-in-out;
       }
     }
   }

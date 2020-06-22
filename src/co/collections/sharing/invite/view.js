@@ -84,7 +84,7 @@ export default class CollectionSharingInviteView extends React.PureComponent {
 
                 <footer>
                     <a 
-                        className='button active pull-right'
+                        className='button active'
                         disabled={disabled}
                         onClick={this.onInviteClick}>
                         <b>{t.s('sendInvites')}</b>

@@ -10,17 +10,6 @@ export default class FiltersType extends React.Component {
         const { _id, count, active, canAppend } = this.props
         const { onClick, onContextMenu, onAppendClick } = this.props
 
-        let title = ''
-        switch (_id) {
-            case 'article':
-                title = t.s('readItLater')
-                break;
-        
-            default:
-                title = t.s(_id)
-                break;
-        }
-
         const showActions = canAppend && onAppendClick
 
         return (
@@ -31,7 +20,7 @@ export default class FiltersType extends React.Component {
 
                 <Icon name={_id} className='collectionIcon' />
 
-                <div className='title'>{title}</div>
+                <div className='title'>{t.s(_id)}</div>
 
                 <div className='space' />
 

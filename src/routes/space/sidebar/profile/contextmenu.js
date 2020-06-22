@@ -5,11 +5,12 @@ import Popover, { Menu, MenuItem, MenuSeparator } from '~co/overlay/popover'
 import Icon from '~co/common/icon'
 
 export default function SidebarProfileMenu({
+    pin,
     actions,
     onMenuClose
 }) {
     return (
-        <Popover onClose={onMenuClose}>
+        <Popover pin={pin} onClose={onMenuClose}>
             <Menu>
                 <MenuItem to='/settings'>
                     <Icon name='settings' />

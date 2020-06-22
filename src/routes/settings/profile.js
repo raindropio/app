@@ -6,7 +6,6 @@ import Api from '~api'
 
 import ResetAccount from './parts/reset'
 import UserStore from '~stores/user'
-import Toasts from '~actions/toast'
 
 import Main, { Header, Content } from '~co/screen/splitview/main'
 
@@ -58,11 +57,11 @@ class Profile extends React.Component {
 
     	Api.put("user", update, function(json) {
     		if (json.result){
-    			Toasts.show({text: t.s('saveSuccess')});
+    			alert(t.s('saveSuccess'))
     			window.location.reload();
     		}
     		else{
-    			Toasts.show({text: t.s('server'+json.error), status: "error"});
+    			alert(t.s('server'+json.error))
     			UserStore.reset();
     			UserStore.onLoad();
     		}
@@ -81,11 +80,11 @@ class Profile extends React.Component {
     	this.setState({loading:true});
     	Api.put("user", update, function(json) {
     		if (json.result){
-    			Toasts.show({text: t.s('saveSuccess')});
+    			alert(t.s('saveSuccess'))
     			window.location.reload();
     		}
     		else{
-    			Toasts.show({text: t.s('server'+json.error), status: "error"});
+    			alert(t.s('server'+json.error))
 	    		UserStore.reset();
 	    		UserStore.onLoad();
 	    	}

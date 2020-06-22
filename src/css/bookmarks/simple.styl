@@ -1,31 +1,12 @@
-@include "list.styl"
-
 simpleCoverSize = 16px
 
 .view-simple .element {
-	&:after {
-		left: simpleCoverSize + 32px
-	}
-	
 	.cover {
 		width: simpleCoverSize
 		height: simpleCoverSize
-	}
-	
-	.cover, .cover img {
-		display:block;
-	}
 
-	.cover {
-		background: transparent;
-		
-		&.cover-placeholder {
-			
-			
-            &:after {
-            	display:none;
-                background-size: 11px 7px !important;
-            }
-        }
+		&:not(.cover-placeholder) {
+			background: transparent
+		}
 	}
 }

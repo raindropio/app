@@ -45,7 +45,7 @@ class BookmarkEditFormCollection extends React.Component {
                     ref={this.linkRef}
                     href=''
                     tabIndex={tabIndex}
-                    className='selectBlank selectButton inline'
+                    className=' selectButton inline'
                     disabled={status=='loading'}
                     onClick={this.onPickerClick}>
                     <span className='fieldIcon'>

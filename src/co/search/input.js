@@ -56,7 +56,7 @@ export default class SearchView extends React.PureComponent {
     }
 
     renderButton = ({id, icon, iconSize='micro'})=>(
-        <a className='search-button button toolbar-button' href='' data-id={id} key={id} tabIndex='-1' onClick={this.onButtonClick}>
+        <a className='search-button button' href='' data-id={id} key={id} tabIndex='-1' onClick={this.onButtonClick}>
             <Icon name={icon} size={iconSize} />
         </a>
     )

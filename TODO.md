@@ -17,11 +17,13 @@ Bugs
     - in search results when change bookmark, `highlight` data lost
     - search as type sometime doesn't recognize last type
     - masonry keyboard navigation unordered
+    - accent color for collection space
 
 Not ready
 - electron
 - bookmark info about cache status, creatorRef
 - bookmark info important icon should be bright
+- pro banner
 
 Server
 - Replace all tags with space to _

@@ -3,7 +3,6 @@
 
 gridItemGap = 8px;
 gridItemPaddingHorizontal = 11px
-gridItemBorder = 3px;
 
 .view-grid {    
     gap: gridItemGap * 2
@@ -16,6 +15,14 @@ gridItemBorder = 3px;
     
     .element {
         margin: gridItemGap
+
+        .cover-wrap {
+            padding: 0
+        }
+
+        .cover {
+            position: static
+        }
     }
 }
 
@@ -32,7 +39,6 @@ gridItemBorder = 3px;
         display: flex;
         flex-direction: column;
         border-radius: 3px;
-        //box-shadow: 0px 1px 0px subSeparatorColor, 1px 0 0px subSeparatorColor, inset 1px 0 0px subSeparatorColor;
             
         .selectElement {
             left: 0;
@@ -41,20 +47,11 @@ gridItemBorder = 3px;
             
         .cover-wrap {
             background: white;
-            //background: lighten(sidebarBackground,2%);
             position: relative;
             overflow: hidden;
             border-top-left-radius: 2px; 
             border-top-right-radius: 2px;
             padding-top: 56.25%; //16x9 aspect-ratio
-            
-            /*&:before {
-                position: absolute;
-                left: 0;right:0;bottom:0;
-                height:1px;
-                box-shadow: inset 0px 1px 0px rgba(0,0,0,.1);
-                content: "";
-            }*/
         }
 
         .cover {
@@ -68,15 +65,6 @@ gridItemBorder = 3px;
             border-top-right-radius: 2px;
             border-bottom-left-radius: 0;
             border-bottom-right-radius: 0;
-           
-
-            &.cover-placeholder {
-                .full-size {
-                    display: block;
-                    font-size: 21px;
-                    font-weight: lighten;
-                }
-            }
         }
             
         .permalink {
@@ -85,18 +73,8 @@ gridItemBorder = 3px;
         }
 
         .about {
-            padding: 10px gridItemPaddingHorizontal;
-            flex: 1;
-            //box-shadow: 0px -1px 0px subSeparatorColorAlpha;
-
-            .info {
-                margin-top: 1px
-                
-            }
-            
-            .title {
-                margin-top: -3px
-            }
+            padding: 10px gridItemPaddingHorizontal
+            flex: 1
         }
 
         .actions {
@@ -104,44 +82,6 @@ gridItemBorder = 3px;
             position: absolute
             right: gridItemGap
             top: gridItemGap
-            
-            .action-small {
-                position: relative;
-
-                &:before {
-                    position: absolute;
-                    content: "";
-                    left:10%;right:10%;bottom:20%;top:20%;
-                    border-radius: 2px;
-                    background: white;
-                    z-index: -1;
-                    box-shadow: 0px 0px 0px 1px rgba(0,0,0,.1), 0px 1px 0px rgba(0,0,0,.16);
-                }
-            }
-        }
-
-        .titleDesc {
-            overflow: hidden;
-            height: 60px;
-        }
-        
-        .about.dark {
-            box-shadow: none;
-            /*position: absolute;
-            bottom:gridItemGap;right:gridItemGap;left:gridItemGap;*/
-            background: darkBackground;
-            
-            .info-important {
-                color: white;
-            }
-                
-            .info {
-                color: rgba(255,255,255,.6);
-            }
-            
-            .actions .button:not(.active) {
-                color: rgba(0,0,0,0.5);
-            }
         }
     }
 }
@@ -152,87 +92,4 @@ gridItemBorder = 3px;
             padding: 0
         }
     }
-}
-
-.main-gray-background, .mode-reader #markup:not(.themeDark) {
-    .view-grid, .view-masonry {
-        .element {
-            border-color: gridBackground;
-        }
-    }
-}
-
-html.retina.chrome {
-    .view-grid, .view-masonry {
-        .element {
-            &:not(.active) .permalink {
-                box-shadow: inset 0px 0px 0px 0.5px rgba(0,0,0,0.25), inset 0px -0.5px 0px rgba(0,0,0,.1);
-            }
-            
-            .cover-wrap:before {
-                box-shadow: inset 0px 0.5px 0px rgba(0,0,0,.13);
-            }
-        }
-    }
-}
-
-
-
-.view-masonry {
-    .element {
-        .cover-wrap {
-            padding: 0
-        }
-
-        .cover {
-            position: static
-        }
-    }
-}
-
-.themeDark {
-    .view-grid, .view-masonry {
-        .element {
-            border-color: darkBackground;
-            
-            .cover-wrap {
-                background: darken(darkBackground,10%);
-            }
-            
-            .permalink {
-                box-shadow: none !important;
-            }
-            
-            .about {
-                background: lighten(darkBackground, 5%);
-                
-                .actions .button {
-                    color: rgba(255,255,255,.5) !important;
-                    box-shadow: none;
-                    
-                    &:before {
-                        background: rgba(darkBackground,.9);
-                    }
-                }
-            }
-            
-            &.active {
-                background: var(--accentColor) !important;
-            }
-        }
-    }
-}
-
-.virtuoso-grid {
-    height: 100%
-}
-
-.virtuoso-grid-list {
-    display: grid
-	grid-template-columns: repeat(var(--virtuoso-columns, 2), 1fr)
-	grid-auto-rows: 300px
-}
-
-.virtuoso-grid-item {
-    overflow: hidden
 }

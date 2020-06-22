@@ -5,7 +5,6 @@ collectionPaddingVertical = 6px;
 groupHeight = 24px;
 
 collectionActive() {
-	//transition: background .1s ease-in-out;
     background: colorTheme;
     background: var(--accentColor);
     color: white;
@@ -13,43 +12,9 @@ collectionActive() {
     .collectionIcon.svgIcon, .count, .expand, .actions span {
     	opacity:1;
     }
-    
-    img.collectionIcon {
-    	//filter: url(#filter_border_white);
-    	//filter: drop-shadow(1px 0px 1px rgba(0,0,0,.05)) drop-shadow(0px 1px 1px rgba(0,0,0,.05)) drop-shadow(-1px 0px 1px rgba(0,0,0,.05));
-    }
-    
-    .collectionIcon.svgIcon {
-    	//transition-delay: .15s;
-    }
-    
-    &:after {
-        display: none;
-    }
-    
-    .domain, p, .tags a {
-        color: rgba(255,255,255,.7);
-    }
 
 	.status {
 		opacity:1 
-	}
-
-	&.found .title {
-		color: black !important;
-	}
-    
-    ::-webkit-input-placeholder {
-        color: rgba(255,255,255,.7);
-    }
-    :-moz-placeholder {
-	    color: rgba(255,255,255,.7);
-	}
-	::-moz-placeholder {
-	    color: rgba(255,255,255,.7);
-	}
-	:-ms-input-placeholder {
-	    color: rgba(255,255,255,.7);
 	}
 }
 
@@ -57,9 +22,9 @@ groupActive(){
     background: colorTheme;
     color: white;
 
-    input[type='text'],.toggle {
-    	color: inherit;
-    	opacity:1;
+    .toggle {
+    	color: inherit
+    	opacity: 1
     }
 }
 
@@ -79,10 +44,10 @@ img.collectionIcon {
 	position: relative;
 	padding: collectionPaddingVertical 0px;
 	padding-right: (sidebarRightGap - 8px);
-	//transition: background .01s linear, color .01s linear;
 	padding-left: calc(var(--level) * 21px);
 
 	.expand {		
+		visibility: hidden;
 		opacity: .4;
 		color: inherit;
 		position:relative;
@@ -101,20 +66,10 @@ img.collectionIcon {
 		}
 	}
 	
-	.expand {visibility: hidden;}
-	
 	.collectionIcon {
 		margin-right: 10px
 		&.svgIcon {
 			opacity: .5;
-			//transition: opacity .15s ease-in-out;
-		}
-		
-		&.accent {
-			&.svgIcon {
-				opacity: 1;
-				color: colorTheme;
-			}
 		}
 	}
 	
@@ -136,13 +91,6 @@ img.collectionIcon {
 		background: transparent;
 		appearance: none;
 		padding:0;margin:0;border:0;box-shadow:none;
-		
-		&:focus {
-			padding: 2px;
-			border-radius: 2px;
-			box-shadow: 0 0 0 2px rgba(colorTheme, .5);
-			animation: inputFocusAnimation .15s ease-in-out;
-		}
 	}
 
 	input[type='checkbox'] {
@@ -197,8 +145,6 @@ img.collectionIcon {
     	transform: rotate(-90deg);
     }
 
-    
-
     &:hover {
     	background-color: rgba(0,0,0,0.07);
     }
@@ -217,59 +163,11 @@ img.collectionIcon {
     	background-color: rgba(74,116,226,.1) !important;
     	box-shadow: inset 0px 0px 0px 2px rgba(74,116,226,.5);
     }
-    
-    &.no-focus {
-    	.title {
-    		opacity: .6;
-    	}
-    }
-    
-    &.placeholder {
-		&:before {
-			background: currentColor;
-			height: 2px;
-			margin: 10px 0px;
-			margin-left: 20px;
-			content: "";
-			opacity: .07;
-			width: 80%;
-		}
-		
-		&.small:before {
-			width: 30%;
-		}
-	}
 
-	&.found {
-		.title {
-			background: var(--foundbg, colorYellowLight);
-			box-shadow: 1px 0 0 2px var(--foundbg, colorYellowLight), -1px 0 0 2px var(--foundbg, colorYellowLight);
-			border-radius: 1px
-		}
-
-		&.found-active {
-			--foundbg: colorOrangeLight;
-		}
-	}
-}
-
-html:not(.clipper) .collection {
 	&.active:not([data-is-focus="true"]) {
     	background: rgba(0,0,0,0.08) !important;
     }
-}
 
-html.clipper .collection.active {
-	collectionActive()
-}
-
-html:not(.blur) .collection.active {
-    &[data-is-focus="true"] {
-        collectionActive()
-    }
-}
-
-html.web:not(.electron) .collection {
 	.expand, .actions span {
 		&:hover {
 			opacity:1;
@@ -290,8 +188,10 @@ html.web:not(.electron) .collection {
     }
 }
 
-div:active > section .collection.active:not(:active) {
-	background: transparent !important;
+html:not(.blur) .collection.active {
+    &[data-is-focus="true"] {
+        collectionActive()
+    }
 }
 
 section:first-child .group {
@@ -308,17 +208,6 @@ section:first-child .group {
 	display: flex;
 	align-items: center;
 	
-	&.placeholder {
-		&:before {
-			//background: currentColor;
-			height: 2px;
-			margin: 9px 0px;
-			width: 30%;
-			content: "";
-			opacity: .1;
-		}
-	}
-	
 	.title {
 		@extend .text-overflow;
 		flex: 1;
@@ -326,27 +215,6 @@ section:first-child .group {
 		height: groupHeight
 		line-height: groupHeight
 		padding-right: 16px;
-	}
-	
-	form {
-		width: 100%;
-		flex: 1;
-		display:flex;
-	}
-	
-	input[type='text'] {
-		width: 100%;
-		display: block;
-		height: groupHeight
-		line-height: groupHeight
-		background: transparent;
-		box-shadow: none;border:0;
-		appearance: none;
-		margin:0;padding:0;
-		padding-bottom: 1px;
-		font-size: 13px
-		flex:1;
-		margin-right: 16px;
 	}
 
 	.toggle {
@@ -385,56 +253,6 @@ section:first-child .group {
 	}
 }
 
-
-html.mac.web {
-	.collection {
-		.title, input[type='text'] {
-			font-size: 13.5px
-		}
-	}
-	
-	.group, .group input[type='text'] {
-		font-size: 12.5px
-	}
-}
-
-
-.collectionPathWrap {
-	flex:1;
-	display: flex;
-	flex-direction: column;
-
-	.pathWrap {
-		flex:1;
-		overflow: hidden;
-		overflow-y: scroll;
-		overflow-y: overlay;
-		display: none;
-	}
-	
-	&[data-focus="true"] .pathWrap {
-		display: block;
-	}
-}
-
-.pathWrap {
-	padding: 1px 0;
-	margin: 0 16px;
-	margin-bottom: 16px;
-	border-radius: 2px;
-	box-shadow: 0px 0px 0px 1px rgba(0,0,0,.1);
-	background: sidebarBackground;
-	
-	.expand {
-		visibility: hidden !important;
-	}
-	
-	.collection.active {
-		color: white;
-		background: colorTheme !important;
-	}
-}
-
 .picker-search-input {
 	padding: 12px 16px
 	padding-top: 0
@@ -468,23 +286,5 @@ html.mac.web {
 		display: flex
 		align-items: center
 		padding: 0 4px
-	}
-}
-
-html:not(.blur) .collection-new-form {
-	collectionActive()
-	
-	.collectionIcon {
-		opacity: 1 !important;
-	}
-	
-	::-webkit-input-placeholder {
-		color: rgba(255,255,255,.6)
-	}
-}
-
-.theme-sidebar-dark {
-	.collection.found .title {
-		color: black
 	}
 }

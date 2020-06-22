@@ -34,49 +34,14 @@
         }
     }
 
-    .readerContentHeaderPlaceholder {
-        height: 48px
-        display: none;
-    }
-
-    .fab-fonts {
-        opacity:0;
-        pointer-events:none;
-        transition: opacity .2s ease-in-out;
-    }
-
     &[data-tab="preview"] {
         > header, > footer {
             position: absolute;
             transition: opacity .15s ease-in-out, transform .15s ease-in-out;
         }
         
-        .readerContentHeaderPlaceholder {
-            display:block;
-        }
-        
         .readerContent {
             padding-bottom: 34px;
-        }
-    }
-
-    &[data-tab="preview"].scrolled {
-        > header, > footer {
-            opacity: 0;
-            
-            &:hover {
-                opacity:.95;
-                transform: translateY(0);
-            }
-        }
-
-        > header {
-            transform: translateY(-10px);
-            box-shadow: 0px 1px 0px separatorColor, inset 1px 0px 0px separatorColor;
-        }
-        
-        > footer {
-            transform: translateY(10px);
         }
     }
 }
@@ -168,33 +133,9 @@ html.retina.chrome {
 }
 
 
-#reader footer.readMore {
-    //height: 34px;
-    background: inherit;
-    bottom: 0;
-    width: 100%;right:0;left:0;
-    box-shadow: 0px -1px 0px separatorColor, inset 1px 0px 0px separatorColor;
-    
-    .center {
-            justify-content: center;
-    }
-}
-html.retina.chrome #reader footer.readMore {
-    box-shadow: 0px -1px 0px separatorColor, inset 0.5px 0px 0px separatorColor;
-}
-
-
 .mode-reader #reader {
     left: (sidebarWidth + mainCollapsedWidth);
     left: calc(var(--sidebarWidth, sidebarWidth) + var(--mainCollapsedWidth,mainCollapsedWidth));
-    
-    //right: 0;
-    //opacity: 1;
-
-    .fab-fonts {
-        opacity:1;
-        pointer-events:auto;
-    }
 }
 
 .mode-force-sidebar #sidebar {

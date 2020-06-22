@@ -3,12 +3,10 @@
 @require "icons.styl";
 @require "buttons.styl";
 @require "forms.styl";
-@require "checkbox.styl";
 
 @require "preloader.styl";
 @require "slider.styl";
 @require "tabs.styl";
-@require "toast.styl";
 @require "search.styl";
 
 @require "account.styl";
@@ -18,7 +16,6 @@
 @require "pop/*";
 @require "reader/*";
 @require "parts/*";
-@require "clipper.styl";
 @require "modal.styl";
 
 @require "apps.styl"
@@ -175,7 +172,7 @@ input, textarea {
     }
 }
 
-.status-init, .status-loading {
+.status-loading {
     cursor: progress;
 }
 
@@ -184,8 +181,4 @@ input, textarea {
 }
 .invisible {
   visibility: hidden !important;
-}
-
-.pull-right {
-    float:right;
 }

@@ -60,7 +60,6 @@ class SettingsSidebar extends React.Component {
         
                         {this.renderItem('duplicates', t.s('duplicates'), 'duplicates')}
                         {this.renderItem('libroken', t.s('broken'), 'broken')}
-                        {this.renderItem('tags', t.s('tags'), 'tag')}
                     </section>
         
                     <section>

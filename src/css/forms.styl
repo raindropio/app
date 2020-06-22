@@ -11,22 +11,9 @@ superFormGap = 16px;
 		flex: 1;
 	}
 	
-	.fieldsGroupColumn {
-		display: flex;
-		flex-direction: row;
-		flex: 1;
-	}
-	
 	.space {
 		flex: 1;
 		overflow: hidden;
-	}
-	
-	.fieldSpace {
-		flex: 1;
-		overflow: hidden;
-		display: flex;
-		flex-direction: column;
 	}
 
 	.fieldWrap:not(.no-border), .fieldLink {
@@ -46,11 +33,6 @@ superFormGap = 16px;
 	.fieldWrap {
 		position: relative;
 		margin-top: superFormGap / 2
-		
-		.fieldTypeIcon {
-			position: absolute;
-			left:-6px;top:20px;
-		}
 		
 		&:first-child {
 			margin-top: 0;
@@ -155,47 +137,6 @@ superFormGap = 16px;
 			padding-left: superFormGap;
 		}
 	}
-	
-	.submitButton {
-		padding-left: (superFormGap - 10px);
-		text-align: center;
-		margin-top: (superFormGap / 2);
-		flex: 1;
-		
-		.button {
-			display: block;
-			padding-right: 1px;
-			
-			b {
-				padding: 8px 8px;
-				
-				.svgIcon {
-					margin: -5px
-				}
-			}
-		}
-	}
-}
-
-.selectBlank {
-	position: relative;
-	overflow: hidden;
-	
-	select {
-		opacity:0;
-		position: absolute;
-		left:0;top:0;right:0;bottom:0;
-		width:100%;height:100%;
-		z-index:1;
-		cursor: pointer;
-		appearance: none;
-		font-size: 13px;
-		color: black;
-	}
-}
-
-html.electron .selectBlank select {
-	cursor: default;
 }
 
 .selectButton {
@@ -266,109 +207,6 @@ html.electron .selectBlank select {
 	}
 }
 
-.themeDark {
-	#sidebar, #panel, #main, #reader, .pop-body {
-		.fieldWrap:not(.no-border), .fieldLink {
-			&:after {
-				box-shadow: 0px 1px 0px rgba(255,255,255,.1);
-			}
-		}
-		.fieldName .title {
-			color: white;
-		}
-		.selectButton {
-			background: rgba(255,255,255,.06);
-			box-shadow: 0px 0px 0px 1px rgba(255,255,255,.1);
-		}
-		
-		.superForm {
-			figure, section {
-				&:after {
-					box-shadow: 0px 1px 0px rgba(255,255,255,.1);
-				}
-			}
-		}
-	}
-}
-
-html.retina.chrome {
-	.superForm {
-		figure, section {
-			&:after {
-				box-shadow: 0px 0.5px 0px rgba(0,0,0,.12);
-			}
-		}
-	}
-	.selectButton {
-		box-shadow: 0px 0px 0px 0.5px rgba(0,0,0,.2), 0px 0.5px 0px rgba(0,0,0,.2);
-	}
-	
-	.themeDark {
-		#sidebar, #panel, #main {
-			.superForm {
-				figure, section {
-					&:after {
-						box-shadow: 0px 0.5px 0px rgba(255,255,255,.1);
-					}
-				}
-			}
-		
-			.selectButton {
-				box-shadow: 0px 0px 0px 0.5px rgba(255,255,255,.2);
-			}
-		}
-	}
-}
-
-
-
-
-.primaryInput {
-	font-size: 17px;
-	line-height: 22px;
-	display: block;
-	outline: none;
-	appearance: none;
-	margin: 0;
-	padding: 3px 0px;
-	background: transparent;
-	box-shadow: none;
-	border: 0;
-	width: 100%;
-}
-
-tableFormRowGap = 6px;
-
-.tableForm {
-	display: table;
-	margin: (tableFormRowGap * -1) auto;
-	padding: 0 tableFormRowGap;
-	
-	.row {
-		display: table-row;
-		
-		.cell {
-			display: table-cell;
-			vertical-align: top;
-		}
-		
-		label.cell {
-			text-align: right;
-			font-size: 13px;
-			opacity: .6;
-			padding-right: 12px;
-			padding-top: tableFormRowGap;
-		}
-	}
-
-	.button.min {
-		display: flex;
-		padding: tableFormRowGap;
-		margin-left: (tableFormRowGap * -1);
-	}
-}
-
-
 
 .extra-checkbox {
   width: 36px
@@ -406,19 +244,4 @@ tableFormRowGap = 6px;
   &:active:before {
   	transform: scale(1.2,1);
   }
-}
-
-.themeDark {
-	.extra-checkbox {
-		background: rgba(255,255,255,.3);
-		box-shadow: none;
-		
-		&.active {
-			background: colorYellowForDark;
-
-			&:before {
-				background: rgba(0,0,0,.4);
-			}
-		}
-	}
 }

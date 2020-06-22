@@ -64,7 +64,7 @@ class Common extends React.Component {
         	<figure className="fieldWrap">
 				<label className="fieldName">{t.s("language")}</label>
 				
-				<label className="selectBlank selectButton inline no-icon">
+				<label className="selectButton inline no-icon">
 					<span className="caption">{supportedLangs[t.currentLang]}</span>
 					<Icon className="fieldIcon arrow" name="arrow" />
 

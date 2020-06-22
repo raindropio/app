@@ -176,12 +176,6 @@ html.electron {
             background: inherit;
             transition: transform .2s ease-in-out, opacity .2s ease-in-out;
             transition-delay: .3s;
-            
-            &.slide-out:not(:hover):not(.batchActions) {
-                transform: translateY(10px);
-                opacity: 0;
-                transition-delay: 0;
-            }
         }
 
         &.no-border {
@@ -259,7 +253,6 @@ html.retina.chrome {
         overflow-y: auto;
         overflow-y: overlay;
         -webkit-overflow-scrolling: touch;
-        //animation: fadeAppear .2s ease-in-out;
 
         .centerContentBlock {
             padding: 20px;
