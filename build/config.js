@@ -150,7 +150,7 @@ module.exports = {
 
 			{
 				test: /\.(styl|css)$/,
-				exclude: /\.module\.css$/,
+				exclude: /\.module\.(styl|css)$/,
 				sideEffects: true,
 				use: [
 					...(isProd ? [{
@@ -166,8 +166,8 @@ module.exports = {
 			},
 
 			{
-				test: /\.(css)$/,
-				include: /\.module\.css$/,
+				test: /\.(styl|css)$/,
+				include: /\.module\.(styl|css)$/,
 				sideEffects: true,
 				use: [
 					...(isProd ? [{
@@ -182,7 +182,8 @@ module.exports = {
 						options: {
 							modules: true,
 						}
-					}
+					},
+					'stylus-loader'
 				]
 			},
 

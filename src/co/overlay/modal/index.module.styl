@@ -1,5 +1,3 @@
-@require "./consts.styl"
-
 .modal {
     position: fixed
     z-index: 888
@@ -13,7 +11,7 @@
     justify-content: center
 }
 
-.modal-body {
+.body {
     background: white
     max-width: 90%  
     max-height: 90%
@@ -26,35 +24,5 @@
     &[data-stretch] {
         width: max(50%, 500px)
         height: 90%
-    }
-}
-
-.modal header {
-    display: flex
-    align-items: center
-    min-height: 48px
-    padding: 0 16px
-
-    .title {
-        padding-right: 16px
-        flex: 1
-        font-weight: 500
-        font-size: 16px
-        @extend .text-overflow;
-    }
-
-    .modal-close {
-        margin-right: -16px
-    }
-}
-
-.modal-content {
-    flex: 1
-    overflow-y: overlay
-    position: relative
-
-    &[data-indent] {
-        padding: 16px
-        padding-top: 0
     }
 }

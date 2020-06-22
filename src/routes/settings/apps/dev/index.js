@@ -1,3 +1,4 @@
+import s from './index.module.styl'
 import React from 'react'
 import t from '~t'
 import AppsStore from '~stores/apps'
@@ -33,10 +34,10 @@ class Dev extends React.Component {
 						<Clients {...this.state} />
 					</Lazy>
 
-					<div className="clients-dev-intro">
+					<div className={s.intro}>
 						Want to develop an application using the &nbsp;<a href="https://developer.raindrop.io" target="_blank"><Icon name='document' size='micro' /> Raindrop.io API</a>?
 						
-						<div className="dev-add">
+						<div className={s.add}>
 							<a href="#/settings/apps/dev/add" className="button blue standart">
 								<Icon name='add' size='micro' />&nbsp;
 								Register a new application

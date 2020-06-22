@@ -36,7 +36,7 @@ export default class CollectionsSelectMode extends React.Component {
                 { working ? (
                     <div className='collections-select-mode-header'>
                         <div className='title'>{t.s(working)} {ids.length} {t.s('collectionsCount')}...</div>
-                        <Preloader className='size-small' />
+                        <Preloader data-size='small' />
                     </div>
                 ) : (
                     <>

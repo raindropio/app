@@ -1,3 +1,4 @@
+import styles from './view.module.styl'
 import React from 'react'
 import t from '~t'
 
@@ -89,7 +90,7 @@ export default class BookmarksEmptyView extends React.PureComponent {
         }
 
         return (
-            <div className='elements-empty'>
+            <div className={styles.empty}>
                 {content}
             </div>
         )

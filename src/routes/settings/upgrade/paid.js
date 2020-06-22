@@ -1,3 +1,4 @@
+import s from './paid.module.styl'
 import React from 'react'
 import t from '~t'
 import Icon from '~icon'
@@ -64,7 +65,7 @@ export default class UpgradePaid extends React.Component {
         
         return (
             <span>
-                <span className='pro-separator'></span>
+                <span className={s.separator}></span>
                 {t.s('price')} <b>{this.state.price.beautiful} / {this.getPeriod(true)}</b>
             </span>
         )
@@ -75,13 +76,13 @@ export default class UpgradePaid extends React.Component {
         if (this.state.plan=='legacy')
             return (
                 <div>
-                    <div className='pro-alert warning'>
+                    <div className={s.alert + ' ' + s.warning}>
                         You will not be charged automatically when your current subscription is expired. 
                         To avoid any interruptions <a href={config.links.pro['help-legacy-subscription']} target='_blank'>read this post</a>
                     </div>
 
-                    <div className='pro-buttons'>
-                        <a className='button default' href={config.links.pro.buy} target='_blank'><b>
+                    <div className={s.buttons}>
+                        <a className={s.button+' button default'} href={config.links.pro.buy} target='_blank'><b>
                             <Icon name='progress' size='micro' className='svgIcon-size-20' />
                             {t.s('renewPro')}
                         </b></a>
@@ -94,7 +95,7 @@ export default class UpgradePaid extends React.Component {
         switch(this.state.status) {
             case 'canceled':
                 alert = (
-                    <div className='pro-alert notice'>
+                    <div className={s.alert + ' ' + s.notice}>
                         Your subscription has been canceled, but is active through {humanDate(this.state.stopAt)}.<br />
                         You'll still be able to take advantage of PRO plan through this date,
                         but you will not be charged a subscription fee moving forward.
@@ -104,7 +105,7 @@ export default class UpgradePaid extends React.Component {
 
             case 'payment_failed':
                 alert = (
-                    <div className='pro-alert error'>
+                    <div className={s.alert + ' ' + s.error}>
                         We attempted to charge the card you have on file but were unable to do so.<br/>
                         We will automatically attempt to charge your card again within 24-48 hours.
                     </div>
@@ -116,13 +117,13 @@ export default class UpgradePaid extends React.Component {
             <div>
                 {alert}
 
-                <div className='pro-buttons'>
-                    <a className='button default' href={this.state.links.manage} target='_blank'><b>
+                <div className={s.buttons}>
+                    <a className={s.button+' button default'} href={this.state.links.manage} target='_blank'><b>
                         <Icon name='note' size='micro' className='svgIcon-size-20' />
                         {t.s('manage')} {t.s('subscription').toLowerCase()}
                     </b></a>
 
-                    <a className='button default' href={config.links.pro['help-change-billing-cycle']} target='_blank'><b>
+                    <a className={s.button+' button default'} href={config.links.pro['help-change-billing-cycle']} target='_blank'><b>
                         <Icon name='calendar' size='micro' className='svgIcon-size-20' />
                         {t.s('change')} {t.s('billingCycle').toLowerCase()}
                     </b></a>
@@ -136,22 +137,22 @@ export default class UpgradePaid extends React.Component {
             return <Loading />
 
         return (
-            <div className='centerContentWrap pro-paid'>
+            <div className={'centerContentWrap '+s.paid}>
                 <div className='centerContent'>
                     <div className='centerContentBlock'>
-                        <Icon name='diamond_active' className={'svgIcon-size-48 pro-icon-status pro-icon-status-'+this.state.status} />
-                        <h1 className='extraHeadLabel'>{t.s('subscription')} {this.getStatus()}</h1>
+                        <Icon name='diamond_active' className={`svgIcon-size-48 ${s.status} ${s.status}-${this.state.status}`} />
+                        <h1 className={s.head}>{t.s('subscription')} {this.getStatus()}</h1>
 
-                        <p className='subHeadLabel pro-period'>
+                        <p className={s.subhead+' '+s.period}>
                             {this.renderPeriod()}
                             {this.renderPrice()}
                         </p>
 
-                        <div className='pro-body'>
+                        <div className={s.body}>
                             {this.renderBody()}
                         </div>
 
-                        <div className='pro-links'>
+                        <div className={s.links}>
                             {this.state.links.payments && <a href={this.state.links.payments} target='_blank'>Invoices</a>}
                             <a href={config.links.pro.compare} target='_blank'>{t.s('all')} {t.s('features').toLowerCase()}</a>
                             <a href={config.links.pro.buy} target='_blank'>{t.s('comparePlans')}</a>

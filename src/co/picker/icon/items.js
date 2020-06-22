@@ -1,3 +1,4 @@
+import s from './items.module.styl'
 import React from 'react'
 
 export default class CollectionPickerIconItems extends React.Component {
@@ -8,19 +9,19 @@ export default class CollectionPickerIconItems extends React.Component {
     }
 
     renderTemplate = ({ title, icons }, index)=>(
-        <div className='nc-template' key={index}>
-            <div className='nc-section'>
+        <div className={s.template} key={index}>
+            <div className={s.section}>
                 {title}
             </div>
 
-            <div className='nc-icons'>
+            <div className={s.icons}>
                 {icons.map(this.renderIcon)}
             </div>
         </div>
     )
 
     renderIcon = ({png}, index)=>(
-        <a key={index} className='nc-icon' href='' data-link={png} onClick={this.onIconClick}>
+        <a key={index} className={s.icon} href='' data-link={png} onClick={this.onIconClick}>
             <img src={png} loading='lazy' width='24' height='24' />
         </a>
     )

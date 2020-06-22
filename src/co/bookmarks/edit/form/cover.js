@@ -1,3 +1,4 @@
+import styles from './cover.module.styl'
 import React from 'react'
 import { connect } from 'react-redux'
 import { oneCoverUpload } from '~data/actions/bookmarks'
@@ -53,14 +54,14 @@ class BookmarkEditFormCover extends React.Component {
             <div>
                 <a 
                     href=''
-                    className='edit-cover'
+                    className={styles.cover}
                     onClick={this.onModalOpen}>
                     <Cover 
                         cover={cover}
                         link={link}
                         view='list' />
 
-                    <span className='edit-cover-more'>
+                    <span className={styles.more}>
                         <Icon name='arrow' />
                     </span>
                 </a>

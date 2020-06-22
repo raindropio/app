@@ -1,0 +1,35 @@
+.item {
+    display: flex;
+    align-items: center;
+    color: black;
+    padding: 2px 16px;
+    font-size: 14px;
+    cursor: default;
+    
+    * {
+        pointer-events: none;
+    }
+    
+    .content {
+        flex: 1
+        display: grid
+        grid-auto-flow: column
+        grid-gap: 8px
+        align-items: center
+        justify-content: start
+    }
+
+    .checkedIcon {
+        margin-left: 16px
+    }
+    
+    &:hover:not(:active), &.active {
+        background: var(--accentColor)
+        color: white
+    }
+
+    &[disabled] {
+        pointer-events: none
+        opacity: .4
+    }
+}

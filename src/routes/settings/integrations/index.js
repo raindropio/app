@@ -1,3 +1,4 @@
+import s from './index.module.styl'
 import React from 'react'
 import t from '~t'
 import UserStore from '~stores/user'
@@ -45,7 +46,7 @@ class Integrations extends React.Component {
 				<Header title={t.s('integrations')} />
 
 				<Content>
-					<div className='blocks-container'>
+					<div className={s.blocks}>
 						<Link title='IFTTT' subtitle='Connect to 600 apps, RSS and Email' icon='ifttt' color='' href='https://ifttt.com/raindrop' />
 						<Link title='Zapier' subtitle='Connect to 2,000 business apps' icon='zapier' color='#FF4A00' href='https://zapier.com/apps/raindropio' />
 

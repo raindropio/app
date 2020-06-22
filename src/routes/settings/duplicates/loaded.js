@@ -111,7 +111,7 @@ export default class Loaded extends React.PureComponent {
 
 				<Footer className={!more ? 'hidden' : ''}>
 					<div className='title center' style={{opacity:0.6}}>
-						{httpActivity ? <Preloader className='size-small' /> : 'Scroll down to load more...' }
+						{httpActivity ? <Preloader data-size='small' /> : 'Scroll down to load more...' }
 					</div>
 				</Footer>
 			</Main>

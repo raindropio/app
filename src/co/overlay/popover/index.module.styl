@@ -1,8 +1,6 @@
-@require "../consts.styl"
-
 popShadow = 0px 0px 0px 1px rgba(0,0,0,0.15), 0px 20px 50px 0px rgba(0,0,0,0.15)
 
-.pop-body {
+.body {
 	z-index: 999;
 	background: rgb(250,250,250)
 	box-shadow: popShadow;
@@ -14,10 +12,8 @@ popShadow = 0px 0px 0px 1px rgba(0,0,0,0.15), 0px 20px 50px 0px rgba(0,0,0,0.15)
 }
 
 @supports (backdrop-filter: none) {
-	.pop-body {
+	.body {
 		background: rgba(250,250,250,.85)
 		backdrop-filter: blur(10px)
 	}
 }
-
-@require "old.styl"

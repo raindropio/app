@@ -1,3 +1,4 @@
+import s from './index.module.styl'
 import React from 'react'
 import t from '~t'
 import getThumbUri from '~data/modules/format/thumb'
@@ -52,7 +53,7 @@ export default class PickerImage extends React.Component {
         <a 
             key={link}
             href=''
-            className='item'
+            className={s.item}
             onClick={(e)=>{ e.preventDefault(); this.handlers.onLink(link) }}>
             <img 
                 src={`${getThumbUri(link)}&mode=crop&width=128&height=96&dpr=${window.devicePixelRatio||1}`}
@@ -64,17 +65,17 @@ export default class PickerImage extends React.Component {
         const screenshotExists = items.some(({screenshot})=>screenshot)
 
         return (
-            <Modal className='image-picker' onClose={onClose}>
+            <Modal onClose={onClose}>
                 <Header title={t.s('cover')} />
 
                 <Content data-indent>
-                    <div className='items'>
+                    <div className={s.items}>
                         {items.map(this.renderItem)}
 
                         {!screenshotExists ? (
                             <a 
                                 href=''
-                                className='item'
+                                className={s.item}
                                 title={t.s('clickToMakeScreenshot')}
                                 onClick={this.onScreenshotClick}>
                                 <Icon name='web' />
@@ -83,7 +84,7 @@ export default class PickerImage extends React.Component {
 
                         <a 
                             ref={this.pinAdd}
-                            className='item'
+                            className={s.item}
                             title={t.s('coverUpload')}
                             onClick={this.onAddClick}>
                             <Icon name='add' />

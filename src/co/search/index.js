@@ -1,3 +1,4 @@
+import s from './index.module.styl'
 import React from 'react'
 import _ from 'lodash'
 import Input from './input'
@@ -40,7 +41,7 @@ export default class Search extends React.Component {
 
     render() {
         return (
-            <div className='search'>
+            <div className={s.search}>
                 <Input 
                     {...this.props}
                     {...this.state}

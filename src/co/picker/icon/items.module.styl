@@ -1,0 +1,34 @@
+.template {
+    margin-top: 14px
+}
+
+.section {
+    padding: 0 16px
+    font-size: 14px
+    opacity: .5
+}
+
+.icons {
+    display: grid
+    grid-template-columns: repeat(10, 1fr)
+    grid-column-gap: 4px
+    grid-row-gap: 4px
+    padding: 16px
+
+    .icon {
+        text-align: center
+        padding: 4px
+        border-radius: 3px
+        transition: opacity .1s ease-in-out, background .1s ease-in-out;
+
+        img {
+            pointer-events: none
+            object-fit: contain
+        }
+
+        &:hover {
+            opacity: .9
+            background: rgba(0,0,0,.1)
+        }
+    }
+}

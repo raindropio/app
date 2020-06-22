@@ -1,3 +1,4 @@
+import s from './item.module.styl'
 import React from 'react'
 import { Link } from 'react-router-dom'
 import Icon from '~co/common/icon'
@@ -22,17 +23,16 @@ export class MenuItem extends React.Component {
         return (
             <Component 
                 {...etc}
-                className='contextMenuItem'
+                className={s.item}
                 onClick={this.onClick}>
-                <span className='itemContent'>
+                <span className={s.content}>
                     {children}
                 </span>
-                
 
                 {checked ? (
                     <Icon 
                         name='check_active'
-                        className='itemCheckedIcon' />
+                        className={s.checkedIcon} />
                 ) : null}
             </Component>
         )

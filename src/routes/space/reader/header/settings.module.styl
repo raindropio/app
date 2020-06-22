@@ -1,10 +1,4 @@
-@require "../consts.styl"
-
-.popBodyPreview {
-
-}
-
-.popBodyPreviewSwitch {
+.switch {
 	display: flex;
 	padding: 5px;
 	
@@ -37,11 +31,11 @@
 		}
 		
 		&.sunset {
-			background: sunsetBackground;
+            background: #f8f2e3;
 		}
 
 		&.dark {
-			background: darkBackground;
+			background: darken(#383838,15%);
 		}
 
 		&.active {
@@ -51,7 +45,7 @@
 	}
 }
 
-.popBodyPreviewFont {
+.font {
 	a {
 		display: block;
 		text-align: center;
@@ -69,8 +63,7 @@
 		}
 		
 		&.active {
-			background: colorTheme;
-			background: var(--accentColor, colorTheme);
+			background: var(--accentColor);
 			color: white;
 		}
 

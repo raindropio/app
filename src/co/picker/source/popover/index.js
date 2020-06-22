@@ -1,3 +1,4 @@
+import styles from './index.module.styl'
 import React from 'react'
 import Popover from '~co/overlay/popover'
 
@@ -23,7 +24,7 @@ class PickerSourcePopover extends React.Component {
                 <DropModule onDropFiles={this.props.onDropFiles}>
                     {({ isDropping, dropHandlers })=>
                         <div 
-                            className={`superForm form-link-or-file ${isDropping && 'is-dropping'}`}
+                            className={`superForm ${styles.form} ${isDropping && styles.isDropping}`}
                             {...dropHandlers}>
                             <div className='fieldsGroup'>
                                 <Link 

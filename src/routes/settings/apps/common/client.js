@@ -1,3 +1,4 @@
+import s from './client.module.styl'
 import React from 'react'
 import t from '~t'
 import AppsActions from '~actions/apps'
@@ -16,27 +17,27 @@ export default class Client extends React.PureComponent {
         const { _id, name, description, icon, site, secret } = this.props
         
         return (
-            <div className="client">
-                <div className="client-icon">
+            <div className={s.client}>
+                <div className={s.icon}>
                     {icon ? <img src={icon} /> : <span /> }
                 </div>
     
-                <div className="about">
-                    <a href={site} target="_blank" className="name">
+                <div className={s.about}>
+                    <a href={site} target='_blank' className={s.name}>
                         {name}
                     </a>
     
-                    <div className="description">
+                    <div className={s.description}>
                         {description}
                     </div>
                 </div>
                 
-                <div className="actions">
-                    {secret && <a href={"#/settings/apps/dev/edit/"+_id} className="button active">
+                <div className={s.actions}>
+                    {secret && <a href={'#/settings/apps/dev/edit/'+_id} className='button active'>
                         <b>{t.s('edit')}</b>
                     </a>}
     
-                    <a href="" className="button default" onClick={this.onRevokeOrRemove}>
+                    <a href='' className='button default' onClick={this.onRevokeOrRemove}>
                         <b>{t.s('removeIt')}</b>
                     </a>
                 </div>

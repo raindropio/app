@@ -1,0 +1,24 @@
+.items {
+    width: 500px
+    max-width: 100%
+    display: grid
+    grid-template-columns: repeat(auto-fit, 128px)
+    grid-auto-rows: 1fr
+    grid-gap: 16px
+}
+
+.item {
+    display: flex
+    align-items: center
+    justify-content: center
+    border-radius: 3px
+    overflow: hidden
+    background: rgba(125, 128, 128, .12)
+    width: 128px
+    height: 96px
+
+    img {
+        display: block
+        max-width: 100%
+    }
+}

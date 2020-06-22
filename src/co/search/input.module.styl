@@ -1,14 +1,4 @@
-@require "consts.styl"
-
-.search {
-	flex: 1
-
-    .search-input {
-        max-width: 300px
-    }
-}
-
-.search-input {
+.input {
     background: rgba(0,0,0,.05)
     border-radius: 3px
 
@@ -36,7 +26,7 @@
     }
 }
 
-.search-input-icon {
+.icon {
     display: flex
     align-items: center
     justify-content: center
@@ -44,12 +34,12 @@
     height: searchHeight - 4px
     margin: 0 4px
 
-    .search-input-magnifier {
+    .magnifier {
         opacity: .5
     }
 }
 
-.search-button {
+.button {
     width: searchHeight
     height: searchHeight
     display: flex

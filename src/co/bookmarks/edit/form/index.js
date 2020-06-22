@@ -1,3 +1,4 @@
+import styles from './index.module.styl'
 import React from 'react'
 import t from '~t'
 
@@ -29,10 +30,10 @@ export default class BookmarkEditForm extends React.Component {
         const { autoFocus, status, unsaved, item: { title, excerpt, link } } = this.props
 
         return (
-            <div className='bookmarkEdit'>
+            <div className={styles.edit}>
                 <Cover {...this.props} />
 
-                <form className='edit-form superForm' onSubmit={this.onSubmitForm}>
+                <form className={styles.form+' superForm'} onSubmit={this.onSubmitForm}>
                     <div className='fieldWrap'>
                         <label className='fieldName'>{t.s('title')}</label>
 

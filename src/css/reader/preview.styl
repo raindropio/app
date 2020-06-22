@@ -1,6 +1,4 @@
 @require "../consts.styl";
-@require "../helpers.styl";
-@require "./cache.styl";
 
 viewerWidth = 512px;
 
@@ -264,6 +262,20 @@ viewerSize(size)
       &:hover {
         text-decoration: underline
       }
+    }
+  }
+
+  .domain {
+    margin-top: 2px;
+    color: gray;
+    font-size: 14px;
+    
+    b {
+        font-weight: normal;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        font-size: 10px;
+        font-weight: 500
     }
   }
   

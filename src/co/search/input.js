@@ -1,3 +1,4 @@
+import s from './input.module.styl'
 import React from 'react'
 import Icon from '~icon'
 import Preloader from '../common/preloader'
@@ -56,7 +57,7 @@ export default class SearchView extends React.PureComponent {
     }
 
     renderButton = ({id, icon, iconSize='micro'})=>(
-        <a className='search-button button' href='' data-id={id} key={id} tabIndex='-1' onClick={this.onButtonClick}>
+        <a className={s.button+' button'} href='' data-id={id} key={id} tabIndex='-1' onClick={this.onButtonClick}>
             <Icon name={icon} size={iconSize} />
         </a>
     )
@@ -70,15 +71,14 @@ export default class SearchView extends React.PureComponent {
         const { loading, ...original } = this.props
 
         return (
-            <div className='search-input' data-active={this.state.focus}>
+            <div className={s.input} data-active={this.state.focus}>
                 <form onSubmit={this.onSubmit}>
-                    <span className='search-input-icon'>
-                        {loading ? <Preloader className='size-small' /> : <Icon name='search' className='search-input-magnifier' />}
+                    <span className={s.icon}>
+                        {loading ? <Preloader data-size='small' /> : <Icon name='search' className={s.magnifier} />}
                     </span>
     
                     <input
                         ref={this._input}
-                        className='searchInput'
                         type='text'
                         spellCheck='false'
                         {...original}

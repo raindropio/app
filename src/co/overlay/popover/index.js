@@ -1,3 +1,4 @@
+import s from './index.module.styl'
 import React from 'react'
 import { Portal } from 'react-portal'
 import Context from './context'
@@ -112,7 +113,7 @@ export default class Popover extends React.Component {
                     <div
                         ref={this._container}
                         hidden={this.props.hidden}
-                        className='pop-body'>
+                        className={s.body}>
                         {this.props.children}
                     </div>
                 </Context.Provider>

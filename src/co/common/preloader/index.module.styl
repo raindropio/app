@@ -1,6 +1,4 @@
-@require "consts.styl";
-
-@keyframes preloaderDash{
+@keyframes dash{
 	0%{
 		stroke-dasharray: 1,200;
 		stroke-dashoffset: 0;
@@ -12,6 +10,12 @@
 	100%{
 		stroke-dasharray: 89,200;
 		stroke-dashoffset: -124px;
+	}
+}
+
+@keyframes rotate {
+	100%{
+		transform: rotate(360deg);
 	}
 }
 
@@ -28,7 +32,7 @@
 		padding-top: 100%;
 	}
 
-	.preloaderCircular {
+	.circular {
 		animation: rotate 1s linear infinite;
 		height: 100%;
 		transform-origin: center center;
@@ -38,24 +42,23 @@
 		margin: auto;
 	}
 
-	.preloaderPath {
+	.path {
 		stroke-dasharray: 1,200;
 		stroke-dashoffset: 0;
-		animation: preloaderDash 1.5s ease-in-out infinite;
+		animation: dash 1.5s ease-in-out infinite;
 			stroke-dasharray: 89,200;
 		stroke-dashoffset: -35px;
 		stroke-linecap: square;
 		stroke-width: 2px;
 		stroke-miterlimit: 10px;
-		stroke: colorTheme;
-		stroke: var(--accentColor, colorTheme);
+		stroke: var(--accentColor);
 		transition: stroke .2s ease-in-out;
 	}
 
 	&.size-icon {
 		width: 20px
 		
-		.preloaderPath {
+		.path {
 			stroke-width: 3px;
 		}
 	}
@@ -63,7 +66,7 @@
 	&.size-small {
 		width: 24px;
 		
-		.preloaderPath {
+		.path {
 			stroke-width: 3px;
 		}
 	}

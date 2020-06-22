@@ -1,3 +1,4 @@
+import s from './settings.module.styl'
 import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
@@ -39,24 +40,20 @@ class ReaderHeaderSettings extends React.Component {
 
                 {this.state.show && (
                     <Popover pin={this.pin} onClose={this.onSettingsClose}>
-                        <div className='popBodyPreview'>
-                            <div className='popBodyPreviewSwitch pop-block-shadow'>
-                                <a className={'auto '+(font_color==''?'active':'')} data-key='font_color' data-val='' onClick={this.onSettingChange}></a>
-                                <a className={'day '+(font_color=='day'?'active':'')} data-key='font_color' data-val='day' onClick={this.onSettingChange}></a>
-                                <a className={'sunset '+(font_color=='sunset'?'active':'')} data-key='font_color' data-val='sunset' onClick={this.onSettingChange}></a>
-                                <a className={'dark '+(font_color=='night'?'active':'')} data-key='font_color' data-val='night' onClick={this.onSettingChange}></a>
-                            </div>
-
-                            <div className='popBodyPreviewFont pop-block-shadow'>
-                                <a className={'default '+(font_family==''?'active':'')} data-key='font_family' data-val='' onClick={this.onSettingChange}>System font</a>
-                                <a className={'georgia '+(font_family=='georgia'?'active':'')} data-key='font_family' data-val='georgia' onClick={this.onSettingChange}>Georgia</a>
-                                <a className={'verdana '+(font_family=='verdana'?'active':'')} data-key='font_family' data-val='verdana' onClick={this.onSettingChange}>Verdana</a>
-                            </div>
-                            
-                            <div className='pop-block-shadow'>
-                                <Slider min='1' max='9' value={font_size} leftIcon='font_small' rightIcon='font_big' onChange={this.onFontSizeChange} />
-                            </div>
+                        <div className={s.switch}>
+                            <a className={s.auto+' '+(font_color==''?s.active:'')} data-key='font_color' data-val='' onClick={this.onSettingChange}></a>
+                            <a className={s.day+' '+(font_color=='day'?s.active:'')} data-key='font_color' data-val='day' onClick={this.onSettingChange}></a>
+                            <a className={s.sunset+' '+(font_color=='sunset'?s.active:'')} data-key='font_color' data-val='sunset' onClick={this.onSettingChange}></a>
+                            <a className={s.dark+' '+(font_color=='night'?s.active:'')} data-key='font_color' data-val='night' onClick={this.onSettingChange}></a>
                         </div>
+
+                        <div className={s.font}>
+                            <a className={s.default+' '+(font_family==''?s.active:'')} data-key='font_family' data-val='' onClick={this.onSettingChange}>System font</a>
+                            <a className={s.georgia+' '+(font_family=='georgia'?s.active:'')} data-key='font_family' data-val='georgia' onClick={this.onSettingChange}>Georgia</a>
+                            <a className={s.verdana+' '+(font_family=='verdana'?s.active:'')} data-key='font_family' data-val='verdana' onClick={this.onSettingChange}>Verdana</a>
+                        </div>
+                        
+                        <Slider min='1' max='9' value={font_size} leftIcon='font_small' rightIcon='font_big' onChange={this.onFontSizeChange} />
                     </Popover>
                 )}
             </>

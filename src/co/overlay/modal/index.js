@@ -1,3 +1,4 @@
+import s from './index.module.styl'
 import React from 'react'
 import { Portal } from 'react-portal'
 import Context from './context'
@@ -33,8 +34,8 @@ export default class Popover extends React.Component {
         return (
             <Portal>
                 <Context.Provider value={{ onClose, closable }}>
-                    <div className='modal'>
-                        <div className={'modal-body '+className} {...etc}>
+                    <div className={s.modal}>
+                        <div className={s.body+' '+className} {...etc}>
                             {children}
                         </div>
                     </div>

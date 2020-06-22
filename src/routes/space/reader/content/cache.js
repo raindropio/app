@@ -1,3 +1,4 @@
+import s from './cache.module.styl'
 import React from 'react'
 import t from '~t'
 import getCacheURL from '~data/modules/format/cache_url'
@@ -51,8 +52,8 @@ class ReaderHTML extends React.Component {
         } 
 
         return (
-            <div className='cache-status' data-status={cache}>
-                {icon && <Icon name={'cache_'+icon} className='cache-status-icon' />}
+            <div className={s.status} data-status={cache}>
+                {icon && <Icon name={'cache_'+icon} className={s.icon} />}
                 {text}
             </div>
         )

@@ -1,3 +1,4 @@
+import s from './edit.module.styl'
 import React from 'react'
 import t from '~t'
 import AppsStore from '~stores/apps'
@@ -66,7 +67,7 @@ export default class AppsDevEdit extends React.PureComponent {
         e.preventDefault()
         AppsStore.onRemoveClient(this.props.match.params.id, (success)=>{
             if (success)
-                window.location.hash = "#/settings/apps/dev"
+                window.location.hash = '#/settings/apps/dev'
         })
     }
         
@@ -74,14 +75,14 @@ export default class AppsDevEdit extends React.PureComponent {
         return (
             <>
 				<Header title={(<span>
-                    <a href="#/settings/apps/dev">{t.s('dev')}</a>
+                    <a href='#/settings/apps/dev'>{t.s('dev')}</a>
                     &nbsp;/&nbsp;
                     {this.state.client.name}
                 </span>)} />
 
 				<Content>
-                    <div className="client-edit-page">
-                        <div className="edit-form">
+                    <div className={s.page}>
+                        <div>
                             <h4>{t.s('edit')}</h4>
                         
                             {this.state.client._id ? (
@@ -92,38 +93,38 @@ export default class AppsDevEdit extends React.PureComponent {
                             ) : null}
 
                             <div style={{margin: '16px'}}>
-                                <a href="" className="button red standart" onClick={this.onRemove}>{t.s('remove')} this app</a>
+                                <a href='' className='button red standart' onClick={this.onRemove}>{t.s('remove')} this app</a>
                             </div>
                         </div>
 
-                        <div className="secrets">
+                        <div className={s.secrets}>
                             <h4>Credentials</h4>
-                            <div className="superForm">
-                                <figure className="fieldWrap">
-                                    <label className="fieldName">Client ID</label>
-                                    <div className="field" disabled>{this.state.client._id||'none'}</div>
+                            <div className='superForm'>
+                                <figure className='fieldWrap'>
+                                    <label className='fieldName'>Client ID</label>
+                                    <div className='field' disabled>{this.state.client._id||'none'}</div>
                                 </figure>
 
-                                <figure className="fieldWrap">
-                                    <label className="fieldName">Client Secret <a href="" onClick={this.onResetSecretClient}>Reset secret</a></label>
-                                    <div className="field" disabled>{this.state.client.secret}</div>
+                                <figure className='fieldWrap'>
+                                    <label className='fieldName'>Client Secret <a href='' onClick={this.onResetSecretClient}>Reset secret</a></label>
+                                    <div className='field' disabled>{this.state.client.secret}</div>
                                 </figure>
 
-                                <figure className="fieldWrap">
-                                    <label className="fieldName">
-                                        <b>Test token</b> {this.state.test_token && <a href="" onClick={this.onCreateTestToken}>Reset test token</a>}
+                                <figure className='fieldWrap'>
+                                    <label className='fieldName'>
+                                        <b>Test token</b> {this.state.test_token && <a href='' onClick={this.onCreateTestToken}>Reset test token</a>}
 
                                         <p>
                                             To get started quickly with your app development, you may create an access token to your own account without going through the authorization process. The generated token will have the full scope access.
                                         </p>
                                     </label>
 
-                                    {!this.state.test_token && <div className="field"><a href="" onClick={this.onCreateTestToken}>{t.s('create')}</a></div>}
-                                    <div className="field" disabled>{this.state.test_token}</div>
+                                    {!this.state.test_token && <div className='field'><a href='' onClick={this.onCreateTestToken}>{t.s('create')}</a></div>}
+                                    <div className='field' disabled>{this.state.test_token}</div>
                                 </figure>
 
-                                <figure className="fieldWrap" style={{padding: '7px'}}>
-                                    <a href="" className="button default" onClick={this.onRevokeAllTokens}><b>Revoke all user tokens</b></a>
+                                <figure className='fieldWrap' style={{padding: '7px'}}>
+                                    <a href='' className='button default' onClick={this.onRevokeAllTokens}><b>Revoke all user tokens</b></a>
                                 </figure>
                             </div>
                         </div>
