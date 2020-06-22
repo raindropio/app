@@ -1,118 +1,12 @@
-@require "normalize.styl";
 @require "consts.styl";
-@require "icons.styl";
 @require "buttons.styl";
 @require "forms.styl";
 
-@require "account.styl";
 @require "bookmarks/*";
 @require "collections/*";
 @require "columns/*";
 @require "pop/*";
 @require "reader/*";
-
-:root {
-    --accentColor: colorTheme;
-}
-
-html.scrollbar-obtrusive:not(.mobile) {
-    //firefox specific
-    scrollbar-color: rgba(0,0,0,.17) transparent;
-
-    ::-webkit-scrollbar {
-        width: 0;
-        height: scrollBarWidth
-        will-change: width;
-        background: transparent;
-        transition: width .2s ease-in-out;
-    }
-    ::-webkit-scrollbar * {
-        background: transparent;
-    }
-    :hover::-webkit-scrollbar, body::-webkit-scrollbar {
-        width: scrollBarWidth
-    }
-
-    ::-webkit-scrollbar-thumb {
-        //border-radius: scrollBarWidth;
-        border: 3px solid rgba(0,0,0,0);
-        border-radius: scrollBarWidth
-        box-shadow: inset 0px 0px 0px 7px rgba(0,0,0,.2);
-        transition: box-shadow .2s ease-in-out;
-    }
-    ::-webkit-scrollbar-thumb:hover {
-        box-shadow: inset 0px 0px 0px 7px rgba(0,0,0,.25);
-    }
-
-    ::-webkit-scrollbar-button{
-        width: 0;
-        height: 0;
-        display: none;
-    }
-}
-
-
-::selection {
-    background: colorTheme;
-    background: var(--accentColor, colorTheme);
-    color: white;
-}
-
-::-moz-selection {
-    background: colorTheme;
-    background: var(--accentColor, colorTheme);
-    color: white;
-}
-
-* {
-    box-sizing: border-box;
-}
-
-input, textarea, select, button {
-    color: inherit
-}
-
-figure {
-    margin:0;
-}
-
-progress::-webkit-progress-value {
-    transition: width .3s ease-in-out;
-}
-
-html {    
-    font-size: baseFontSize
-}
-
-body, input, textarea, select, button {
-    font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;
-}
-
-input, textarea, select, button {
-    font-size: 1rem
-}
-
-html, body, #react {
-    width: 100%
-    height: 100%
-    overflow: hidden
-}
-
-body {
-    margin:0
-}
-
-a {
-    color: colorLink
-    text-decoration: none
-}
-a:hover {
-    color: #157CE3
-}
-
-input, textarea {
-    outline:none
-}
 
 .headLabel, .extraHeadLabel {
     font-size: 18px
@@ -132,9 +26,6 @@ input, textarea {
     font-size: 17px
     color: rgba(0,0,0,.6);
 }
-.themeDark .mediumHeadLabel {
-    color: rgba(255,255,255,.6);
-}
 
 .subHeadLabel {
     font-size: 14px
@@ -143,29 +34,4 @@ input, textarea {
     color: #878787;
     max-width: 320px;
     margin:0 auto;
-    
-    .svgIcon {
-        vertical-align: middle;
-    }
-}
-
-.raindropLogo {
-    display: block;
-
-    svg {
-        width: 94px
-        height: 11px
-        opacity: .6;
-    }
-}
-
-.status-loading {
-    cursor: progress;
-}
-
-.hidden {
-  display: none !important;
-}
-.invisible {
-  visibility: hidden !important;
 }

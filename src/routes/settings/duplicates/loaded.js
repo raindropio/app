@@ -1,6 +1,6 @@
 import React from 'react'
 import t from '~t'
-import Icon from '~icon'
+import Icon from '~co/common/icon'
 import ListItem from '~co/bookmarks/item/listBlank'
 import DuplicateItem from './parts/duplicateItem'
 import Preloader from '~co/common/preloader'
@@ -86,7 +86,7 @@ export default class Loaded extends React.PureComponent {
 				<Header title={t.s('duplicates')}>
 					<div className='duplicates-toolbar'>
 						<a tabIndex='-1' className='button active select'>
-							<span>{t.s('select')}&nbsp;<Icon name='dropdown' size='micro' /></span>
+							<span>{t.s('select')}&nbsp;<Icon name='dropdown' data-size='micro' /></span>
 							
 							<select value={-1} onChange={(e)=>changeSelectionRule(e.target.options[e.target.selectedIndex].value)}>
 								<option value='-1' disabled>{t.s('select')+' '+t.s('duplicates').toLowerCase()}</option>
@@ -109,7 +109,7 @@ export default class Loaded extends React.PureComponent {
 					</div>
 				</Content>
 
-				<Footer className={!more ? 'hidden' : ''}>
+				<Footer hidden={!more}>
 					<div className='title center' style={{opacity:0.6}}>
 						{httpActivity ? <Preloader data-size='small' /> : 'Scroll down to load more...' }
 					</div>

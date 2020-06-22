@@ -1,5 +1,5 @@
 import React from 'react'
-import Icon from '~icon'
+import Icon from '~co/common/icon'
 import t from '~t'
 
 export default class ImportDone extends React.Component {
@@ -10,7 +10,7 @@ export default class ImportDone extends React.Component {
 			<div className="centerContentWrap">
 				<div className="centerContent">
 					<div className="centerContentBlock">
-						<Icon name="24_cloud_active" className="svgIcon-size-60 color-theme" />
+						<Icon name="24_cloud_active" data-size="60" className='color-theme' />
 						<h1 className="extraHeadLabel">{t.format("importEnd")}</h1>
 						<h2 className="mediumHeadLabel" style={{maxWidth:"500px"}}>{t.s("importIsProcessing")}</h2>
 						<br />

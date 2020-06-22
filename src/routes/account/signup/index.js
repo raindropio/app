@@ -1,10 +1,12 @@
+import s from './index.module.styl'
+import globalS from '../_page/index.module.styl'
 import React from 'react'
 import { Helmet } from 'react-helmet'
 import t from '~t'
 
-import withPage from './_page'
-import Social from './social'
-import Error from './error'
+import withPage from '../_page'
+import Social from '../social'
+import Error from '../error'
 
 class AccountSignup extends React.Component {
     state = {
@@ -28,7 +30,7 @@ class AccountSignup extends React.Component {
         return (
             <form onSubmit={this.onSubmit}>
                 <Helmet><title>{t.s('recoverPassword')}</title></Helmet>
-                <h1 className='headLabel'>{t.s('startCollecting')}</h1><br/>
+                <h1>{t.s('startCollecting')}</h1><br/>
 
                 {status == 'error' && <Error error={error} />}
 
@@ -60,14 +62,14 @@ class AccountSignup extends React.Component {
                     value={this.state.password}
                     onChange={this.onChangeValue} />
 
-                <div className='additionalButtonWrap'>
+                <div className={globalS.buttons}>
                     <input 
                         type='submit'
                         disabled={status=='loading'}
-                        className='button default standart loginButton input'
+                        className='button active standart input'
                         value={t.s('register')} />
                 </div>
-                <div className='acceptLicence'>
+                <div className={s.acceptLicence}>
                     {t.s('privacyTerms')} <a href='https://help.raindrop.io/terms' target='_blank'>{t.s('termsOfService')}</a> {t.s('und')} <a href='https://help.raindrop.io/privacy' target='_blank'>{t.s('privacyPolicy')}</a>
                 </div>
 

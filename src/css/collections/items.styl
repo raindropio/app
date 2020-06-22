@@ -9,7 +9,7 @@ collectionActive() {
     background: var(--accentColor);
     color: white;
     
-    .collectionIcon.svgIcon, .count, .expand, .actions span {
+    .collectionIcon svg, .count, .expand, .actions span {
     	opacity:1;
     }
 
@@ -57,18 +57,15 @@ img.collectionIcon {
 		padding: collectionPaddingVertical 0px;
 		margin: (collectionPaddingVertical * -1) 0px;
 
-		* {
-			pointer-events: none;
-		}
-
-		.svgIcon {
+		> :first-child {
 			vertical-align: -3px;
+			pointer-events: none;
 		}
 	}
 	
 	.collectionIcon {
 		margin-right: 10px
-		&.svgIcon {
+		svg {
 			opacity: .5;
 		}
 	}
@@ -141,7 +138,7 @@ img.collectionIcon {
     	visibility: visible;
     }
 
-    &.collapsed .expand .svgIcon {
+    &.collapsed .expand > :first-child  {
     	transform: rotate(-90deg);
     }
 

@@ -1,3 +1,4 @@
+import s from './index.module.styl'
 import React from 'react'
 import t from '~t'
 import { Link, Redirect } from 'react-router-dom'
@@ -8,9 +9,9 @@ import * as actions from '~data/actions/user'
 import withSearch from '~modules/router/withSearch'
 import isURL from 'validator/es/lib/isURL'
 
-import Icon from '~icon'
 import SuperImg from '~co/common/superImg'
 import Screen from '~co/screen/basic'
+import Bg from './bg'
 
 export default (Component)=>
 	withSearch(
@@ -51,22 +52,18 @@ export default (Component)=>
 		
 				return (
 					<Screen>
-						<div className='accountPageWrap'>
-							<Icon name='diamond' className='cloudCloud' />
-							<Icon name='default_collection' className='cloudCloud' />
-							<Icon name='video' className='cloudCloud' />
-							
-							<div className='centerContentWrap accountPage'>
-								<div className='centerContent'>
-									<div className='dots'><span/><span/><span/><span/><span/><span/></div>
-				
-									<div className='centerContentBlock'>
-										<div className='accountLogo'><SuperImg src='marketing/logoIcon.png' height='72' /></div>
+						<div className={s.wrap}>
+							<div className={s.page}>
+								<Bg />
+								
+								<div className={s.centerContent}>
+									<div className={s.centerContentBlock}>
+										<div className={s.logo}><SuperImg src='marketing/logoIcon.png' height='72' /></div>
 				
 										<Component {...props} />
 									</div>
 				
-									<div className='otherLogin'>
+									<div className={s.nav}>
 										{!props.match.path.includes('lost') &&<Link to={`/account/lost${props.uriSuffix}`} className='button active'>{t.s('recoverPassword')}</Link>}
 										{!props.match.path.includes('login') && <Link to={`/account/login${props.uriSuffix}`} className='button active'>{t.s('signIn')}</Link>}
 										{!props.match.path.includes('signup') && <Link to={`/account/signup${props.uriSuffix}`} className='button active'>{t.s('signUp')}</Link>}

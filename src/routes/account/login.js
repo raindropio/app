@@ -1,9 +1,10 @@
+import s from './_page/index.module.styl'
 import React from 'react'
 import { Helmet } from 'react-helmet'
 import t from '~t'
 
 import withPage from './_page'
-import Icon from '~icon'
+import Icon from '~co/common/icon'
 import Social from './social'
 import Error from './error'
 
@@ -28,7 +29,7 @@ class AccountLogin extends React.Component {
         return (
             <form onSubmit={this.onSubmit}>
                 <Helmet><title>{t.s('signIn')}</title></Helmet>
-                <Icon name='raindrop_logo' className='raindropLogo' />
+                <Icon name='raindrop_logo' className={s.logoText} />
 
                 {status == 'error' && <Error error={error} />}
 
@@ -51,11 +52,11 @@ class AccountLogin extends React.Component {
                     value={this.state.password}
                     onChange={this.onChangeValue} />
 
-                <div className='additionalButtonWrap'>
+                <div className={s.buttons}>
                     <input 
                         type='submit'
                         disabled={status=='loading'}
-                        className='button default standart loginButton input'
+                        className='button active standart input'
                         value={t.s('signIn')} />
                 </div>
 

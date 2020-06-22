@@ -3,7 +3,7 @@ import React from 'react'
 import t from '~t'
 import AppsStore from '~stores/apps'
 
-import Icon from '~icon'
+import Icon from '~co/common/icon'
 import { Header, Content } from '~co/screen/splitview/main'
 import Lazy from '../common/lazy'
 import Clients from '../common/clients'
@@ -35,11 +35,11 @@ class Dev extends React.Component {
 					</Lazy>
 
 					<div className={s.intro}>
-						Want to develop an application using the &nbsp;<a href="https://developer.raindrop.io" target="_blank"><Icon name='document' size='micro' /> Raindrop.io API</a>?
+						Want to develop an application using the &nbsp;<a href="https://developer.raindrop.io" target="_blank"><Icon name='document' data-size='micro' /> Raindrop.io API</a>?
 						
 						<div className={s.add}>
 							<a href="#/settings/apps/dev/add" className="button blue standart">
-								<Icon name='add' size='micro' />&nbsp;
+								<Icon name='add' data-size='micro' />&nbsp;
 								Register a new application
 							</a>
 						</div>

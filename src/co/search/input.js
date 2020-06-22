@@ -1,6 +1,6 @@
 import s from './input.module.styl'
 import React from 'react'
-import Icon from '~icon'
+import Icon from '~co/common/icon'
 import Preloader from '../common/preloader'
 
 export default class SearchView extends React.PureComponent {
@@ -58,7 +58,7 @@ export default class SearchView extends React.PureComponent {
 
     renderButton = ({id, icon, iconSize='micro'})=>(
         <a className={s.button+' button'} href='' data-id={id} key={id} tabIndex='-1' onClick={this.onButtonClick}>
-            <Icon name={icon} size={iconSize} />
+            <Icon name={icon} data-size={iconSize} />
         </a>
     )
 

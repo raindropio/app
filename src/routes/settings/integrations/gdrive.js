@@ -1,5 +1,5 @@
 import React from 'react'
-import Icon from '~icon'
+import Icon from '~co/common/icon'
 import t from '~t'
 import config from '~config'
 import environment from '~modules/environment'
@@ -20,7 +20,7 @@ export default ({enabled=false, pro=false})=>{
 
 	return (
 		<div>
-			<Icon name="gdrive" className="svgIcon-size-60" style={{color:"#34a853"}} />
+			<Icon name="gdrive" data-size="60" style={{color:"#34a853"}} />
 			<h1 className="extraHeadLabel">Google Drive</h1>
 			<p className="subHeadLabel">{subhead}</p>
 

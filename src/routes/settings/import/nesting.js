@@ -1,5 +1,5 @@
 import React from 'react'
-import Icon from '~icon'
+import Icon from '~co/common/icon'
 import t from '~t'
 
 export default class ImportNesting extends React.Component {
@@ -10,7 +10,7 @@ export default class ImportNesting extends React.Component {
 			<div className="centerContentWrap">
 				<div className="centerContent">
 					<div className="centerContentBlock">
-						<Icon name="24_home_active" className="svgIcon-size-60 color-theme" />
+						<Icon name="24_home_active" data-size='60' className="color-theme" />
 						<h1 className="extraHeadLabel">{t.format("youHave")+" "+t.s("pro_nesting").toLowerCase()}</h1>
 						<h2 className="mediumHeadLabel" style={{maxWidth:"500px"}}>
 							{t.s("importBookmarks")+" "}

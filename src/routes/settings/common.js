@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDom from 'react-dom'
-import Icon from '~icon'
+import Icon from '~co/common/icon'
 import t from '~t'
 import supportedLangs from '~assets/languages/index.json'
 

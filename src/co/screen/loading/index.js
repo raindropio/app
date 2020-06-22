@@ -1,5 +1,4 @@
 import React from 'react'
-import Icon from '~co/common/icon'
 import Preloader from '~co/common/preloader'
 
 import SplitView from '../splitview'
@@ -9,7 +8,7 @@ import Main from '../splitview/main'
 export default ()=>(
     <SplitView>
         <Sidebar>
-            <Header title={<Icon name='raindrop_logo' className='raindropLogo' />} />
+            <Header />
 
             <Content>
                 <section>

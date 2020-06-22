@@ -1,5 +1,5 @@
 import React from 'react'
-import Icon from '~icon'
+import Icon from '~co/common/icon'
 import t from '~t'
 import config from '~config'
 import Api from '~api'

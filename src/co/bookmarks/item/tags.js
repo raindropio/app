@@ -12,7 +12,7 @@ class BookmarksItemTag extends React.PureComponent {
         
         return (
             <a href='' tabIndex='-1' key={tag} onClick={this.onClick}>
-                <Icon name='tag' size='micro' />
+                <Icon name='tag' data-size='micro' />
                 {tag}
             </a>
         )

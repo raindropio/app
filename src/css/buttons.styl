@@ -1,13 +1,5 @@
 @require "consts.styl"
 
-html.electron .button {
-	-webkit-app-region: no-drag;
-	
-	* {
-		-webkit-app-region: no-drag;
-	}
-}
-
 .button {
 	height: 48px
 	padding: 14px 12px;
@@ -54,14 +46,6 @@ html.electron .button {
 	
 	&.input {
 		margin:0;
-	}
-
-	span:not(.svgIcon) {
-		@extend .text-overflow;
-	}
-
-	span:not(.svgIcon):not(:first-child):last-child {
-		margin-left: 6px;
 	}
 	
 	&.default b, &.default.input {
@@ -162,20 +146,4 @@ html.electron .button {
 		    cursor: pointer;
 		}
 	}
-	
-	&.facebook {
-		color: #3b5998;
-	}
-	
-	&.twitter {
-		color: #55acee;
-	}
-	
-	&.vkontakte {
-		color: #45668e;
-	}
-}
-
-html.electron .button {
-	cursor: default;
 }

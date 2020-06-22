@@ -7,7 +7,7 @@ import config from '~config'
 import UserStore from '~stores/user'
 
 import Sidebar, { Header, Content, Footer } from '~co/screen/splitview/sidebar'
-import Icon from '~icon'
+import Icon from '~co/common/icon'
 import CollectionItem from '~co/collections/item'
 
 class SettingsSidebar extends React.Component {
@@ -23,7 +23,7 @@ class SettingsSidebar extends React.Component {
 		return <CollectionItem
 					active={isActive}
 					item={{
-						title: <span>{title} {(linkTarget||target)=='_blank'?<Icon name='open' size='micro' />:null}</span>,
+						title: <span>{title} {(linkTarget||target)=='_blank'?<Icon name='open' data-size='micro' />:null}</span>,
 						icon: (icon||name)+(isActive?'_active':''),
 						link: link,
 						target: linkTarget||target

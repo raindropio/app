@@ -1,3 +1,4 @@
+import 'modern-normalize/modern-normalize.css'
 import '../../css/base.styl'
 
 import React from 'react'

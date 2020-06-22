@@ -1,3 +1,4 @@
+import s from './_page/index.module.styl'
 import React from 'react'
 import { Helmet } from 'react-helmet'
 import t from '~t'
@@ -29,7 +30,7 @@ class AccountRecover extends React.Component {
         return (
             <form onSubmit={this.onSubmit}>
                 <Helmet><title>{t.s('newPassword')}</title></Helmet>
-                <h1 className='headLabel'>{t.s('newPassword')}</h1><br/>
+                <h1>{t.s('newPassword')}</h1><br/>
 
                 {status == 'error' && <Error error={error} />}
 
@@ -42,11 +43,11 @@ class AccountRecover extends React.Component {
                     value={this.state.password}
                     onChange={this.onChangeValue} />
 
-                <div className='additionalButtonWrap'>
+                <div className={s.buttons}>
                     <input 
                         type='submit'
                         disabled={status=='loading'}
-                        className='button default standart loginButton input'
+                        className='button active standart input'
                         value={t.s('changePassword')} />
                 </div>
             </form>

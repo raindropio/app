@@ -1,5 +1,5 @@
 import React from 'react'
-import Icon from '~icon'
+import Icon from '~co/common/icon'
 import t from '~t'
 import config from '~config'
 import environment from '~modules/environment'
@@ -20,7 +20,7 @@ export default ({enabled=false, pro=false})=>{
 
 	return (
 		<div>
-			<Icon name="dropbox" className="svgIcon-size-60" style={{color:"#007ee5"}} />
+			<Icon name="dropbox" data-size="60" style={{color:"#007ee5"}} />
 			<h1 className="extraHeadLabel">Dropbox</h1>
 			<p className="subHeadLabel">{subhead}</p>
 

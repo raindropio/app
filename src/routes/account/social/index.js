@@ -1,3 +1,5 @@
+import globalS from '../_page/index.module.styl'
+import s from './index.module.styl'
 import React from 'react'
 import { API_ENDPOINT_URL } from '~data/constants/app'
 import Icon from '~co/common/icon'
@@ -23,11 +25,11 @@ export default class AccountSocialLogin extends React.Component {
 
     render() {
         return (
-            <div className='additionalButtonWrap socialLoginWrap'>
+            <div className={globalS.buttons + ' ' + s.socialLoginWrap}>
                 {['google', 'apple', 'facebook', 'twitter', 'vkontakte'].map(vendor=>(
                     <a 
                         key={vendor}
-                        className={'button  standart '+vendor}
+                        className={'button standart '+s[vendor]}
                         href={`${API_ENDPOINT_URL}auth/${vendor}${this.props.uriSuffix}`}
                         onClick={this.openModal}>
                         <b style={{pointerEvents: 'none'}}>

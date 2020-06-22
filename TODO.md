@@ -10,6 +10,7 @@ Design
 
 Bugs
 - Critical
+    - restore cache for bookmarks only for first items in list
     - virtual grid doesn't render next pages in Firefox
     - Collection share via link, link is incorrect
     - Such tagname kils app "$%^&()(#@#$!. a"
@@ -37,6 +38,7 @@ Good to have
 - When collection removed open next collection
 - Show (?) icon in Filters and Tags sidebar sections, click opens help page about those items
 - bookmarks/item remove selectDisabled, and move this logic to /items + css
+- click on collection name open selector (useful to navigate without sidebar)
 
 Translation
 - leave

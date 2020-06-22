@@ -1,5 +1,5 @@
 import React from 'react'
-import Icon from '~icon'
+import Icon from '~co/common/icon'
 
 export default class HelpersAvatar extends React.Component{
   shouldComponentUpdate(nextProps) {

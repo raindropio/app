@@ -1,6 +1,6 @@
 import s from './index.module.styl'
 import React from 'react'
-import Icon from '~icon'
+import Icon from '~co/common/icon'
 
 export default class Tabs extends React.Component {
 	displayName = 'common/tabs'

@@ -30,7 +30,7 @@ export default ()=>{
 			</Content>
 
 			<div className='promoScreen'>
-				<SuperImg src='empty/export.png' className='animation-flying' width='455' />
+				<SuperImg src='empty/export.png' width='455' />
 			</div>
 		</Main>
 	)

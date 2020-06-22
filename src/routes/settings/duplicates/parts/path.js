@@ -1,5 +1,5 @@
 import React, {PureComponent} from 'react'
-import Icon from '~icon'
+import Icon from '~co/common/icon'
 import CollectionIcon from '~co/collections/icon'
 
 import collectionsStore from '~stores/collections'
@@ -52,7 +52,7 @@ export default class Path extends PureComponent {
 	renderPart(content, index) {
 		return (
 			<div className="di-path-part" key={index}>
-				<Icon className="di-arrow" name="next" size="micro" />
+				<Icon className="di-arrow" name="next" data-size="micro" />
 				{content}
 			</div>
 		)

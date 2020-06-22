@@ -49,7 +49,7 @@ class Export extends React.Component {
 				</Content>
 
 				<div className='promoScreen'>
-					<SuperImg src='empty/export.png' className='animation-flying' />
+					<SuperImg src='empty/export.png' />
 				</div>
 			</Main>
 		);

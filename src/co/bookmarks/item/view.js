@@ -47,7 +47,7 @@ export default class BookmarkItemView extends React.PureComponent {
                             {important ? (
                                 <div className='info-important'>
                                     <span className='info-img'>
-                                        <Icon name='important' size='micro' />
+                                        <Icon name='important' data-size='micro' />
                                     </span>
                                 </div>
                             ) : null}
@@ -55,7 +55,7 @@ export default class BookmarkItemView extends React.PureComponent {
                             {reparse ? (
                                 <div className='info-important'>
                                     <span className='info-img'>
-                                        <Icon name='progress' size='micro' />
+                                        <Icon name='progress' data-size='micro' />
                                     </span>
                                 </div>
                             ) : null}
@@ -63,7 +63,7 @@ export default class BookmarkItemView extends React.PureComponent {
                             {type != 'link' ? (
                                 <div className='info-important'>
                                     <span className='info-img'>
-                                        <Icon name={type} size='micro' />
+                                        <Icon name={type} data-size='micro' />
                                     </span>
                                 </div>
                             ) : null}

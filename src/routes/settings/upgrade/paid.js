@@ -1,7 +1,7 @@
 import s from './paid.module.styl'
 import React from 'react'
 import t from '~t'
-import Icon from '~icon'
+import Icon from '~co/common/icon'
 import { humanDate } from '~modules/strings'
 import config from '~config'
 import UserStore from '~stores/user'
@@ -48,7 +48,7 @@ export default class UpgradePaid extends React.Component {
     renderPeriod = ()=>{
         if (this.state.stopAt)
             return (
-                <span><b><Icon name='close' size='micro' /> {t.s('willStop')}: {humanDate(this.state.stopAt)}</b></span>
+                <span><b><Icon name='close' data-size='micro' /> {t.s('willStop')}: {humanDate(this.state.stopAt)}</b></span>
             )
 
         if (this.state.renewAt)
@@ -83,7 +83,7 @@ export default class UpgradePaid extends React.Component {
 
                     <div className={s.buttons}>
                         <a className={s.button+' button default'} href={config.links.pro.buy} target='_blank'><b>
-                            <Icon name='progress' size='micro' className='svgIcon-size-20' />
+                            <Icon name='progress' data-size='micro' data-size='20' />
                             {t.s('renewPro')}
                         </b></a>
                     </div>
@@ -119,12 +119,12 @@ export default class UpgradePaid extends React.Component {
 
                 <div className={s.buttons}>
                     <a className={s.button+' button default'} href={this.state.links.manage} target='_blank'><b>
-                        <Icon name='note' size='micro' className='svgIcon-size-20' />
+                        <Icon name='note' data-size='micro' data-size='20' />
                         {t.s('manage')} {t.s('subscription').toLowerCase()}
                     </b></a>
 
                     <a className={s.button+' button default'} href={config.links.pro['help-change-billing-cycle']} target='_blank'><b>
-                        <Icon name='calendar' size='micro' className='svgIcon-size-20' />
+                        <Icon name='calendar' data-size='micro' data-size='20' />
                         {t.s('change')} {t.s('billingCycle').toLowerCase()}
                     </b></a>
                 </div>
@@ -140,7 +140,7 @@ export default class UpgradePaid extends React.Component {
             <div className={'centerContentWrap '+s.paid}>
                 <div className='centerContent'>
                     <div className='centerContentBlock'>
-                        <Icon name='diamond_active' className={`svgIcon-size-48 ${s.status} ${s.status}-${this.state.status}`} />
+                        <Icon name='diamond_active' data-size='48' className={`${s.status} ${s.status}-${this.state.status}`} />
                         <h1 className={s.head}>{t.s('subscription')} {this.getStatus()}</h1>
 
                         <p className={s.subhead+' '+s.period}>

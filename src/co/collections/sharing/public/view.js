@@ -13,7 +13,12 @@ export default function CollectionSharingPublic({ _id, onPublicClick, ...etc }) 
 
             <div className='title'>
                 {t.s('accessViaLink')}
-                <input type='text' className={etc.public ? '' : 'hidden'} readOnly autoFocus value={`https://app.raindrop.io/#/space/+${_id||''}`} />
+                <input 
+                    type='text'
+                    hidden={!etc.public}
+                    readOnly
+                    autoFocus
+                    value={`https://app.raindrop.io/#/space/+${_id||''}`} />
             </div>
 
             <div className='actions'>
