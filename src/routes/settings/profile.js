@@ -7,6 +7,7 @@ import Api from '~api'
 import ResetAccount from './parts/reset'
 import UserStore from '~stores/user'
 
+import Button from '~co/common/button'
 import Main, { Header, Content } from '~co/screen/splitview/main'
 
 class Profile extends React.Component {
@@ -144,7 +145,7 @@ class Profile extends React.Component {
 					</figure>
 
 					<figure className="fieldColumns">
-						<input type="submit" className="button active standart loginButton input" value={t.s("changePassword")} />
+						<Button Tag='input' type="submit" variant='primary' value={t.s("changePassword")} />
 					</figure>
 				</form>
 			);
@@ -177,7 +178,7 @@ class Profile extends React.Component {
 					{emailPassword}
 
 					<figure className="fieldColumns">
-						<input type="submit" className="button active standart loginButton input" value={t.s("saveChanges")} />
+						<Button Tag='input' type="submit" variant='primary' value={t.s("saveChanges")} />
 					</figure>
 				</form>
 
@@ -187,7 +188,7 @@ class Profile extends React.Component {
 				<br />
 				<ResetAccount />
 				<br />
-				<a className="button default" onClick={this.handleRemove.bind(this)}>{t.s("removeAccount")}</a>
+				<Button onClick={this.handleRemove.bind(this)}>{t.s("removeAccount")}</Button>
 			</div>
 		);
 	}

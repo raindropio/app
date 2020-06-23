@@ -1,5 +1,7 @@
 import React from 'react'
 import t from '~t'
+
+import Button from '~co/common/button'
 import Icon from '~co/common/icon'
 import ListItem from '~co/bookmarks/item/listBlank'
 import DuplicateItem from './parts/duplicateItem'
@@ -54,9 +56,9 @@ export default class Loaded extends React.PureComponent {
 
 			var actions = (
 				<div className='actions'>
-					<a href={'#/space/0/'+encodeURIComponent(JSON.stringify([{key:'word',val:item.link}]))} className='button min default'>
-						<b>{t.s('show')+' '+t.s('elements2')}</b>
-					</a>
+					<Button variant='outline' href={'#/space/0/'+encodeURIComponent(JSON.stringify([{key:'word',val:item.link}]))}>
+						{t.s('show')+' '+t.s('elements2')}
+					</Button>
 				</div>
 			)
 
@@ -85,7 +87,7 @@ export default class Loaded extends React.PureComponent {
 			<Main>
 				<Header title={t.s('duplicates')}>
 					<div className='duplicates-toolbar'>
-						<a tabIndex='-1' className='button active select'>
+						<Button tabIndex='-1' variant='link'>
 							<span>{t.s('select')}&nbsp;<Icon name='dropdown' data-size='micro' /></span>
 							
 							<select value={-1} onChange={(e)=>changeSelectionRule(e.target.options[e.target.selectedIndex].value)}>
@@ -95,7 +97,7 @@ export default class Loaded extends React.PureComponent {
 								<option value='new'>{t.s('only') + ' ' + t.s('newString').toLowerCase()}</option>
 								<option value='nothing'>{t.s('nothing')}</option>
 							</select>
-						</a>
+						</Button>
 
 						<div className='di-space'/>
 
@@ -123,7 +125,7 @@ const RemoveButton = ({label='', count=0, fully=0, onClick})=>{
 	if (!count) return null;
 
 	return (
-		<a className='button red standart di-remove-button' onClick={onClick}>
+		<Button variant='primary' className='di-remove-button' onClick={onClick}>
 			<Icon name='trash_active' />
 
 			<span className='hide-on-small-body'>
@@ -134,7 +136,7 @@ const RemoveButton = ({label='', count=0, fully=0, onClick})=>{
 			<span className='show-on-small-body'>
 				{`${count}`}
 			</span>
-		</a>
+		</Button>
 	)
 }
 

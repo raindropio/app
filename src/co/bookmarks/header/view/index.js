@@ -2,6 +2,7 @@ import React from 'react'
 import t from '~t'
 
 import Popover from '~co/overlay/popover'
+import Button from '~co/common/button'
 import Icon from '~co/common/icon'
 import Menu from './menu'
 import Show from './show'
@@ -33,13 +34,10 @@ class BookmarksHeaderView extends React.Component {
 
         return (
             <>
-                <a ref={this.pin} className='button default' onClick={this.onMenuClick}>
+                <Button ref={this.pin} onClick={this.onMenuClick}>
                     <Icon name={'view_'+view} />
-        
-                    <span>
-                        <span className='hide-on-small-body'>{t.s(`view_${view}`)}</span>
-                    </span>
-                </a>
+                    <span className='hide-on-small-body'>{t.s(`view_${view}`)}</span>
+                </Button>
 
                 {menu ? (
                     <Popover pin={this.pin} onClose={this.onMenuClose}>

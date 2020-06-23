@@ -1,6 +1,8 @@
+import s from './selectMode.module.styl'
 import React from 'react'
 import t from '~t'
 
+import Button from '~co/common/button'
 import Icon from '~co/common/icon'
 import Preloader from '~co/common/preloader'
 
@@ -32,36 +34,36 @@ export default class CollectionsSelectMode extends React.Component {
             return null
 
         return (
-            <div className='collections-select-mode'>
+            <div className={s.mode}>
                 { working ? (
-                    <div className='collections-select-mode-header'>
-                        <div className='title'>{t.s(working)} {ids.length} {t.s('collectionsCount')}...</div>
+                    <div className={s.header}>
+                        <div className={s.title}>{t.s(working)} {ids.length} {t.s('collectionsCount')}...</div>
                         <Preloader data-size='small' />
                     </div>
                 ) : (
                     <>
-                        <div className='collections-select-mode-header'>
-                            <div className='title'>{ids.length} {t.s('collectionsCount')}</div>
+                        <div className={s.header}>
+                            <div className={s.title}>{ids.length} {t.s('collectionsCount')}</div>
 
-                            <a className='button min' onClick={this.onSelectAll}>{t.s('all')}</a>
+                            <Button onClick={this.onSelectAll}>{t.s('all')}</Button>
                             &nbsp; &nbsp;
-                            <a className='button min' onClick={this.onCancel}>{t.s('cancel')}</a>
+                            <Button onClick={this.onCancel}>{t.s('cancel')}</Button>
                         </div>
 
-                        <div className='collections-select-mode-actions'>
+                        <div className={s.actions}>
                             {ids.length > 1 ? (
-                                <a className='button default active' onClick={this.onMergeSelected}>
+                                <Button variant='link' onClick={this.onMergeSelected}>
                                     <Icon name='duplicates' />
                                     
                                     <span className='hide-on-small-body'>{t.s('merge')}</span>
-                                </a>
+                                </Button>
                             ) : null}
 
-                            <a className='button default active' onClick={this.onRemoveSelected}>
+                            <Button variant='link' onClick={this.onRemoveSelected}>
                                 <Icon name='trash' />
                                 
                                 <span className='hide-on-small-body'>{t.s('remove')}</span>
-                            </a>
+                            </Button>
                         </div>
                     </>
                 )}

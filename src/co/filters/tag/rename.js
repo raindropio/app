@@ -1,6 +1,7 @@
 import React from 'react'
 import t from '~t'
 
+import { Item, ItemExpand } from '~co/common/list'
 import Icon from '~co/common/icon'
 import SuperInput from '~co/common/superInput'
 
@@ -42,23 +43,22 @@ export default class FiltersTagRename extends React.PureComponent {
         const { name, loading } = this.state
 
         return (
-            <form
-                className='collection'
-                data-is-focus='true'
-                onSubmit={this.onSubmit}>
-                <span className='expand'><Icon name='arrow_alt' /></span>
-                
-                <SuperInput
-                    type='text'
-                    required
-                    autoFocus
-                    selectAll={true}
-                    disabled={loading}
-                    value={name}
-                    placeholder={t.s('enterTitle')}
-                    onKeyUp={this.onKeyUp}
-                    onChange={this.onChange}
-                    onBlur={this.save} />
+            <form onSubmit={this.onSubmit}>
+                <Item>
+                    <ItemExpand />
+                    
+                    <SuperInput
+                        type='text'
+                        required
+                        autoFocus
+                        selectAll={true}
+                        disabled={loading}
+                        value={name}
+                        placeholder={t.s('enterTitle')}
+                        onKeyUp={this.onKeyUp}
+                        onChange={this.onChange}
+                        onBlur={this.save} />
+                </Item>
             </form>
         )
     }

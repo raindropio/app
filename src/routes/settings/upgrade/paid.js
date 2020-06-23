@@ -1,11 +1,12 @@
 import s from './paid.module.styl'
 import React from 'react'
 import t from '~t'
-import Icon from '~co/common/icon'
 import { humanDate } from '~modules/strings'
 import config from '~config'
 import UserStore from '~stores/user'
 
+import Button from '~co/common/button'
+import Icon from '~co/common/icon'
 import Loading from './loading'
 
 export default class UpgradePaid extends React.Component {
@@ -82,10 +83,10 @@ export default class UpgradePaid extends React.Component {
                     </div>
 
                     <div className={s.buttons}>
-                        <a className={s.button+' button default'} href={config.links.pro.buy} target='_blank'><b>
+                        <Button variant='outline' className={s.button} href={config.links.pro.buy} target='_blank'>
                             <Icon name='progress' data-size='micro' data-size='20' />
                             {t.s('renewPro')}
-                        </b></a>
+                        </Button>
                     </div>
                 </div>
             )
@@ -118,15 +119,15 @@ export default class UpgradePaid extends React.Component {
                 {alert}
 
                 <div className={s.buttons}>
-                    <a className={s.button+' button default'} href={this.state.links.manage} target='_blank'><b>
+                    <Button variant='outline' className={s.button} href={this.state.links.manage} target='_blank'>
                         <Icon name='note' data-size='micro' data-size='20' />
                         {t.s('manage')} {t.s('subscription').toLowerCase()}
-                    </b></a>
+                    </Button>
 
-                    <a className={s.button+' button default'} href={config.links.pro['help-change-billing-cycle']} target='_blank'><b>
+                    <Button variant='outline' className={s.button} href={config.links.pro['help-change-billing-cycle']} target='_blank'>
                         <Icon name='calendar' data-size='micro' data-size='20' />
                         {t.s('change')} {t.s('billingCycle').toLowerCase()}
-                    </b></a>
+                    </Button>
                 </div>
             </div>
         )

@@ -1,5 +1,7 @@
 import React from 'react'
 import t from '~t'
+
+import Button from '~co/common/button'
 import Icon from '~co/common/icon'
 import Sharing from '~co/collections/sharing'
 
@@ -24,13 +26,10 @@ export default class HeaderShare extends React.Component {
 
         return (
             <>
-                <a 
-                    href=''
-                    className='button default'
-                    onClick={this.onSharingClick}>
+                <Button onClick={this.onSharingClick}>
                     <Icon name='share' />
                     <span className='hide-on-small-body'>{t.s('share')}</span>
-                </a>
+                </Button>
 
                 {show ? (
                     <Sharing 

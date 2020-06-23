@@ -2,6 +2,8 @@ import React from 'react'
 import t from '~t'
 import { humanNumber } from '~modules/strings'
 
+import { Item, ItemExpand, ItemIcon, ItemTitle, ItemInfo, ItemActions } from '~co/common/list'
+import Button from '~co/common/button'
 import Icon from '~co/common/icon'
 import SuperLink from '~co/common/superLink'
 
@@ -31,32 +33,31 @@ export default class FiltersStatusView extends React.Component {
         const showActions = canAppend && onAppendClick
 
         return (
-            <article className={`collection menu-item ${active && 'active'} ${showActions && 'have-actions'}`}>
-                <span className='expand'>
-                    <Icon name='arrow_alt' />
-                </span>
+            <Item active={active}>
+                <ItemExpand />
 
-                <Icon name={icon} className='collectionIcon' />
+                <ItemIcon>
+                    <Icon name={icon} />
+                </ItemIcon>
 
-                <div className='title'>{title}</div>
+                <ItemTitle>{title}</ItemTitle>
 
-                <div className='space' />
-
-                {count ? <div className='count'>{humanNumber(count)}</div> : null}
+                {count ? <ItemInfo>{humanNumber(count)}</ItemInfo> : null}
 
                 {showActions ? (
-                    <div className='actions'>
-                        <Icon name='search_add' onClick={onAppendClick} />
-                    </div>
+                    <ItemActions>
+                        <Button onClick={onAppendClick}>
+                            <Icon name='search_add' />
+                        </Button>
+                    </ItemActions>
                 ) : null}
 
                 <SuperLink
                     navPrefix='menu-item'
                     tabIndex={active ? '1' : '-1'}
                     onClick={onClick}
-                    onContextMenu={onContextMenu}
-					className='permalink' />
-            </article>
+                    onContextMenu={onContextMenu} />
+            </Item>
         )
     }
 }

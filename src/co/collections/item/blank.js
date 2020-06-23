@@ -2,7 +2,7 @@ import React from 'react'
 import t from '~t'
 import { withRouter } from 'react-router-dom'
 
-import Icon from '~co/common/icon'
+import { Item, ItemExpand } from '~co/common/list'
 import CollectionIcon from './icon'
 
 class CollectionsItemBlank extends React.PureComponent {
@@ -55,28 +55,29 @@ class CollectionsItemBlank extends React.PureComponent {
         const { title, loading } = this.state
 
         return (
-            <form
-                className='collection active'
-                data-is-focus='true'
-                style={{'--level': level}}
-                onSubmit={this.onSubmit}>
-                <span className='expand'><Icon name='arrow_alt' /></span>
-                
-                <CollectionIcon 
-                    _id={_id}
-                    loading={loading} />
+            <form onSubmit={this.onSubmit}>
+                <Item
+                    data-is-focus='true'
+                    active={true}
+                    level={level}>
+                    <ItemExpand />
+                    
+                    <CollectionIcon 
+                        _id={_id}
+                        loading={loading} />
 
-                <input
-                    type='text'
-                    required
-                    autoFocus
-                    disabled={loading}
-                    value={title}
-                    placeholder={t.s('collectionNew')}
-                    onKeyUp={this.onKeyUp}
-                    onChange={this.onChange}
-                    onBlur={this.create} 
-                    />
+                    <input
+                        type='text'
+                        required
+                        autoFocus
+                        disabled={loading}
+                        value={title}
+                        placeholder={t.s('collectionNew')}
+                        onKeyUp={this.onKeyUp}
+                        onChange={this.onChange}
+                        onBlur={this.create} 
+                        />
+                </Item>
             </form>
         )
     }

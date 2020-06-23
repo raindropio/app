@@ -1,3 +1,4 @@
+import s from './index.module.styl'
 import React from 'react'
 import { Link } from 'react-router-dom'
 
@@ -60,7 +61,7 @@ export default class SuperLink extends React.PureComponent {
 		return <Component
 					{...other}
 					href={this.props.href}
-					className={className+' superLink'}
+					className={className+' '+s.superLink}
 					onMouseDown={this.onMouseDown}
 					onFocus={this.onFocus}
 					onBlur={this.onBlur}

@@ -9,6 +9,7 @@ import * as actions from '~data/actions/user'
 import withSearch from '~modules/router/withSearch'
 import isURL from 'validator/es/lib/isURL'
 
+import Button from '~co/common/button'
 import SuperImg from '~co/common/superImg'
 import Screen from '~co/screen/basic'
 import Bg from './bg'
@@ -64,11 +65,11 @@ export default (Component)=>
 									</div>
 				
 									<div className={s.nav}>
-										{!props.match.path.includes('lost') &&<Link to={`/account/lost${props.uriSuffix}`} className='button active'>{t.s('recoverPassword')}</Link>}
-										{!props.match.path.includes('login') && <Link to={`/account/login${props.uriSuffix}`} className='button active'>{t.s('signIn')}</Link>}
-										{!props.match.path.includes('signup') && <Link to={`/account/signup${props.uriSuffix}`} className='button active'>{t.s('signUp')}</Link>}
+										{!props.match.path.includes('lost') &&<Link to={`/account/lost${props.uriSuffix}`} component={Button} variant='link'>{t.s('recoverPassword')}</Link>}
+										{!props.match.path.includes('login') && <Link to={`/account/login${props.uriSuffix}`} component={Button} variant='link'>{t.s('signIn')}</Link>}
+										{!props.match.path.includes('signup') && <Link to={`/account/signup${props.uriSuffix}`} component={Button} variant='link'>{t.s('signUp')}</Link>}
 				
-										<a href='https://help.raindrop.io/' target='_blank' className='button active'>{t.s('help')}</a>
+										<Button href='https://help.raindrop.io/' target='_blank' variant='link'>{t.s('help')}</Button>
 									</div>
 								</div>
 							</div>

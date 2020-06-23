@@ -4,6 +4,7 @@ import { Helmet } from 'react-helmet'
 import t from '~t'
 
 import withPage from './_page'
+import Button from '~co/common/button'
 import Icon from '~co/common/icon'
 import Social from './social'
 import Error from './error'
@@ -53,10 +54,12 @@ class AccountLogin extends React.Component {
                     onChange={this.onChangeValue} />
 
                 <div className={s.buttons}>
-                    <input 
+                    <Button
+                        Tag='input' 
                         type='submit'
+                        variant='primary'
+                        data-block
                         disabled={status=='loading'}
-                        className='button active standart input'
                         value={t.s('signIn')} />
                 </div>
 

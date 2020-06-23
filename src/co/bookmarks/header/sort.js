@@ -6,6 +6,7 @@ import { changeSort } from '~data/actions/bookmarks'
 
 import Popover, { Menu, MenuItem } from '~co/overlay/popover'
 import Icon from '~co/common/icon'
+import Button from '~co/common/button'
 
 class BookmarksHeaderSort extends React.Component {
     static defaultProps = {
@@ -46,13 +47,13 @@ class BookmarksHeaderSort extends React.Component {
 
         return (
             <>
-                <a ref={this.pin} className={'button default '+(sort!='sort'?'active':'')} onClick={this.onContextMenuClick}>
+                <Button ref={this.pin} variant={sort!='sort'?'link':''} onClick={this.onContextMenuClick}>
                     <Icon name={'sort_'+sort} />
         
                     <span>
                         {this.options[sort]||''}
                     </span>
-                </a>
+                </Button>
 
                 {menu ? (
                     <Popover pin={this.pin} onClose={this.onContextMenuClose}>

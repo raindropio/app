@@ -1,0 +1,139 @@
+boxShadowDefault() {
+    box-shadow: inset 0 0 0 var(--shadow-height) var(--shadow-color), inset 0 calc(var(--shadow-height) * -1) 0 var(--shadow-color)
+}
+
+boxShadowClick() {
+    box-shadow: inset 0 0 0 var(--shadow-height) var(--shadow-color), inset 0 calc(var(--shadow-height)) 1px var(--shadow-color)
+}
+
+.button {
+    user-select: none
+    appearance: none
+    height: var(--button-height)
+    padding: 0 var(--padding-small)
+    display: inline-grid
+    grid-auto-flow: column
+    gap: var(--padding-small)
+    align-items: center
+    justify-content: start
+    border-radius: var(--border-radius)
+    font-size: var(--primary-font-size)
+    cursor: pointer
+
+    > * {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        word-wrap: break-word
+    }
+
+    &[disabled] {
+        pointer-events: none
+        cursor: default
+    }
+
+    &[data-block] {
+        display: grid
+        width: 100%
+        justify-content: center
+    }
+}
+
+//default
+.button[data-variant='default'] {
+    color: var(--primary-text-color)
+
+    &[disabled] {
+        color: var(--disable-text-color)
+    }
+
+    &:hover {
+        boxShadowDefault()
+    }
+
+    &:active {
+        boxShadowClick()
+        background: var(--alternative-background-color)
+    }
+}
+
+//link like
+.button[data-variant='link'] {
+    font-weight: 500
+    color: var(--accent-color)
+
+    &[disabled] {
+        color: var(--disable-text-color)
+    }
+
+    &:hover {
+        boxShadowDefault()
+    }
+
+    &:active {
+        boxShadowClick()
+        background: var(--alternative-background-color)
+    }
+}
+
+//outline
+.button[data-variant='outline'] {
+    background: var(--background-color)
+    color: var(--primary-text-color)
+    boxShadowDefault()
+
+    &[disabled] {
+        background: var(--disable-background-color)
+        color: var(--disable-text-color)
+    }
+
+    &:hover {
+        color: var(--accent-color)
+        box-shadow: inset 0 0 0 var(--shadow-height) var(--accent-color)
+    }
+
+    &:active {
+        boxShadowClick()
+        background: var(--alternative-background-color)
+    }
+}
+
+//flat
+.button[data-variant='flat'] {
+    background: var(--alternative-background-color)
+    color: var(--primary-text-color)
+
+    &[disabled] {
+        background: var(--disable-background-color)
+        color: var(--disable-text-color)
+    }
+
+    &:hover {
+        boxShadowDefault()
+    }
+
+    &:active {
+        boxShadowClick()
+    }
+}
+
+//primary
+.button[data-variant='primary'] {
+    background: var(--accent-color)
+    color: white
+    font-weight: 500
+
+    &[disabled] {
+        background: var(--disable-background-color)
+        color: var(--disable-text-color)
+    }
+
+    &:hover {
+        boxShadowDefault()
+    }
+
+    &:active {
+        boxShadowClick()
+        filter: brightness(.9);
+    }
+}

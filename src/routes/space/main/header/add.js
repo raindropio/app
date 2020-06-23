@@ -1,5 +1,7 @@
 import React from 'react'
 import t from '~t'
+
+import Button from '~co/common/button'
 import Icon from '~co/common/icon'
 import Add from '~co/bookmarks/add'
 
@@ -29,15 +31,13 @@ export default class HeaderAdd extends React.Component {
 
         return (
             <>
-                <a 
+                <Button 
                     ref={this.pin}
-                    className='button active'
+                    variant='primary'
                     onClick={this.onAddClick}>
-                    <b>
-                        <Icon name='add' />
-                        <span className='hide-on-small-body'>{t.s('add')}</span>
-                    </b>
-                </a>
+                    <Icon name='add' />
+                    <span className='hide-on-small-body'>{t.s('add')}</span>
+                </Button>
 
                 {show ? (
                     <Add 

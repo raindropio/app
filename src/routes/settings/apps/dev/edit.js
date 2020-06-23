@@ -5,6 +5,7 @@ import AppsStore from '~stores/apps'
 
 import { Header, Content } from '~co/screen/splitview/main'
 import Form from './form'
+import Button from '~co/common/button'
 
 export default class AppsDevEdit extends React.PureComponent {
     constructor(props) {
@@ -93,7 +94,7 @@ export default class AppsDevEdit extends React.PureComponent {
                             ) : null}
 
                             <div style={{margin: '16px'}}>
-                                <a href='' className='button red standart' onClick={this.onRemove}>{t.s('remove')} this app</a>
+                                <Button href='' variant='primary' onClick={this.onRemove}>{t.s('remove')} this app</Button>
                             </div>
                         </div>
 
@@ -124,7 +125,7 @@ export default class AppsDevEdit extends React.PureComponent {
                                 </figure>
 
                                 <figure className='fieldWrap' style={{padding: '7px'}}>
-                                    <a href='' className='button default' onClick={this.onRevokeAllTokens}><b>Revoke all user tokens</b></a>
+                                    <Button variant='outline' onClick={this.onRevokeAllTokens}>Revoke all user tokens</Button>
                                 </figure>
                             </div>
                         </div>

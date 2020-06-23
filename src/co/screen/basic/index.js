@@ -1,3 +1,4 @@
+import './index.module.styl'
 import React from 'react'
 
 export default ({ className, children })=>(

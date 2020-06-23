@@ -1,4 +1,7 @@
 import React from 'react'
+
+import { Section, SectionTitle, SectionActions } from '~co/common/list'
+import Button from '~co/common/button'
 import Icon from '~co/common/icon'
 
 export default class CollectionsGroupView extends React.Component {
@@ -10,13 +13,23 @@ export default class CollectionsGroupView extends React.Component {
         if (system) return null
 
         return (
-            <div 
-                className={`group ${active && 'active'} ${isDragging && 'is-dragging'} ${isDropping && 'is-drag-over'}`}
+            <Section 
+                active={active}
+                isDragging={isDragging}
+                isDropping={isDropping}
                 onContextMenu={onContextMenu}>
-                <div className='title' onClick={onClick}>{title}</div>
-                <div className='toggle'><Icon name='add' onClick={onCreateNewCollectionClick} /></div>
-                <div className='toggle'><Icon name='more_horizontal' onClick={onContextMenu} /></div>
-            </div>
+                <SectionTitle onClick={onClick}>{title}</SectionTitle>
+
+                <SectionActions>
+                    <Button onClick={onCreateNewCollectionClick}>
+                        <Icon name='add' />
+                    </Button>
+
+                    <Button onClick={onContextMenu}>
+                        <Icon name='more_horizontal' />
+                    </Button>
+                </SectionActions>
+            </Section>
         )
     }
 }

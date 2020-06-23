@@ -297,7 +297,11 @@ elementInvert()
     }
 
     .actions {
-        display: inline-flex;
+        z-index: 1
+        display: inline-grid
+        grid-auto-flow: column
+        gap: var(--padding-small)
+        justify-content: start
         opacity: 0;
         transition: opacity .1s linear;
     }
@@ -346,20 +350,4 @@ html:not(.blur) #main {
     align-items: center;
     justify-content: center;
     padding: 0 16px;
-    
-    .button {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex: 1;
-        text-align: center;
-        padding: 0;
-            
-        b {
-            flex:1;
-            padding: 0;
-            height: 28px;
-            line-height: 28px;
-        }
-    }
 }

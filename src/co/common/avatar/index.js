@@ -1,3 +1,4 @@
+import s from './index.module.styl'
 import React from 'react'
 import Icon from '~co/common/icon'
 
@@ -7,8 +8,14 @@ export default class HelpersAvatar extends React.Component{
   }
 
   render() {
-    if (this.props.src)
-        return <img src={'https://www.gravatar.com/avatar/'+this.props.src+'?d=mm&s='+(this.props.size||40)} alt='' className={this.props.className} />
+    const { className, src, size } = this.props
+
+    if (src)
+        return (
+          <img 
+            src={'https://www.gravatar.com/avatar/'+src+'?d=mm&s='+(size||40)}
+            className={s.avatar + ' ' + className} />
+        )
     else
         return <Icon name='profile' className={this.props.className} />
   }

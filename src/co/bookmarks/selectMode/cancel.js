@@ -3,6 +3,7 @@ import t from '~t'
 import { connect } from 'react-redux'
 import { cancelSelectMode } from '~data/actions/bookmarks'
 
+import Button from '~co/common/button'
 import Icon from '~co/common/icon'
 
 class BookmarksHeaderSelectMode extends React.Component {
@@ -17,10 +18,10 @@ class BookmarksHeaderSelectMode extends React.Component {
 
     render() {
         return (
-            <a href='' className='button default' onClick={this.onCancelSelectModeClick}>
+            <Button onClick={this.onCancelSelectModeClick}>
                 <Icon name='close' />
                 <span className='hide-on-small-body'>{t.s('cancel')}</span>
-            </a>
+            </Button>
         )
     }
 }

@@ -1,34 +1,40 @@
 import s from './index.module.styl'
 import React from 'react'
+
+import Button from '~co/common/button'
 import Icon from '~co/common/icon'
 
-export default class Tabs extends React.Component {
-	displayName = 'common/tabs'
+export default class Tabs extends React.PureComponent {
+	onItemClick = (e)=>{
+		e.preventDefault()
+		this.props.onChange(e.target.getAttribute('data-key'))
+	}
 
-	render() {
-		var items = (this.props.items||[]).map((item)=>{
-			if (typeof item.hidden != 'undefined')
-				if (item.hidden)
-					return null;
-
-			var isActive = (item.key == this.props.active);
-
-			var title = <span className={item.icon ? 'hide-on-small-body' : ''}>{item.title}</span>,
-				icon;
-
-			if (item.icon)
-				icon = <Icon name={isActive ? item.icon+'_active' : item.icon} className='show-on-small-body' />;
-
-			return (<a key={item.key} tabIndex='-1' onClick={(e)=>this.props.onChange(item.key)} className={s.item+' '+(isActive && s.active)} title={icon ? '' :item.title}>
-				{isActive ? <b>{title}{icon}</b> : null}
-				{!isActive ? title : null}
-				{!isActive ? icon : null}
-			</a>)
-		})||[];
+	renderItem = ({ hidden, key, title, icon })=>{
+		if (hidden) return null
+		const active = (key == this.props.active)
 
 		return (
-			<div className={s.tabs+' '+(this.props.className||'')}>
-				{items}
+			<Button 
+				key={key} 
+				data-key={key}
+				tabIndex='-1'
+				onClick={this.onItemClick} 
+				className={s.item}
+				variant={active && 'link'} 
+				title={title}>
+				{icon ? <Icon name={active ? icon+'_active' : icon} className='show-on-small-body' /> : null}
+				{title}
+			</Button>
+		)
+	}
+
+	render() {
+		const { items=[], className='' } = this.props
+
+		return (
+			<div className={s.tabs+' '+className}>
+				{items.map(this.renderItem)}
 			</div>
 		);
 	}

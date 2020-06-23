@@ -3,6 +3,7 @@ import t from '~t'
 import { connect } from 'react-redux'
 import { removeSelected } from '~data/actions/bookmarks'
 
+import Button from '~co/common/button'
 import Icon from '~co/common/icon'
 
 class BookmarksHeaderSelectModeRemove extends React.Component {
@@ -19,13 +20,13 @@ class BookmarksHeaderSelectModeRemove extends React.Component {
 
     render() {
         return (
-            <a className='button default' onClick={this.onRemoveClick}>
+            <Button onClick={this.onRemoveClick}>
                 <Icon name='trash' />
                 
                 <span className='hide-on-small-body'>
                     {t.s('remove')}
                 </span>
-            </a>
+            </Button>
         )
     }
 }

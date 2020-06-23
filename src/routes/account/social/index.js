@@ -2,8 +2,10 @@ import globalS from '../_page/index.module.styl'
 import s from './index.module.styl'
 import React from 'react'
 import { API_ENDPOINT_URL } from '~data/constants/app'
-import Icon from '~co/common/icon'
 import environment from '~modules/environment'
+
+import Button from '~co/common/button'
+import Icon from '~co/common/icon'
 
 export default class AccountSocialLogin extends React.Component {
     openModal = (e)=>{
@@ -27,15 +29,14 @@ export default class AccountSocialLogin extends React.Component {
         return (
             <div className={globalS.buttons + ' ' + s.socialLoginWrap}>
                 {['google', 'apple', 'facebook', 'twitter', 'vkontakte'].map(vendor=>(
-                    <a 
+                    <Button 
                         key={vendor}
-                        className={'button standart '+s[vendor]}
+                        className={s[vendor]}
+                        variant='outline'
                         href={`${API_ENDPOINT_URL}auth/${vendor}${this.props.uriSuffix}`}
                         onClick={this.openModal}>
-                        <b style={{pointerEvents: 'none'}}>
-                            <Icon name={vendor} />
-                        </b>
-                    </a>
+                        <Icon name={vendor} />
+                    </Button>
                 ))}
             </div>
         )

@@ -1,5 +1,7 @@
 import React from 'react'
 import { Context } from '../'
+
+import Button from '~co/common/button'
 import Icon from '~co/common/icon'
 
 class SplitViewSidebarHeader extends React.Component {
@@ -15,9 +17,9 @@ class SplitViewSidebarHeader extends React.Component {
 
                     {this.props.children}
 
-                    <a href='' className='button default show-on-extension' onClick={this.context.sidebar.toggle}>
+                    <Button variant='flat' onClick={this.context.sidebar.toggle}>
                         <Icon name='close' />
-                    </a>
+                    </Button>
                 </div>
             </header>
         )

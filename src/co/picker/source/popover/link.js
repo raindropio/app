@@ -1,7 +1,9 @@
 import React from 'react'
+import normalizeUrl from 'normalize-url'
+
+import Button from '~co/common/button'
 import Preloader from '~co/common/preloader'
 import SuperInput from '~co/common/superInput'
-import normalizeUrl from 'normalize-url'
 
 export default class PickerSourceLink extends React.Component {
     state = {
@@ -44,9 +46,10 @@ export default class PickerSourceLink extends React.Component {
 
                 {status == 'loading' && (<div className='fieldColumns'><Preloader /></div>)}
                 {link && status != 'loading' && (<div className='fieldColumns'>
-                    <input
+                    <Button
+                        Tag='input'
                         type='submit'
-                        className='button active standart input'
+                        variant='primary'
                         />
                 </div>)}
             </form>

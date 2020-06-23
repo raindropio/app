@@ -1,6 +1,8 @@
 import React from 'react'
 import t from '~t'
+
 import { Header } from '~co/screen/splitview/reader'
+import Button from '~co/common/button'
 import Icon from '~co/common/icon'
 import Tabs from '~co/common/tabs'
 import Settings from './settings'
@@ -53,18 +55,18 @@ export default class ReaderHeader extends React.PureComponent {
                         className='hide-on-clipper' />
                 </div>
         
-                <a href={item.link} target='_blank' className='button hide-on-extension' title={t.s('open')}>
+                <Button href={item.link} target='_blank' className='hide-on-extension' title={t.s('open')}>
                     <Icon name='open' />
-                </a>
+                </Button>
 				
                 {access.level >= 3 ? (
                     <>
-                        <a className={'button '+(item.important ? 'active' : '')} onClick={this.onImportantClick}  title={t.s('add') +' ' + t.s('to') + ' ' + t.s('favoriteSites').toLowerCase()}>
+                        <Button variant={item.important ? 'link' : ''} onClick={this.onImportantClick}  title={t.s('add') +' ' + t.s('to') + ' ' + t.s('favoriteSites').toLowerCase()}>
                             <Icon name={'like'+(item.important ? '_active' : '')} />
-                        </a>
-                        <a className='button' title={t.s('remove')} onClick={this.onRemoveClick}>
+                        </Button>
+                        <Button title={t.s('remove')} onClick={this.onRemoveClick}>
                             <Icon name='trash' />
-                        </a>
+                        </Button>
                     </>
                 ) : null}
             </Header>

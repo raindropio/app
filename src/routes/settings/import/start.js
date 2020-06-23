@@ -1,12 +1,13 @@
 import React from 'react'
-import Icon from '~co/common/icon'
 import t from '~t'
 import config from '~config'
-
 import helpers from './helpers'
 
+import Button from '~co/common/button'
+import Icon from '~co/common/icon'
+
 export default class ImportStart extends React.Component {
-	displayName = "settings/import/start"
+	displayName = 'settings/import/start'
 
 	constructor(props) {
 		super(props)
@@ -25,30 +26,30 @@ export default class ImportStart extends React.Component {
 
 	render() {
 		return (
-			<div className="centerContentWrap">
-				<div className="centerContent">
-					<div className="centerContentBlock">
-						<h1 className="extraHeadLabel">{t.format("importBookmarksD", "Pocket, Pinboard, Diigo, Instapaper")}</h1>
+			<div className='centerContentWrap'>
+				<div className='centerContent'>
+					<div className='centerContentBlock'>
+						<h1 className='extraHeadLabel'>{t.format('importBookmarksD', 'Pocket, Pinboard, Diigo, Instapaper')}</h1>
 						<br />
 						
-						<div style={{maxWidth:"100%",display:"inline-flex",alignItems:"center",justifyContent:"center",flexWrap:'wrap'}}>
-							<div className="button blue standart select">
-								<Icon name="upload_active" />&nbsp;&nbsp;
-								<span>{t.s('upload')} {t.format("importInfo1", "50")}</span>
-								<input type="file" ref="file" onChange={(e)=>helpers.handleFile(this,e,"html")} />
-							</div>
+						<div style={{maxWidth:'100%',display:'inline-flex',alignItems:'center',justifyContent:'center',flexWrap:'wrap'}}>
+							<Button variant='primary'>
+								<Icon name='upload_active' />&nbsp;&nbsp;
+								<span>{t.s('upload')} {t.format('importInfo1', '50')}</span>
+								<input type='file' ref='file' onChange={(e)=>helpers.handleFile(this,e,'html')} />
+							</Button>
 						</div>
 
 						<br /><br />
-						<p className="subHeadLabel" style={{maxWidth:"500px"}}>{t.s("importInfo2")} (Netscape HTML format)</p>
+						<p className='subHeadLabel' style={{maxWidth:'500px'}}>{t.s('importInfo2')} (Netscape HTML format)</p>
 						
 						<br />
-						<div className="superForm">
-							<div className="fieldLink fieldColumns" style={{margin: '0 auto'}} onClick={this.importDuplicates}>
-								<span className={"extra-checkbox"+(this.state.importDuplicates?" active":"")} />
+						<div className='superForm'>
+							<div className='fieldLink fieldColumns' style={{margin: '0 auto'}} onClick={this.importDuplicates}>
+								<span className={'extra-checkbox'+(this.state.importDuplicates?' active':'')} />
 
 								<span>
-									{t.s('importBookmarks')} {t.s("duplicates").toLowerCase()}
+									{t.s('importBookmarks')} {t.s('duplicates').toLowerCase()}
 								</span>
 							</div>
 						</div>

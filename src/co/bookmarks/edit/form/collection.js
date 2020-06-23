@@ -3,6 +3,7 @@ import t from '~t'
 import { connect } from 'react-redux'
 import { makeCollectionPath } from '~data/selectors/collections'
 
+import Button from '~co/common/button'
 import Icon from '~co/common/icon'
 import CollectionIcon from '~co/collections/item/icon'
 import Picker from '~co/collections/picker'
@@ -41,19 +42,17 @@ class BookmarkEditFormCollection extends React.Component {
             <div className='fieldWrap'>
                 <label className='fieldName'>{t.s('collection')}</label>
 
-                <a 
+                <Button 
                     ref={this.linkRef}
                     href=''
                     tabIndex={tabIndex}
-                    className=' selectButton inline'
+                    variant='outline'
                     disabled={status=='loading'}
                     onClick={this.onPickerClick}>
-                    <span className='fieldIcon'>
-                        <CollectionIcon {...path[path.length-1]} />
-                    </span>
-                    <span className='caption'>{pathText}</span>
-                    <Icon className='fieldIcon arrow' name='arrow' />
-                </a>
+                    <CollectionIcon {...path[path.length-1]} />
+                    {pathText}
+                    <Icon name='arrow' />
+                </Button>
 
                 {this.state.picker && (
                     <Picker 

@@ -1,6 +1,8 @@
 import React from 'react'
 import { humanNumber } from '~modules/strings'
 
+import { Item, ItemExpand, ItemIcon, ItemTitle, ItemInfo, ItemActions } from '~co/common/list'
+import Button from '~co/common/button'
 import Icon from '~co/common/icon'
 import SuperLink from '~co/common/superLink'
 
@@ -10,22 +12,26 @@ export default class FiltersTagView extends React.Component {
         const { onClick, onAppendClick, onRenameClick, onContextMenu, onKeyUp } = this.props
 
         return (
-            <article className={`collection menu-item ${active && 'active'} have-actions`}>
-                <span className='expand'>
-                    <Icon name='arrow_alt' />
-                </span>
+            <Item active={active}>
+                <ItemExpand />
 
-                <Icon name='tag' className='collectionIcon' />
+                <ItemIcon>
+                    <Icon name='tag' />
+                </ItemIcon>
 
-                <div className='title'>{_id}</div>
+                <ItemTitle>{_id}</ItemTitle>
 
-                <div className='space' />
-
-                {count ? <div className='count'>{humanNumber(count)}</div> : null}
-                <div className='actions'>
-                    {canAppend && onAppendClick && <Icon name='search_add' onClick={onAppendClick} />}
-                    <Icon name='more_horizontal' onClick={onContextMenu} />
-                </div>
+                {count ? <ItemInfo>{humanNumber(count)}</ItemInfo> : null}
+                <ItemActions>
+                    {canAppend && onAppendClick && (
+                        <Button onClick={onAppendClick}>
+                            <Icon name='search_add' />
+                        </Button>
+                    )}
+                    <Button onClick={onContextMenu}>
+                        <Icon name='more_horizontal' />
+                    </Button>
+                </ItemActions>
 
                 <SuperLink
                     navPrefix='menu-item'
@@ -33,9 +39,8 @@ export default class FiltersTagView extends React.Component {
                     onClick={onClick}
                     onDoubleClick={onRenameClick}
                     onContextMenu={onContextMenu}
-                    onKeyUp={onKeyUp}
-					className='permalink' />
-            </article>
+                    onKeyUp={onKeyUp} />
+            </Item>
         )
     }
 }

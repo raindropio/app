@@ -1,6 +1,7 @@
 import React from 'react'
 import t from '~t'
 
+import Button from '~co/common/button'
 import Icon from '~co/common/icon'
 import Sidebar, { Header, Content } from '~co/screen/splitview/sidebar'
 import Collections from '~co/collections/items'
@@ -40,13 +41,12 @@ export default class CollectionsSidebar extends React.Component {
                 <Header>
                     <Profile />
                     
-                    <a 
-                        href=''
-                        className='button flat'
+                    <Button 
+                        variant='flat'
                         title={`${t.s('createNewCollection')}\nShift+click: ${t.s('createSubFolder').toLowerCase()}`}
                         onClick={this.onCreateCollectionClick}>
-                        <b><Icon name='add' /></b>
-                    </a>
+                        <Icon name='add' />
+                    </Button>
                 </Header>
 
                 <Content>

@@ -1,0 +1,47 @@
+.section {
+	height: var(--list-item-height)
+	padding-left: var(--icon-size)
+	font-size: var(--secondary-font-size)
+	color: var(--primary-text-color)
+	display: flex
+	align-items: center
+	
+	&.active {
+        background: var(--accent-color)
+        color: white
+    }
+    
+    &.isDragging {
+        background: var(--background-color)
+    	box-shadow: 0 1px 3px var(--shadow-color)
+    }
+    
+    &.isDropping {
+    	transition: box-shadow .15s ease-in-out, background .15s ease-in-out;
+    	background-color: rgba(74,116,226,.1) !important;
+    	box-shadow: inset 0px 0px 0px 2px rgba(74,116,226,.5);
+    }
+	
+	&:hover {
+		background-color: var(--alternative-background-color)
+		.actions {
+			display:block
+		}
+	}
+}
+
+.title {
+    flex: 1
+    min-width: 0
+    padding-right: var(--padding-small)
+
+    white-space: nowrap
+    overflow: hidden
+    text-overflow: ellipsis
+    word-wrap: break-word
+}
+
+.actions {
+    display: none
+	margin-right: var(--padding-small)
+}

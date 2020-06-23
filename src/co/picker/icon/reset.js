@@ -1,6 +1,8 @@
 import React from 'react'
 import t from '~t'
 
+import Button from '~co/common/button'
+
 export default class PickerIconReset extends React.Component {
     onClick = (e)=>{
         e.preventDefault()
@@ -9,12 +11,12 @@ export default class PickerIconReset extends React.Component {
 
     render() {
         return (
-            <a 
+            <Button 
                 href=''
-                className='button active'
+                variant='link'
                 onClick={this.onClick}>
                 {t.s('remove')}
-            </a>
+            </Button>
         )
     }
 }

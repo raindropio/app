@@ -1,5 +1,7 @@
 import React from 'react'
 import { Context } from '../'
+
+import Button from '~co/common/button'
 import Icon from '~co/common/icon'
 
 class SplitViewPanelHeader extends React.Component {
@@ -23,9 +25,9 @@ class SplitViewPanelHeader extends React.Component {
 
                     {this.props.children}
 
-                    <a href='' className='button' onClick={this.onCloseClick}>
+                    <Button href='' onClick={this.onCloseClick}>
                         <Icon name='close' />
-                    </a>
+                    </Button>
                 </div>
             </header>
         )

@@ -10,6 +10,7 @@ import keyvalStore from '~stores/keyval'
 import keyvalActions from '~actions/keyval'
 import UserStore from '~stores/user'
 
+import Button from '~co/common/button'
 import Theme from './parts/theme'
 import Broken from './parts/broken'
 
@@ -64,14 +65,14 @@ class Common extends React.Component {
         	<figure className="fieldWrap">
 				<label className="fieldName">{t.s("language")}</label>
 				
-				<label className="selectButton inline no-icon">
+				<Button variant='outline'>
 					<span className="caption">{supportedLangs[t.currentLang]}</span>
 					<Icon className="fieldIcon arrow" name="arrow" />
 
 					<select ref="lang" value={t.currentLang} onChange={this.handleLangChange.bind(this)}>
 						{languages}
 					</select>
-				</label>
+				</Button>
 			</figure>
         );
 	}

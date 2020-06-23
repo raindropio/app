@@ -2,6 +2,7 @@ import React from 'react'
 import t from '~t'
 import getLinks from '~data/modules/bookmarks/getLinks'
 
+import Button from '~co/common/button'
 import Icon from '~co/common/icon'
 
 class BookmarksSelectModeOpen extends React.Component {
@@ -18,13 +19,13 @@ class BookmarksSelectModeOpen extends React.Component {
 
     render() {
         return (
-            <a className='button default' onClick={this.onOpenSelectedClick}>
+            <Button onClick={this.onOpenSelectedClick}>
                 <Icon name='open' />
                 
                 <span className='hide-on-small-body'>
                     {t.s('open')}
                 </span>
-            </a>
+            </Button>
         )
     }
 }

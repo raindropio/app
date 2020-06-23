@@ -1,0 +1,121 @@
+.item {
+    display: flex
+    align-items: center
+	position: relative
+	height: var(--list-item-height)
+	padding-left: calc(var(--level, 0) * var(--icon-size))
+
+    &.expanded .expand, &.collapsed .expand {
+    	visibility: visible
+    }
+
+    &.collapsed .expand > :first-child  {
+    	transform: rotate(-90deg)
+    }
+
+    &:hover {
+    }
+
+    &.active {
+        background: var(--alternative-background-color)
+    }
+
+    &.isDragging {
+        background: var(--background-color)
+    	box-shadow: 0 1px 3px var(--shadow-color)
+    }
+    
+    &.isDropping {
+    	transition: box-shadow .15s ease-in-out, background .15s ease-in-out
+    	background-color: rgba(74,116,226,.1) !important
+    	box-shadow: inset 0px 0px 0px 2px var(--accent-color)
+    }
+
+	&.active:not([data-is-focus="true"]) {
+    	background: var(--alternative-background-color) !important;
+    }
+
+	.expand {
+		&:hover {
+			opacity:1;
+		}
+
+		&:active {
+			opacity:.3;
+		}
+	}
+	
+	&:hover {
+    	.info {
+    		display: none;
+    	}
+    	.actions {
+    		display: flex;
+    	}
+    }
+}
+
+html:not(:global(.blur)) .item.active[data-is-focus="true"] {
+    background: var(--accent-color)
+    color: white
+    --primary-text-color: white
+    --secondary-text-color: white
+    --shadow-color: transparent
+}
+
+.expand {
+    visibility: hidden;
+    opacity: .4;
+    color: inherit;
+    position:relative;
+    z-index:1;
+    outline: none;
+    box-sizing: initial;
+    width: var(--icon-size)
+
+    > :first-child {
+        vertical-align: -3px;
+        pointer-events: none;
+    }
+}
+
+.icon {
+    width: var(--icon-size)
+    height: var(--icon-size)
+    color: var(--primary-text-color)
+    margin-right: var(--padding-small)
+
+    > * {
+        display: block
+        width: 100%
+        height: 100%
+        object-fit: cover
+    }
+}
+
+.title {
+    min-width:0
+    font-size: var(--primary-font-size)
+    flex: 1
+
+    white-space: nowrap
+    overflow: hidden
+    text-overflow: ellipsis
+    word-wrap: break-word
+}
+
+.info {
+    color: var(--secondary-text-color)
+    font-size: var(--tertiary-font-size)
+    text-align: right
+    padding-right: var(--padding-medium)
+}
+
+.actions {
+    display: none
+    text-align: right
+    justify-content: flex-end
+    margin-right: var(--padding-small)
+    position: relative
+    z-index: 1
+}

@@ -4,6 +4,7 @@ import getLinks from '~data/modules/bookmarks/getLinks'
 import { connect } from 'react-redux'
 import { oneRemove, oneUpdate } from '~data/actions/collections'
 
+import Button from '~co/common/button'
 import Icon from '~co/common/icon'
 import Contextmenu from '~co/collections/item/contextmenu'
 import ChangeIcon from '~co/collections/changeIcon'
@@ -57,9 +58,11 @@ class BookmarksHeaderMore extends React.Component {
 
         return (
             <>
-                <a ref={this.pin} className='button default' onClick={this.onContextMenuClick}>
+                <Button 
+                    ref={this.pin}
+                    onClick={this.onContextMenuClick}>
                     <Icon name='more_horizontal' />
-                </a>
+                </Button>
 
                 {menu ? (
                     <Contextmenu 

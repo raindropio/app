@@ -1,13 +1,15 @@
 import React from 'react'
+
+import { ItemIcon } from '~co/common/list'
 import Icon from '~co/common/icon'
 import Preloader from '~co/common/preloader'
 
-export default React.memo(({ _id, cover, className, size, active, loading })=>{
+const CollectionIcon = React.memo(({ _id, cover, className='', size, active, loading })=>{
 	if (loading)
-		return <Preloader className='collectionIcon' data-size='icon' />
+		return <Preloader className={className} data-size='icon' />
 
 	if (cover && cover[0])
-		return <img src={cover[0]} className={'collectionIcon '+className||''} loading='lazy' />
+		return <img src={cover[0]} className={className} loading='lazy' />
 
 	var name = '', prefix = (active ? '_active' : '')
 	
@@ -19,5 +21,11 @@ export default React.memo(({ _id, cover, className, size, active, loading })=>{
 		default: name = 'default_collection'+prefix; break;
 	}
 
-	return <Icon name={name} className={'collectionIcon '+className||''} data-size={size} />
+	return <Icon name={name} className={className} data-size={size} />
 })
+
+export default props => (
+	<ItemIcon>
+		<CollectionIcon {...props} />
+	</ItemIcon>
+)

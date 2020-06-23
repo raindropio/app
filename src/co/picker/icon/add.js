@@ -1,6 +1,8 @@
 import React from 'react'
-import Icon from '~co/common/icon'
 import PickerSource from '~co/picker/source/popover'
+
+import Button from '~co/common/button'
+import Icon from '~co/common/icon'
 
 export default class PickerIconAdd extends React.Component {
     state = {
@@ -20,12 +22,12 @@ export default class PickerIconAdd extends React.Component {
     render() {
         return (
             <>
-                <a 
+                <Button 
                     ref={this.pin}
-                    className='button active'
+                    variant='link'
                     onClick={this.onAddClick}>
                     <Icon name='add_active' />
-                </a>
+                </Button>
 
                 {this.state.add ? (
                     <PickerSource 

@@ -4,18 +4,20 @@ import t from '~t'
 import config from '~config'
 import environment from '~modules/environment'
 
+import Button from '~co/common/button'
+
 export default ({enabled=false, pro=false})=>{
 	var subhead, button;
 
 	if ((enabled)&&(pro)) {
 		subhead = <span><Icon name="check_active" />{t.s("sync")}</span>;
-		button = <a className="button default" href={config.apiPrefix+"user/connect/dropbox/revoke"}><b>{t.s("disable")}</b></a>;
+		button = <Button variant='outline' href={config.apiPrefix+"user/connect/dropbox/revoke"}>{t.s("disable")}</Button>;
 	}else{
 		subhead = t.s("pro_dropboxD");
-		button = <a className="button blue standart" href={config.apiPrefix+"user/connect/dropbox"}><b>{t.s("enable")}</b></a>;
+		button = <Button variant='outline' href={config.apiPrefix+"user/connect/dropbox"}>{t.s("enable")}</Button>;
 
 		if (!pro)
-			button = <a className="button active min" href="#/settings/upgrade">{t.s("onlyInPro")}</a>
+			button = <Button variant='link' href="#/settings/upgrade">{t.s("onlyInPro")}</Button>
 	}
 
 	return (

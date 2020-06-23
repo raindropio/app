@@ -1,5 +1,7 @@
 import s from './input.module.styl'
 import React from 'react'
+
+import Button from '~co/common/button'
 import Icon from '~co/common/icon'
 import Preloader from '../common/preloader'
 
@@ -57,9 +59,9 @@ export default class SearchView extends React.PureComponent {
     }
 
     renderButton = ({id, icon, iconSize='micro'})=>(
-        <a className={s.button+' button'} href='' data-id={id} key={id} tabIndex='-1' onClick={this.onButtonClick}>
+        <Button className={s.button} href='' data-id={id} key={id} tabIndex='-1' onClick={this.onButtonClick}>
             <Icon name={icon} data-size={iconSize} />
-        </a>
+        </Button>
     )
 
     renderCancel = ()=>this.props.value && this.renderButton({

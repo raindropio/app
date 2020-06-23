@@ -1,6 +1,7 @@
 import React from 'react'
 import t from '~t'
 import Pop from '~actions/pop'
+import Button from '~co/common/button'
 
 const emptyObject = {}
 
@@ -113,7 +114,7 @@ export default class AppsDevEdit extends React.PureComponent {
                     ) : null}
 
                     {this.state.unsaved && <figure className="fieldColumns">
-                        <input type="submit" className="button blue standart" value={t.s('save')} />
+                        <Button Tag='input' type="submit" variant='primary' value={t.s('save')} />
                     </figure>}
                 </form>
 

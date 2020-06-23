@@ -2,7 +2,7 @@ import React from 'react'
 import t from '~t'
 import { withRouter } from 'react-router-dom'
 
-import Icon from '~co/common/icon'
+import { Item, ItemExpand } from '~co/common/list'
 import CollectionIcon from './icon'
 import SuperInput from '~co/common/superInput'
 
@@ -47,30 +47,30 @@ class CollectionsItemRename extends React.PureComponent {
         const { title, loading } = this.state
 
         return (
-            <form
-                className='collection'
-                data-is-focus='true'
-                style={{'--accentColor': color, '--level': level}}
-                onSubmit={this.onSubmit}>
-                <span className='expand'><Icon name='arrow_alt' /></span>
-                
-                <CollectionIcon
-                    cover={cover}
-                    _id={_id}
-                    active={true}
-                    loading={loading} />
+            <form onSubmit={this.onSubmit}>
+                <Item
+                    color={color}
+                    level={level}>
+                    <ItemExpand />
+                    
+                    <CollectionIcon
+                        cover={cover}
+                        _id={_id}
+                        active={true}
+                        loading={loading} />
 
-                <SuperInput
-                    type='text'
-                    required
-                    autoFocus
-                    selectAll={true}
-                    disabled={loading}
-                    value={title}
-                    placeholder={t.s('enterTitle')}
-                    onKeyUp={this.onKeyUp}
-                    onChange={this.onChange}
-                    onBlur={this.save} />
+                    <SuperInput
+                        type='text'
+                        required
+                        autoFocus
+                        selectAll={true}
+                        disabled={loading}
+                        value={title}
+                        placeholder={t.s('enterTitle')}
+                        onKeyUp={this.onKeyUp}
+                        onChange={this.onChange}
+                        onBlur={this.save} />
+                </Item>
             </form>
         )
     }

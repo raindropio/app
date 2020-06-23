@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as configActions from '~data/actions/config'
 
+import Button from '~co/common/button'
 import Icon from '~co/common/icon'
 import Popover from '~co/overlay/popover'
 import Slider from '~co/common/slider'
@@ -34,9 +35,9 @@ class ReaderHeaderSettings extends React.Component {
 
         return (
             <>
-                <a ref={this.pin} className='button' onClick={this.onSettingsClick}>
+                <Button ref={this.pin} onClick={this.onSettingsClick}>
                     <Icon name={tab == 'preview' ? 'fonts' : 'settings'} />
-                </a>
+                </Button>
 
                 {this.state.show && (
                     <Popover pin={this.pin} onClose={this.onSettingsClose}>

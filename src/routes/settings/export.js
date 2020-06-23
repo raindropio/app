@@ -4,6 +4,7 @@ import Api from '~api'
 
 import Main, { Header, Content } from '~co/screen/splitview/main'
 import SuperImg from '~co/common/superImg'
+import Button from '~co/common/button'
 
 class Export extends React.Component {
 	displayName = 'settings/export'
@@ -30,7 +31,7 @@ class Export extends React.Component {
 				<div>
 					<h1 className='extraHeadLabel'>{t.s('allBookmarks')}</h1>
 					<br/>
-					<a className='button blue standart' onClick={this.handleExport.bind(this)} target='_blank'>{t.s('sendEmail')}</a>
+					<Button variant='primary' onClick={this.handleExport.bind(this)} target='_blank'>{t.s('sendEmail')}</Button>
 				</div>
 			);
 

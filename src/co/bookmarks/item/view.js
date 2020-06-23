@@ -3,6 +3,7 @@ import t from '~t'
 import { ShortDate } from '~modules/format/date'
 
 import SuperLink from '~co/common/superLink'
+import Button from '~co/common/button'
 import Icon from '~co/common/icon'
 import SafeHtml from '~co/common/safeHtml'
 import Cover from './cover'
@@ -76,34 +77,27 @@ export default class BookmarkItemView extends React.PureComponent {
                 </div>
 
                 <div className='actions'>
-                    <a 
+                    <Button 
+                        variant='outline'
                         onClick={onPreviewClick}
                         tabIndex='-1'
-                        className='button min default'
                         title={t.s('preview')}>
-                        <b><Icon name='show' /></b>
-                    </a>
+                        <Icon name='show' />
+                    </Button>
 
                     {access.level >= 3 ? (
                         <>
-                            <span 
-                                className='button min default'
+                            <Button 
+                                variant='outline'
                                 onClick={onEditClick}>
-                                <b><Icon name='edit' /></b>
-                            </span>
+                                {t.s('editMin')}
+                            </Button>
 
-                            {/*<span
-                                className='button min default'
-                                onClick={onContextMenu}
-                                title={t.s('helpContextD')}>
-                                <b><Icon name='more_horizontal' /></b>
-                            </span>*/}
-
-                            <span 
-                                className='button min default'
+                            <Button 
+                                variant='outline'
                                 onClick={onRemoveClick}>
-                                <b><Icon name='trash' /></b>
-                            </span>
+                                <Icon name='trash' />
+                            </Button>
                         </>
                     ) : null}
                 </div>

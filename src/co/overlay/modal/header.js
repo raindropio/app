@@ -1,6 +1,8 @@
 import s from './header.module.styl'
 import React from 'react'
 import Context from './context'
+
+import Button from '~co/common/button'
 import Icon from '~co/common/icon'
 
 class ModalHeader extends React.Component {
@@ -16,9 +18,9 @@ class ModalHeader extends React.Component {
                 {this.props.children}
 
                 {this.context.closable ? (
-                    <a className={'button default '+s.close} onClick={this.context.onClose}>
+                    <Button className={s.close} onClick={this.context.onClose}>
                         <Icon name='close' />
-                    </a>
+                    </Button>
                 ) : null}
             </header>
         )

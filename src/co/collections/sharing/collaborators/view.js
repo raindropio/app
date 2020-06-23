@@ -2,6 +2,8 @@ import React from 'react'
 import t from '~t'
 import User from './user'
 
+import Button from '~co/common/button'
+
 export default function CollectionSharingCollaboratorsView({ users={}, onUnshare, ...etc }) {
     const groups = Object.entries(users)
 
@@ -33,9 +35,9 @@ export default function CollectionSharingCollaboratorsView({ users={}, onUnshare
             })}
 
             <footer>
-                <a className='button default' onClick={onUnshare}>
-                    <b>{t.s('unshareCollection')}</b>
-                </a>
+                <Button onClick={onUnshare} variant='outline'>
+                    {t.s('unshareCollection')}
+                </Button>
             </footer>
         </>
     )

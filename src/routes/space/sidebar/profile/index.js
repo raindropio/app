@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux'
 import * as userActions from '~data/actions/user'
 import { user } from '~data/selectors/user'
 
+import Button from '~co/common/button'
 import Avatar from '~co/common/avatar'
 import Contextmenu from './contextmenu'
 
@@ -28,10 +29,10 @@ class SidebarProfile extends React.PureComponent {
 
         return (
             <>
-                <a ref={this.pin} className='button min' style={{flex:1}} onClick={this.onProfileClick}>
+                <Button ref={this.pin} style={{flex:1}} onClick={this.onProfileClick}>
                     <Avatar src={user.email_MD5} size='40' />
                     <span>{user.fullName}</span>
-                </a>
+                </Button>
                 
                 {menu && <Contextmenu pin={this.pin} {...this.props} onMenuClose={this.onMenuClose} />}
             </>

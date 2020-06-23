@@ -4,6 +4,7 @@ import React from 'react'
 import { Helmet } from 'react-helmet'
 import t from '~t'
 
+import Button from '~co/common/button'
 import withPage from '../_page'
 import Social from '../social'
 import Error from '../error'
@@ -63,10 +64,12 @@ class AccountSignup extends React.Component {
                     onChange={this.onChangeValue} />
 
                 <div className={globalS.buttons}>
-                    <input 
+                    <Button
+                        Tag='input' 
                         type='submit'
                         disabled={status=='loading'}
-                        className='button active standart input'
+                        variant='primary'
+                        data-block
                         value={t.s('register')} />
                 </div>
                 <div className={s.acceptLicence}>

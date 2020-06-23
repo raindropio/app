@@ -2,6 +2,7 @@ import styles from './index.module.styl'
 import React from 'react'
 import t from '~t'
 
+import Button from '~co/common/button'
 import TextareaAutosize from 'react-textarea-autosize'
 import Cover from './cover'
 import Collection from './collection'
@@ -93,9 +94,10 @@ export default class BookmarkEditForm extends React.Component {
 
                     {(unsaved || status == 'saving') && (
                         <div className='fieldColumns'>
-                            <input
+                            <Button
+                                Tag='input'
+                                variant='primary'
                                 type='submit'
-                                className='button active standart input'
                                 disabled={status == 'saving'}
                                 value={t.s('save') + (status == 'saving' ? '…' : '')} />
                         </div>

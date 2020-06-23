@@ -1,9 +1,10 @@
 import React from 'react'
 import t from '~t'
 import Api from '~api'
-
 import Pop from '~actions/pop'
 import UserStore from '~stores/user'
+
+import Button from '~co/common/button'
 
 export default class Reset extends React.Component {
 	displayName = "settings/parts/reset"
@@ -50,7 +51,7 @@ export default class Reset extends React.Component {
 
 	render() {
 		return (
-			<a className="button default" onClick={this.handleReset.bind(this)}>
+			<Button onClick={this.handleReset.bind(this)}>
 				{
 					t.s("remove")+" "+
 					t.s("all").toLowerCase()+" "+
@@ -58,7 +59,7 @@ export default class Reset extends React.Component {
 					t.s("und")+" "+
 					t.s("elements2").toLowerCase()
 				}
-			</a>
+			</Button>
 		);
 	}
 }

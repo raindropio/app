@@ -3,6 +3,7 @@ import t from '~t'
 import { connect } from 'react-redux'
 import * as actions from '~data/actions/bookmarks'
 
+import Button from '~co/common/button'
 import Icon from '~co/common/icon'
 
 class BookmarksHeaderSelectMode extends React.Component {
@@ -12,11 +13,11 @@ class BookmarksHeaderSelectMode extends React.Component {
 
     render() {
         return (
-            <a className='button default' onClick={this.onAddTagsClick}>
+            <Button onClick={this.onAddTagsClick}>
                 <Icon name='tag' />
                 
                 <span className='hide-on-small-body'>{t.s('addTags')}</span>
-            </a>
+            </Button>
         )
     }
 }

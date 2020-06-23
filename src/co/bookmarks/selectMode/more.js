@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import * as actions from '~data/actions/bookmarks'
 
 import Popover, { Menu, MenuItem, MenuSeparator } from '~co/overlay/popover'
+import Button from '~co/common/button'
 import Icon from '~co/common/icon'
 
 class BookmarksSelectModeMore extends React.Component {
@@ -52,9 +53,9 @@ class BookmarksSelectModeMore extends React.Component {
     render() {
         return (
             <>
-                <a ref={this.pin} className='button default' onClick={this.onContextMenuClick}>
+                <Button ref={this.pin} onClick={this.onContextMenuClick}>
                     <Icon name='more_horizontal'/>
-                </a>
+                </Button>
 
                 {this.state.menu ? (
                     <Popover pin={this.pin} onClose={this.onContextMenuClose}>

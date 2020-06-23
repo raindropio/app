@@ -3,6 +3,7 @@ import React from 'react'
 import { Helmet } from 'react-helmet'
 import t from '~t'
 
+import Button from '~co/common/button'
 import withPage from './_page'
 import Error from './error'
 
@@ -49,10 +50,12 @@ class AccountLost extends React.Component {
                     onChange={this.onChangeValue} />
 
                 <div className={s.buttons}>
-                    <input 
+                    <Button
+                        Tag='input' 
                         type='submit'
                         disabled={status=='loading'}
-                        className='button active standart input'
+                        variant='primary'
+                        data-block
                         value={t.s('recoverPassword')} />
                 </div>
             </form>

@@ -1,6 +1,7 @@
 import React from 'react'
 import t from '~t'
 import { Link } from 'react-router-dom'
+import Button from '~co/common/button'
 
 export default class BookmarksFooterView extends React.PureComponent {
     loadMore = (e)=>{
@@ -33,7 +34,11 @@ export default class BookmarksFooterView extends React.PureComponent {
             default:
                 if (status.main == 'loaded')
                     content = (
-                        <a className='button flat' onClick={this.loadMore}><b>{t.s('more')}&hellip;</b></a>
+                        <Button 
+                            variant='flat' 
+                            onClick={this.loadMore}>
+                            {t.s('more')}&hellip;
+                        </Button>
                     )
                 break
         }
@@ -41,7 +46,14 @@ export default class BookmarksFooterView extends React.PureComponent {
         if ((compact && status.main == 'loaded' && status.nextPage != 'noMore') ||
             (compact && more))
             content = (
-                <Link to={`/space/${spaceId}full`} className='button flat' href='/'><b>{t.s('more')}&hellip;</b></Link>
+                <Link 
+                    component={Button}
+                    to={`/space/${spaceId}full`}
+                    variant='flat'
+                    data-block
+                    href='/'>
+                    {t.s('more')}&hellip;
+                </Link>
             )
 
         return (

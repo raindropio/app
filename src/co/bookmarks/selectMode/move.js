@@ -3,6 +3,7 @@ import t from '~t'
 import { connect } from 'react-redux'
 import { moveSelected } from '~data/actions/bookmarks'
 
+import Button from '~co/common/button'
 import Icon from '~co/common/icon'
 import Picker from '~co/collections/picker'
 
@@ -31,11 +32,11 @@ class BookmarksSelectModeMove extends React.Component {
     render() {
         return (
             <>
-                <a className='button default' onClick={this.onClick}>
+                <Button onClick={this.onClick}>
                     <Icon name='move_to' />
                     
                     <span className='hide-on-small-body'>{t.s('move')}</span>
-                </a>
+                </Button>
 
                 {this.state.show ? (
                     <Picker

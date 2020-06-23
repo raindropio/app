@@ -3,6 +3,7 @@ import t from '~t'
 import { connect } from 'react-redux'
 import { selectAll } from '~data/actions/bookmarks'
 
+import Button from '~co/common/button'
 import Icon from '~co/common/icon'
 
 class BookmarksHeaderSelectAll extends React.Component {
@@ -17,10 +18,10 @@ class BookmarksHeaderSelectAll extends React.Component {
 
     render() {
         return (
-            <a href='' className='button default' onClick={this.onSelectAllClick}>
+            <Button href='' onClick={this.onSelectAllClick}>
                 <Icon name='select_all' />
                 <span className='hide-on-small-body'>{t.s('select')} {t.s('all')}</span>
-            </a>
+            </Button>
         )
     }
 }

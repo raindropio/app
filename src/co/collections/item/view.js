@@ -1,7 +1,10 @@
+import s from './view.module.styl'
 import React from 'react'
 import { humanNumber } from '~modules/strings'
 
-import SuperLink from '~co/common/superLink'
+import { Item, ItemExpand, ItemTitle, ItemInfo, ItemActions } from '~co/common/list'
+import SuperLink from '../../common/superLink'
+import Button from '~co/common/button'
 import Icon from '~co/common/icon'
 import CollectionIcon from './icon'
 
@@ -17,7 +20,7 @@ export default class CollectionsItemView extends React.PureComponent {
 		if (!status) return
 
 		return (
-			<div className='status'>
+			<div>
 				<Icon name={'status_'+status} />
 			</div>
 		)
@@ -29,31 +32,49 @@ export default class CollectionsItemView extends React.PureComponent {
         const { onClick, onExpandClick, onRenameClick, onContextMenu, onKeyUp } = this.props
 
         return (
-            <article
+            <Item
                 ref={innerRef}
-                className={`collection menu-item have-actions ${active && 'active'} ${expandable && (expanded ? 'expanded' : 'collapsed')} ${isDragging && 'is-dragging'} ${isDropping && 'is-drag-over'}`}
-                style={{'--accentColor': color, '--level': level}}>
-                <span className='expand' onMouseUp={onExpandClick}>
-                    <Icon name='arrow_alt' />
-                </span>
+                active={active}
+                expandable={expandable}
+                expanded={expanded}
+                isDragging={isDragging}
+                isDropping={isDropping}
+                color={color}
+                level={level}>
+                <ItemExpand onMouseUp={onExpandClick} />
 
-                {_id > 0 && multiselect ? <input type='checkbox' checked={active} onChange={onClick} /> : null}
+                {_id > 0 && multiselect ? (
+                    <input 
+                        className={s.checkbox}
+                        type='checkbox' 
+                        checked={active} 
+                        onChange={onClick} />
+                ) : null}
 
                 <CollectionIcon
                     cover={cover}
                     _id={_id}
                     active={active} />
 
-                <div className='title'>
-					<span>{title}</span>
-				</div>
-
-                <div className='space' />
+                <ItemTitle>
+                    {title}
+                </ItemTitle>
 
                 {this.renderStatus()}
 
-                {count ? <div className='count'>{humanNumber(count)}</div> : null}
-				{!multiselect ? <div className='actions'><Icon name='more_horizontal' onClick={onContextMenu} /></div> : null}
+                {count ? (
+                    <ItemInfo>
+                        {humanNumber(count)}
+                    </ItemInfo>
+                ) : null}
+
+				{!multiselect ? (
+                    <ItemActions>
+                        <Button onClick={onContextMenu}>
+                            <Icon name='more_horizontal' />
+                        </Button>
+                    </ItemActions>
+                ) : null}
 
                 <SuperLink
 					navPrefix='menu-item'
@@ -63,9 +84,8 @@ export default class CollectionsItemView extends React.PureComponent {
 					onClick={onClick}
 					onDoubleClick={onRenameClick}
                     onContextMenu={onContextMenu}
-					onKeyUp={onKeyUp}
-					className='permalink' />
-            </article>
+					onKeyUp={onKeyUp} />
+            </Item>
         )
     }
 }

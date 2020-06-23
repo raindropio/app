@@ -3,6 +3,8 @@ import React from 'react'
 import t from '~t'
 import AppsActions from '~actions/apps'
 
+import Button from '~co/common/button'
+
 export default class Client extends React.PureComponent {
     onRevokeOrRemove = (e)=>{
         e.preventDefault()
@@ -33,13 +35,13 @@ export default class Client extends React.PureComponent {
                 </div>
                 
                 <div className={s.actions}>
-                    {secret && <a href={'#/settings/apps/dev/edit/'+_id} className='button active'>
-                        <b>{t.s('edit')}</b>
-                    </a>}
+                    {secret && <Button href={'#/settings/apps/dev/edit/'+_id} variant='primary'>
+                        {t.s('edit')}
+                    </Button>}
     
-                    <a href='' className='button default' onClick={this.onRevokeOrRemove}>
-                        <b>{t.s('removeIt')}</b>
-                    </a>
+                    <Button onClick={this.onRevokeOrRemove}>
+                        {t.s('removeIt')}
+                    </Button>
                 </div>
             </div>
         )

@@ -1,5 +1,7 @@
 import React from 'react'
 import t from '~t'
+
+import Button from '~co/common/button'
 import Icon from '~co/common/icon'
 
 export default class CollectionSharingInviteView extends React.PureComponent {
@@ -83,12 +85,12 @@ export default class CollectionSharingInviteView extends React.PureComponent {
                 </div>
 
                 <footer>
-                    <a 
-                        className='button active'
+                    <Button 
+                        variant='primary'
                         disabled={disabled}
                         onClick={this.onInviteClick}>
-                        <b>{t.s('sendInvites')}</b>
-                    </a>
+                        {t.s('sendInvites')}
+                    </Button>
                 </footer>
             </>
         )
