@@ -68,17 +68,34 @@
         color: var(--secondary-text-color)
         font-size: var(--secondary-font-size)
         
-        display: grid
-        grid-auto-flow: column
-        gap: var(--padding-medium)
-        align-items: center
-        justify-content: start
+        display: flex
+        flex-direction: row
+        flex-wrap: wrap
 
         section {
+            min-width: 0
             white-space: nowrap
             overflow: hidden
             text-overflow: ellipsis
             word-wrap: break-word
+            position: relative
+
+            &[data-inline] {
+                padding-right: var(--padding-small)
+            }
+
+            &:not(:last-child):not([data-inline]) {
+                padding-right: var(--padding-large)
+
+                &:after {
+                    position: absolute
+                    right: 0
+                    top: 0
+                    content: '·'
+                    width: var(--padding-large)
+                    text-align: center
+                }
+            }
         }
     }
 
@@ -142,6 +159,11 @@ html:not(:global(.blur)) {
     justify-content: start
     opacity: 0
     transition: opacity .1s linear
+}
+
+//Other
+.importantIcon {
+    color: var(--accent-color)
 }
 
 //View specific
