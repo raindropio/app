@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { makeCollection } from '~data/selectors/collections'
 import { makeStatus } from '~data/selectors/bookmarks'
 
+import Header, { Title as TitleWrap, Space } from '~co/common/header'
 import Icon from './icon'
 import Title from './title'
 import More from './more'
@@ -23,23 +24,23 @@ class BookmarksHeader extends React.Component {
         if (!title) return null
 
         return (
-            <div className='elements-header'>
-                <div className='header'>
-                    <Icon {...this.props} />
+            <Header>
+                <Icon {...this.props} />
 
+                <TitleWrap>
                     <Title {...this.props} />
+                </TitleWrap>
 
-                    <More {...this.props} />
+                <More {...this.props} />
 
-                    <div className='space' />
-                    
-                    {status.main == 'loaded' ? (<>
-                        <Sort {...this.props} />
-                        <View {...this.props} />
-                        <SelectAll {...this.props} />
-                    </>) : null}
-                </div>
-            </div>
+                <Space />
+                
+                {status.main == 'loaded' ? (<>
+                    <Sort {...this.props} />
+                    <View {...this.props} />
+                    <SelectAll {...this.props} />
+                </>) : null}
+            </Header>
         )
     }
 }

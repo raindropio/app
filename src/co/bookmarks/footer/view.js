@@ -1,3 +1,4 @@
+import s from './view.module.styl'
 import React from 'react'
 import t from '~t'
 import { Link } from 'react-router-dom'
@@ -16,7 +17,7 @@ export default class BookmarksFooterView extends React.PureComponent {
         switch(status.nextPage) {
             case 'loading':
                 content = (
-                    <div className='subHeadLabel'>{t.s('loading')}&hellip;</div>
+                    <div>{t.s('loading')}&hellip;</div>
                 )
                 break
 
@@ -57,7 +58,7 @@ export default class BookmarksFooterView extends React.PureComponent {
             )
 
         return (
-            <div className='loadMore'>
+            <div className={s.footer}>
                 {content}
             </div>
         )

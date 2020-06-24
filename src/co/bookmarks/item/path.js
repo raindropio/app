@@ -1,3 +1,4 @@
+import s from './path.module.styl'
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
@@ -10,13 +11,11 @@ class BookmarksItemPath extends React.Component {
         const { _id, title } = this.props
 
         return (
-            <Link to={`/space/${_id}`} tabIndex='-1' className='info info-path'>
-                <span className='info-img'>
-                    <CollectionIcon {...this.props} size='16' />
-                </span>
-                <span className='info-path-title'>
-                    {title}
-                </span>
+            <Link to={`/space/${_id}`} tabIndex='-1' className={s.path}>
+                <CollectionIcon 
+                    {...this.props}
+                    className={s.icon} />
+                {title}
             </Link>
         )
     }

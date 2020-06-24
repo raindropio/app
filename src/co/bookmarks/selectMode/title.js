@@ -13,13 +13,11 @@ class BookmarksHeaderSelectModeTitle extends React.Component {
         const { selectMode, collection, isSearching } = this.props
 
         return (
-            <div className='title'>
-                <span className={selectMode.all ? 'selected-all-badge' : ''}>
-                    {selectMode.all ? t.s('all') : selectMode.ids.length} {
-                        collection._id ? (t.s('in') + ' ' + collection.title + (isSearching?' / '+t.s('defaultCollection-0'):'')) : ''
-                    }
-                </span>
-            </div>
+            <span className={selectMode.all ? 'selected-all-badge' : ''}>
+                {selectMode.all ? t.s('all') : selectMode.ids.length} {
+                    collection._id ? (t.s('in') + ' ' + collection.title + (isSearching?' / '+t.s('defaultCollection-0'):'')) : ''
+                }
+            </span>
         )
     }
 }

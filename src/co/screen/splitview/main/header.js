@@ -1,6 +1,7 @@
 import React from 'react'
 import { Context } from '../'
 
+import Header, { FirstAction } from '~co/common/header'
 import Button from '~co/common/button'
 import Icon from '~co/common/icon'
 
@@ -9,21 +10,15 @@ class SplitViewMainHeader extends React.Component {
 
     render() {
         return (
-            <header className='no-border'>
-                <div className='headerWrap'>
-                    <span className='button-toggle-sidebar button-toggle-sidebar-autowidth'>
-                        <Button href='' onClick={this.context.sidebar.toggle}>
-                            <Icon name='menu' />
-                        </Button>
-                    </span>
+            <Header data-flat>
+                <FirstAction>
+                    <Button href='' onClick={this.context.sidebar.toggle}>
+                        <Icon name='menu' />
+                    </Button>
+                </FirstAction>
 
-                    {this.props.title && <div className='sidebarHeaderTitle'>
-                        {this.props.title}
-                    </div>}
-
-                    {this.props.children}
-                </div>
-            </header>
+                {this.props.children}
+            </Header>
         )
     }
 }

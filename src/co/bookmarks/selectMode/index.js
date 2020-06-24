@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { makeSelectMode } from '~data/selectors/bookmarks'
 
+import Header, { Title as TitleWrap, Space } from '~co/common/header'
 import Title from './title'
 import AddTags from './addTags'
 import Move from './move'
@@ -18,21 +19,20 @@ class BookmarksSelectMode extends React.Component {
             return <Working {...this.props} />
 
         return (
-            <div className='elements-header select-mode'>
-                <div className='header'>
-                    <Checkbox {...this.props} />
-                    <Title {...this.props} />
+            <Header>
+                <Checkbox {...this.props} />
+                <TitleWrap><Title {...this.props} /></TitleWrap>
 
-                    <div className='space' />
+                <Space />
 
-                    <Move {...this.props} />
-					<AddTags {...this.props} />
-                    <Remove {...this.props} />
-                    <Open {...this.props} />
-					<More {...this.props} />
-                    <Cancel {...this.props} />
-                </div>
-            </div>
+                <Move {...this.props} />
+                <AddTags {...this.props} />
+                <Remove {...this.props} />
+                <Open {...this.props} />
+                <Space />
+                <More {...this.props} />
+                <Cancel {...this.props} />
+            </Header>
         )
     }
 }

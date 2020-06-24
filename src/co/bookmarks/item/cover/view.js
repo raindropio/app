@@ -1,3 +1,4 @@
+import s from './view.module.styl'
 import React from 'react'
 import getThumbUri from '~data/modules/format/thumb'
 import getScreenshotUri from '~data/modules/format/screenshot'
@@ -78,7 +79,7 @@ export default class BookmarkItemCover extends React.PureComponent {
                         return (
                             <img 
                                 src={transparentPng}
-                                className='cover cover-placeholder'
+                                className={s.cover + ' ' + s.placeholder}
                                 data-ar={ar}
                                 width={width}
                                 height={height} />
@@ -102,7 +103,7 @@ export default class BookmarkItemCover extends React.PureComponent {
                     type='image/webp' />
 
                 <img 
-                    className='cover'
+                    className={s.cover}
                     data-ar={ar}
                     loading='lazy'
                     width={width}
@@ -115,10 +116,10 @@ export default class BookmarkItemCover extends React.PureComponent {
     }
 
     render() {
-        const { className='' } = this.props
+        const { className='', view } = this.props
 
         return (
-            <picture className={'cover-wrap '+className}>
+            <picture className={s.wrap+' '+s[view]+' '+className}>
                 {this.renderImage()}
             </picture>
         )

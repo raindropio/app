@@ -22,11 +22,7 @@ class BookmarksHeaderTitle extends React.Component {
         if (_id == 0 && isSearching)
             title = t.s('defaultCollection-0')
 
-        return (
-            <div className='title'>
-                {compact ? <Link to={'/space/'+_id+'full'}>{title}</Link> : title}
-            </div>
-        )
+        return compact ? <Link to={'/space/'+_id+'full'}>{title}</Link> : title
     }
 }
 

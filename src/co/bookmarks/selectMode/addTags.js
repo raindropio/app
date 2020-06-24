@@ -13,7 +13,7 @@ class BookmarksHeaderSelectMode extends React.Component {
 
     render() {
         return (
-            <Button onClick={this.onAddTagsClick}>
+            <Button variant='outline' onClick={this.onAddTagsClick}>
                 <Icon name='tag' />
                 
                 <span className='hide-on-small-body'>{t.s('addTags')}</span>

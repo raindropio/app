@@ -3,7 +3,7 @@ import React, { memo } from 'react'
 const unsafeTagsTest = /<[^/?em]/m
 
 export default memo(
-    function({ children='', tagName, ...etc }) {
+    function({ children='', tagName='div', ...etc }) {
         const Tag = tagName
 
         if (children.includes('<')){

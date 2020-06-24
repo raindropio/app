@@ -13,9 +13,6 @@ export default class ScreenSplitView extends React.Component {
                 this.state.update('sidebar', { force: !this.state.sidebar.force })
             },
         },
-        panel: {
-            show: false
-        },
         reader: {
             show: false,
             fullscreen: false
@@ -37,7 +34,6 @@ export default class ScreenSplitView extends React.Component {
                 className={`
                     splitView
                     ${this.state.sidebar.force ? 'mode-force-sidebar' : ''}
-                    ${this.state.panel.show ? 'mode-panel' : ''}
                     ${this.state.reader.show ? 'mode-reader' : ''}
                     ${this.state.reader.fullscreen ? 'mode-reader-fullscreen' : ''}
                 `}>

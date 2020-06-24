@@ -1,3 +1,4 @@
+import s from './listing.module.styl'
 import React from 'react'
 import List from '~co/virtual/list'
 import Grid from '~co/virtual/grid'
@@ -41,7 +42,8 @@ export default class BookmarksItemsListing extends React.Component {
             return (
                 <Section 
                     key={_id}
-                    type={_id} />
+                    type={_id}
+                    view={this.props.view} />
             )
 
         return (
@@ -104,8 +106,8 @@ export default class BookmarksItemsListing extends React.Component {
         return (
             <div 
                 className={`
-                    elements
-                    ${isDropping && 'is-drag-over'}
+                    ${s.elements}
+                    ${isDropping && s.isDropping}
                     ${viewHide.map(field=>`hide-${field}`).join(' ')}
                 `}
                 {...dropHandlers}>
@@ -113,7 +115,7 @@ export default class BookmarksItemsListing extends React.Component {
 
                 {items.length ? (
                     <Component
-                        className={`items view-${view} ${selectModeEnabled&&'select-mode'}`}
+                        className={s.items+' '+s[view]}
                         dataKey={activeId+selectModeEnabled+view+this.state.itemsCheckpoint} //force re-render
 
                         item={this.renderItem}

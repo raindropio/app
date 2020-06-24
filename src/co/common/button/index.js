@@ -1,7 +1,7 @@
 import s from './index.module.styl'
 import React from 'react'
 
-function Button({ Tag='a', className='', variant, forwardedRef, ...etc }) {
+function Button({ Tag='a', className='', variant, forwardedRef, navigate, ...etc }) {
     return (
         <Tag 
             ref={forwardedRef}

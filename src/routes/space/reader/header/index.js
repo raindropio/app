@@ -2,6 +2,7 @@ import React from 'react'
 import t from '~t'
 
 import { Header } from '~co/screen/splitview/reader'
+import { Space } from '~co/common/header'
 import Button from '~co/common/button'
 import Icon from '~co/common/icon'
 import Tabs from '~co/common/tabs'
@@ -47,15 +48,16 @@ export default class ReaderHeader extends React.PureComponent {
                 <Settings
                     tab={tab} />
 
-                <div className='maxCenter'>
-                    <Tabs
-                        items={defaultTabs.filter(({key})=> tabs.includes(key) )}
-                        active={tab}
-                        onChange={setTab}
-                        className='hide-on-clipper' />
-                </div>
+                <Space/>
+
+                <Tabs
+                    items={defaultTabs.filter(({key})=> tabs.includes(key) )}
+                    active={tab}
+                    onChange={setTab} />
+                    
+                <Space/>
         
-                <Button href={item.link} target='_blank' className='hide-on-extension' title={t.s('open')}>
+                <Button href={item.link} target='_blank' title={t.s('open')}>
                     <Icon name='open' />
                 </Button>
 				

@@ -20,7 +20,7 @@ class BookmarksHeaderSelectModeRemove extends React.Component {
 
     render() {
         return (
-            <Button onClick={this.onRemoveClick}>
+            <Button variant='outline' onClick={this.onRemoveClick}>
                 <Icon name='trash' />
                 
                 <span className='hide-on-small-body'>

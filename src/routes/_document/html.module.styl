@@ -1,11 +1,7 @@
-:root {
-    --accentColor: #1988E0;
-}
-
 //scroll bars
 html:global(.scrollbar-obtrusive) {
     //firefox specific
-    scrollbar-color: rgba(0,0,0,.17) transparent;
+    scrollbar-color: var(--shadow-color) transparent;
 
     ::-webkit-scrollbar {
         width: 0;
@@ -24,11 +20,8 @@ html:global(.scrollbar-obtrusive) {
     ::-webkit-scrollbar-thumb {
         border: 3px solid rgba(0,0,0,0);
         border-radius: 11px
-        box-shadow: inset 0px 0px 0px 7px rgba(0,0,0,.2);
+        box-shadow: inset 0px 0px 0px 7px var(--shadow-color);
         transition: box-shadow .2s ease-in-out;
-    }
-    ::-webkit-scrollbar-thumb:hover {
-        box-shadow: inset 0px 0px 0px 7px rgba(0,0,0,.25);
     }
 
     ::-webkit-scrollbar-button{
@@ -39,12 +32,12 @@ html:global(.scrollbar-obtrusive) {
 }
 
 ::selection {
-    background: var(--accentColor)
+    background: var(--accent-color)
     color: white;
 }
 
 ::-moz-selection {
-    background: var(--accentColor)
+    background: var(--accent-color)
     color: white;
 }
 
@@ -80,12 +73,8 @@ input, textarea, select, button {
 }
 
 a {
-    color: #205C98
+    color: var(--accent-color)
     text-decoration: none
-
-    &:hover {
-        color: #157CE3
-    }
 }
 
 [hidden] {

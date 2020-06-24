@@ -1,0 +1,40 @@
+.header {
+    display: flex
+    flex-direction: row
+    align-items: center
+    height: var(--header-height)
+    padding: 0 var(--padding-medium)
+    box-shadow: 0 var(--shadow-height) 0 var(--shadow-color)
+    z-index: 10
+
+    position: sticky
+    top: 0
+
+    background: var(--background-color)
+
+    > *:not(:last-child) {
+        margin-right: var(--padding-small)
+    }
+
+    &[data-flat] {
+        background: transparent
+        box-shadow: none
+    }
+}
+
+.title {
+    font-size: var(--head-font-size)
+    font-weight: 500
+}
+
+.space {
+    flex: 1
+}
+
+.firstAction {
+    margin-left: calc(var(--padding-small) * -1)
+}
+
+.lastAction {
+    margin-right: calc(var(--padding-small) * -1)
+}

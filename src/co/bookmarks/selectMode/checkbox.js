@@ -37,7 +37,7 @@ class BookmarksHeaderSelectModeCheckbox extends React.Component {
         const { selectMode } = this.props
 
         return (
-            <Button variant='flat'>
+            <Button>
                 <input 
                     ref={this._allCheckbox}
                     type='checkbox'

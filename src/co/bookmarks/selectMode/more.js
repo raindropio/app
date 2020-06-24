@@ -54,7 +54,7 @@ class BookmarksSelectModeMore extends React.Component {
         return (
             <>
                 <Button ref={this.pin} onClick={this.onContextMenuClick}>
-                    <Icon name='more_horizontal'/>
+                    {t.s('more')}…
                 </Button>
 
                 {this.state.menu ? (

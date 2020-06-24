@@ -1,0 +1,212 @@
+.element {
+    background: var(--background-color)
+    position: relative
+    
+    &.broken {
+        .title, p {
+            opacity:.7
+        }
+        
+        .title {
+            text-decoration:line-through
+        }
+    }
+
+    &:hover {
+        .select, .actions {
+            opacity: 1;
+        }
+    }
+    
+    &.active, &.checked {
+        --background-color: var(--active-background-color);
+    }
+
+    &.active .actions {
+        opacity: 0
+    }
+    
+    &.isDragging {
+        box-shadow: 0 1px 3px var(--shadow-color), 0 3px 15px var(--shadow-color);
+        border-radius: var(--border-radius)
+    }
+}
+
+//About
+.about {
+    display: grid
+    grid-auto-flow: row
+    gap: var(--padding-mini)
+
+    .title {
+        font-weight: 500
+        font-size: var(--title-font-size)
+    }
+
+    .description {
+        display: grid
+        grid-auto-flow: row
+        gap: var(--padding-mini)
+
+        font-size: var(--primary-font-size)
+        overflow: hidden
+        color: var(--primary-text-color)
+
+        .body {
+            border-left: 2px solid var(--accent-color);
+            padding: 2px var(--padding-small);
+
+            &:after {
+                content: '…'
+            }
+        }
+    }
+
+    .info {
+        color: var(--secondary-text-color)
+        font-size: var(--secondary-font-size)
+        
+        display: grid
+        grid-auto-flow: column
+        gap: var(--padding-medium)
+        align-items: center
+        justify-content: start
+
+        section {
+            white-space: nowrap
+            overflow: hidden
+            text-overflow: ellipsis
+            word-wrap: break-word
+        }
+    }
+}
+
+html:not(:global(.blur)) {
+    .element.active[data-is-focus="true"] {
+        --background-color: var(--accent-color)
+        color: white
+        --primary-text-color: rgba(255,255,255, .7)
+        --secondary-text-color: rgba(255,255,255, .6)
+
+        .description {
+            --accent-color: white
+        }
+    }
+}
+
+//Select
+.select {
+    position: absolute;
+    z-index: 1;
+    opacity: 0;
+    transition: opacity .1s ease-in-out;
+    left:0;top:0;
+    background: inherit
+    width: var(--icon-size)
+    height: var(--icon-size)
+    display: flex
+    align-items: center
+    justify-content: center
+    border-bottom-right-radius: var(--border-radius)
+    box-shadow: 1px 1px 1px var(--shadow-color)
+}
+
+.selectModeEnabled .element {
+    .select {
+        opacity:1 !important;
+    }
+    .actions {
+        display: none !important;
+    }
+}
+
+//Actions
+.actions {
+    position: absolute
+    z-index: 1
+    right: var(--padding-medium)
+    top: var(--padding-medium)
+    display: inline-grid
+    grid-auto-flow: column
+    gap: var(--padding-small)
+    justify-content: start
+    opacity: 0
+    transition: opacity .1s linear
+}
+
+//View specific
+.list, .simple {
+    display: grid
+    grid-template-columns: auto 1fr
+    gap: var(--padding-medium)
+    padding: var(--padding-medium)
+    box-shadow: inset 0 calc(var(--shadow-height) * -1) 0 var(--shadow-color)
+}
+
+.simple {
+    .excerpt {
+        display: none
+    }
+}
+
+.grid, .masonry {
+    display: flex
+    flex-direction: column
+    border-radius: var(--border-radius)
+    
+    .about {
+        padding: calc(var(--padding-medium) - 4px)
+    }
+
+    .title, .excerpt {
+        display: -webkit-box;
+        line-clamp: 3;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;  
+        overflow: hidden;
+    }
+
+    &:before {
+        content: ''
+        position: absolute
+        z-index: 2
+        left: 0
+        top: 0
+        right: 0
+        bottom: 0
+        pointer-events: none
+        box-shadow: inset 0 0 0 var(--shadow-height) var(--shadow-color), 0 var(--shadow-height) 1px var(--shadow-color)
+        border-radius: var(--border-radius)
+    }
+}
+
+.masonry {
+    margin: var(--padding-small)
+}
+
+//Hide
+:global(.hide-title) {
+    .title {
+        display: none
+    }
+}
+
+:global(.hide-excerpt) {
+    .excerpt {
+        display: none
+    }
+}
+
+:global(.hide-info) {
+    .info {
+        display: none
+    }
+}
+
+:global(.hide-title.hide-excerpt.hide-tags.hide-info) {
+    .grid, .masonry {
+        .about {
+            display: none
+        }
+    }
+}

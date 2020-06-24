@@ -1,0 +1,64 @@
+:global(.hide-cover) .wrap {
+    display: none
+}
+
+.cover {
+    background: #EDEEEF
+    display: block
+    border-radius: 2px
+}
+
+//Lists specific
+.list, .simple {
+    &.wrap {
+        flex-shrink: 0
+        position: relative
+        align-self: flex-start
+    }
+}
+
+.simple {
+    .cover {
+		width: 16px
+		height: 16px
+
+		&:not(.cover-placeholder) {
+			background: transparent
+		}
+	}
+}
+
+//Grids specific
+.grid, .masonry {
+    &.wrap {
+        background: white;
+        position: relative;
+        overflow: hidden;
+        border-top-left-radius: var(--border-radius)
+        border-top-right-radius: var(--border-radius)
+        padding-top: 56.25%; //16x9 aspect-ratio
+    }
+
+    .cover {
+        width: 100%;
+        height: auto;
+        position: absolute;
+        top: 0; right:0; bottom: 0; left: 0;
+        object-fit: initial;
+
+        border-top-left-radius: var(--border-radius)
+        border-top-right-radius: var(--border-radius)
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+}
+
+.masonry {
+    &.wrap {
+        padding: 0
+    }
+
+    .cover {
+        position: static
+    }
+}

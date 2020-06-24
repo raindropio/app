@@ -1,3 +1,4 @@
+import s from './tags.module.styl'
 import React from 'react'
 import Icon from '~co/common/icon'
 
@@ -21,14 +22,14 @@ class BookmarksItemTag extends React.PureComponent {
 
 export default class BookmarksItemTags extends React.PureComponent {
     render() {
-        const { tags=[], onTagClick } = this.props
+        const { tags=[], onTagClick, className } = this.props
 
         if (!tags.length)
             return null
 
         return (
-            <p>
-                <span className='tags'>
+            <div className={className}>
+                <span className={s.tags}>
                     {tags.map(tag=>
                         <BookmarksItemTag 
                             key={tag}
@@ -36,7 +37,7 @@ export default class BookmarksItemTags extends React.PureComponent {
                             onClick={onTagClick} />
                     )}
                 </span>
-            </p>
+            </div>
         )
     }
 }

@@ -1,3 +1,4 @@
+import s from './view.module.styl'
 import React from 'react'
 import t from '~t'
 import { ShortDate } from '~modules/format/date'
@@ -14,69 +15,55 @@ export default class BookmarkItemView extends React.PureComponent {
     render() {
         const { innerRef, isDragging } = this.props
         const { link, title, excerpt, highlight, cover, domain, tags, type, view, access, created, reparse, collectionId, spaceId } = this.props
-        const { active, selected, selectDisabled, important, broken, gridSize } = this.props
+        const { active, selected, selectModeEnabled, selectDisabled, important, broken, gridSize } = this.props
         const { onClick, onTagClick, onEditClick, onPreviewClick, onSelectClick, onRemoveClick, onContextMenu, onKeyUp } = this.props
 
         return (
             <article 
                 ref={innerRef}
-                className={`element ${active&&'active'} ${selected&&'checked'} ${important&&'important'} ${broken&&'broken'} ${isDragging&&'is-dragging'}`}>
+                className={`
+                    ${s.element}
+                    ${active&&s.active}
+                    ${selected&&s.checked}
+                    ${important&&s.important}
+                    ${broken&&s.broken}
+                    ${isDragging&&s.isDragging}
+                    ${s[view]}
+                    ${selectModeEnabled&&s.selectModeEnabled}
+                `}>
                 <Cover
                     cover={cover}
                     link={link}
                     view={view}
                     gridSize={gridSize} />
 
-                <div className='about'>
+                <div className={s.about}>
                     {/* Text */}
-                    <SafeHtml tagName='span' className='title'>{highlight.title || title}</SafeHtml>
-                    <div>
-                        <SafeHtml tagName='p' className='description'>{highlight.excerpt || excerpt}</SafeHtml>
-                        {highlight.body ? <SafeHtml tagName='p' className='description from-body'>{highlight.body}</SafeHtml> : null}
+                    <SafeHtml className={s.title}>{highlight.title || title}</SafeHtml>
+                    
+                    <div className={s.description}>
+                        <SafeHtml className={s.excerpt}>{highlight.excerpt || excerpt}</SafeHtml>
+                        {highlight.body ? <SafeHtml className={s.body}>{highlight.body}</SafeHtml> : null}
+                        <Tags tags={tags} onTagClick={onTagClick} />
                     </div>
 
-                    {/* Tags */}
-                    <Tags 
-                        tags={tags}
-                        onTagClick={onTagClick} />
-
                     {/* Info */}
-                    <div className='info-wrap'>
-                        <div className='info info-domain'>
-                            {spaceId != collectionId ? <Path collectionId={collectionId} /> : null}
+                    <div className={s.info}>
+                        {spaceId != collectionId ? <section><Path collectionId={collectionId} /></section> : null}
 
-                            {important ? (
-                                <div className='info-important'>
-                                    <span className='info-img'>
-                                        <Icon name='important' data-size='micro' />
-                                    </span>
-                                </div>
-                            ) : null}
+                        {important ? <section><Icon name='important' data-size='micro' /></section> : null}
 
-                            {reparse ? (
-                                <div className='info-important'>
-                                    <span className='info-img'>
-                                        <Icon name='progress' data-size='micro' />
-                                    </span>
-                                </div>
-                            ) : null}
+                        {reparse ? <section><Icon name='progress' data-size='micro' /></section> : null}
 
-                            {type != 'link' ? (
-                                <div className='info-important'>
-                                    <span className='info-img'>
-                                        <Icon name={type} data-size='micro' />
-                                    </span>
-                                </div>
-                            ) : null}
+                        {type != 'link' ? <section><Icon name={type} data-size='micro' /></section> : null}
 
-                            <div className='info-domain'>
-                                {domain}&nbsp; ·&nbsp; <ShortDate date={created}/>
-                            </div>
-                        </div>
+                        <section>{domain}</section>
+
+                        <section><ShortDate date={created}/></section>
                     </div>
                 </div>
 
-                <div className='actions'>
+                <div className={s.actions}>
                     <Button 
                         variant='outline'
                         onClick={onPreviewClick}
@@ -104,7 +91,7 @@ export default class BookmarkItemView extends React.PureComponent {
 
                 {access.level >= 3 ? (
                     <label
-                        className={`selectElement ${selected ? 'active' : 'default'}`}
+                        className={`${s.select} ${selected ? s.active : s.default}`}
                         title={t.s('select')}>
                         <input type='checkbox' checked={selected} disabled={selectDisabled} onChange={onSelectClick} />
                     </label>
@@ -116,8 +103,7 @@ export default class BookmarkItemView extends React.PureComponent {
                     tabIndex={active ? '200' : '-1'}
 					onClick={onClick}
                     onContextMenu={onContextMenu}
-                    onKeyUp={onKeyUp}
-					className='permalink' />
+                    onKeyUp={onKeyUp} />
             </article>
         )
     }
