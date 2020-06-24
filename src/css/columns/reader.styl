@@ -1,6 +1,6 @@
 #reader {
-    background: white;
-    box-shadow: inset 1px 0px 0px separatorColor;
+    background: var(--background-color)
+    box-shadow: inset var(--shadow-height) 0px 0px var(--shadow-color);
     z-index: 6;
     left: 101%;
     //opacity: 0;
@@ -9,7 +9,7 @@
 
     > header {
         background: white;
-        box-shadow:  /*0px 1px 0px separatorColor,*/ inset 1px 0px 0px separatorColor;
+        box-shadow:  /*0px 1px 0px separatorColor,*/ inset var(--shadow-height) 0px 0px var(--shadow-color);
         position: relative;
         left:0;top:0;right:0;
         z-index: 2;
@@ -40,16 +40,6 @@
         
         .readerContent {
             padding-bottom: 34px;
-        }
-    }
-}
-
-html.retina.chrome {
-    #reader {
-        box-shadow: inset 0.5px 0px 0px rgba(0,0,0,.15);
-        
-        > header {
-            box-shadow: inset 0.5px 0px 0px rgba(0,0,0,.15);
         }
     }
 }
@@ -103,14 +93,6 @@ html.retina.chrome {
 
 #reader .superFrame:after {
     box-shadow:inset 1px 0px 0px separatorColor;
-}
-
-html.retina.chrome {
-    #reader .superFrame {
-        &:after {
-            box-shadow:inset 0.5px 0px 0px darken(separatorColor,5%);
-        }
-    }
 }
 
 #reader-black-overlay {

@@ -65,7 +65,6 @@ html.electron {
 
 #main, #reader {
     max-width: 100%;
-    background: contentBackground;
     left: sidebarWidth;
     left: var(--sidebarWidth, sidebarWidth);
     right: 0;
@@ -186,34 +185,6 @@ html.electron {
 .themeDark {
     #main header {
         box-shadow: 0px 1px 0px rgba(255,255,255,.05);
-    }
-}
-
-html.retina.chrome {
-    #main {
-        header:not(.no-border) {
-            box-shadow: 0px 0.5px 0px rgba(0,0,0,.15);
-        }
-        
-        header.content-border {
-            box-shadow: 0px 0.5px 0px rgba(0,0,0,.15), 0px 20px 30px -19px rgba(0,0,0,.06);
-        }
-        
-        footer {
-            height: 40px;
-        }
-    }
-    
-    .themeDark {
-        #main {
-            header:not(.no-border) {
-                box-shadow: 0px 0.5px 0px rgba(255,255,255,.1);
-            }
-            
-            header.content-border {
-                box-shadow: 0px 0.5px 0px rgba(255,255,255,.1), 0px 20px 30px -19px rgba(255,255,255,.1);
-            }
-        }
     }
 }
 

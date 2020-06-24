@@ -1,3 +1,4 @@
+import s from './html.module.styl'
 import React from 'react'
 import { connect } from 'react-redux'
 import { getHtml } from '~data/selectors/bookmarks'
@@ -14,23 +15,38 @@ class ReaderHTML extends React.Component {
         const {
             item: { type, title, domain, created  },
             html: { html, status },
-            font_color, font_family, font_size
+            font_family, font_size
         } = this.props
 
-        return (
-            <div className={`preview preview-type-${type} vfontcolor-${font_color} vfontsize-${font_size} vfontfamily-${font_family||'default'}`}>
-                {status=='loading' ? <div className='centerContentWrap status-loading'><Preloader /></div> : null}
+        const loading = status=='loading' && <div className={s.loading}><Preloader /></div>
 
-                <div className={`previewContent ${status}`}>
-                    <div className='domain'><b>{domain}</b> &nbsp;&middot;&nbsp; <ShortDate date={created}/></div>
-					<h1 className='previewTitle'><a href={(this.props.item||{}).link} target='_blank'>{title}</a></h1>
+        switch(type) {
+            default:
+                return (
+                    <article 
+                        className={s.article}
+                        style={{'--html-font-size': font_size+'px', fontFamily: font_family}}>
+                        {loading}
 
-					<div className='text-viewer-raindrop'>
-						<article dangerouslySetInnerHTML={{ __html: html }}></article>
-					</div>
-                </div>
-            </div>
-        )
+                        <div className={s.domain}><b>{domain}</b> &nbsp;&middot;&nbsp; <ShortDate date={created}/></div>
+                        <h1 className={s.title}><a href={(this.props.item||{}).link} target='_blank'>{title}</a></h1>
+
+                        <div dangerouslySetInnerHTML={{ __html: html }} />
+                    </article>
+                )
+
+            case 'image':
+            case 'audio':
+            case 'video':
+            case 'document':
+                return (
+                    <div className={s.content}>
+                        {loading}
+                        
+                        <div className={s.html} dangerouslySetInnerHTML={{ __html: html }} />
+                    </div>
+                )
+        }
     }
 }
 
@@ -40,7 +56,6 @@ export default connect(
             html: getHtml(state, item._id),
 
             font_size: state.config.font_size,
-            font_color: state.config.font_color,
             font_family: state.config.font_family
         })
     }

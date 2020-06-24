@@ -31,7 +31,7 @@ class CollectionsReader extends React.Component {
     }
 
     render() {
-        const { item, spaceId } = this.props
+        const { item, spaceId, font_color } = this.props
         const { fullscreen } = this.state
 
         return (
@@ -39,6 +39,7 @@ class CollectionsReader extends React.Component {
                 <Reader 
                     show={item._id?true:false}
                     fullscreen={fullscreen}
+                    data-theme={font_color}
                     style={style}>
                     <Header {...this.props} {...this.handlers} />
                     <Content key={item._id} {...this.props} />
@@ -69,7 +70,8 @@ export default connect(
                 item,
                 tab: tabs.includes(tab) ? tab : tabs[0],
                 tabs,
-                access
+                access,
+                font_color: state.config.font_color
             }
         }
     },

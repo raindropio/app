@@ -30,7 +30,7 @@ export default class BookmarksEmptyView extends React.PureComponent {
                         content = (
                             <div>
                                 <Icon name='trash' data-size='60' style={{opacity: '.3'}} />
-                                <h2 className='headLabel'>{t.s('trashEmpty')}</h2>
+                                <h2>{t.s('trashEmpty')}</h2>
                             </div>
                         )
                     break
@@ -40,7 +40,7 @@ export default class BookmarksEmptyView extends React.PureComponent {
                         content = (
                             <div>
                                 <Icon name='search' data-size='60' style={{opacity: '.3'}} />
-                                <h2 className='headLabel'>{t.s('nothingFound')}</h2>
+                                <h2>{t.s('nothingFound')}</h2>
                             </div>
                         )
                     break
@@ -50,8 +50,8 @@ export default class BookmarksEmptyView extends React.PureComponent {
                         if (!compact)
                             content = (
                                 <div>
-                                    <h2 className='headLabel'>{t.s('noBookmarks')}</h2>
-                                    <p className='subHeadLabel'>
+                                    <h2>{t.s('noBookmarks')}</h2>
+                                    <p>
                                         {t.s('noItemsTip')}
                                     </p>
                                 </div>
@@ -63,14 +63,14 @@ export default class BookmarksEmptyView extends React.PureComponent {
             case 'notFound':
                 content = (
                     <div>
-                        <h2 className='headLabel'>{t.s('removeCollectionSuccess')}</h2>
-                        <p className='subHeadLabel'>
+                        <h2>{t.s('removeCollectionSuccess')}</h2>
+                        <p>
                             {t.s('or')} {t.s('nothingFound').toLowerCase()}
                         </p>
 
                         <br/>
 
-                        <p className='subHeadLabel'>
+                        <p>
 							<Link to='/space/0'>{t.s('allBookmarks')}</Link>
                         </p>
                     </div>
@@ -80,8 +80,8 @@ export default class BookmarksEmptyView extends React.PureComponent {
             case 'error':
                 content = (
                     <div>
-						<h2 className='headLabel'>{t.s('error')}</h2>
-						<p className='subHeadLabel'>
+						<h2>{t.s('error')}</h2>
+						<p>
 							<a onClick={this.reload}>{t.s('refresh')}</a>
 						</p>
 					</div>

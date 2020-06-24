@@ -10,8 +10,8 @@ const refresh = (e)=>{
 export default ()=>(
     <Basic>
         <div className='centerContentWrap'><div className='centerContent'><div>
-            <h2 className='headLabel'>{t.s('server')}</h2>
-            <p className='subHeadLabel'>
+            <h2>{t.s('server')}</h2>
+            <p>
                 {t.s('noInternetError')}<br />
                 <a href='#/' onClick={refresh}>{t.s('refresh')}</a>
             </p>

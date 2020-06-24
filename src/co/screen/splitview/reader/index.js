@@ -27,10 +27,16 @@ export default class SplitViewReader extends React.PureComponent {
     }
 
     render() {
+        const { className, show, children, fullscreen, ...etc } = this.props
+
         return (
             <>
-                <aside id='reader' className={this.props.className} style={this.props.style}>
-                    {this.props.show && this.props.children}
+                <aside 
+                    id='reader'
+                    {...etc}
+                    data-fullscreen={fullscreen}
+                    className={className}>
+                    {show && children}
                 </aside>
                 <div id='reader-black-overlay'/>
             </>
