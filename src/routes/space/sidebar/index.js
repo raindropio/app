@@ -42,7 +42,6 @@ export default class CollectionsSidebar extends React.Component {
                     <Profile />
                     
                     <Button 
-                        variant='flat'
                         title={`${t.s('createNewCollection')}\nShift+click: ${t.s('createSubFolder').toLowerCase()}`}
                         onClick={this.onCreateCollectionClick}>
                         <Icon name='add' />

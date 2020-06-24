@@ -12,7 +12,7 @@ const invalidStatus = {
     'invalid-timeout': 'Timeout.'
 }
 
-class ReaderHTML extends React.Component {
+class ReaderCache extends React.Component {
     state = {
         url: ''
     }
@@ -66,10 +66,10 @@ class ReaderHTML extends React.Component {
         switch(cache) {
             case 'ready':
                 return (
-                    <div className='centerContentWrap'>
+                    <>
                         {this.renderStatus()}
                         <SuperFrame src={url} />
-                    </div>
+                    </>
                 )
             
             default:
@@ -78,4 +78,4 @@ class ReaderHTML extends React.Component {
 	}
 }
 
-export default ReaderHTML
+export default ReaderCache

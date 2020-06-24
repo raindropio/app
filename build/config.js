@@ -249,6 +249,19 @@ module.exports = {
 						},
 					},
 				],
+			},
+
+			{
+				test: /.*\.(woff2)$/i,
+				use: [
+					{
+						loader: 'file-loader',
+						options: {
+							outputPath: 'assets',
+							name: '[contenthash].[ext]'
+						}
+					}
+				],
 			}
 		]
 	}

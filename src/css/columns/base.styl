@@ -68,118 +68,15 @@ html.electron {
     left: sidebarWidth;
     left: var(--sidebarWidth, sidebarWidth);
     right: 0;
+}
+
+#main {
     display: flex;
     flex-direction: column;
+}
 
-    header {
-        flex-shrink: 0;
-        box-shadow: 0px 1px 0px subSeparatorColorAlpha;
-        position: relative;
-        z-index: 2;
-        
-        .button {
-            padding-left: baseHorizontalGap;
-            padding-right: baseHorizontalGap;
-        }
-
-        .headerWrap {
-            //height: headerHeight;
-            display: flex;
-            align-items: center;
-        }
-        
-        h1 {
-            @extend .text-overflow;
-            cursor: default;
-            flex: 1;
-            font-size: 16px
-            line-height: 23px
-            font-weight: normal;
-            margin:0;
-            margin-bottom: 2px;
-            padding: 0px baseHorizontalGap;
-            
-            .button {
-                vertical-align: -4px;
-            }
-
-            &:empty {
-                padding:0;
-            }
-
-            &.min {
-                flex: initial;
-                padding:0;
-            }
-
-            &.no-padding {
-                padding:0;
-            }
-            
-            &.center {
-                text-align: center;
-            }
-            
-            .subinfo {
-                font-size: 12px;
-                opacity: .5;
-                line-height: initial;
-            }
-        }
-
-        .maxCenter {
-            flex:1;
-            text-align: center;
-        }
-        
-        &.no-border {
-            background: transparent !important;
-            box-shadow:none !important;
-        }
-        
-        &.content-border {
-            box-shadow: 0px 1px 0px subSeparatorColorAlpha;
-        }
-
-        &.sub-header {
-            margin-top: -10px;
-        }
-        
-        &.absolute {
-            position: absolute;
-            left:0;right:0;top:0;
-        }
-    }
-    
-    footer {
-        z-index: 2;
-        height: 39px;
-        display: flex;
-        align-items: center;
-        overflow: hidden;
-
-        .title {
-            @extend .text-overflow;
-            flex: 1 1;
-            font-size: 14px
-        }
-        
-        .center {
-            text-align: center;
-        }
-        
-        &.absolute {
-            position: absolute;
-            left:0;right:0;bottom:0;
-            background: inherit;
-            transition: transform .2s ease-in-out, opacity .2s ease-in-out;
-            transition-delay: .3s;
-        }
-
-        &.no-border {
-            box-shadow:none;
-        }
-    }
+#reader {
+    overflow: overlay
 }
 
 .themeDark {

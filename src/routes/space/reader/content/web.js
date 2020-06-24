@@ -5,11 +5,7 @@ class ReaderWeb extends React.Component {
 	render() {
         const { item: { link } } = this.props
 
-        return (
-            <div className='centerContentWrap'>
-                <SuperFrame src={link} />
-            </div>
-        )
+        return <SuperFrame src={link} />
 	}
 }
 

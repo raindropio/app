@@ -1,28 +1,27 @@
-@import './size.styl'
-@import './themes.styl'
+@import './size.css';
+@import './themes.css';
+@import './fonts.css';
 
 body, input, textarea, select, button {
-    font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;
+    font-family: Inter, -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;
 }
 
 .page {
-    background: var(--background-color)
-    line-height: 1.3
+    background: var(--background-color);
+    line-height: 1.3;
 }
 
 a {
-    color: var(--accent-color)
-    text-decoration: none
+    color: var(--accent-color);
+    text-decoration: none;
 }
 
-//scroll bars
 html:global(.scrollbar-obtrusive) {
-    //firefox specific
     scrollbar-color: var(--shadow-color) transparent;
 
     ::-webkit-scrollbar {
         width: 0;
-        height: 11px
+        height: 11pxl
         will-change: width;
         background: transparent;
         transition: width .2s ease-in-out;
@@ -31,12 +30,12 @@ html:global(.scrollbar-obtrusive) {
         background: transparent;
     }
     :hover::-webkit-scrollbar, body::-webkit-scrollbar {
-        width: 11px
+        width: 11pxl
     }
 
     ::-webkit-scrollbar-thumb {
         border: 3px solid rgba(0,0,0,0);
-        border-radius: 11px
+        border-radius: 11px;
         box-shadow: inset 0px 0px 0px 7px var(--shadow-color);
         transition: box-shadow .2s ease-in-out;
     }
@@ -49,11 +48,11 @@ html:global(.scrollbar-obtrusive) {
 }
 
 ::selection {
-    background: var(--accent-color)
+    background: var(--accent-color);
     color: white;
 }
 
 ::-moz-selection {
-    background: var(--accent-color)
+    background: var(--accent-color);
     color: white;
 }

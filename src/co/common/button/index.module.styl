@@ -1,11 +1,3 @@
-boxShadowDefault() {
-    box-shadow: inset 0 0 0 var(--shadow-height) var(--shadow-color), inset 0 calc(var(--shadow-height) * -1) 0 var(--shadow-color)
-}
-
-boxShadowClick() {
-    box-shadow: inset 0 0 0 var(--shadow-height) var(--shadow-color), inset 0 calc(var(--shadow-height)) 1px var(--shadow-color)
-}
-
 .button {
     user-select: none
     appearance: none !important
@@ -49,11 +41,10 @@ boxShadowClick() {
     }
 
     &:hover {
-        boxShadowDefault()
+        background: var(--alternative-background-color)
     }
 
     &:active {
-        boxShadowClick()
         background: var(--active-background-color)
     }
 }
@@ -68,11 +59,10 @@ boxShadowClick() {
     }
 
     &:hover {
-        boxShadowDefault()
+        background: var(--alternative-background-color)
     }
 
     &:active {
-        boxShadowClick()
         background: var(--active-background-color)
     }
 }
@@ -81,20 +71,18 @@ boxShadowClick() {
 .button[data-variant='outline'] {
     background: var(--background-color)
     color: var(--primary-text-color)
-    boxShadowDefault()
+    box-shadow: inset 0 0 0 var(--shadow-height) var(--shadow-color), inset 0 calc(var(--shadow-height) * -1) 0 var(--shadow-color)
 
     &[disabled] {
         background: var(--disable-background-color)
         color: var(--disable-text-color)
     }
 
-    &:hover {
-        color: var(--accent-color)
-        box-shadow: inset 0 0 0 var(--shadow-height) var(--accent-color)
+    &:hover:not(:active) {
+        --shadow-color: var(--secondary-text-color)
     }
 
     &:active {
-        boxShadowClick()
         background: var(--active-background-color)
     }
 }
@@ -110,12 +98,11 @@ boxShadowClick() {
     }
 
     &:hover {
-        boxShadowDefault()
+        background: var(--active-background-color)
     }
 
     &:active {
-        boxShadowClick()
-        background: var(--active-background-color)
+        background: var(--alternative-background-color)
     }
 }
 
@@ -131,7 +118,7 @@ boxShadowClick() {
     }
 
     &:hover {
-        boxShadowDefault()
+        filter: brightness(1.1);
     }
 
     &:active {

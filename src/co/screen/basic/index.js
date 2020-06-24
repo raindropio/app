@@ -1,4 +1,4 @@
-import s from './index.module.styl'
+import s from './index.module.css'
 import React from 'react'
 
 export default ({ className, children })=>(
