@@ -42,7 +42,7 @@ export default class BookmarkItemView extends React.PureComponent {
                     <SafeHtml className={s.title}>{highlight.title || title}</SafeHtml>
                     
                     <div className={s.description}>
-                        <SafeHtml className={s.excerpt}>{highlight.excerpt || excerpt}</SafeHtml>
+                        {excerpt ? <SafeHtml className={s.excerpt}>{highlight.excerpt || excerpt}</SafeHtml> : null}
                         {highlight.body ? <SafeHtml className={s.body}>{highlight.body}</SafeHtml> : null}
                         <Tags tags={tags} onTagClick={onTagClick} />
                     </div>
