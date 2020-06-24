@@ -161,7 +161,8 @@ module.exports = {
 						},
 					}] : ['style-loader']),
 					'css-loader',
-					'stylus-loader'
+					'postcss-loader',
+					'stylus-loader',
 				]
 			},
 
@@ -185,7 +186,8 @@ module.exports = {
 							}
 						}
 					},
-					'stylus-loader'
+					'postcss-loader',
+					'stylus-loader',
 				]
 			},
 

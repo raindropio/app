@@ -27,6 +27,9 @@ import {
 
 export default function(state, action) {switch (action.type) {
 	case SELECT_MODE_ENABLE:{
+		if (state.getIn(['spaces', action.spaceId, 'status', 'main']) != 'loaded')
+			return state
+
 		return state
 			.set('selectMode', blankSelectMode)
 			.setIn(['selectMode', 'enabled'], true)

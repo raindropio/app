@@ -35,6 +35,7 @@
 	},
 	"dependencies": {
 		"@sentry/browser": "5.x",
+		"autoprefixer": "^9.8.4",
 		"date-fns": "2.14.x",
 		"ismobilejs": "^1.1.1",
 		"localforage": "1.7.x",
@@ -42,6 +43,7 @@
 		"masonic": "^3.2.0",
 		"modern-normalize": "^0.6.0",
 		"normalize-url": "4.x",
+		"postcss-loader": "^3.0.0",
 		"react": "16.13.x",
 		"react-autosize-textarea": "7.0.x",
 		"react-beautiful-dnd": "^13.0.0",

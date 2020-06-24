@@ -2,7 +2,7 @@ import React from 'react'
 import t from '~t'
 import { Context } from '../'
 
-import Header, { FirstAction } from '~co/common/header'
+import Header from '~co/common/header'
 import Button from '~co/common/button'
 import Icon from '~co/common/icon'
 
@@ -27,9 +27,9 @@ class SplitViewReaderHeader extends React.Component {
     render() {
         return (
             <Header data-flat>
-                <FirstAction><Button onClick={this.onBackClick}>
+                <Button onClick={this.onBackClick}>
                     <Icon name='back' />
-                </Button></FirstAction>
+                </Button>
 
                 <Button href='' onClick={this.onFullscreenClick} variant={this.context.reader.fullscreen ? 'link' : ''} className={'hide-on-extension hide-on-clipper'} title={t.s('fullscreen')}>
                     <Icon name={'fullscreen'+(this.context.reader.fullscreen ? '_active' : '')} />

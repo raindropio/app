@@ -8,6 +8,7 @@ import { makeCollection } from '~data/selectors/collections'
 import Reader from '~co/screen/splitview/reader'
 import Header from './header'
 import Content from './content'
+import AccentColor from '~co/collections/item/accentColor'
 
 class CollectionsReader extends React.Component {
     static defaultProps = {
@@ -30,16 +31,19 @@ class CollectionsReader extends React.Component {
     }
 
     render() {
-        const { item } = this.props
+        const { item, spaceId } = this.props
         const { fullscreen } = this.state
 
         return (
-            <Reader 
-                show={item._id?true:false}
-                fullscreen={fullscreen}>
-                <Header {...this.props} {...this.handlers} />
-                <Content key={item._id} {...this.props} />
-            </Reader>
+            <AccentColor _id={spaceId}>{style=>
+                <Reader 
+                    show={item._id?true:false}
+                    fullscreen={fullscreen}
+                    style={style}>
+                    <Header {...this.props} {...this.handlers} />
+                    <Content key={item._id} {...this.props} />
+                </Reader>
+            }</AccentColor>
         )
     }
 }

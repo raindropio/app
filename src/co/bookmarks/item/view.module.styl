@@ -22,12 +22,14 @@
         --background-color: var(--active-background-color);
     }
 
-    &.active .actions {
-        opacity: 0
+    &.active, &.isDragging {
+        .actions {
+            opacity: 0
+        }
     }
     
     &.isDragging {
-        box-shadow: 0 1px 3px var(--shadow-color), 0 3px 15px var(--shadow-color);
+        box-shadow: 0 1px 3px var(--shadow-light-color), 0 3px 15px var(--shadow-light-color);
         border-radius: var(--border-radius)
     }
 }
@@ -78,6 +80,14 @@
             text-overflow: ellipsis
             word-wrap: break-word
         }
+    }
+
+    .title, .excerpt {
+        display: -webkit-box;
+        line-clamp: 3;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;  
+        overflow: hidden;
     }
 }
 
@@ -140,7 +150,7 @@ html:not(:global(.blur)) {
     grid-template-columns: auto 1fr
     gap: var(--padding-medium)
     padding: var(--padding-medium)
-    box-shadow: inset 0 calc(var(--shadow-height) * -1) 0 var(--shadow-color)
+    box-shadow: inset 0 calc(var(--shadow-height) * -1) 0 var(--shadow-light-color)
 }
 
 .simple {
@@ -156,14 +166,6 @@ html:not(:global(.blur)) {
     
     .about {
         padding: calc(var(--padding-medium) - 4px)
-    }
-
-    .title, .excerpt {
-        display: -webkit-box;
-        line-clamp: 3;
-        -webkit-line-clamp: 3;
-        -webkit-box-orient: vertical;  
-        overflow: hidden;
     }
 
     &:before {

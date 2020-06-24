@@ -11,6 +11,7 @@ import SelectMode from '../selectMode'
 import Footer from '../footer'
 import Section from '../section'
 import coverSize from '../item/cover/size'
+import AccentColor from '~co/collections/item/accentColor'
 
 export default class BookmarksItemsListing extends React.Component {
     state = {
@@ -82,7 +83,7 @@ export default class BookmarksItemsListing extends React.Component {
     )
 
     render() {
-        const { items, viewHide, gridSize, activeId, selectModeEnabled, compact } = this.props
+        const { spaceId, items, viewHide, gridSize, activeId, selectModeEnabled, compact, color } = this.props
         const { isDropping, dropHandlers } = this.props
 
         //specific view
@@ -104,44 +105,47 @@ export default class BookmarksItemsListing extends React.Component {
         }
 
         return (
-            <div 
-                className={`
-                    ${s.elements}
-                    ${isDropping && s.isDropping}
-                    ${viewHide.map(field=>`hide-${field}`).join(' ')}
-                `}
-                {...dropHandlers}>
-                {this.renderHeader()}
+            <AccentColor _id={spaceId}>{style=>
+                <div 
+                    className={`
+                        ${s.elements}
+                        ${isDropping && s.isDropping}
+                        ${viewHide.map(field=>`hide-${field}`).join(' ')}
+                    `}
+                    style={style}
+                    {...dropHandlers}>
+                    {this.renderHeader()}
 
-                {items.length ? (
-                    <Component
-                        className={s.items+' '+s[view]}
-                        dataKey={activeId+selectModeEnabled+view+this.state.itemsCheckpoint} //force re-render
+                    {items.length ? (
+                        <Component
+                            className={s.items+' '+s[view]}
+                            dataKey={activeId+selectModeEnabled+view+this.state.itemsCheckpoint} //force re-render
 
-                        item={this.renderItem}
-                        footer={this.renderFooter}
-                        computeItemKey={this.computeItemKey}
+                            item={this.renderItem}
+                            footer={this.renderFooter}
+                            computeItemKey={this.computeItemKey}
 
-                        totalCount={compact ? Math.min(items.length, this.props.compactLimit) : items.length}
-                        columnWidth={coverSize(view, gridSize).width}
-                        disableVirtualization={compact}
-                        
-                        scrollToIndex={activeId && items.length ? items.indexOf(activeId) : -1}
-                        
-                        endReached={this.endReached}
+                            totalCount={compact ? Math.min(items.length, this.props.compactLimit) : items.length}
+                            columnWidth={coverSize(view, gridSize).width}
+                            disableVirtualization={compact}
+                            
+                            scrollToIndex={activeId && items.length ? items.indexOf(activeId) : -1}
+                            
+                            endReached={this.endReached}
 
-                        //dnd
-                        type='bookmarks'
-                        rowIsDraggable={this.rowIsDraggable}
-                        onDragEnd={this.onDragEnd}
-                        />
-                ) : (
-                    <>
-                        {this.renderEmpty()}
-                        {this.renderFooter()}
-                    </>
-                )}
-            </div>
+                            //dnd
+                            type='bookmarks'
+                            rowIsDraggable={this.rowIsDraggable}
+                            onDragEnd={this.onDragEnd}
+                            />
+                    ) : (
+                        <>
+                            {this.renderEmpty()}
+                            {this.renderFooter()}
+                        </>
+                    )}
+                </div>
+            }</AccentColor>
         )
     }
 }

@@ -5,6 +5,7 @@ import { setLastCollection } from '~data/actions/config'
 import Main from '~co/screen/splitview/main'
 import Header from './header'
 import Content from './content'
+import AccentColor from '~co/collections/item/accentColor'
 
 class CollectionsMain extends React.Component {
     componentDidMount() {
@@ -18,10 +19,12 @@ class CollectionsMain extends React.Component {
 
     render() {
         return (
-            <Main>
-                <Header {...this.props} />
-                <Content {...this.props} />
-            </Main>
+            <AccentColor _id={this.props.spaceId}>{style=>
+                <Main style={style}>
+                    <Header {...this.props} />
+                    <Content {...this.props} />
+                </Main>
+            }</AccentColor>
         )
     }
 }
