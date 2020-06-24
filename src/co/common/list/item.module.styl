@@ -56,11 +56,19 @@
     }
 }
 
+.item input[type='text'] {
+    display: block
+    flex: 1
+    outline: none
+    appearance: none
+    border: 0
+}
+
 html:not(:global(.blur)) .item.active[data-is-focus="true"] {
     background: var(--accent-color)
     color: white
     --primary-text-color: white
-    --secondary-text-color: white
+    --secondary-text-color: rgba(255,255,255,.5)
     --shadow-color: transparent
 }
 

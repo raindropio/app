@@ -6,7 +6,7 @@
     --disable-background-color: hsl(0,0%,85%);
 
     /*brand*/
-    --accent-color: hsl(207,80%,49);
+    --accent-color: hsl(207,80%,49%);
 
     /* text colors */
     color: hsl(0,0%,10%);
@@ -27,7 +27,7 @@
     --disable-background-color: hsl(225,5%,5%);
 
     /* brand */
-    --accent-color: hsl(207,80%,49) !important;
+    --accent-color: hsl(207,80%,49%) !important;
 
     /* text colors */
     color: hsl(0,0%,90%);
@@ -42,13 +42,13 @@
 
 [data-theme='sunset'] {
     /* background */
-    --background-color: hsl(43,60%,97);
+    --background-color: hsl(43,60%,97%);
     --alternative-background-color: hsl(43,60%,95%);
     --active-background-color: hsl(43,60%,92%);
     --disable-background-color: hsl(43,60%,85%);
 
     /* brand */
-    --accent-color: hsl(207,80%,49) !important;
+    --accent-color: hsl(207,80%,49%) !important;
 
     /* text colors */
     color: hsl(43,60%,10%);
