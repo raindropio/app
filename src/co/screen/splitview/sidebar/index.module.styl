@@ -1,0 +1,24 @@
+.sidebar {
+    composes: sidebar from "../index.module.styl";
+    display: flex;
+    flex-direction: column;
+    --background-color: var(--alternative-background-color);
+    background-color: var(--background-color);
+    position: relative;
+}
+
+.sidebar:after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 10;
+    width: 1px;
+    box-shadow: inset calc(var(--shadow-height) * -1) 0 0 var(--shadow-color);
+}
+
+.sidebarBackdrop {
+    composes: sidebarBackdrop from "../index.module.styl";
+    background: var(--shadow-color);
+}

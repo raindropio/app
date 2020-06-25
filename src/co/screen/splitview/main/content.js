@@ -1,3 +1,4 @@
+import s from './content.module.styl'
 import React from 'react'
 
 export default class SplitViewMainContent extends React.Component {
@@ -5,7 +6,7 @@ export default class SplitViewMainContent extends React.Component {
         const { children, ...other } = this.props
 
         return (
-            <div id='mainBody' {...other}>
+            <div className={s.content} {...other}>
                 {children}
             </div>
         )

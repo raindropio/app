@@ -1,3 +1,4 @@
+import s from './index.module.styl'
 import React from 'react'
 import Basic from '../basic'
 
@@ -6,11 +7,11 @@ export const Context = React.createContext({})
 export default class ScreenSplitView extends React.Component {
     state = {
         sidebar: {
-            force: true,
+            show: true,
 
             toggle: (e)=>{
                 e && e.preventDefault && e.preventDefault()
-                this.state.update('sidebar', { force: !this.state.sidebar.force })
+                this.state.update('sidebar', { show: !this.state.sidebar.show })
             },
         },
         reader: {
@@ -29,13 +30,15 @@ export default class ScreenSplitView extends React.Component {
     }
 
     render() {
+        const { sidebar, reader } = this.state
+
         return (
             <Basic
                 className={`
-                    splitView
-                    ${this.state.sidebar.force ? 'mode-force-sidebar' : ''}
-                    ${this.state.reader.show ? 'mode-reader' : ''}
-                    ${this.state.reader.fullscreen ? 'mode-reader-fullscreen' : ''}
+                    ${s.splitview}
+                    ${sidebar.show ? s.showSidebar : ''}
+                    ${reader.show ? s.showReader : ''}
+                    ${reader.fullscreen ? s.showReaderFullscreen : ''}
                 `}>
                 <Context.Provider value={this.state}>
                     {this.props.children}

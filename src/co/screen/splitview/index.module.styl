@@ -1,0 +1,98 @@
+.splitview {
+    display: grid;
+    grid-template-columns: 50vw 50vw;
+    grid-template-rows: 100vh;
+    grid-template-areas: 'main main';
+    grid-auto-rows: 0;
+    overflow-y: hidden;
+}
+
+/* Areas */
+.sidebar {
+    grid-area: sidebar;
+}
+
+.main {
+    grid-area: main;
+}
+
+.reader {
+    grid-area: reader;
+}
+
+/* Sidebar specific elements */
+.sidebar, .sidebarBackdrop {
+    z-index: 20;
+}
+
+.sidebarClose {
+    display: none
+}
+
+/* Full screen reader, always on top of all other */
+.showReader.showReaderFullscreen {
+    grid-template-columns: 100vw !important;
+    grid-template-areas: 'reader' !important
+}
+
+@media screen and (max-width: 599px) {
+    /* sidebar + main */
+    .showSidebar:not(.showReader) {
+        .sidebar {
+            grid-row: 1;
+            grid-column: 1;
+        }
+
+        .sidebarBackdrop {
+            grid-row: 1;
+            grid-column: 2;
+        }
+
+        .sidebarClose {
+            display: block
+        }
+    }
+
+    /* any combination, reader always on top */
+    .showReader {
+        grid-template-columns: 100vw !important;
+        grid-template-areas: 'reader' !important;
+    }
+}
+
+@media screen and (min-width: 600px) and (max-width: 900px) {
+    /* sidebar + main + reader */
+    .showSidebar.showReader {
+        grid-template-areas: 'sidebar main';
+
+        .sidebarBackdrop {
+            grid-row: 1;
+            grid-column: 2;
+        }
+
+        .sidebarClose {
+            display: block
+        }
+    }
+}
+
+@media screen and (min-width: 600px) {
+    /* sidebar + main */
+    .showSidebar:not(.showReader) {
+        grid-template-columns: 300px 1fr;
+        grid-template-areas: 'sidebar main'
+    }
+
+    /* main + reader */
+    .showReader {
+        grid-template-areas: 'main reader';
+    }
+}
+
+@media screen and (min-width: 901px) {
+    /* sidebar + main + reader */
+    .showSidebar.showReader {
+        grid-template-columns: 300px 1fr 1fr;
+        grid-template-areas: 'sidebar main reader'
+    }
+}

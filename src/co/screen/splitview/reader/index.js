@@ -1,3 +1,4 @@
+import s from './index.module.styl'
 import React from 'react'
 import { Context } from '..'
 
@@ -27,19 +28,15 @@ export default class SplitViewReader extends React.PureComponent {
     }
 
     render() {
-        const { className, show, children, fullscreen, ...etc } = this.props
+        const { className='', show, children, fullscreen, ...etc } = this.props
 
         return (
-            <>
-                <aside 
-                    id='reader'
-                    {...etc}
-                    data-fullscreen={fullscreen}
-                    className={className}>
-                    {show && children}
-                </aside>
-                <div id='reader-black-overlay'/>
-            </>
+            <aside 
+                {...etc}
+                data-fullscreen={fullscreen}
+                className={s.reader+' '+className}>
+                {show && children}
+            </aside>
         )
     }
 }

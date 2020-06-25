@@ -1,7 +1,8 @@
+import s from './header.module.styl'
 import React from 'react'
 import { Context } from '../'
 
-import Header from '~co/common/header'
+import Header, { FirstAction } from '~co/common/header'
 import Button from '~co/common/button'
 import Icon from '~co/common/icon'
 
@@ -11,13 +12,16 @@ class SplitViewSidebarHeader extends React.Component {
     render() {
         return (
             <Header data-flat>
-                {this.props.children}
+                <FirstAction className={s.sidebarClose}>
+                    <Button onClick={this.context.sidebar.toggle}>
+                        <Icon name='close' />
+                    </Button>
+                </FirstAction>
 
-                <Button onClick={this.context.sidebar.toggle}>
-                    <Icon name='close' />
-                </Button>
+                {this.props.children}
             </Header>
         )
+                
     }
 }
 

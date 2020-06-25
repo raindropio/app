@@ -1,3 +1,4 @@
+import s from './index.module.styl'
 import React from 'react'
 import { Context } from '../'
 
@@ -11,11 +12,12 @@ export default class SplitViewSidebar extends React.Component {
     render() {
         return (
             <>
-                <aside id='sidebar'>
+                <aside 
+                    className={s.sidebar}>
                     {this.props.children}
                 </aside>
 
-                <div id='sidebar-black-overlay' onClick={this.context.sidebar.toggle} />
+                <div className={s.sidebarBackdrop} onClick={this.context.sidebar.toggle} />
             </>
         )
     }
