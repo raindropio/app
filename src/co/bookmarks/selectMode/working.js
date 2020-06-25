@@ -1,6 +1,8 @@
 import React from 'react'
 import t from '~t'
 import _ from 'lodash'
+
+import Header, { Title } from '~co/common/header'
 import CollectionIcon from '~co/collections/item/icon'
 
 export default class BookmarksHeaderSelectModeLoading extends React.Component {
@@ -22,18 +24,13 @@ export default class BookmarksHeaderSelectModeLoading extends React.Component {
         const { selectMode: { working } } = this.props
 
         return (
-            <div className='elements-header select-mode'>
-                <div className='header'>
-                    <div className='c-icon'>
-                        <CollectionIcon
-                            loading={true} />
-                    </div>
-    
-                    <div className='title'>
-                        {this.strings[working] || t.s('loading')}…
-                    </div>
-                </div>
-            </div>
+            <Header>
+                <CollectionIcon loading={true} />
+
+                <Title>
+                    {this.strings[working] || t.s('loading')}…
+                </Title>
+            </Header>
         )
     }
 }

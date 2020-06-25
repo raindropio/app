@@ -1,16 +1,7 @@
 .reader {
-    composes: reader from "../index.module.styl";
-    position: relative;
-    background-color: var(--background-color);
-}
+    composes: reader from "../index.module.styl"
+    background-color: var(--background-color)
+    overflow: overlay
 
-.reader:after {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    z-index: 10;
-    width: 1px;
-    box-shadow: inset var(--shadow-height) 0 0 var(--shadow-color);
+    position: relative
 }

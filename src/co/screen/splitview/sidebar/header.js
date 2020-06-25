@@ -12,7 +12,7 @@ class SplitViewSidebarHeader extends React.Component {
     render() {
         return (
             <Header data-flat>
-                <FirstAction className={s.sidebarClose}>
+                <FirstAction className={s.sidebarCloseButton}>
                     <Button onClick={this.context.sidebar.toggle}>
                         <Icon name='close' />
                     </Button>

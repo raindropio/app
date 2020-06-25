@@ -1,6 +1,8 @@
 .splitview {
+    width: 100vw;
+    height: 100vh;
     display: grid;
-    grid-template-columns: 50vw 50vw;
+    grid-template-columns: minmax(350px, 35vw) minmax(calc(100vw - 350px), 65vw);
     grid-template-rows: 100vh;
     grid-template-areas: 'main main';
     grid-auto-rows: 0;
@@ -18,6 +20,7 @@
 
 .reader {
     grid-area: reader;
+    justify-self: stretch;
 }
 
 /* Sidebar specific elements */
@@ -25,7 +28,11 @@
     z-index: 20;
 }
 
-.sidebarClose {
+.sidebarCloseButton {
+    display: none
+}
+
+.showReader .sidebarShowButton {
     display: none
 }
 
@@ -37,20 +44,18 @@
 
 @media screen and (max-width: 599px) {
     /* sidebar + main */
-    .showSidebar:not(.showReader) {
-        .sidebar {
-            grid-row: 1;
-            grid-column: 1;
-        }
+    .showSidebar:not(.showReader).forceSidebar .sidebar {
+        grid-row: 1;
+        grid-column: 1;
+    }
 
-        .sidebarBackdrop {
-            grid-row: 1;
-            grid-column: 2;
-        }
+    .showSidebar:not(.showReader).forceSidebar .sidebarBackdrop {
+        grid-row: 1;
+        grid-column: 2;
+    }
 
-        .sidebarClose {
-            display: block
-        }
+    .showSidebar:not(.showReader).forceSidebar .sidebarCloseButton {
+        display: block
     }
 
     /* any combination, reader always on top */
@@ -60,26 +65,26 @@
     }
 }
 
-@media screen and (min-width: 600px) and (max-width: 900px) {
+@media screen and (min-width: 600px) and (max-width: 1000px) {
     /* sidebar + main + reader */
-    .showSidebar.showReader {
+    .showSidebar.showReader.forceSidebar {
         grid-template-areas: 'sidebar main';
+    }
 
-        .sidebarBackdrop {
-            grid-row: 1;
-            grid-column: 2;
-        }
+    .showSidebar.showReader.forceSidebar .sidebarBackdrop {
+        grid-row: 1;
+        grid-column: 2;
+    }
 
-        .sidebarClose {
-            display: block
-        }
+    .showSidebar.showReader.forceSidebar .sidebarCloseButton {
+        display: block
     }
 }
 
 @media screen and (min-width: 600px) {
     /* sidebar + main */
     .showSidebar:not(.showReader) {
-        grid-template-columns: 300px 1fr;
+        grid-template-columns: minmax(200px, var(--sidebar-width)) minmax(50vw, 1fr);
         grid-template-areas: 'sidebar main'
     }
 
@@ -89,10 +94,10 @@
     }
 }
 
-@media screen and (min-width: 901px) {
+@media screen and (min-width: 1001px) {
     /* sidebar + main + reader */
     .showSidebar.showReader {
-        grid-template-columns: 300px 1fr 1fr;
+        grid-template-columns: minmax(200px, var(--sidebar-width)) minmax(350px, 30vw) auto;
         grid-template-areas: 'sidebar main reader'
     }
 }

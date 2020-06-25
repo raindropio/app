@@ -7,11 +7,22 @@ export const Context = React.createContext({})
 export default class ScreenSplitView extends React.Component {
     state = {
         sidebar: {
-            show: true,
+            width: parseInt(localStorage.getItem('splitview-sidebar-width')) || 270,
+            show: localStorage.getItem('splitview-sidebar-show') !== null ? (localStorage.getItem('splitview-sidebar-show')=='true') : true,
+            force: false,
 
             toggle: (e)=>{
                 e && e.preventDefault && e.preventDefault()
-                this.state.update('sidebar', { show: !this.state.sidebar.show })
+
+                let show = !this.state.sidebar.show
+                let force = this.state.sidebar.force
+
+                if (!show && !force && window.innerWidth <= 1000){
+                    show = true
+                    force = true
+                }
+                
+                this.state.update('sidebar', { show, force })
             },
         },
         reader: {
@@ -25,6 +36,15 @@ export default class ScreenSplitView extends React.Component {
                     ...this.state[space],
                     ...obj
                 }
+            }, ()=>{
+                //persist sidebar preferences
+                if (space=='sidebar'){
+                    if (obj.width)
+                        localStorage.setItem('splitview-sidebar-width', obj.width)
+
+                    if (typeof obj.show != 'undefined')
+                        localStorage.setItem('splitview-sidebar-show', obj.show)
+                }
             })
         }
     }
@@ -37,9 +57,11 @@ export default class ScreenSplitView extends React.Component {
                 className={`
                     ${s.splitview}
                     ${sidebar.show ? s.showSidebar : ''}
+                    ${sidebar.force ? s.forceSidebar : ''}
                     ${reader.show ? s.showReader : ''}
                     ${reader.fullscreen ? s.showReaderFullscreen : ''}
-                `}>
+                `}
+                style={{'--sidebar-width': sidebar.width+'px'}}>
                 <Context.Provider value={this.state}>
                     {this.props.children}
                 </Context.Provider>
