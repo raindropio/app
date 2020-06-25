@@ -1,4 +1,4 @@
-import s from './index.module.styl'
+import './index.module.styl'
 import React from 'react'
 import { Context } from '../'
 
@@ -13,7 +13,7 @@ export default class SplitViewMain extends React.Component {
         const { children, ...other } = this.props
 
         return (
-            <aside className={s.main} {...other}>
+            <aside className='svMain' {...other}>
                 {children}
             </aside>
         )

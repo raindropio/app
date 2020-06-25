@@ -1,4 +1,4 @@
-import s from './index.module.styl'
+import './index.module.styl'
 import React from 'react'
 import { Context } from '..'
 
@@ -34,7 +34,7 @@ export default class SplitViewReader extends React.PureComponent {
             <aside 
                 {...etc}
                 data-fullscreen={fullscreen}
-                className={s.reader+' '+className}>
+                className={'svReader '+className}>
                 {show && children}
             </aside>
         )

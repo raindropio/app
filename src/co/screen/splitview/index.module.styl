@@ -1,103 +1,71 @@
-.splitview {
+.wrap {
     width: 100vw;
     height: 100vh;
-    display: grid;
-    grid-template-columns: minmax(350px, 35vw) minmax(calc(100vw - 350px), 65vw);
-    grid-template-rows: 100vh;
-    grid-template-areas: 'main main';
-    grid-auto-rows: 0;
-    overflow-y: hidden;
+    overflow: hidden;
 }
 
-/* Areas */
-.sidebar {
-    grid-area: sidebar;
+.splitview {
+    display: flex;
+    width: 100vw;
+    min-width: 100vw;
+    height: 100vh;
+    will-change: transform
+    transition: transform .3s ease-in-out
+    --sidebar-width: var(--preferred-sidebar-width, 270px)
 }
 
-.main {
-    grid-area: main;
+:global(.svSidebar) {
+    width: var(--sidebar-width)
 }
 
-.reader {
-    grid-area: reader;
-    justify-self: stretch;
+:global(.svReader) {
+    flex-shrink: 0
+    width: 300px 
+    transform: translateX(300px)
+    will-change: transform
+    transition: transform .3s ease-in-out
 }
 
-/* Sidebar specific elements */
-.sidebar, .sidebarBackdrop {
-    z-index: 20;
-}
-
-.sidebarCloseButton {
-    display: none
-}
-
-.showReader .sidebarShowButton {
-    display: none
-}
-
-/* Full screen reader, always on top of all other */
-.showReader.showReaderFullscreen {
-    grid-template-columns: 100vw !important;
-    grid-template-areas: 'reader' !important
-}
-
-@media screen and (max-width: 599px) {
-    /* sidebar + main */
-    .showSidebar:not(.showReader).forceSidebar .sidebar {
-        grid-row: 1;
-        grid-column: 1;
-    }
-
-    .showSidebar:not(.showReader).forceSidebar .sidebarBackdrop {
-        grid-row: 1;
-        grid-column: 2;
-    }
-
-    .showSidebar:not(.showReader).forceSidebar .sidebarCloseButton {
-        display: block
-    }
-
-    /* any combination, reader always on top */
-    .showReader {
-        grid-template-columns: 100vw !important;
-        grid-template-areas: 'reader' !important;
+.smr {
+    :global(.svMain), :global(.svReader) {
+        flex: 1
+        transform: none
     }
 }
 
-@media screen and (min-width: 600px) and (max-width: 1000px) {
-    /* sidebar + main + reader */
-    .showSidebar.showReader.forceSidebar {
-        grid-template-areas: 'sidebar main';
-    }
+.sm {
+    width: calc(100vw + 300px)
 
-    .showSidebar.showReader.forceSidebar .sidebarBackdrop {
-        grid-row: 1;
-        grid-column: 2;
-    }
-
-    .showSidebar.showReader.forceSidebar .sidebarCloseButton {
-        display: block
+    :global(.svMain) {
+        flex: 1
     }
 }
 
-@media screen and (min-width: 600px) {
-    /* sidebar + main */
-    .showSidebar:not(.showReader) {
-        grid-template-columns: minmax(200px, var(--sidebar-width)) minmax(50vw, 1fr);
-        grid-template-areas: 'sidebar main'
-    }
+.mr {
+    width: calc(100vw + var(--sidebar-width))
+    transform: translateX( calc( var(--sidebar-width) * -1 ) )
 
-    /* main + reader */
-    .showReader {
-        grid-template-areas: 'main reader';
+    :global(.svMain), :global(.svReader) {
+        flex: 1
+        transform: none
     }
 }
 
-@media screen and (min-width: 1001px) {
-    /* sidebar + main + reader */
-    .showSidebar.showReader {
-        grid-template-columns: minmax(200px, var(--sidebar-width)) minmax(350px, 30vw) auto;
-        grid-template-areas: 'sidebar main reader'
+.m {
+    width: calc(100vw + var(--sidebar-width) + 300px)
+    transform: translateX( calc( var(--sidebar-width) * -1 ) )
+
+    :global(.svMain) {
+        width: 100vw
+    }
+}
+
+.r {
+    width: calc(100vw + 100vw)
+    transform: translateX( calc( var(--sidebar-width) * -1 ) )
+
+    :global(.svReader) {
+        flex: 1
+        transform: none
     }
 }

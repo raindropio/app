@@ -5,9 +5,20 @@ import Basic from '../basic'
 export const Context = React.createContext({})
 
 export default class ScreenSplitView extends React.Component {
+    getScreen = ()=>{        
+        if (window.innerWidth >= 800)
+            return 3
+        else if (window.innerWidth >= 600)
+            return 2
+
+        return 1
+    }
+
     state = {
+        screen: this.getScreen(),
+
         sidebar: {
-            width: parseInt(localStorage.getItem('splitview-sidebar-width')) || 270,
+            width: parseInt(localStorage.getItem('splitview-sidebar-width')),
             show: localStorage.getItem('splitview-sidebar-show') !== null ? (localStorage.getItem('splitview-sidebar-show')=='true') : true,
             force: false,
 
@@ -49,22 +60,46 @@ export default class ScreenSplitView extends React.Component {
         }
     }
 
+    componentDidMount() {
+        window.addEventListener('resize', this.onWindowResize)
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener('resize', this.onWindowResize)
+    }
+
+    onWindowResize = ()=>{
+        const screen = this.getScreen()
+        if (screen != this.state.screen)
+            this.setState({ screen })
+    }
+
     render() {
-        const { sidebar, reader } = this.state
+        const { screen, sidebar, reader } = this.state
+
+        let layout = 'm'
+        if (reader.show && (reader.fullscreen || screen == 1))
+            layout = 'r'
+        else if (screen == 3 && sidebar.show && reader.show)
+            layout = 'smr'
+        else if (screen >= 2 && reader.show)
+            layout = 'mr'
+        else if (screen >= 2 && sidebar.show)
+            layout = 'sm'
+        else if (screen >= 1 && sidebar.show)
+            layout = 'm'
+        else if (sidebar.force)
+            layout = 'sm'
 
         return (
-            <Basic
-                className={`
-                    ${s.splitview}
-                    ${sidebar.show ? s.showSidebar : ''}
-                    ${sidebar.force ? s.forceSidebar : ''}
-                    ${reader.show ? s.showReader : ''}
-                    ${reader.fullscreen ? s.showReaderFullscreen : ''}
-                `}
-                style={{'--sidebar-width': sidebar.width+'px'}}>
-                <Context.Provider value={this.state}>
-                    {this.props.children}
-                </Context.Provider>
+            <Basic className={s.wrap}>
+                <div 
+                    className={`${s.splitview} ${s[layout]}`}
+                    style={sidebar.width ? {'--preferred-sidebar-width': sidebar.width+'px'} : undefined}>
+                    <Context.Provider value={this.state}>
+                        {this.props.children}
+                    </Context.Provider>
+                </div>
             </Basic>
         )
     }

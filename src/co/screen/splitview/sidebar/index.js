@@ -11,14 +11,9 @@ export default class SplitViewSidebar extends React.Component {
 
     render() {
         return (
-            <>
-                <aside 
-                    className={s.sidebar}>
-                    {this.props.children}
-                </aside>
-
-                <div className={s.sidebarBackdrop} onClick={this.context.sidebar.toggle} />
-            </>
+            <aside className='svSidebar'>
+                {this.props.children}
+            </aside>
         )
     }
 }
