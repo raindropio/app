@@ -1,71 +1,103 @@
-.wrap {
-    width: 100vw;
-    height: 100vh;
-    overflow: hidden;
-}
-
 .splitview {
-    display: flex;
     width: 100vw;
-    min-width: 100vw;
     height: 100vh;
-    will-change: transform
-    transition: transform .3s ease-in-out
-    --sidebar-width: var(--preferred-sidebar-width, 270px)
+    display: grid;
+    grid-template-columns: minmax(350px, 35vw) minmax(calc(100vw - 350px), 65vw);
+    grid-template-rows: 100vh;
+    grid-template-areas: 'main main';
+    grid-auto-rows: 0;
+    overflow-y: hidden;
 }
 
+/* Areas */
 :global(.svSidebar) {
-    width: var(--sidebar-width)
+    grid-area: sidebar;
+}
+
+:global(.svMain) {
+    grid-area: main;
 }
 
 :global(.svReader) {
-    flex-shrink: 0
-    width: 300px 
-    transform: translateX(300px)
-    will-change: transform
-    transition: transform .3s ease-in-out
+    grid-area: reader;
+    justify-self: stretch;
 }
 
-.smr {
-    :global(.svMain), :global(.svReader) {
-        flex: 1
-        transform: none
+/* Sidebar specific elements */
+:global(.svSidebar), :global(.svSidebarBackdrop) {
+    z-index: 20;
+}
+
+:global(.svSidebarCloseButton) {
+    display: none
+}
+
+.showReader :global(.svSidebarShowButton) {
+    display: none
+}
+
+/* Full screen reader, always on top of all other */
+.showReader.showReaderFullscreen {
+    grid-template-columns: 100vw !important;
+    grid-template-areas: 'reader' !important
+}
+
+@media screen and (max-width: 599px) {
+    /* sidebar + main */
+    .showSidebar:not(.showReader).forceSidebar :global(.svSidebar) {
+        grid-row: 1;
+        grid-column: 1;
+    }
+
+    .showSidebar:not(.showReader).forceSidebar :global(.svSidebarBackdrop) {
+        grid-row: 1;
+        grid-column: 2;
+    }
+
+    .showSidebar:not(.showReader).forceSidebar :global(.svSidebarCloseButton) {
+        display: block
+    }
+
+    /* any combination, reader always on top */
+    .showReader {
+        grid-template-columns: 100vw !important;
+        grid-template-areas: 'reader' !important;
     }
 }
 
-.sm {
-    width: calc(100vw + 300px)
+@media screen and (min-width: 600px) and (max-width: 1000px) {
+    /* sidebar + main + reader */
+    .showSidebar.showReader.forceSidebar {
+        grid-template-areas: 'sidebar main';
+    }
 
-    :global(.svMain) {
-        flex: 1
+    .showSidebar.showReader.forceSidebar :global(.svSidebarBackdrop) {
+        grid-row: 1;
+        grid-column: 2;
+    }
+
+    .showSidebar.showReader.forceSidebar :global(.svSidebarCloseButton) {
+        display: block
     }
 }
 
-.mr {
-    width: calc(100vw + var(--sidebar-width))
-    transform: translateX( calc( var(--sidebar-width) * -1 ) )
+@media screen and (min-width: 600px) {
+    /* sidebar + main */
+    .showSidebar:not(.showReader) {
+        grid-template-columns: minmax(200px, var(--sidebar-width)) minmax(50vw, 1fr);
+        grid-template-areas: 'sidebar main'
+    }
 
-    :global(.svMain), :global(.svReader) {
-        flex: 1
-        transform: none
+    /* main + reader */
+    .showReader {
+        grid-template-areas: 'main reader';
     }
 }
 
-.m {
-    width: calc(100vw + var(--sidebar-width) + 300px)
-    transform: translateX( calc( var(--sidebar-width) * -1 ) )
-
-    :global(.svMain) {
-        width: 100vw
-    }
-}
-
-.r {
-    width: calc(100vw + 100vw)
-    transform: translateX( calc( var(--sidebar-width) * -1 ) )
-
-    :global(.svReader) {
-        flex: 1
-        transform: none
+@media screen and (min-width: 1001px) {
+    /* sidebar + main + reader */
+    .showSidebar.showReader {
+        grid-template-columns: minmax(200px, var(--sidebar-width)) minmax(350px, 30vw) auto;
+        grid-template-areas: 'sidebar main reader'
     }
 }
