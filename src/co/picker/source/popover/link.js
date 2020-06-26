@@ -1,9 +1,9 @@
 import React from 'react'
+import t from '~t'
 import normalizeUrl from 'normalize-url'
 
+import { Layout, Label, Text } from '~co/common/form'
 import Button from '~co/common/button'
-import Preloader from '~co/common/preloader'
-import SuperInput from '~co/common/superInput'
 
 export default class PickerSourceLink extends React.Component {
     state = {
@@ -31,27 +31,28 @@ export default class PickerSourceLink extends React.Component {
         const { link, status='' } = this.state
 
         return (
-            <form onSubmit={this.onLinkSubmit} className='fieldWrap'>
-                <label className='fieldName'>URL</label>
+            <form onSubmit={this.onLinkSubmit}>
+                <Layout>
+                    <Label>URL</Label>
 
-                <SuperInput
-                    type='text'
-                    required
-                    className='field'
-                    placeholder='https://'
-                    value={link}
-                    disabled={status=='loading'}
-                    onChange={this.onLinkChange}
-                    autoFocus />
+                    <Text
+                        type='text'
+                        required
+                        className='field'
+                        placeholder='https://'
+                        value={link}
+                        disabled={status=='loading'}
+                        onChange={this.onLinkChange}
+                        autoFocus />
 
-                {status == 'loading' && (<div className='fieldColumns'><Preloader /></div>)}
-                {link && status != 'loading' && (<div className='fieldColumns'>
+                    <div />
                     <Button
                         Tag='input'
                         type='submit'
                         variant='primary'
-                        />
-                </div>)}
+                        disabled={status == 'loading'}
+                        value={t.s('saveLink')+(status == 'loading' ? '…' : '')} />
+                </Layout>
             </form>
         )
     }

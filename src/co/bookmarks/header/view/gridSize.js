@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { makeViewHide, getGridSize } from '~data/selectors/bookmarks'
 import { changeGridSize } from '~data/actions/bookmarks'
 
-import Slider from '~co/common/slider'
+import { Label, Range } from '~co/common/form'
 
 class BookmarksHeaderViewGridSize extends React.Component {
     static defaultProps = {
@@ -12,8 +12,8 @@ class BookmarksHeaderViewGridSize extends React.Component {
         collection: {}
     }
 
-    onGridSizeChange = (val)=>
-        this.props.changeGridSize(this.props.spaceId, val)
+    onGridSizeChange = (e)=>
+        this.props.changeGridSize(this.props.spaceId, parseInt(e.target.value))
 
     render() {
         const { collection: { view }, viewHide, gridSize } = this.props
@@ -30,17 +30,13 @@ class BookmarksHeaderViewGridSize extends React.Component {
 
         return (
             <>
-                <figure className='fieldWrap no-border'>
-                    <label className='fieldName'>{t.s('cover')}</label>
-                </figure>
+                <Label>{t.s('cover')}</Label>
                 
-                <div className='fieldLink'>
-                    <Slider 
+                <div>
+                    <Range 
                         min='1'
                         max='10'
                         value={gridSize}
-                        leftIcon='size_small'
-                        rightIcon='size_big'
                         onChange={this.onGridSizeChange} />
                 </div>
             </>

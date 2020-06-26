@@ -1,6 +1,7 @@
 import React from 'react'
 import t from '~t'
 
+import { Layout, Label } from '~co/common/form'
 import Button from '~co/common/button'
 import Icon from '~co/common/icon'
 
@@ -12,14 +13,16 @@ export default class PickerSourceFile extends React.Component {
 
     render() {
         return (
-            <section className='fieldLink'>
-                <Button variant='link'>
-                    <span className='button-icon'><Icon name='upload' /></span>
-                    {t.s('upload')}&nbsp;{t.s('dropFilesHere').toLowerCase()}
+            <Layout>
+                <Label>{t.s('file')}</Label>
 
-                    <input type='file' onChange={this.onFileChange} />
+                <Button Tag='label' variant='outline'>
+                    <Icon name='upload' />
+                    {t.s('upload')}&nbsp;{t.s('dropFilesHere').toLowerCase()}…
+
+                    <input type='file' style={{display: 'none'}} onChange={this.onFileChange} />
                 </Button>
-            </section>
+            </Layout>
         )
     }
 }

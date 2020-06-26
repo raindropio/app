@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import { makeViewHide } from '~data/selectors/bookmarks'
 import { viewToggle } from '~data/actions/bookmarks'
 
-import { Checkbox } from '~co/common/form'
+import { Checkbox, Label } from '~co/common/form'
 
 class BookmarksHeaderViewShow extends React.Component {
     static defaultProps = {
@@ -29,14 +29,18 @@ class BookmarksHeaderViewShow extends React.Component {
         ]
 
         return (
-            <div>
-                {options.map(([key, title])=>
-                    <Checkbox 
-                        checked={!viewHide.includes(key)} onClick={()=>this.onClick(key)}>
-                        {title}
-                    </Checkbox>
-                )}
-            </div>
+            <>
+                <Label>{t.s('show')}</Label>
+                
+                <div>
+                    {options.map(([key, title])=>
+                        <Checkbox 
+                            checked={!viewHide.includes(key)} onClick={()=>this.onClick(key)}>
+                            {title}
+                        </Checkbox>
+                    )}
+                </div>
+            </>
         )
     }
 }

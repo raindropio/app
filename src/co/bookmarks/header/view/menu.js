@@ -3,7 +3,7 @@ import t from '~t'
 import { connect } from 'react-redux'
 import { oneChangeView } from '~data/actions/collections'
 
-import { Menu, MenuItem } from '~co/overlay/popover'
+import { Radio, Label } from '~co/common/form'
 import Icon from '~co/common/icon'
 
 class BookmarksHeaderViewMenu extends React.Component {
@@ -26,18 +26,21 @@ class BookmarksHeaderViewMenu extends React.Component {
         const { collection: { view } } = this.props
 
         return (
-            <Menu>
-                {Object.keys(this.options).map(item=>(
-                    <MenuItem 
-                        key={item}
-                        data-view={item}
-                        checked={view==item}
-                        onClick={this.onViewClick}>
-                        <Icon name={'view_'+item} />
-                        {t.s(`view_${item}`)}
-                    </MenuItem>
-                ))}
-            </Menu>
+            <>
+                <Label>{t.s('view')}</Label>
+                <div>
+                    {Object.keys(this.options).map(item=>(
+                        <Radio 
+                            key={item}
+                            data-view={item}
+                            checked={view==item}
+                            onClick={this.onViewClick}>
+                            <Icon name={'view_'+item} />
+                            {t.s(`view_${item}`)}
+                        </Radio>
+                    ))}
+                </div>
+            </>
         )
     }
 }

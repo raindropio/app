@@ -23,16 +23,11 @@ class PickerSourcePopover extends React.Component {
                 onClose={this.props.onClose}>
                 <DropModule onDropFiles={this.props.onDropFiles}>
                     {({ isDropping, dropHandlers })=>
-                        <div 
-                            className={`superForm ${styles.form} ${isDropping && styles.isDropping}`}
+                        <div
+                            className={`${styles.form} ${isDropping && styles.isDropping}`}
                             {...dropHandlers}>
-                            <div className='fieldsGroup'>
-                                <Link 
-                                    {...this.props} />
-                                
-                                <File 
-                                    {...this.props} />
-                            </div>
+                            <Link {...this.props} />
+                            <File {...this.props} />
                         </div>
                     }
                 </DropModule>

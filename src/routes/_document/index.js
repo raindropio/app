@@ -1,5 +1,4 @@
 import 'normalize.css/normalize.css'
-import '../../css/base.styl'
 
 import React from 'react'
 import { Helmet } from 'react-helmet'

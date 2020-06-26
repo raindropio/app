@@ -3,11 +3,16 @@
 }
 
 .layout[data-type='default'] {
+    padding: var(--padding-small) var(--padding-medium)
     grid-auto-flow: row
-    gap: var(--padding-medium)
+    
+    > :nth-child(even):not(:last-child) {
+        margin-bottom: var(--padding-medium)
+    }
 }
 
 .layout[data-type='grid'] {
+    padding: var(--padding-medium)
     grid-template-columns: max-content 1fr
     gap: var(--padding-medium)
 

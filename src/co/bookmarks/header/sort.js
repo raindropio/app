@@ -4,7 +4,8 @@ import { connect } from 'react-redux'
 import { makeSort, makeSorts } from '~data/selectors/bookmarks'
 import { changeSort } from '~data/actions/bookmarks'
 
-import Popover, { Menu, MenuItem } from '~co/overlay/popover'
+import Popover from '~co/overlay/popover'
+import { Layout, Radio } from '~co/common/form'
 import Icon from '~co/common/icon'
 import Button from '~co/common/button'
 
@@ -57,19 +58,21 @@ class BookmarksHeaderSort extends React.Component {
 
                 {menu ? (
                     <Popover pin={this.pin} onClose={this.onContextMenuClose}>
-                        <Menu>
-                            {Object.keys(this.options).map(item=>(
-                                <MenuItem 
-                                    key={item}
-                                    data-sort={item}
-                                    checked={item==sort}
-                                    disabled={sorts[item] && !sorts[item].enabled}
-                                    onClick={this.onSortClick}>
-                                    <Icon name={'sort_'+item} />
-                                    {this.options[item]}
-                                </MenuItem>
-                            ))}
-                        </Menu>
+                        <Layout>
+                            <div>
+                                {Object.keys(this.options).map(item=>(
+                                    <Radio 
+                                        key={item}
+                                        data-sort={item}
+                                        checked={item==sort}
+                                        disabled={sorts[item] && !sorts[item].enabled}
+                                        onClick={this.onSortClick}>
+                                        <Icon name={'sort_'+item} />
+                                        {this.options[item]}
+                                    </Radio>
+                                ))}
+                            </div>
+                        </Layout>
                     </Popover>
                 ) : null}
             </>
