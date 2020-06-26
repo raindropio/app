@@ -24,7 +24,7 @@ export default class Tabs extends React.PureComponent {
 				variant={active && 'link'} 
 				title={title}>
 				{icon ? <Icon name={active ? icon+'_active' : icon} className='show-on-small-body' /> : null}
-				{title}
+				<span className='hide-on-small-body'>{title}</span>
 			</Button>
 		)
 	}

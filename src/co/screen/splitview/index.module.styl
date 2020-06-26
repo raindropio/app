@@ -1,11 +1,14 @@
 .splitview {
+    --sidebar-width: unquote('max(200px, min(var(--preferred-sidebar-width, 270px), 40vw))');
+
     width: 100vw;
     height: 100vh;
     display: grid;
-    grid-template-columns: minmax(350px, 35vw) minmax(calc(100vw - 350px), 65vw);
+    grid-template-columns: minmax(200px, var(--sidebar-width)) 0px .5fr 1fr 1.5fr;
     grid-template-rows: 100vh;
-    grid-template-areas: 'main main';
+    grid-template-areas: 'main main main main main';
     grid-auto-rows: 0;
+    grid-auto-columns: 0;
     overflow-y: hidden;
 }
 
@@ -14,8 +17,17 @@
     grid-area: sidebar;
 }
 
+:global(.svSidebarResize) {
+    grid-area: sidebar-resize;
+}
+
+:global(.svSidebarBackdrop) {
+    grid-area: sidebar-backdrop;
+}
+
 :global(.svMain) {
     grid-area: main;
+    min-width: unquote('min(380px, 40vw)')
 }
 
 :global(.svReader) {
@@ -24,7 +36,7 @@
 }
 
 /* Sidebar specific elements */
-:global(.svSidebar), :global(.svSidebarBackdrop) {
+:global(.svSidebar), :global(.svSidebarResize), :global(.svSidebarBackdrop) {
     z-index: 20;
 }
 
@@ -38,11 +50,17 @@
 
 /* Full screen reader, always on top of all other */
 .showReader.showReaderFullscreen {
-    grid-template-columns: 100vw !important;
-    grid-template-areas: 'reader' !important
+    grid-template-areas: 'reader reader reader reader reader' !important
 }
 
 @media screen and (max-width: 599px) {
+    :global(.show-on-small-body) {
+        display: block
+    }
+    :global(.hide-on-small-body) {
+        display: none
+    }
+
     /* sidebar + main */
     .showSidebar:not(.showReader).forceSidebar :global(.svSidebar) {
         grid-row: 1;
@@ -51,7 +69,7 @@
 
     .showSidebar:not(.showReader).forceSidebar :global(.svSidebarBackdrop) {
         grid-row: 1;
-        grid-column: 2;
+        grid-column: 3 / -1;
     }
 
     .showSidebar:not(.showReader).forceSidebar :global(.svSidebarCloseButton) {
@@ -60,20 +78,28 @@
 
     /* any combination, reader always on top */
     .showReader {
-        grid-template-columns: 100vw !important;
-        grid-template-areas: 'reader' !important;
+        grid-template-areas: 'reader reader reader reader reader' !important;
     }
 }
 
 @media screen and (min-width: 600px) and (max-width: 1000px) {
+    .showSidebar, .showReader {
+        :global(.show-on-small-body) {
+            display: block
+        }
+        :global(.hide-on-small-body) {
+            display: none
+        }
+    }
+
     /* sidebar + main + reader */
     .showSidebar.showReader.forceSidebar {
-        grid-template-areas: 'sidebar main';
+        grid-template-areas: 'sidebar main main main main';
     }
 
     .showSidebar.showReader.forceSidebar :global(.svSidebarBackdrop) {
         grid-row: 1;
-        grid-column: 2;
+        grid-column: 3 / -1;
     }
 
     .showSidebar.showReader.forceSidebar :global(.svSidebarCloseButton) {
@@ -84,20 +110,49 @@
 @media screen and (min-width: 600px) {
     /* sidebar + main */
     .showSidebar:not(.showReader) {
-        grid-template-columns: minmax(200px, var(--sidebar-width)) minmax(50vw, 1fr);
-        grid-template-areas: 'sidebar main'
+        grid-template-areas: 'sidebar sidebar-resize main main main'
     }
 
     /* main + reader */
     .showReader {
-        grid-template-areas: 'main reader';
+        grid-template-areas: 'main main main reader reader';
     }
 }
 
 @media screen and (min-width: 1001px) {
+    .showSidebar.showReader :global(.svMain) {
+        :global(.show-on-small-body) {
+            display: block
+        }
+        :global(.hide-on-small-body) {
+            display: none
+        }
+    }
+
     /* sidebar + main + reader */
     .showSidebar.showReader {
-        grid-template-columns: minmax(200px, var(--sidebar-width)) minmax(350px, 30vw) auto;
-        grid-template-areas: 'sidebar main reader'
+        grid-template-areas: 'sidebar sidebar-resize main reader reader'
+    }
+}
+
+@media screen and (min-width: 1001px) and (max-width: 1300px) {
+    .showSidebar.showReader :global(.svReader) {
+        :global(.show-on-small-body) {
+            display: block
+        }
+        :global(.hide-on-small-body) {
+            display: none
+        }
+    }
+}
+
+@media screen and (min-width: 1301px) {
+    :global(.svReader) {
+        :global(.show-on-small-body) {
+            display: none
+        }
+        :global(.hide-on-small-body) {
+            display: block
+        }
     }
 }

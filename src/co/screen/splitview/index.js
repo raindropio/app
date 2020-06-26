@@ -7,7 +7,7 @@ export const Context = React.createContext({})
 export default class ScreenSplitView extends React.Component {
     state = {
         sidebar: {
-            width: parseInt(localStorage.getItem('splitview-sidebar-width')) || 270,
+            width: parseInt(localStorage.getItem('splitview-sidebar-width')),
             show: localStorage.getItem('splitview-sidebar-show') !== null ? (localStorage.getItem('splitview-sidebar-show')=='true') : true,
             force: false,
 
@@ -61,7 +61,7 @@ export default class ScreenSplitView extends React.Component {
                     ${reader.show ? s.showReader : ''}
                     ${reader.fullscreen ? s.showReaderFullscreen : ''}
                 `}
-                style={{'--sidebar-width': sidebar.width+'px'}}>
+                style={sidebar.width ? {'--preferred-sidebar-width': sidebar.width+'px'} : undefined}>
                 <Context.Provider value={this.state}>
                     {this.props.children}
                 </Context.Provider>
