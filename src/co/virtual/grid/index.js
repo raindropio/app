@@ -1,4 +1,4 @@
-import styles from './index.module.css'
+import s from './index.module.styl'
 import React from 'react'
 import ListBase from '../list/base'
 import Sortable from './sortable'
@@ -38,12 +38,7 @@ class VirtualGrid extends React.Component {
             perRow,
             scrollToIndex,
             defaultItemHeight: defaultItemHeight * (perRow/columnCount),
-            style: {
-                width: '100%',
-                height: '100%',
-                '--grid-columns': columnCount,
-                ...(!disableVirtualization ? { overflowY: 'overlay' } : { })
-            }
+            style: { '--grid-columns': columnCount }
         }
     }
 
@@ -51,14 +46,14 @@ class VirtualGrid extends React.Component {
         <VirtualGridRow {...this.props} {...this.state} row={row} />
 
     render() {
-        const { rowCount, perRow, scrollToIndex, style, defaultItemHeight } = this.state
+        const { rowCount, perRow, scrollToIndex, style, defaultItemHeight, disableVirtualization } = this.state
         const { dataKey='', ...etc } = this.props
 
         return (
             <ListBase
                 {...etc}
 
-                className={undefined}
+                className={!disableVirtualization ? s.scrollable : ''}
                 computeItemKey={undefined}
                 sortable={false}
 
@@ -123,7 +118,7 @@ class VirtualGridRow extends React.Component {
         if (rowIsDraggable && rowIsDraggable(0))
             return (
                 <Sortable
-                    className={className+' '+styles.grid}
+                    className={className+' '+s.grid}
                     items={items}
                     onDragEnd={onDragEnd}>
                     {items.map(this.renderItem)}
@@ -131,7 +126,7 @@ class VirtualGridRow extends React.Component {
             )
         else
             return (
-                <div className={className+' '+styles.grid}>
+                <div className={className+' '+s.grid}>
                     {items.map(this.renderItem)}
                 </div>
             )

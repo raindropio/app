@@ -10,7 +10,6 @@ Design
 
 Bugs
 - Critical
-    - restore cache for bookmarks only for first items in list
     - virtual grid doesn't render next pages in Firefox
     - Collection share via link, link is incorrect
     - Such tagname kils app "$%^&()(#@#$!. a"

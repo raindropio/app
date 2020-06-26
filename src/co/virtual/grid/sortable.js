@@ -1,4 +1,4 @@
-import styles from './sortable.module.css'
+import styles from './sortable.module.styl'
 import React from 'react'
 import { ReactSortable } from 'react-sortablejs'
 

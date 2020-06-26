@@ -1,6 +1,6 @@
+import s from './withContainer.module.styl'
 import React from 'react'
 
-const mainStyle = {width: '100%', height: '100%', overflowY: 'overlay'}
 const cache = {}
 
 export default (Component)=>
@@ -43,15 +43,14 @@ export default (Component)=>
         }
 
         render() {
-            const { width=0, height=0, disableVirtualization, className, ...etc } = this.props
+            const { width=0, height=0, disableVirtualization, className='', ...etc } = this.props
             const { paddingHorizontal=0, paddingVertical=0 } = this.state
 
             return (
                 <div 
-                    style={disableVirtualization ? undefined : mainStyle}
                     ref={this.bindContainer}
                     onScroll={this.onScroll}
-                    className={className}>
+                    className={className + ' ' + (!disableVirtualization ? s.scrollable : '')}>
                     <Component 
                         {...etc}
                         {...this.state}
