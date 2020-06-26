@@ -1,3 +1,4 @@
+import s from './index.module.styl'
 import React from 'react'
 import t from '~t'
 import { connect } from 'react-redux'
@@ -64,7 +65,7 @@ class CollectionsItems extends React.Component {
         const { selectMode, activeId, ...etc } = this.props
 
         return (
-            <>
+            <div className={s.wrap}>
                 <SelectMode 
                     selectMode={selectMode}
                     {...etc} />
@@ -73,7 +74,7 @@ class CollectionsItems extends React.Component {
                     {...etc}
                     activeId={selectMode.enabled ? selectMode.ids : activeId}
                     data={this.props.data} />
-            </>
+            </div>
         )
     }
 }

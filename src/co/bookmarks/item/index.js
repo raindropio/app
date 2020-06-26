@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { bookmark, tags, makeIsSelected, makeHighlight, selectModeWorking, getGridSize } from '~data/selectors/bookmarks'
+import { bookmark, tags, makeIsSelected, makeHighlight, makeCreatorRef, selectModeWorking, getGridSize } from '~data/selectors/bookmarks'
 import { copyTextToClipboard } from '~modules/strings'
 
 import View from './view'
@@ -124,6 +124,7 @@ export default connect(
 	() => {
         const getIsSelected = makeIsSelected()
         const getHighlight = makeHighlight()
+        const getCreatorRef = makeCreatorRef()
     
         return (state, { _id, spaceId, selectModeEnabled })=>{
             const item = bookmark(state, _id)
@@ -134,6 +135,7 @@ export default connect(
                 selected: selectModeEnabled ? getIsSelected(state, spaceId, _id) : false,
                 selectDisabled: selectModeWorking(state) ? true : false,
                 highlight: getHighlight(state, _id),
+                creatorRef: getCreatorRef(state, _id),
                 gridSize: getGridSize(state, spaceId)
             }
         }

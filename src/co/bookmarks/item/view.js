@@ -14,8 +14,8 @@ import Path from './path'
 export default class BookmarkItemView extends React.PureComponent {
     render() {
         const { innerRef, isDragging } = this.props
-        const { link, title, excerpt, highlight, cover, domain, tags, type, view, access, created, reparse, collectionId, spaceId } = this.props
-        const { active, selected, selectModeEnabled, selectDisabled, important, broken, gridSize } = this.props
+        const { link, title, excerpt, highlight, creatorRef, cover, domain, tags, type, view, access, created, reparse, collectionId, spaceId } = this.props
+        const { active, selected, selectModeEnabled, selectDisabled, important, broken, cache, gridSize } = this.props
         const { onClick, onTagClick, onEditClick, onPreviewClick, onSelectClick, onRemoveClick, onContextMenu, onKeyUp } = this.props
 
         return (
@@ -49,11 +49,20 @@ export default class BookmarkItemView extends React.PureComponent {
 
                     {/* Info */}
                     <div className={s.info}>
+                        {creatorRef && creatorRef._id ? (
+                            <>
+                                <section data-inline><Icon name='user' data-size='micro' /></section>
+                                <section>{creatorRef.fullName}</section>
+                            </>
+                        ) : null}
+
                         {spaceId != collectionId ? <section><Path collectionId={collectionId} /></section> : null}
 
                         {important ? <section data-inline><Icon name='important' data-size='micro' className={s.importantIcon} /></section> : null}
 
                         {reparse ? <section data-inline><Icon name='progress' data-size='micro' /></section> : null}
+
+                        {cache && cache != 'ready' && cache != 'retry' ? <section data-inline><Icon name='cache_failed' data-size='micro' /></section> : null}
 
                         {type != 'link' ? <section data-inline><Icon name={type} data-size='micro' /></section> : null}
 

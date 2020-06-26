@@ -12,16 +12,16 @@ export default class CollectionsItemView extends React.PureComponent {
     renderStatus = ()=>{
 		let status
 
-        /*if (this.props.item.public)
+        if (this.props.public)
             status = 'public'
-        else*/ if (this.props.collaborators)
-            status = 'collaborators'
+        else if (this.props.collaborators)
+            status = 'user'
 
 		if (!status) return
 
 		return (
 			<div>
-				<Icon name={'status_'+status} />
+				<Icon name={status} data-size='micro' />
 			</div>
 		)
 	}

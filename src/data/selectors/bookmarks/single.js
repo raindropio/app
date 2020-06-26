@@ -20,3 +20,15 @@ export const highlight = ({bookmarks}, _id)=>(bookmarks.meta[_id] ? bookmarks.me
 export const makeHighlight = ()=>highlight
 
 export const tags = ({bookmarks}, _id)=>(bookmarks.meta[_id] ? bookmarks.meta[_id] : blankMeta).tags
+
+export const makeCreatorRef = ()=>createSelector(
+	[({bookmarks}, _id)=>bookmarks.meta[_id], ({user})=>user.current._id],
+	(meta, currentUserId)=>{
+		const { creatorRef } = meta || blankMeta
+
+		if (creatorRef._id && creatorRef._id == currentUserId)
+			return blankMeta.creatorRef
+			
+		return creatorRef
+	}
+)

@@ -10,7 +10,6 @@ Design
 
 Bugs
 - Critical
-    - virtual grid doesn't render next pages in Firefox
     - Collection share via link, link is incorrect
     - Such tagname kils app "$%^&()(#@#$!. a"
     - "select" collection doesn't show up correctly
@@ -18,13 +17,10 @@ Bugs
     - in search results when change bookmark, `highlight` data lost
     - search as type sometime doesn't recognize last type
     - masonry keyboard navigation unordered
-    - accent color for collection space
     - on drag file to bookmarks body no overlay color
 
 Not ready
 - electron
-- bookmark info about cache status, creatorRef
-- bookmark info important icon should be bright
 - pro banner
 
 Server

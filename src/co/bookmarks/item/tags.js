@@ -1,5 +1,7 @@
 import s from './tags.module.styl'
 import React from 'react'
+import _ from 'lodash'
+
 import Icon from '~co/common/icon'
 
 class BookmarksItemTag extends React.PureComponent {
@@ -30,7 +32,7 @@ export default class BookmarksItemTags extends React.PureComponent {
         return (
             <div className={className}>
                 <span className={s.tags}>
-                    {tags.map(tag=>
+                    {_.sortBy(tags, tag=>tag.toLowerCase()).map(tag=>
                         <BookmarksItemTag 
                             key={tag}
                             tag={tag}
