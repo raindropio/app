@@ -26,7 +26,7 @@ export const makeCreatorRef = ()=>createSelector(
 	(meta, currentUserId)=>{
 		const { creatorRef } = meta || blankMeta
 
-		if (creatorRef._id && creatorRef._id == currentUserId)
+		if (creatorRef && creatorRef._id == currentUserId)
 			return blankMeta.creatorRef
 			
 		return creatorRef

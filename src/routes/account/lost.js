@@ -1,8 +1,8 @@
-import s from './_page/index.module.styl'
 import React from 'react'
 import { Helmet } from 'react-helmet'
 import t from '~t'
 
+import { Layout, Text } from '~co/common/form'
 import Button from '~co/common/button'
 import withPage from './_page'
 import Error from './error'
@@ -37,19 +37,19 @@ class AccountLost extends React.Component {
                 <Helmet><title>{t.s('recoverPassword')}</title></Helmet>
                 <h1>{t.s('recoverPassword')}</h1><br/>
 
-                {status == 'error' && <Error error={error} />}
+                <Layout>
+                    {status == 'error' && <Error error={error} />}
 
-                <input
-                    type='email'
-                    name='email'
-                    disabled={status=='loading'}
-                    autoFocus
-                    required
-                    placeholder='Email'
-                    value={this.state.email}
-                    onChange={this.onChangeValue} />
+                    <Text
+                        type='email'
+                        name='email'
+                        disabled={status=='loading'}
+                        autoFocus
+                        required
+                        placeholder='Email'
+                        value={this.state.email}
+                        onChange={this.onChangeValue} />
 
-                <div className={s.buttons}>
                     <Button
                         Tag='input' 
                         type='submit'
@@ -57,7 +57,7 @@ class AccountLost extends React.Component {
                         variant='primary'
                         data-block
                         value={t.s('recoverPassword')} />
-                </div>
+                </Layout>
             </form>
         )
     }

@@ -1,0 +1,17 @@
+.layout {
+    display: grid
+}
+
+.layout[data-type='default'] {
+    grid-auto-flow: row
+    gap: var(--padding-medium)
+}
+
+.layout[data-type='grid'] {
+    grid-template-columns: max-content 1fr
+    gap: var(--padding-medium)
+
+    > :nth-child(odd) {
+        justify-self: end
+    }
+}

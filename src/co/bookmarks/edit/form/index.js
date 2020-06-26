@@ -2,8 +2,8 @@ import styles from './index.module.styl'
 import React from 'react'
 import t from '~t'
 
+import { Layout, Text, Label } from '~co/common/form'
 import Button from '~co/common/button'
-import TextareaAutosize from 'react-textarea-autosize'
 import Cover from './cover'
 import Collection from './collection'
 
@@ -32,76 +32,75 @@ export default class BookmarkEditForm extends React.Component {
 
         return (
             <div className={styles.edit}>
-                <Cover {...this.props} />
+                <form className={styles.form} onSubmit={this.onSubmitForm}>
+                    <Layout type='grid'>
+                        <div>
+                            <Cover {...this.props} />
+                        </div>
 
-                <form className={styles.form+' superForm'} onSubmit={this.onSubmitForm}>
-                    <div className='fieldWrap'>
-                        <label className='fieldName'>{t.s('title')}</label>
+                        <div>
+                            <Text 
+                                variant='less'
+                                font='title'
+                                autoSize={true}
+                                type='text'
+                                tabIndex='5000'
+                                required={true}
+                                disabled={status=='loading'}
+                                autoComplete='off'
+                                autoFocus={autoFocus=='title'}
+                                name='title'
+                                placeholder={t.s('title')}
+                                defaultValue={title}
+                                onChange={this.onChangeField}
+                                onBlur={this.onSubmitForm} />
 
-                        <TextareaAutosize 
-                            type='text'
+                            <Text 
+                                variant='less'
+                                autoSize={true}
+                                multiline={true}
+                                type='text'
+                                tabIndex='5000'
+                                disabled={status=='loading'}
+                                autoComplete='off'
+                                autoFocus={autoFocus=='excerpt'}
+                                name='excerpt'
+                                maxLength='10000'
+                                defaultValue={excerpt}
+                                placeholder={t.s('description')}
+                                onChange={this.onChangeField}
+                                onBlur={this.onSubmitForm} />
+                        </div>
+
+                        <Collection 
+                            {...this.props}
+                            tabIndex='5000' />
+
+                        <Label>URL</Label>
+                        <Text 
+                            autoSize={true}
                             tabIndex='5000'
-                            className='field title'
-                            required={true}
-                            disabled={status=='loading'}
-                            autoComplete='off'
-                            autoFocus={autoFocus=='title'}
-                            name='title'
-                            placeholder={t.s('title')}
-                            defaultValue={title}
-                            onChange={this.onChangeField}
-                            onBlur={this.onSubmitForm}
-                            onKeyDown={this.onKeyDownField} />
-                    </div>
-
-                    <div className='fieldWrap'>
-                        <label className='fieldName'>{t.s('description')}</label>
-
-                        <TextareaAutosize
-                            type='text'
-                            data-multiline
-                            tabIndex='5000'
-                            className='field'
-                            disabled={status=='loading'}
-                            autoComplete='off'
-                            autoFocus={autoFocus=='excerpt'}
-                            name='excerpt'
-                            maxLength='10000'
-                            defaultValue={excerpt}
-                            onChange={this.onChangeField}
-                            onBlur={this.onSubmitForm}
-                            onKeyDown={this.onKeyDownField} />
-                    </div>
-
-                    <Collection 
-                        {...this.props}
-                        tabIndex='5000' />
-
-                    <div className='fieldWrap'>
-                        <label className='fieldName'>URL</label>
-
-                        <TextareaAutosize
-                            tabIndex='5000'
-                            type='url' 
-                            className='field'
+                            type='url'
                             disabled={status=='loading'}
                             name='link'
                             value={link}
                             onChange={this.onChangeField}
-                            onBlur={this.onSubmitForm}
-                            onKeyDown={this.onKeyDownField} />
-                    </div>
+                            onBlur={this.onSubmitForm} />
 
-                    {(unsaved || status == 'saving') && (
-                        <div className='fieldColumns'>
-                            <Button
-                                Tag='input'
-                                variant='primary'
-                                type='submit'
-                                disabled={status == 'saving'}
-                                value={t.s('save') + (status == 'saving' ? '…' : '')} />
-                        </div>
-                    )}
+                        {(unsaved || status == 'saving') && (
+                            <>
+                                <div />
+
+                                <Button
+                                    Tag='input'
+                                    variant='primary'
+                                    type='submit'
+                                    data-block
+                                    disabled={status == 'saving'}
+                                    value={t.s('save') + (status == 'saving' ? '…' : '')} />
+                            </>
+                        )}
+                    </Layout>
                 </form>
             </div>
         )

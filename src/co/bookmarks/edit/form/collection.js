@@ -3,6 +3,7 @@ import t from '~t'
 import { connect } from 'react-redux'
 import { makeCollectionPath } from '~data/selectors/collections'
 
+import { Label } from '~co/common/form'
 import Button from '~co/common/button'
 import Icon from '~co/common/icon'
 import CollectionIcon from '~co/collections/item/icon'
@@ -39,20 +40,22 @@ class BookmarkEditFormCollection extends React.Component {
         const pathText = path.map((p)=>p.title).join(' / ')
 
         return (
-            <div className='fieldWrap'>
-                <label className='fieldName'>{t.s('collection')}</label>
+            <>
+                <Label>{t.s('collection')}</Label>
 
-                <Button 
-                    ref={this.linkRef}
-                    href=''
-                    tabIndex={tabIndex}
-                    variant='outline'
-                    disabled={status=='loading'}
-                    onClick={this.onPickerClick}>
-                    <CollectionIcon {...path[path.length-1]} />
-                    {pathText}
-                    <Icon name='arrow' />
-                </Button>
+                <div>
+                    <Button 
+                        ref={this.linkRef}
+                        href=''
+                        tabIndex={tabIndex}
+                        variant='outline'
+                        disabled={status=='loading'}
+                        onClick={this.onPickerClick}>
+                        <CollectionIcon {...path[path.length-1]} />
+                        {pathText}
+                        <Icon name='arrow' />
+                    </Button>
+                </div>
 
                 {this.state.picker && (
                     <Picker 
@@ -60,7 +63,7 @@ class BookmarkEditFormCollection extends React.Component {
                         events={this.events}
                         onClose={this.onPickerClose} />
                 )}
-            </div>
+            </>
         )
     }
 }

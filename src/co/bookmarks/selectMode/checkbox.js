@@ -2,8 +2,6 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { unselectAll, selectAll } from '~data/actions/bookmarks'
 
-import Button from '~co/common/button'
-
 class BookmarksHeaderSelectModeCheckbox extends React.Component {
     static defaultProps = {
         selectMode: {}
@@ -37,13 +35,11 @@ class BookmarksHeaderSelectModeCheckbox extends React.Component {
         const { selectMode } = this.props
 
         return (
-            <Button>
-                <input 
+            <input 
                     ref={this._allCheckbox}
                     type='checkbox'
                     checked={selectMode.all}
                     onChange={this.onInputClick} />
-            </Button>
         )
     }
 }

@@ -13,6 +13,7 @@
     font-size: var(--primary-font-size)
     cursor: pointer
     flex-shrink: 0
+    outline: none
 
     > * {
         white-space: nowrap;
@@ -49,6 +50,10 @@
     &:active {
         background: var(--active-background-color)
     }
+
+    &:focus {
+        box-shadow: 0 0 0 1px var(--accent-color)
+    }
 }
 
 //link like
@@ -66,6 +71,10 @@
 
     &:active {
         background: var(--active-background-color)
+    }
+
+    &:focus {
+        box-shadow: 0 0 0 1px var(--accent-color)
     }
 }
 
@@ -87,6 +96,10 @@
     &:active {
         background: var(--active-background-color)
     }
+
+    &:focus {
+        box-shadow: 0 0 0 1px var(--accent-color)
+    }
 }
 
 //flat
@@ -105,6 +118,10 @@
 
     &:active {
         background: var(--alternative-background-color)
+    }
+
+    &:focus {
+        box-shadow: 0 0 0 1px var(--accent-color)
     }
 }
 
@@ -126,5 +143,9 @@
     &:active {
         boxShadowClick()
         filter: brightness(.9);
+    }
+
+    &:focus {
+        box-shadow: 0 0 0 1px var(--accent-color), inset 0 0 0 1px currentColor
     }
 }

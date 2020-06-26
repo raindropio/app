@@ -4,6 +4,7 @@ import { Helmet } from 'react-helmet'
 import t from '~t'
 
 import withPage from './_page'
+import { Layout, Text } from '~co/common/form'
 import Button from '~co/common/button'
 import Icon from '~co/common/icon'
 import Social from './social'
@@ -34,26 +35,26 @@ class AccountLogin extends React.Component {
 
                 {status == 'error' && <Error error={error} />}
 
-                <input
-                    type='email'
-                    name='email'
-                    disabled={status=='loading'}
-                    autoFocus
-                    required
-                    placeholder='Email'
-                    value={this.state.email}
-                    onChange={this.onChangeValue} />
+                <Layout>
+                    <Text
+                        type='email'
+                        name='email'
+                        disabled={status=='loading'}
+                        autoFocus
+                        required
+                        placeholder='Email'
+                        value={this.state.email}
+                        onChange={this.onChangeValue} />
 
-                <input
-                    type='password'
-                    name='password'
-                    disabled={status=='loading'}
-                    required
-                    placeholder={t.s('password')}
-                    value={this.state.password}
-                    onChange={this.onChangeValue} />
+                    <Text
+                        type='password'
+                        name='password'
+                        disabled={status=='loading'}
+                        required
+                        placeholder={t.s('password')}
+                        value={this.state.password}
+                        onChange={this.onChangeValue} />
 
-                <div className={s.buttons}>
                     <Button
                         Tag='input' 
                         type='submit'
@@ -61,7 +62,7 @@ class AccountLogin extends React.Component {
                         data-block
                         disabled={status=='loading'}
                         value={t.s('signIn')} />
-                </div>
+                </Layout>
 
                 <Social {...this.props} />
             </form>

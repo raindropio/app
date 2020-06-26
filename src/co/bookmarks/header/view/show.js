@@ -5,6 +5,8 @@ import { connect } from 'react-redux'
 import { makeViewHide } from '~data/selectors/bookmarks'
 import { viewToggle } from '~data/actions/bookmarks'
 
+import { Checkbox } from '~co/common/form'
+
 class BookmarksHeaderViewShow extends React.Component {
     static defaultProps = {
         spaceId: 0,
@@ -27,21 +29,14 @@ class BookmarksHeaderViewShow extends React.Component {
         ]
 
         return (
-            <>
-                <figure className='fieldWrap no-border'>
-                    <label className='fieldName'>{t.s('show')}</label>
-                </figure>
-                
+            <div>
                 {options.map(([key, title])=>
-                    <div 
-                        key={key}
-                        className='fieldLink fieldColumns'
-                        onClick={()=>this.onClick(key)}>
-                        <span className={'extra-checkbox '+(!viewHide.includes(key)?'active':'')} />
-                        <span>{title}</span>
-                    </div>
+                    <Checkbox 
+                        checked={!viewHide.includes(key)} onClick={()=>this.onClick(key)}>
+                        {title}
+                    </Checkbox>
                 )}
-            </>
+            </div>
         )
     }
 }

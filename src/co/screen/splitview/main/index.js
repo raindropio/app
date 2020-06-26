@@ -19,7 +19,7 @@ export default class SplitViewMain extends React.Component {
             <Small 
                 ref={this.ref}
                 className='svMain'
-                minWidth={400}
+                minWidth={500}
                 {...other}>
                 {children}
             </Small>

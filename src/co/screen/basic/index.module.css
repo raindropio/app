@@ -1,14 +1,19 @@
 @import './size.css';
 @import './themes.css';
 
+* {
+    box-sizing: border-box;
+}
+
 body, input, textarea, select, button {
     font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;
     font-size: var(--primary-font-size)
 }
 
-input, textarea, select, button {
+.page, input, textarea, select, button {
     color: inherit;
     background: inherit;
+    line-height: 1.3;
 }
 
 ::placeholder {
@@ -17,7 +22,6 @@ input, textarea, select, button {
 
 .page {
     background: var(--background-color);
-    line-height: 1.3;
 }
 
 a {
