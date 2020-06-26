@@ -66,10 +66,10 @@ class ReaderCache extends React.Component {
         switch(cache) {
             case 'ready':
                 return (
-                    <>
+                    <div className={s.cache}>
                         {this.renderStatus()}
-                        <SuperFrame src={url} />
-                    </>
+                        <SuperFrame className={s.frame} src={url} />
+                    </div>
                 )
             
             default:

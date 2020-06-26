@@ -1,8 +1,6 @@
 .splitview {
-    --sidebar-width: unquote('max(200px, min(var(--preferred-sidebar-width, 270px), 40vw))');
-
     width: 100vw;
-    height: 100vh;
+    --sidebar-width: unquote('max(200px, min(var(--preferred-sidebar-width, 270px), 40vw))');
     display: grid;
     grid-template-columns: minmax(200px, var(--sidebar-width)) 0px .5fr 1fr 1.5fr;
     grid-template-rows: 100vh;
@@ -54,26 +52,21 @@
 }
 
 @media screen and (max-width: 599px) {
-    :global(.show-on-small-body) {
-        display: block
-    }
-    :global(.hide-on-small-body) {
-        display: none
-    }
-
     /* sidebar + main */
-    .showSidebar:not(.showReader).forceSidebar :global(.svSidebar) {
-        grid-row: 1;
-        grid-column: 1;
-    }
+    .showSidebar:not(.showReader).forceSidebar {
+        :global(.svSidebar) {
+            grid-row: 1;
+            grid-column: 1 / 5;
+        }
 
-    .showSidebar:not(.showReader).forceSidebar :global(.svSidebarBackdrop) {
-        grid-row: 1;
-        grid-column: 3 / -1;
-    }
+        :global(.svSidebarBackdrop) {
+            grid-row: 1;
+            grid-column: 5 / -1;
+        }
 
-    .showSidebar:not(.showReader).forceSidebar :global(.svSidebarCloseButton) {
-        display: block
+        :global(.svSidebarCloseButton) {
+            display: block
+        }
     }
 
     /* any combination, reader always on top */
@@ -83,27 +76,18 @@
 }
 
 @media screen and (min-width: 600px) and (max-width: 1000px) {
-    .showSidebar, .showReader {
-        :global(.show-on-small-body) {
-            display: block
-        }
-        :global(.hide-on-small-body) {
-            display: none
-        }
-    }
-
     /* sidebar + main + reader */
     .showSidebar.showReader.forceSidebar {
         grid-template-areas: 'sidebar main main main main';
-    }
 
-    .showSidebar.showReader.forceSidebar :global(.svSidebarBackdrop) {
-        grid-row: 1;
-        grid-column: 3 / -1;
-    }
+        :global(.svSidebarBackdrop) {
+            grid-row: 1;
+            grid-column: 3 / -1;
+        }
 
-    .showSidebar.showReader.forceSidebar :global(.svSidebarCloseButton) {
-        display: block
+        :global(.svSidebarCloseButton) {
+            display: block
+        }
     }
 }
 
@@ -120,39 +104,8 @@
 }
 
 @media screen and (min-width: 1001px) {
-    .showSidebar.showReader :global(.svMain) {
-        :global(.show-on-small-body) {
-            display: block
-        }
-        :global(.hide-on-small-body) {
-            display: none
-        }
-    }
-
     /* sidebar + main + reader */
     .showSidebar.showReader {
         grid-template-areas: 'sidebar sidebar-resize main reader reader'
-    }
-}
-
-@media screen and (min-width: 1001px) and (max-width: 1300px) {
-    .showSidebar.showReader :global(.svReader) {
-        :global(.show-on-small-body) {
-            display: block
-        }
-        :global(.hide-on-small-body) {
-            display: none
-        }
-    }
-}
-
-@media screen and (min-width: 1301px) {
-    :global(.svReader) {
-        :global(.show-on-small-body) {
-            display: none
-        }
-        :global(.hide-on-small-body) {
-            display: block
-        }
     }
 }

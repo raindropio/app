@@ -1,6 +1,20 @@
 :global(.svReader) {
     background-color: var(--background-color)
     overflow: overlay
-
     position: relative
+
+    display: flex
+    flex-direction: column
+
+    &:after {
+        content:''
+        position: absolute
+        z-index: 11
+        left: 0
+        top: 0
+        bottom: 0
+        box-shadow: inset var(--shadow-height) 0 0 var(--shadow-color);
+        width: 1px
+        pointer-events: none
+    }
 }

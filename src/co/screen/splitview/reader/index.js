@@ -1,6 +1,7 @@
 import './index.module.styl'
 import React from 'react'
 import { Context } from '..'
+import Small from '../helpers/small'
 
 import Header from './header'
 import Content from './content'
@@ -31,12 +32,13 @@ export default class SplitViewReader extends React.PureComponent {
         const { className='', show, children, fullscreen, ...etc } = this.props
 
         return (
-            <aside 
+            <Small 
                 {...etc}
                 data-fullscreen={fullscreen}
-                className={'svReader '+className}>
+                className={'svReader '+className}
+                minWidth={600}>
                 {show && children}
-            </aside>
+            </Small>
         )
     }
 }

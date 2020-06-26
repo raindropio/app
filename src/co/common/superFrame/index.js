@@ -1,3 +1,4 @@
+import s from './index.module.styl'
 import React from 'react'
 import config from '~config'
 import Preloader from '~co/common/preloader'
@@ -21,13 +22,13 @@ export default class SuperFrame extends React.Component {
 		this.setState({ status: 'error' })
 
 	render() {
-		const { src, disableSandbox=false } = this.props
+		const { src, disableSandbox=false, className='', ...etc } = this.props
 		const { status } = this.state
 
 		const Component = isNative ? 'webview' : 'iframe'
 
 		return (
-			<div className={`superFrame status-${status}`}>
+			<div {...etc} className={s.frame+' '+className} data-status={status}>
 				<Component 
 					tabIndex='-1' 
 					allowtransparency='false'
@@ -38,8 +39,8 @@ export default class SuperFrame extends React.Component {
 					onLoad={this.onLoad}
 					onError={this.onError} />
 
-				{status=='loading' ? <div className='superFrame-overlay'><Preloader /></div> : null}
-				{status=='error' ? <div className='superFrame-overlay'>Error!</div> : null}
+				{status=='loading' ? <div className={s.overlay}><Preloader /></div> : null}
+				{status=='error' ? <div className={s.overlay}>Error!</div> : null}
 			</div>
 		)
 	}

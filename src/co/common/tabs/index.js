@@ -21,7 +21,7 @@ export default class Tabs extends React.PureComponent {
 				tabIndex='-1'
 				onClick={this.onItemClick} 
 				className={s.item}
-				variant={active && 'link'} 
+				variant={active && 'flat'} 
 				title={title}>
 				{icon ? <Icon name={active ? icon+'_active' : icon} className='show-on-small-body' /> : null}
 				<span className='hide-on-small-body'>{title}</span>

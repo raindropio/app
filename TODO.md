@@ -14,11 +14,13 @@ Bugs
     - virtual grid doesn't render next pages in Firefox
     - Collection share via link, link is incorrect
     - Such tagname kils app "$%^&()(#@#$!. a"
+    - "select" collection doesn't show up correctly
 - Minor
     - in search results when change bookmark, `highlight` data lost
     - search as type sometime doesn't recognize last type
     - masonry keyboard navigation unordered
     - accent color for collection space
+    - on drag file to bookmarks body no overlay color
 
 Not ready
 - electron
@@ -53,3 +55,16 @@ Changes
     - bookmarks.importantSelected action arguments changed
     - test upload files!
     - new optionalDependencie: @sentry/minimal
+- features
+    - nested collections showed up in one list
+    - web preview better
+    - batch remove, merge collections
+    - better reorder of collections
+    - create new collection fancy, reorderable
+    - resizable sidebar
+    - virtual list
+    - fast batch bookmark actions
+    - more reliable file upload
+    - filters/tags in sidebar
+    - caching
+    - bug fixes
