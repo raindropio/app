@@ -76,9 +76,11 @@ export default class CollectionsItemView extends React.PureComponent {
                 ) : null}
 
                 <SuperLink
-					navPrefix='menu-item'
                     to={to}
-                    tabIndex={active ? '1' : '-1'}
+
+                    active={active}
+                    tabIndex='1'
+
                     focusable={!multiselect}
 					onClick={onClick}
 					onDoubleClick={onRenameClick}

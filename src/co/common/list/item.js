@@ -1,11 +1,11 @@
 import s from './item.module.styl'
 import React from 'react'
 
-function ItemInner({ className='', active, color, style={}, ...etc }) {
+function ItemInner({ className='', active, color, style={}, forwardedRef, ...etc }) {
     return (
         <div 
-            active={active}
             {...etc}
+            ref={forwardedRef}
             className={`${className} ${s.item} ${active && s.active}`}
             style={{'--accent-color': color, ...style}} />
     )

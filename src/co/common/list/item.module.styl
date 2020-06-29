@@ -7,7 +7,7 @@
     padding: 0 var(--padding-medium)
 
     &:hover {
-        background: var(--alternative-background-color)
+        background: var(--hover-background-color)
     }
 
     &.active {
@@ -24,7 +24,7 @@
     }
 }
 
-html:not(:global(.blur)) .item.active[data-is-focus="true"] {
+html:not(:global(.blur)) .item[data-is-focus="true"] {
     outline: none
     background: var(--accent-color)
     color: white

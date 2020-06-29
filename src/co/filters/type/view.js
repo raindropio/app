@@ -34,8 +34,9 @@ export default class FiltersType extends React.Component {
                 ) : null}
 
                 <SuperLink
-                    navPrefix='menu-item'
-                    tabIndex={active ? '1' : '-1'}
+                    tabIndex='1'
+                    active={active}
+                    
                     onClick={onClick}
                     onContextMenu={onContextMenu} />
             </Item>

@@ -2,7 +2,8 @@
     /*background*/
     --background-color: hsl(0,0%,100%);
     --alternative-background-color: hsl(0,0%,95%);
-    --active-background-color: hsl(0,0%,92%);
+    --hover-background-color: rgba(0,0,0,.05);
+    --active-background-color: hsl(0,0%,90%);
     --disable-background-color: hsl(0,0%,85%);
 
     /*brand*/
@@ -23,6 +24,7 @@
     /* background */
     --background-color: hsl(225,5%,13%);
     --alternative-background-color: hsl(225,5%,19%);
+    --hover-background-color: rgba(255,255,255,.1);
     --active-background-color: hsl(225,5%,22%);
     --disable-background-color: hsl(225,5%,5%);
 

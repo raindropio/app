@@ -33,8 +33,9 @@ export default class FiltersTagView extends React.Component {
                 </ItemActions>
 
                 <SuperLink
-                    navPrefix='menu-item'
-                    tabIndex={active ? '1' : '-1'}
+                    tabIndex='1'
+                    active={active}
+                    
                     onClick={onClick}
                     onDoubleClick={onRenameClick}
                     onContextMenu={onContextMenu}

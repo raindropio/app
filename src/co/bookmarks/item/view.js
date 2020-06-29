@@ -107,9 +107,11 @@ export default class BookmarkItemView extends React.PureComponent {
                 ) : null}
 
                 <SuperLink
-					navPrefix='element'
                     href={link}
-                    tabIndex={active ? '200' : '-1'}
+
+                    active={active}
+                    tabIndex='200'
+
 					onClick={onClick}
                     onContextMenu={onContextMenu}
                     onKeyUp={onKeyUp} />
