@@ -1,3 +1,4 @@
+import s from './view.module.styl'
 import React from 'react'
 import t from '~t'
 import { withRouter } from 'react-router-dom'
@@ -59,8 +60,9 @@ class CollectionsItemBlank extends React.PureComponent {
                 <Item
                     data-is-focus='true'
                     active={true}
-                    level={level}>
-                    <ItemExpand />
+                    className={s.item}
+                    style={{'--level': level}}>
+                    <div className={s.expand} />
                     
                     <CollectionIcon 
                         _id={_id}

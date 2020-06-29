@@ -20,6 +20,7 @@ Bugs
     - on drag file to bookmarks body no overlay color
 
 Not ready
+- head title
 - electron
 - pro banner
 
@@ -35,6 +36,7 @@ Good to have
 - When collection removed open next collection
 - Show (?) icon in Filters and Tags sidebar sections, click opens help page about those items
 - bookmarks/item remove selectDisabled, and move this logic to /items + css
+- Ctrl+F focus on search field
 
 Translation
 - leave

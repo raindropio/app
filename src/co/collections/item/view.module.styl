@@ -1,3 +1,53 @@
+.item {
+    padding-left: calc(var(--padding-medium) + var(--level, 0) * var(--icon-size)) !important
+}
+
+.expand {
+    visibility: hidden;
+    opacity: .4;
+    color: inherit;
+    position:relative;
+    z-index:1;
+    outline: none;
+    box-sizing: initial;
+    width: var(--padding-medium)
+    margin-left: calc(var(--padding-medium) * -1)
+    display: flex;
+    justify-content: center;
+
+    > :first-child {
+        vertical-align: -3px;
+        pointer-events: none;
+    }
+
+    &:hover {
+        opacity:1;
+    }
+
+    &:active {
+        opacity:.3;
+    }
+}
+
+.expanded .expand, .collapsed .expand {
+    visibility: visible
+}
+
+.collapsed .expand > :first-child  {
+    transform: rotate(-90deg)
+}
+
+.isDragging {
+    background: var(--background-color)
+    box-shadow: 0 1px 3px var(--shadow-color)
+}
+
+.isDropping {
+    transition: box-shadow .15s ease-in-out, background .15s ease-in-out
+    background-color: rgba(74,116,226,.1) !important
+    box-shadow: inset 0px 0px 0px 2px var(--accent-color)
+}
+
 .checkbox {
     margin-right: var(--padding-small)
 }

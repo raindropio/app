@@ -1,8 +1,8 @@
+import s from './base.module.styl'
 import React from 'react'
 import { Virtuoso } from 'react-virtuoso'
 import superScrollToIndex from '../helpers/superScrollToIndex'
 
-const mainStyle = { width: '100%', height: '100%' }
 const emptyObject = {}
 
 export default class VirtualListBase extends React.PureComponent {
@@ -58,14 +58,14 @@ export default class VirtualListBase extends React.PureComponent {
     }
 
     render() {
-        const { endReached, disableVirtualization, style, scrollToIndex, ...etc } = this.props
+        const { endReached, disableVirtualization, className='', scrollToIndex, ...etc } = this.props
         const Component = disableVirtualization ? NonVirtualList : Virtuoso
 
         return (
             <Component
+                className={s.scrollable + ' ' + className}
                 {...etc}
                 ref={this._list}
-                style={style || mainStyle}
                 rangeChanged={endReached && this.rangeChanged}
                 initialTopMostItemIndex={scrollToIndex > -1 ? scrollToIndex : undefined}
             />
@@ -75,7 +75,7 @@ export default class VirtualListBase extends React.PureComponent {
 
 export class NonVirtualList extends React.Component {
     render() {
-        const { totalCount, item, className, style, footer } = this.props
+        const { totalCount, item, className='', style, footer } = this.props
         const { ListContainer = 'div' } = this.props
 
         let items = []
@@ -84,7 +84,7 @@ export class NonVirtualList extends React.Component {
                 items.push(item(i, emptyObject, emptyObject))
 
         return (
-            <div className={className} style={{...style, height: 'auto'}}>
+            <div className={className+' '+s.nonvirtual} style={style}>
                 <ListContainer>
                     {items}
                 </ListContainer>

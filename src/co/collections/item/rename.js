@@ -1,8 +1,9 @@
+import s from './view.module.styl'
 import React from 'react'
 import t from '~t'
 import { withRouter } from 'react-router-dom'
 
-import { Item, ItemExpand } from '~co/common/list'
+import { Item } from '~co/common/list'
 import CollectionIcon from './icon'
 import SuperInput from '~co/common/superInput'
 
@@ -50,8 +51,9 @@ class CollectionsItemRename extends React.PureComponent {
             <form onSubmit={this.onSubmit}>
                 <Item
                     color={color}
-                    level={level}>
-                    <ItemExpand />
+                    className={s.item}
+                    style={{'--level': level}}>
+                    <div className={s.expand} />
                     
                     <CollectionIcon
                         cover={cover}

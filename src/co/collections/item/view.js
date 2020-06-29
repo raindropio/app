@@ -2,7 +2,7 @@ import s from './view.module.styl'
 import React from 'react'
 import { humanNumber } from '~modules/strings'
 
-import { Item, ItemExpand, ItemTitle, ItemInfo, ItemActions } from '~co/common/list'
+import { Item, ItemTitle, ItemInfo, ItemActions } from '~co/common/list'
 import SuperLink from '../../common/superLink'
 import Button from '~co/common/button'
 import Icon from '~co/common/icon'
@@ -20,9 +20,9 @@ export default class CollectionsItemView extends React.PureComponent {
 		if (!status) return
 
 		return (
-			<div>
+			<ItemInfo>
 				<Icon name={status} data-size='micro' />
-			</div>
+			</ItemInfo>
 		)
 	}
 
@@ -34,14 +34,13 @@ export default class CollectionsItemView extends React.PureComponent {
         return (
             <Item
                 ref={innerRef}
+                className={`${s.item} ${expandable && (expanded ? s.expanded : s.collapsed)} ${isDragging && s.isDragging} ${isDropping && s.isDropping}`}
+                style={{'--level': level}}
                 active={active}
-                expandable={expandable}
-                expanded={expanded}
-                isDragging={isDragging}
-                isDropping={isDropping}
-                color={color}
-                level={level}>
-                <ItemExpand onMouseUp={onExpandClick} />
+                color={color} >
+                <div className={s.expand} onMouseUp={onExpandClick}>
+                    <Icon name='arrow_alt' />
+                </div>
 
                 {_id > 0 && multiselect ? (
                     <input 

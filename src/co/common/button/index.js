@@ -1,7 +1,10 @@
 import s from './index.module.styl'
 import React from 'react'
 
-function Button({ Tag='a', className='', variant, forwardedRef, navigate, ...etc }) {
+function Button({ Tag='div', className='', variant, forwardedRef, navigate, ...etc }) {
+    if (etc.href)
+        Tag = 'a'
+
     return (
         <Tag 
             ref={forwardedRef}

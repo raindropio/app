@@ -1,8 +1,7 @@
 import React from 'react'
 import t from '~t'
 
-import { Item, ItemExpand } from '~co/common/list'
-import Icon from '~co/common/icon'
+import { Item } from '~co/common/list'
 import SuperInput from '~co/common/superInput'
 
 export default class FiltersTagRename extends React.PureComponent {
@@ -44,9 +43,7 @@ export default class FiltersTagRename extends React.PureComponent {
 
         return (
             <form onSubmit={this.onSubmit}>
-                <Item>
-                    <ItemExpand />
-                    
+                <Item>                    
                     <SuperInput
                         type='text'
                         required

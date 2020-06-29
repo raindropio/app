@@ -1,7 +1,7 @@
 import React from 'react'
 import { humanNumber } from '~modules/strings'
 
-import { Item, ItemExpand, ItemIcon, ItemTitle, ItemInfo, ItemActions } from '~co/common/list'
+import { Item, ItemIcon, ItemTitle, ItemInfo, ItemActions } from '~co/common/list'
 import Button from '~co/common/button'
 import Icon from '~co/common/icon'
 import SuperLink from '~co/common/superLink'
@@ -12,9 +12,8 @@ export default class FiltersTagView extends React.Component {
         const { onClick, onAppendClick, onRenameClick, onContextMenu, onKeyUp } = this.props
 
         return (
-            <Item active={active}>
-                <ItemExpand />
-
+            <Item
+                active={active}>
                 <ItemIcon>
                     <Icon name='tag' />
                 </ItemIcon>

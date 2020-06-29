@@ -1,17 +1,10 @@
 .item {
+    color: inherit
     display: flex
     align-items: center
 	position: relative
 	height: var(--list-item-height)
-	padding-left: calc(var(--level, 0) * var(--icon-size))
-
-    &.expanded .expand, &.collapsed .expand {
-    	visibility: visible
-    }
-
-    &.collapsed .expand > :first-child  {
-    	transform: rotate(-90deg)
-    }
+    padding: 0 var(--padding-medium)
 
     &:hover {
         background: var(--alternative-background-color)
@@ -21,31 +14,6 @@
         background: var(--active-background-color)
     }
 
-    &.isDragging {
-        background: var(--background-color)
-    	box-shadow: 0 1px 3px var(--shadow-color)
-    }
-    
-    &.isDropping {
-    	transition: box-shadow .15s ease-in-out, background .15s ease-in-out
-    	background-color: rgba(74,116,226,.1) !important
-    	box-shadow: inset 0px 0px 0px 2px var(--accent-color)
-    }
-
-	&.active:not([data-is-focus="true"]) {
-    	background: var(--active-background-color) !important;
-    }
-
-	.expand {
-		&:hover {
-			opacity:1;
-		}
-
-		&:active {
-			opacity:.3;
-		}
-	}
-	
 	&:hover {
     	.info {
     		display: none;
@@ -56,36 +24,23 @@
     }
 }
 
+html:not(:global(.blur)) .item.active[data-is-focus="true"] {
+    outline: none
+    background: var(--accent-color)
+    color: white
+    --alternative-background-color: rgba(0,0,0,.1)
+    --active-background-color: rgba(0,0,0,.2)
+    --primary-text-color: white
+    --secondary-text-color: rgba(255,255,255,.5)
+    --shadow-color: transparent
+}
+
 .item input[type='text'] {
     display: block
     flex: 1
     outline: none
     appearance: none
     border: 0
-}
-
-html:not(:global(.blur)) .item.active[data-is-focus="true"] {
-    background: var(--accent-color)
-    color: white
-    --primary-text-color: white
-    --secondary-text-color: rgba(255,255,255,.5)
-    --shadow-color: transparent
-}
-
-.expand {
-    visibility: hidden;
-    opacity: .4;
-    color: inherit;
-    position:relative;
-    z-index:1;
-    outline: none;
-    box-sizing: initial;
-    width: var(--icon-size)
-
-    > :first-child {
-        vertical-align: -3px;
-        pointer-events: none;
-    }
 }
 
 .icon {
@@ -122,14 +77,16 @@ html:not(:global(.blur)) .item.active[data-is-focus="true"] {
     color: var(--secondary-text-color)
     font-size: var(--tertiary-font-size)
     text-align: right
-    padding-right: var(--padding-medium)
+    margin-left: var(--padding-small)
+    display: flex
+    flex-direction: column
 }
 
 .actions {
     display: none
     text-align: right
     justify-content: flex-end
-    margin-right: var(--padding-small)
     position: relative
     z-index: 1
+    margin-right: calc( var(--padding-small) * -1 )
 }

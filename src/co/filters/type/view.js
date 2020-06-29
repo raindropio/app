@@ -2,7 +2,7 @@ import React from 'react'
 import t from '~t'
 import { humanNumber } from '~modules/strings'
 
-import { Item, ItemExpand, ItemIcon, ItemTitle, ItemInfo, ItemActions } from '~co/common/list'
+import { Item, ItemIcon, ItemTitle, ItemInfo, ItemActions } from '~co/common/list'
 import Button from '~co/common/button'
 import Icon from '~co/common/icon'
 import SuperLink from '~co/common/superLink'
@@ -15,9 +15,8 @@ export default class FiltersType extends React.Component {
         const showActions = canAppend && onAppendClick
 
         return (
-            <Item active={active}>
-                <ItemExpand />
-
+            <Item 
+                active={active}>
                 <ItemIcon>
                     <Icon name={_id} />
                 </ItemIcon>
