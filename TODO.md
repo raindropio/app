@@ -12,7 +12,6 @@ Bugs
 - Critical
     - Collection share via link, link is incorrect
     - Such tagname kils app "$%^&()(#@#$!. a"
-    - "select" collection doesn't show up correctly
 - Minor
     - in search results when change bookmark, `highlight` data lost
     - search as type sometime doesn't recognize last type
