@@ -29,7 +29,7 @@ class SidebarProfile extends React.PureComponent {
 
         return (
             <>
-                <Button ref={this.pin} style={{flex:1}} onClick={this.onProfileClick}>
+                <Button ref={this.pin} onClick={this.onProfileClick}>
                     <Avatar src={user.email_MD5} size='40' />
                     <span>{user.fullName}</span>
                 </Button>

@@ -17,7 +17,7 @@ export default class BookmarksFooterView extends React.PureComponent {
         switch(status.nextPage) {
             case 'loading':
                 content = (
-                    <div>{t.s('loading')}&hellip;</div>
+                    <div className={s.loading}>{t.s('loading')}&hellip;</div>
                 )
                 break
 
@@ -36,7 +36,8 @@ export default class BookmarksFooterView extends React.PureComponent {
                 if (status.main == 'loaded')
                     content = (
                         <Button 
-                            variant='flat' 
+                            data-block
+                            variant='outline' 
                             onClick={this.loadMore}>
                             {t.s('more')}&hellip;
                         </Button>
