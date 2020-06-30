@@ -23,29 +23,31 @@
 
 [data-theme='night'] {
     /* background */
-    --background-hsl: 225,5%,13%;
-    --alternative-background-color: hsl(225,5%,19%);
+    --background-hsl: 0,0%,17%;
+    --background-color: hsl(var(--background-hsl));
+    --alternative-background-color: hsl(0,0%,13%);
     --hover-background-color: rgba(255,255,255,.1);
-    --active-background-color: hsl(225,5%,22%);
-    --disable-background-color: hsl(225,5%,5%);
+    --active-background-color: hsl(0,0%,26%);
+    --disable-background-color: hsl(0,0%,17%);
 
     /* brand */
     --accent-color: hsl(207,80%,49%) !important;
 
     /* text colors */
     color: hsl(0,0%,90%);
-    --primary-text-color: hsl(0,0%,65%);
-    --secondary-text-color: hsl(0,0%,45%);
-    --disable-text-color: hsl(0,0%,55%);
+    --primary-text-color: hsl(0,0%,75%);
+    --secondary-text-color: hsl(0,0%,50%);
+    --disable-text-color: hsl(0,0%,40%);
 
     /* shadows */
-    --shadow-color: rgba(255,255,255,.3);
-    --shadow-light-color: rgba(255,255,255,.2);
+    --shadow-color: rgba(0,0,0,.4);
+    --shadow-light-color: rgba(0,0,0,.2);
 }
 
 [data-theme='sunset'] {
     /* background */
     --background-hsl: 43,60%,97%;
+    --background-color: hsl(var(--background-hsl));
     --alternative-background-color: hsl(43,60%,95%);
     --active-background-color: hsl(43,60%,92%);
     --disable-background-color: hsl(43,60%,85%);

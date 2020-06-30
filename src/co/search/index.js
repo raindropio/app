@@ -1,5 +1,6 @@
 import s from './index.module.styl'
 import React from 'react'
+import t from '~t'
 import _ from 'lodash'
 import Input from './input'
 
@@ -43,6 +44,7 @@ export default class Search extends React.Component {
         return (
             <div className={s.search}>
                 <Input 
+                    placeholder={t.s('defaultCollection-0')}
                     {...this.props}
                     {...this.state}
                     {...this.handlers} />

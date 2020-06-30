@@ -16,7 +16,8 @@ const reducer = (state = initialState, action)=>{
 }
 
 const initialState = Immutable({
-	theme: 'default',
+	theme: '',
+	autoTheme: true,
 	pause: ''
 })
 

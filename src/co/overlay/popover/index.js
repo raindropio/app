@@ -1,6 +1,7 @@
 import s from './index.module.styl'
 import React from 'react'
 import { Portal } from 'react-portal'
+import { connect } from 'react-redux'
 import Context from './context'
 
 //save mouse position
@@ -9,7 +10,7 @@ document.body.addEventListener('mousedown', function(e){
     _mousePos = { x: e.pageX, y: e.pageY }
 })
 
-export default class Popover extends React.Component {
+class Popover extends React.Component {
     static defaultProps = {
         pin: undefined,         //react ref
         closable: true,
@@ -107,7 +108,7 @@ export default class Popover extends React.Component {
     }
 
     render() {
-        const { className='', children, closable, pin, ...etc } = this.props
+        const { className='', children, closable, pin, theme, ...etc } = this.props
 
         return (
             <Portal>
@@ -116,7 +117,8 @@ export default class Popover extends React.Component {
                         {...etc}
                         ref={this._container}
                         className={className+' '+s.body}
-                        data-closable={closable}>
+                        data-closable={closable}
+                        data-theme={theme}>
                         {children}
                     </div>
                 </Context.Provider>
@@ -124,5 +126,11 @@ export default class Popover extends React.Component {
         )
     }
 }
+
+export default connect(
+    state=>({
+        theme: state.local.theme
+    })
+)(Popover)
 
 export * from './menu'

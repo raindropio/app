@@ -1,11 +1,13 @@
 import s from './index.module.styl'
 import React from 'react'
 import { Portal } from 'react-portal'
+import { connect } from 'react-redux'
+
 import Context from './context'
 import Header from './header'
 import Content from './content'
 
-export default class Popover extends React.Component {
+class Modal extends React.Component {
     static defaultProps = {
         closable: true,
         onClose: undefined      //func, required
@@ -29,12 +31,12 @@ export default class Popover extends React.Component {
     }
 
     render() {
-        const { children, onClose, closable, className='', ...etc } = this.props
+        const { children, onClose, closable, className='', theme, ...etc } = this.props
 
         return (
             <Portal>
                 <Context.Provider value={{ onClose, closable }}>
-                    <div className={s.modal}>
+                    <div className={s.modal} data-theme={theme}>
                         <div className={s.body+' '+className} {...etc}>
                             {children}
                         </div>
@@ -44,6 +46,12 @@ export default class Popover extends React.Component {
         )
     }
 }
+
+export default connect(
+    state=>({
+        theme: state.local.theme
+    })
+)(Modal)
 
 export {
     Header,

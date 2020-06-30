@@ -1,5 +1,7 @@
 import s from './settings.module.styl'
 import React from 'react'
+import t from '~t'
+import _ from 'lodash'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as configActions from '~data/actions/config'
@@ -7,7 +9,9 @@ import * as configActions from '~data/actions/config'
 import Button from '~co/common/button'
 import Icon from '~co/common/icon'
 import Popover from '~co/overlay/popover'
-import Slider from '~co/common/slider'
+import { Layout, Radio, Label, Range } from '~co/common/form'
+
+const fonts = ['', 'serif', 'Palatino', 'Times New Roman', 'Trebuchet MS', 'georgia', 'verdana', 'monospace']
 
 class ReaderHeaderSettings extends React.Component {
     state = {
@@ -27,11 +31,23 @@ class ReaderHeaderSettings extends React.Component {
     onSettingChange = (e)=>
         this.props.actions.set(e.target.getAttribute('data-key'), e.target.getAttribute('data-val'))
 
-    onFontSizeChange = val=>
-        this.props.actions.set('font_size', val)
+    onFontSizeChange = e=>
+        this.props.actions.set('font_size', e.target.value)
+
+    renderFont = (font='')=>(
+        <Radio 
+            key={font}
+            checked={this.props.font_family==font}
+            data-key='font_family'
+            data-val={font}
+            style={{fontFamily: font}}
+            onChange={this.onSettingChange}>
+            {_.capitalize(font)||'System'}
+        </Radio>
+    )
 
     render() {
-        const { tab, font_color, font_family, font_size } = this.props
+        const { tab, font_color, font_size } = this.props
 
         return (
             <>
@@ -48,13 +64,13 @@ class ReaderHeaderSettings extends React.Component {
                             <a className={s.dark+' '+(font_color=='night'?s.active:'')} data-key='font_color' data-val='night' onClick={this.onSettingChange}></a>
                         </div>
 
-                        <div className={s.font}>
-                            <a className={s.default+' '+(font_family==''?s.active:'')} data-key='font_family' data-val='' onClick={this.onSettingChange}>System font</a>
-                            <a className={s.georgia+' '+(font_family=='georgia'?s.active:'')} data-key='font_family' data-val='georgia' onClick={this.onSettingChange}>Georgia</a>
-                            <a className={s.verdana+' '+(font_family=='verdana'?s.active:'')} data-key='font_family' data-val='verdana' onClick={this.onSettingChange}>Verdana</a>
-                        </div>
-                        
-                        <Slider min='1' max='9' value={font_size} leftIcon='font_small' rightIcon='font_big' onChange={this.onFontSizeChange} />
+                        <Layout>
+                            <Label>{t.s('fontFamily')}</Label>
+                            {fonts.map(this.renderFont)}
+
+                            <Label>{t.s('fontSize')}</Label>
+                            <Range min='1' max='9' value={font_size} onChange={this.onFontSizeChange} />
+                        </Layout>
                     </Popover>
                 )}
             </>
