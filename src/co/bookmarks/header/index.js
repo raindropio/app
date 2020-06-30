@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { makeCollection } from '~data/selectors/collections'
 import { makeStatus } from '~data/selectors/bookmarks'
 
-import Header, { Title as TitleWrap, Space } from '~co/common/header'
+import Header, { Title as TitleWrap, Space, FirstAction } from '~co/common/header'
 import Icon from './icon'
 import Title from './title'
 import More from './more'
@@ -25,7 +25,7 @@ class BookmarksHeader extends React.Component {
 
         return (
             <Header>
-                <Icon {...this.props} />
+                <FirstAction><Icon {...this.props} /></FirstAction>
 
                 <TitleWrap>
                     <Title {...this.props} />

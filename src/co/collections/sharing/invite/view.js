@@ -46,9 +46,12 @@ export default class CollectionSharingInviteView extends React.PureComponent {
 
     render() {
         const { emails, role, show } = this.state
-        const { status } = this.props
+        const { status, access } = this.props
 
         const loading = status == 'loading'
+
+        if (access.level < 3)
+            return null
 
         if (!show)
             return (

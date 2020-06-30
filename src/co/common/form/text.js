@@ -61,6 +61,7 @@ class TextInner extends React.Component {
             <div 
                 className={s.wrap+' '+className}
                 data-variant={variant}
+                data-auto-size={autoSize}
                 data-multiline={multiline}
                 data-font={font}
                 data-focus={focus}

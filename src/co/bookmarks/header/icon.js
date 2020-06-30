@@ -4,6 +4,7 @@ import { startSelectMode } from '~data/actions/bookmarks'
 import { makeStatus } from '~data/selectors/bookmarks'
 
 import CollectionIcon from '~co/collections/item/icon'
+import Button from '~co/common/button'
 
 class BookmarksHeaderIcon extends React.PureComponent {
     static defaultProps = {
@@ -25,12 +26,12 @@ class BookmarksHeaderIcon extends React.PureComponent {
         if (!cover.length && status.main!='loading') return null
 
         return (
-            <div className='c-icon' onClick={this.onSelectEnableClick}>
+            <Button onClick={this.onSelectEnableClick}>
                 <CollectionIcon
                     _id={_id}
                     cover={cover}
                     loading={status.main=='loading'} />
-            </div>
+            </Button>
         )
     }
 }

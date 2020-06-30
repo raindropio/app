@@ -14,7 +14,7 @@ export default class CollectionSharingPublic extends React.Component {
     }
 
     render() {
-        const { _id, onPublicClick, ...etc } = this.props
+        const { _id, onPublicClick, access, ...etc } = this.props
 
         return (
             <Layout>
@@ -24,6 +24,7 @@ export default class CollectionSharingPublic extends React.Component {
 
                 <Checkbox 
                     checked={etc.public}
+                    disabled={access.level < 3}
                     onChange={onPublicClick}>
                     {t.s('access')} {t.s('accessViaLink').toLowerCase()}
                 </Checkbox>
