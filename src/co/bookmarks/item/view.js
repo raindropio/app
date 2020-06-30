@@ -33,6 +33,7 @@ export default class BookmarkItemView extends React.PureComponent {
                 `}>
                 <Cover
                     cover={cover}
+                    domain={domain}
                     link={link}
                     view={view}
                     gridSize={gridSize} />

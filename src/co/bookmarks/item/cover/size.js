@@ -2,8 +2,8 @@ export default function(view, amplifier=1) {
     switch(view){
         case 'simple':
             return {
-                width: 16,
-                height: 16,
+                width: 20,
+                height: 20,
                 ar: '1:1'
             }
 

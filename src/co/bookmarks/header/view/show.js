@@ -3,6 +3,7 @@ import _ from 'lodash'
 import t from '~t'
 import { connect } from 'react-redux'
 import { makeViewHide } from '~data/selectors/bookmarks'
+import { makeCollection } from '~data/selectors/collections'
 import { viewToggle } from '~data/actions/bookmarks'
 
 import { Checkbox, Label } from '~co/common/form'
@@ -18,12 +19,12 @@ class BookmarksHeaderViewShow extends React.Component {
     }
 
     render() {
-        const { viewHide=[] } = this.props
+        const { viewHide=[], view } = this.props
 
         const options = [
-            ['cover', t.s('cover')],
+            ['cover', t.s(view == 'simple' ? 'icon' : 'cover')],
             ['title', t.s('title')],
-            ['excerpt', t.s('description')],
+            ...(view != 'simple' ? [['excerpt', t.s('description')]] : []),
             ['tags', t.s('tags')],
             ['info', _.capitalize(t.s('elements')) + ' ' + t.s('info').toLowerCase()]
         ]
@@ -48,8 +49,10 @@ class BookmarksHeaderViewShow extends React.Component {
 export default connect(
 	() => {
         const getViewHide = makeViewHide()
+        const getCollection = makeCollection()
 
         return (state, { spaceId })=>({
+            view: getCollection(state, spaceId).view,
             viewHide: getViewHide(state, spaceId)
         })
     },

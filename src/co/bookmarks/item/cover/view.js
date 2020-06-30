@@ -20,7 +20,7 @@ const onCoverError = (cover)=>{
 
 //cache thumb/screenshot uri
 const thumbs = {}
-const getStellaUri = (uri, mode='')=>{
+const getStellaUri = (uri, mode='', domain)=>{
     if (!thumbs[uri])
         switch (mode) {
             case 'screenshot':
@@ -28,7 +28,7 @@ const getStellaUri = (uri, mode='')=>{
                 break
 
             case 'favicon':
-                thumbs[uri] = getFaviconUri(uri)
+                thumbs[uri] = domain ? getFaviconUri(domain) : getThumbUri(uri)
                 break
         
             default:
@@ -58,39 +58,39 @@ export default class BookmarkItemCover extends React.PureComponent {
     //rotate status on error
     onImageLoadError = ()=>{
         onCoverError(this.props.cover)
-        this.setState({n: (this.state.n||0)+1})
+        this.forceUpdate()
     }
 
     renderImage = ()=>{
-        const { cover, view, link, gridSize, ...etc } = this.props
+        const { cover, view, link, domain, gridSize, ...etc } = this.props
         let { width, height, ar } = size(view, gridSize) //use height only for img element
         let uri
+
+        if (status[cover] == 'error')
+            return (
+                <img 
+                    src={transparentPng}
+                    className={s.cover + ' ' + s.placeholder}
+                    data-ar={ar}
+                    width={width}
+                    height={height} />
+            )
 
         switch(view){
             //simple always have a favicon
             case 'simple':
-                uri = getStellaUri(link, 'favicon')
+                uri = getStellaUri(link, 'favicon', domain)
                 break
 
             //in other view modes we show a thumbnail, screenshot or placeholder, depends on status
             default:
                 switch(status[cover]) {
-                    case 'error':
-                        return (
-                            <img 
-                                src={transparentPng}
-                                className={s.cover + ' ' + s.placeholder}
-                                data-ar={ar}
-                                width={width}
-                                height={height} />
-                        )
-        
                     case 'screenshot':
-                        uri = getStellaUri(link, 'screenshot')
+                        uri = getStellaUri(link, 'screenshot', domain)
                         break
         
                     default:
-                        uri = getStellaUri(cover)
+                        uri = getStellaUri(cover, '', domain)
                         break
                 }
                 break

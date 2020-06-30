@@ -1,6 +1,8 @@
-export default function(uri=''){
-    if (!uri)
+import thumb from './thumb'
+
+export default function(domain=''){
+    if (!domain)
         return ''
 
-    return `https://favicon.yandex.net/favicon/v2/${uri}?size=32`
+    return thumb(`https://logo.clearbit.com/${domain}`)
 }
