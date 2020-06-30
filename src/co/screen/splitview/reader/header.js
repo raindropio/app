@@ -26,7 +26,7 @@ class SplitViewReaderHeader extends React.Component {
 
     render() {
         return (
-            <Header data-flat>
+            <Header data-no-shadow data-fancy>
                 <Button onClick={this.onBackClick}>
                     <Icon name='back' />
                 </Button>

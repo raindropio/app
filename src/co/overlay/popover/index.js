@@ -107,7 +107,7 @@ export default class Popover extends React.Component {
     }
 
     render() {
-        const { className='', children, closable, ...etc } = this.props
+        const { className='', children, closable, pin, ...etc } = this.props
 
         return (
             <Portal>

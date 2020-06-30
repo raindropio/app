@@ -10,7 +10,7 @@ class ModalHeader extends React.Component {
 
     render() {
         return (
-            <Header data-flat>
+            <Header data-no-shadow>
                 {this.props.title && <Title>
                     {this.props.title}
                 </Title>}

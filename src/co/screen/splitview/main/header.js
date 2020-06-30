@@ -10,7 +10,7 @@ class SplitViewMainHeader extends React.Component {
 
     render() {
         return (
-            <Header data-flat>
+            <Header data-no-shadow>
                 <FirstAction className='svSidebarShowButton'>
                     <Button href='' onClick={this.context.sidebar.toggle}>
                         <Icon name='menu' />

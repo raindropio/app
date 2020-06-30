@@ -17,9 +17,16 @@
         margin-right: var(--padding-small)
     }
 
-    &[data-flat] {
+    &[data-no-shadow] {
         box-shadow: none
     }
+}
+
+@supports (backdrop-filter: none) {
+	.header[data-fancy] {
+		background: unquote('hsla(var(--background-hsl), .85)')
+		backdrop-filter: blur(10px)
+	}
 }
 
 .title {

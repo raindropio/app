@@ -1,6 +1,7 @@
 :root, [data-theme='day'] {
     /*background*/
-    --background-color: hsl(0,0%,100%);
+    --background-hsl: 0,0%,100%;
+    --background-color: hsl(var(--background-hsl));
     --alternative-background-color: hsl(0,0%,95%);
     --hover-background-color: rgba(0,0,0,.05);
     --active-background-color: hsl(0,0%,90%);
@@ -22,7 +23,7 @@
 
 [data-theme='night'] {
     /* background */
-    --background-color: hsl(225,5%,13%);
+    --background-hsl: 225,5%,13%;
     --alternative-background-color: hsl(225,5%,19%);
     --hover-background-color: rgba(255,255,255,.1);
     --active-background-color: hsl(225,5%,22%);
@@ -44,7 +45,7 @@
 
 [data-theme='sunset'] {
     /* background */
-    --background-color: hsl(43,60%,97%);
+    --background-hsl: 43,60%,97%;
     --alternative-background-color: hsl(43,60%,95%);
     --active-background-color: hsl(43,60%,92%);
     --disable-background-color: hsl(43,60%,85%);

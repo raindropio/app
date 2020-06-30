@@ -7,7 +7,7 @@ class ReaderEdit extends React.Component {
 
         return (
             <div className='reader-edit-bookmark'>
-                <Edit _id={_id} />
+                <Edit _id={_id} autoFocus='title' />
             </div>
         )
 	}
