@@ -10,6 +10,8 @@ export default class HeaderShare extends React.Component {
         show: false
     }
 
+    pin = React.createRef()
+
     onSharingClick = (e)=>{
         e.preventDefault()
         this.setState({ show: true })
@@ -26,13 +28,14 @@ export default class HeaderShare extends React.Component {
 
         return (
             <>
-                <Button onClick={this.onSharingClick}>
+                <Button ref={this.pin} onClick={this.onSharingClick}>
                     <Icon name='share' />
                     <span className='hide-on-small-body'>{t.s('share')}</span>
                 </Button>
 
                 {show ? (
                     <Sharing 
+                        pin={this.pin}
                         _id={spaceId}
                         onClose={this.onSharingClose} />
                 ) : null}

@@ -1,22 +1,25 @@
 import s from './text.module.styl'
 import React from 'react'
 import TextareaAutosize from 'react-textarea-autosize'
+import Icon from '~co/common/icon'
 
-export class Text extends React.Component {
+class TextInner extends React.Component {
     static defaultProps = {
         className: '',
-        autoSize: false,
-        multiline: false,
+        autoSize: undefined,
+        multiline: undefined,
         variant: 'default',     //less
         font: 'default',        //title
 
         children: null,         //after input
-        leftChildren: null      //before input
+        icon: null
     }
 
     state = {
         focus: false
     }
+
+    inner = React.createRef()
 
     onKeyDownField = (e)=>{
         if (e.keyCode == 13 && 
@@ -32,8 +35,13 @@ export class Text extends React.Component {
     }
 
     onFocus = (e)=>{
+        const { onFocus, readOnly=false } = this.props
+
+        if (readOnly)
+            e.currentTarget.select()
+
         this.setState({ focus: true })
-        this.props.onFocus && this.props.onFocus(e)
+        onFocus && onFocus(e)
     }
 
     onBlur = (e)=>{
@@ -41,8 +49,11 @@ export class Text extends React.Component {
         this.props.onBlur && this.props.onBlur(e)
     }
 
+    onContainerClick = (e)=>
+        e.currentTarget.querySelector(`.${s.text}`).focus()
+
     render() {
-        const { className='', autoSize, variant, font, multiline, leftChildren, children, ...etc } = this.props
+        const { className='', autoSize, variant, font, multiline, hidden, icon, children, forwardedRef, ...etc } = this.props
         const { focus } = this.state
         const Component = autoSize ? TextareaAutosize : 'input'
 
@@ -52,12 +63,15 @@ export class Text extends React.Component {
                 data-variant={variant}
                 data-multiline={multiline}
                 data-font={font}
-                data-focus={focus}>
-                {leftChildren}
+                data-focus={focus}
+                hidden={hidden}
+                onClick={this.onContainerClick}>
+                {icon ? <Icon className={s.icon} name={icon} /> : null}
 
                 <Component 
                     type='text'
                     {...etc}
+                    ref={forwardedRef}
                     className={s.text}
 
                     onKeyDown={this.onKeyDownField}
@@ -69,3 +83,7 @@ export class Text extends React.Component {
         )
     }
 }
+
+export const Text = React.forwardRef((props, ref) => {
+    return <TextInner {...props} forwardedRef={ref} />
+})

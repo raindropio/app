@@ -1,11 +1,13 @@
 import React from 'react'
 import t from '~t'
 
+import { Layout, Label, Text, Radio } from '~co/common/form'
 import Button from '~co/common/button'
 import Icon from '~co/common/icon'
 
 export default class CollectionSharingInviteView extends React.PureComponent {
     state = {
+        show: false,
         emails: '',
         role: 'member'
     }
@@ -18,81 +20,91 @@ export default class CollectionSharingInviteView extends React.PureComponent {
                 break
                 
 				case 'done':
-					this.setState({ emails: [] })
+					this.setState({ emails: '' })
 					alert(t.s('invitesSendTo')+' '+this.props.sendTo.join(', '))
 				break
 			}
-	}
+    }
+    
+    onShowClick = ()=>
+        this.setState({ show: true })
 
     handleEmailsChange = (e)=>
         this.setState({ emails: e.target.value })
 
-    handleChangeInviteRole = ()=>
-        this.setState({ role: this.state.role=='viewer' ? 'member' : 'viewer' })
+    handleChangeRole = (e)=>
+        this.setState({ role: e.currentTarget.value })
 
-    onInviteClick = ()=>{
+    onSubmit = e=>{
+        e.preventDefault()
+
         if (!this.state.emails)
             return
             
-        const { onInvite } = this.props
-        onInvite(this.state.emails, this.state.role)
+        this.props.onInvite(this.state.emails.split(/,|\s/), this.state.role)
     }
 
     render() {
-        const { emails, role } = this.state
+        const { emails, role, show } = this.state
         const { status } = this.props
 
-        const disabled = !emails || status == 'loading'
+        const loading = status == 'loading'
+
+        if (!show)
+            return (
+                <Layout>
+                    <Button variant='outline' data-block onClick={this.onShowClick}>
+                        <Icon name='add' />
+                        {t.s('inviteMorePeople')}
+                    </Button>
+                </Layout>
+            )
 
         return (
-            <>
-                <div className='separator'>{t.s('inviteMorePeople')}</div>
-    
-                <div className='item first'>
-                    <div className='icon'>
-                        <Icon name='add' className='icn-blue' />
-                    </div>
-    
-                    <div className='title'>
-                        <textarea 
-                            placeholder={t.s('enterEmails')}
-                            disabled={status == 'loading'}
-                            value={emails}
-                            onChange={this.handleEmailsChange}></textarea>
-                    </div>
-                </div>
-            
-                <div className='item'>
-                    <div className='icon'>
-                        <Icon name='lock' className='icn-blue' />
-                    </div>
-    
-                    <div className='title'>
-                        <label className='check'>
-                            <input 
-                                type='checkbox'
-                                checked={role=='member'}
-                                disabled={disabled}
-                                onChange={this.handleChangeInviteRole} />
-                            &nbsp;
-                            {t.s('role_members')}
-                        </label>
-                    </div>
-    
-                    <div className='actions'>
-                        
-                    </div>
-                </div>
+            <form onSubmit={this.onSubmit}>
+                <Layout>
+                    <Label>{t.s('inviteMorePeople')}</Label>
+        
+                    <Text
+                        placeholder={t.s('enterEmails')}
+                        disabled={loading}
+                        value={emails}
+                        required
+                        autoSize
+                        multiline
+                        autoFocus
+                        onChange={this.handleEmailsChange} />
 
-                <footer>
+                    <Label>{t.s('withAccessLevel')}</Label>
+
+                    <div>
+                        <Radio 
+                            checked={role=='member'}
+                            value='member'
+                            disabled={loading}
+                            onChange={this.handleChangeRole}>
+                            {t.s('role_members')+' '+t.s('und')+' '+t.s('inviteMorePeople').toLowerCase()}
+                        </Radio>
+
+                        <Radio 
+                            checked={role=='viewer'}
+                            value='viewer'
+                            disabled={loading}
+                            onChange={this.handleChangeRole}>
+                            {t.s('role_viewer')}
+                        </Radio>
+                    </div>
+
+                    <div />
+
                     <Button 
+                        Tag='input'
+                        type='submit'
                         variant='primary'
-                        disabled={disabled}
-                        onClick={this.onInviteClick}>
-                        {t.s('sendInvites')}
-                    </Button>
-                </footer>
-            </>
+                        disabled={loading}
+                        value={t.s('sendInvites')+(loading ? '…' : '')} />
+                </Layout>
+            </form>
         )
     }
 }

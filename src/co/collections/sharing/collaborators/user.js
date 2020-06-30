@@ -1,51 +1,64 @@
 import React from 'react'
 import t from '~t'
+
+import { Item, ItemIcon, ItemTitle, ItemInfo, ItemActions } from '~co/common/list'
+import Button from '~co/common/button'
 import Icon from '~co/common/icon'
 import Avatar from '~co/common/avatar'
 
 export default class CollectionSharingCollaboratorsUser extends React.PureComponent {
     onChangeRole = (e)=>{
-        const role = e.target.value
-        const userId = parseInt(e.target.getAttribute('data-userid'))
+        const role = e.currentTarget.value
+        const userId = parseInt(e.currentTarget.getAttribute('data-userid'))
 
         this.props.onUserUpdate(userId, { role })
     }
 
+    onRemove = e => {
+        const userId = parseInt(e.currentTarget.getAttribute('data-userid'))
+
+        if (confirm(t.s('areYouSure')))
+            this.props.onUserUpdate(userId, { role: '' })
+    }
+
     render() {
-        const { _id, first, email_MD5, email, fullName, role, collection } = this.props
+        const { _id, email_MD5, email, fullName, role, collection } = this.props
 
         return (
-            <div className={'item '+(first?'first':'')}>
-                <div className='icon'>
+            <Item>
+                <ItemIcon>
                     <Avatar src={email_MD5} size='64' />
-                </div>
+                </ItemIcon>
 
-                <div className='title'>
+                <ItemTitle>
                     {fullName}
-                    <input type='text' value={email} readOnly />
-                </div>
+                </ItemTitle>
 
-                <div className='actions'>
-                    {role!='owner' && collection.access.level>=3 ? (
-                        <label className='but select default onlyicons'>
-                            <Icon name='settings' />
-                            <Icon name='arrow' />
+                <ItemInfo>
+                    {email}
+                </ItemInfo>
 
-                            <select value={role} data-userid={_id} onChange={this.onChangeRole}>
-                                <optgroup label={t.s('withAccessLevel')}>
-                                    {role=='owner' ? <option value='owner'>{t.s('role_owner')}</option> : null}
-                                    <option value='member'>{t.s('role_member')}</option>
-                                    <option value='viewer'>{t.s('role_viewer')}</option>
-                                </optgroup>
-
-                                <optgroup label='&#8984;'>
-                                    <option value=''>{t.s('remove')}</option>
-                                </optgroup>
+                {role!='owner' && collection.access.level>=3 ? (
+                    <ItemActions>
+                        <Button 
+                            Tag='label'
+                            variant='link'>
+                            <select
+                                value={role} 
+                                data-userid={_id} 
+                                onChange={this.onChangeRole}>
+                                {role=='owner' ? <option value='owner'>{t.s('role_owner')}</option> : null}
+                                <option value='member'>{t.s('role_member')}</option>
+                                <option value='viewer'>{t.s('role_viewer')}</option>
                             </select>
-                        </label>
-                    ) : null}
-                </div>
-            </div>
+                        </Button>
+
+                        <Button data-userid={_id} onClick={this.onRemove}>
+                            <Icon name='trash' />
+                        </Button>
+                    </ItemActions>
+                ) : null}
+            </Item>
         )
     }
 }

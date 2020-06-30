@@ -107,14 +107,17 @@ export default class Popover extends React.Component {
     }
 
     render() {
+        const { className='', children, closable, ...etc } = this.props
+
         return (
             <Portal>
                 <Context.Provider value={this.store}>
                     <div
+                        {...etc}
                         ref={this._container}
-                        hidden={this.props.hidden}
-                        className={s.body}>
-                        {this.props.children}
+                        className={className+' '+s.body}
+                        data-closable={closable}>
+                        {children}
                     </div>
                 </Context.Provider>
             </Portal>

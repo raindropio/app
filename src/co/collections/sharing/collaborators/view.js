@@ -2,7 +2,10 @@ import React from 'react'
 import t from '~t'
 import User from './user'
 
+import { Section } from '~co/common/list'
+import { Layout, Title } from '~co/common/form'
 import Button from '~co/common/button'
+import Icon from '~co/common/icon'
 
 export default function CollectionSharingCollaboratorsView({ users={}, onUnshare, ...etc }) {
     const groups = Object.entries(users)
@@ -12,6 +15,10 @@ export default function CollectionSharingCollaboratorsView({ users={}, onUnshare
 
     return (
         <>
+            <Layout><Title>
+                {t.s('sharing')}
+            </Title></Layout>
+
             {groups.map( ([group, users])=>{
                 let label
                 switch(group) {
@@ -21,7 +28,7 @@ export default function CollectionSharingCollaboratorsView({ users={}, onUnshare
         
                 return (
                     <div key={group}>
-                        <div className='separator'>{label}</div>
+                        <Section>{label}</Section>
                         
                         {users.map((user,index) => (
                             <User 
@@ -34,11 +41,12 @@ export default function CollectionSharingCollaboratorsView({ users={}, onUnshare
                 )
             })}
 
-            <footer>
-                <Button onClick={onUnshare} variant='outline'>
+            <Layout>
+                <Button onClick={onUnshare} variant='outline' data-block>
+                    <Icon name='collapse_all' />
                     {t.s('unshareCollection')}
                 </Button>
-            </footer>
+            </Layout>
         </>
     )
 }

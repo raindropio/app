@@ -43,15 +43,15 @@ export default class PickerSourceLink extends React.Component {
                         value={link}
                         disabled={status=='loading'}
                         onChange={this.onLinkChange}
-                        autoFocus />
-
-                    <div />
-                    <Button
-                        Tag='input'
-                        type='submit'
-                        variant='primary'
-                        disabled={status == 'loading'}
-                        value={t.s('saveLink')+(status == 'loading' ? '…' : '')} />
+                        autoFocus>
+                        <Button
+                            Tag='input'
+                            type='submit'
+                            variant='link'
+                            hidden={!link}
+                            disabled={status == 'loading'}
+                            value={t.s('saveLink')+(status == 'loading' ? '…' : '')} />
+                    </Text>
                 </Layout>
             </form>
         )

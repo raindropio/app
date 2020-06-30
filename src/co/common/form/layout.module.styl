@@ -6,8 +6,8 @@
     padding: var(--padding-small) var(--padding-medium)
     grid-auto-flow: row
     
-    > :nth-child(even):not(:last-child) {
-        margin-bottom: var(--padding-medium)
+    [data-is-label]:not(:first-child) {
+        margin-top: var(--padding-medium)
     }
 }
 

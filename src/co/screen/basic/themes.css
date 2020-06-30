@@ -12,8 +12,8 @@
     /* text colors */
     color: hsl(0,0%,10%);
     --primary-text-color: hsl(0,0%,35%);
-    --secondary-text-color: hsl(0,0%,55%);
-    --disable-text-color: hsl(0,0%,45%);
+    --secondary-text-color: hsl(0,0%,50%);
+    --disable-text-color: hsl(0,0%,60%);
 
     /* shadows */
     --shadow-color: rgba(0,0,0,.2);
