@@ -66,7 +66,7 @@ class TextInner extends React.Component {
                 data-focus={focus}
                 hidden={hidden}
                 onClick={this.onContainerClick}>
-                {icon ? <Icon className={s.icon} name={icon} /> : null}
+                {icon ? <div className={s.icon}>{icon}</div> : null}
 
                 <Component 
                     type='text'

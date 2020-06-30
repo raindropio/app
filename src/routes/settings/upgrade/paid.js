@@ -49,7 +49,7 @@ export default class UpgradePaid extends React.Component {
     renderPeriod = ()=>{
         if (this.state.stopAt)
             return (
-                <span><b><Icon name='close' data-size='micro' /> {t.s('willStop')}: {humanDate(this.state.stopAt)}</b></span>
+                <span><b><Icon name='close' size='micro' /> {t.s('willStop')}: {humanDate(this.state.stopAt)}</b></span>
             )
 
         if (this.state.renewAt)
@@ -84,7 +84,7 @@ export default class UpgradePaid extends React.Component {
 
                     <div className={s.buttons}>
                         <Button variant='outline' className={s.button} href={config.links.pro.buy} target='_blank'>
-                            <Icon name='progress' data-size='micro' data-size='20' />
+                            <Icon name='progress' size='micro' enlarge='1' />
                             {t.s('renewPro')}
                         </Button>
                     </div>
@@ -120,12 +120,12 @@ export default class UpgradePaid extends React.Component {
 
                 <div className={s.buttons}>
                     <Button variant='outline' className={s.button} href={this.state.links.manage} target='_blank'>
-                        <Icon name='note' data-size='micro' data-size='20' />
+                        <Icon name='note' size='micro' enlarge='1' />
                         {t.s('manage')} {t.s('subscription').toLowerCase()}
                     </Button>
 
                     <Button variant='outline' className={s.button} href={config.links.pro['help-change-billing-cycle']} target='_blank'>
-                        <Icon name='calendar' data-size='micro' data-size='20' />
+                        <Icon name='calendar' size='micro' enlarge='1' />
                         {t.s('change')} {t.s('billingCycle').toLowerCase()}
                     </Button>
                 </div>
@@ -141,7 +141,7 @@ export default class UpgradePaid extends React.Component {
             <div className={'centerContentWrap '+s.paid}>
                 <div className='centerContent'>
                     <div className='centerContentBlock'>
-                        <Icon name='diamond_active' data-size='48' className={`${s.status} ${s.status}-${this.state.status}`} />
+                        <Icon name='diamond_active' enlarge='2' className={`${s.status} ${s.status}-${this.state.status}`} />
                         <h1 className={s.head}>{t.s('subscription')} {this.getStatus()}</h1>
 
                         <p className={s.subhead+' '+s.period}>

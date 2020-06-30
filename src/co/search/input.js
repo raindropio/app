@@ -1,6 +1,7 @@
 import s from './input.module.styl'
 import React from 'react'
 
+import { Text } from '~co/common/form'
 import Button from '~co/common/button'
 import Icon from '~co/common/icon'
 import Preloader from '../common/preloader'
@@ -59,8 +60,8 @@ export default class SearchView extends React.PureComponent {
     }
 
     renderButton = ({id, icon, iconSize='micro'})=>(
-        <Button className={s.button} href='' data-id={id} key={id} tabIndex='-1' onClick={this.onButtonClick}>
-            <Icon name={icon} data-size={iconSize} />
+        <Button href='' data-id={id} key={id} tabIndex='-1' onClick={this.onButtonClick}>
+            <Icon name={icon} size={iconSize} />
         </Button>
     )
 
@@ -75,21 +76,18 @@ export default class SearchView extends React.PureComponent {
         return (
             <div className={s.input} data-active={this.state.focus}>
                 <form onSubmit={this.onSubmit}>
-                    <span className={s.icon}>
-                        {loading ? <Preloader data-size='small' /> : <Icon name='search' className={s.magnifier} />}
-                    </span>
-    
-                    <input
+                    <Text
                         ref={this._input}
                         type='text'
                         spellCheck='false'
                         {...original}
+                        icon={loading ? <Preloader /> : <Icon name='search' />}
                         onChange={this.onInputChange}
                         onFocus={this.onInputFocus}
                         onBlur={this.onInputBlur}
-                        onKeyDown={this.onInputKeyDown} />
-
-                    {this.renderCancel()}
+                        onKeyDown={this.onInputKeyDown}>
+                        {this.renderCancel()}
+                    </Text>
                 </form>
             </div>
         )

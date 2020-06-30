@@ -51,20 +51,20 @@ export default class BookmarkItemView extends React.PureComponent {
                     <div className={s.info}>
                         {creatorRef && creatorRef._id ? (
                             <>
-                                <section data-inline><Icon name='user' data-size='micro' /></section>
+                                <section data-inline><Icon name='user' size='micro' /></section>
                                 <section>{creatorRef.fullName}</section>
                             </>
                         ) : null}
 
                         {spaceId != collectionId ? <section><Path collectionId={collectionId} /></section> : null}
 
-                        {important ? <section data-inline><Icon name='important' data-size='micro' className={s.importantIcon} /></section> : null}
+                        {important ? <section data-inline><Icon name='important' size='micro' className={s.importantIcon} /></section> : null}
 
-                        {reparse ? <section data-inline><Icon name='progress' data-size='micro' /></section> : null}
+                        {reparse ? <section data-inline><Icon name='progress' size='micro' /></section> : null}
 
-                        {cache && cache != 'ready' && cache != 'retry' ? <section data-inline><Icon name='cache_failed' data-size='micro' /></section> : null}
+                        {cache && cache != 'ready' && cache != 'retry' ? <section data-inline><Icon name='cache_failed' size='micro' /></section> : null}
 
-                        {type != 'link' ? <section data-inline><Icon name={type} data-size='micro' /></section> : null}
+                        {type != 'link' ? <section data-inline><Icon name={type} size='micro' /></section> : null}
 
                         <section>{domain}</section>
 

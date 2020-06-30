@@ -6,7 +6,7 @@ import Preloader from '~co/common/preloader'
 
 const CollectionIcon = React.memo(({ _id, cover, active, loading })=>{
 	if (loading)
-		return <Preloader data-size='icon' />
+		return <Preloader />
 
 	if (cover && cover[0])
 		return <img src={cover[0]} loading='lazy' />

@@ -23,7 +23,7 @@ class SettingsSidebar extends React.Component {
 		return <CollectionItem
 					active={isActive}
 					item={{
-						title: <span>{title} {(linkTarget||target)=='_blank'?<Icon name='open' data-size='micro' />:null}</span>,
+						title: <span>{title} {(linkTarget||target)=='_blank'?<Icon name='open' size='micro' />:null}</span>,
 						icon: (icon||name)+(isActive?'_active':''),
 						link: link,
 						target: linkTarget||target

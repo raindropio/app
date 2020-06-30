@@ -52,7 +52,7 @@ export default class Path extends PureComponent {
 	renderPart(content, index) {
 		return (
 			<div className="di-path-part" key={index}>
-				<Icon className="di-arrow" name="next" data-size="micro" />
+				<Icon className="di-arrow" name="next" size="micro" />
 				{content}
 			</div>
 		)

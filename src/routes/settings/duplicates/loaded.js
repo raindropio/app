@@ -88,7 +88,7 @@ export default class Loaded extends React.PureComponent {
 				<Header title={t.s('duplicates')}>
 					<div className='duplicates-toolbar'>
 						<Button tabIndex='-1' variant='link'>
-							<span>{t.s('select')}&nbsp;<Icon name='dropdown' data-size='micro' /></span>
+							<span>{t.s('select')}&nbsp;<Icon name='dropdown' size='micro' /></span>
 							
 							<select value={-1} onChange={(e)=>changeSelectionRule(e.target.options[e.target.selectedIndex].value)}>
 								<option value='-1' disabled>{t.s('select')+' '+t.s('duplicates').toLowerCase()}</option>
@@ -113,7 +113,7 @@ export default class Loaded extends React.PureComponent {
 
 				<Footer hidden={!more}>
 					<div className='title center' style={{opacity:0.6}}>
-						{httpActivity ? <Preloader data-size='small' /> : 'Scroll down to load more...' }
+						{httpActivity ? <Preloader /> : 'Scroll down to load more...' }
 					</div>
 				</Footer>
 			</Main>

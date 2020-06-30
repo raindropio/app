@@ -4,34 +4,27 @@
 	svg {
 		display:block;
 		fill: currentColor;
-		width: 20px;height: 20px;
+		width: var(--icon-size);
+		height: var(--icon-size);
 	}
 	
 	&[data-size="micro"] svg, &[data-size="micro"] {
-		width: 10px; height: 10px;
+		width: calc(10px * var(--app-size))
+		height: calc(10px * var(--app-size))
 	}
+}
 
-	&[data-size="16"] svg, &[data-size="16"] {
-		width: 16px; height: 16px;
-	}
+.icon[data-enlarge='1'] svg, .icon[data-enlarge='1'] {
+	width: var(--icon-size);
+	height: var(--icon-size);
+}
 
-	&[data-size="20"] svg, &[data-size="20"] {
-		width: 20px; height: 20px;
-	}
-	
-	&[data-size="24"] svg, &[data-size="24"] {
-		width: 24px; height: 24px;
-	}
-	
-	&[data-size="48"] svg, &[data-size="48"] {
-		width: 48px; height: 48px;
-	}
-	
-	&[data-size="60"] svg, &[data-size="60"] {
-		width: 60px; height: 60px;
-	}
-	
-	&[data-size="80"] svg, &[data-size="80"] {
-		width: 80px; height: 80px;
-	}
+.icon[data-enlarge='2'] svg, .icon[data-enlarge='2'] {
+	width: calc(var(--icon-size) * 2);
+	height: calc(var(--icon-size) * 2);
+}
+
+.icon[data-enlarge='3'] svg, .icon[data-enlarge='3'] {
+	width: calc(var(--icon-size) * 3);
+	height: calc(var(--icon-size) * 3);
 }

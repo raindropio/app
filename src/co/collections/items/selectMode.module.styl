@@ -5,8 +5,8 @@
 	left: 7px
 	right: 7px
 	background: white
-	box-shadow: 0 0 0 1px rgba(0,0,0,.15), 0 3px 15px rgba(0,0,0,.1)
-	border-radius: 4px
+	box-shadow: 0 0 0 var(--shadow-height) var(--shadow-color), 0 3px 15px var(--shadow-color)
+	border-radius: var(--border-radius)
 }
 
 .header {
@@ -17,7 +17,7 @@
     .title {
         flex: 1
         font-weight: 500
-        font-size: 14px
+        font-size: var(--primary-font-size)
 
         white-space: nowrap
         overflow: hidden
@@ -30,5 +30,5 @@
     margin-top: -10px
     display: flex
     align-items: center
-    padding: var(--padding-small) 4px
+    padding: var(--padding-small) var(--padding-mini)
 }

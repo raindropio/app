@@ -10,7 +10,7 @@ export default class ImportDone extends React.Component {
 			<div className="centerContentWrap">
 				<div className="centerContent">
 					<div className="centerContentBlock">
-						<Icon name="24_cloud_active" data-size="60" className='color-theme' />
+						<Icon name="24_cloud_active" enlarge="3" className='color-theme' />
 						<h1 className="extraHeadLabel">{t.format("importEnd")}</h1>
 						<h2 className="mediumHeadLabel" style={{maxWidth:"500px"}}>{t.s("importIsProcessing")}</h2>
 						<br />

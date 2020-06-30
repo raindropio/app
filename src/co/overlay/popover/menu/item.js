@@ -1,7 +1,7 @@
-import s from './item.module.styl'
 import React from 'react'
 import { Link } from 'react-router-dom'
-import Icon from '~co/common/icon'
+
+import { Item } from '~co/common/list'
 import Context from '../context'
 
 export class MenuItem extends React.Component {
@@ -17,24 +17,16 @@ export class MenuItem extends React.Component {
     }
 
     render() {
-        const { children, checked=false, ...etc } = this.props
-        const Component = etc.to ? Link : 'a'
+        const { children, ...etc } = this.props
+        const Tag = etc.to ? Link : 'a'
         
         return (
-            <Component 
+            <Item
+                Tag={Tag} 
                 {...etc}
-                className={s.item}
                 onClick={this.onClick}>
-                <span className={s.content}>
-                    {children}
-                </span>
-
-                {checked ? (
-                    <Icon 
-                        name='check_active'
-                        className={s.checkedIcon} />
-                ) : null}
-            </Component>
+                {children}
+            </Item>
         )
     }
 }

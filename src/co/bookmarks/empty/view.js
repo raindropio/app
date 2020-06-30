@@ -29,7 +29,7 @@ export default class BookmarksEmptyView extends React.PureComponent {
                     case (_id==-99):
                         content = (
                             <div>
-                                <Icon name='trash' data-size='60' style={{opacity: '.3'}} />
+                                <Icon name='trash' enlarge='3' />
                                 <h2>{t.s('trashEmpty')}</h2>
                             </div>
                         )
@@ -39,7 +39,7 @@ export default class BookmarksEmptyView extends React.PureComponent {
                     case (!searchEmpty):
                         content = (
                             <div>
-                                <Icon name='search' data-size='60' style={{opacity: '.3'}} />
+                                <Icon name='search' enlarge='3' />
                                 <h2>{t.s('nothingFound')}</h2>
                             </div>
                         )

@@ -1,23 +1,25 @@
 :root {
-    --padding-mini: 4px;
-    --padding-small: 8px;
-    --padding-medium: 16px;
-    --padding-large: 24px;
-    --border-radius: 3px;
+    --app-size: 1;
+
+    --padding-mini: calc(4px * var(--app-size));
+    --padding-small: calc(8px * var(--app-size));
+    --padding-medium: calc(16px * var(--app-size));
+    --padding-large: calc(24px * var(--app-size));
+    --border-radius: calc(3px * var(--app-size));
 
     /* fonts */
-    --head-font-size: 16px;
-    --title-font-size: 15px;
-    --primary-font-size: 14px;
-    --secondary-font-size: 13px;
-    --tertiary-font-size: 11px;
+    --head-font-size: calc(16px * var(--app-size));
+    --title-font-size: calc(15px * var(--app-size));
+    --primary-font-size: calc(14px * var(--app-size));
+    --secondary-font-size: calc(13px * var(--app-size));
+    --tertiary-font-size: calc(11px * var(--app-size));
 
     /* size */
-    --icon-size: 20px;
+    --icon-size: calc(20px * var(--app-size));
     --shadow-height: 1px;
-    --button-height: 28px;
-    --list-item-height: 32px;
-    --header-height: 48px;
+    --button-height: calc(28px * var(--app-size));
+    --list-item-height: calc(32px * var(--app-size));
+    --header-height: calc(48px * var(--app-size));
 }
 
 html:global(.retina) {

@@ -21,7 +21,7 @@ export default class CollectionsItemView extends React.PureComponent {
 
 		return (
 			<ItemInfo>
-				<Icon name={status} data-size='micro' />
+				<Icon name={status} size='micro' />
 			</ItemInfo>
 		)
 	}
@@ -62,7 +62,7 @@ export default class CollectionsItemView extends React.PureComponent {
                 {this.renderStatus()}
 
                 {count ? (
-                    <ItemInfo>
+                    <ItemInfo className={s.count}>
                         {humanNumber(count)}
                     </ItemInfo>
                 ) : null}

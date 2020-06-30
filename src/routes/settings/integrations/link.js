@@ -7,7 +7,7 @@ import Button from '~co/common/button'
 export default ({title, subtitle, href, icon, color})=>{
 	return (
 		<div>
-			<Icon name={icon} data-size='60' style={{ color }} />
+			<Icon name={icon} enlarge='3' style={{ color }} />
             <h1 className='extraHeadLabel'>{title}</h1>
 			<p className='subHeadLabel'>{subtitle}</p>
 

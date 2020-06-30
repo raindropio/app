@@ -25,7 +25,7 @@
 
 :global(.svMain) {
     grid-area: main;
-    min-width: unquote('min(380px, 40vw)')
+    min-width: unquote('min(calc(380px * var(--app-size)), 40vw)')
 }
 
 :global(.svReader) {
