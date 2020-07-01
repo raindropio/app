@@ -1,3 +1,4 @@
+import s from './view.module.styl'
 import React from 'react'
 
 import { Section, SectionTitle, SectionActions } from '~co/common/list'
@@ -14,6 +15,7 @@ export default class CollectionsGroupView extends React.Component {
 
         return (
             <Section 
+                className={s.section}
                 active={active}
                 isDragging={isDragging}
                 isDropping={isDropping}

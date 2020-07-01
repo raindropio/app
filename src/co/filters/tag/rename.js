@@ -1,8 +1,10 @@
 import React from 'react'
 import t from '~t'
 
-import { Item } from '~co/common/list'
-import SuperInput from '~co/common/superInput'
+import { Item, ItemTitle, ItemIcon } from '~co/common/list'
+import { Text } from '~co/common/form'
+import Icon from '~co/common/icon'
+import Preloader from '~co/common/preloader'
 
 export default class FiltersTagRename extends React.PureComponent {
     state = {
@@ -43,18 +45,25 @@ export default class FiltersTagRename extends React.PureComponent {
 
         return (
             <form onSubmit={this.onSubmit}>
-                <Item>                    
-                    <SuperInput
-                        type='text'
-                        required
-                        autoFocus
-                        selectAll={true}
-                        disabled={loading}
-                        value={name}
-                        placeholder={t.s('enterTitle')}
-                        onKeyUp={this.onKeyUp}
-                        onChange={this.onChange}
-                        onBlur={this.save} />
+                <Item>
+                    <ItemIcon>
+                        {loading ? <Preloader /> : <Icon name='tag' />}
+                    </ItemIcon>
+
+                    <ItemTitle>
+                        <Text
+                            type='text'
+                            variant='less'
+                            required
+                            autoFocus
+                            selectAll
+                            disabled={loading}
+                            value={name}
+                            placeholder={t.s('enterTitle')}
+                            onKeyUp={this.onKeyUp}
+                            onChange={this.onChange}
+                            onBlur={this.save} />
+                    </ItemTitle>
                 </Item>
             </form>
         )

@@ -1,13 +1,13 @@
 import s from './text.module.styl'
 import React from 'react'
 import TextareaAutosize from 'react-textarea-autosize'
-import Icon from '~co/common/icon'
 
 class TextInner extends React.Component {
     static defaultProps = {
         className: '',
         autoSize: undefined,
         multiline: undefined,
+        selectAll: undefined,
         variant: 'default',     //less
         font: 'default',        //title
 
@@ -18,8 +18,6 @@ class TextInner extends React.Component {
     state = {
         focus: false
     }
-
-    inner = React.createRef()
 
     onKeyDownField = (e)=>{
         if (e.keyCode == 13 && 
@@ -40,6 +38,15 @@ class TextInner extends React.Component {
         if (readOnly)
             e.currentTarget.select()
 
+        if (!this._firstFocus && e.currentTarget.value){
+            this._firstFocus = true
+
+            if (this.props.selectAll)
+                e.currentTarget.select()
+            else
+                e.currentTarget.setSelectionRange(e.currentTarget.value.length, -1)
+        }
+
         this.setState({ focus: true })
         onFocus && onFocus(e)
     }
@@ -53,7 +60,7 @@ class TextInner extends React.Component {
         e.currentTarget.querySelector(`.${s.text}`).focus()
 
     render() {
-        const { className='', autoSize, variant, font, multiline, hidden, icon, children, forwardedRef, ...etc } = this.props
+        const { className='', autoSize, variant, font, multiline, selectAll, hidden, icon, children, forwardedRef, ...etc } = this.props
         const { focus } = this.state
         const Component = autoSize ? TextareaAutosize : 'input'
 
@@ -63,6 +70,7 @@ class TextInner extends React.Component {
                 data-variant={variant}
                 data-auto-size={autoSize}
                 data-multiline={multiline}
+                data-select-all={selectAll}
                 data-font={font}
                 data-focus={focus}
                 hidden={hidden}

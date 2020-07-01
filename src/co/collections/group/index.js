@@ -65,6 +65,7 @@ export default class CollectionsGroup extends React.PureComponent {
     
         onContextMenu: (e)=>{
             e.preventDefault()
+            e.stopPropagation()
             e.target.focus()
             this.setState({ menu: true })
         },

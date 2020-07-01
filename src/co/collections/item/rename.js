@@ -3,9 +3,9 @@ import React from 'react'
 import t from '~t'
 import { withRouter } from 'react-router-dom'
 
-import { Item } from '~co/common/list'
+import { Item, ItemTitle } from '~co/common/list'
 import CollectionIcon from './icon'
-import SuperInput from '~co/common/superInput'
+import { Text } from '~co/common/form'
 
 class CollectionsItemRename extends React.PureComponent {
     state = {
@@ -61,17 +61,20 @@ class CollectionsItemRename extends React.PureComponent {
                         active={true}
                         loading={loading} />
 
-                    <SuperInput
-                        type='text'
-                        required
-                        autoFocus
-                        selectAll={true}
-                        disabled={loading}
-                        value={title}
-                        placeholder={t.s('enterTitle')}
-                        onKeyUp={this.onKeyUp}
-                        onChange={this.onChange}
-                        onBlur={this.save} />
+                    <ItemTitle>
+                        <Text
+                            type='text'
+                            variant='less'
+                            required
+                            autoFocus
+                            selectAll
+                            disabled={loading}
+                            value={title}
+                            placeholder={t.s('enterTitle')}
+                            onKeyUp={this.onKeyUp}
+                            onChange={this.onChange}
+                            onBlur={this.save} />
+                    </ItemTitle>
                 </Item>
             </form>
         )

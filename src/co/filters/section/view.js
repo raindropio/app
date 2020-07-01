@@ -1,3 +1,4 @@
+import s from './view.module.styl'
 import React from 'react'
 import _ from 'lodash'
 import t from '~t'
@@ -18,8 +19,8 @@ export default class FiltersSection extends React.Component {
         }
 
         return (
-            <Section tabIndex='-1' onContextMenu={onContextMenu}>
-                <SectionTitle onClick={onClick} >{title}</SectionTitle>
+            <Section className={s.section} onClick={onClick} onContextMenu={onContextMenu}>
+                <SectionTitle>{title}</SectionTitle>
                 <SectionActions>
                     <Button onClick={onContextMenu}>
                         <Icon name='more_horizontal' />

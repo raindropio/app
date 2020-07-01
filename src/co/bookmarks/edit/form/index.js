@@ -29,6 +29,8 @@ export default class BookmarkEditForm extends React.Component {
 
     render() {
         const { autoFocus, status, unsaved, item: { title, excerpt, link } } = this.props
+        const loading = status=='loading'
+        const saving = status == 'saving'
 
         return (
             <div className={styles.edit}>
@@ -46,7 +48,7 @@ export default class BookmarkEditForm extends React.Component {
                                 type='text'
                                 tabIndex='5000'
                                 required={true}
-                                disabled={status=='loading'}
+                                disabled={loading}
                                 autoComplete='off'
                                 autoFocus={autoFocus=='title'}
                                 name='title'
@@ -61,7 +63,7 @@ export default class BookmarkEditForm extends React.Component {
                                 multiline={true}
                                 type='text'
                                 tabIndex='5000'
-                                disabled={status=='loading'}
+                                disabled={loading}
                                 autoComplete='off'
                                 autoFocus={autoFocus=='excerpt'}
                                 name='excerpt'
@@ -81,13 +83,13 @@ export default class BookmarkEditForm extends React.Component {
                             autoSize={true}
                             tabIndex='5000'
                             type='url'
-                            disabled={status=='loading'}
+                            disabled={loading}
                             name='link'
                             value={link}
                             onChange={this.onChangeField}
                             onBlur={this.onSubmitForm} />
 
-                        {(unsaved || status == 'saving') && (
+                        {(unsaved || saving) && (
                             <>
                                 <div />
 
@@ -96,8 +98,8 @@ export default class BookmarkEditForm extends React.Component {
                                     variant='primary'
                                     type='submit'
                                     data-block
-                                    disabled={status == 'saving'}
-                                    value={t.s('save') + (status == 'saving' ? '…' : '')} />
+                                    disabled={saving}
+                                    value={t.s('save') + (saving ? '…' : '')} />
                             </>
                         )}
                     </Layout>

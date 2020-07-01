@@ -27,6 +27,7 @@ export default class FiltersSection extends React.PureComponent {
 
         onContextMenu: (e)=>{
             e.preventDefault()
+            e.stopPropagation()
             e.target.focus()
             this.setState({ menu: true })
         },

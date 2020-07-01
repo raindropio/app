@@ -98,8 +98,6 @@ export default class CollectionSharingInviteView extends React.PureComponent {
                         </Radio>
                     </div>
 
-                    <div />
-
                     <Button 
                         Tag='input'
                         type='submit'

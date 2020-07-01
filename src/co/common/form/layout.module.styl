@@ -5,9 +5,9 @@
 .layout[data-type='default'] {
     padding: var(--padding-small) var(--padding-medium)
     grid-auto-flow: row
-    
-    [data-is-label]:not(:first-child) {
-        margin-top: var(--padding-medium)
+
+    > :not(:last-child):not([data-is-label]):not([data-is-title]) {
+        margin-bottom: var(--padding-medium)
     }
 }
 

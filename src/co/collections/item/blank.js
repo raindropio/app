@@ -3,8 +3,9 @@ import React from 'react'
 import t from '~t'
 import { withRouter } from 'react-router-dom'
 
-import { Item, ItemExpand } from '~co/common/list'
+import { Item, ItemTitle } from '~co/common/list'
 import CollectionIcon from './icon'
+import { Text } from '~co/common/form'
 
 class CollectionsItemBlank extends React.PureComponent {
     state = {
@@ -68,17 +69,19 @@ class CollectionsItemBlank extends React.PureComponent {
                         _id={_id}
                         loading={loading} />
 
-                    <input
-                        type='text'
-                        required
-                        autoFocus
-                        disabled={loading}
-                        value={title}
-                        placeholder={t.s('collectionNew')}
-                        onKeyUp={this.onKeyUp}
-                        onChange={this.onChange}
-                        onBlur={this.create} 
-                        />
+                    <ItemTitle>
+                        <Text
+                            type='text'
+                            variant='less'
+                            required
+                            autoFocus
+                            disabled={loading}
+                            value={title}
+                            placeholder={t.s('collectionNew')}
+                            onKeyUp={this.onKeyUp}
+                            onChange={this.onChange}
+                            onBlur={this.create} />
+                    </ItemTitle>
                 </Item>
             </form>
         )

@@ -21,28 +21,30 @@ export default class CollectionSharingPublic extends React.Component {
                 <Title>
                     {t.s('public')} URL
                 </Title>
+                
+                <div>
+                    <Checkbox 
+                        checked={etc.public}
+                        disabled={access.level < 3}
+                        onChange={onPublicClick}>
+                        {t.s('access')} {t.s('accessViaLink').toLowerCase()}
+                    </Checkbox>
 
-                <Checkbox 
-                    checked={etc.public}
-                    disabled={access.level < 3}
-                    onChange={onPublicClick}>
-                    {t.s('access')} {t.s('accessViaLink').toLowerCase()}
-                </Checkbox>
-
-                {etc.public && (
-                    <Text 
-                        ref={this.input}
-                        type='text'
-                        readOnly
-                        autoFocus
-                        value={`https://raindrop.io/collection/${_id||''}`}>
-                        <Button 
-                            variant='link'
-                            onClick={this.onCopyClick}>
-                            {t.s('copyLink')}
-                        </Button>
-                    </Text>
-                )}
+                    {etc.public && (
+                        <Text 
+                            ref={this.input}
+                            type='text'
+                            readOnly
+                            autoFocus
+                            value={`https://raindrop.io/collection/${_id||''}`}>
+                            <Button 
+                                variant='link'
+                                onClick={this.onCopyClick}>
+                                {t.s('copyLink')}
+                            </Button>
+                        </Text>
+                    )}
+                </div>
             </Layout>
         )
     }
