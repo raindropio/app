@@ -11,7 +11,6 @@ import Avatar from '~co/common/avatar'
 import Button from '~co/common/button'
 import { FirstAction } from '~co/common/header'
 import { Item } from '~co/common/list'
-import Icon from '~co/common/icon'
 
 export default ()=>(
     <SplitView>
@@ -27,14 +26,19 @@ export default ()=>(
 
             <Content>
                 <Item disabled>
-                    <Icon name='select_none' />
+                    &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;
+                </Item>
+                <Item disabled>
+                    &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;
+                </Item>
+                <Item disabled>
                     &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;
                 </Item>
             </Content>
         </Sidebar>
 
         <Main className={s.main}>
-            <Preloader/>
+            <Preloader enlarge='1.5' />
         </Main>
 
         <Reader />

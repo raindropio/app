@@ -4,6 +4,7 @@ import normalizeUrl from 'normalize-url'
 
 import { Layout, Label, Text } from '~co/common/form'
 import Button from '~co/common/button'
+import Preloader from '~co/common/preloader'
 
 export default class PickerSourceLink extends React.Component {
     state = {
@@ -43,14 +44,15 @@ export default class PickerSourceLink extends React.Component {
                         value={link}
                         disabled={status=='loading'}
                         onChange={this.onLinkChange}
-                        autoFocus>
+                        autoFocus
+                        icon={status == 'loading' ? <Preloader /> : null}>
                         <Button
                             Tag='input'
                             type='submit'
                             variant='link'
                             hidden={!link}
                             disabled={status == 'loading'}
-                            value={t.s('saveLink')+(status == 'loading' ? '…' : '')} />
+                            value={t.s('saveLink')} />
                     </Text>
                 </Layout>
             </form>

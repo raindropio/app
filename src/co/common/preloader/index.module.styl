@@ -1,65 +1,68 @@
-@keyframes dash{
-	0%{
-		stroke-dasharray: 1,200;
-		stroke-dashoffset: 0;
+.preloader {
+	color: var(--accent-color)
+	position: relative
+
+	.bg {
+		opacity: 0.35
 	}
-	50%{
-		stroke-dasharray: 89,200;
-		stroke-dashoffset: -35px;
-	}
-	100%{
-		stroke-dasharray: 89,200;
-		stroke-dashoffset: -124px;
+
+	.main {
+		animation: rotate .6s ease-in-out infinite
+		position: absolute
+		top: 0
+		right: 0
+		bottom: 0
+		left: 0
 	}
 }
 
 @keyframes rotate {
-	100%{
-		transform: rotate(360deg);
+	0% {
+		transform: rotate(0)
 	}
-}
-
-.preloader {
-	position: relative;
-	margin: 0px auto;
-	width: 40px;
-	display: inline-block;
-	border-radius: 50%;
-
-	&:before {
-		content:'';
-		display: block;
-		padding-top: 100%;
+	12.5% {
+		transform: rotate(0)
 	}
-
-	.circular {
-		animation: rotate 1s linear infinite;
-		height: 100%;
-		transform-origin: center center;
-		width: 100%;
-		position: absolute;
-		top: 0; bottom: 0; left: 0; right: 0;
-		margin: auto;
+	12.500001% {
+		transform: rotate(45deg)
 	}
-
-	.path {
-		stroke-dasharray: 1,200;
-		stroke-dashoffset: 0;
-		animation: dash 1.5s ease-in-out infinite;
-			stroke-dasharray: 89,200;
-		stroke-dashoffset: -35px;
-		stroke-linecap: square;
-		stroke-width: 2px;
-		stroke-miterlimit: 10px;
-		stroke: var(--accent-color);
-		transition: stroke .2s ease-in-out;
+	25% {
+		transform: rotate(45deg)
 	}
-
-	&[data-size="icon"] {
-		width: var(--icon-size)
-		
-		.path {
-			stroke-width: var(--border-radius)
-		}
+	25.00001% {
+		transform: rotate(90deg)
+	}
+	37.5% {
+		transform: rotate(90deg)
+	}
+	37.500001% {
+		transform: rotate(135deg)
+	}
+	50% {
+		transform: rotate(135deg)
+	}
+	50.00001% {
+		transform: rotate(180deg)
+	}
+	62.5% {
+		transform: rotate(180deg)
+	}
+	62.500001% {
+		transform: rotate(225deg)
+	}
+	75% {
+		transform: rotate(225deg)
+	}
+	75.00001% {
+		transform: rotate(270deg)
+	}
+	87.5% {
+		transform: rotate(270deg)
+	}
+	87.500001% {
+		transform: rotate(315deg)
+	}
+	100% {
+		transform: rotate(315deg)
 	}
 }
