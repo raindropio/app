@@ -12,6 +12,7 @@ import localReducers from './local/reducers'
 import Translate from '~modules/translate/component'
 import Loading from '~co/screen/loading'
 import Routes from './routes'
+import Document from './routes/_document'
 
 //init redux
 const { store, persistor } = withLocalReducer(localReducers)
@@ -19,11 +20,13 @@ const { store, persistor } = withLocalReducer(localReducers)
 render(
 	//add other global components in co/screen/basic
 	<Provider store={store}>
-		<PersistGate loading={<Loading />} persistor={persistor}>
-			<Translate Loading={Loading}>
-				<Routes />
-			</Translate>
-		</PersistGate>
+		<Document>
+			<PersistGate loading={<Loading />} persistor={persistor}>
+				<Translate Loading={Loading}>
+					<Routes />
+				</Translate>
+			</PersistGate>
+		</Document>
 	</Provider>,
 	
 	document.getElementById('react')

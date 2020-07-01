@@ -13,12 +13,12 @@ export default class SplitViewMain extends React.Component {
     ref = React.createRef()
     
     render() {
-        const { children, ...other } = this.props
+        const { children, className='', ...other } = this.props
 
         return (
             <Small 
                 ref={this.ref}
-                className='svMain'
+                className={'svMain '+className}
                 minWidth={500}
                 {...other}>
                 {children}

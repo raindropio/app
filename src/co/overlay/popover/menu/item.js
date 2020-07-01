@@ -1,3 +1,4 @@
+import s from './item.module.styl'
 import React from 'react'
 import { Link } from 'react-router-dom'
 
@@ -17,13 +18,14 @@ export class MenuItem extends React.Component {
     }
 
     render() {
-        const { children, ...etc } = this.props
+        const { children, className='', ...etc } = this.props
         const Tag = etc.to ? Link : 'a'
         
         return (
             <Item
                 Tag={Tag} 
                 {...etc}
+                className={s.item+' '+className}
                 onClick={this.onClick}>
                 {children}
             </Item>

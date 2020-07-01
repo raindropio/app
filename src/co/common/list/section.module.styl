@@ -5,6 +5,11 @@
 	color: var(--secondary-text-color)
 	display: flex
 	align-items: center
+
+	&[disabled] {
+        color: var(--disable-text-color)
+        pointer-events: none
+    }
 	
 	&.active {
         background: var(--accent-color)
