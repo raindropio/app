@@ -27,6 +27,10 @@ html:global(.mobile) [data-app-size='default'] {
     --app-size: 1.1;
 }
 
+html:global(.mobile) [data-app-size='large'] {
+    --app-size: 1.2;
+}
+
 @media 
 (-webkit-min-device-pixel-ratio: 2), 
 (min-resolution: 192dpi) {

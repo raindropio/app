@@ -2,11 +2,16 @@ import React from 'react'
 import t from '~t'
 import config from '~config'
 import Popover, { Menu, MenuItem, MenuSeparator } from '~co/overlay/popover'
+import { Layout, Checkbox, Label } from '~co/common/form'
 import Icon from '~co/common/icon'
 
 export default function SidebarProfileMenu({
     pin,
-    actions,
+    theme,
+    appSize,
+    onLogoutClick,
+    onToggleDarkThemeClick,
+    onToggleLargeFontSizeClick,
     onMenuClose
 }) {
     return (
@@ -36,11 +41,28 @@ export default function SidebarProfileMenu({
 
                 <MenuSeparator />
 
-                <MenuItem onClick={actions.logout}>
+                <MenuItem onClick={onLogoutClick}>
                     <Icon name='exit' />
                     {t.s('logOut')}
                 </MenuItem>
             </Menu>
+
+            <Layout>
+                <Label>{t.s('window')}</Label>
+                <div>
+                    <Checkbox 
+                        checked={theme=='night'}
+                        onChange={onToggleDarkThemeClick}>
+                        Dark {t.s('interfaceStyle').toLowerCase()}
+                    </Checkbox>
+
+                    <Checkbox 
+                        checked={appSize=='large'}
+                        onChange={onToggleLargeFontSizeClick}>
+                        Large {t.s('fontSize').toLowerCase()}
+                    </Checkbox>
+                </div>
+            </Layout>
         </Popover>
     )
 }

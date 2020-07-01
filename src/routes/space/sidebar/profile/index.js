@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as userActions from '~data/actions/user'
+import * as localActions from '~local/actions'
 import { user } from '~data/selectors/user'
 
 import Button from '~co/common/button'
@@ -20,8 +21,19 @@ class SidebarProfile extends React.PureComponent {
         this.setState({menu: true})
     }
 
-    onMenuClose = ()=>
-        this.setState({menu: false})
+    handlers = {
+        onLogoutClick: ()=>
+            this.props.userActions.logout(),
+
+        onToggleDarkThemeClick: ()=>
+            this.props.localActions.setTheme(this.props.theme == 'night' ? 'day' : 'night', false),
+
+        onToggleLargeFontSizeClick: ()=>
+            this.props.localActions.setAppSize(this.props.appSize == 'large' ? 'default' : 'large'),
+
+        onMenuClose: ()=>
+            this.setState({menu: false})
+    }
 
     render() {
         const { user } = this.props
@@ -34,7 +46,7 @@ class SidebarProfile extends React.PureComponent {
                     <span>{user.fullName}</span>
                 </Button>
                 
-                {menu && <Contextmenu pin={this.pin} {...this.props} onMenuClose={this.onMenuClose} />}
+                {menu && <Contextmenu pin={this.pin} {...this.props} {...this.handlers} />}
             </>
         )
     }
@@ -42,9 +54,12 @@ class SidebarProfile extends React.PureComponent {
 
 export default connect(
 	(state)=>({
-		user: user(state),
+        user: user(state),
+        theme: state.local.theme,
+        appSize: state.local.appSize
 	}),
 	(dispatch)=>({
-		actions: bindActionCreators(userActions, dispatch)
+        userActions: bindActionCreators(userActions, dispatch),
+        localActions: bindActionCreators(localActions, dispatch),
     })
 )(SidebarProfile)

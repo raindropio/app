@@ -108,7 +108,7 @@ class Popover extends React.Component {
     }
 
     render() {
-        const { className='', children, closable, pin, theme, appSize, ...etc } = this.props
+        const { className='', children, closable, pin, dispatch, theme, appSize, ...etc } = this.props
 
         return (
             <Portal>

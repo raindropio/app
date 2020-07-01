@@ -2,13 +2,19 @@ import _ from 'lodash-es'
 import { REHYDRATE } from 'redux-persist/src/constants'
 
 import {
-	APP_SET_THEME
+	APP_SET_THEME,
+	APP_SET_APP_SIZE
 } from '../constants'
 
 export default function(state, action) {switch (action.type) {
 	//Settings
 	case APP_SET_THEME:
-		return setTheme(state, action.name)
+		state = setTheme(state, action.name)
+		state = state.set('autoTheme', action.autoTheme)
+		return state
+
+	case APP_SET_APP_SIZE:
+		return state.set('appSize', action.appSize)
 
 	case REHYDRATE:{
 		const incoming = action.payload && action.payload.local||{}
