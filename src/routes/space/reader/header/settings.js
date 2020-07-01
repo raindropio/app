@@ -66,7 +66,7 @@ class ReaderHeaderSettings extends React.Component {
 
                         <Layout>
                             <Label>{t.s('fontFamily')}</Label>
-                            {fonts.map(this.renderFont)}
+                            <div>{fonts.map(this.renderFont)}</div>
 
                             <Label>{t.s('fontSize')}</Label>
                             <Range min='1' max='9' value={font_size} onChange={this.onFontSizeChange} />

@@ -8,7 +8,6 @@ Bugs
     - Such tagname kils app "$%^&()(#@#$!. a"
 - Minor
     - in search results when change bookmark, `highlight` data lost
-    - search as type sometime doesn't recognize last type
     - masonry keyboard navigation unordered
 
 Not ready

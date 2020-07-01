@@ -15,7 +15,7 @@ export default class Search extends React.Component {
     }
 
     componentDidMount() {
-        this.onSubmitBounced = _.debounce(this.handlers.onSubmit, 250, { maxWait: 1000 })
+        this.onSubmitBounced = _.debounce(this.handlers.onSubmit, 500, { maxWait: 2000 })
     }
 
     componentDidUpdate(prev) {
