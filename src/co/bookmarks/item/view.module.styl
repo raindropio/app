@@ -118,12 +118,12 @@
 html:not(:global(.blur)) {
     .element[data-is-focus="true"] {
         --background-color: var(--accent-color)
-        color: white
-        --primary-text-color: rgba(255,255,255, .7)
-        --secondary-text-color: rgba(255,255,255, .6)
+        color: unquote('hsl(var(--background-hsl))')
+        --primary-text-color: unquote('hsla(var(--background-hsl), .8)')
+        --secondary-text-color: unquote('hsla(var(--background-hsl), .6)')
 
         .description {
-            --accent-color: white
+            --accent-color: unquote('hsl(var(--background-hsl))')
         }
     }
 }

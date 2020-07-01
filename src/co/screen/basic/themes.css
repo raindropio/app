@@ -4,7 +4,7 @@
     --background-hsl: 0,0%,100%;
     --background-color: hsl(var(--background-hsl));
     --sidebar-background-color: hsl(0,0%,95%);
-    --alternative-background-color: rgba(0,0,0,.06);
+    --alternative-background-color: rgba(0,0,0,.05);
     --hover-background-color: rgba(0,0,0,.05);
     --active-background-color: hsl(0,0%,90%);
     --disable-background-color: hsl(0,0%,85%);
@@ -32,6 +32,9 @@
     --hover-background-color: rgba(255,255,255,.1);
     --active-background-color: hsl(0,0%,26%);
     --disable-background-color: hsl(0,0%,17%);
+
+    /*brand*/
+    --accent-hsl: 43,80%,59%;
 
     /* text colors */
     color: hsl(0,0%,90%);

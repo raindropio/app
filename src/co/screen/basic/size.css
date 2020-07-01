@@ -26,6 +26,6 @@ div[data-app-size='2'] {
     --app-size: 1.2;
 }
 
-html:global(.retina) {
+html:global(.retina) [data-app-size] {
     --shadow-height: .5px;
 }
