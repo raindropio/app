@@ -1,4 +1,3 @@
-import s from './_page/index.module.styl'
 import React from 'react'
 import { Helmet } from 'react-helmet'
 import t from '~t'
@@ -6,7 +5,7 @@ import t from '~t'
 import withPage from './_page'
 import { Layout, Text } from '~co/common/form'
 import Button from '~co/common/button'
-import Icon from '~co/common/icon'
+import Header, { Title } from '~co/common/header'
 import Social from './social'
 import Error from './error'
 
@@ -31,11 +30,13 @@ class AccountLogin extends React.Component {
         return (
             <form onSubmit={this.onSubmit}>
                 <Helmet><title>{t.s('signIn')}</title></Helmet>
-                <Icon name='raindrop_logo' className={s.logoText} />
-
-                {status == 'error' && <Error error={error} />}
+                <Header data-no-shadow>
+                    <Title>{t.s('signIn')} {t.s('toRefreshedRaindrop')}</Title>
+                </Header>
 
                 <Layout>
+                    {status == 'error' && <Error error={error} />}
+
                     <Text
                         type='email'
                         name='email'

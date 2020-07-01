@@ -22,8 +22,9 @@
     --header-height: calc(48px * var(--app-size));
 }
 
-html:global(.mobile) div[data-app-size='default'] {
-    --app-size: 1.2;
+[data-app-size='large'],
+html:global(.mobile) [data-app-size='default'] {
+    --app-size: 1.1;
 }
 
 @media 

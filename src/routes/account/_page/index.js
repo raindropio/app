@@ -11,6 +11,7 @@ import isURL from 'validator/es/lib/isURL'
 
 import Button from '~co/common/button'
 import SuperImg from '~co/common/superImg'
+import Icon from '~co/common/icon'
 import Screen from '~co/screen/basic'
 import Bg from './bg'
 
@@ -52,26 +53,26 @@ export default (Component)=>
 				}
 		
 				return (
-					<Screen>
-						<div className={s.wrap}>
-							<div className={s.page}>
-								<Bg />
-								
-								<div className={s.centerContent}>
-									<div className={s.centerContentBlock}>
-										<div className={s.logo}><SuperImg src='marketing/logoIcon.png' height='72' /></div>
-				
-										<Component {...props} />
-									</div>
-				
-									<div className={s.nav}>
-										{!props.match.path.includes('lost') &&<Link to={`/account/lost${props.uriSuffix}`} component={Button} variant='link'>{t.s('recoverPassword')}</Link>}
-										{!props.match.path.includes('login') && <Link to={`/account/login${props.uriSuffix}`} component={Button} variant='link'>{t.s('signIn')}</Link>}
-										{!props.match.path.includes('signup') && <Link to={`/account/signup${props.uriSuffix}`} component={Button} variant='link'>{t.s('signUp')}</Link>}
-				
-										<Button href='https://help.raindrop.io/' target='_blank' variant='link'>{t.s('help')}</Button>
-									</div>
-								</div>
+					<Screen className={s.page}>
+						<Bg />
+						
+						<div className={s.content}>
+							<div className={s.logo}><SuperImg src='marketing/logoIcon.png' height='72' /></div>
+		
+							<Component {...props} />
+		
+							<div className={s.nav}>
+								{!props.match.path.includes('lost') &&<Link to={`/account/lost${props.uriSuffix}`} component={Button} data-block>{t.s('recoverPassword')}</Link>}
+								{!props.match.path.includes('login') && <Link to={`/account/login${props.uriSuffix}`} component={Button} data-block>{t.s('signIn')}</Link>}
+								{!props.match.path.includes('signup') && <Link to={`/account/signup${props.uriSuffix}`} component={Button} data-block>{t.s('signUp')}</Link>}
+		
+								<Button 
+									href='https://help.raindrop.io/' 
+									target='_blank' 
+									data-block>
+									<Icon name='open' size='micro' />
+									{t.s('help')}
+								</Button>
 							</div>
 						</div>
 					</Screen>

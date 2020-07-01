@@ -6,6 +6,7 @@ import * as actions from '~data/actions/covers'
 
 import Modal, { Header, Content } from '~co/overlay/modal'
 import SearchInput from '~co/search/input'
+import { Layout } from '~co/common/form'
 import Items from './items'
 import Add from './add'
 import Reset from './reset'
@@ -63,14 +64,14 @@ class PickerIcon extends React.Component {
                     <Add {...this.handlers} />
                 </Header>
 
-                <div className='picker-search-input'>
+                <Layout>
                     <SearchInput 
                         autoFocus
                         value={search}
                         placeholder={`${t.s('defaultCollection-0')} ${t.s('icon').toLowerCase()}...`}
                         loading={this.props.status == 'loading'}
                         onChange={this.onSearchChange} />
-                </div>
+                </Layout>
 
                 <Content>
                     <Items

@@ -4,6 +4,7 @@ import t from '~t'
 
 import { Layout, Text } from '~co/common/form'
 import Button from '~co/common/button'
+import Header, { Title } from '~co/common/header'
 import withPage from './_page'
 import Error from './error'
 
@@ -35,7 +36,9 @@ class AccountLost extends React.Component {
         return (
             <form onSubmit={this.onSubmit}>
                 <Helmet><title>{t.s('recoverPassword')}</title></Helmet>
-                <h1>{t.s('recoverPassword')}</h1><br/>
+                <Header data-no-shadow>
+                    <Title>{t.s('recoverPassword')}</Title>
+                </Header>
 
                 <Layout>
                     {status == 'error' && <Error error={error} />}

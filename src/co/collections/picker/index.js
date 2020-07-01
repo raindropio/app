@@ -3,6 +3,7 @@ import t from '~t'
 import Modal, { Header, Content } from '~co/overlay/modal'
 import Items from '~co/collections/items'
 import SearchInput from '~co/search/input'
+import { Layout } from '~co/common/form'
 
 export default class CollectionsPicker extends React.Component {
     state = {
@@ -22,13 +23,13 @@ export default class CollectionsPicker extends React.Component {
             <Modal onClose={onClose} data-stretch>
                 <Header title={t.s('selectCollection')} />
 
-                <div className='picker-search-input'>
+                <Layout>
                     <SearchInput 
                         autoFocus
                         value={this.state.options.search}
                         placeholder={t.s('findOrCreateCollection')}
                         onChange={this.onSearchChange} />
-                </div>
+                </Layout>
 
                 <Content>
                     <Items 

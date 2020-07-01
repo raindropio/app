@@ -5,6 +5,7 @@ import t from '~t'
 
 import { Layout, Text } from '~co/common/form'
 import Button from '~co/common/button'
+import Header, { Title } from '~co/common/header'
 import withPage from '../_page'
 import Social from '../social'
 import Error from '../error'
@@ -31,7 +32,9 @@ class AccountSignup extends React.Component {
         return (
             <form onSubmit={this.onSubmit}>
                 <Helmet><title>{t.s('recoverPassword')}</title></Helmet>
-                <h1>{t.s('startCollecting')}</h1><br/>
+                <Header data-no-shadow>
+                    <Title>{t.s('startCollecting')}</Title>
+                </Header>
 
                 <Layout>
                     {status == 'error' && <Error error={error} />}
@@ -71,11 +74,11 @@ class AccountSignup extends React.Component {
                         variant='primary'
                         data-block
                         value={t.s('register')} />
-                </Layout>
 
-                <div className={s.acceptLicence}>
-                    {t.s('privacyTerms')} <a href='https://help.raindrop.io/terms' target='_blank'>{t.s('termsOfService')}</a> {t.s('und')} <a href='https://help.raindrop.io/privacy' target='_blank'>{t.s('privacyPolicy')}</a>
-                </div>
+                    <div className={s.acceptLicence}>
+                        {t.s('privacyTerms')} <a href='https://help.raindrop.io/terms' target='_blank'>{t.s('termsOfService')}</a> {t.s('und')} <a href='https://help.raindrop.io/privacy' target='_blank'>{t.s('privacyPolicy')}</a>
+                    </div>
+                </Layout>
 
                 <Social {...this.props} />
             </form>
