@@ -34,39 +34,41 @@ export default class CollectionsSelectMode extends React.Component {
             return null
 
         return (
-            <div className={s.mode}>
-                { working ? (
-                    <div className={s.header}>
-                        <div className={s.title}>{t.s(working)} {ids.length} {t.s('collectionsCount')}...</div>
-                        <Preloader />
-                    </div>
-                ) : (
-                    <>
+            <div className={s.wrap}>
+                <div className={s.mode}>
+                    { working ? (
                         <div className={s.header}>
-                            <div className={s.title}>{ids.length} {t.s('collectionsCount')}</div>
-
-                            <Button onClick={this.onSelectAll}>{t.s('all')}</Button>
-                            &nbsp; &nbsp;
-                            <Button onClick={this.onCancel}>{t.s('cancel')}</Button>
+                            <div className={s.title}>{t.s(working)} {ids.length} {t.s('collectionsCount')}...</div>
+                            <Preloader />
                         </div>
+                    ) : (
+                        <>
+                            <div className={s.header}>
+                                <div className={s.title}>{ids.length} {t.s('collectionsCount')}</div>
 
-                        <div className={s.actions}>
-                            {ids.length > 1 ? (
-                                <Button variant='link' onClick={this.onMergeSelected}>
-                                    <Icon name='duplicates' />
+                                <Button onClick={this.onSelectAll}>{t.s('all')}</Button>
+                                &nbsp; &nbsp;
+                                <Button onClick={this.onCancel}>{t.s('cancel')}</Button>
+                            </div>
+
+                            <div className={s.actions}>
+                                {ids.length > 1 ? (
+                                    <Button variant='link' onClick={this.onMergeSelected}>
+                                        <Icon name='duplicates' />
+                                        
+                                        <span className='hide-on-small-body'>{t.s('merge')}</span>
+                                    </Button>
+                                ) : null}
+
+                                <Button variant='link' onClick={this.onRemoveSelected}>
+                                    <Icon name='trash' />
                                     
-                                    <span className='hide-on-small-body'>{t.s('merge')}</span>
+                                    <span className='hide-on-small-body'>{t.s('remove')}</span>
                                 </Button>
-                            ) : null}
-
-                            <Button variant='link' onClick={this.onRemoveSelected}>
-                                <Icon name='trash' />
-                                
-                                <span className='hide-on-small-body'>{t.s('remove')}</span>
-                            </Button>
-                        </div>
-                    </>
-                )}
+                            </div>
+                        </>
+                    )}
+                </div>
             </div>
         )
     }

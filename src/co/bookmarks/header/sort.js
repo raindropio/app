@@ -51,7 +51,7 @@ class BookmarksHeaderSort extends React.Component {
                 <Button ref={this.pin} variant={sort!='sort'?'link':''} onClick={this.onContextMenuClick}>
                     <Icon name={'sort_'+sort} />
         
-                    <span>
+                    <span className='hide-on-small-body'>
                         {this.options[sort]||''}
                     </span>
                 </Button>

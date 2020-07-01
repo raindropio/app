@@ -17,6 +17,7 @@ class PickerSourcePopover extends React.Component {
     render() {
         return (
             <Popover 
+                className={styles.popover}
                 pin={this.props.pin}
                 closable={!this.props.files.length}
                 hidden={this.props.files.length}
@@ -24,7 +25,7 @@ class PickerSourcePopover extends React.Component {
                 <DropModule onDropFiles={this.props.onDropFiles}>
                     {({ isDropping, dropHandlers })=>
                         <div
-                            className={`${styles.form} ${isDropping && styles.isDropping}`}
+                            className={`${isDropping && styles.isDropping}`}
                             {...dropHandlers}>
                             <Link {...this.props} />
                             <File {...this.props} />

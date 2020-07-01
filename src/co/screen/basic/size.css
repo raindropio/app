@@ -1,4 +1,4 @@
-:root {
+:root, [data-app-size] {
     --app-size: 1;
 
     --padding-mini: calc(4px * var(--app-size));
@@ -20,6 +20,10 @@
     --button-height: calc(28px * var(--app-size));
     --list-item-height: calc(32px * var(--app-size));
     --header-height: calc(48px * var(--app-size));
+}
+
+div[data-app-size='2'] {
+    --app-size: 1.2;
 }
 
 html:global(.retina) {

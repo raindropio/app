@@ -108,18 +108,21 @@ class Popover extends React.Component {
     }
 
     render() {
-        const { className='', children, closable, pin, theme, ...etc } = this.props
+        const { className='', children, closable, pin, theme, appSize, ...etc } = this.props
 
         return (
             <Portal>
                 <Context.Provider value={this.store}>
-                    <div
+                    <div 
                         {...etc}
                         ref={this._container}
-                        className={className+' '+s.body}
+                        className={className+' '+s.wrap}
                         data-closable={closable}
-                        data-theme={theme}>
-                        {children}
+                        data-theme={theme}
+                        data-app-size={appSize}>
+                        <div className={s.body}>
+                            {children}
+                        </div>
                     </div>
                 </Context.Provider>
             </Portal>
@@ -129,7 +132,8 @@ class Popover extends React.Component {
 
 export default connect(
     state=>({
-        theme: state.local.theme
+        theme: state.local.theme,
+        appSize: state.local.appSize,
     })
 )(Popover)
 

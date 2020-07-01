@@ -31,12 +31,12 @@ class Modal extends React.Component {
     }
 
     render() {
-        const { children, onClose, closable, className='', theme, ...etc } = this.props
+        const { children, onClose, closable, className='', theme, appSize, ...etc } = this.props
 
         return (
             <Portal>
                 <Context.Provider value={{ onClose, closable }}>
-                    <div className={s.modal} data-theme={theme}>
+                    <div className={s.modal} data-theme={theme} data-app-size={appSize}>
                         <div className={s.body+' '+className} {...etc}>
                             {children}
                         </div>
@@ -49,7 +49,8 @@ class Modal extends React.Component {
 
 export default connect(
     state=>({
-        theme: state.local.theme
+        theme: state.local.theme,
+        appSize: state.local.appSize,
     })
 )(Modal)
 

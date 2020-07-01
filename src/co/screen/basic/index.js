@@ -21,13 +21,14 @@ class ScreenBasic extends React.Component {
     }
 
     render() {
-        const { className, children, theme, autoTheme, setTheme, ...etc } = this.props
+        const { className, children, theme, appSize, autoTheme, setTheme, ...etc } = this.props
         
         return (
             <div 
                 {...etc} 
                 className={s.page + ' ' + className}
-                data-theme={theme}>
+                data-theme={theme}
+                data-app-size={appSize}>
                 {children}
             </div>
         )
@@ -37,7 +38,8 @@ class ScreenBasic extends React.Component {
 export default connect(
     state=>({
         theme: state.local.theme,
-        autoTheme: state.local.autoTheme
+        autoTheme: state.local.autoTheme,
+        appSize: state.local.appSize,
     }),
     {
         setTheme
