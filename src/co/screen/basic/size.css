@@ -8,7 +8,7 @@
     --border-radius: calc(3px * var(--app-size));
 
     /* fonts */
-    --head-font-size: calc(16px * var(--app-size));
+    --head-font-size: calc(17px * var(--app-size));
     --title-font-size: calc(15px * var(--app-size));
     --primary-font-size: calc(14px * var(--app-size));
     --secondary-font-size: calc(13px * var(--app-size));
