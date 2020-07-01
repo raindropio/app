@@ -23,6 +23,12 @@ export default class SearchView extends React.PureComponent {
     componentDidMount() {
         if (this.props.autoFocus)
             this._input.current && this._input.current.value && this._input.current.select()
+
+        window.addEventListener('keydown', this.onWindowKeyDown)
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener('keydown', this.onWindowKeyDown)
     }
 
     onSubmit = (e)=>{
@@ -56,6 +62,17 @@ export default class SearchView extends React.PureComponent {
                     this.onReset()
                 }
             break
+        }
+    }
+
+    onWindowKeyDown = (e)=>{
+        if (e.key == 'f' && (e.ctrlKey || e.metaKey)){
+            e.stopPropagation()
+
+            if (document.activeElement != this._input.current){
+                e.preventDefault()
+                this._input.current.focus()
+            }
         }
     }
 

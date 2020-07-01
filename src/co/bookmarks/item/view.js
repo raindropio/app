@@ -111,6 +111,7 @@ export default class BookmarkItemView extends React.PureComponent {
                     href={link}
 
                     active={active}
+                    focusable={!selectModeEnabled}
                     tabIndex='200'
 
 					onClick={onClick}

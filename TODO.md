@@ -1,25 +1,17 @@
-- font-size setting change support
 - persist lang change
 - show count for duplicates
 - fix user load for duplicates, broken
-- migrate to css modules
 - Toasts!
-
-Design
-- account screens dark theme support
 
 Bugs
 - Critical
-    - Collection share via link, link is incorrect
     - Such tagname kils app "$%^&()(#@#$!. a"
 - Minor
     - in search results when change bookmark, `highlight` data lost
     - search as type sometime doesn't recognize last type
     - masonry keyboard navigation unordered
-    - on drag file to bookmarks body no overlay color
 
 Not ready
-- head title
 - electron
 - pro banner
 
@@ -35,13 +27,10 @@ Good to have
 - When collection removed open next collection
 - Show (?) icon in Filters and Tags sidebar sections, click opens help page about those items
 - bookmarks/item remove selectDisabled, and move this logic to /items + css
-- Ctrl+F focus on search field
+- Move all logic of Cover to Cloduflare worker
 
 Translation
 - leave
-
-Ideas
-- Move all logic of Cover to Cloduflare worker
 
 Changes
 - data

@@ -1,5 +1,7 @@
 import React from 'react'
+import { Helmet } from 'react-helmet'
 import { connect } from 'react-redux'
+import { collection } from '~data/selectors/collections'
 import { setLastCollection } from '~data/actions/config'
 
 import Main from '~co/screen/splitview/main'
@@ -21,6 +23,9 @@ class CollectionsMain extends React.Component {
         return (
             <AccentColor _id={this.props.spaceId}>{style=>
                 <Main style={style}>
+                    <Helmet>
+                        <title>{this.props.search || this.props.title}</title>
+                    </Helmet>
                     <Header {...this.props} />
                     <Content {...this.props} />
                 </Main>
@@ -30,6 +35,8 @@ class CollectionsMain extends React.Component {
 }
 
 export default connect(
-	undefined,
+	(state, { spaceId }) => ({
+        title: collection(state, spaceId).title
+    }),
 	{ setLastCollection }
 )(CollectionsMain)

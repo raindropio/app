@@ -37,7 +37,7 @@ export default class CollectionsItemView extends React.PureComponent {
                 className={`${s.item} ${expandable && (expanded ? s.expanded : s.collapsed)} ${isDragging && s.isDragging} ${isDropping && s.isDropping}`}
                 style={{'--level': level}}
                 active={active}
-                color={color} >
+                color={color}>
                 <div className={s.expand} onMouseUp={onExpandClick}>
                     <Icon name='arrow_alt' />
                 </div>

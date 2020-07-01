@@ -31,7 +31,7 @@ class Modal extends React.Component {
     }
 
     render() {
-        const { children, onClose, closable, className='', theme, appSize, ...etc } = this.props
+        const { children, onClose, closable, className='', theme, appSize, dispatch, ...etc } = this.props
 
         return (
             <Portal>
