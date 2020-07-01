@@ -12,7 +12,6 @@ export default class DocumentHtml extends React.PureComponent {
             isMobile(navigator.userAgent).phone ? 'mobile' : 'web',
             ...getCurrentBrowser(),
             scrollbarIsObtrusive() ? 'scrollbar-obtrusive' : '',
-            window.devicePixelRatio && devicePixelRatio >= 2 ? 'retina' : '',
             environment.isClipper() ? 'clipper' : ''
         ]
     }

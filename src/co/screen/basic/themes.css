@@ -43,8 +43,8 @@
     --disable-text-color: rgba(255,255,255,.4);
 
     /* shadows */
-    --shadow-color: rgba(255,255,255,.12);
-    --shadow-light-color: rgba(255,255,255,.09);
+    --shadow-color: rgba(255,255,255,.15);
+    --shadow-light-color: rgba(255,255,255,.1);
 }
 
 [data-theme='sunset'] {

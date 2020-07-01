@@ -22,10 +22,14 @@
     --header-height: calc(48px * var(--app-size));
 }
 
-div[data-app-size='2'] {
+html:global(.mobile) div[data-app-size='default'] {
     --app-size: 1.2;
 }
 
-html:global(.retina) [data-app-size] {
-    --shadow-height: .5px;
+@media 
+(-webkit-min-device-pixel-ratio: 2), 
+(min-resolution: 192dpi) {
+    :root, [data-app-size] {
+        --shadow-height: .5px;
+    }
 }
