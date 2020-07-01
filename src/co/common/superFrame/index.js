@@ -39,7 +39,7 @@ export default class SuperFrame extends React.Component {
 					onLoad={this.onLoad}
 					onError={this.onError} />
 
-				{status=='loading' ? <div className={s.overlay}><Preloader /></div> : null}
+				{status=='loading' ? <div className={s.overlay}><Preloader enlarge='1.5' /></div> : null}
 				{status=='error' ? <div className={s.overlay}>Error!</div> : null}
 			</div>
 		)

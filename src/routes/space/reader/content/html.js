@@ -18,7 +18,7 @@ class ReaderHTML extends React.Component {
             font_family, font_size
         } = this.props
 
-        const loading = status=='loading' && <div className={s.loading}><Preloader /></div>
+        const loading = status=='loading' && <div className={s.loading}><Preloader enlarge='1.5' /></div>
 
         switch(type) {
             default:
