@@ -21,7 +21,7 @@ class FiltersCustom extends React.Component {
         this.props.actions.load(0)
     }
 
-    rowRenderer = (row)=>{
+    rowRenderer = (row={})=>{
         let Component
         switch(row.type) {
             case 'section': Component = Section; break

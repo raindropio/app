@@ -4,9 +4,16 @@
 	top: 1px
 	left: 7px
 	right: 7px
-	background: white
-	box-shadow: 0 0 0 var(--shadow-height) var(--shadow-color), 0 3px 15px var(--shadow-color)
+	background: var(--background-color)
+	box-shadow: 0 0 0 var(--shadow-height) var(--shadow-color), 0 3px 15px rgba(0,0,0,.1)
 	border-radius: var(--border-radius)
+}
+
+@supports (backdrop-filter: none) {
+	.mode {
+		background: unquote('hsla(var(--background-hsl), .85)')
+		backdrop-filter: blur(10px)
+	}
 }
 
 .header {

@@ -39,7 +39,7 @@ class CollectionsReader extends React.Component {
                 <Reader 
                     show={item._id?true:false}
                     fullscreen={fullscreen}
-                    data-theme={font_color}
+                    data-theme={font_color ? font_color : undefined}
                     style={style}>
                     <Header {...this.props} {...this.handlers} />
                     <Content key={item._id} {...this.props} />

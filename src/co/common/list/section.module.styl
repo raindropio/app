@@ -13,17 +13,17 @@
     
     &.isDragging {
         background: var(--background-color)
-    	box-shadow: 0 1px 3px var(--shadow-color)
+    	box-shadow: 0 1px 3px rgba(0,0,0,.1)
     }
     
     &.isDropping {
     	transition: box-shadow .15s ease-in-out, background .15s ease-in-out;
-    	background-color: rgba(74,116,226,.1) !important;
-    	box-shadow: inset 0px 0px 0px 2px rgba(74,116,226,.5);
+    	background-color: unquote('hsla(var(--accent-hsl), .1)') !important;
+    	box-shadow: inset 0px 0px 0px 2px var(--accent-color);
     }
 	
 	&:hover {
-		background-color: var(--alternative-background-color)
+		background-color: var(--hover-background-color)
 		.actions {
 			display:block
 		}

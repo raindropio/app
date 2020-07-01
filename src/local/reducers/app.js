@@ -16,6 +16,7 @@ export default function(state, action) {switch (action.type) {
 		_.forEach(incoming, (val,key)=>{
 			switch(key){
 				case 'theme': state = setTheme(state, val); break
+				case 'autoTheme': state = state.set('autoTheme', Boolean(val)); break
 			}
 		})
 

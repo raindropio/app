@@ -17,7 +17,7 @@ class ScreenBasic extends React.Component {
     onPrefersColorSchemeChange = e => {
         const darkModeOn = e.matches
         if (this.props.autoTheme)
-            this.props.setTheme(darkModeOn ? 'night' : '')
+            this.props.setTheme(darkModeOn ? 'night' : 'day')
     }
 
     render() {

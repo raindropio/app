@@ -34,11 +34,11 @@ a {
 }
 
 html:global(.scrollbar-obtrusive) {
-    scrollbar-color: var(--shadow-color) transparent;
+    scrollbar-color: var(--shadow-light-color) transparent;
 
     ::-webkit-scrollbar {
         width: 0;
-        height: 11pxl
+        height: 11px;
         will-change: width;
         background: transparent;
         transition: width .2s ease-in-out;
@@ -51,7 +51,7 @@ html:global(.scrollbar-obtrusive) {
     }
 
     ::-webkit-scrollbar-thumb {
-        border: 3px solid rgba(0,0,0,0);
+        border: 3px solid unquote('hsla(var(--background-hsl), 0)');
         border-radius: 11px;
         box-shadow: inset 0px 0px 0px 7px var(--shadow-color);
         transition: box-shadow .2s ease-in-out;

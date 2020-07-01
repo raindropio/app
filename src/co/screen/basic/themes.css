@@ -1,14 +1,17 @@
-:root, [data-theme='day'] {
+/* Default theme + common parameters */
+:root, [data-theme] {
     /*background*/
     --background-hsl: 0,0%,100%;
     --background-color: hsl(var(--background-hsl));
-    --alternative-background-color: hsl(0,0%,95%);
+    --sidebar-background-color: hsl(0,0%,95%);
+    --alternative-background-color: rgba(0,0,0,.06);
     --hover-background-color: rgba(0,0,0,.05);
     --active-background-color: hsl(0,0%,90%);
     --disable-background-color: hsl(0,0%,85%);
 
     /*brand*/
-    --accent-color: hsl(207,80%,49%);
+    --accent-hsl: 207,80%,49%;
+    --accent-color: hsl(var(--accent-hsl));
 
     /* text colors */
     color: hsl(0,0%,10%);
@@ -23,15 +26,12 @@
 
 [data-theme='night'] {
     /* background */
-    --background-hsl: 0,0%,17%;
-    --background-color: hsl(var(--background-hsl));
-    --alternative-background-color: hsl(0,0%,13%);
+    --background-hsl: 0,0%,19%;
+    --sidebar-background-color: hsl(0,0%,16%);
+    --alternative-background-color: rgba(0,0,0,.25);
     --hover-background-color: rgba(255,255,255,.1);
     --active-background-color: hsl(0,0%,26%);
     --disable-background-color: hsl(0,0%,17%);
-
-    /* brand */
-    --accent-color: hsl(207,80%,49%) !important;
 
     /* text colors */
     color: hsl(0,0%,90%);
@@ -40,24 +40,19 @@
     --disable-text-color: rgba(255,255,255,.4);
 
     /* shadows */
-    --shadow-color: rgba(0,0,0,.4);
-    --shadow-light-color: rgba(0,0,0,.2);
+    --shadow-color: rgba(255,255,255,.12);
+    --shadow-light-color: rgba(255,255,255,.09);
 }
 
 [data-theme='sunset'] {
     /* background */
     --background-hsl: 43,60%,97%;
-    --background-color: hsl(var(--background-hsl));
-    --alternative-background-color: hsl(43,60%,95%);
-    --active-background-color: hsl(43,60%,92%);
+    --sidebar-background-color: hsl(43,60%,95%);
+    --active-background-color: hsl(43,50%,90%);
     --disable-background-color: hsl(43,60%,85%);
 
-    /* brand */
-    --accent-color: hsl(207,80%,49%) !important;
-
     /* text colors */
-    color: hsl(43,60%,10%);
-    --primary-text-color: hsl(43,60%,25%);
-    --secondary-text-color: hsl(43,60%,45%);
-    --disable-text-color: rgba(0,0,0,.4);
+    color: hsl(43,10%,10%);
+    --primary-text-color: hsl(43,10%,35%);
+    --secondary-text-color: hsl(43,10%,50%);
 }

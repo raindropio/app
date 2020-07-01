@@ -34,7 +34,7 @@ export default class VirtuosoWithDnd extends React.Component {
                         ref={provided.innerRef}
                         {...provided.draggableProps}
                         {...provided.dragHandleProps}
-                        tabIndex='-1'
+                        tabIndex={undefined}
                         onClick={null}>
                         {this.props.item(index, provided, snapshot)}
                     </div>

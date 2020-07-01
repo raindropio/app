@@ -1,12 +1,13 @@
 import s from './index.module.styl'
 import React from 'react'
 
-function Button({ Tag='button', className='', variant, forwardedRef, navigate, ...etc }) {
+function Button({ Tag='div', className='', variant, forwardedRef, navigate, ...etc }) {
     if (etc.href)
         Tag = 'a'
 
     return (
         <Tag 
+            tabIndex='0'
             ref={forwardedRef}
             className={s.button+' '+className}
             data-variant={variant||'default'}

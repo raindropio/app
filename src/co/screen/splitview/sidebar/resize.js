@@ -6,15 +6,12 @@ export default class SplitViewSidebarResize extends React.Component {
     static contextType = Context
 
     onMouseDown = ()=>{
-        this._disableSelect = setTimeout(() => {
-            document.body.classList.add(s.disableSelect)
-        }, 300)
+        document.body.classList.add(s.disableSelect)
         window.addEventListener('mouseup', this.onMouseUp)
         window.addEventListener('mousemove', this.onMouseMove)
     }
 
     onMouseUp = ()=>{
-        clearTimeout(this._disableSelect)
         document.body.classList.remove(s.disableSelect)
         window.removeEventListener('mouseup', this.onMouseUp)
         window.removeEventListener('mousemove', this.onMouseMove)
