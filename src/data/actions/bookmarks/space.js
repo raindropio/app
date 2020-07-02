@@ -53,3 +53,9 @@ export const changeGridSize = (spaceId, raindrops_grid_size)=>({
 	spaceId: String(spaceId),
 	raindrops_grid_size
 })
+
+export const setListCoverRight = (spaceId, raindrops_list_cover_right)=>({
+	type: SPACE_VIEW_CONFIG,
+	spaceId: String(spaceId),
+	raindrops_list_cover_right
+})

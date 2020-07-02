@@ -4,9 +4,9 @@ import t from '~t'
 import { connect } from 'react-redux'
 import { makeViewHide } from '~data/selectors/bookmarks'
 import { makeCollection } from '~data/selectors/collections'
-import { viewToggle } from '~data/actions/bookmarks'
+import { viewToggle, setListCoverRight } from '~data/actions/bookmarks'
 
-import { Checkbox, Label } from '~co/common/form'
+import { Checkbox, Radio, Label } from '~co/common/form'
 
 class BookmarksHeaderViewShow extends React.Component {
     static defaultProps = {
@@ -18,8 +18,12 @@ class BookmarksHeaderViewShow extends React.Component {
         this.props.viewToggle(this.props.spaceId, field)
     }
 
+    onSetListCoverRight = ()=>{
+        this.props.setListCoverRight(this.props.spaceId, !this.props.listCoverRight)
+    }
+
     render() {
-        const { viewHide=[], view } = this.props
+        const { viewHide=[], view, listCoverRight } = this.props
 
         const options = [
             ['cover', t.s(view == 'simple' ? 'icon' : 'cover')],
@@ -31,16 +35,37 @@ class BookmarksHeaderViewShow extends React.Component {
 
         return (
             <>
-                <Label>{t.s('show')}</Label>
+                <Label>{t.s('show')} {t.s('in')} {t.s('view_'+view)}</Label>
                 
                 <div>
                     {options.map(([key, title])=>
                         <Checkbox 
-                            checked={!viewHide.includes(key)} onClick={()=>this.onClick(key)}>
+                            key={key}
+                            checked={!viewHide.includes(key)}
+                            onChange={()=>this.onClick(key)}>
                             {title}
                         </Checkbox>
                     )}
                 </div>
+
+                {view == 'list' && !viewHide.includes('cover') ? (
+                    <>
+                        <Label>{t.s('cover')} {t.s('position')}</Label>
+
+                        <div>
+                            <Radio 
+                                checked={!listCoverRight}
+                                onChange={this.onSetListCoverRight}>
+                                {t.s('left')}
+                            </Radio>
+                            <Radio 
+                                checked={listCoverRight}
+                                onChange={this.onSetListCoverRight}>
+                                {t.s('right')}
+                            </Radio>
+                        </div>
+                    </>
+                ) : null}
             </>
         )
     }
@@ -53,8 +78,9 @@ export default connect(
 
         return (state, { spaceId })=>({
             view: getCollection(state, spaceId).view,
-            viewHide: getViewHide(state, spaceId)
+            viewHide: getViewHide(state, spaceId),
+            listCoverRight: state.config.raindrops_list_cover_right
         })
     },
-	{ viewToggle }
+	{ viewToggle, setListCoverRight }
 )(BookmarksHeaderViewShow)

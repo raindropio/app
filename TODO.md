@@ -51,3 +51,4 @@ Changes
     - filters/tags in sidebar
     - caching
     - bug fixes
+    - list cover position

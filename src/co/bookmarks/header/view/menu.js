@@ -34,7 +34,7 @@ class BookmarksHeaderViewMenu extends React.Component {
                             key={item}
                             data-view={item}
                             checked={view==item}
-                            onClick={this.onViewClick}>
+                            onChange={this.onViewClick}>
                             <Icon name={'view_'+item} />
                             {t.s(`view_${item}`)}
                         </Radio>
