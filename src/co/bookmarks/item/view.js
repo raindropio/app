@@ -61,6 +61,8 @@ export default class BookmarkItemView extends React.PureComponent {
 
                         {important ? <section data-inline><Icon name='important' size='micro' className={s.importantIcon} /></section> : null}
 
+                        {broken ? <section><Icon name='broken' size='micro' /></section> : null}
+
                         {reparse ? <section data-inline><Icon name='progress' size='micro' /></section> : null}
 
                         {cache && cache != 'ready' && cache != 'retry' ? <section data-inline><Icon name='cache_failed' size='micro' /></section> : null}

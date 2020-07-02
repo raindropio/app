@@ -1,3 +1,4 @@
+import s from './view.module.styl'
 import React from 'react'
 import { humanNumber } from '~modules/strings'
 
@@ -13,6 +14,7 @@ export default class FiltersTagView extends React.Component {
 
         return (
             <Item
+                className={s.item}
                 active={active}>
                 <ItemIcon>
                     <Icon name='tag' />

@@ -1,3 +1,4 @@
+import s from './view.module.styl'
 import React from 'react'
 import t from '~t'
 import { humanNumber } from '~modules/strings'
@@ -34,6 +35,7 @@ export default class FiltersStatusView extends React.Component {
 
         return (
             <Item 
+                className={s.item}
                 active={active}>
                 <ItemIcon>
                     <Icon name={icon} />

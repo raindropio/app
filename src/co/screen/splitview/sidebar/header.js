@@ -20,7 +20,6 @@ class SplitViewSidebarHeader extends React.Component {
                 {this.props.children}
             </Header>
         )
-                
     }
 }
 

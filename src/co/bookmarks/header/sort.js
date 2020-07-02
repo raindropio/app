@@ -5,7 +5,7 @@ import { makeSort, makeSorts } from '~data/selectors/bookmarks'
 import { changeSort } from '~data/actions/bookmarks'
 
 import Popover from '~co/overlay/popover'
-import { Layout, Radio } from '~co/common/form'
+import { Layout, Radio, Label } from '~co/common/form'
 import Icon from '~co/common/icon'
 import Button from '~co/common/button'
 
@@ -21,14 +21,14 @@ class BookmarksHeaderSort extends React.Component {
     }
 
     options = {
-        'score':        t.s('byRelevance'),
+        'sort':         t.s('manual'),
         'created':      t.s('byDate')+' ↑',
         '-created':     t.s('byDate')+' ↓',
         'title':        t.s('byName')+' (A-Z)',
         '-title':       t.s('byName')+' (Z-A)',
         'domain':       t.s('sites')+' (A-Z)',
         '-domain':      t.s('sites')+' (Z-A)',
-        'sort':         t.s('manual')
+        'score':        t.s('byRelevance')
     }
 
     onContextMenuClick = (e)=>{
@@ -48,7 +48,11 @@ class BookmarksHeaderSort extends React.Component {
 
         return (
             <>
-                <Button ref={this.pin} variant={sort!='sort'?'link':''} onClick={this.onContextMenuClick}>
+                <Button 
+                    ref={this.pin}
+                    title={t.s('sortBy')}
+                    variant={sort!='sort'?'link':''}
+                    onClick={this.onContextMenuClick}>
                     <Icon name={'sort_'+sort} />
         
                     <span className='hide-on-small-body'>
@@ -59,6 +63,7 @@ class BookmarksHeaderSort extends React.Component {
                 {menu ? (
                     <Popover pin={this.pin} onClose={this.onContextMenuClose}>
                         <Layout>
+                            <Label>{t.s('sortBy')}</Label>
                             <div>
                                 {Object.keys(this.options).map(item=>(
                                     <Radio 
@@ -68,7 +73,7 @@ class BookmarksHeaderSort extends React.Component {
                                         disabled={sorts[item] && !sorts[item].enabled}
                                         onClick={this.onSortClick}>
                                         <Icon name={'sort_'+item} />
-                                        {this.options[item]}
+                                        {this.options[item]}{item=='sort' ? ' (Drag\'n\'drop)' : ''}
                                     </Radio>
                                 ))}
                             </div>

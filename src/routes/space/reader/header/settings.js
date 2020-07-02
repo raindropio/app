@@ -57,20 +57,24 @@ class ReaderHeaderSettings extends React.Component {
 
                 {this.state.show && (
                     <Popover pin={this.pin} onClose={this.onSettingsClose}>
-                        <div className={s.switch}>
-                            <a className={s.auto+' '+(font_color==''?s.active:'')} data-key='font_color' data-val='' onClick={this.onSettingChange}></a>
-                            <a className={s.day+' '+(font_color=='day'?s.active:'')} data-key='font_color' data-val='day' onClick={this.onSettingChange}></a>
-                            <a className={s.sunset+' '+(font_color=='sunset'?s.active:'')} data-key='font_color' data-val='sunset' onClick={this.onSettingChange}></a>
-                            <a className={s.dark+' '+(font_color=='night'?s.active:'')} data-key='font_color' data-val='night' onClick={this.onSettingChange}></a>
-                        </div>
+                        {tab == 'preview' ? (
+                            <>
+                                <div className={s.switch}>
+                                    <a className={s.auto+' '+(font_color==''?s.active:'')} data-key='font_color' data-val='' onClick={this.onSettingChange}></a>
+                                    <a className={s.day+' '+(font_color=='day'?s.active:'')} data-key='font_color' data-val='day' onClick={this.onSettingChange}></a>
+                                    <a className={s.sunset+' '+(font_color=='sunset'?s.active:'')} data-key='font_color' data-val='sunset' onClick={this.onSettingChange}></a>
+                                    <a className={s.dark+' '+(font_color=='night'?s.active:'')} data-key='font_color' data-val='night' onClick={this.onSettingChange}></a>
+                                </div>
 
-                        <Layout>
-                            <Label>{t.s('fontFamily')}</Label>
-                            <div>{fonts.map(this.renderFont)}</div>
+                                <Layout>
+                                    <Label>{t.s('fontFamily')}</Label>
+                                    <div>{fonts.map(this.renderFont)}</div>
 
-                            <Label>{t.s('fontSize')}</Label>
-                            <Range min='1' max='9' value={font_size} onChange={this.onFontSizeChange} />
-                        </Layout>
+                                    <Label>{t.s('fontSize')}</Label>
+                                    <Range min='1' max='9' value={font_size} onChange={this.onFontSizeChange} />
+                                </Layout>
+                            </>
+                        ) : null}
                     </Popover>
                 )}
             </>

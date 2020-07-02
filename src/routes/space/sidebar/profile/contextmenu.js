@@ -4,6 +4,7 @@ import config from '~config'
 import Popover, { Menu, MenuItem, MenuSeparator } from '~co/overlay/popover'
 import { Layout, Checkbox, Label } from '~co/common/form'
 import Icon from '~co/common/icon'
+import Button from '~co/common/button'
 
 export default function SidebarProfileMenu({
     pin,
@@ -48,19 +49,14 @@ export default function SidebarProfileMenu({
             </Menu>
 
             <Layout>
-                <Label>{t.s('window')}</Label>
                 <div>
-                    <Checkbox 
-                        checked={theme=='night'}
-                        onChange={onToggleDarkThemeClick}>
-                        Dark {t.s('interfaceStyle').toLowerCase()}
-                    </Checkbox>
+                    <Button onClick={onToggleDarkThemeClick} title={t.s('interfaceStyle')}>
+                        <Icon name={theme == 'night' ? 'day' : 'night'} />
+                    </Button>
 
-                    <Checkbox 
-                        checked={appSize=='large'}
-                        onChange={onToggleLargeFontSizeClick}>
-                        Large {t.s('fontSize').toLowerCase()}
-                    </Checkbox>
+                    <Button onClick={onToggleLargeFontSizeClick} title={t.s('fontSize')}>
+                        <Icon name='fonts' />
+                    </Button>
                 </div>
             </Layout>
         </Popover>
