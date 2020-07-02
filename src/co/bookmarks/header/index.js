@@ -33,8 +33,6 @@ class BookmarksHeader extends React.Component {
                     <Title {...this.props} />
                 </TitleWrap>
 
-                <More {...this.props} />
-
                 <Space />
                 
                 {status.main == 'loaded' ? (<>
@@ -42,6 +40,7 @@ class BookmarksHeader extends React.Component {
                     <View {...this.props} />
                     <SelectAll {...this.props} />
                 </>) : null}
+                <More {...this.props} />
             </Header>
         )
     }

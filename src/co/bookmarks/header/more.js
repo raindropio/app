@@ -3,6 +3,7 @@ import t from '~t'
 import getLinks from '~data/modules/bookmarks/getLinks'
 import { connect } from 'react-redux'
 import { oneRemove, oneUpdate } from '~data/actions/collections'
+import { getSearchEmpty } from '~data/selectors/bookmarks'
 
 import { Confirm, Prompt } from '~co/overlay/dialog'
 import Button from '~co/common/button'
@@ -47,7 +48,9 @@ class BookmarksHeaderMore extends React.Component {
 
     render() {
         const { menu } = this.state
-        const { collection } = this.props
+        const { collection, isSearching } = this.props
+
+        if (isSearching) return null
 
         return (
             <>
@@ -74,6 +77,8 @@ class BookmarksHeaderMore extends React.Component {
 }
 
 export default connect(
-	undefined,
+	(state, { spaceId })=>({
+        isSearching: !getSearchEmpty(state, spaceId)
+    }),
 	{ oneRemove, oneUpdate }
 )(BookmarksHeaderMore)
