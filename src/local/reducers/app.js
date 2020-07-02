@@ -3,7 +3,8 @@ import { REHYDRATE } from 'redux-persist/src/constants'
 
 import {
 	APP_SET_THEME,
-	APP_SET_APP_SIZE
+	APP_SET_APP_SIZE,
+	APP_COLLECTIONS_SEARCH_RESULTS_HIDE
 } from '../constants'
 
 export default function(state, action) {switch (action.type) {
@@ -15,6 +16,9 @@ export default function(state, action) {switch (action.type) {
 
 	case APP_SET_APP_SIZE:
 		return state.set('appSize', action.appSize)
+
+	case APP_COLLECTIONS_SEARCH_RESULTS_HIDE:
+		return state.set('collectionsSearchResults', !state.collectionsSearchResults)
 
 	case REHYDRATE:{
 		const incoming = action.payload && action.payload.local||{}

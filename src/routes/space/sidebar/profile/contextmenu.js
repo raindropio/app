@@ -46,6 +46,8 @@ export default function SidebarProfileMenu({
                     <Icon name='exit' />
                     {t.s('logOut')}
                 </MenuItem>
+
+                <MenuSeparator />
             </Menu>
 
             <Layout>

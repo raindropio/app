@@ -6,13 +6,27 @@ import { normalizeCollection, getChildrens } from '../../helpers/collections'
 //Defaults
 const
 	emptyObject = {},
-	emptyArray = Immutable([]),
+	emptyArray = [],
 	_collectionsItems = ({collections={}})=>collections.items,
 	_collectionsGroups = ({collections={}})=>collections.groups,
 	_collectionsStatus = ({collections={}})=>collections.status
 
-//Tree
+//Items
+export const makeFiltered = ()=> createSelector(
+	[_collectionsItems, (state, search)=>(search||'').toLowerCase()],
+	(items, search)=>{
+		const found = []
 
+		_.forEach(items, item=>{
+			if (item.title.toLowerCase().includes(search))
+				found.push(item)
+		})
+
+		return found.length ? found : emptyArray
+	}
+)
+
+//Tree
 const makeGroupTree = (groupIds, items=[], sortedItems)=>{
 	var results = []
 

@@ -6,7 +6,8 @@ import { setLastCollection } from '~data/actions/config'
 
 import Main from '~co/screen/splitview/main'
 import Header from './header'
-import Content from './content'
+import Bookmarks from './bookmarks'
+import Collections from './collections'
 import AccentColor from '~co/collections/item/accentColor'
 
 class CollectionsMain extends React.Component {
@@ -27,7 +28,8 @@ class CollectionsMain extends React.Component {
                         <title>{this.props.search || this.props.title}</title>
                     </Helmet>
                     <Header {...this.props} />
-                    <Content {...this.props} />
+                    <Collections {...this.props} />
+                    <Bookmarks {...this.props} />
                 </Main>
             }</AccentColor>
         )

@@ -2,7 +2,7 @@ import React from 'react'
 import t from '~t'
 import { connect } from 'react-redux'
 import { startSelectMode } from '~data/actions/bookmarks'
-import { makeStatus } from '~data/selectors/bookmarks'
+import { makeStatus, getSearchEmpty } from '~data/selectors/bookmarks'
 
 import { FirstAction } from '~co/common/header'
 import CollectionIcon from '~co/collections/item/icon'
@@ -26,10 +26,10 @@ class BookmarksHeaderIcon extends React.PureComponent {
         this.setState({ show: false })
 
     render() {
-        const { collection: { _id, cover=[] }, status } = this.props
+        const { collection: { _id, cover=[] }, status, isSearching } = this.props
         const { show } = this.state
 
-        if (!cover.length && status.main!='loading') return null
+        if ((!cover.length || isSearching) && status.main!='loading') return null
 
         return (
             <FirstAction>
@@ -57,7 +57,8 @@ export default connect(
         const getStatus = makeStatus()
     
         return (state, { spaceId })=>({
-            status: getStatus(state, spaceId)
+            status: getStatus(state, spaceId),
+            isSearching: !getSearchEmpty(state, spaceId)
         })
     },
 	{ startSelectMode }

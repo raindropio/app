@@ -15,12 +15,16 @@ class BookmarksHeaderTitle extends React.Component {
     render() {
         let {
             collection: { _id, title },
+            status,
             isSearching,
             compact
         } = this.props
 
-        if (_id == 0 && isSearching)
-            title = t.s('defaultCollection-0')
+        if (isSearching)
+            if (status.main=='loading')
+                title = t.s('defaultCollection-0')+'…'
+            else
+                title = t.s('found')+' '+t.s('bookmarks')
 
         return compact ? <Link to={'/space/'+_id+'full'}>{title}</Link> : title
     }

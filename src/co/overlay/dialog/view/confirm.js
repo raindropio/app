@@ -16,9 +16,11 @@ export default function DialogConfirmView({ id, message, sendResult }) {
             <Content data-indent>
                 <Buttons>
                     <Button
+                        Tag='button'
                         autoFocus
                         variant='primary'
                         data-block
+                        value='OK'
                         onClick={()=>sendResult(id, true)}>
                         OK
                     </Button>

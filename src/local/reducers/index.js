@@ -19,6 +19,7 @@ const initialState = Immutable({
 	theme: 'day',
 	autoTheme: true,
 	appSize: 'default',
+	collectionsSearchResults: true,
 	pause: ''
 })
 
