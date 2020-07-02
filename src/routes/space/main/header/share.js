@@ -28,7 +28,7 @@ export default class HeaderShare extends React.Component {
 
         return (
             <>
-                <Button ref={this.pin} onClick={this.onSharingClick}>
+                <Button ref={this.pin} title={t.s('share')} onClick={this.onSharingClick}>
                     <Icon name='share' />
                     <span className='hide-on-small-body'>{t.s('share')}</span>
                 </Button>

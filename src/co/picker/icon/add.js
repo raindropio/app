@@ -1,4 +1,5 @@
 import React from 'react'
+import t from '~t'
 import PickerSource from '~co/picker/source/popover'
 
 import Button from '~co/common/button'
@@ -25,8 +26,9 @@ export default class PickerIconAdd extends React.Component {
                 <Button 
                     ref={this.pin}
                     variant='link'
+                    title={t.s('upload')+' '+t.s('file').toLowerCase()}
                     onClick={this.onAddClick}>
-                    <Icon name='add_active' />
+                    <Icon name='add' />
                 </Button>
 
                 {this.state.add ? (

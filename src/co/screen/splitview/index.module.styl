@@ -75,7 +75,7 @@
     }
 }
 
-@media screen and (min-width: 600px) and (max-width: 1000px) {
+@media screen and (min-width: 600px) and (max-width: 1100px) {
     /* sidebar + main + reader */
     .showSidebar.showReader.forceSidebar {
         grid-template-areas: 'sidebar main main main main';
@@ -99,11 +99,18 @@
 
     /* main + reader */
     .showReader {
+        grid-template-areas: 'reader reader reader reader reader';
+    }
+}
+
+@media screen and (min-width: 700px) {
+    /* main + reader */
+    .showReader {
         grid-template-areas: 'main main main reader reader';
     }
 }
 
-@media screen and (min-width: 1001px) {
+@media screen and (min-width: 1101px) {
     /* sidebar + main + reader */
     .showSidebar.showReader {
         grid-template-areas: 'sidebar sidebar-resize main reader reader'

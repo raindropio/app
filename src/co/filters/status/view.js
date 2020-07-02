@@ -47,7 +47,9 @@ export default class FiltersStatusView extends React.Component {
 
                 {showActions ? (
                     <ItemActions>
-                        <Button onClick={onAppendClick}>
+                        <Button 
+                            title={t.s('add')+' '+t.s('filters')}
+                            onClick={onAppendClick}>
                             <Icon name='search_add' />
                         </Button>
                     </ItemActions>

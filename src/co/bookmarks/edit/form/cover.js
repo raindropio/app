@@ -1,5 +1,6 @@
 import styles from './cover.module.styl'
 import React from 'react'
+import t from '~t'
 import { connect } from 'react-redux'
 import { oneCoverUpload } from '~data/actions/bookmarks'
 
@@ -55,6 +56,7 @@ class BookmarkEditFormCover extends React.Component {
                 <a 
                     href=''
                     className={styles.cover}
+                    title={t.s('changeIcon')}
                     onClick={this.onModalOpen}>
                     <Cover 
                         cover={cover}

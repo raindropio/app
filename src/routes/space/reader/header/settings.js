@@ -51,7 +51,7 @@ class ReaderHeaderSettings extends React.Component {
 
         return (
             <>
-                <Button ref={this.pin} onClick={this.onSettingsClick}>
+                <Button ref={this.pin} title={t.s('settings')} onClick={this.onSettingsClick}>
                     <Icon name={tab == 'preview' ? 'fonts' : 'settings'} />
                 </Button>
 

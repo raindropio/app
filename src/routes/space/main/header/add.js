@@ -34,6 +34,7 @@ export default class HeaderAdd extends React.Component {
                 <Button 
                     ref={this.pin}
                     variant='primary'
+                    title={t.s('add')}
                     onClick={this.onAddClick}>
                     <Icon name='add' />
                     <span className='hide-on-small-body'>{t.s('add')}</span>

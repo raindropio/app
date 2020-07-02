@@ -1,4 +1,5 @@
 import React from 'react'
+import t from '~t'
 
 import { Link } from 'react-router-dom'
 import { FirstAction } from '~co/common/header'
@@ -13,7 +14,10 @@ class BookmarksHeaderBack extends React.Component {
 
         return (
             <FirstAction>
-                <Button Tag={Link} to={`/space/${collection.parentId || collection._id}`}>
+                <Button 
+                    Tag={Link}
+                    title={t.s('back')}
+                    to={`/space/${collection.parentId || collection._id}`}>
                     <Icon name='back' />
                 </Button>
             </FirstAction>

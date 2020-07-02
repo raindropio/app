@@ -32,7 +32,10 @@ class BookmarksSelectModeMove extends React.Component {
     render() {
         return (
             <>
-                <Button variant='outline' onClick={this.onClick}>
+                <Button 
+                    variant='outline'
+                    title={t.s('move')}
+                    onClick={this.onClick}>
                     <Icon name='move_to' />
                     
                     <span className='hide-on-small-body'>{t.s('move')}</span>

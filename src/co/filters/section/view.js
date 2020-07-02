@@ -22,7 +22,9 @@ export default class FiltersSection extends React.Component {
             <Section className={s.section} onClick={onClick} onContextMenu={onContextMenu}>
                 <SectionTitle>{title}</SectionTitle>
                 <SectionActions>
-                    <Button onClick={onContextMenu}>
+                    <Button 
+                        title={t.s('more')}
+                        onClick={onContextMenu}>
                         <Icon name='more_horizontal' />
                     </Button>
                 </SectionActions>

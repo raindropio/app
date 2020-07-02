@@ -94,6 +94,7 @@ export default class BookmarkItemView extends React.PureComponent {
 
                             <Button 
                                 variant='outline'
+                                title={t.s('remove')}
                                 onClick={onRemoveClick}>
                                 <Icon name='trash' />
                             </Button>

@@ -18,7 +18,9 @@ class BookmarksHeaderSelectMode extends React.Component {
 
     render() {
         return (
-            <Button onClick={this.onCancelSelectModeClick}>
+            <Button 
+                title={t.s('cancel')}
+                onClick={this.onCancelSelectModeClick}>
                 <Icon name='close' />
                 <span className='hide-on-small-body'>{t.s('cancel')}</span>
             </Button>

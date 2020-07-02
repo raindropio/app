@@ -1,5 +1,6 @@
 import s from './view.module.styl'
 import React from 'react'
+import t from '~t'
 
 import { Section, SectionTitle, SectionActions } from '~co/common/list'
 import Button from '~co/common/button'
@@ -23,11 +24,15 @@ export default class CollectionsGroupView extends React.Component {
                 <SectionTitle onClick={onClick}>{title}</SectionTitle>
 
                 <SectionActions>
-                    <Button onClick={onCreateNewCollectionClick}>
+                    <Button 
+                        title={t.s('createNewCollection')}
+                        onClick={onCreateNewCollectionClick}>
                         <Icon name='add' />
                     </Button>
 
-                    <Button onClick={onContextMenu}>
+                    <Button 
+                        title={t.s('more')}
+                        onClick={onContextMenu}>
                         <Icon name='more_horizontal' />
                     </Button>
                 </SectionActions>

@@ -1,5 +1,6 @@
 import s from './view.module.styl'
 import React from 'react'
+import t from '~t'
 import { humanNumber } from '~modules/strings'
 
 import { Item, ItemIcon, ItemTitle, ItemInfo, ItemActions } from '~co/common/list'
@@ -25,11 +26,15 @@ export default class FiltersTagView extends React.Component {
                 {count ? <ItemInfo>{humanNumber(count)}</ItemInfo> : null}
                 <ItemActions>
                     {canAppend && onAppendClick && (
-                        <Button onClick={onAppendClick}>
+                        <Button 
+                            title={t.s('add')+' '+t.s('filters')}
+                            onClick={onAppendClick}>
                             <Icon name='search_add' />
                         </Button>
                     )}
-                    <Button onClick={onContextMenu}>
+                    <Button 
+                        title={t.s('more')}
+                        onClick={onContextMenu}>
                         <Icon name='more_horizontal' />
                     </Button>
                 </ItemActions>

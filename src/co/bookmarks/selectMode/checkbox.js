@@ -1,4 +1,5 @@
 import React from 'react'
+import t from '~t'
 import { connect } from 'react-redux'
 import { unselectAll, selectAll } from '~data/actions/bookmarks'
 
@@ -36,10 +37,11 @@ class BookmarksHeaderSelectModeCheckbox extends React.Component {
 
         return (
             <input 
-                    ref={this._allCheckbox}
-                    type='checkbox'
-                    checked={selectMode.all}
-                    onChange={this.onInputClick} />
+                ref={this._allCheckbox}
+                type='checkbox'
+                title={t.s('selectAll')}
+                checked={selectMode.all}
+                onChange={this.onInputClick} />
         )
     }
 }

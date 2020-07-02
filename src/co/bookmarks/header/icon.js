@@ -1,4 +1,5 @@
 import React from 'react'
+import t from '~t'
 import { connect } from 'react-redux'
 import { startSelectMode } from '~data/actions/bookmarks'
 import { makeStatus } from '~data/selectors/bookmarks'
@@ -6,6 +7,7 @@ import { makeStatus } from '~data/selectors/bookmarks'
 import { FirstAction } from '~co/common/header'
 import CollectionIcon from '~co/collections/item/icon'
 import Button from '~co/common/button'
+import ChangeIcon from '~co/collections/changeIcon'
 
 class BookmarksHeaderIcon extends React.PureComponent {
     static defaultProps = {
@@ -13,27 +15,38 @@ class BookmarksHeaderIcon extends React.PureComponent {
         collection: {}
     }
 
-    onSelectEnableClick = (e)=>{
-        e.preventDefault()
-        this.props.startSelectMode(this.props.spaceId)
+    state = {
+        show: false
     }
 
+    onIconClick = ()=>
+        this.setState({ show: true })
+
+    onIconClose = ()=>
+        this.setState({ show: false })
+
     render() {
-        let {
-            collection: { _id, cover=[] },
-            status
-        } = this.props
+        const { collection: { _id, cover=[] }, status } = this.props
+        const { show } = this.state
 
         if (!cover.length && status.main!='loading') return null
 
         return (
             <FirstAction>
-                <Button onClick={this.onSelectEnableClick}>
+                <Button 
+                    title={t.s('changeIcon')}
+                    onClick={this.onIconClick}>
                     <CollectionIcon
                         _id={_id}
                         cover={cover}
                         loading={status.main=='loading'} />
                 </Button>
+
+                {show ? (
+                    <ChangeIcon
+                        _id={_id}
+                        onClose={this.onIconClose} />
+                ) : null}
             </FirstAction>
         )
     }

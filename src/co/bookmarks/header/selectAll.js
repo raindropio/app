@@ -18,9 +18,12 @@ class BookmarksHeaderSelectAll extends React.Component {
 
     render() {
         return (
-            <Button href='' onClick={this.onSelectAllClick}>
+            <Button 
+                href=''
+                title={t.s('select')+' '+t.s('all')}
+                onClick={this.onSelectAllClick}>
                 <Icon name='select_all' />
-                <span className='hide-on-small-body'>{t.s('select')} {t.s('all')}</span>
+                <span className='hide-on-small-body'>{t.s('select')+' '+t.s('all')}</span>
             </Button>
         )
     }

@@ -35,7 +35,10 @@ class BookmarksHeaderView extends React.Component {
 
         return (
             <>
-                <Button ref={this.pin} onClick={this.onMenuClick}>
+                <Button 
+                    ref={this.pin}
+                    title={t.s('view')}
+                    onClick={this.onMenuClick}>
                     <Icon name={'view_'+view} />
                     <span className='hide-on-small-body'>{t.s(`view_${view}`)}</span>
                 </Button>

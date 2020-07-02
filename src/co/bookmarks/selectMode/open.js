@@ -19,7 +19,10 @@ class BookmarksSelectModeOpen extends React.Component {
 
     render() {
         return (
-            <Button variant='outline' onClick={this.onOpenSelectedClick}>
+            <Button 
+                variant='outline'
+                title={t.s('open')}
+                onClick={this.onOpenSelectedClick}>
                 <Icon name='open' />
                 
                 <span className='hide-on-small-body'>

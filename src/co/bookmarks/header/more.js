@@ -8,7 +8,6 @@ import { Confirm, Prompt } from '~co/overlay/dialog'
 import Button from '~co/common/button'
 import Icon from '~co/common/icon'
 import Contextmenu from '~co/collections/item/contextmenu'
-import ChangeIcon from '~co/collections/changeIcon'
 
 class BookmarksHeaderMore extends React.Component {
     static defaultProps = {
@@ -19,8 +18,7 @@ class BookmarksHeaderMore extends React.Component {
     pin = React.createRef()
 
     state = {
-        menu: false,
-        icon: false
+        menu: false
     }
 
     onContextMenuClick = (e)=>{
@@ -47,20 +45,15 @@ class BookmarksHeaderMore extends React.Component {
             this.props.oneRemove(this.props.collection._id)
     }
 
-    onIconClick = ()=>
-        this.setState({ icon: true })
-
-    onIconClose = ()=>
-        this.setState({ icon: false })
-
     render() {
-        const { menu, icon } = this.state
+        const { menu } = this.state
         const { collection } = this.props
 
         return (
             <>
                 <Button 
                     ref={this.pin}
+                    title={t.s('more')}
                     onClick={this.onContextMenuClick}>
                     <Icon name='more_horizontal' />
                 </Button>
@@ -72,15 +65,8 @@ class BookmarksHeaderMore extends React.Component {
                         onContextMenuClose={this.onContextMenuClose}
                         onRemoveClick={this.onRemoveClick}
                         onOpenAllClick={this.onOpenAllClick}
-                        onIconClick={this.onIconClick}
                         onRenameClick={this.onRenameClick}
                         to={`/space/${collection._id}`} />
-                ) : null}
-
-                {icon ? (
-                    <ChangeIcon
-                        _id={collection._id}
-                        onClose={this.onIconClose} />
                 ) : null}
             </>
         )

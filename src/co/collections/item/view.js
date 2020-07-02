@@ -1,5 +1,6 @@
 import s from './view.module.styl'
 import React from 'react'
+import t from '~t'
 import { humanNumber } from '~modules/strings'
 
 import { Item, ItemTitle, ItemInfo, ItemActions } from '~co/common/list'
@@ -38,7 +39,10 @@ export default class CollectionsItemView extends React.PureComponent {
                 style={{'--level': level}}
                 active={active}
                 color={color}>
-                <div className={s.expand} onMouseUp={onExpandClick}>
+                <div 
+                    className={s.expand}
+                    title={expanded ? 'Collapse' : 'Expand'}
+                    onMouseUp={onExpandClick}>
                     <Icon name='arrow_alt' />
                 </div>
 
@@ -69,7 +73,9 @@ export default class CollectionsItemView extends React.PureComponent {
 
 				{!multiselect ? (
                     <ItemActions>
-                        <Button onClick={onContextMenu}>
+                        <Button 
+                            title={t.s('more')}
+                            onClick={onContextMenu}>
                             <Icon name='more_horizontal' />
                         </Button>
                     </ItemActions>
