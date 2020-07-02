@@ -3,6 +3,7 @@ import t from '~t'
 import { connect } from 'react-redux'
 import { removeSelected } from '~data/actions/bookmarks'
 
+import { Confirm } from '~co/overlay/dialog'
 import Button from '~co/common/button'
 import Icon from '~co/common/icon'
 
@@ -13,9 +14,12 @@ class BookmarksHeaderSelectModeRemove extends React.Component {
 
     onRemoveClick = (e)=>{
         e.preventDefault()
-        if (!confirm(t.s('areYouSure'))) return
 
-        this.props.removeSelected(this.props.selectMode.spaceId)
+        Confirm(t.s('areYouSure'))
+            .then(yes=>{
+                if (!yes) return
+                this.props.removeSelected(this.props.selectMode.spaceId)
+            })
     }
 
     render() {

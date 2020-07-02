@@ -228,7 +228,7 @@ export default function(state, action) {switch (action.type) {
 
 			//mark space as 'notFound'
 			state = state
-				.setIn(['spaces', spaceId], blankSpace.setIn(['status', 'main'], 'notFound'))
+				.setIn(['spaces', spaceId], blankSpace.setIn(['status', 'main'], spaceId==-99 ? 'empty' : 'notFound'))
 		}
 		
 		//remove elements

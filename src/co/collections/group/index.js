@@ -2,6 +2,7 @@ import React from 'react'
 import t from '~t'
 import View from './view'
 import Contextmenu from './contextmenu'
+import { Alert, Confirm, Prompt } from '~co/overlay/dialog'
 
 export default class CollectionsGroup extends React.PureComponent {
     static defaultProps = {
@@ -28,8 +29,8 @@ export default class CollectionsGroup extends React.PureComponent {
             this.props.actions.addBlank(this.props._id)
         },
 
-        onCreateNewGroupClick: ()=>{
-            const title = prompt(t.s('enterTitle'))
+        onCreateNewGroupClick: async()=>{
+            const title = await Prompt(t.s('enterTitle'))
             if (title)
                 this.props.actions.groupCreate(title)
         },
@@ -37,8 +38,8 @@ export default class CollectionsGroup extends React.PureComponent {
         onSelectAll: ()=>
             this.props.actions.selectAll(this.props._id),
 
-        onRenameClick: ()=>{
-            const title = prompt(t.s('enterTitle'), this.props.title)
+        onRenameClick: async()=>{
+            const title = await Prompt(t.s('enterTitle'), this.props.title)
 
             if (title)
                 this.props.actions.groupRename(this.props._id, title)
@@ -50,7 +51,7 @@ export default class CollectionsGroup extends React.PureComponent {
 
         onRemoveClick: ()=>{
             this.props.actions.groupRemove(this.props._id, undefined, ()=>{
-                alert(t.s('removeGroupError'))
+                Alert(t.s('removeGroupError'))
             })
         },
 
@@ -58,8 +59,8 @@ export default class CollectionsGroup extends React.PureComponent {
             this.props.actions.toggle()
         },
 
-        onSortAllByTitleClick: ()=>{
-            if (confirm(t.s('areYouSure')))
+        onSortAllByTitleClick: async()=>{
+            if (await Confirm(t.s('areYouSure')))
                 this.props.actions.reorder('title')
         },
     

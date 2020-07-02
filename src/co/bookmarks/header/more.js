@@ -4,6 +4,7 @@ import getLinks from '~data/modules/bookmarks/getLinks'
 import { connect } from 'react-redux'
 import { oneRemove, oneUpdate } from '~data/actions/collections'
 
+import { Confirm, Prompt } from '~co/overlay/dialog'
 import Button from '~co/common/button'
 import Icon from '~co/common/icon'
 import Contextmenu from '~co/collections/item/contextmenu'
@@ -30,8 +31,8 @@ class BookmarksHeaderMore extends React.Component {
     onContextMenuClose = ()=>
         this.setState({ menu: false })
 
-    onRenameClick = ()=>{
-        const title = prompt(t.s('title'), this.props.collection.title)
+    onRenameClick = async()=>{
+        const title = await Prompt(t.s('title'), this.props.collection.title)
         if (title)
             this.props.oneUpdate(this.props.spaceId, { title })
     }
@@ -41,8 +42,8 @@ class BookmarksHeaderMore extends React.Component {
         getLinks(this.props.spaceId).forEach(link => window.open(link))
     }
 
-    onRemoveClick = ()=>{
-        if (confirm(t.s('areYouSure')))
+    onRemoveClick = async()=>{
+        if (await Confirm(t.s('areYouSure')))
             this.props.oneRemove(this.props.collection._id)
     }
 

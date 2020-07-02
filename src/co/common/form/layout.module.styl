@@ -20,3 +20,14 @@
         justify-self: end
     }
 }
+
+.buttons {
+    display: grid
+    grid-auto-flow: column
+    gap: var(--padding-small)
+    justify-content: flex-end
+
+    > * {
+        min-width: 70px
+    }
+}

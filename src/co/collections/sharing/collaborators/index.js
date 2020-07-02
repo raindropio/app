@@ -3,6 +3,8 @@ import t from '~t'
 import { connect } from 'react-redux'
 import { sharingLoad, sharingUpdateUser, sharingUnshare } from '~data/actions/collections'
 import { makeCollection, makeSharingByRole, getSharingStatus, getSharingCount } from '~data/selectors/collections'
+
+import { Confirm } from '~co/overlay/dialog'
 import View from './view'
 
 class CollectionSharingCollaborators extends React.Component {
@@ -15,8 +17,8 @@ class CollectionSharingCollaborators extends React.Component {
             this.props.updateUser(this.props._id, userId, params)
         },
 
-        onUnshare: ()=>{
-            if (confirm(t.s('areYouSure')))
+        onUnshare: async()=>{
+            if (await Confirm(t.s('areYouSure')))
                 this.props.unshare(this.props._id)
         }
     }

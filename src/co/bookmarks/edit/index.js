@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import * as bookmarksActions from '~data/actions/bookmarks'
 import { makeDraftItem, makeDraftStatus, makeDraftUnsaved } from '~data/selectors/bookmarks'
 
+import { Alert } from '~co/overlay/dialog'
 import Form from './form'
 import Error from './error'
 
@@ -30,7 +31,7 @@ class EditBookmarkContainer extends React.Component {
 
 		if (status != prev.status || item.type != prev.item.type) {
 			if (status == 'errorSaving')
-				alert(t.s('saveError'))
+				Alert(t.s('saveError'))
         }
         
         if (_id != prev._id)

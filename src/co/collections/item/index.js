@@ -1,5 +1,7 @@
 import React from 'react'
 import t from '~t'
+
+import { Confirm } from '~co/overlay/dialog'
 import Blank from './blank'
 import View from './view'
 import Rename from './rename'
@@ -76,8 +78,8 @@ export default class CollectionsItem extends React.Component {
         onIconClose: ()=>
             this.setState({ icon: false }),
     
-        onRemoveClick: ()=>{
-            if (confirm(t.s('areYouSure')))
+        onRemoveClick: async()=>{
+            if (await Confirm(t.s('areYouSure')))
                 this.props.actions.oneRemove(this.props.item._id)
         },
     

@@ -3,6 +3,8 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { setTheme } from '~local/actions'
 
+import Dialog from '~co/overlay/dialog'
+
 class ScreenBasic extends React.Component {
     componentDidMount() {
         this._darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
@@ -30,6 +32,8 @@ class ScreenBasic extends React.Component {
                 data-theme={theme}
                 data-app-size={appSize}>
                 {children}
+
+                <Dialog />
             </div>
         )
     }

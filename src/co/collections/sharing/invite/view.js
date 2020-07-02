@@ -1,6 +1,7 @@
 import React from 'react'
 import t from '~t'
 
+import { Alert } from '~co/overlay/dialog'
 import { Layout, Label, Text, Radio } from '~co/common/form'
 import Button from '~co/common/button'
 import Icon from '~co/common/icon'
@@ -16,12 +17,12 @@ export default class CollectionSharingInviteView extends React.PureComponent {
 		if (prev.status != this.props.status)
 			switch(this.props.status) {
                 case 'error':
-					alert(t.s('sendInvites')+' '+t.s('server').toLowerCase())
+					Alert(t.s('sendInvites')+' '+t.s('server').toLowerCase())
                 break
                 
 				case 'done':
 					this.setState({ emails: '' })
-					alert(t.s('invitesSendTo')+' '+this.props.sendTo.join(', '))
+					Alert(t.s('invitesSendTo')+' '+this.props.sendTo.join(', '))
 				break
 			}
     }

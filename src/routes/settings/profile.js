@@ -93,8 +93,7 @@ class Profile extends React.Component {
     }
 
     handleRemove() {
-    	if (confirm(t.s("removeAccountD")))
-    		window.location = config.apiPrefix+'user-remove';
+    	window.location = config.apiPrefix+'user-remove';
     }
 
 	renderBody() {

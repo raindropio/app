@@ -2,6 +2,7 @@ import s from './selectMode.module.styl'
 import React from 'react'
 import t from '~t'
 
+import { Confirm } from '~co/overlay/dialog'
 import Button from '~co/common/button'
 import Icon from '~co/common/icon'
 import Preloader from '~co/common/preloader'
@@ -13,17 +14,17 @@ export default class CollectionsSelectMode extends React.Component {
     onCancel = ()=>
         this.props.actions.unselectAll()
 
-    onMergeSelected = ()=>{
+    onMergeSelected = async()=>{
         const { selectMode: { ids }, actions: { mergeSelected } } = this.props
         
-        if (confirm(`${t.s('areYouSure')}\n${t.s('merge')} ${ids.length} ${t.s('collectionsCount')}`))
+        if (await Confirm(`${t.s('areYouSure')}\n${t.s('merge')} ${ids.length} ${t.s('collectionsCount')}`))
             mergeSelected()
     }
 
-    onRemoveSelected = ()=>{
+    onRemoveSelected = async()=>{
         const { selectMode: { ids }, actions: { removeSelected } } = this.props
 
-        if (confirm(`${t.s('areYouSure')}\n${t.s('remove')} ${ids.length} ${t.s('collectionsCount')}`))
+        if (await Confirm(`${t.s('areYouSure')}\n${t.s('remove')} ${ids.length} ${t.s('collectionsCount')}`))
             removeSelected()
     }
 

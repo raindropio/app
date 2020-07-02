@@ -1,6 +1,7 @@
 import React from 'react'
 import t from '~t'
 
+import { Confirm } from '~co/overlay/dialog'
 import Rename from './rename'
 import View from './view'
 import Contextmenu from './contextmenu'
@@ -37,8 +38,8 @@ export default class FiltersTag extends React.PureComponent {
         onRename: (newName, success, fail)=>
             this.props.actions.oneRename(this.props._id, newName, success, fail),
     
-        onRemoveClick: ()=>{
-            if (confirm(t.s('areYouSure')))
+        onRemoveClick: async()=>{
+            if (await Confirm(t.s('areYouSure')))
                 this.props.actions.oneRemove(this.props._id)
         },
     

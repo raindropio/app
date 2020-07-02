@@ -10,18 +10,21 @@ import Content from './content'
 class Modal extends React.Component {
     static defaultProps = {
         closable: true,
+        important: false,       //over everything else and prevent mousedown bubbling (popovers unclosable)
         onClose: undefined      //func, required
     }
 
     componentDidMount() {
         window.addEventListener('keydown', this.onWindowKeyDown)
+        window.addEventListener('mousedown', this.onWindowMouseDown, true)
     }
 
     componentWillUnmount() {
         window.removeEventListener('keydown', this.onWindowKeyDown)
+        window.removeEventListener('mousedown', this.onWindowMouseDown, true)
     }
 
-    onWindowKeyDown = (e)=>{
+    onWindowKeyDown = e=>{
         switch(e.key) {
             case 'Escape':
                 e.stopPropagation()
@@ -30,14 +33,26 @@ class Modal extends React.Component {
         }
     }
 
+    onWindowMouseDown = e => {
+        if (this.props.important){
+            e.preventDefault()
+            e.stopPropagation()
+        }
+    }
+
     render() {
-        const { children, onClose, closable, className='', theme, appSize, dispatch, ...etc } = this.props
+        const { children, onClose, closable, important, className='', theme, appSize, dispatch, ...etc } = this.props
 
         return (
             <Portal>
                 <Context.Provider value={{ onClose, closable }}>
-                    <div className={s.modal} data-theme={theme} data-app-size={appSize}>
-                        <div className={s.body+' '+className} {...etc}>
+                    <div 
+                        className={s.modal+' '+(important ? s.important : '')}
+                        data-theme={theme}
+                        data-app-size={appSize}>
+                        <div 
+                            className={s.body+' '+className}
+                            {...etc}>
                             {children}
                         </div>
                     </div>

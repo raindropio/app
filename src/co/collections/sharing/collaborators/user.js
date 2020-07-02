@@ -1,6 +1,7 @@
 import React from 'react'
 import t from '~t'
 
+import { Confirm } from '~co/overlay/dialog'
 import { Item, ItemIcon, ItemTitle, ItemInfo, ItemActions } from '~co/common/list'
 import Button from '~co/common/button'
 import Icon from '~co/common/icon'
@@ -17,8 +18,10 @@ export default class CollectionSharingCollaboratorsUser extends React.PureCompon
     onRemove = e => {
         const userId = parseInt(e.currentTarget.getAttribute('data-userid'))
 
-        if (confirm(t.s('areYouSure')))
-            this.props.onUserUpdate(userId, { role: '' })
+        Confirm(t.s('areYouSure')).then(yes=>{
+            if (yes)
+                this.props.onUserUpdate(userId, { role: '' })
+        })
     }
 
     render() {
