@@ -4,6 +4,7 @@ import t from '~t'
 import { Confirm } from '~co/overlay/dialog'
 import { Item, ItemIcon, ItemTitle, ItemInfo, ItemActions } from '~co/common/list'
 import Button from '~co/common/button'
+import Select from '~co/common/select'
 import Icon from '~co/common/icon'
 import Avatar from '~co/common/avatar'
 
@@ -43,18 +44,15 @@ export default class CollectionSharingCollaboratorsUser extends React.PureCompon
 
                 {role!='owner' && collection.access.level>=3 ? (
                     <ItemActions>
-                        <Button 
-                            Tag='label'
-                            variant='link'>
-                            <select
-                                value={role} 
-                                data-userid={_id} 
-                                onChange={this.onChangeRole}>
-                                {role=='owner' ? <option value='owner'>{t.s('role_owner')}</option> : null}
-                                <option value='member'>{t.s('role_member')}</option>
-                                <option value='viewer'>{t.s('role_viewer')}</option>
-                            </select>
-                        </Button>
+                        <Select 
+                            variant='link'
+                            value={role} 
+                            data-userid={_id} 
+                            onChange={this.onChangeRole}>
+                            {role=='owner' ? <option value='owner'>{t.s('role_owner')}</option> : null}
+                            <option value='member'>{t.s('role_member')}</option>
+                            <option value='viewer'>{t.s('role_viewer')}</option>
+                        </Select>
 
                         <Button data-userid={_id} onClick={this.onRemove}>
                             <Icon name='trash' />

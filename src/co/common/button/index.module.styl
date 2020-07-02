@@ -28,11 +28,11 @@
     select {
         border: 0
         box-shadow: none
-        padding: 0
-        margin: 0
+        padding: 0 var(--padding-small)
+        margin: 0 calc(var(--padding-small) * -1)
         pointer-events: initial
         background: transparent
-        width: 100%
+        min-width: 0
     }
 
     &[disabled] {

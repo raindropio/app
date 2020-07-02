@@ -62,14 +62,14 @@ export default class ReaderHeader extends React.PureComponent {
                 </Button>
 				
                 {access.level >= 3 ? (
-                    <di>
+                    <>
                         <Button variant={item.important ? 'link' : ''} onClick={this.onImportantClick}  title={t.s('add') +' ' + t.s('to') + ' ' + t.s('favoriteSites').toLowerCase()}>
                             <Icon name={'like'+(item.important ? '_active' : '')} />
                         </Button>
                         <Button title={t.s('remove')} onClick={this.onRemoveClick}>
                             <Icon name='trash' />
                         </Button>
-                    </di>
+                    </>
                 ) : null}
             </Header>
         )

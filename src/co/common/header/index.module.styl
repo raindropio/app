@@ -7,13 +7,14 @@
     box-shadow: 0 var(--shadow-height) 0 var(--shadow-color)
     z-index: 10
     flex-shrink: 0
+    white-space: nowrap
 
     position: sticky
     top: 0
 
     background: var(--background-color)
 
-    > *:not(:last-child) {
+    > *:not(:last-child):not(.space) {
         margin-right: var(--padding-small)
     }
 

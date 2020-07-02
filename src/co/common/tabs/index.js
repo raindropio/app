@@ -2,12 +2,17 @@ import s from './index.module.styl'
 import React from 'react'
 
 import Button from '~co/common/button'
+import Select from '~co/common/select'
 import Icon from '~co/common/icon'
 
 export default class Tabs extends React.PureComponent {
-	onItemClick = (e)=>{
+	onItemClick = e => {
 		e.preventDefault()
 		this.props.onChange(e.target.getAttribute('data-key'))
+	}
+
+	onSelectChange = e => {
+		this.props.onChange(e.target.value)
 	}
 
 	renderItem = ({ hidden, key, title, icon })=>{
@@ -29,13 +34,33 @@ export default class Tabs extends React.PureComponent {
 		)
 	}
 
-	render() {
-		const { items=[], className='' } = this.props
+	renderOption = ({ hidden, key, title })=>{
+		if (hidden) return null
 
 		return (
-			<div className={s.tabs+' '+className}>
-				{items.map(this.renderItem)}
+			<option key={key} value={key}>
+				{title}
+			</option>
+		)
+	}
+
+	render() {
+		const { items=[], className='', active } = this.props
+
+		return (
+			<div>
+				<div className={s.tabs+' '+className+' hide-on-small-body'}>
+					{items.map(this.renderItem)}
+				</div>
+
+				<Select
+					variant='outline'
+					className={className+' show-on-small-body'}
+					value={active}
+					onChange={this.onSelectChange}>
+					{items.map(this.renderOption)}
+				</Select>
 			</div>
-		);
+		)
 	}
 }

@@ -1,7 +1,7 @@
 import s from './index.module.styl'
 import React from 'react'
 
-function Button({ Tag='div', className='', variant, forwardedRef, navigate, ...etc }) {
+function ButtonInner({ Tag='div', className='', variant, forwardedRef, navigate, ...etc }) {
     if (etc.href)
         Tag = 'a'
 
@@ -16,5 +16,5 @@ function Button({ Tag='div', className='', variant, forwardedRef, navigate, ...e
 }
 
 export default React.forwardRef((props, ref) => {
-    return <Button {...props} forwardedRef={ref} />
+    return <ButtonInner {...props} forwardedRef={ref} />
 })
