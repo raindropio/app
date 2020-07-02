@@ -21,6 +21,7 @@ class Bookmarks extends React.Component {
             <Items 
                 key={spaceId}
                 {...etc}
+                index={index}
                 spaceId={spaceId}
                 compact={ids.length>1} />
         )

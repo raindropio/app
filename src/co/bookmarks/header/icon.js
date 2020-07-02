@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { startSelectMode } from '~data/actions/bookmarks'
 import { makeStatus } from '~data/selectors/bookmarks'
 
+import { FirstAction } from '~co/common/header'
 import CollectionIcon from '~co/collections/item/icon'
 import Button from '~co/common/button'
 
@@ -26,12 +27,14 @@ class BookmarksHeaderIcon extends React.PureComponent {
         if (!cover.length && status.main!='loading') return null
 
         return (
-            <Button onClick={this.onSelectEnableClick}>
-                <CollectionIcon
-                    _id={_id}
-                    cover={cover}
-                    loading={status.main=='loading'} />
-            </Button>
+            <FirstAction>
+                <Button onClick={this.onSelectEnableClick}>
+                    <CollectionIcon
+                        _id={_id}
+                        cover={cover}
+                        loading={status.main=='loading'} />
+                </Button>
+            </FirstAction>
         )
     }
 }

@@ -12,6 +12,7 @@ class BookmarksItems extends React.Component {
     static defaultProps = {
         spaceId:        0,
         activeId:       0,
+        index:          0,
         compact:        false,
         compactLimit:   7,
         events:         {}  //onItemClick, onItemEditClick, onItemPreviewClick, onTagClick

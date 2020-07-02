@@ -72,7 +72,7 @@ export default class BookmarksItemsListing extends React.Component {
         this.props.selectModeEnabled ? (
             <SelectMode spaceId={this.props.spaceId} />
         ): (
-            <Header spaceId={this.props.spaceId} compact={this.props.compact} />
+            <Header spaceId={this.props.spaceId} compact={this.props.compact} index={this.props.index} />
         )
 
     renderFooter = ()=>(
@@ -83,7 +83,7 @@ export default class BookmarksItemsListing extends React.Component {
     )
 
     render() {
-        const { spaceId, items, viewHide, gridSize, activeId, selectModeEnabled, compact, color } = this.props
+        const { spaceId, items, viewHide, gridSize, activeId, selectModeEnabled, compact } = this.props
         const { isDropping, dropHandlers } = this.props
 
         //specific view
