@@ -18,7 +18,7 @@ import Document from './routes/_document'
 const { store, persistor } = withLocalReducer(localReducers)
 
 //init service-worker
-if ('serviceWorker' in navigator)
+if (process.env.NODE_ENV=='production' && 'serviceWorker' in navigator)
 	window.addEventListener('load', () => {
 		navigator.serviceWorker.register('/service-worker.js')
 	})

@@ -44,10 +44,7 @@ function* loadUser({ignore=false, reset=true, way, onSuccess, onFail}) {
 		if (reset)
 			yield put({type: 'RESET'})
 		
-		const {user, result, error, errorMessage} = yield call(Api.get, 'user');
-
-		if (!result)
-			throw new ApiError(error, errorMessage||'cant load user')
+		const { user } = yield call(Api.get, 'user');
 
 		yield put({type: USER_LOAD_SUCCESS, user, way, onSuccess})
 	} catch (error) {
@@ -60,9 +57,7 @@ function* updateUser({ ignore=false, ...action }) {
 		return
 
 	try{
-		const {user, result, error, errorMessage} = yield call(Api.put, 'user', action.user)
-		if (!result)
-			throw new ApiError(error, errorMessage || 'cant update user')
+		const { user } = yield call(Api.put, 'user', action.user)
 
 		yield put({type: USER_UPDATE_SUCCESS, user})
 	} catch (error) {
@@ -72,9 +67,7 @@ function* updateUser({ ignore=false, ...action }) {
 
 function* loginWithPassword({email, password, onSuccess, onFail}) {
 	try {
-		const {result, error, errorMessage} = yield call(Api.post, 'auth/login', {email, password});
-		if (!result)
-			throw new ApiError(error, errorMessage || 'email/password incorrect')
+		yield call(Api.post, 'auth/login', {email, password});
 
 		yield put({type: USER_REFRESH_REQ, way: 'login', onSuccess});
 	} catch (error) {
@@ -84,13 +77,8 @@ function* loginWithPassword({email, password, onSuccess, onFail}) {
 
 function* registerWithPassword({fullName, email, password, onSuccess, onFail}) {
 	try {
-		const {result, error, errorMessage} = yield call(Api.post, 'user', {fullName, email:email||'0', password});
-		if (!result)
-			throw new ApiError(error, errorMessage)
-
-		const loginTry = yield call(Api.post, 'auth/login', {email, password});
-		if (!loginTry.result)
-			throw new ApiError(loginTry.error, loginTry.errorMessage)
+		yield call(Api.post, 'user', {fullName, email:email||'0', password});
+		yield call(Api.post, 'auth/login', {email, password});
 
 		yield put({type: USER_REFRESH_REQ, way: 'register', onSuccess});
 	} catch (error) {
@@ -100,9 +88,9 @@ function* registerWithPassword({fullName, email, password, onSuccess, onFail}) {
 
 function* loginNative({params, onSuccess, onFail}) {
 	try {
-		const {auth, error, errorMessage} = yield call(Api.get, 'auth/'+params.provider+'/native'+params.token);
+		const {auth, ...etc} = yield call(Api.get, 'auth/'+params.provider+'/native'+params.token);
 		if (!auth)
-			throw new ApiError(error, errorMessage||'token incorrect')
+			throw new ApiError(etc)
 
 		yield put({type: USER_REFRESH_REQ, way: 'native', onSuccess});
 	} catch (error) {
@@ -112,9 +100,7 @@ function* loginNative({params, onSuccess, onFail}) {
 
 function* lostPassword({email, onSuccess, onFail}) {
 	try {
-		const { result, error, errorMessage} = yield call(Api.post, 'auth/email/lost', { email })
-		if (!result)
-			throw new ApiError(error, errorMessage)
+		yield call(Api.post, 'auth/email/lost', { email })
 
 		yield put({type: USER_LOST_PASSWORD_SUCCESS, onSuccess})
 	} catch (error) {
@@ -124,9 +110,9 @@ function* lostPassword({email, onSuccess, onFail}) {
 
 function* recoverPassword({token, password, onSuccess, onFail}) {
 	try {
-		const { email, error, errorMessage} = yield call(Api.post, 'auth/email/recover', { token, password })
+		const { email, ...etc } = yield call(Api.post, 'auth/email/recover', { token, password })
 		if (!email)
-			throw new ApiError(error, errorMessage||'token incorrect')
+			throw new ApiError(etc)
 
 		//login with new password
 		yield call(Api.post, 'auth/login', {email, password})
@@ -155,10 +141,7 @@ function* loadSubscription({ignore=false}) {
 		return;
 
 	try {
-		const {result, ...subscription} = yield call(Api.get, 'user/subscription');
-
-		if (!result)
-			throw new ApiError(subscription.error, subscription.errorMessage||'cant load subscription')
+		const { ...subscription } = yield call(Api.get, 'user/subscription');
 
 		yield put({type: USER_SUBSCRIPTION_LOAD_SUCCESS, subscription})
 	} catch (error) {

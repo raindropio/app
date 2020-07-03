@@ -54,7 +54,7 @@ export default function* () {
 		updateBookmarks({
 			validate: ({ tags=[] })=>{
 				if (!tags.length)
-					throw new ApiError('tags', 'no tags specified')
+					throw new ApiError({ status: 400, error: 'tags', errorMessage: 'no tags specified'})
 			},
 			set: ({ tags })=>({
 				tags
@@ -191,7 +191,7 @@ function* batchApiRequestHelper(method, body={}) {
 
 	//fail when nothing selected
 	if (!selectMode.all && !selectMode.ids.length)
-		throw new ApiError('ids', 'nothing selected')
+		throw new ApiError({ status: 400, error: 'ids', errorMessage: 'nothing selected'})
 
 	//operations should be splited by collections
 	let groupByCollection = []
@@ -219,7 +219,7 @@ function* batchApiRequestHelper(method, body={}) {
 		const query = getSpaceQuery(bookmarks, collectionId).string
 
 		//send request
-		const { result=false, error, errorMessage } = yield call(
+		yield call(
 			Api[method],
 			`raindrops/${query}${query.includes('?')?'&':'?'}dangerAll=true`,
 			{
@@ -227,9 +227,6 @@ function* batchApiRequestHelper(method, body={}) {
 				...(selectMode.all ? {} : { ids })
 			}
 		)
-
-		if (!result)
-			throw new ApiError(error, errorMessage||'cant bulk change')
 
 		changed.push(...(selectMode.all ? state.bookmarks.spaces[collectionId].ids : ids))
 	}

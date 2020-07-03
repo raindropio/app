@@ -1,19 +1,17 @@
-/*
-    Reserved codes:
-    - timeout           timeout loading
-    - fail              failed to load
-    - not_authorized
-    - not_found
-*/
 export default class ApiError extends Error {
-    constructor(code, message) {
-        if (!message)
-            switch(code){
-                case 'not_authorized': message = 'Login is required'; break
+    constructor({ status, error, errorMessage }) {
+        if (!errorMessage)
+            switch(status){
+                case 401: errorMessage = 'Login is required'; break
+                case 408: errorMessage = 'timeout'; break
+                case 400: errorMessage = 'validation failed'; break
+                case 404: errorMessage = 'not found'; break
             }
-
-        super(message)
-        this.code = code
+            
+        super(errorMessage)
+        this.code = error
+        this.error = error
+        this.status = status
         this.name = this.constructor.name
     }
 }

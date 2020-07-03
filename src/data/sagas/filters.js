@@ -1,6 +1,5 @@
 import { call, put, debounce, select } from 'redux-saga/effects'
 import Api from '../modules/api'
-import ApiError from '../modules/error'
 import { getSpaceQuery } from '../helpers/bookmarks'
 
 import { FILTERS_LOAD_REQ, FILTERS_LOAD_SUCCESS, FILTERS_LOAD_ERROR } from '../constants/filters'
@@ -36,13 +35,10 @@ function* reloadFilters(params) {
 				getSpaceQuery(state.bookmarks, spaceId) : 
 				{ string:'0' } //ignore search query for all bookmarks
 
-			const {result=false, error, errorMessage, ...items} = yield call(
+			const { result=false, status, error, errorMessage, ...items} = yield call(
 				Api.get, 
 				'filters/'+query.string+'?tagsSort='+state.config.tags_sort
 			)
-
-			if (!result)
-				throw new ApiError(error, errorMessage||'cant load filters')
 
 			yield put({
 				type: FILTERS_LOAD_SUCCESS,

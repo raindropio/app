@@ -38,9 +38,7 @@ class CollectionsItemRename extends React.PureComponent {
 
         this.props.actions.oneUpdate(this.props._id, {
             title: this.state.title
-        }, this.props.onRenameCancel, e=>{
-            this.setState({ loading: false })
-        })
+        }, this.props.onRenameCancel, this.props.onRenameCancel)
     }
 
     render() {

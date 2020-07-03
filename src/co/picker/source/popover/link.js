@@ -3,6 +3,7 @@ import t from '~t'
 import normalizeUrl from 'normalize-url'
 
 import { Layout, Label, Text } from '~co/common/form'
+import { Alert } from '~co/overlay/dialog'
 import Button from '~co/common/button'
 import Preloader from '~co/common/preloader'
 
@@ -24,6 +25,7 @@ export default class PickerSourceLink extends React.Component {
             await this.props.onLink(normalizeUrl(this.state.link, { defaultProtocol: 'https:' }))
             this.props.onClose()
         } catch (e) {
+            await Alert(`${t.s('saveError')}\n${e.message}`)
             this.setState({ status: 'error' })
         }
     }

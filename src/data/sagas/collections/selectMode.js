@@ -29,7 +29,7 @@ function* remove({ onSuccess, onFail }) {
         
         //fail when nothing selected
         if (!selectMode.ids.length)
-            throw new ApiError('ids', 'nothing selected')
+            throw new ApiError({ status: 400, error: 'ids', errorMessage: 'nothing selected'})
 
         //split by 20 items
         for(const ids of _.chunk(selectMode.ids, 20)){
@@ -69,23 +69,21 @@ function* merge({ onSuccess, onFail }) {
         
         //fail when nothing selected
         if (!selectMode.ids.length)
-            throw new ApiError('ids', 'nothing selected')
+            throw new ApiError({ status: 400, error: 'ids', errorMessage: 'nothing selected'})
 
         //find outermost collection, where we merge all other ones
         const to = findOutermost(items, selectMode.ids)
 
         //split by 20 items
         for(const ids of _.chunk(_.without(selectMode.ids, to), 20)){
-            const { result=false, error, errorMessage } = yield call(
+            const { result=false } = yield call(
                 Api.put,
                 'collections/merge',
                 { ids, to },
                 { timeout: 0 }
             )
     
-            if (!result)
-                throw new ApiError(error, errorMessage||'cant merge')
-            else
+            if (result)
                 yield put({
                     type: COLLECTION_REMOVE_SUCCESS,
                     _id: ids

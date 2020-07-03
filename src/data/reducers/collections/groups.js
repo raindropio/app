@@ -111,12 +111,12 @@ export default function(state, action) {
 				action.ignore = true
 
 				if (typeof action.onFail == 'function')
-					action.onFail(new ApiError('not_found', 'group not found'))
+					action.onFail(new ApiError({ status: 404, errorMessage: 'group not found' }))
 			} else if (group.collections.length){
 				action.ignore = true
 
 				if (typeof action.onFail == 'function')
-					action.onFail(new ApiError('fail', 'non-empty group'))
+					action.onFail(new ApiError({ errorMessage: 'non-empty group' }))
 			}
 			else
 				return state

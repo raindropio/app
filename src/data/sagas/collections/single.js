@@ -122,10 +122,7 @@ function* createCollection({obj={}, ignore=false, after, fromBlank=false, onSucc
 			}
 		}
 
-		const {item={}, result=false, error, errorMessage } = yield call(Api.post, 'collection', obj)
-
-		if (!result)
-			throw new ApiError(error, errorMessage||'cant create collection')
+		const { item={} } = yield call(Api.post, 'collection', obj)
 
 		item.new = true
 
@@ -174,10 +171,7 @@ function* updateCollection({_id=0, set={}, ignore=false, quiet=false, onSuccess,
 		return;
 
 	try{
-		const {item={}, result, error, errorMessage} = yield call(Api.put, 'collection/'+_id, set)
-
-		if (!result)
-			throw new ApiError(error, errorMessage||'cant update collection')
+		const { item={} } = yield call(Api.put, 'collection/'+_id, set)
 
 		if (!quiet)
 			yield put({
@@ -204,9 +198,7 @@ function* removeCollection({_id=0, ignore=false, onSuccess, onFail}) {
 		return;
 
 	try{
-		const {result, error, errorMessage} = yield call(Api.del, 'collection/'+_id)
-		if (!result)
-			throw new ApiError(error, errorMessage||'cant remove collection')
+		yield call(Api.del, 'collection/'+_id)
 
 		yield put({
 			type: COLLECTION_REMOVE_SUCCESS,
@@ -342,9 +334,7 @@ function* uploadCover({ _id=0, cover, ignore=false, onSuccess, onFail }) {
 	if (ignore) return
 
 	try{
-		const { item={}, result=false, error, errorMessage } = yield call(Api.upload, `collection/${_id}/cover`, { cover })
-		if (!result)
-			throw new ApiError(error, errorMessage||'cant upload collection cover')
+		const { item={} } = yield call(Api.upload, `collection/${_id}/cover`, { cover })
 
 		yield put({
 			type: COLLECTION_UPDATE_REQ,
@@ -415,9 +405,6 @@ function* reorderCollection({_id=0, ignore=false, to, after, before}) {
 		const state = yield select()
 		const collection = state.collections.getIn(['items', _id])
 
-		if (!collection)
-			throw new ApiError(collection.error, collection.errorMessage||'collection not found')
-
 		//TO
 		var mode;
 		if (to)
@@ -428,7 +415,7 @@ function* reorderCollection({_id=0, ignore=false, to, after, before}) {
 		switch(mode){
 			case 'moveToGroup':
 				if ( _.findIndex(state.collections.groups, ({_id})=>_id==to) ==-1 )
-					throw new ApiError('not_found', 'group not found')
+					throw new ApiError({ status: 404, errorMessage: 'group not found' })
 
 				yield all([
 					//make root
@@ -448,7 +435,7 @@ function* reorderCollection({_id=0, ignore=false, to, after, before}) {
 
 			case 'moveToCollection':
 				if (!collection.access.draggable)
-					throw new ApiError('fail', 'collection is not draggable')
+					throw new ApiError({ status: 403, errorMessage: 'collection is not draggable' })
 
 				yield onlyForProUsersCheck()
 
@@ -481,7 +468,7 @@ function* reorderCollection({_id=0, ignore=false, to, after, before}) {
 			case 'reorder':{
 				const target = state.collections.getIn(['items', parseInt(after||before)])||{}
 				if (target._id<=0 || !target._id)
-					throw new ApiError('not_found', 'target not found')
+					throw new ApiError({status: 404, errorMessage: 'target not found'})
 
 				let actions = []
 
@@ -514,7 +501,7 @@ function* reorderCollection({_id=0, ignore=false, to, after, before}) {
 				//Make nested children and reorder
 				else{
 					if (collection.access.draggable === false)
-						throw new ApiError('fail', 'collection is not draggable')
+						throw new ApiError({ status: 403, errorMessage: 'collection is not draggable' })
 
 					yield onlyForProUsersCheck()
 					

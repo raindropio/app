@@ -1,7 +1,6 @@
 import _ from 'lodash'
 import { call, put, takeEvery, select, throttle, all } from 'redux-saga/effects'
 import Api from '../../modules/api'
-import ApiError from '../../modules/error'
 import { getSpaceQuery } from '../../helpers/bookmarks'
 
 import {
@@ -42,12 +41,7 @@ function* loadSpace({spaceId, ignore=false}) {
 	const query = getSpaceQuery(bookmarks, spaceId)
 
 	try {
-		const {items=[], result, access, status, error, errorMessage} = yield call(Api.get, 'raindrops/'+query.string);
-		if (access === false || status === 404)
-			throw new ApiError(error, errorMessage||'bookmarks_load_noAccess')
-
-		if (!result)
-			throw new ApiError(error, errorMessage||'bookmarks_load_error')
+		const { items=[] } = yield call(Api.get, 'raindrops/'+query.string);
 
 		yield put({
 			type: (query.object.page ? SPACE_NEXTPAGE_SUCCESS : SPACE_LOAD_SUCCESS),

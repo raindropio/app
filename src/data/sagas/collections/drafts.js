@@ -21,15 +21,15 @@ function* draftLoad({_id=0, ignore=false}) {
 
 	try{
 		if (_id<=0)
-			throw new ApiError('not_found', 'cant load collection')
+			throw new ApiError({ status: 404 })
 
 		const state = yield select()
 		const cachedItem = state.collections.items[_id]
 
 		//Use cached version
-		const { item={}, result, error, errorMessage } = yield call(Api.get, 'collection/'+_id)
+		const { item={}, result, ...etc } = yield call(Api.get, 'collection/'+_id)
 		if (!result && !cachedItem)
-			throw new ApiError(error, errorMessage||'cant load collection')
+			throw new ApiError(etc)
 
 		yield put({
 			type: COLLECTION_DRAFT_LOAD_SUCCESS,

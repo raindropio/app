@@ -24,9 +24,7 @@ function* draftLoad({_id, ignore=false}) {
 		return;
 
 	try{
-		const {item={}, result=false, error, errorMessage} = yield call(Api.get, 'raindrop/'+_id)
-		if (!result)
-			throw new ApiError(error, errorMessage||'cant load bookmark')
+		const { item={} } = yield call(Api.get, 'raindrop/'+_id)
 
 		yield put({
 			type: BOOKMARK_DRAFT_LOAD_SUCCESS,
@@ -76,7 +74,7 @@ function* draftCommit({_id, onSuccess, onFail}) {
 function* draftEnsure({link, obj, config}) {
 	try{
 		if (link=='empty')
-			throw new ApiError('link', 'link is empty')
+			throw new ApiError({ status: 400, error: 'link', errorMessage: 'link is empty'})
 
 		const {id, result=false} = yield call(Api.post, 'check/url', {url: link})
 

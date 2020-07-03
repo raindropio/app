@@ -24,10 +24,10 @@ export default class HeaderAdd extends React.Component {
         this.props.onReader({ bookmark: item._id, tab: 'edit' })
     
     render() {
-        const { spaceId } = this.props
+        const { spaceId, access } = this.props
         const { show } = this.state
 
-        if (spaceId == -99) return null
+        if (spaceId == -99 || access.level < 3) return null
 
         return (
             <>

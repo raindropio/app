@@ -1,6 +1,5 @@
 import { call, put, takeEvery } from 'redux-saga/effects'
 import Api from '../../modules/api'
-import ApiError from '../../modules/error'
 import {
 	SHARING_LOAD_REQ, SHARING_LOAD_SUCCESS, SHARING_LOAD_ERROR,
 	SHARING_UPDATE_USER_REQ, SHARING_UPDATE_USER_SUCCESS, SHARING_UPDATE_USER_ERROR,
@@ -26,9 +25,7 @@ function* load({ collectionId=0, ignore=false }) {
 		return;
 
 	try{
-		const { items=[], result, error, errorMessage } = yield call(Api.get, `collection/${collectionId}/sharing`)
-		if (!result)
-			throw new ApiError(error, errorMessage || 'cant load sharing')
+		const { items=[] } = yield call(Api.get, `collection/${collectionId}/sharing`)
 
 		yield put({
 			type: SHARING_LOAD_SUCCESS,
@@ -57,9 +54,6 @@ function* sendInvites({ collectionId=0, ignore=false, emails=[], role }) {
 			emails, role
 		})
 
-		if (!res.result)
-			throw new ApiError(res.error, res.errorMessage || 'cant unshare collection')
-
 		yield put({
 			type: SHARING_SEND_INVITES_SUCCESS,
 			collectionId,
@@ -78,10 +72,7 @@ function* updateUser({ collectionId=0, ignore=false, userId, set={} }) {
 	if (ignore) return
 
 	try{
-		const { result, error, errorMessage } = yield call(Api.put, `collection/${collectionId}/sharing/${userId}`, set)
-
-		if (!result)
-			throw new ApiError(error, errorMessage || 'cant update user sharing')
+		yield call(Api.put, `collection/${collectionId}/sharing/${userId}`, set)
 
 		yield put({
 			type: SHARING_UPDATE_USER_SUCCESS,
@@ -106,10 +97,7 @@ function* removeUser({ collectionId=0, ignore=false, userId }) {
 	if (ignore) return
 
 	try{
-		const { result, error, errorMessage } = yield call(Api.del, `collection/${collectionId}/sharing/${userId}`)
-
-		if (!result)
-			throw new ApiError(error, errorMessage || 'cant remove user sharing')
+		yield call(Api.del, `collection/${collectionId}/sharing/${userId}`)
 
 		yield put({
 			type: SHARING_REMOVE_USER_SUCCESS,
@@ -135,9 +123,7 @@ function* unshare({ collectionId=0, ignore=false }) {
 		return;
 
 	try{
-		const { result, error, errorMessage } = yield call(Api.del, `collection/${collectionId}/sharing`)
-		if (!result)
-			throw new ApiError(error, errorMessage || 'cant unshare collection')
+		yield call(Api.del, `collection/${collectionId}/sharing`)
 
 		yield put({
 			type: SHARING_UNSHARE_SUCCESS,

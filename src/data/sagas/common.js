@@ -19,7 +19,7 @@ function* checkAuth(action={}) {
 	}
 
 	if (error instanceof ApiError &&
-		error.code=='not_authorized'){
+		error.status==401){
 		yield put({type: 'RESET'})
 		yield put({type: USER_NOT_AUTHORIZED})
 	}

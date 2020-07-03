@@ -37,8 +37,9 @@ class CollectionsMain extends React.Component {
 }
 
 export default connect(
-	(state, { spaceId }) => ({
-        title: collection(state, spaceId).title
-    }),
+	(state, { spaceId }) => {
+        const { title, access } = collection(state, spaceId)
+        return { title, access }
+    },
 	{ setLastCollection }
 )(CollectionsMain)

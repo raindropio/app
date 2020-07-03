@@ -1,6 +1,5 @@
 import { call, put, takeEvery } from 'redux-saga/effects'
 import Api from '../../modules/api'
-import ApiError from '../../modules/error'
 import { BOOKMARK_HTML_LOAD_REQ, BOOKMARK_HTML_LOAD_SUCCESS, BOOKMARK_HTML_LOAD_ERROR } from '../../constants/bookmarks'
 
 //Requests
@@ -14,9 +13,7 @@ function* load({_id, ignore=false}) {
 		return;
 
 	try{
-		const {item={}, result=false, error, errorMessage} = yield call(Api.get, 'raindrop/'+_id+'?html')
-		if (!result)
-			throw new ApiError(error, errorMessage||'cant load html')
+		const { item={} } = yield call(Api.get, 'raindrop/'+_id+'?html')
 
 		yield put({
 			type: BOOKMARK_HTML_LOAD_SUCCESS,

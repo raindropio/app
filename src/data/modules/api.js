@@ -109,11 +109,11 @@ function* req(url, options={}) {
 			})
 
 			if (!winner.req)
-				throw new ApiError('timeout')
+				throw new ApiError({ status: 408 })
 
 			return winner.req;
-		}catch({message=''}){
-			if (message == 'timeout')
+		}catch(e){
+			if (e && e.status && e.status == 408)
 				break;
 			else if(i < API_RETRIES-1) {
 				yield delay(100); //stop 100ms and try again
@@ -121,7 +121,7 @@ function* req(url, options={}) {
 		}
 	}
 
-	throw new ApiError('fail', 'failed to load '+finalURL)
+	throw new ApiError({ errorMessage: 'failed to load '+finalURL })
 }
 
 const fetchWrap = (url, options)=>(
@@ -130,14 +130,17 @@ const fetchWrap = (url, options)=>(
 			if (res.status >= 200 && res.status < 300)
 				return res
 			else
-				throw new ApiError('fail', 'fail_fetch_status')
+				throw new ApiError({ errorMessage: 'fail_fetch_status' })
 		})
 )
 
 const checkJSON = (json)=>{
 	if (typeof json.auth === 'boolean')
 		if (json.auth === false)
-			throw new ApiError('not_authorized')
+			throw new ApiError({ status: 401 })
+
+	if (json.error || json.errorMessage || json.status >= 300)
+		throw new ApiError(json)
 }
 
 const defaultOptions = {
