@@ -12,7 +12,6 @@
     position: sticky
     top: 0
 
-
     > *:not(:last-child):not(.space) {
         margin-right: var(--padding-small)
     }
@@ -20,11 +19,15 @@
     &[data-no-shadow] {
         box-shadow: none
     }
+
+    &[data-fancy] {
+        background: var(--background-hsl)
+    }
 }
 
 @supports (backdrop-filter: none) {
 	.header[data-fancy] {
-		background: unquote('hsla(var(--background-hsl), .85)')
+		background: unquote('linear-gradient(to bottom, var(--background-color) 30%, hsla(var(--background-hsl), .6) 100%)')
 		backdrop-filter: blur(10px)
 	}
 }
