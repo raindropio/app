@@ -25,7 +25,9 @@ export default class CollectionsGroup extends React.PureComponent {
             this.handlers.onToggleClick()
         },
 
-        onCreateNewCollectionClick: ()=>{
+        onCreateNewCollectionClick: (e)=>{
+            e.preventDefault()
+            e.stopPropagation()
             this.props.actions.addBlank(this.props._id)
         },
 

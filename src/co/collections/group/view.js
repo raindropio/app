@@ -20,8 +20,9 @@ export default class CollectionsGroupView extends React.Component {
                 active={active}
                 isDragging={isDragging}
                 isDropping={isDropping}
+                onClick={onClick}
                 onContextMenu={onContextMenu}>
-                <SectionTitle onClick={onClick}>{title}</SectionTitle>
+                <SectionTitle>{title}</SectionTitle>
 
                 <SectionActions>
                     <Button 

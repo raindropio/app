@@ -91,12 +91,13 @@ export default class SearchView extends React.PureComponent {
         const { loading, ...original } = this.props
 
         return (
-            <div className={s.input} data-active={this.state.focus}>
+            <div data-active={this.state.focus}>
                 <form onSubmit={this.onSubmit}>
                     <Text
                         ref={this._input}
                         type='text'
                         spellCheck='false'
+                        className={s.input+' '+(original.value?s.filled:'')}
                         {...original}
                         icon={loading ? <Preloader /> : <Icon name='search' />}
                         onChange={this.onInputChange}
