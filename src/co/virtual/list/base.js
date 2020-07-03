@@ -29,7 +29,7 @@ export default class VirtualListBase extends React.PureComponent {
 
     componentDidUpdate(prev) {
         if (prev.scrollToIndex != this.props.scrollToIndex)
-            this._scrollToIndex()
+            setTimeout(()=>this._scrollToIndex(), 100)
     }
 
     _scrollToIndex() {
@@ -50,15 +50,17 @@ export default class VirtualListBase extends React.PureComponent {
         const { startIndex, endIndex } = range
         this._visible = { startIndex, endIndex }
 
-        if (endIndex >= this.props.totalCount - (endIndex - startIndex)*2)
-            this.props.endReached()
+        const { totalCount, endReached, rangeChanged } = this.props
 
-        if (this.props.rangeChanged)
-            this.props.rangeChanged(range)
+        if (endReached &&
+            endIndex >= totalCount - (endIndex - startIndex)*2)
+            endReached()
+
+        rangeChanged && rangeChanged(range)
     }
 
     render() {
-        const { endReached, disableVirtualization, className='', scrollToIndex, ...etc } = this.props
+        const { disableVirtualization, className='', scrollToIndex, ...etc } = this.props
         const Component = disableVirtualization ? NonVirtualList : Virtuoso
 
         return (
@@ -66,7 +68,7 @@ export default class VirtualListBase extends React.PureComponent {
                 className={s.scrollable + ' ' + className}
                 {...etc}
                 ref={this._list}
-                rangeChanged={endReached && this.rangeChanged}
+                rangeChanged={this.rangeChanged}
                 initialTopMostItemIndex={scrollToIndex > -1 ? scrollToIndex : undefined}
             />
         )

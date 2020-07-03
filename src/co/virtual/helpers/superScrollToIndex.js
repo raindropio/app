@@ -1,14 +1,20 @@
-export default (func, start, end, pos, align)=>{
+export default (func, start, end, pos, align='')=>{
     if (!func)
         return
 
     if (pos < end && pos > start)
         return
 
-    const startGap = Math.pow(start-pos, 2)
-    const endGap = Math.pow(end-pos, 2)
-    const min = Math.min(startGap, endGap)
-    const onTop = (min == startGap)
+    if (!align) {
+        const startGap = Math.pow(start-pos, 2)
+        const endGap = Math.pow(end-pos, 2)
+        const min = Math.min(startGap, endGap)
 
-    func({ index: pos, align: align || (onTop ? 'start' : 'end') })
+        if (min == endGap)
+            align = 'start'
+        else
+            align = 'end'
+    }
+
+    func({ index: pos, align })
 }
