@@ -1,34 +1,34 @@
 :root, [data-app-size] {
-    --app-size: 1;
+    --app-base-size: 4px;
 
-    --padding-mini: calc(4px * var(--app-size));
-    --padding-small: calc(8px * var(--app-size));
-    --padding-medium: calc(16px * var(--app-size));
-    --padding-large: calc(24px * var(--app-size));
-    --border-radius: calc(3px * var(--app-size));
+    --padding-mini: var(--app-base-size);
+    --padding-small: calc(var(--app-base-size) * 2); /*8px*/
+    --padding-medium: calc(var(--app-base-size) * 4); /*16px*/
+    --padding-large: calc(var(--app-base-size) * 6); /*24px*/
+    --border-radius: var(--app-base-size); /*4px*/
 
     /* fonts */
-    --head-font-size: calc(17px * var(--app-size));
-    --title-font-size: calc(15px * var(--app-size));
-    --primary-font-size: calc(14px * var(--app-size));
-    --secondary-font-size: calc(13px * var(--app-size));
-    --tertiary-font-size: calc(11px * var(--app-size));
+    --head-font-size: calc(var(--app-base-size) * 4.25); /*17px*/
+    --title-font-size: calc(var(--app-base-size) * 3.75); /*15px*/
+    --primary-font-size: calc(var(--app-base-size) * 3.5); /*14px*/
+    --secondary-font-size: calc(var(--app-base-size) * 3.25); /*13px*/
+    --tertiary-font-size: calc(var(--app-base-size) * 3); /*12px*/
 
     /* size */
-    --icon-size: calc(20px * var(--app-size));
+    --icon-size: calc(var(--app-base-size) * 5); /*20px*/
     --shadow-height: 1px;
-    --button-height: calc(28px * var(--app-size));
-    --list-item-height: calc(32px * var(--app-size));
-    --header-height: calc(48px * var(--app-size));
+    --button-height: calc(var(--app-base-size) * 7); /*28px*/
+    --list-item-height: calc(var(--app-base-size) * 8); /*32px*/
+    --header-height: calc(var(--app-base-size) * 12); /*48px*/
 }
 
 [data-app-size='large'],
 html:global(.mobile) [data-app-size='default'] {
-    --app-size: 1.1;
+    --app-base-size: 5px;
 }
 
 html:global(.mobile) [data-app-size='large'] {
-    --app-size: 1.2;
+    --app-base-size: 6px;
 }
 
 @media 

@@ -28,7 +28,7 @@ export default class SuperFrame extends React.Component {
 		const Component = isNative ? 'webview' : 'iframe'
 
 		return (
-			<div {...etc} className={s.frame+' '+className} data-status={status}>
+			<div {...etc} className={s.frame+' '+className} data-status={status} data-theme='day'>
 				<Component 
 					tabIndex='-1' 
 					allowtransparency='false'

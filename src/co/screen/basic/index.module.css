@@ -39,7 +39,7 @@ html:global(.scrollbar-obtrusive) {
 
     ::-webkit-scrollbar {
         width: 0;
-        height: 11px;
+        height: var(--tertiary-font-size);
         will-change: width;
         background: transparent;
         transition: width .2s ease-in-out;
@@ -48,12 +48,12 @@ html:global(.scrollbar-obtrusive) {
         background: transparent;
     }
     :hover::-webkit-scrollbar, body::-webkit-scrollbar {
-        width: 11pxl
+        width: var(--tertiary-font-size)
     }
 
     ::-webkit-scrollbar-thumb {
         border: 3px solid unquote('hsla(var(--background-hsl), 0)');
-        border-radius: 11px;
+        border-radius: var(--tertiary-font-size);
         box-shadow: inset 0px 0px 0px 7px var(--shadow-color);
         transition: box-shadow .2s ease-in-out;
     }
