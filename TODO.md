@@ -52,3 +52,5 @@ Changes
     - caching
     - bug fixes
     - list cover position
+    - unified search field
+    - pwa support

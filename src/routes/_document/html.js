@@ -1,5 +1,6 @@
 import './html.module.styl'
 import React from 'react'
+import t from '~t'
 import { Helmet } from 'react-helmet'
 
 import isMobile from 'ismobilejs'
@@ -65,6 +66,12 @@ export default class DocumentHtml extends React.PureComponent {
     }
 
     render() {
-        return <Helmet><html className={this.state.className.join(' ')} /></Helmet>
+        return (
+            <Helmet>
+                <html 
+                    lang={t.currentLang}
+                    className={this.state.className.join(' ')} />
+            </Helmet>
+        )
     }
 }
