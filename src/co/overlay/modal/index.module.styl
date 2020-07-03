@@ -31,3 +31,10 @@
         height: 90%
     }
 }
+
+@supports (backdrop-filter: none) {
+	.body {
+		background: unquote('hsla(var(--background-hsl), .85)')
+		backdrop-filter: blur(10px)
+	}
+}

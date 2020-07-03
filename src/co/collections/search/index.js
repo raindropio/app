@@ -10,14 +10,18 @@ import Button from '~co/common/button'
 import Item from './item'
 
 class CollectionsSearch extends React.PureComponent {
+    static defaultProps = {
+        search: ''
+    }
+
     render() {
-        const { items, show, toggleCollectionsSearchResults } = this.props
+        const { items, show, search, toggleCollectionsSearchResults } = this.props
         if (!items.length) return null
 
         return (
             <div>
                 <Header>
-                    <Title>{t.s('found')} {t.s('collectionsCount')}</Title>
+                    <Title>{t.s('found')} {items.length} {t.s('collectionsCount')}</Title>
                     <Button onClick={toggleCollectionsSearchResults}>
                         {t.s(show ? 'hide' : 'show')}
                     </Button>
@@ -26,7 +30,7 @@ class CollectionsSearch extends React.PureComponent {
                 {show && (
                     <div className={s.items}>
                         {items.map(item=>(
-                            <Item key={item._id} {...item} />
+                            <Item key={item._id} {...item} search={search} />
                         ))}
                     </div>
                 )}

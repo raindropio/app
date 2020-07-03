@@ -5,8 +5,11 @@ import { humanNumber } from '~modules/strings'
 import { Link } from 'react-router-dom'
 import { Item, ItemTitle, ItemIcon, ItemInfo } from '~co/common/list'
 import CollectionIcon from '../item/icon'
+import SafeHtml from '~co/common/safeHtml'
 
-export default function CollectionSearchItem({ title, cover, _id, count }) {
+function CollectionSearchItem({ title, cover, _id, count, search }) {
+    let highlighted = title.replace(new RegExp(`(${search})`, 'i'), '<em>$1</em>')
+
     return (
         <Item className={s.item}>
             <ItemIcon className={s.icon}>
@@ -16,7 +19,7 @@ export default function CollectionSearchItem({ title, cover, _id, count }) {
             </ItemIcon>
 
             <ItemTitle>
-                {title}
+                <SafeHtml className={s.title}>{highlighted}</SafeHtml>
             </ItemTitle>
 
             {count ? (
@@ -31,3 +34,5 @@ export default function CollectionSearchItem({ title, cover, _id, count }) {
         </Item>
     )
 }
+
+export default React.memo(CollectionSearchItem)

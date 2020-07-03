@@ -28,7 +28,7 @@
     /* background */
     --background-hsl: 0,0%,19%;
     --sidebar-background-color: hsl(0,0%,16%);
-    --alternative-background-color: rgba(0,0,0,.25);
+    --alternative-background-color: rgba(0,0,0,.3);
     --hover-background-color: rgba(255,255,255,.1);
     --active-background-color: hsl(0,0%,26%);
     --disable-background-color: hsl(0,0%,17%);

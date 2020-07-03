@@ -1,7 +1,7 @@
 .items {
     display: grid
     grid-auto-flow: column
-    grid-auto-columns: minmax(200px, 300px)
+    grid-auto-columns: minmax(calc(var(--app-base-size) * 50), calc(var(--app-base-size) * 75)) //minmax(200, 300)
     padding-bottom: var(--padding-medium)
     overflow: auto
     scroll-snap-type: x mandatory
