@@ -1,10 +1,18 @@
 import React from 'react'
-import Preloader from '~co/common/preloader'
+import { Item } from '~co/common/list'
 
 export default function CollectionsItemsEmpty() {
     return (
-        <div className='centerContentWrap'><div className='centerContent'>
-            <Preloader/>
-        </div></div>
+        <div>
+            <Item disabled>
+                &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;
+            </Item>
+            <Item disabled>
+                &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;
+            </Item>
+            <Item disabled>
+                &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;
+            </Item>
+        </div>
     )
 }

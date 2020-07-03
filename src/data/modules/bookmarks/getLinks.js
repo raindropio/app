@@ -1,5 +1,5 @@
-import { store } from '~data'
-import { SPACE_PER_PAGE } from '~data/constants/bookmarks'
+import { store } from '../../'
+import { SPACE_PER_PAGE } from '../../constants/bookmarks'
 
 export default (spaceId, onlySelected=false, unlimited=false)=>{
     const state = store.getState()

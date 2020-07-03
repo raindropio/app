@@ -51,9 +51,11 @@ class Modal extends React.Component {
                         data-theme={theme}
                         data-app-size={appSize}>
                         <div 
-                            className={s.body+' '+className}
+                            className={s.wrap+' '+className}
                             {...etc}>
-                            {children}
+                            <div className={s.body}>
+                                {children}
+                            </div>
                         </div>
                     </div>
                 </Context.Provider>

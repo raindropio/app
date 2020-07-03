@@ -8,6 +8,7 @@ import Rename from './rename'
 import Contextmenu from './contextmenu'
 import Sharing from '../sharing'
 import ChangeIcon from '../changeIcon'
+import ProCheck from '~co/user/pro/check'
 
 export default class CollectionsItem extends React.Component {
     static defaultProps = {
@@ -100,8 +101,9 @@ export default class CollectionsItem extends React.Component {
         onSharingClose: ()=>
             this.setState({ sharing: false }),
 
-        onCreateNewChildClick: ()=>{
-            this.props.actions.addBlank(this.props.item._id, true)
+        onCreateNewChildClick: async()=>{
+            if (await ProCheck('nested'))
+                this.props.actions.addBlank(this.props.item._id, true)
         },
     
         onKeyUp: (e)=>{

@@ -75,7 +75,6 @@ export default class CollectionsTree extends React.Component {
                 multiselect={multiselect}
                 events={this.props.events}
                 actions={this.props.actions}
-                handlers={this.props.handlers}
                 //drag/drop specific
                 isDragging={isDragging}
                 isDropping={combineTargetFor?true:false}

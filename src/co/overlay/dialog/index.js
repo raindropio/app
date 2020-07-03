@@ -9,8 +9,9 @@ export async function Alert(message) {
 }
 
 //Open confirm
-export async function Confirm(message) {
-    return DialogsContainer.openDialog('confirm', { message })
+//{ description, ok, cancel }
+export async function Confirm(message, custom={}) {
+    return DialogsContainer.openDialog('confirm', { message, ...custom })
 }
 
 //Open prompt

@@ -220,6 +220,10 @@ function* addBlank({ siblingId, asChild, ignore=false }) {
 
 	const state = yield select()
 
+	//prevent creating nested collection if non pro
+	if (asChild && !state.user.current.pro)
+		asChild = false
+
 	//new item
 	const item = {
 		_id: -101,

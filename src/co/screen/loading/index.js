@@ -10,7 +10,7 @@ import Reader from '../splitview/reader'
 import Avatar from '~co/common/avatar'
 import Button from '~co/common/button'
 import { FirstAction } from '~co/common/header'
-import { Item } from '~co/common/list'
+import CollectionsEmpty from '~co/collections/items/empty'
 
 export default ()=>(
     <SplitView>
@@ -25,15 +25,7 @@ export default ()=>(
             </Header>
 
             <Content>
-                <Item disabled>
-                    &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;
-                </Item>
-                <Item disabled>
-                    &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;
-                </Item>
-                <Item disabled>
-                    &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;
-                </Item>
+                <CollectionsEmpty />
             </Content>
         </Sidebar>
 
