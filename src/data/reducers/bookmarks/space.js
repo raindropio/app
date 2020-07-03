@@ -38,7 +38,9 @@ export default function(state, action) {switch (action.type) {
 			state = state
 				.setIn(['spaces', _id], space)
 				.setIn(['spaces', _id, 'ids'], _.uniq(space.ids).slice(0, SPACE_PER_PAGE))
+				//comment out two lines below to support full restore (also remove .slice from line above)
 				.setIn(['spaces', _id, 'query', 'page'], 0)
+				.setIn(['spaces', _id, 'status', 'nextPage'], blankSpace.status.nextPage)
 		})
 
 		return state
