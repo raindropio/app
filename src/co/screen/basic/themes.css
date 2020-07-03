@@ -13,6 +13,9 @@
     --accent-hsl: 207,80%,49%;
     --accent-color: hsl(var(--accent-hsl));
 
+    /* etc */
+    --danger-color: #E52E1B;
+
     /* text colors */
     color: hsl(0,0%,10%);
     --primary-text-color: hsl(0,0%,35%);
@@ -35,6 +38,9 @@
 
     /*brand*/
     --accent-hsl: 43,80%,59%;
+
+    /* etc */
+    --danger-color: #FF6C5D;
 
     /* text colors */
     color: hsl(0,0%,90%);

@@ -1,3 +1,4 @@
+import s from './upload.module.styl'
 import React from 'react'
 import t from '~t'
 
@@ -75,10 +76,14 @@ export default class PickerSourceBaseUpload extends React.Component {
                 </Header>
 
                 <Content data-indent>
-                    {done.length} {t.s('of')} {files.length} {t.s('saved').toLowerCase()}
+                    <div className={s.title}>
+                        {done.length} {t.s('of')} {files.length} {t.s('saved').toLowerCase()}
+                    </div>
 
                     {failed.map(({name, message})=>
-                        <div key={name}><b>{name}</b> &mdash; {message||t.s('fileUploadUnable')}</div>
+                        <div key={name} className={s.failed}>
+                            <b>{name}</b> &mdash; {message||t.s('fileUploadUnable')}
+                        </div>
                     )}
                 </Content>
             </Modal>
