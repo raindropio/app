@@ -7,6 +7,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const TerserJSPlugin = require('terser-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
+const WebpackPwaManifest = require('webpack-pwa-manifest')
+const WorkboxPlugin = require('workbox-webpack-plugin')
 
 //Params
 process.env.APP_TARGET = process.env.APP_TARGET || 'default'
@@ -120,6 +122,29 @@ module.exports = {
 		new MiniCssExtractPlugin({
 			filename: '[contenthash].css',
 			chunkFilename: 'assets/[contenthash].css'
+		}),
+
+		//PWA manifest
+		new WebpackPwaManifest({
+			filename: 'manifest.webmanifest',
+			short_name: 'Raindrop.io',
+			description: 'All in one bookmark manager',
+			start_url: '/',
+			display: 'minimal-ui',
+			icons: [
+				{
+					src: path.resolve('src/assets/images/icons/icon_512.png'),
+					size: '512x512'
+				}
+			]
+		}),
+
+		//service worker
+		new WorkboxPlugin.GenerateSW({
+			// these options encourage the ServiceWorkers to get in there fast
+			// and not allow any straggling "old" SWs to hang around
+			clientsClaim: true,
+			skipWaiting: true,
 		}),
 
 		//Post plugins

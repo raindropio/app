@@ -17,6 +17,12 @@ import Document from './routes/_document'
 //init redux
 const { store, persistor } = withLocalReducer(localReducers)
 
+//init service-worker
+if ('serviceWorker' in navigator)
+	window.addEventListener('load', () => {
+		navigator.serviceWorker.register('/service-worker.js')
+	})
+
 render(
 	//add other global components in co/screen/basic
 	<Provider store={store}>
