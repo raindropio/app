@@ -17,7 +17,7 @@
     /* size */
     --icon-size: calc(var(--app-base-size) * 5); /*20px*/
     --shadow-height: 1px;
-    --button-height: calc(var(--app-base-size) * 7.5); /*30px*/
+    --button-height: calc(var(--app-base-size) * 7); /*28px*/
     --list-item-height: calc(var(--app-base-size) * 8); /*32px*/
     --header-height: calc(var(--app-base-size) * 12); /*48px*/
 }

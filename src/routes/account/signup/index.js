@@ -5,16 +5,22 @@ import t from '~t'
 
 import { Layout, Text } from '~co/common/form'
 import Button from '~co/common/button'
+import Preloader from '~co/common/preloader'
 import Header, { Title } from '~co/common/header'
 import withPage from '../_page'
 import Social from '../social'
-import Error from '../error'
+import { Error } from '~co/overlay/dialog'
 
 class AccountSignup extends React.Component {
     state = {
         fullName: '',
         email: '',
         password: ''
+    }
+
+    componentDidUpdate(prev) {
+        if (prev.error.register != this.props.error.register)
+            Error(this.props.error.register)
     }
 
     onChangeValue = (e)=>
@@ -27,7 +33,6 @@ class AccountSignup extends React.Component {
 
     render() {
         const status = this.props.status.register
-        const error = this.props.error.register
 
         return (
             <form onSubmit={this.onSubmit}>
@@ -36,9 +41,7 @@ class AccountSignup extends React.Component {
                     <Title>{t.s('startCollecting')}</Title>
                 </Header>
 
-                <Layout>
-                    {status == 'error' && <Error error={error} />}
-                    
+                <Layout>                    
                     <Text
                         type='text'
                         name='fullName'
@@ -67,13 +70,18 @@ class AccountSignup extends React.Component {
                         value={this.state.password}
                         onChange={this.onChangeValue} />
 
-                    <Button
-                        Tag='input' 
-                        type='submit'
-                        disabled={status=='loading'}
-                        variant='primary'
-                        data-block
-                        value={t.s('register')} />
+                    {status == 'loading' ? (
+                        <Button variant='flat' data-block>
+                            <Preloader />
+                        </Button>
+                    ) : (
+                        <Button
+                            Tag='input'
+                            type='submit'
+                            variant='primary'
+                            data-block
+                            value={t.s('register')} />
+                    )}
 
                     <div className={s.acceptLicence}>
                         {t.s('privacyTerms')} <a href='https://help.raindrop.io/terms' target='_blank'>{t.s('termsOfService')}</a> {t.s('und')} <a href='https://help.raindrop.io/privacy' target='_blank'>{t.s('privacyPolicy')}</a>

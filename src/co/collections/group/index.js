@@ -53,7 +53,7 @@ export default class CollectionsGroup extends React.PureComponent {
 
         onRemoveClick: ()=>{
             this.props.actions.groupRemove(this.props._id, undefined, ()=>{
-                Alert(t.s('removeGroupError'))
+                Alert(t.s('removeGroupError'), { variant: 'error' })
             })
         },
 

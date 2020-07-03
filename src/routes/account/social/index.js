@@ -1,5 +1,6 @@
 import s from './index.module.styl'
 import React from 'react'
+import _ from 'lodash'
 import t from '~t'
 import { API_ENDPOINT_URL } from '~data/constants/app'
 import environment from '~modules/environment'
@@ -29,7 +30,7 @@ export default class AccountSocialLogin extends React.Component {
     render() {
         return (
             <Layout className={s.social}>
-                <Label>{t.s('loginOrRegisterSocial')}</Label>
+                <Label>{_.capitalize(t.s('or'))} {t.s('signInSocial').toLowerCase()}</Label>
 
                 <div className={s.buttons}>
                     {['google', 'apple', 'facebook', 'twitter', 'vkontakte'].map(vendor=>(

@@ -33,78 +33,76 @@ export default class BookmarkEditForm extends React.Component {
         const saving = status == 'saving'
 
         return (
-            <div className={styles.edit}>
-                <form className={styles.form} onSubmit={this.onSubmitForm}>
-                    <Layout type='grid'>
-                        <div>
-                            <Cover {...this.props} />
-                        </div>
+            <form className={styles.form} onSubmit={this.onSubmitForm}>
+                <Layout type='grid'>
+                    <div>
+                        <Cover {...this.props} />
+                    </div>
 
-                        <div>
-                            <Text 
-                                variant='less'
-                                font='title'
-                                autoSize={true}
-                                type='text'
-                                tabIndex='5000'
-                                required={true}
-                                disabled={loading}
-                                autoComplete='off'
-                                autoFocus={autoFocus=='title'}
-                                name='title'
-                                placeholder={t.s('title')}
-                                defaultValue={title}
-                                onChange={this.onChangeField}
-                                onBlur={this.onSubmitForm} />
-
-                            <Text 
-                                variant='less'
-                                autoSize={true}
-                                multiline={true}
-                                type='text'
-                                tabIndex='5000'
-                                disabled={loading}
-                                autoComplete='off'
-                                autoFocus={autoFocus=='excerpt'}
-                                name='excerpt'
-                                maxLength='10000'
-                                defaultValue={excerpt}
-                                placeholder={t.s('description')}
-                                onChange={this.onChangeField}
-                                onBlur={this.onSubmitForm} />
-                        </div>
-
-                        <Collection 
-                            {...this.props}
-                            tabIndex='5000' />
-
-                        <Label>URL</Label>
+                    <div>
                         <Text 
+                            variant='less'
+                            font='title'
                             autoSize={true}
+                            type='text'
                             tabIndex='5000'
-                            type='url'
+                            required={true}
                             disabled={loading}
-                            name='link'
-                            value={link}
+                            autoComplete='off'
+                            autoFocus={autoFocus=='title'}
+                            name='title'
+                            placeholder={t.s('title')}
+                            defaultValue={title}
                             onChange={this.onChangeField}
                             onBlur={this.onSubmitForm} />
 
-                        {(unsaved || saving) && (
-                            <>
-                                <div />
+                        <Text 
+                            variant='less'
+                            autoSize={true}
+                            multiline={true}
+                            type='text'
+                            tabIndex='5000'
+                            disabled={loading}
+                            autoComplete='off'
+                            autoFocus={autoFocus=='excerpt'}
+                            name='excerpt'
+                            maxLength='10000'
+                            defaultValue={excerpt}
+                            placeholder={t.s('description')}
+                            onChange={this.onChangeField}
+                            onBlur={this.onSubmitForm} />
+                    </div>
 
-                                <Button
-                                    Tag='input'
-                                    variant='primary'
-                                    type='submit'
-                                    data-block
-                                    disabled={saving}
-                                    value={t.s('save') + (saving ? '…' : '')} />
-                            </>
-                        )}
-                    </Layout>
-                </form>
-            </div>
+                    <Collection 
+                        {...this.props}
+                        tabIndex='5000' />
+
+                    <Label>URL</Label>
+                    <Text 
+                        autoSize={true}
+                        tabIndex='5000'
+                        type='url'
+                        disabled={loading}
+                        name='link'
+                        value={link}
+                        onChange={this.onChangeField}
+                        onBlur={this.onSubmitForm} />
+
+                    {(unsaved || saving) && (
+                        <>
+                            <div />
+
+                            <Button
+                                Tag='input'
+                                variant='primary'
+                                type='submit'
+                                data-block
+                                disabled={saving}
+                                value={t.s('save') + (saving ? '…' : '')} />
+                        </>
+                    )}
+                </Layout>
+            </form>
         )
     }
 }

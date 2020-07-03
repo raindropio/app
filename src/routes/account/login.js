@@ -5,14 +5,20 @@ import t from '~t'
 import withPage from './_page'
 import { Layout, Text } from '~co/common/form'
 import Button from '~co/common/button'
+import Preloader from '~co/common/preloader'
 import Header, { Title } from '~co/common/header'
 import Social from './social'
-import Error from './error'
+import { Error } from '~co/overlay/dialog'
 
 class AccountLogin extends React.Component {
     state = {
         email: '',
         password: ''
+    }
+
+    componentDidUpdate(prev) {
+        if (prev.error.login != this.props.error.login)
+            Error(this.props.error.login)
     }
 
     onChangeValue = (e)=>
@@ -25,18 +31,12 @@ class AccountLogin extends React.Component {
 
     render() {
         const status = this.props.status.login
-        const error = this.props.error.login
 
         return (
             <form onSubmit={this.onSubmit}>
                 <Helmet><title>{t.s('signIn')}</title></Helmet>
-                <Header data-no-shadow>
-                    <Title>{t.s('signIn')} {t.s('toRefreshedRaindrop')}</Title>
-                </Header>
 
                 <Layout>
-                    {status == 'error' && <Error error={error} />}
-
                     <Text
                         type='email'
                         name='email'
@@ -56,13 +56,18 @@ class AccountLogin extends React.Component {
                         value={this.state.password}
                         onChange={this.onChangeValue} />
 
-                    <Button
-                        Tag='input' 
-                        type='submit'
-                        variant='primary'
-                        data-block
-                        disabled={status=='loading'}
-                        value={t.s('signIn')} />
+                    {status == 'loading' ? (
+                        <Button variant='flat' data-block>
+                            <Preloader />
+                        </Button>
+                    ) : (
+                        <Button
+                            Tag='input' 
+                            type='submit'
+                            variant='primary'
+                            data-block
+                            value={t.s('signIn')} />
+                    )}
                 </Layout>
 
                 <Social {...this.props} />

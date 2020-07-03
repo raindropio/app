@@ -17,6 +17,10 @@
     resize: none
     background: transparent
     padding: 0 var(--padding-small)
+
+    &[disabled] {
+        color: var(--disable-text-color)
+    }
 }
 
 .icon {
@@ -44,6 +48,10 @@
     &[data-focus="true"] {
         background: var(--background-color)
         box-shadow: 0 0 0 1px var(--accent-color)
+    }
+
+    &[data-disabled="true"] {
+        background: var(--disable-background-color)
     }
 }
 

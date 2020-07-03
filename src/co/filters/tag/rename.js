@@ -1,6 +1,7 @@
 import React from 'react'
 import t from '~t'
 
+import { Error } from '~co/overlay/dialog'
 import { Item, ItemTitle, ItemIcon } from '~co/common/list'
 import { Text } from '~co/common/form'
 import Icon from '~co/common/icon'
@@ -35,8 +36,9 @@ export default class FiltersTagRename extends React.PureComponent {
         //update collection
         this.setState({ loading: true })
 
-        this.props.onRename(this.state.name, this.props.onRenameCancel, ()=>{
-            this.setState({ loading: false })
+        this.props.onRename(this.state.name, this.props.onRenameCancel, e=>{
+            Error(e)
+            this.props.onRenameCancel()
         })
     }
 

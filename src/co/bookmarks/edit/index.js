@@ -1,3 +1,4 @@
+import s from './index.module.styl'
 import React from 'react'
 import t from '~t'
 import { bindActionCreators } from 'redux'
@@ -31,7 +32,7 @@ class EditBookmarkContainer extends React.Component {
 
 		if (status != prev.status || item.type != prev.item.type) {
 			if (status == 'errorSaving')
-				Alert(t.s('saveError'))
+				Alert(t.s('saveError'), { variant: 'error' })
         }
         
         if (_id != prev._id)
@@ -65,13 +66,23 @@ class EditBookmarkContainer extends React.Component {
     }
 
 	render() {
-		switch(status){
+		let content
+
+		switch(this.props.status){
 			case 'error':
-				return <Error />
+				content = <Error />;
+				break
 
 			default:
-				return <Form {...this.props} {...this.handlers} />
+				content = <Form {...this.props} {...this.handlers} />;
+				break
 		}
+
+		return (
+			<div className={s.edit}>
+				{content}
+			</div>
+		)
 	}
 }
 

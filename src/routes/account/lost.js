@@ -4,13 +4,19 @@ import t from '~t'
 
 import { Layout, Text } from '~co/common/form'
 import Button from '~co/common/button'
+import Preloader from '~co/common/preloader'
 import Header, { Title } from '~co/common/header'
 import withPage from './_page'
-import Error from './error'
+import { Error } from '~co/overlay/dialog'
 
 class AccountLost extends React.Component {
     state = {
         email: ''
+    }
+
+    componentDidUpdate(prev) {
+        if (prev.error.lost != this.props.error.lost)
+            Error(this.props.error.lost)
     }
 
     onChangeValue = (e)=>
@@ -24,7 +30,6 @@ class AccountLost extends React.Component {
 
     render() {
         const status = this.props.status.lost
-        const error = this.props.error.lost
 
         if (status == 'success')
             return (
@@ -41,8 +46,6 @@ class AccountLost extends React.Component {
                 </Header>
 
                 <Layout>
-                    {status == 'error' && <Error error={error} />}
-
                     <Text
                         type='email'
                         name='email'
@@ -53,13 +56,18 @@ class AccountLost extends React.Component {
                         value={this.state.email}
                         onChange={this.onChangeValue} />
 
-                    <Button
-                        Tag='input' 
-                        type='submit'
-                        disabled={status=='loading'}
-                        variant='primary'
-                        data-block
-                        value={t.s('recoverPassword')} />
+                    {status == 'loading' ? (
+                        <Button variant='flat' data-block>
+                            <Preloader />
+                        </Button>
+                    ) : (
+                        <Button
+                            Tag='input' 
+                            type='submit'
+                            variant='primary'
+                            data-block
+                            value={t.s('recoverPassword')} />
+                    )}
                 </Layout>
             </form>
         )

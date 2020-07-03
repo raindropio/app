@@ -139,15 +139,16 @@ html:not(:global(.blur)) {
     z-index: 1;
     opacity: 0;
     transition: opacity .1s ease-in-out;
-    left:0;top:0;
+    left:0;
+    top:0;
     background: inherit
-    width: var(--icon-size)
-    height: var(--icon-size)
+    width: var(--padding-large)
+    height: var(--padding-large)
     display: flex
     align-items: center
     justify-content: center
     border-bottom-right-radius: var(--border-radius)
-    box-shadow: 1px 1px 1px var(--shadow-color)
+    box-shadow: var(--shadow-height) var(--shadow-height) 0 var(--shadow-color)
 }
 
 .selectModeEnabled {

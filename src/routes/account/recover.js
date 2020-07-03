@@ -4,13 +4,19 @@ import t from '~t'
 
 import { Layout, Text } from '~co/common/form'
 import Button from '~co/common/button'
+import Preloader from '~co/common/preloader'
 import Header, { Title } from '~co/common/header'
 import withPage from './_page'
-import Error from './error'
+import { Error } from '~co/overlay/dialog'
 
 class AccountRecover extends React.Component {
     state = {
         password: ''
+    }
+
+    componentDidUpdate(prev) {
+        if (prev.error.recover != this.props.error.recover)
+            Error(this.props.error.recover)
     }
 
     onChangeValue = (e)=>
@@ -27,7 +33,6 @@ class AccountRecover extends React.Component {
 
     render() {
         const status = this.props.status.recover
-        const error = this.props.error.recover
 
         return (
             <form onSubmit={this.onSubmit}>
@@ -37,8 +42,6 @@ class AccountRecover extends React.Component {
                 </Header>
 
                 <Layout>
-                    {status == 'error' && <Error error={error} />}
-
                     <Text
                         type='password'
                         name='password'
@@ -47,14 +50,19 @@ class AccountRecover extends React.Component {
                         placeholder={t.s('password')}
                         value={this.state.password}
                         onChange={this.onChangeValue} />
-                
-                    <Button
-                        Tag='input' 
-                        type='submit'
-                        disabled={status=='loading'}
-                        variant='primary'
-                        data-block
-                        value={t.s('changePassword')} />
+
+                    {status == 'loading' ? (
+                        <Button variant='flat' data-block>
+                            <Preloader />
+                        </Button>
+                    ) : (
+                        <Button
+                            Tag='input' 
+                            type='submit'
+                            variant='primary'
+                            data-block
+                            value={t.s('changePassword')} />
+                        )}
                 </Layout>
             </form>
         )

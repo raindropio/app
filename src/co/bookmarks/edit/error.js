@@ -1,3 +1,5 @@
 import React from 'react'
+import t from '~t'
 
-export default ()=><b>Error</b>
+export default ()=>
+    <b>{t.s('server')}</b>

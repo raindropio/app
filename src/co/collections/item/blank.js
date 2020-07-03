@@ -3,6 +3,7 @@ import React from 'react'
 import t from '~t'
 import { withRouter } from 'react-router-dom'
 
+import { Error } from '~co/overlay/dialog'
 import { Item, ItemTitle } from '~co/common/list'
 import CollectionIcon from './icon'
 import { Text } from '~co/common/form'
@@ -48,7 +49,8 @@ class CollectionsItemBlank extends React.PureComponent {
             else
                 this.props.history.push(this.props.to.replace(this.props._id, newItem._id))
         }, e=>{
-            this.setState({ loading: false })
+            Error(e)
+            this.cancel()
         })
     }
 

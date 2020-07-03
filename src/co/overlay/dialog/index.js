@@ -1,11 +1,22 @@
 import React from 'react'
+import t from '~t'
+
 import ViewAlert from './view/alert'
 import ViewConfirm from './view/confirm'
 import ViewPrompt from './view/prompt'
 
 //Open alert
-export async function Alert(message) {
-    return DialogsContainer.openDialog('alert', { message })
+//{ variant: 'error' }
+export async function Alert(message, custom={}) {
+    return DialogsContainer.openDialog('alert', { message, ...custom })
+}
+
+//Special Alert
+export async function Error(error) {
+    return DialogsContainer.openDialog('alert', {
+        message: error.error ? t.s('server'+error.error) : error.message,
+        variant: 'error'
+    })
 }
 
 //Open confirm
