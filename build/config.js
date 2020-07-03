@@ -127,8 +127,9 @@ module.exports = {
 		//PWA manifest
 		new WebpackPwaManifest({
 			filename: 'manifest.webmanifest',
-			short_name: 'Raindrop.io',
-			description: 'All in one bookmark manager',
+			name: 'Raindrop.io',
+			short_name: 'Raindrop',
+			description: 'All in One Bookmark Manager',
 			start_url: '/',
 			display: 'minimal-ui',
 			icons: [

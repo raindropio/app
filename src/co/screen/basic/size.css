@@ -17,18 +17,18 @@
     /* size */
     --icon-size: calc(var(--app-base-size) * 5); /*20px*/
     --shadow-height: 1px;
-    --button-height: calc(var(--app-base-size) * 7); /*28px*/
+    --button-height: calc(var(--app-base-size) * 7.5); /*30px*/
     --list-item-height: calc(var(--app-base-size) * 8); /*32px*/
     --header-height: calc(var(--app-base-size) * 12); /*48px*/
 }
 
 [data-app-size='large'],
 html:global(.mobile) [data-app-size='default'] {
-    --app-base-size: 5px;
+    --app-base-size: 4.5px;
 }
 
 html:global(.mobile) [data-app-size='large'] {
-    --app-base-size: 6px;
+    --app-base-size: 5px;
 }
 
 @media 

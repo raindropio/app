@@ -33,27 +33,36 @@ export default function* () {
 	yield takeEvery(SPACE_VIEW_CONFIG, viewConfig)
 }
 
+function* getActualSpaceQuery(spaceId) {
+	const { bookmarks } = yield select()
+	const query = getSpaceQuery(bookmarks, spaceId)
+	return query
+}
+
 function* loadSpace({spaceId, ignore=false}) {
 	if (ignore)
 		return;
 
-	const { bookmarks } = yield select()
-	const query = getSpaceQuery(bookmarks, spaceId)
+	const query = yield getActualSpaceQuery(spaceId)
 
 	try {
 		const { items=[] } = yield call(Api.get, 'raindrops/'+query.string);
 
-		yield put({
-			type: (query.object.page ? SPACE_NEXTPAGE_SUCCESS : SPACE_LOAD_SUCCESS),
-			spaceId: spaceId,
-			items: items
-		});
+		//ignore outdated results
+		if (query.string == (yield getActualSpaceQuery(spaceId)).string)
+			yield put({
+				type: (query.object.page ? SPACE_NEXTPAGE_SUCCESS : SPACE_LOAD_SUCCESS),
+				spaceId: spaceId,
+				items: items
+			})
 	} catch (error) {
-		yield put({
-			type: (query.object.page ? SPACE_NEXTPAGE_ERROR : SPACE_LOAD_ERROR),
-			spaceId: spaceId,
-			error
-		});
+		//ignore outdated results
+		if (query.string == (yield getActualSpaceQuery(spaceId)).string)
+			yield put({
+				type: (query.object.page ? SPACE_NEXTPAGE_ERROR : SPACE_LOAD_ERROR),
+				spaceId: spaceId,
+				error
+			})
 	}
 }
 

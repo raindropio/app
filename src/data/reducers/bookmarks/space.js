@@ -48,11 +48,6 @@ export default function(state, action) {switch (action.type) {
 
 	//Load bookmarks
 	case SPACE_LOAD_REQ:{
-		if (!shouldLoadSpace(state, action.spaceId)){
-			action.ignore = true;
-			return state;
-		}
-
 		const query = action.query||{};
 
 		if (isQueryChanged(state, action.spaceId, query)){
@@ -63,7 +58,8 @@ export default function(state, action) {switch (action.type) {
 				.setIn(['spaces', action.spaceId, 'status', 'nextPage'], 	'noMore')
 				.setIn(['spaces', action.spaceId, 'query', 'search'], 		query.search||blankSpace.query.search)
 				.setIn(['spaces', action.spaceId, 'query', 'sort'], 		query.sort||blankSpace.query.sort)
-		}
+		} else
+			action.ignore = true
 		
 		return state
 	}
