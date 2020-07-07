@@ -22,7 +22,9 @@ class TagsMenu extends React.PureComponent {
 
     componentDidMount() {
         this.props.load(0)
-        this.props.load(this.props.collectionId)
+
+        if (this.props.collectionId)
+            this.props.load(this.props.collectionId)
     }
 
     render() {

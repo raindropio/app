@@ -13,12 +13,12 @@ export default ({ tab, ...props })=>{
 
         case 'preview':
             if (props.item.type == 'link')
-                content = <Web {...props} />
+                content = <Web key={props.item._id} {...props} />
             else
-                content = <HTML {...props} />
+                content = <HTML key={props.item._id} {...props} />
         break
 
-        case 'cache': content = <Cache {...props} />; break
+        case 'cache': content = <Cache key={props.item._id} {...props} />; break
     }
 
     return (

@@ -28,9 +28,10 @@ export default ()=>createSelector(
 
         //filter query
         (state, props, filter)=>
-            filter ? filter.toLowerCase() : ''
+            filter ? filter : ''
     ],
-    (global, suggested, collection, selected, filter)=>{
+    (global, suggested, collection, selected, _filter)=>{
+        const filter = _filter.toLowerCase().replace(/^#/,'')
         let groups = [];
         let index = -1;
 

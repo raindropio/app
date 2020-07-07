@@ -1,11 +1,12 @@
 import React from 'react'
 import t from '~t'
+import _ from 'lodash'
 
 import Downshift from 'downshift'
 import { MultiSelect } from '~co/common/select'
 import Menu from './menu'
 
-export default class TagsPicker extends React.Component {
+class TagsPicker extends React.Component {
     static defaultProps = {
         //...<input> specific
         value: [],
@@ -75,6 +76,25 @@ export default class TagsPicker extends React.Component {
                     </div>
                 )}
             </Downshift>
+        )
+    }
+}
+
+export default class TagsPickerWrap extends React.Component {
+    onChange = value =>
+        _.uniq(
+            this.props.onChange(
+                value.map(tag=>
+                    tag.trim().replace(/^#/, '')
+                )
+            )
+        )
+
+    render() {
+        return (
+            <TagsPicker 
+                {...this.props}
+                onChange={this.onChange} />
         )
     }
 }

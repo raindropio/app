@@ -1,7 +1,7 @@
 import Immutable from 'seamless-immutable'
 
 export const blankSpace = Immutable({
-	status: 	'idle',
+	status: 	'idle', //idle, loading, loaded, error
 	broken:		{ count: 0 },
 	important:	{ count: 0 },
 	notag:		{ count: 0 },

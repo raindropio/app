@@ -3,6 +3,7 @@ import React from 'react'
 import t from '~t'
 
 import { Layout, Text, Label } from '~co/common/form'
+import Preloader from '~co/common/preloader'
 import Button from '~co/common/button'
 import Cover from './cover'
 import Collection from './collection'
@@ -86,17 +87,14 @@ export default class BookmarkEditForm extends React.Component {
                         onChange={this.onChangeField}
                         onBlur={this.onSubmitForm} />
 
-                    {(unsaved || saving) && (
+                    {saving && (
                         <>
                             <div />
 
                             <Button
-                                Tag='input'
-                                variant='primary'
-                                type='submit'
-                                data-block
-                                disabled={saving}
-                                value={t.s('save') + (saving ? '…' : '')} />
+                                data-block>
+                                <Preloader />
+                            </Button>
                         </>
                     )}
                 </Layout>

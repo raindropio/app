@@ -14,17 +14,24 @@ export default function(state = initialState, action={}){switch (action.type) {
 	case REHYDRATE:{
 		const { spaces={} } = action.payload && action.payload.filters||{}
 
-		if (spaces[0])
-			state = state.setIn(['spaces', 0], spaces[0])
+		_.forEach(spaces, (space, _id)=>{
+			if (!space.status || space.status != 'loaded') return
+			state = state.setIn(['spaces', _id], space)
+		})
 
 		return state
 	}
 
 	case FILTERS_LOAD_REQ:{
+		if (state.getIn(['spaces', action.spaceId, 'status']) == 'loading'){
+			action.ignore = true
+			return state
+		}
+
 		if (!state.spaces[action.spaceId])
-			return state.setIn(['spaces', action.spaceId], blankSpace)
-		else
-			return state.setIn(['spaces', action.spaceId, 'status'],	blankSpace.status)
+			state = state.setIn(['spaces', action.spaceId], blankSpace)
+		
+		return state.setIn(['spaces', action.spaceId, 'status'],	'loading')
 	}
 	
 	case FILTERS_LOAD_SUCCESS:{

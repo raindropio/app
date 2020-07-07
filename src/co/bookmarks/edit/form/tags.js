@@ -1,7 +1,5 @@
 import React from 'react'
 import t from '~t'
-import { connect } from 'react-redux'
-import { load } from '~data/actions/tags'
 
 import { Label } from '~co/common/form'
 import TagsPicker from '~co/picker/tags'
@@ -30,7 +28,4 @@ class BookmarkEditFormTags extends React.Component {
     }
 }
 
-export default connect(
-	undefined,
-	{ load }
-)(BookmarkEditFormTags)
+export default BookmarkEditFormTags

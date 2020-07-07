@@ -42,7 +42,7 @@ class CollectionsReader extends React.Component {
                     data-theme={font_color ? font_color : undefined}
                     style={style}>
                     <Header {...this.props} {...this.handlers} />
-                    <Content key={item._id} {...this.props} />
+                    <Content {...this.props} />
                 </Reader>
             }</AccentColor>
         )
