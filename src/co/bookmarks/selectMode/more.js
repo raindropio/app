@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import * as actions from '~data/actions/bookmarks'
 
 import Popover, { Menu, MenuItem, MenuSeparator } from '~co/overlay/popover'
+import { Confirm } from '~co/overlay/dialog'
 import Button from '~co/common/button'
 import Icon from '~co/common/icon'
 
@@ -42,7 +43,19 @@ class BookmarksSelectModeMore extends React.Component {
 
     onRemoveTagsClick = (e)=>{
         e.preventDefault()
-        this.props.removeTagsSelected(this.props.spaceId, [])
+
+        const title = t.s('remove')+' '+t.s('all').toLowerCase()+' '+t.s('tags').toLowerCase()
+
+        Confirm(
+            title,
+            {
+                description: t.s('areYouSure'),
+                ok: title
+            }
+        ).then(yes=>{
+            if (yes)
+                this.props.removeTagsSelected(this.props.spaceId)
+        })
     }
 
     onReparseClick = (e)=>{
