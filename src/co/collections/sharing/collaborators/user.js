@@ -19,7 +19,7 @@ export default class CollectionSharingCollaboratorsUser extends React.PureCompon
     onRemove = e => {
         const userId = parseInt(e.currentTarget.getAttribute('data-userid'))
 
-        Confirm(t.s('areYouSure')).then(yes=>{
+        Confirm(t.s('areYouSure'), { variant: 'warning' }).then(yes=>{
             if (yes)
                 this.props.onUserUpdate(userId, { role: '' })
         })

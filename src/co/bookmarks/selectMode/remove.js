@@ -15,7 +15,7 @@ class BookmarksHeaderSelectModeRemove extends React.Component {
     onRemoveClick = (e)=>{
         e.preventDefault()
 
-        Confirm(t.s('areYouSure'))
+        Confirm(t.s('areYouSure'), { variant: 'warning' })
             .then(yes=>{
                 if (!yes) return
                 this.props.removeSelected(this.props.selectMode.spaceId)

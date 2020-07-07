@@ -50,7 +50,8 @@ class BookmarksSelectModeMore extends React.Component {
             title,
             {
                 description: t.s('areYouSure'),
-                ok: title
+                ok: title,
+                variant: 'warning'
             }
         ).then(yes=>{
             if (yes)

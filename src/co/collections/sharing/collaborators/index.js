@@ -18,7 +18,7 @@ class CollectionSharingCollaborators extends React.Component {
         },
 
         onUnshare: async()=>{
-            if (await Confirm(t.s('areYouSure')))
+            if (await Confirm(t.s('areYouSure'), { variant: 'warning' }))
                 this.props.unshare(this.props._id)
         }
     }

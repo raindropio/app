@@ -80,7 +80,7 @@ export default class CollectionsItem extends React.Component {
             this.setState({ icon: false }),
     
         onRemoveClick: async()=>{
-            if (await Confirm(t.s('areYouSure')))
+            if (await Confirm(t.s('areYouSure'), { variant: 'warning' }))
                 this.props.actions.oneRemove(this.props.item._id)
         },
     

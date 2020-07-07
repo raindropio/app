@@ -42,7 +42,7 @@ class BookmarksHeaderMore extends React.Component {
     }
 
     onRemoveClick = async()=>{
-        if (await Confirm(t.s('areYouSure')))
+        if (await Confirm(t.s('areYouSure', { variant: 'warning' })))
             this.props.oneRemove(this.props.collection._id)
     }
 

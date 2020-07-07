@@ -39,7 +39,7 @@ export default class FiltersTag extends React.PureComponent {
             this.props.actions.oneRename(this.props._id, newName, success, fail),
     
         onRemoveClick: async()=>{
-            if (await Confirm(t.s('areYouSure')))
+            if (await Confirm(t.s('areYouSure'), { variant: 'warning' }))
                 this.props.actions.oneRemove(this.props._id)
         },
     

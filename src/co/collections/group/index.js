@@ -62,7 +62,7 @@ export default class CollectionsGroup extends React.PureComponent {
         },
 
         onSortAllByTitleClick: async()=>{
-            if (await Confirm(t.s('areYouSure')))
+            if (await Confirm(t.s('areYouSure'), { variant: 'warning' }))
                 this.props.actions.reorder('title')
         },
     

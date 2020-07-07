@@ -5,7 +5,7 @@ import Modal, { Content } from '~co/overlay/modal'
 import Button from '~co/common/button'
 import { Buttons, Layout, Title } from '~co/common/form'
 
-export default function DialogConfirmView({ id, message, description, ok, cancel, sendResult }) {
+export default function DialogConfirmView({ id, message, description, ok, cancel, variant, sendResult }) {
     return (
         <Modal 
             className={s.confirm}
@@ -13,7 +13,7 @@ export default function DialogConfirmView({ id, message, description, ok, cancel
             onClose={()=>sendResult(id, false)}>
             <Content>
                 <Layout>
-                    <Title>{message}</Title>
+                    <Title>{variant=='warning'?'⚠':''} {message}</Title>
                     <div>{description}</div>
 
                     <Buttons>

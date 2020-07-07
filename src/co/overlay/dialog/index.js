@@ -20,7 +20,7 @@ export async function Error(error) {
 }
 
 //Open confirm
-//{ description, ok, cancel }
+//{ description, ok, cancel, variant }
 export async function Confirm(message, custom={}) {
     return DialogsContainer.openDialog('confirm', { message, ...custom })
 }
