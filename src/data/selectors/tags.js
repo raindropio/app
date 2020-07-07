@@ -6,6 +6,8 @@ const emptyTags = Immutable([])
 
 export const getTags = ({tags})=>(tags && tags.items)||emptyTags
 
+export const getSuggested = ({tags}, _id)=>tags.suggested[_id] ? tags.suggested[_id] : emptyTags
+
 export const makeFilteredTags = ()=>createSelector(
 	[getTags, (state, selected)=>selected],
 	(tags, selected)=>{
@@ -16,11 +18,7 @@ export const makeFilteredTags = ()=>createSelector(
 export const makeSuggestedTags = ()=>createSelector(
 	[
 		isPro,
-		({tags={}}, _id)=>{
-			if (tags.suggested[_id])
-				return tags.suggested[_id]
-			return emptyTags
-		},
+		getSuggested,
 		//get current tags of draft
 		({bookmarks={}}, _id)=>{
 			return bookmarks.getIn(['drafts', 'byId', _id, 'item', 'tags'])||emptyTags

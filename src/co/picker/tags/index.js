@@ -9,6 +9,8 @@ export default class TagsPicker extends React.Component {
     static defaultProps = {
         //...<input> specific
         value: [],
+        bookmarkId: undefined, //optional
+        collectionId: undefined, //optional
         onChange: undefined
     }
 
@@ -26,7 +28,7 @@ export default class TagsPicker extends React.Component {
             case Downshift.stateChangeTypes.clickItem:
                 return {
                     ...changes,
-                    highlightedIndex: changes.inputValue ? 0 : null,
+                    highlightedIndex: state.highlightedIndex,
                     isOpen: true,
                     inputValue: ''
                 }
@@ -43,7 +45,7 @@ export default class TagsPicker extends React.Component {
         ])
 
     render() {
-        const { value, onChange, ...etc } = this.props
+        const { value, onChange, bookmarkId, collectionId, ...etc } = this.props
 
         return (
             <Downshift
@@ -67,6 +69,8 @@ export default class TagsPicker extends React.Component {
                         <Menu 
                             selected={value}
                             inputRef={this.inputRef}
+                            bookmarkId={bookmarkId}
+                            collectionId={collectionId}
                             downshift={downshift} />
                     </div>
                 )}

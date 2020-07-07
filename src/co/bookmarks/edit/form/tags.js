@@ -12,13 +12,16 @@ class BookmarkEditFormTags extends React.Component {
     }
 
     render() {
-        const { autoFocus, item: { tags }, onSubmit } = this.props
+        const { autoFocus, item: { _id, tags, collectionId }, onSubmit } = this.props
 
         return (
             <>
                 <Label>{t.s('tags')}</Label>
                 <TagsPicker 
                     value={tags}
+                    bookmarkId={_id}
+                    collectionId={collectionId}
+                    
                     autoFocus={autoFocus=='tags'}
                     onChange={this.onChange}
                     onBlur={onSubmit} />
