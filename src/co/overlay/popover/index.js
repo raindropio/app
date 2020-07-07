@@ -111,7 +111,7 @@ class Popover extends React.Component {
             y = 10
 
         this._container.current.setAttribute('style', `--top: ${parseInt(y)}px; --left: ${parseInt(x)}px;`)
-    }, 100, { maxWait: 1000 })
+    }, 100, { maxWait: 1000, leading: true })
 
     render() {
         const { className='', children, closable, pin, dispatch, theme, appSize, innerRef, ...etc } = this.props
