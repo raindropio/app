@@ -1,5 +1,6 @@
 import s from './index.module.styl'
 import React from 'react'
+import _ from 'lodash'
 import { Portal } from 'react-portal'
 import { connect } from 'react-redux'
 import Context from './context'
@@ -49,6 +50,11 @@ class Popover extends React.Component {
         document.body.removeEventListener('mousedown', this.onBodyMouseDown)
     }
 
+    componentDidUpdate(prev) {
+        if (prev.children != this.props.children)
+            this.updatePosition()
+    }
+
     //click outside
     onBodyMouseDown = (e)=>{
         if (!this.props.closable)
@@ -72,24 +78,23 @@ class Popover extends React.Component {
         }
     }
 
-    updatePosition = ()=>{
-        if (this.initPos.x==-1) {
-            this.initPos = {}
+    updatePosition = _.debounce(()=>{
+        if (!this._container.current) return
 
-            //use current mouse position
-            this.initPos.y = _mousePos.y
-            this.initPos.x = _mousePos.x
+        this.initPos = {}
 
-            //pin to active element
-            try{
-                const { left, top, height } = this.props.pin.current.getBoundingClientRect()
-                this.initPos.y = top + height
-                this.initPos.x = left
-            }catch(e){}
-        }
+        //use current mouse position
+        this.initPos.y = _mousePos.y
+        this.initPos.x = _mousePos.x
+
+        //pin to active element
+        try{
+            const { left, top, height } = this.props.pin.current.getBoundingClientRect()
+            this.initPos.y = top + height
+            this.initPos.x = left
+        }catch(e){}
 
         let { y, x } = this.initPos
-        let height = 0
 
         //prevent showing outside of viewport
         const { innerWidth, innerHeight } = window
@@ -105,8 +110,8 @@ class Popover extends React.Component {
         if (y < 0)
             y = 10
 
-        this._container.current.setAttribute('style', `--top: ${y}px; --left: ${x}px; ${height ? `--height: ${height}px;` : ''}`)
-    }
+        this._container.current.setAttribute('style', `--top: ${parseInt(y)}px; --left: ${parseInt(x)}px;`)
+    }, 100, { maxWait: 1000 })
 
     render() {
         const { className='', children, closable, pin, dispatch, theme, appSize, innerRef, ...etc } = this.props

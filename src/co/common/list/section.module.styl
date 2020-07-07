@@ -1,7 +1,7 @@
 .section {
-    margin-top: var(--padding-mini)
-	height: var(--list-item-height)
+	height: calc(var(--list-item-height) + var(--padding-mini))
 	padding: 0 var(--padding-medium)
+    padding-top: var(--padding-mini)
 	font-size: var(--secondary-font-size)
 	color: var(--secondary-text-color)
 	display: flex
@@ -29,7 +29,6 @@
     }
 	
 	&:hover {
-		background-color: var(--hover-background-color)
 		.actions {
 			display:block
 		}
