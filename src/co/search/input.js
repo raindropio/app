@@ -4,7 +4,7 @@ import React from 'react'
 import { Text } from '~co/common/form'
 import Button from '~co/common/button'
 import Icon from '~co/common/icon'
-import Preloader from '../common/preloader'
+import Preloader from '~co/common/preloader'
 
 export default class SearchView extends React.PureComponent {
     static defaultProps = {

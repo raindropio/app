@@ -3,6 +3,10 @@
     flex-direction: row
     align-items: center
     min-height: var(--button-height)
+
+    &[data-disabled="true"] {
+        pointer-events: none
+    }
 }
 
 .text {

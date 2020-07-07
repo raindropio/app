@@ -36,7 +36,7 @@ class BookmarkEditFormCollection extends React.Component {
     }
 
     render() {
-        const { path, status, tabIndex, item: { collectionId } } = this.props
+        const { path, status, item: { collectionId } } = this.props
         const pathText = path.map((p)=>p.title).join(' / ')
 
         return (
@@ -47,7 +47,6 @@ class BookmarkEditFormCollection extends React.Component {
                     <Button 
                         ref={this.linkRef}
                         href=''
-                        tabIndex={tabIndex}
                         variant='outline'
                         disabled={status=='loading'}
                         onClick={this.onPickerClick}>

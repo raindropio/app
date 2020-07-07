@@ -139,8 +139,9 @@ const checkJSON = (json)=>{
 		if (json.auth === false)
 			throw new ApiError({ status: 401 })
 
-	if (json.error || json.errorMessage || json.status >= 300)
-		throw new ApiError(json)
+	if (!json.result)
+		if (json.error || json.errorMessage || json.status >= 300)
+			throw new ApiError(json)
 }
 
 const defaultOptions = {

@@ -6,6 +6,7 @@ import { Layout, Text, Label } from '~co/common/form'
 import Button from '~co/common/button'
 import Cover from './cover'
 import Collection from './collection'
+import Tags from './tags'
 
 export default class BookmarkEditForm extends React.Component {
     onChangeField = e=>
@@ -45,7 +46,6 @@ export default class BookmarkEditForm extends React.Component {
                             font='title'
                             autoSize={true}
                             type='text'
-                            tabIndex='5000'
                             required={true}
                             disabled={loading}
                             autoComplete='off'
@@ -61,7 +61,6 @@ export default class BookmarkEditForm extends React.Component {
                             autoSize={true}
                             multiline={true}
                             type='text'
-                            tabIndex='5000'
                             disabled={loading}
                             autoComplete='off'
                             autoFocus={autoFocus=='excerpt'}
@@ -73,14 +72,13 @@ export default class BookmarkEditForm extends React.Component {
                             onBlur={this.onSubmitForm} />
                     </div>
 
-                    <Collection 
-                        {...this.props}
-                        tabIndex='5000' />
+                    <Collection {...this.props} />
+
+                    <Tags {...this.props} />
 
                     <Label>URL</Label>
                     <Text 
                         autoSize={true}
-                        tabIndex='5000'
                         type='url'
                         disabled={loading}
                         name='link'

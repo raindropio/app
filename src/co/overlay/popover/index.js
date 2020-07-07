@@ -24,7 +24,7 @@ class Popover extends React.Component {
 
     store = {
         close: ()=>{
-            this.props.onClose()
+            this.props.onClose && this.props.onClose()
         }
     }
     
@@ -108,7 +108,10 @@ class Popover extends React.Component {
     }
 
     render() {
-        const { className='', children, closable, pin, dispatch, theme, appSize, ...etc } = this.props
+        const { className='', children, closable, pin, dispatch, theme, appSize, innerRef, ...etc } = this.props
+
+        if (innerRef)
+            innerRef(this._container)
 
         return (
             <Portal>
