@@ -58,11 +58,11 @@ class TagsPicker extends React.Component {
                     <div>
                         <MultiSelect 
                             {...downshift.getInputProps({
+                                placeholder: t.s('addTags')+'…',
                                 ...etc,
                                 ref: this.inputRef,
                                 selected: value,
                                 onSelectedChange: onChange,
-                                placeholder: t.s('addTags')+'…',
                                 icon: 'tag',
                                 onFocus: downshift.toggleMenu
                             })} />

@@ -2,7 +2,7 @@ import React from 'react'
 import t from '~t'
 
 import { Label } from '~co/common/form'
-import TagsPicker from '~co/picker/tags'
+import TagsPicker from '~co/picker/tags/field'
 
 class BookmarkEditFormTags extends React.Component {
     onChange = (tags)=>{

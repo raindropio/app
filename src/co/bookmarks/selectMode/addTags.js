@@ -1,31 +1,67 @@
 import React from 'react'
 import t from '~t'
 import { connect } from 'react-redux'
-import * as actions from '~data/actions/bookmarks'
+import { appendTagsSelected } from '~data/actions/bookmarks'
 
 import Button from '~co/common/button'
 import Icon from '~co/common/icon'
+import TagsPicker from '~co/picker/tags/modal'
 
 class BookmarksHeaderSelectMode extends React.Component {
-    onAddTagsClick = (e)=>{
-        e.preventDefault()
+    static defaultProps = {
+        selectMode: {}
+    }
+
+    state = {
+        show: false,
+        tags: []
+    }
+
+    onClick = ()=>
+        this.setState({ show: true })
+
+    onClose = () =>
+        this.setState({ show: false })
+
+    onChange = tags =>
+        this.setState({ tags })
+
+    onSubmit = () => {
+        if (this.state.tags.length)
+            this.props.appendTagsSelected(this.props.selectMode.spaceId, this.state.tags)
+        
+        this.onClose()
     }
 
     render() {
+        const { selectMode: { spaceId } } = this.props
+        const { tags, show } = this.state
+
         return (
-            <Button 
-                variant='outline'
-                title={t.s('addTags')}
-                onClick={this.onAddTagsClick}>
-                <Icon name='tag' />
-                
-                <span className='hide-on-small-body'>{t.s('addTags')}</span>
-            </Button>
+            <>
+                <Button 
+                    variant='outline'
+                    title={t.s('addTags')}
+                    onClick={this.onClick}>
+                    <Icon name='tag' />
+                    
+                    <span className='hide-on-small-body'>{t.s('addTags')}</span>
+                </Button>
+
+                {show && (
+                    <TagsPicker 
+                        value={tags}
+                        collectionId={spaceId}
+                        onChange={this.onChange}
+                        onSubmit={this.onSubmit}
+                        onClose={this.onClose} />
+                )}
+            </>
         )
     }
 }
 
 export default connect(
 	undefined,
-	actions
+	{ appendTagsSelected }
 )(BookmarksHeaderSelectMode)
