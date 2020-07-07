@@ -80,7 +80,7 @@ class Popover extends React.Component {
             this.initPos.y = _mousePos.y
             this.initPos.x = _mousePos.x
 
-            //pin to active element, if it over mouse pos
+            //pin to active element
             try{
                 const { left, top, height } = this.props.pin.current.getBoundingClientRect()
                 this.initPos.y = top + height
@@ -89,6 +89,7 @@ class Popover extends React.Component {
         }
 
         let { y, x } = this.initPos
+        let height = 0
 
         //prevent showing outside of viewport
         const { innerWidth, innerHeight } = window
@@ -99,12 +100,12 @@ class Popover extends React.Component {
         if (x < 0)
             x = 10
 
-        if (y + offsetHeight > innerHeight)
-            y = innerHeight - offsetHeight - 10
+        // if (y + offsetHeight > innerHeight)
+        //     y = innerHeight - offsetHeight - 10
         if (y < 0)
             y = 10
 
-        this._container.current.setAttribute('style', `top: ${y}px; left: ${x}px;`)
+        this._container.current.setAttribute('style', `--top: ${y}px; --left: ${x}px; ${height ? `--height: ${height}px;` : ''}`)
     }
 
     render() {

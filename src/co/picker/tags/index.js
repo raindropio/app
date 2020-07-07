@@ -63,7 +63,7 @@ export default class TagsPicker extends React.Component {
                                 onSelectedChange: onChange,
                                 placeholder: t.s('addTags')+'…',
                                 icon: 'tag',
-                                onClick: downshift.toggleMenu
+                                onFocus: downshift.toggleMenu
                             })} />
 
                         <Menu 

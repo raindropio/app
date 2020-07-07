@@ -1,4 +1,4 @@
-import { call, put, debounce, select } from 'redux-saga/effects'
+import { call, put, debounce, takeEvery, select } from 'redux-saga/effects'
 import Api from '../modules/api'
 import { getSpaceQuery } from '../helpers/bookmarks'
 
@@ -8,7 +8,7 @@ import { COLLECTION_REMOVE_SUCCESS } from '../constants/collections'
 
 //Requests
 export default function* () {
-	yield debounce(1000, [FILTERS_LOAD_REQ], reloadFilters)
+	yield takeEvery([FILTERS_LOAD_REQ], reloadFilters)
 
 	//update filters on bookmarks/collections change
 	//with delay, to give server a time to recalculate them

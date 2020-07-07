@@ -55,7 +55,7 @@ class TagsMenu extends React.PureComponent {
                                 })}
                                 active={highlightedIndex === item.index}>
                                 <ItemTitle>{item._id}</ItemTitle>
-                                <ItemInfo>{item.count}</ItemInfo>
+                                {item.count > 0 && (<ItemInfo>{item.count}</ItemInfo>)}
                             </Item>
                         ))}
                     </div>

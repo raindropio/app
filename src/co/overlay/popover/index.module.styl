@@ -3,10 +3,13 @@
 	box-shadow: 0px 0px 0px var(--shadow-height) var(--shadow-color), 0px 20px 50px 0px rgba(0,0,0,.1);
 	border-radius: 2px;
 	position: fixed;
-	max-width: 90%
-	max-height: 90%
 	overflow-y: auto
 	overflow-y: overlay
+
+	top: var(--top, 10)
+	left: var(--left, 10)
+	max-width: calc( 100vw - var(--left) - 10px )
+	max-height: calc( 100vh - var(--top) - 10px )
 }
 
 .body {
