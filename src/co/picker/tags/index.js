@@ -1,63 +1,76 @@
 import React from 'react'
 import t from '~t'
+
 import Downshift from 'downshift'
 import { MultiSelect } from '~co/common/select'
+import Menu from './menu'
 
-class TagsPicker extends React.Component {
+export default class TagsPicker extends React.Component {
     static defaultProps = {
         //...<input> specific
         value: [],
         onChange: undefined
     }
 
-    input = React.createRef()
+    inputRef = React.createRef()
 
     stateReducer = (state, changes) => {
         switch (changes.type) {
+            case Downshift.stateChangeTypes.changeInput:
+                return {
+                    ...changes,
+                    highlightedIndex: changes.inputValue ? 0 : null
+                }
+
             case Downshift.stateChangeTypes.keyDownEnter:
             case Downshift.stateChangeTypes.clickItem:
                 return {
                     ...changes,
-                    highlightedIndex: state.highlightedIndex,
+                    highlightedIndex: changes.inputValue ? 0 : null,
                     isOpen: true,
-                    inputValue: '',
+                    inputValue: ''
                 }
+
             default:
                 return changes
         }
     }
 
-    optionToString = (option={}) => option && option.value
-
-    onSelect = selection=>{
-        this.props.onChange([...this.props.value, selection.value])
-    }
+    onSelect = item =>
+        this.props.onChange([
+            ...this.props.value,
+            Menu.itemToString(item)
+        ])
 
     render() {
         const { value, onChange, ...etc } = this.props
 
         return (
             <Downshift
-                stateReducer={this.stateReducer}
                 onChange={this.onSelect}
-                itemToString={this.optionToString}
+                itemToString={Menu.itemToString}
+                stateReducer={this.stateReducer}
                 selectedItem={null}>
                 {downshift=>(
                     <div>
                         <MultiSelect 
                             {...downshift.getInputProps({
                                 ...etc,
-                                ref: this.input,
+                                ref: this.inputRef,
                                 selected: value,
                                 onSelectedChange: onChange,
                                 placeholder: t.s('addTags')+'…',
-                                icon: 'tag'
+                                icon: 'tag',
+                                onClick: downshift.toggleMenu
                             })} />
+
+                        <Menu 
+                            selected={value}
+                            inputRef={this.inputRef}
+                            downshift={downshift} />
                     </div>
                 )}
             </Downshift>
         )
     }
 }
-
-export default TagsPicker

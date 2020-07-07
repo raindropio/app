@@ -14,25 +14,35 @@ class MultiSelectInner extends React.PureComponent {
         focused: false
     }
 
+    onAddToken = e => {
+        const value = (e.target.value||'').trim()
+        if (!value) return
+
+        if (!this.props.selected.includes(value)){
+            e.preventDefault()
+            this.props.onSelectedChange([...this.props.selected, value])
+        }
+        e.target.value = ''
+        this.props.onChange && this.props.onChange(e)
+    }
+
     onInputKeyDown = e => {
         const value = (e.target.value||'').trim()
 
         //remove
-        if (e.key === 'Backspace' && !value){
-            e.preventDefault()
+        if (e.key === 'Backspace' && !value)
             this.props.onSelectedChange(this.props.selected.slice(0, -1))
-        }
         //add
-        else if (e.key === 'Enter' && value){
-            if (!this.props.selected.includes(value)){
-                e.preventDefault()
-                this.props.onSelectedChange([...this.props.selected, value])
-            }
-            e.target.value = ''
-            this.props.onChange && this.props.onChange(e)
+        else if (e.key === 'Enter' && value)
+            this.onAddToken(e)
+        //add on comma
+        else if (e.key === ',' && value.length>1){
+            e.target.value = e.target.value.replace(/,/gi, '')
+            this.onAddToken(e)
         }
+
         //default
-        else if (this.props.onKeyDown)
+        if (this.props.onKeyDown)
             this.props.onKeyDown(e)
     }
 
@@ -42,6 +52,8 @@ class MultiSelectInner extends React.PureComponent {
     }
 
     onInputBlur = e => {
+        this.onAddToken(e)
+
         if (this._preventBlur) return
         this.setState({ focused: false })
         this.props.onBlur && this.props.onBlur(e)
@@ -97,7 +109,8 @@ class MultiSelectInner extends React.PureComponent {
                     ref={forwardedRef}
                     onFocus={this.onInputFocus}
                     onBlur={this.onInputBlur}
-                    onKeyDown={this.onInputKeyDown} />
+                    onKeyDown={this.onInputKeyDown} 
+                    />
             </div>
         )
     }
