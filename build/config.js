@@ -8,7 +8,7 @@ const TerserJSPlugin = require('terser-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const WebpackPwaManifest = require('webpack-pwa-manifest')
-const WorkboxPlugin = require('workbox-webpack-plugin')
+const { InjectManifest } = require('workbox-webpack-plugin')
 
 //Params
 process.env.APP_TARGET = process.env.APP_TARGET || 'default'
@@ -143,9 +143,11 @@ module.exports = {
 		//Post plugins
 		...(isProd ? [
 			//service worker
-			new WorkboxPlugin.GenerateSW({
-				swSrc: './src/modules/sw/src-sw.js',
-				swDest: 'sw.js'
+			new InjectManifest({
+				swSrc: '../src/modules/sw/src-sw.js',
+				swDest: 'sw.js',
+				// clientsClaim: true,
+				// skipWaiting: true
 			})
 		] : []),
 	],
