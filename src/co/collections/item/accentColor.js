@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { makeCollection } from '~data/selectors/collections'
+import HexToHsl from '~modules/format/color/hextToHsl'
 
 const emptyObj = {}
 
@@ -18,5 +19,11 @@ export default connect(
         }
     }
 )(function CollectionAccentColor({ color, theme, children }) {
-    return children(theme=='night' ? emptyObj : { '--accent-color': color })
+    let hsl = ''
+    try{ hsl = HexToHsl(color) }catch(e){}
+
+    return children(theme=='night' ? emptyObj : {
+        '--accent-color': color,
+        '--accent-hsl': hsl
+    })
 })

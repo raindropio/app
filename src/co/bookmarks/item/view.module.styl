@@ -16,10 +16,18 @@
         .select, .actions {
             opacity: 1;
         }
+
+        .permalink {
+            background: var(--hover-background-color)
+        }
     }
     
-    &.active, &.checked {
+    &.active {
         --background-color: var(--active-background-color);
+    }
+
+    &.checked .permalink {
+        background-color: unquote('hsla(var(--accent-hsl), .1)');
     }
 
     &.active, &.isDragging {
@@ -36,8 +44,10 @@
 
 //About
 .about {
+    flex: 1
     display: grid
     grid-auto-flow: row
+    align-content: flex-start
     gap: var(--padding-mini)
 
     em {
@@ -79,6 +89,7 @@
         color: var(--secondary-text-color)
         font-size: var(--secondary-font-size)
         
+        align-self: flex-end
         display: flex
         flex-direction: row
         flex-wrap: wrap
@@ -140,7 +151,7 @@ html:not(:global(.blur)) {
     position: absolute;
     z-index: 1;
     opacity: 0;
-    transition: opacity .1s ease-in-out;
+    //transition: opacity .1s ease-in-out;
     left:0;
     top:0;
     background: inherit
@@ -173,7 +184,7 @@ html:not(:global(.blur)) {
     gap: var(--padding-small)
     justify-content: start
     opacity: 0
-    transition: opacity .1s linear
+    //transition: opacity .1s linear
 }
 
 //Other
@@ -187,7 +198,7 @@ html:not(:global(.blur)) {
     grid-template-columns: auto 1fr
     gap: var(--padding-medium)
     padding: var(--padding-medium)
-    
+
     &:before {
         content: ''
         position: absolute
@@ -218,15 +229,12 @@ html:not(:global(.blur)) {
         padding: calc(var(--padding-medium) - var(--padding-mini))
     }
 
-    &:before {
-        content: ''
-        position: absolute
-        z-index: 2
-        left: 0
-        top: 0
-        right: 0
-        bottom: 0
-        pointer-events: none
+    .select {
+        border-top-left-radius: var(--border-radius)
+        box-shadow: inset 0 0 0 var(--shadow-height) var(--shadow-color)
+    }
+
+    .permalink {
         box-shadow: inset 0 0 0 var(--shadow-height) var(--shadow-color)
         border-radius: var(--border-radius)
     }

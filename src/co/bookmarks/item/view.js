@@ -111,6 +111,7 @@ export default class BookmarkItemView extends React.PureComponent {
                 ) : null}
 
                 <SuperLink
+                    className={s.permalink}
                     href={link}
 
                     active={active}
