@@ -1,12 +1,16 @@
 import Immutable from 'seamless-immutable'
 import items from './items'
+import suggested from './suggested'
 import single from './single'
-import { blankItems } from '../../helpers/tags'
 
 export default function(state = initialState, action={}){
 	//Items
 	const caseItems = items(state,action);
 	if (caseItems) state = caseItems;
+
+	//suggested
+	const caseSuggested = suggested(state,action);
+	if (caseSuggested) state = caseSuggested;
 
 	//Single
 	const caseSingle = single(state,action);
@@ -23,7 +27,6 @@ export default function(state = initialState, action={}){
 }
 
 const initialState = Immutable({
-	status: 'idle',
-	items: blankItems,
+	spaces: {},
 	suggested: {}
 })

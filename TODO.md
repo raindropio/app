@@ -33,7 +33,8 @@ Translation
 
 Changes
 - data
-    - filters reducer structure
+    - filters reducer structure and selectors
+    - tags reducer structure and selectors
     - bookmarks search now is string, not array!
     - bookmarks.importantSelected action arguments changed
     - test upload files!

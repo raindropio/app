@@ -3,57 +3,20 @@ import _ from 'lodash-es'
 import Api from '../../modules/api'
 
 import {
-	TAGS_LOAD_REQ, TAGS_LOAD_SUCCESS, TAGS_LOAD_ERROR,
 	TAGS_SUGGESTED_LOAD_SUCCESS, TAGS_SUGGESTED_LOAD_ERROR,
 	TAGS_REORDER,
 } from '../../constants/tags'
 
-import {
-	BOOKMARK_DRAFT_LOAD_REQ, BOOKMARK_DRAFT_LOAD_SUCCESS,
-	BOOKMARK_UPDATE_SUCCESS, BOOKMARK_REMOVE_SUCCESS
-} from '../../constants/bookmarks'
-
-import { COLLECTION_REMOVE_SUCCESS } from '../../constants/collections'
+import { BOOKMARK_DRAFT_LOAD_SUCCESS } from '../../constants/bookmarks'
 import { USER_UPDATE_REQ } from '../../constants/user'
 
 //Requests
 export default function* () {
-	//Reload Tags
-	yield takeLatest([TAGS_LOAD_REQ, BOOKMARK_DRAFT_LOAD_REQ], reloadTags, {force: false})
-	yield debounce(1000, [
-		BOOKMARK_UPDATE_SUCCESS,
-		BOOKMARK_REMOVE_SUCCESS,
-		COLLECTION_REMOVE_SUCCESS
-	], reloadTags, {force: true})
-
 	//Load Suggested tags for bookmark
 	yield takeEvery(BOOKMARK_DRAFT_LOAD_SUCCESS, loadSuggestedTags)
 
 	//Reorder persist
 	yield takeLatest([TAGS_REORDER], reorder)
-}
-
-function* reloadTags({force=false}, {ignore=false}) {
-	if (ignore)
-		return;
-
-	const state = yield select()
-	if ((state.tags.status=='loaded')&&(!force))
-		return;
-
-	try {
-		const {items=[]} = yield call(Api.get, 'tags?tagsSort='+state.config.tags_sort)
-
-		yield put({
-			type: TAGS_LOAD_SUCCESS,
-			items
-		});
-	} catch (error) {
-		yield put({
-			type: TAGS_LOAD_ERROR,
-			error
-		});
-	}
 }
 
 function* loadSuggestedTags({_id, item, ignore=false, dontLoadSuggestedTags=false}) {
@@ -67,19 +30,19 @@ function* loadSuggestedTags({_id, item, ignore=false, dontLoadSuggestedTags=fals
 			call(Api.get, 'parse?url='+encodeURIComponent(item.link), {cache: 'force-cache'})
 		])
 
-		var items = []
+		var tags = []
 
 		if (keywords.result)
-			items = items.concat(keywords.tags||[])
+			tags = tags.concat(keywords.tags||[])
 
 		if (parsed.result)
 			if (parsed.item.meta)
-				items = items.concat(parsed.item.meta.tags||[])
+				tags = tags.concat(parsed.item.meta.tags||[])
 
 		yield put({
 			type: TAGS_SUGGESTED_LOAD_SUCCESS,
 			_id,
-			items
+			tags
 		});
 	} catch (error) {
 		yield put({

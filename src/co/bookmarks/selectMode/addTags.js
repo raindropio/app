@@ -51,7 +51,7 @@ class BookmarksHeaderSelectMode extends React.Component {
                 {show && (
                     <TagsPicker 
                         value={tags}
-                        collectionId={spaceId}
+                        spaceId={spaceId}
                         onChange={this.onChange}
                         onSubmit={this.onSubmit}
                         onClose={this.onClose} />

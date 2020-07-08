@@ -24,7 +24,7 @@ class BookmarkEditFormTags extends React.Component {
                 <div>
                     <TagsPicker 
                         value={tags}
-                        collectionId={collectionId}
+                        spaceId={collectionId}
                         
                         autoFocus={autoFocus=='tags'}
                         onChange={this.onChange}

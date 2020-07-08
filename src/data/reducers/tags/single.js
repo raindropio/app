@@ -1,3 +1,5 @@
+import _ from 'lodash'
+import { normalizeTag } from '../../helpers/tags'
 import {
 	TAG_RENAME_SUCCESS, TAG_RENAME_ERROR,
 	TAG_REMOVE_SUCCESS, TAG_REMOVE_ERROR
@@ -19,12 +21,18 @@ export default function(state, action) {
 			if (typeof action.onSuccess == 'function')
 				action.onSuccess()
 
-			state = state.set('items', state.items.map((item)=>{
-				if (item.name==action.tagName)
-					return item.set('name', action.newName)
-				return item
-			}))
-
+			_.forEach(state.spaces, (space, spaceId)=>{
+				const path=['spaces', spaceId, 'tags']
+	
+				state = state.setIn(path, state.getIn(path).map((item)=>{
+					if (item._id==action.tagName)
+						return normalizeTag(
+							item.set('_id', action.newName)
+						)
+					return item
+				}))
+			})
+	
 			return state
 		}
 
@@ -33,8 +41,12 @@ export default function(state, action) {
 			if (typeof action.onSuccess == 'function')
 				action.onSuccess()
 
-			state = state.set('items', state.items.filter((item)=>item.name!=action.tagName))
-
+			_.forEach(state.spaces, (space, spaceId)=>{
+				const path=['spaces', spaceId, 'tags']
+	
+				state = state.setIn(path, state.getIn(path).filter((item)=>item._id!=action.tagName))
+			})
+	
 			return state
 		}
 	}

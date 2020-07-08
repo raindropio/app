@@ -1,14 +1,15 @@
-import { call, put, debounce, takeEvery, select } from 'redux-saga/effects'
+import { call, put, debounce, takeEvery, select, all } from 'redux-saga/effects'
 import Api from '../modules/api'
 import { getSpaceQuery } from '../helpers/bookmarks'
 
 import { FILTERS_LOAD_REQ, FILTERS_LOAD_SUCCESS, FILTERS_LOAD_ERROR } from '../constants/filters'
+import { TAGS_LOAD_SUCCESS, TAGS_LOAD_ERROR } from '../constants/tags'
 import { BOOKMARK_CREATE_SUCCESS, BOOKMARK_UPDATE_SUCCESS, BOOKMARK_REMOVE_SUCCESS } from '../constants/bookmarks'
 import { COLLECTION_REMOVE_SUCCESS } from '../constants/collections'
 
 //Requests
 export default function* () {
-	yield takeEvery([FILTERS_LOAD_REQ], reloadFilters)
+	yield takeEvery([ FILTERS_LOAD_REQ ], reloadFilters)
 
 	//update filters on bookmarks/collections change
 	//with delay, to give server a time to recalculate them
@@ -31,26 +32,38 @@ function* reloadFilters(params) {
 		if (parseInt(spaceId) && !state.bookmarks.spaces[spaceId]) continue
 
 		try {
-			const query = parseInt(spaceId) ? 
-				getSpaceQuery(state.bookmarks, spaceId) : 
-				{ string:'0' } //ignore search query for all bookmarks
+			const query = getSpaceQuery(state.bookmarks, spaceId)
 
-			const { result=false, status, error, errorMessage, ...items} = yield call(
+			const { tags, ...items } = yield call(
 				Api.get, 
 				'filters/'+query.string+'?tagsSort='+state.config.tags_sort
 			)
 
-			yield put({
-				type: FILTERS_LOAD_SUCCESS,
-				spaceId,
-				...items
-			});
+			yield all([
+				put({
+					type: FILTERS_LOAD_SUCCESS,
+					spaceId,
+					items
+				}),
+				put({
+					type: TAGS_LOAD_SUCCESS,
+					spaceId,
+					tags
+				})
+			])
 		} catch (error) {
-			yield put({
-				type: FILTERS_LOAD_ERROR,
-				spaceId,
-				error
-			});
+			yield all([
+				put({
+					type: FILTERS_LOAD_ERROR,
+					spaceId,
+					error
+				}),
+				put({
+					type: TAGS_LOAD_ERROR,
+					spaceId,
+					error
+				})
+			])
 		}
 	}
 }

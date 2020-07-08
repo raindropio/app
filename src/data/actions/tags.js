@@ -1,14 +1,9 @@
 import wrapFunc from '../utils/wrapFunc'
-import { 
-	TAGS_LOAD_REQ,
+import {
 	TAG_RENAME_REQ,
 	TAG_REMOVE_REQ,
 	TAGS_REORDER
 } from '../constants/tags'
-
-export const load = ()=>({
-	type: TAGS_LOAD_REQ
-})
 
 export const oneRemove = (tagName, onSuccess, onFail)=>({
 	type: TAG_REMOVE_REQ,

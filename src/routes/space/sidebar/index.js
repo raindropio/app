@@ -6,7 +6,7 @@ import Icon from '~co/common/icon'
 import { FirstAction } from '~co/common/header'
 import Sidebar, { Header, Content } from '~co/screen/splitview/sidebar'
 import Collections from '~co/collections/items'
-import Filters from '~co/filters/items/custom'
+import Filters from '~co/filters/custom'
 import Profile from './profile'
 
 export default class CollectionsSidebar extends React.Component {

@@ -71,12 +71,10 @@ class SearchMenu extends React.PureComponent {
 }
 
 export default connect(
-    () => {
-        //const getFilters = makeSidebarFilters()
-    
+    () => {    
         return (state, { spaceId })=>{    
             return {
-                data: []//getFilters(state, spaceId),
+                data: []
             }
         }
     },
