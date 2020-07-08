@@ -9,7 +9,6 @@ import { Item, ItemTitle, ItemInfo, Section, SectionTitle } from '~co/common/lis
 
 class TagsMenu extends React.PureComponent {
     static defaultProps = {
-        bookmarkId: undefined, //optional
         collectionId: undefined, //optional
 
         inputRef: undefined,

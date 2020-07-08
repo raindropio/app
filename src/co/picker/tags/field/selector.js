@@ -1,11 +1,10 @@
 import { createSelector } from 'reselect'
 import { getFilters } from '~data/selectors/filters'
-import { getSuggested } from '~data/selectors/tags'
 
 const emptyArray = []
 
 /*
-    (state, { bookmarkId, collectionId, selected=[] }, filter) ->
+    (state, { collectionId, selected=[] }, filter) ->
     [ { group, items: [ {_id, count, index} ] } ]
 */
 export default ()=>createSelector(
@@ -13,10 +12,6 @@ export default ()=>createSelector(
         //global
         state=>
             getFilters(state, 0).tags,
-
-        //suggested
-        (state, { bookmarkId })=>
-            getSuggested(state, bookmarkId),
 
         //from collection
         (state, { collectionId })=>
@@ -30,13 +25,12 @@ export default ()=>createSelector(
         (state, props, filter)=>
             filter ? filter : ''
     ],
-    (global, suggested, collection, selected, _filter)=>{
+    (global, collection, selected, _filter)=>{
         const filter = _filter.toLowerCase().replace(/^#/,'')
         let groups = [];
         let index = -1;
 
         [
-            ['suggested', suggested.map(({ name, ...tag })=>({ ...tag, _id: name }))],
             ['collection', collection],
             ['all', global, true]
         ].forEach(([ group, dirty, globals=false ])=>{

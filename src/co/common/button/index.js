@@ -1,7 +1,7 @@
 import s from './index.module.styl'
 import React from 'react'
 
-function ButtonInner({ Tag='div', className='', variant, forwardedRef, navigate, ...etc }) {
+function ButtonInner({ Tag='div', className='', variant, size, forwardedRef, navigate, ...etc }) {
     if (etc.href)
         Tag = 'a'
 
@@ -11,6 +11,7 @@ function ButtonInner({ Tag='div', className='', variant, forwardedRef, navigate,
             ref={forwardedRef}
             className={s.button+' '+className}
             data-variant={variant||'default'}
+            data-size={size||'default'}
             {...etc} />
     )
 }
