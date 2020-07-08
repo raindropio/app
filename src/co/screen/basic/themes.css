@@ -23,7 +23,7 @@
     --disable-text-color: rgba(0,0,0,.3);
 
     /* shadows */
-    --shadow-color: rgba(0,0,0,.2);
+    --shadow-color: rgba(0,0,0,.15);
     --shadow-light-color: rgba(0,0,0,.12);
 }
 

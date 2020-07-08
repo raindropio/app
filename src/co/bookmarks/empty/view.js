@@ -3,7 +3,6 @@ import React from 'react'
 import t from '~t'
 
 import { Link } from 'react-router-dom'
-import SuperImg from '~co/common/superImg'
 import Icon from '~co/common/icon'
 
 export default class BookmarksEmptyView extends React.PureComponent {
@@ -19,6 +18,8 @@ export default class BookmarksEmptyView extends React.PureComponent {
     render() {
         const { status, spaceId, searchEmpty, compact } = this.props
         let content = null
+
+        if (spaceId == -101) return null
 
         switch(status.main) {
             case 'empty':{

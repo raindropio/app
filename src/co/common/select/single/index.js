@@ -59,7 +59,10 @@ export default class Select extends React.Component {
             child.props &&
             this.props.value != child.props.value)
             return null
-
+        
+        if (child.type == 'option')
+            return {...child, type: 'span'}
+            
         return child
     }
 
