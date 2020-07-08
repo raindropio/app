@@ -5,7 +5,10 @@ import Bookmarks from '~co/bookmarks'
 export default class CollectionsMainContent extends React.Component {
     events = {
         onTagClick: (tagName)=>{
-            this.props.onSearch('#'+tagName, 'append')
+            this.props.onSearch(
+                tagName.includes(' ') ? `"#${tagName}"` : `#${tagName}`,
+                'append'
+            )
         },
 
         onItemClick: (item)=>{

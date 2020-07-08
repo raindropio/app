@@ -56,3 +56,4 @@ Changes
     - pwa support
     - thumbnail optimized for transfer and speed
     - tags autocomplete shows tags from shared collection too
+    - multiline description

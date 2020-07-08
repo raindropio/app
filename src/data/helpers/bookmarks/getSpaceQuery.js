@@ -3,7 +3,8 @@ import {SPACE_PER_PAGE} from '../../constants/bookmarks'
 import _ from 'lodash-es'
 
 const rules = [
-    { regex: /(#)([^#]*),|$/gmi, override_key: 'tag' }, //if space /(#)([^\s#]*)/gmi
+	{ regex: /("#)([^#]*)"/gmi, override_key: 'tag' },
+    { regex: /(#)([^\s#]*)/gmi, override_key: 'tag' }, //if space /(#)([^\s#]*)/gmi
     { regex: /(\w+):([a-z0-9]+)/gmi },
 ]
 
