@@ -16,6 +16,7 @@ class Popover extends React.Component {
         pin: undefined,         //react ref
         closable: true,
         hidden: false,
+        scaleDown: false,
         onClose: undefined      //func, required
     }
 
@@ -95,22 +96,26 @@ class Popover extends React.Component {
         }catch(e){}
 
         let { y, x } = this.initPos
+        let maxHeight = ''
 
         //prevent showing outside of viewport
         const { innerWidth, innerHeight } = window
         const { offsetWidth, offsetHeight } = this._container.current
 
         if (x + offsetWidth > innerWidth)
-            x = innerWidth - offsetWidth - 10
+            x = innerWidth - offsetWidth - 16
         if (x < 0)
-            x = 10
+            x = 16
 
-        // if (y + offsetHeight > innerHeight)
-        //     y = innerHeight - offsetHeight - 10
+        if (this.props.scaleDown)
+            maxHeight = 'calc( 100vh - var(--top) - var(--padding-medium) )'
+        else if (y + offsetHeight > innerHeight)
+            y = innerHeight - offsetHeight - 16
+
         if (y < 0)
-            y = 10
+            y = 16
 
-        this._container.current.setAttribute('style', `--top: ${parseInt(y)}px; --left: ${parseInt(x)}px;`)
+        this._container.current.setAttribute('style', `--top: ${parseInt(y)}px; --left: ${parseInt(x)}px; ${maxHeight?`--maxHeight: ${maxHeight}`:''}`)
     }, 100, { maxWait: 1000, leading: true })
 
     render() {

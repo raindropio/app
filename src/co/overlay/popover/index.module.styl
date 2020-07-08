@@ -13,10 +13,10 @@
 	overflow-y: auto
 	overflow-y: overlay
 
-	top: var(--top, 10)
-	left: var(--left, 10)
-	max-width: calc( 100vw - var(--left) - 10px )
-	max-height: calc( 100vh - var(--top) - 10px )
+	top: var(--top, var(--padding-medium))
+	left: var(--left, var(--padding-medium))
+	max-width: var(--maxWidth, 90vw)
+	max-height: var(--maxHeight, 90vh)
 }
 
 .body {

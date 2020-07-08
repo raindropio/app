@@ -40,6 +40,7 @@ class TagsMenu extends React.PureComponent {
         return (
             <Popover 
                 pin={inputRef}
+                scaleDown={true}
                 {...getMenuProps({ refKey: 'innerRef' })}>
                 {groups.map(({ items, group })=>(
                     <div key={group}>

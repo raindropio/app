@@ -54,3 +54,5 @@ Changes
     - list cover position
     - unified search field
     - pwa support
+    - thumbnail optimized for transfer and speed
+    - tags autocomplete shows tags from shared collection too
