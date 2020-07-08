@@ -25,7 +25,7 @@ class BookmarksHeader extends React.Component {
         if (!title) return null
 
         return (
-            <Header data-fancy>
+            <Header data-solid>
                 <Back {...this.props} />
                 <Icon {...this.props} />
 

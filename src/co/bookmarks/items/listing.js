@@ -109,6 +109,7 @@ export default class BookmarksItemsListing extends React.Component {
                 <div 
                     className={`
                         ${s.elements}
+                        ${s['wrap-'+view]}
                         ${isDropping && s.isDropping}
                         ${viewHide.map(field=>`hide-${field}`).join(' ')}
                         ${listCoverRight && 'list-cover-right'}
