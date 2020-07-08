@@ -3,7 +3,7 @@ import {SPACE_PER_PAGE} from '../../constants/bookmarks'
 import _ from 'lodash-es'
 
 const rules = [
-    { regex: /(#)([^\s#]*)/gmi, override_key: 'tag' },
+    { regex: /(#)([^#]*),/gmi, override_key: 'tag' }, //if space /(#)([^\s#]*)/gmi
     { regex: /(\w+):([a-z0-9]+)/gmi },
 ]
 
@@ -25,7 +25,7 @@ export const getSpaceQuery = ({spaces={}}, spaceId)=>{
 					return key+'='+encodeURIComponent(val);
 				case 'search':
 					if (val.length){
-						let query = String(val)
+						let query = String(val).trim()
 						let parts = []
 
 						//rules

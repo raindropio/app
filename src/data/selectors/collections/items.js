@@ -13,8 +13,11 @@ const
 
 //Items
 export const makeFiltered = ()=> createSelector(
-	[_collectionsItems, (state, search)=>(search||'').toLowerCase()],
-	(items, search)=>{
+	[_collectionsItems, (state, _search)=>_search],
+	(items, _search)=>{
+		const search = (_search||'').toLowerCase().trim()
+		if (!search) return emptyArray
+
 		const found = []
 
 		_.forEach(items, item=>{
@@ -124,6 +127,9 @@ export const makeTreeFlat = ()=> createSelector(
 
 			//items
 			g.data.forEach((c)=>{
+				//hide trash when it empty
+				if (g.system && c.item._id==-99 && !c.item.count) return
+
 				flat.push({...c, type: 'collection'})
 			})
 		})

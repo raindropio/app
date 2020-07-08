@@ -6,7 +6,7 @@ import Icon from '~co/common/icon'
 class BookmarksItemTag extends React.PureComponent {
     onClick = (e)=>{
         e.preventDefault()
-        this.props.onClick(this.props.tag)
+        this.props.onClick(this.props.tag+',')
     }
 
     render() {

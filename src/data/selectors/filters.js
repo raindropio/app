@@ -53,7 +53,7 @@ export const makeFlatFilters = ()=> createSelector(
 				//tags
 				...filters.tags.map(tag=>({
 					...tag,
-					query: `#${tag._id}`,
+					query: `#${tag._id},`,
 					type: 'tag'
 				})),
 

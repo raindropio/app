@@ -28,7 +28,7 @@ class SplitViewReaderHeader extends React.Component {
         return (
             <Header data-no-shadow data-fancy>
                 <Button onClick={this.onBackClick}>
-                    <Icon name='back' />
+                    <Icon name='close' />
                 </Button>
 
                 <Button href='' onClick={this.onFullscreenClick} variant={this.context.reader.fullscreen ? 'link' : ''} className={'hide-on-extension hide-on-clipper'} title={t.s('fullscreen')}>

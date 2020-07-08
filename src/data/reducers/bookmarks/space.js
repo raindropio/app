@@ -58,7 +58,7 @@ export default function(state, action) {switch (action.type) {
 			return state
 				.setIn(['spaces', action.spaceId, 'status', 'main'], 		'loading')
 				.setIn(['spaces', action.spaceId, 'status', 'nextPage'], 	'noMore')
-				.setIn(['spaces', action.spaceId, 'query', 'search'], 		query.search||blankSpace.query.search)
+				.setIn(['spaces', action.spaceId, 'query', 'search'], 		(query.search||blankSpace.query.search).trim())
 				.setIn(['spaces', action.spaceId, 'query', 'sort'], 		query.sort||blankSpace.query.sort)
 		} else
 			action.ignore = true
