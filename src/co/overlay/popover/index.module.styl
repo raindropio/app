@@ -12,11 +12,15 @@
 	position: fixed;
 	overflow-y: auto
 	overflow-y: overlay
+	max-width: 90vw
+	max-height: 90vh
 
 	top: var(--top, var(--padding-medium))
 	left: var(--left, var(--padding-medium))
-	max-width: var(--maxWidth, 90vw)
-	max-height: var(--maxHeight, 90vh)
+
+	&[data-scale-down='true'] {
+		max-height: calc( 100vh - var(--top) - var(--padding-medium) )
+	}
 }
 
 .body {

@@ -96,7 +96,6 @@ class Popover extends React.Component {
         }catch(e){}
 
         let { y, x } = this.initPos
-        let maxHeight = ''
 
         //prevent showing outside of viewport
         const { innerWidth, innerHeight } = window
@@ -107,19 +106,17 @@ class Popover extends React.Component {
         if (x < 0)
             x = 16
 
-        if (this.props.scaleDown)
-            maxHeight = 'calc( 100vh - var(--top) - var(--padding-medium) )'
-        else if (y + offsetHeight > innerHeight)
+        if (!this.props.scaleDown && y + offsetHeight > innerHeight)
             y = innerHeight - offsetHeight - 16
 
         if (y < 0)
             y = 16
 
-        this._container.current.setAttribute('style', `--top: ${parseInt(y)}px; --left: ${parseInt(x)}px; ${maxHeight?`--maxHeight: ${maxHeight}`:''}`)
+        this._container.current.setAttribute('style', `--top: ${parseInt(y)}px; --left: ${parseInt(x)}px;`)
     }, 100, { maxWait: 1000, leading: true })
 
     render() {
-        const { className='', children, closable, pin, dispatch, theme, appSize, innerRef, ...etc } = this.props
+        const { className='', children, closable, scaleDown, pin, dispatch, theme, appSize, innerRef, ...etc } = this.props
 
         if (innerRef)
             innerRef(this._container)
@@ -132,6 +129,7 @@ class Popover extends React.Component {
                         ref={this._container}
                         className={className+' '+s.wrap}
                         data-closable={closable}
+                        data-scale-down={scaleDown}
                         data-theme={theme}
                         data-app-size={appSize}>
                         <div className={s.body}>

@@ -48,7 +48,7 @@ export default class Select extends React.Component {
                 data-value={child.props.value}
                 onClick={this.onOptionClick}>
                 <Icon name={child.props.value == this.props.value ? 'check' : 'blank'} />
-                {child}
+                {{...child, type: 'span'}}
             </MenuItem>
         )
     }
