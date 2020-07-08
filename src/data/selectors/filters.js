@@ -20,7 +20,7 @@ export const makeFilters = ()=> createSelector(
 	}
 )
 
-export const makeFlatFilters = ()=> createSelector(
+export const makeSidebarFilters = ()=> createSelector(
 	[getFilters, state=>state.config],
 	(filters, config)=>{
 		return [

@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux'
 import * as filtersActions from '~data/actions/filters'
 import * as configActions from '~data/actions/config'
 import * as tagsActions from '~data/actions/tags'
-import { makeFlatFilters } from '~data/selectors/filters'
+import { makeSidebarFilters } from '~data/selectors/filters'
 
 import Section from '../section'
 import Tag from '../tag'
@@ -53,9 +53,9 @@ class FiltersCustom extends React.Component {
 
 export default connect(
 	() => {
-        const getFilters = makeFlatFilters()
+        const getFilters = makeSidebarFilters()
     
-        return (state)=>{    
+        return (state)=>{
             return {
                 data: getFilters(state, 0),
             }

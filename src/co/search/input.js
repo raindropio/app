@@ -6,11 +6,10 @@ import Button from '~co/common/button'
 import Icon from '~co/common/icon'
 import Preloader from '~co/common/preloader'
 
-export default class SearchView extends React.PureComponent {
+class SearchInput extends React.PureComponent {
     static defaultProps = {
         autoFocus: false,
         value: '',
-        onChange: undefined, //(val, callback)
         onSubmit: undefined,
     }
 
@@ -49,10 +48,20 @@ export default class SearchView extends React.PureComponent {
         this._input.current.focus()
     }
 
-    onInputChange = (e)=>this.props.onChange(e.target.value)
-    onInputFocus = ()=>this.setState({focus: true})
-    onInputBlur = ()=>this.setState({focus: false})
-    onReset = ()=>this.props.onChange('', this.props.onSubmit)
+    onInputFocus = (e)=>{
+        this.setState({focus: true})
+        this.props.onFocus && this.props.onFocus(e)
+    }
+
+    onInputBlur = (e)=>{
+        this.setState({focus: false})
+        this.props.onBlur && this.props.onBlur(e)
+    }
+    
+    onReset = ()=>{
+        this._input.current.value = ''
+        this.props.onChange({ target: this._input.current })
+    }
 
     onInputKeyDown = (e)=>{
         switch(e.key) {
@@ -63,6 +72,8 @@ export default class SearchView extends React.PureComponent {
                 }
             break
         }
+
+        this.props.onKeyDown && this.props.onKeyDown(e)
     }
 
     onWindowKeyDown = (e)=>{
@@ -88,7 +99,10 @@ export default class SearchView extends React.PureComponent {
     })
 
     render() {
-        const { loading, ...original } = this.props
+        const { loading, forwardedRef, ...original } = this.props
+
+        if (forwardedRef)
+            this._input = forwardedRef
 
         return (
             <div data-active={this.state.focus}>
@@ -100,7 +114,6 @@ export default class SearchView extends React.PureComponent {
                         className={s.input+' '+(original.value?s.filled:'')}
                         {...original}
                         icon={loading ? <Preloader /> : <Icon name='search' />}
-                        onChange={this.onInputChange}
                         onFocus={this.onInputFocus}
                         onBlur={this.onInputBlur}
                         onKeyDown={this.onInputKeyDown}>
@@ -111,3 +124,7 @@ export default class SearchView extends React.PureComponent {
         )
     }
 }
+
+export default React.forwardRef((props, ref) => {
+    return <SearchInput {...props} forwardedRef={ref} />
+})

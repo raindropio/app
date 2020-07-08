@@ -13,8 +13,8 @@ export default class CollectionsPicker extends React.Component {
         }
     }
 
-    onSearchChange = (search)=>
-        this.setState({ options: { ...this.state.options, search } })
+    onSearchChange = e =>
+        this.setState({ options: { ...this.state.options, search: e.target.value } })
 
     render() {
         const { onClose, ...etc } = this.props

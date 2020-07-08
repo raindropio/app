@@ -1,11 +1,11 @@
-import s from './index.module.styl'
 import React from 'react'
-import t from '~t'
 import _ from 'lodash'
-import Input from './input'
+
+import View from './view'
 
 export default class Search extends React.Component {
     static defaultProps = {
+        spaceId: 0,
         value: '',
         events: {} //onSubmit
     }
@@ -24,14 +24,12 @@ export default class Search extends React.Component {
     }
 
     handlers = {
-        onChange: (value, callback)=>{
-            this.setState({ value }, ()=>{
+        onChange: (e)=>{
+            this.setState({ value: e.target.value }, ()=>{
                 if (this.state.value.length>1)
                     this.onSubmitBounced()
                 else if (!this.state.value)
                     this.handlers.onSubmit()
-
-                callback && callback()
             })
         },
 
@@ -42,13 +40,11 @@ export default class Search extends React.Component {
 
     render() {
         return (
-            <div className={s.search}>
-                <Input 
-                    placeholder={t.s('defaultCollection-0')}
-                    {...this.props}
-                    {...this.state}
-                    {...this.handlers} />
-            </div>
+            <View
+                {...this.props}
+                {...this.state}
+                {...this.handlers}
+                events={undefined} />
         )
     }
 }

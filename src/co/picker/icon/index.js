@@ -32,8 +32,8 @@ class PickerIcon extends React.Component {
         lastSearch = this.state.search
     }
 
-    onSearchChange = search=>
-        this.setState({ search }, this.load)
+    onSearchChange = e =>
+        this.setState({ search: e.target.value }, this.load)
 
     load = _.debounce(()=>{
         if (!this.state.search.length || this.state.search.length>1)

@@ -16,6 +16,7 @@ export default class CollectionsMainHeader extends React.Component {
         return (
             <Header>
                 <Search 
+                    spaceId={this.props.spaceId}
                     value={this.props.search}
                     events={this.searchEvents} />
     
