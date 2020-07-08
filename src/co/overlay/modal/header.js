@@ -9,15 +9,17 @@ class ModalHeader extends React.Component {
     static contextType = Context
 
     render() {
+        const { title, children, ...etc } = this.props
+
         return (
-            <Header data-no-shadow>
-                {this.props.title && <Title>
-                    {this.props.title}
+            <Header {...etc}>
+                {title && <Title>
+                    {title}
                 </Title>}
 
                 <Space />
 
-                {this.props.children}
+                {children}
 
                 {this.context.closable ? (
                     <LastAction>

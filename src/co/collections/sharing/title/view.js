@@ -1,14 +1,11 @@
 import React from 'react'
-import Header, { Title } from '~co/common/header'
-import CollectionIcon from '~co/collections/item/icon'
+import t from '~t'
+import { Header } from '~co/overlay/modal'
 
-export default function CollectionSharingTitleView({ cover, _id, title }) {
+export default function CollectionSharingTitleView({ title }) {
     return (
-        <Header>
-            <CollectionIcon
-                cover={cover}
-                _id={_id} />
-            <Title>{title}</Title>
+        <Header title={t.s('share')+' '+title+' '+t.s('collection').toLowerCase()}>
+
         </Header>
     )
 }

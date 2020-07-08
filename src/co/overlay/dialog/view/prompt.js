@@ -31,7 +31,9 @@ export default class DialogPromptView extends React.PureComponent {
                 className={s.prompt}
                 important={true}
                 onClose={this.onCancel}>
-                <Header title={message} />
+                <Header 
+                    title={message}
+                    data-no-shadow />
     
                 <form onSubmit={this.onSubmit}>
                     <Layout>

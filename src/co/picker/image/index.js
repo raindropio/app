@@ -68,7 +68,7 @@ export default class PickerImage extends React.Component {
             <Modal onClose={onClose}>
                 <Header title={t.s('cover')} />
 
-                <Content data-indent>
+                <Content>
                     <div className={s.items}>
                         {items.map(this.renderItem)}
 

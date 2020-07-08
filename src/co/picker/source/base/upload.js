@@ -71,7 +71,9 @@ export default class PickerSourceBaseUpload extends React.Component {
             <Modal 
                 closable={failed.length}
                 onClose={this.cancel}>
-                <Header title={t.s('uploadProgress')}>
+                <Header 
+                    title={t.s('uploadProgress')}
+                    data-no-shadow>
                     {uploading ? <Preloader /> : null}
                 </Header>
 

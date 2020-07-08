@@ -23,15 +23,19 @@ export default class PicketTagsModal extends React.Component {
 
         return (
             <Modal onClose={onClose}>
-                <Header title={t.s('addTags')}></Header>
+                <Header 
+                    title={t.s('addTags')}
+                    data-no-shadow />
 
-                <Content className={s.content}>
+                <Content>
                     <form onSubmit={this.onSubmit}>
                         <Layout>
-                            <Field 
-                                autoFocus={true}
-                                placeholder=''
-                                {...etc} />
+                            <div className={s.field}>
+                                <Field 
+                                    autoFocus={true}
+                                    placeholder=''
+                                    {...etc} />
+                            </div>
 
                             <Buttons>
                                 <Button 
