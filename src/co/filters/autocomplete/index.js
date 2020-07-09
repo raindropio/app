@@ -1,12 +1,13 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { load } from '~data/actions/filters'
-import { makeTagsAutocomplete } from '~data/selectors/tags'
+import { makeFiltersAutocomplete } from '~data/selectors/filters'
+import { getSearch } from '~data/selectors/bookmarks'
 
 import Popover from '~co/overlay/popover'
-import TagItemView from '~co/tags/item/view'
+import FilterItemView from '~co/filters/item/view'
 
-class TagsMenu extends React.PureComponent {
+class FiltersAutocomplete extends React.PureComponent {
     static defaultProps = {
         spaceId: undefined, //optional
 
@@ -16,30 +17,33 @@ class TagsMenu extends React.PureComponent {
     }
 
     componentDidMount() {
-        this.props.load('0s')
+        this.props.load(this.props.spaceId)
+    }
 
-        if (parseInt(this.props.spaceId))
+    componentDidUpdate(prev) {
+        if (prev.spaceId != this.props.spaceId ||
+            prev.search != this.props.search)
             this.props.load(this.props.spaceId)
     }
 
     render() {
         const {
-            tags,
+            filters,
             inputRef,
             downshift: {
                 isOpen, getMenuProps, getItemProps, highlightedIndex 
             }
         } = this.props
 
-        if (!isOpen || !tags.length) return null
+        if (!isOpen || !filters.length) return null
 
         return (
             <Popover 
                 pin={inputRef}
                 scaleDown={true}
                 {...getMenuProps({ refKey: 'innerRef' })}>
-                {tags.map((item, index)=>(
-                    <TagItemView
+                {filters.map((item, index)=>(
+                    <FilterItemView
                         {...getItemProps({
                             key: item._id,
                             index,
@@ -55,11 +59,12 @@ class TagsMenu extends React.PureComponent {
 
 export default connect(
     () => {
-        const getTagsAutocomplete = makeTagsAutocomplete()
+        const getFiltersAutocomplete = makeFiltersAutocomplete()
     
-        return (state, { spaceId, selected, downshift: { inputValue } }) => ({
-            tags: getTagsAutocomplete(state, spaceId, inputValue, selected)
+        return (state, { spaceId, downshift: { inputValue } }) => ({
+            filters: getFiltersAutocomplete(state, spaceId, inputValue),
+            search: getSearch(state, spaceId)
         })
     },
 	{ load }
-)(TagsMenu)
+)(FiltersAutocomplete)

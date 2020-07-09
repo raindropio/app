@@ -27,7 +27,11 @@ export default function(state, action) {switch (action.type) {
 				if (state.getIn(['drafts', 'byId', action._id, 'item', key]) != val) {
 					//fix tags
 					if (key=='tags')
-						val = _.uniq(val)
+						val = _.uniq(
+							val.map(tag=>
+								tag.trim().replace(/^#|^"#|^"|"$/gm, '')
+							)
+						)
 
 					state = state.setIn(['drafts', 'byId', action._id, 'item', key], val)
 					changedFields = changedFields.concat(Immutable([key]))

@@ -32,7 +32,8 @@ export const getSpaceQuery = ({spaces={}}, spaceId)=>{
 						//rules
 						for(const { regex, override_key='' } of rules){
 							for(const [_, key, val] of query.matchAll(regex))
-								parts.push({ key: override_key||key, val })
+								if (val)
+									parts.push({ key: override_key||key, val })
 							query = query.replace(regex, '')
 						}
 

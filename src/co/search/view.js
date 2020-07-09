@@ -3,8 +3,18 @@ import React from 'react'
 import t from '~t'
 
 import Downshift from 'downshift'
-import Menu from './menu'
+import FiltersAutocomplete from '~co/filters/autocomplete'
+import TagsAutocomplete from '~co/tags/autocomplete'
 import Input from './input'
+
+function lastPart(str) {
+    const parts = (str||'').split(/\s+/)
+    return parts[parts.length-1]
+}
+
+function setLastPart(str, val) {
+    return str.replace(new RegExp(`${lastPart(str)}$`), val)
+}
 
 export default class SearchView extends React.Component {
     static defaultProps = {
@@ -30,7 +40,6 @@ export default class SearchView extends React.Component {
                 return {
                     ...changes,
                     highlightedIndex: state.highlightedIndex,
-                    isOpen: true,
                     inputValue: ''
                 }
 
@@ -39,8 +48,15 @@ export default class SearchView extends React.Component {
         }
     }
 
+    itemToString = item =>
+        item && item.query
+
     onSelect = item =>
-        this.props.onChange({ target: { value: Menu.itemToString(item) } })
+        this.props.onChange({
+            target: { 
+                value: setLastPart(this.props.value, this.itemToString(item))+' '
+            }
+        })
 
     render() {
         const { spaceId, ...etc } = this.props
@@ -48,26 +64,30 @@ export default class SearchView extends React.Component {
         return (
             <Downshift
                 onChange={this.onSelect}
-                itemToString={Menu.itemToString}
+                itemToString={this.itemToString}
                 stateReducer={this.stateReducer}
-                inputValue={this.props.value}
+                inputValue={lastPart(this.props.value)}
                 selectedItem={null}>
-                {downshift=>(
-                    <div className={s.search}>
-                        <Input 
-                            {...downshift.getInputProps({
-                                placeholder: t.s('defaultCollection-0'),
-                                ...etc,
-                                ref: this.inputRef,
-                                onFocus: downshift.toggleMenu
-                            })} />
+                {downshift=>{
+                    const Autocomplete = (downshift.inputValue||'').startsWith('#') ? TagsAutocomplete : FiltersAutocomplete
 
-                        <Menu
-                            inputRef={this.inputRef}
-                            spaceId={spaceId}
-                            downshift={downshift} />
-                    </div>
-                )}
+                    return (
+                        <div className={s.search}>
+                            <Input 
+                                {...downshift.getInputProps({
+                                    placeholder: t.s('defaultCollection-0'),
+                                    ...etc,
+                                    ref: this.inputRef,
+                                    onFocus: downshift.toggleMenu
+                                })} />
+    
+                            <Autocomplete
+                                inputRef={this.inputRef}
+                                spaceId={spaceId}
+                                downshift={downshift} />
+                        </div>
+                    )
+                }}
             </Downshift>
         )
     }

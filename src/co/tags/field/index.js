@@ -1,12 +1,11 @@
 import React from 'react'
 import t from '~t'
-import _ from 'lodash'
 
 import Downshift from 'downshift'
 import { MultiSelect } from '~co/common/select'
 import Autocomplete from '~co/tags/autocomplete'
 
-class TagsPicker extends React.Component {
+export default class TagsPicker extends React.Component {
     static defaultProps = {
         //...<input> specific
         value: [],
@@ -38,10 +37,13 @@ class TagsPicker extends React.Component {
         }
     }
 
+    itemToString = item =>
+        item && item._id
+
     onSelect = item =>
         this.props.onChange([
             ...this.props.value,
-            Autocomplete.itemToString(item)
+            this.itemToString(item)
         ])
 
     render() {
@@ -50,7 +52,7 @@ class TagsPicker extends React.Component {
         return (
             <Downshift
                 onChange={this.onSelect}
-                itemToString={Autocomplete.itemToString}
+                itemToString={this.itemToString}
                 stateReducer={this.stateReducer}
                 selectedItem={null}>
                 {downshift=>(
@@ -74,25 +76,6 @@ class TagsPicker extends React.Component {
                     </div>
                 )}
             </Downshift>
-        )
-    }
-}
-
-export default class TagsPickerWrap extends React.Component {
-    onChange = value =>
-        _.uniq(
-            this.props.onChange(
-                value.map(tag=>
-                    tag.trim().replace(/^#/, '')
-                )
-            )
-        )
-
-    render() {
-        return (
-            <TagsPicker 
-                {...this.props}
-                onChange={this.onChange} />
         )
     }
 }
