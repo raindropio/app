@@ -1,4 +1,6 @@
 import React from 'react'
+import { connect } from 'react-redux'
+import { oneRename } from '~data/actions/tags'
 import t from '~t'
 
 import { Confirm } from '~co/overlay/dialog'
@@ -6,13 +8,11 @@ import Rename from './rename'
 import View from './view'
 import Contextmenu from './contextmenu'
 
-export default class FiltersTag extends React.PureComponent {
+class TagsItem extends React.PureComponent {
     static defaultProps = {
         //...item,
-        to:         '',
         active:     false,
         canAppend:  false,
-        actions:    {}, //redux tags
         events:     {}  //onItemClick, onItemAppendClick
     }
 
@@ -36,11 +36,11 @@ export default class FiltersTag extends React.PureComponent {
             this.setState({ rename: false }),
 
         onRename: (newName, success, fail)=>
-            this.props.actions.oneRename(this.props._id, newName, success, fail),
+            this.props.oneRename(this.props._id, newName, success, fail),
     
         onRemoveClick: async()=>{
             if (await Confirm(t.s('areYouSure'), { variant: 'warning' }))
-                this.props.actions.oneRemove(this.props._id)
+                this.props.oneRename(this.props._id)
         },
     
         onContextMenu: (e)=>{
@@ -84,3 +84,8 @@ export default class FiltersTag extends React.PureComponent {
         )
     }
 }
+
+export default connect(
+	undefined,
+	{ oneRename }
+)(TagsItem)

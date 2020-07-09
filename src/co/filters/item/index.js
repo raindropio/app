@@ -1,7 +1,7 @@
 import React from 'react'
 import View from './view'
 
-export default class FiltersStatus extends React.PureComponent {
+export default class FiltersItem extends React.PureComponent {
     static defaultProps = {
         events: {}, //onItemClick, onItemAppendClick
         canAppend:  false,
@@ -22,7 +22,10 @@ export default class FiltersStatus extends React.PureComponent {
 
     render() {
         return (
-            <View {...this.props} {...this.handlers} />
+            <View 
+                {...this.props}
+                {...this.handlers}
+                events={undefined} />
         )
     }
 }

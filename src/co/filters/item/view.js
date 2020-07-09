@@ -8,10 +8,14 @@ import Button from '~co/common/button'
 import Icon from '~co/common/icon'
 import SuperLink from '~co/common/superLink'
 
-export default class FiltersStatusView extends React.Component {
+export default class FiltersItemView extends React.Component {
     render() {
-        const { _id, count, active, canAppend } = this.props
-        const { onClick, onContextMenu, onAppendClick } = this.props
+        const {
+            _id, count, active, canAppend,
+            onClick, onContextMenu, onAppendClick,
+            ...etc
+        } = this.props
+
         let icon, title
 
         switch (_id) {
@@ -35,6 +39,7 @@ export default class FiltersStatusView extends React.Component {
 
         return (
             <Item 
+                {...etc}
                 className={s.item}
                 active={active}>
                 <ItemIcon>
@@ -55,12 +60,14 @@ export default class FiltersStatusView extends React.Component {
                     </ItemActions>
                 ) : null}
 
-                <SuperLink
-                    tabIndex='1'
-                    active={active}
-                    
-                    onClick={onClick}
-                    onContextMenu={onContextMenu} />
+                {onClick && (
+                    <SuperLink
+                        tabIndex='1'
+                        active={active}
+                        
+                        onClick={onClick}
+                        onContextMenu={onContextMenu} />
+                )}
             </Item>
         )
     }

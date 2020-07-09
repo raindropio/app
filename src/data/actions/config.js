@@ -15,11 +15,11 @@ export const setLastCollection = (spaceId)=>({
 	spaceId
 })
 
-export const sidebarHide = (section, value)=>({
+export const hideSection = (section, value)=>({
 	type: USER_UPDATE_REQ,
 	user: {
 		config: {
-			[`sidebar_hide_${section}`]: value
+			[`${section}_hide`]: value
 		}
 	}
 })

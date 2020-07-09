@@ -8,13 +8,18 @@ import Button from '~co/common/button'
 import Icon from '~co/common/icon'
 import SuperLink from '~co/common/superLink'
 
-export default class FiltersTagView extends React.Component {
+export default class TagsItemView extends React.Component {
     render() {
-        const { _id, count, active, canAppend } = this.props
-        const { onClick, onAppendClick, onRenameClick, onContextMenu, onKeyUp } = this.props
+        const {
+            _id, count, active, canAppend,
+            onClick, onAppendClick, onRenameClick, onContextMenu, onKeyUp,
+            oneRename, onRenameCancel, onContextMenuClose, onRemoveClick, onRename, //to ignore
+            ...etc
+        } = this.props
 
         return (
             <Item
+                {...etc}
                 className={s.item}
                 active={active}>
                 <ItemIcon>
@@ -32,21 +37,25 @@ export default class FiltersTagView extends React.Component {
                             <Icon name='search_add' />
                         </Button>
                     )}
-                    <Button 
-                        title={t.s('more')}
-                        onClick={onContextMenu}>
-                        <Icon name='more_horizontal' />
-                    </Button>
+                    {onContextMenu && (
+                        <Button 
+                            title={t.s('more')}
+                            onClick={onContextMenu}>
+                            <Icon name='more_horizontal' />
+                        </Button>
+                    )}
                 </ItemActions>
 
-                <SuperLink
-                    tabIndex='1'
-                    active={active}
-                    
-                    onClick={onClick}
-                    onDoubleClick={onRenameClick}
-                    onContextMenu={onContextMenu}
-                    onKeyUp={onKeyUp} />
+                {onClick && (
+                    <SuperLink
+                        tabIndex='1'
+                        active={active}
+                        
+                        onClick={onClick}
+                        onDoubleClick={onRenameClick}
+                        onContextMenu={onContextMenu}
+                        onKeyUp={onKeyUp} />
+                )}
             </Item>
         )
     }

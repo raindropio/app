@@ -4,7 +4,7 @@ import t from '~t'
 import Modal, { Header, Content } from '~co/overlay/modal'
 import { Layout, Buttons } from '~co/common/form'
 import Button from '~co/common/button'
-import Field from '../field'
+import Field from '~co/tags/field'
 
 export default class PicketTagsModal extends React.Component {
     static defaultProps = {

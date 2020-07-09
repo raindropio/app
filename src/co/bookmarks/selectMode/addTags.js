@@ -5,7 +5,7 @@ import { appendTagsSelected } from '~data/actions/bookmarks'
 
 import Button from '~co/common/button'
 import Icon from '~co/common/icon'
-import TagsPicker from '~co/picker/tags/modal'
+import TagsPicker from '~co/picker/tags'
 
 class BookmarksHeaderSelectMode extends React.Component {
     static defaultProps = {

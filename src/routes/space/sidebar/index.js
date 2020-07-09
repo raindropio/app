@@ -6,7 +6,7 @@ import Icon from '~co/common/icon'
 import { FirstAction } from '~co/common/header'
 import Sidebar, { Header, Content } from '~co/screen/splitview/sidebar'
 import Collections from '~co/collections/items'
-import Filters from '~co/filters/custom'
+import FiltersTags from './filters_tags'
 import Profile from './profile'
 
 export default class CollectionsSidebar extends React.Component {
@@ -50,7 +50,7 @@ export default class CollectionsSidebar extends React.Component {
                 </Header>
 
                 <Content>
-                    <Filters
+                    <FiltersTags
                         activeId={search}
                         events={this.filtersEvents}>
                         {(customRows, customRowRenderer)=>
@@ -64,7 +64,7 @@ export default class CollectionsSidebar extends React.Component {
                                 customRows={customRows}
                                 customRowRenderer={customRowRenderer} />
                         }
-                    </Filters>
+                    </FiltersTags>
                 </Content>
             </Sidebar>
         )

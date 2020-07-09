@@ -1,25 +1,22 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
-import * as filtersActions from '~data/actions/filters'
-import * as configActions from '~data/actions/config'
-import * as tagsActions from '~data/actions/tags'
+import { load } from '~data/actions/filters'
 import { getTags } from '~data/selectors/tags'
 import { getFilters } from '~data/selectors/filters'
 
-import FiltersSection from './filters/section'
-import Filter from './filters/filter'
-import TagsSection from './tags/section'
-import Tag from './tags/tag'
+import FiltersSection from '~co/filters/section'
+import Filter from '~co/filters/item'
+import TagsSection from '~co/tags/section'
+import Tag from '~co/tags/item'
 
-class FiltersCustom extends React.Component {
+class FiltersTagsCustom extends React.Component {
     static defaultProps = {
         activeId:           '',
         events:             {} //onItemClick, onItemAppendClick
     }
 
     componentDidMount() {
-        this.props.actions.load('0s')
+        this.props.load('0s')
     }
 
     rowRenderer = (row={})=>{
@@ -32,13 +29,13 @@ class FiltersCustom extends React.Component {
             default: return false
         }
 
-        const { data, activeId, ...etc } = this.props
+        const { events, activeId } = this.props
         const active = activeId.includes(row.query)
 
         return (
             <Component 
-                {...etc}
                 {...row}
+                events={events}
                 active={active}
                 canAppend={activeId && !active} />
         )
@@ -52,21 +49,25 @@ class FiltersCustom extends React.Component {
     }
 }
 
-function FiltersCombine({ tags, filters, ...etc }) {
+function FiltersTagsCombined({ tags, tags_hide, filters, filters_hide, ...etc }) {
     let data = []
 
     if (filters.length){
-        data.push({ _id: 'filters' })
-        data.push(...filters.map(filter=>({ ...filter, type: 'filter' })))
+        data.push({ _id: 'filters', hidden: filters_hide })
+
+        if (!filters_hide)
+            data.push(...filters.map(filter=>({ ...filter, type: 'filter' })))
     }
 
     if (tags.length){
-        data.push({ _id: 'tags' })
-        data.push(...tags.map(tag=>({ ...tag, type: 'tag' })))
+        data.push({ _id: 'tags', hidden: tags_hide })
+
+        if (!tags_hide)
+            data.push(...tags.map(tag=>({ ...tag, type: 'tag' })))
     }
 
     return (
-        <FiltersCustom 
+        <FiltersTagsCustom 
             {...etc}
             data={data} />
     )
@@ -75,13 +76,10 @@ function FiltersCombine({ tags, filters, ...etc }) {
 export default connect(
 	(state) => ({
         tags: getTags(state, '0s'), 
-        filters: getFilters(state, '0s')
+        tags_hide: state.config.tags_hide,
+
+        filters: getFilters(state, '0s'),
+        filters_hide: state.config.filters_hide
     }),
-	(dispatch)=>({
-		actions: {
-            ...bindActionCreators(configActions, dispatch),
-            ...bindActionCreators(tagsActions, dispatch),
-            load: bindActionCreators(filtersActions, dispatch).load,
-        }
-    })
-)(FiltersCombine)
+	{ load }
+)(FiltersTagsCombined)

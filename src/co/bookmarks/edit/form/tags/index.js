@@ -2,7 +2,7 @@ import React from 'react'
 import t from '~t'
 
 import { Label } from '~co/common/form'
-import TagsPicker from '~co/picker/tags/field'
+import TagsField from '~co/tags/field'
 import Suggested from './suggested'
 
 class BookmarkEditFormTags extends React.Component {
@@ -22,7 +22,7 @@ class BookmarkEditFormTags extends React.Component {
             <>
                 <Label>{t.s('tags')}</Label>
                 <div>
-                    <TagsPicker 
+                    <TagsField 
                         value={tags}
                         spaceId={collectionId}
                         
