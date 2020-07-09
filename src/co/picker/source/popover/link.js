@@ -49,7 +49,7 @@ export default class PickerSourceLink extends React.Component {
                         autoFocus
                         icon={status == 'loading' ? <Preloader /> : null}>
                         <Button
-                            Tag='input'
+                            as='input'
                             type='submit'
                             variant='link'
                             hidden={!link}

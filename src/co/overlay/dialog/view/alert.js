@@ -13,7 +13,7 @@ export default function DialogAlertView({ id, message, ok, variant, sendResult }
 
                     <Buttons>
                         <Button
-                            Tag='button'
+                            as='button'
                             autoFocus
                             variant='primary'
                             data-block

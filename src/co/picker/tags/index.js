@@ -39,7 +39,7 @@ export default class PicketTagsModal extends React.Component {
 
                             <Buttons>
                                 <Button 
-                                    Tag='input'
+                                    as='input'
                                     type='submit'
                                     disabled={!etc.value.length}
                                     variant='primary'

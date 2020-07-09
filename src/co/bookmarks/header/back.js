@@ -15,7 +15,7 @@ class BookmarksHeaderBack extends React.Component {
         return (
             <FirstAction>
                 <Button 
-                    Tag={Link}
+                    as={Link}
                     title={t.s('back')}
                     to={`/space/${collection.parentId || collection._id}`}>
                     <Icon name='back' />

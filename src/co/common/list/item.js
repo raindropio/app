@@ -1,9 +1,10 @@
 import s from './item.module.styl'
 import React from 'react'
 
-function ItemInner({ Tag='div', className='', active, color, style={}, forwardedRef, ...etc }) {
+function ItemInner({ as='div', className='', active, color, style={}, forwardedRef, ...etc }) {
+    const Component = as
     return (
-        <Tag 
+        <Component 
             {...etc}
             ref={forwardedRef}
             className={`${className} ${s.item} ${active && s.active}`}

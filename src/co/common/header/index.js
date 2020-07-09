@@ -1,9 +1,11 @@
 import s from './index.module.styl'
 import React from 'react'
 
-function Header({ Tag='div', className='', forwardedRef, ...etc }) {
+function Header({ as='div', className='', forwardedRef, ...etc }) {
+    const Component = as
+    
     return (
-        <Tag 
+        <Component 
             ref={forwardedRef}
             className={s.header+' '+className}
             {...etc} />

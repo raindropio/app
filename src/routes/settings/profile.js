@@ -144,7 +144,7 @@ class Profile extends React.Component {
 					</figure>
 
 					<figure className="fieldColumns">
-						<Button Tag='input' type="submit" variant='primary' value={t.s("changePassword")} />
+						<Button as='input' type="submit" variant='primary' value={t.s("changePassword")} />
 					</figure>
 				</form>
 			);
@@ -177,7 +177,7 @@ class Profile extends React.Component {
 					{emailPassword}
 
 					<figure className="fieldColumns">
-						<Button Tag='input' type="submit" variant='primary' value={t.s("saveChanges")} />
+						<Button as='input' type="submit" variant='primary' value={t.s("saveChanges")} />
 					</figure>
 				</form>
 

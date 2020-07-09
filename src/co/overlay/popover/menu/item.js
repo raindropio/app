@@ -23,7 +23,7 @@ export class MenuItem extends React.Component {
         
         return (
             <Item
-                Tag={Tag} 
+                as={Tag} 
                 {...etc}
                 className={s.item+' '+className}
                 onClick={this.onClick}>

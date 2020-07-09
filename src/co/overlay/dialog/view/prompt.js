@@ -46,7 +46,7 @@ export default class DialogPromptView extends React.PureComponent {
 
                         <Buttons>
                             <Button 
-                                Tag='input'
+                                as='input'
                                 type='submit'
                                 variant='primary'
                                 data-block

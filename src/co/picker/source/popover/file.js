@@ -16,7 +16,7 @@ export default class PickerSourceFile extends React.Component {
             <Layout>
                 <Label>{t.s('file')}</Label>
 
-                <Button Tag='label' variant='outline'>
+                <Button as='label' variant='outline'>
                     <Icon name='upload' />
                     {t.s('upload')}&nbsp;{t.s('dropFilesHere').toLowerCase()}…
 

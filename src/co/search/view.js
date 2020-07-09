@@ -32,7 +32,7 @@ export default class SearchView extends React.Component {
             case Downshift.stateChangeTypes.changeInput:
                 return {
                     ...changes,
-                    highlightedIndex: changes.inputValue ? 0 : null
+                    highlightedIndex: (changes.inputValue||'').startsWith('#') ? 0 : null
                 }
 
             case Downshift.stateChangeTypes.keyDownEnter:
@@ -40,7 +40,8 @@ export default class SearchView extends React.Component {
                 return {
                     ...changes,
                     highlightedIndex: state.highlightedIndex,
-                    inputValue: ''
+                    inputValue: '',
+                    ...(changes.inputValue=='#' ? { isOpen: true } : {})
                 }
 
             default:
@@ -51,12 +52,15 @@ export default class SearchView extends React.Component {
     itemToString = item =>
         item && item.query
 
-    onSelect = item =>
+    onSelect = item => {
+        const val = this.itemToString(item)
+
         this.props.onChange({
             target: { 
-                value: setLastPart(this.props.value, this.itemToString(item))+' '
+                value: setLastPart(this.props.value, val)+(val != '#' ? ' ' : '')
             }
         })
+    }
 
     render() {
         const { spaceId, ...etc } = this.props
@@ -78,7 +82,8 @@ export default class SearchView extends React.Component {
                                     placeholder: t.s('defaultCollection-0'),
                                     ...etc,
                                     ref: this.inputRef,
-                                    onFocus: downshift.toggleMenu
+                                    onFocus: downshift.toggleMenu,
+                                    onDoubleClick: downshift.toggleMenu
                                 })} />
     
                             <Autocomplete

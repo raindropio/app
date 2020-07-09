@@ -18,13 +18,18 @@ export default class FiltersItemView extends React.Component {
 
         switch (_id) {
             case 'important':
-                icon = 'like'
+                icon = 'important'
                 title = t.s('favoriteSites')
                 break
 
             case 'notag':
                 icon = 'tag'
                 title = t.s('noTags')
+                break
+
+            case 'tag':
+                icon = 'tag'
+                title = t.s('tags')+'…'
                 break
         
             default:
@@ -39,9 +44,10 @@ export default class FiltersItemView extends React.Component {
             <Item 
                 {...etc}
                 className={s.item}
+                data-id={_id}
                 active={active}>
-                <ItemIcon>
-                    <Icon name={icon} />
+                <ItemIcon className={s.icon}>
+                    <Icon name={icon} size='micro' />
                 </ItemIcon>
 
                 <ItemTitle>{title}</ItemTitle>

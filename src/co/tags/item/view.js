@@ -23,8 +23,8 @@ export default class TagsItemView extends React.Component {
                 {...etc}
                 className={s.item}
                 active={active}>
-                <ItemIcon>
-                    <Icon name='tag' />
+                <ItemIcon className={s.icon}>
+                    <Icon name='tag' size='micro' />
                 </ItemIcon>
 
                 <ItemTitle>{_id}</ItemTitle>

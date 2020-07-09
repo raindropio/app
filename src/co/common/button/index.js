@@ -1,19 +1,32 @@
 import s from './index.module.styl'
 import React from 'react'
 
-function ButtonInner({ Tag='div', className='', variant, size, forwardedRef, navigate, ...etc }) {
-    if (etc.href)
-        Tag = 'a'
+class ButtonInner extends React.Component {
+    onKeyDown = e => {
+        if (e.key == 'Enter'){
+            e.preventDefault()
+            e.stopPropagation()
+            e.currentTarget.click()
+        }
+        else
+            this.props.onKeyDown && this.props.onKeyDown(e)
+    }
 
-    return (
-        <Tag 
-            tabIndex='0'
-            ref={forwardedRef}
-            className={s.button+' '+className}
-            data-variant={variant||'default'}
-            data-size={size||'default'}
-            {...etc} />
-    )
+    render() {
+        const { as='div', className='', variant, size, forwardedRef, navigate, ...etc } = this.props
+        const Component = etc.href ? 'a' : as
+
+        return (
+            <Component 
+                tabIndex='0'
+                ref={forwardedRef}
+                className={s.button+' '+className}
+                data-variant={variant||'default'}
+                data-size={size||'default'}
+                {...etc}
+                onKeyDown={this.onKeyDown} />
+        )
+    }
 }
 
 export default React.forwardRef((props, ref) => {

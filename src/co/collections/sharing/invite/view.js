@@ -100,7 +100,7 @@ export default class CollectionSharingInviteView extends React.PureComponent {
                     </div>
 
                     <Button 
-                        Tag='input'
+                        as='input'
                         type='submit'
                         variant='primary'
                         disabled={loading}

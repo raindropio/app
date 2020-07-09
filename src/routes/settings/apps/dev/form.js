@@ -114,7 +114,7 @@ export default class AppsDevEdit extends React.PureComponent {
                     ) : null}
 
                     {this.state.unsaved && <figure className="fieldColumns">
-                        <Button Tag='input' type="submit" variant='primary' value={t.s('save')} />
+                        <Button as='input' type="submit" variant='primary' value={t.s('save')} />
                     </figure>}
                 </form>
 

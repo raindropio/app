@@ -18,7 +18,7 @@ export default function DialogConfirmView({ id, message, description, ok, cancel
 
                     <Buttons>
                         <Button
-                            Tag='button'
+                            as='button'
                             autoFocus
                             variant='primary'
                             data-block

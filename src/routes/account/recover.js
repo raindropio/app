@@ -57,7 +57,7 @@ class AccountRecover extends React.Component {
                         </Button>
                     ) : (
                         <Button
-                            Tag='input' 
+                            as='input' 
                             type='submit'
                             variant='primary'
                             data-block
