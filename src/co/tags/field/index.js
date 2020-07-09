@@ -4,7 +4,7 @@ import _ from 'lodash'
 
 import Downshift from 'downshift'
 import { MultiSelect } from '~co/common/select'
-import Menu from './menu'
+import Autocomplete from '~co/tags/autocomplete'
 
 class TagsPicker extends React.Component {
     static defaultProps = {
@@ -41,7 +41,7 @@ class TagsPicker extends React.Component {
     onSelect = item =>
         this.props.onChange([
             ...this.props.value,
-            Menu.itemToString(item)
+            Autocomplete.itemToString(item)
         ])
 
     render() {
@@ -50,7 +50,7 @@ class TagsPicker extends React.Component {
         return (
             <Downshift
                 onChange={this.onSelect}
-                itemToString={Menu.itemToString}
+                itemToString={Autocomplete.itemToString}
                 stateReducer={this.stateReducer}
                 selectedItem={null}>
                 {downshift=>(
@@ -66,7 +66,7 @@ class TagsPicker extends React.Component {
                                 onFocus: downshift.toggleMenu
                             })} />
 
-                        <Menu 
+                        <Autocomplete 
                             selected={value}
                             inputRef={this.inputRef}
                             spaceId={spaceId}

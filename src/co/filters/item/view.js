@@ -11,9 +11,7 @@ import SuperLink from '~co/common/superLink'
 export default class FiltersItemView extends React.Component {
     render() {
         const {
-            _id, count, active, canAppend,
-            onClick, onContextMenu, onAppendClick,
-            ...etc
+            _id, count, active, canAppend, onAppendClick, focusable, ...etc
         } = this.props
 
         let icon, title
@@ -60,13 +58,8 @@ export default class FiltersItemView extends React.Component {
                     </ItemActions>
                 ) : null}
 
-                {onClick && (
-                    <SuperLink
-                        tabIndex='1'
-                        active={active}
-                        
-                        onClick={onClick}
-                        onContextMenu={onContextMenu} />
+                {focusable && (
+                    <SuperLink tabIndex='1'/>
                 )}
             </Item>
         )

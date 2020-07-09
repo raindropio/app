@@ -18,5 +18,5 @@ export const makeSuggestedTags = ()=>createSelector(
 		}
 	],
 	(pro, suggested, current)=>
-		pro ? _.filter(suggested, (item)=>current.indexOf(item.name)==-1) : emptyTags
+		pro ? _.filter(suggested, (item)=>current.indexOf(item._id)==-1) : emptyTags
 )

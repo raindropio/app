@@ -73,7 +73,8 @@ class TagsItem extends React.PureComponent {
             <>
                 <Component 
                     {...this.props}
-                    {...this.handlers} />
+                    {...this.handlers}
+                    focusable={true} />
 
                 {this.state.menu ? (
                     <Contextmenu 

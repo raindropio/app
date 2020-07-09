@@ -12,7 +12,12 @@ const getRootReducer = (additional={})=>
 
 const composeEnhancers = process.env.NODE_ENV!='production' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose : compose
 const sagaMiddleware = createSagaMiddleware({
-	onError: Sentry.captureException
+	onError: e => {
+		if (process.env.NODE_ENV!='production')
+			console.error(e)
+			
+		Sentry.captureException(e)
+	}
 })
 
 //Configure store

@@ -6,7 +6,7 @@ const emptyArray = []
 //(state, spaceId, filter, selected=[])
 export const makeTagsAutocomplete = ()=>createSelector(
 	[
-		(state)=>getTags(state, 0),
+		(state)=>getTags(state, '0s'),
 		(state, spaceId)=>parseInt(spaceId) ? getTags(state, spaceId) : emptyArray,
 		(state, spaceId, filter)=>filter,
 		(state, spaceId, filter, selected)=>selected||emptyArray

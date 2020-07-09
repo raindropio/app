@@ -6,7 +6,7 @@ const emptyArray = []
 //(state, spaceId, filter) -> [{ ...filter, contains: true }]
 export const makeFiltersAutocomplete = ()=>createSelector(
     [
-        (state)=>getFilters(state, 0),
+        (state)=>getFilters(state, '0s'),
         (state, spaceId)=>parseInt(spaceId) ? getFilters(state, spaceId) : emptyArray,
         (state, spaceId, filter)=>filter,
     ],

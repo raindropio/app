@@ -11,14 +11,15 @@ import SuperLink from '~co/common/superLink'
 export default class TagsItemView extends React.Component {
     render() {
         const {
-            _id, count, active, canAppend,
-            onClick, onAppendClick, onRenameClick, onContextMenu, onKeyUp,
+            _id, count, active, canAppend, focusable,
+            onAppendClick, onRenameClick,
             oneRename, onRenameCancel, onContextMenuClose, onRemoveClick, onRename, //to ignore
             ...etc
         } = this.props
 
         return (
             <Item
+                onDoubleClick={onRenameClick}
                 {...etc}
                 className={s.item}
                 active={active}>
@@ -37,24 +38,17 @@ export default class TagsItemView extends React.Component {
                             <Icon name='search_add' />
                         </Button>
                     )}
-                    {onContextMenu && (
+                    {etc.onContextMenu && (
                         <Button 
                             title={t.s('more')}
-                            onClick={onContextMenu}>
+                            onClick={etc.onContextMenu}>
                             <Icon name='more_horizontal' />
                         </Button>
                     )}
                 </ItemActions>
 
-                {onClick && (
-                    <SuperLink
-                        tabIndex='1'
-                        active={active}
-                        
-                        onClick={onClick}
-                        onDoubleClick={onRenameClick}
-                        onContextMenu={onContextMenu}
-                        onKeyUp={onKeyUp} />
+                {focusable && (
+                    <SuperLink tabIndex='1'/>
                 )}
             </Item>
         )

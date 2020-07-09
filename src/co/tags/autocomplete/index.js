@@ -4,7 +4,7 @@ import { load } from '~data/actions/filters'
 import { makeTagsAutocomplete } from '~data/selectors/tags'
 
 import Popover from '~co/overlay/popover'
-import { Item, ItemTitle, ItemInfo } from '~co/common/list'
+import TagItemView from '~co/tags/item/view'
 
 class TagsMenu extends React.PureComponent {
     static defaultProps = {
@@ -19,9 +19,9 @@ class TagsMenu extends React.PureComponent {
         item && item._id
 
     componentDidMount() {
-        this.props.load(0)
+        this.props.load('0s')
 
-        if (this.props.spaceId)
+        if (parseInt(this.props.spaceId))
             this.props.load(this.props.spaceId)
     }
 
@@ -42,16 +42,14 @@ class TagsMenu extends React.PureComponent {
                 scaleDown={true}
                 {...getMenuProps({ refKey: 'innerRef' })}>
                 {tags.map((item, index)=>(
-                    <Item
+                    <TagItemView
                         {...getItemProps({
                             key: item._id,
                             index,
-                            item
-                        })}
-                        active={highlightedIndex === index}>
-                        <ItemTitle>{item._id}</ItemTitle>
-                        {item.count > 0 && (<ItemInfo>{item.count}</ItemInfo>)}
-                    </Item>
+                            item,
+                            ...item,
+                            active: highlightedIndex === index
+                        })} />
                 ))}
             </Popover>
         )

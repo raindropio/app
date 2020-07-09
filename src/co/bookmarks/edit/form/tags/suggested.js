@@ -23,13 +23,14 @@ class BookmarkEditFormTagsSuggested extends React.Component {
             <div className={s.suggested}>
                 {suggested.map(item=>(
                     <Button 
+                        key={item._id}
                         variant='outline'
                         size='small'
-                        data-tag={item.name}
+                        data-tag={item._id}
                         title={title}
                         onClick={this.onAddSuggestedTag}>
                         <Icon name='add' size='micro' />
-                        {item.name}
+                        {item._id}
                     </Button>
                 ))}
             </div>

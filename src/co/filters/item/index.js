@@ -25,7 +25,8 @@ export default class FiltersItem extends React.PureComponent {
             <View 
                 {...this.props}
                 {...this.handlers}
-                events={undefined} />
+                events={undefined}
+                focusable={true} />
         )
     }
 }
