@@ -34,7 +34,8 @@ export default class Search extends React.Component {
         },
 
         onSubmit: ()=>{
-            this.props.events.onSubmit && this.props.events.onSubmit(this.state.value)
+            if (!this.state.value.endsWith('#'))
+                this.props.events.onSubmit && this.props.events.onSubmit(this.state.value)
         }
     }
 
