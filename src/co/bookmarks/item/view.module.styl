@@ -229,6 +229,11 @@ html:not(:global(.blur)) {
         padding: calc(var(--padding-medium) - var(--padding-mini))
     }
 
+    .title, .excerpt {
+        line-clamp: 3;
+        -webkit-line-clamp: 3;
+    }
+
     .select {
         border-top-left-radius: var(--border-radius)
         box-shadow: inset 0 0 0 var(--shadow-height) var(--shadow-color)

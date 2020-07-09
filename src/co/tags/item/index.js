@@ -26,8 +26,11 @@ class TagsItem extends React.PureComponent {
         onClick: ()=>
             this.props.events.onItemClick(this.props.query),
 
-        onAppendClick: this.props.events.onItemAppendClick ? ()=>
-            this.props.events.onItemAppendClick(this.props.query) : undefined,
+        onAppendClick: this.props.events.onItemAppendClick ? (e)=>{
+            e.preventDefault()
+            e.stopPropagation()
+            this.props.events.onItemAppendClick(this.props.query)
+        } : undefined,
 
         onRenameClick: ()=>
             this.setState({ rename: true }),

@@ -8,6 +8,7 @@ import Sidebar, { Header, Content } from '~co/screen/splitview/sidebar'
 import Collections from '~co/collections/items'
 import FiltersTags from './filters_tags'
 import Profile from './profile'
+import Banner from './banner'
 
 export default class CollectionsSidebar extends React.Component {
     //collections
@@ -66,6 +67,8 @@ export default class CollectionsSidebar extends React.Component {
                         }
                     </FiltersTags>
                 </Content>
+
+                <Banner />
             </Sidebar>
         )
     }

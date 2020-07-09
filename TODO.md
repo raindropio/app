@@ -1,11 +1,8 @@
 - persist lang change
 - show count for duplicates
 - fix user load for duplicates, broken
-- Toasts!
 
 Bugs
-- Critical
-    - Such tagname kils app "$%^&()(#@#$!. a"
 - Minor
     - in search results when change bookmark, `highlight` data lost
     - masonry keyboard navigation unordered
@@ -15,7 +12,6 @@ Not ready
 - pro banner
 
 Server
-- Replace all tags with space to _
 - Send screenshot without ?width, then in data/getscreenshot remove regex
 
 Good to have

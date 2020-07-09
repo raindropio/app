@@ -41,7 +41,7 @@
 		"ismobilejs": "^1.1.1",
 		"localforage": "1.7.x",
 		"lodash-es": "4.17.x",
-		"masonic": "^3.2.0",
+		"masonic": "3.3.x",
 		"normalize-url": "4.x",
 		"normalize.css": "^8.0.1",
 		"postcss-loader": "^3.0.0",

@@ -27,7 +27,7 @@ class About extends React.Component {
 					<div className='centerContentWrap'>
 						<div className='centerContent'>
 							<div className='centerContentBlock'>
-								<SuperImg src='marketing/logoIcon.png' height='72' />
+								<SuperImg src='logoIcon.png' height='72' />
 								<h1 className='extraHeadLabel'>Raindrop.io {environment.version()}</h1>
 								<p className='subHeadLabel'>Handcrafting since 2013 by <a href='https://twitter.com/exentrich' target='_blank'>Rustem Mussabekov</a> in Saint Petersburg</p>
 

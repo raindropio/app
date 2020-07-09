@@ -12,8 +12,11 @@ export default class FiltersItem extends React.PureComponent {
             this.props.events.onItemClick(this.props.query)
         },
 
-        onAppendClick: this.props.events.onItemAppendClick ? ()=>
-            this.props.events.onItemAppendClick(this.props.query) : undefined,
+        onAppendClick: this.props.events.onItemAppendClick ? (e)=>{
+            e.preventDefault()
+            e.stopPropagation()
+            this.props.events.onItemAppendClick(this.props.query)
+        } : undefined,
 
         onContextMenu: (e)=>{
             e.preventDefault()

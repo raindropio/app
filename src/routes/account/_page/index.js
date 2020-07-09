@@ -57,7 +57,7 @@ export default (Component)=>
 						<Bg />
 						
 						<div className={s.content}>
-							<div className={s.logo}><SuperImg src='marketing/logoIcon.png' height='72' /></div>
+							<div className={s.logo}><SuperImg src='logoIcon.png' height='72' /></div>
 		
 							<Component {...props} />
 		

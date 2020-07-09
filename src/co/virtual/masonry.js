@@ -1,5 +1,5 @@
 import React from 'react'
-import { usePositioner, useResizeObserver, useMasonry } from 'masonic'
+import { usePositioner, useResizeObserver, useMasonry, useScrollToIndex } from 'masonic'
 import withAutoSize from './helpers/withAutoSize'
 import withContainer from './helpers/withContainer'
 
@@ -13,7 +13,7 @@ class VirtualMasonry extends React.Component {
         defaultItemHeight: 80,
         endReached: undefined,
         footer: undefined,
-        scrollToIndex: undefined,//not supported yet!
+        scrollToIndex: undefined,
         computeItemKey: undefined,
         disableVirtualization: false,
 
@@ -72,9 +72,16 @@ class VirtualMasonry extends React.Component {
     }
 }
 
-const VirtualMasonryInner = ({ width, height, scrollTop, isScrolling, columnWidth, columnCount, items, renderItem, itemKey, defaultItemHeight, onRender, dataKey }) => {
+const VirtualMasonryInner = ({ width, height, scrollTop, isScrolling, columnWidth, columnCount, items, renderItem, itemKey, defaultItemHeight, scrollToIndex, onRender, dataKey }) => {
     const positioner = usePositioner({ width, columnCount, columnWidth })
     const resizeObserver = useResizeObserver(positioner)
+
+    //scroll to index
+    const sti = useScrollToIndex(positioner, { align: 'center', height })
+    React.useEffect(() => {
+        if (scrollToIndex)
+            sti(scrollToIndex)
+    }, [scrollToIndex, sti])
   
     return useMasonry({
         positioner,

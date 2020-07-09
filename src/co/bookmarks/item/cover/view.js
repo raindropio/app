@@ -4,7 +4,7 @@ import getThumbUri from '~data/modules/format/thumb'
 import getScreenshotUri from '~data/modules/format/screenshot'
 import getFaviconUri from '~data/modules/format/favicon'
 import size from './size'
-import transparentPng from '~assets/images/empty/transparent.png'
+import transparentPng from '~assets/images/transparent.png'
 
 //cache cover statuses
 const status = {

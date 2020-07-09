@@ -1,4 +1,5 @@
 import React from 'react'
+import _ from 'lodash'
 import SplitView from '~co/screen/splitview'
 import Protected from '~co/screen/protected'
 
@@ -15,10 +16,13 @@ export default class SpaceRoute extends React.PureComponent {
     }
 
     static getDerivedStateFromProps({ match, location }) {
+        let search = ''
+        try{ search = decodeURIComponent(match.params.search||'') } catch(e) {}
+
         return {
             spaceId: match.params.spaceId,
             full: match.params.modifier == 'full',
-            search: decodeURIComponent(match.params.search||''),
+            search,
             reader: Object.fromEntries(new URLSearchParams(location.search))
         }
     }
@@ -29,7 +33,7 @@ export default class SpaceRoute extends React.PureComponent {
 
             switch(mode) {
                 case 'append':
-                    if (new RegExp(`${value}\\b`,'i').test(this.state.search))
+                    if (new RegExp(`${_.escapeRegExp(value)}\\b`,'i').test(this.state.search))
                         return
 
                     spaceId = this.state.spaceId
@@ -38,12 +42,12 @@ export default class SpaceRoute extends React.PureComponent {
 
                 case 'current':
                     spaceId = this.state.spaceId
-                    search = value
+                    search = value+' '
                 break
 
                 default:
                     spaceId = 0
-                    search = value
+                    search = value+' '
                 break
             }
 
