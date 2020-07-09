@@ -23,3 +23,7 @@ export const makeCollectionPath = ()=>createSelector(
     ],
 	getPath
 )
+
+//
+export const getBlankId = (state) =>
+    state.collections.items[-101] ? -101 : undefined

@@ -21,7 +21,7 @@ export const makeFiltered = ()=> createSelector(
 		const found = []
 
 		_.forEach(items, item=>{
-			if (item.title.toLowerCase().includes(search))
+			if ((item.title||'').toLowerCase().includes(search))
 				found.push(item)
 		})
 

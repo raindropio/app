@@ -4,7 +4,7 @@ import t from '~t'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as collectionsActions from '~data/actions/collections'
-import { makeTreeFlat, makeCollectionsStatus, selectMode } from '~data/selectors/collections'
+import { makeTreeFlat, makeCollectionsStatus, selectMode, getBlankId } from '~data/selectors/collections'
 
 import withPause from '~co/common/withPause'
 import Tree from './tree'
@@ -90,7 +90,8 @@ export default connect(
             return {
                 data: getTree(state, props),
                 status,
-                selectMode: selectMode(state)
+                selectMode: selectMode(state),
+                blankId: getBlankId(state)
             }
         }
     },

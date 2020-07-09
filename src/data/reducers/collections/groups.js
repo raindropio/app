@@ -150,6 +150,7 @@ export default function(state, action) {
 				to = targetCollections.length
 
 			return state
+				.setIn(['groups', index, 'hidden'], false)
 				.setIn(['groups', index, 'collections'],
 						_.uniq(appendAfterArray(targetCollections, action.collectionId, to)))
 		}

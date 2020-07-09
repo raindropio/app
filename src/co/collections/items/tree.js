@@ -19,16 +19,23 @@ export default class CollectionsTree extends React.Component {
             this._scrolled = true
 
             if (this.props.activeId && typeof this.props.activeId != 'object')
-                this.setState({
-                    scrollToIndex: this.props.data
-                        .findIndex(({item})=>item && item._id == this.props.activeId)
-                })
+                this.scrollToId(this.props.activeId)
         }
 
         if (prev.data != this.props.data ||
             prev.customRows != this.props.customRows)
             this.setState({ dataCheckpoint: this.state.dataCheckpoint+1 })
+
+        //scroll to blank new collection
+        if (prev.blankId != this.props.blankId)
+            this.scrollToId(this.props.blankId)
     }
+
+    scrollToId = (id)=>
+        this.setState({
+            scrollToIndex: this.props.data
+                .findIndex(({item})=>item && item._id == id)
+        })
     
     //rendering rows
     rowRenderer = (index, provided, { isDragging, combineTargetFor })=>{

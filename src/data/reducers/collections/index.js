@@ -99,13 +99,7 @@ const initialState = Immutable({
 				level: 4
 			}
 		},
-		{
-			_id: -101,
-			title: 'Blank item',
-			access: {
-				level: 4
-			}
-		}
+		//don't put _id:101 here
 	],
 
 	defaultGroupTitle: 'My Collections'
