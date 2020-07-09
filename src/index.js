@@ -13,24 +13,21 @@ import Translate from '~modules/translate/component'
 import Loading from '~co/screen/loading'
 import Routes from './routes'
 import Document from './routes/_document'
-import ServiceWorker from '~modules/sw/component'
 
 //init redux
 const { store, persistor } = withLocalReducer(localReducers)
 
 render(
 	//add other global components in co/screen/basic
-	<ServiceWorker>
-		<Provider store={store}>
-			<Document>
-				<PersistGate loading={<Loading />} persistor={persistor}>
-					<Translate Loading={Loading}>
-						<Routes />
-					</Translate>
-				</PersistGate>
-			</Document>
-		</Provider>
-	</ServiceWorker>,
+	<Provider store={store}>
+		<Document>
+			<PersistGate loading={<Loading />} persistor={persistor}>
+				<Translate Loading={Loading}>
+					<Routes />
+				</Translate>
+			</PersistGate>
+		</Document>
+	</Provider>,
 	
 	document.getElementById('react')
 )

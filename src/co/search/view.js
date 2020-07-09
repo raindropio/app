@@ -82,6 +82,7 @@ export default class SearchView extends React.Component {
                                     placeholder: t.s('defaultCollection-0'),
                                     ...etc,
                                     ref: this.inputRef,
+                                    clearOnEscape: !downshift.isOpen,
                                     onFocus: downshift.toggleMenu,
                                     onDoubleClick: downshift.toggleMenu
                                 })} />

@@ -9,6 +9,7 @@ import Preloader from '~co/common/preloader'
 class SearchInput extends React.PureComponent {
     static defaultProps = {
         autoFocus: false,
+        clearOnEscape: true,
         value: '',
         onSubmit: undefined,
     }
@@ -66,7 +67,8 @@ class SearchInput extends React.PureComponent {
     onInputKeyDown = (e)=>{
         switch(e.key) {
             case 'Escape':
-                if (this.props.value){
+                if (this.props.clearOnEscape && 
+                    this.props.value){
                     e.stopPropagation()
                     this.onReset()
                 }
@@ -99,13 +101,15 @@ class SearchInput extends React.PureComponent {
     })
 
     render() {
-        const { loading, forwardedRef, ...original } = this.props
+        const { loading, forwardedRef, clearOnEscape, ...original } = this.props
 
         if (forwardedRef)
             this._input = forwardedRef
 
         return (
-            <div data-active={this.state.focus}>
+            <div 
+                data-active={this.state.focus}
+                data-clear-on-escape={clearOnEscape}>
                 <form onSubmit={this.onSubmit}>
                     <Text
                         ref={this._input}
