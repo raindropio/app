@@ -5,7 +5,6 @@ import { getSpaceQuery } from '../../helpers/bookmarks'
 
 import {
 	SPACE_LOAD_REQ, SPACE_LOAD_SUCCESS, SPACE_LOAD_ERROR,
-	SPACE_RELOAD_REQ,
 	SPACE_REFRESH_REQ,
 	SPACE_NEXTPAGE_REQ, SPACE_NEXTPAGE_SUCCESS, SPACE_NEXTPAGE_ERROR,
 	SPACE_CHANGE_SORT,
@@ -21,7 +20,6 @@ export default function* () {
 	//space
 	yield takeEvery([
 		SPACE_LOAD_REQ,
-		SPACE_RELOAD_REQ,
 		SPACE_REFRESH_REQ,
 		SPACE_NEXTPAGE_REQ,
 		SPACE_CHANGE_SORT

@@ -20,7 +20,6 @@ import {
 	SELECT_MODE_FAIL_SELECTED,
 
 	SPACE_LOAD_REQ,
-	SPACE_RELOAD_REQ,
 
 	BOOKMARK_REMOVE_SUCCESS
 } from '../../constants/bookmarks'
@@ -37,8 +36,7 @@ export default function(state, action) {switch (action.type) {
 	}
 
 	case SELECT_MODE_DISABLE:
-	case SPACE_LOAD_REQ:
-	case SPACE_RELOAD_REQ:{
+	case SPACE_LOAD_REQ:{
 		if (!action.ignore)
 			return state
 				.set('selectMode', blankSelectMode)

@@ -9,6 +9,9 @@ export const isQueryChanged = (state, spaceId, nextToCheck)=>{
 	if (!space)
 		return true
 
+	if (space.fromCache)
+		return true
+
 	const prevQuery = space.query||blankSpace.query
 	var nextQuery = prevQuery
 	_.forEach(nextToCheck, (val,key)=>{

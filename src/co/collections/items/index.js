@@ -31,7 +31,9 @@ class CollectionsItems extends React.Component {
 			groupTitle: t.s('myCollections')
         })
         
-        this.props.actions.refresh()
+        this.reload()
+
+        document.addEventListener('visibilitychange', this.reload)
     }
 
     componentDidUpdate({ activeId, status }) {
@@ -47,7 +49,13 @@ class CollectionsItems extends React.Component {
     }
 
     componentWillUnmount() {
+        document.removeEventListener('visibilitychange', this.reload)
         this.props.actions.unselectAll()
+    }
+
+    reload = ()=>{
+        if (document.visibilityState !== 'visible') return
+        this.props.actions.refresh()
     }
 
     createNewCollection = (e)=>{

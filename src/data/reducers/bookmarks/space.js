@@ -14,7 +14,6 @@ import {REHYDRATE} from 'redux-persist/src/constants'
 import {
 	SPACE_PER_PAGE,
 	SPACE_LOAD_REQ, SPACE_LOAD_SUCCESS, SPACE_LOAD_ERROR,
-	SPACE_RELOAD_REQ,
 	SPACE_REFRESH_REQ,
 	SPACE_ACTUALIZE_REQ,
 	SPACE_NEXTPAGE_REQ, SPACE_NEXTPAGE_SUCCESS, SPACE_NEXTPAGE_ERROR,
@@ -53,15 +52,15 @@ export default function(state, action) {switch (action.type) {
 		const query = action.query||{};
 
 		if (isQueryChanged(state, action.spaceId, query)){
-			state = replaceBookmarksSpace(state, normalizeBookmarks([]), action.spaceId)
-
-			return state
+			state = state
 				.setIn(['spaces', action.spaceId, 'status', 'main'], 		'loading')
-				.setIn(['spaces', action.spaceId, 'status', 'nextPage'], 	'noMore')
+				.setIn(['spaces', action.spaceId, 'status', 'nextPage'], 	blankSpace.status.nextPage)
 				.setIn(['spaces', action.spaceId, 'query', 'search'], 		(query.search||blankSpace.query.search).trim())
 				.setIn(['spaces', action.spaceId, 'query', 'sort'], 		query.sort||blankSpace.query.sort)
-		} else
-			action.ignore = true
+		}
+
+		if (!state.getIn(['spaces', action.spaceId]))
+			state = state.setIn(['spaces', action.spaceId], blankSpace)
 		
 		return state
 	}
@@ -82,19 +81,6 @@ export default function(state, action) {switch (action.type) {
 
 		return state
 			.setIn(['spaces', action.spaceId, 'status', 'main'], 		action.error && action.error.status >= 400 && action.error.status < 500 ? 'notFound' : 'error')
-	}
-
-	//Reload
-	case SPACE_RELOAD_REQ:{
-		if (!shouldLoadSpace(state, action.spaceId)){
-			action.ignore = true;
-			return state;
-		}
-
-		return state
-			.setIn(['spaces', action.spaceId, 'status', 'main'], 		'loading')
-			.setIn(['spaces', action.spaceId, 'status', 'nextPage'], 	'noMore')
-			.setIn(['spaces', action.spaceId, 'query', 'page'], 		0)
 	}
 
 	//Refresh

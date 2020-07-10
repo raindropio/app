@@ -20,6 +20,11 @@ class BookmarksItems extends React.Component {
 
     componentDidMount() {
         this.load()
+        document.addEventListener('visibilitychange', this.load)
+    }
+
+    componentWillUnmount() {
+        document.removeEventListener('visibilitychange', this.load)
     }
 
     componentDidUpdate(prev) {
@@ -29,6 +34,8 @@ class BookmarksItems extends React.Component {
     }
 
     load = ()=>{
+        if (document.visibilityState !== 'visible') return
+
         const { actions, spaceId, search, sort } = this.props
 
         actions.load(spaceId, {
