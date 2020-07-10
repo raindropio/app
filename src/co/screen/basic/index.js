@@ -41,10 +41,10 @@ class ScreenBasic extends React.Component {
 }
 
 export default connect(
-    state=>({
+    (state, { appSize })=>({
         theme: state.local.theme,
         autoTheme: state.local.autoTheme,
-        appSize: state.local.appSize,
+        appSize: appSize || state.local.appSize,
     }),
     {
         setTheme

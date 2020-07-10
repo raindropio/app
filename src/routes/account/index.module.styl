@@ -1,0 +1,36 @@
+.page {
+	-webkit-app-region: drag
+	width: 100%
+	height: 100%
+	overflow: auto
+    display: grid
+	grid-template-columns: calc(var(--app-base-size) * 95) //380px
+    grid-template-rows: 1fr auto
+	align-items: center
+	justify-content: center
+	padding: 0 var(--padding-medium)
+}
+
+.content {
+	width: 100%
+	padding: var(--padding-medium) 0
+}
+
+.logo {
+	display: block
+	margin: var(--padding-large) auto
+	width: calc(var(--app-base-size) * 16) //64px
+	height: calc(var(--app-base-size) * 16) //64px
+}
+
+.footer {
+	display: flex
+	align-items: center
+    justify-content: space-between
+	color: var(--secondary-text-color)
+	padding: var(--padding-medium)
+
+	a {
+		color: var(--primary-text-color)
+	}
+}

@@ -221,38 +221,32 @@ module.exports = {
 				oneOf: [
 					{
 						resourceQuery: /asis/,
-						loader: 'file-loader',
-						options: {
-							outputPath: 'assets',
-							name: '[contenthash].[ext]'
-						}
+						use: ['@svgr/webpack']
 					},
 					{
-						loader: 'svg-sprite-loader',
-						options: {
-							name: '[name]',
-							prefixize: false
-						}
-					}
-				]
-			},
-
-			{
-				test: /\.svg$/,
-				use: [
-					{
-						loader: 'image-webpack-loader',
-						options: {
-							svgo: {
-								plugins: [
-									{ transformsWithOnePath: true },
-									{ removeTitle: true },
-									{ removeUselessStrokeAndFill: true },
-									{ removeAttrs: { attrs: '(stroke|fill)' } },
-									{ removeViewBox:false }
-								]
+						use: [
+							{
+								loader: 'svg-sprite-loader',
+								options: {
+									name: '[name]',
+									prefixize: false
+								}
+							},
+							{
+								loader: 'image-webpack-loader',
+								options: {
+									svgo: {
+										plugins: [
+											{ transformsWithOnePath: true },
+											{ removeTitle: true },
+											{ removeUselessStrokeAndFill: true },
+											{ removeAttrs: { attrs: '(stroke|fill)' } },
+											{ removeViewBox:false }
+										]
+									}
+								},
 							}
-						},
+						]
 					}
 				]
 			},

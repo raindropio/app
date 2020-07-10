@@ -1,13 +1,16 @@
 import s from './index.module.styl'
 import React from 'react'
-import { Helmet } from 'react-helmet'
 import t from '~t'
+import { connect } from 'react-redux'
+import { userStatus, errorReason } from '~data/selectors/user'
+import { registerWithPassword } from '~data/actions/user'
 
-import { Layout, Text } from '~co/common/form'
+import { Link } from 'react-router-dom'
+import { Helmet } from 'react-helmet'
+import { Layout, Text, Label } from '~co/common/form'
+import Header, { Title } from '~co/common/header'
 import Button from '~co/common/button'
 import Preloader from '~co/common/preloader'
-import Header, { Title } from '~co/common/header'
-import withPage from '../_page'
 import Social from '../social'
 import { Error } from '~co/overlay/dialog'
 
@@ -37,36 +40,39 @@ class AccountSignup extends React.Component {
         return (
             <form onSubmit={this.onSubmit}>
                 <Helmet><title>{t.s('recoverPassword')}</title></Helmet>
-                <Header data-no-shadow>
-                    <Title>{t.s('startCollecting')}</Title>
+                <Header data-fancy>
+                    <Title data-center>{t.s('startCollecting')}</Title>
                 </Header>
-
-                <Layout>                    
+                   
+                <Layout>
+                    <Label>{t.s('yourName')}</Label>               
                     <Text
                         type='text'
                         name='fullName'
                         disabled={status=='loading'}
                         autoFocus
                         required
-                        placeholder={t.s('yourName')}
+                        placeholder='John Appleseed'
                         value={this.state.fullName}
                         onChange={this.onChangeValue} />
 
+                    <Label>Email</Label>
                     <Text
                         type='email'
                         name='email'
                         disabled={status=='loading'}
                         required
-                        placeholder='Email'
+                        placeholder='john@appleseed.com'
                         value={this.state.email}
                         onChange={this.onChangeValue} />
 
+                    <Label>{t.s('password')}</Label>
                     <Text
                         type='password'
                         name='password'
                         disabled={status=='loading'}
                         required
-                        placeholder={t.s('password')}
+                        placeholder='••••••••'
                         value={this.state.password}
                         onChange={this.onChangeValue} />
 
@@ -83,15 +89,31 @@ class AccountSignup extends React.Component {
                             value={t.s('register')} />
                     )}
 
+                    <Social 
+                        {...this.props}
+                        disabled={status == 'loading'} />
+
                     <div className={s.acceptLicence}>
                         {t.s('privacyTerms')} <a href='https://help.raindrop.io/terms' target='_blank'>{t.s('termsOfService')}</a> {t.s('und')} <a href='https://help.raindrop.io/privacy' target='_blank'>{t.s('privacyPolicy')}</a>
                     </div>
-                </Layout>
 
-                <Social {...this.props} />
+                    <Button
+                        as={Link}
+                        to='/account/login'
+                        variant='link'
+                        data-block>
+                        {t.s('signIn')}
+                    </Button>
+                </Layout>
             </form>
         )
     }
 }
 
-export default withPage(AccountSignup)
+export default connect(
+    state=>({
+        status: userStatus(state),
+		error: errorReason(state)
+    }),
+    { registerWithPassword }
+)(AccountSignup)

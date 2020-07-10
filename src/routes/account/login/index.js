@@ -1,13 +1,15 @@
 import React from 'react'
-import { Helmet } from 'react-helmet'
 import t from '~t'
+import { connect } from 'react-redux'
+import { userStatus, errorReason } from '~data/selectors/user'
+import { loginWithPassword } from '~data/actions/user'
 
-import withPage from './_page'
-import { Layout, Text } from '~co/common/form'
+import { Helmet } from 'react-helmet'
+import { Link } from 'react-router-dom'
+import { Layout, Text, Label } from '~co/common/form'
 import Button from '~co/common/button'
 import Preloader from '~co/common/preloader'
-import Header, { Title } from '~co/common/header'
-import Social from './social'
+import Social from '../social'
 import { Error } from '~co/overlay/dialog'
 
 class AccountLogin extends React.Component {
@@ -37,22 +39,27 @@ class AccountLogin extends React.Component {
                 <Helmet><title>{t.s('signIn')}</title></Helmet>
 
                 <Layout>
+                    <Label>Email</Label>
                     <Text
                         type='email'
                         name='email'
                         disabled={status=='loading'}
                         autoFocus
                         required
-                        placeholder='Email'
+                        placeholder='john@appleseed.com'
                         value={this.state.email}
                         onChange={this.onChangeValue} />
 
+                    <Label>
+                        {t.s('password')}
+                        <Link to='/account/lost'>{t.s('recoverPassword')}</Link>
+                    </Label>
                     <Text
                         type='password'
                         name='password'
                         disabled={status=='loading'}
                         required
-                        placeholder={t.s('password')}
+                        placeholder='••••••••'
                         value={this.state.password}
                         onChange={this.onChangeValue} />
 
@@ -68,12 +75,28 @@ class AccountLogin extends React.Component {
                             data-block
                             value={t.s('signIn')} />
                     )}
-                </Layout>
 
-                <Social {...this.props} />
+                    <Social 
+                        {...this.props}
+                        disabled={status == 'loading'} />
+
+                    <Button
+                        as={Link}
+                        to='/account/signup'
+                        variant='link'
+                        data-block>
+                        {t.s('signUp')}
+                    </Button>
+                </Layout>
             </form>
         )
     }
 }
 
-export default withPage(AccountLogin)
+export default connect(
+    state=>({
+        status: userStatus(state),
+		error: errorReason(state)
+    }),
+    { loginWithPassword }
+)(AccountLogin)
