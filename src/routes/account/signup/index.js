@@ -41,7 +41,7 @@ class AccountSignup extends React.Component {
             <form onSubmit={this.onSubmit}>
                 <Helmet><title>{t.s('recoverPassword')}</title></Helmet>
                 <Header data-fancy>
-                    <Title data-center>{t.s('startCollecting')}</Title>
+                    <Title>{t.s('startCollecting')}</Title>
                 </Header>
                    
                 <Layout>
