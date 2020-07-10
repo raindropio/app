@@ -3,7 +3,9 @@ import React from 'react'
 import t from '~t'
 
 import { Link } from 'react-router-dom'
-import Icon from '~co/common/icon'
+import IllustrationNo from './no.svg?asis'
+import IllustrationSearch from './search.svg?asis'
+import IllustrationError from './error.svg?asis'
 
 export default class BookmarksEmptyView extends React.PureComponent {
     reload = (e)=>{
@@ -30,7 +32,6 @@ export default class BookmarksEmptyView extends React.PureComponent {
                     case (_id==-99):
                         content = (
                             <div>
-                                <Icon name='trash' enlarge='3' />
                                 <h2>{t.s('trashEmpty')}</h2>
                             </div>
                         )
@@ -40,7 +41,7 @@ export default class BookmarksEmptyView extends React.PureComponent {
                     case (!searchEmpty):
                         content = (
                             <div>
-                                <Icon name='search' enlarge='3' />
+                                <IllustrationSearch />
                                 <h2>{t.s('nothingFound')}</h2>
                             </div>
                         )
@@ -51,6 +52,8 @@ export default class BookmarksEmptyView extends React.PureComponent {
                         if (!compact)
                             content = (
                                 <div>
+                                    <IllustrationNo />
+
                                     <h2>{t.s('noBookmarks')}</h2>
                                     <p>
                                         {t.s('noItemsTip')}
@@ -63,7 +66,7 @@ export default class BookmarksEmptyView extends React.PureComponent {
 
             case 'notFound':
                 content = (
-                    <div>
+                    <div>                        
                         <h2>{t.s('removeCollectionSuccess')}</h2>
                         <p>
                             {t.s('or')} {t.s('nothingFound').toLowerCase()}
@@ -81,6 +84,8 @@ export default class BookmarksEmptyView extends React.PureComponent {
             case 'error':
                 content = (
                     <div>
+                        <IllustrationError />
+
 						<h2>{t.s('error')}</h2>
 						<p>
 							<a onClick={this.reload}>{t.s('refresh')}</a>

@@ -1,16 +1,12 @@
 import s from './view.module.styl'
 import React from 'react'
 import t from '~t'
+import lastPart from './helpers/lastPart'
 
 import Downshift from 'downshift'
 import FiltersAutocomplete from '~co/filters/autocomplete'
 import TagsAutocomplete from '~co/tags/autocomplete'
 import Input from './input'
-
-function lastPart(str) {
-    const parts = (str||'').split(/\s+/)
-    return parts[parts.length-1]
-}
 
 function setLastPart(str, val) {
     return str.replace(new RegExp(`${lastPart(str)}$`), val)

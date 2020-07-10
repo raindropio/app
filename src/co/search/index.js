@@ -1,5 +1,6 @@
 import React from 'react'
 import _ from 'lodash'
+import lastPart from './helpers/lastPart'
 
 import View from './view'
 
@@ -26,6 +27,9 @@ export default class Search extends React.Component {
     handlers = {
         onChange: (e)=>{
             this.setState({ value: e.target.value }, ()=>{
+                if (lastPart(this.state.value).startsWith('#'))
+                    return
+
                 if (this.state.value.length>1)
                     this.onSubmitBounced()
                 else if (!this.state.value)
@@ -34,8 +38,7 @@ export default class Search extends React.Component {
         },
 
         onSubmit: ()=>{
-            if (!this.state.value.endsWith('#'))
-                this.props.events.onSubmit && this.props.events.onSubmit(this.state.value)
+            this.props.events.onSubmit && this.props.events.onSubmit(this.state.value)
         }
     }
 

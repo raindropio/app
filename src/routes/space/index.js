@@ -37,7 +37,7 @@ export default class SpaceRoute extends React.PureComponent {
                         return
 
                     spaceId = this.state.spaceId
-                    search = (this.state.search||'').trim()+' '+value
+                    search = (this.state.search||'').trim()+' '+value+' '
                 break
 
                 case 'current':
@@ -51,7 +51,7 @@ export default class SpaceRoute extends React.PureComponent {
                 break
             }
 
-            this.props.history.push(`/space/${spaceId}${this.state.full?'full':''}/${encodeURIComponent(search ? search.trim()+' ' : '')}`)
+            this.props.history.push(`/space/${spaceId}${this.state.full?'full':''}/${encodeURIComponent(search)}`)
         },
 
         onReader: (update)=>{

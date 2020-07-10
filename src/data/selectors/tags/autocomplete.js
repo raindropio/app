@@ -1,4 +1,5 @@
 import { createSelector } from 'reselect'
+import _ from 'lodash'
 import { getTags } from './items'
 
 const emptyArray = []
@@ -14,7 +15,7 @@ export const makeTagsAutocomplete = ()=>createSelector(
 	(global, collection, _filter, selected)=>{
 		const filter = (_filter||'').trim().toLowerCase().replace(/^#/,'')
 
-		return [
+		const tags = [
 			...collection.filter(({ _id }) => !global.some(tag=>tag._id == _id) ),
 			...global
 		].filter(item => {
@@ -23,5 +24,10 @@ export const makeTagsAutocomplete = ()=>createSelector(
 			if (filter) return item._id.toLowerCase().includes(filter)
 			return true
 		})
+
+		if (filter)
+			return _.orderBy(tags, (x)=>{ return _.includes(x, filter) }, 'desc')
+
+		return tags
 	}
 )
