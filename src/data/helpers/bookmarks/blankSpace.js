@@ -2,6 +2,7 @@ import Immutable from 'seamless-immutable'
 const emptyArray = []
 
 export const blankSpace = Immutable({
+	lastAction: null,
 	status: {
 		main: 		'idle', //idle/empty/loading/error/loaded/notFound,
 		nextPage: 	'idle', //idle/noMore/loading/error

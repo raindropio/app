@@ -1,21 +1,11 @@
 import _ from 'lodash-es'
-import {
-	normalizeBookmarks,
-	blankSpace,
-	shouldLoadSpace,
-	shouldLoadMoreSpace
-} from '../../helpers/bookmarks'
-import {
-	isQueryChanged,
-	actualizeSpaceStatus,
-	replaceBookmarksSpace
-} from './utils'
-import {REHYDRATE} from 'redux-persist/src/constants'
+import { normalizeBookmarks, blankSpace, queryIsEqual } from '../../helpers/bookmarks'
+import { actualizeSpaceStatus, replaceBookmarksSpace } from './utils'
+import { REHYDRATE } from 'redux-persist/src/constants'
 import {
 	SPACE_PER_PAGE,
 	SPACE_LOAD_REQ, SPACE_LOAD_SUCCESS, SPACE_LOAD_ERROR,
 	SPACE_REFRESH_REQ,
-	SPACE_ACTUALIZE_REQ,
 	SPACE_NEXTPAGE_REQ, SPACE_NEXTPAGE_SUCCESS, SPACE_NEXTPAGE_ERROR,
 	SPACE_CHANGE_SORT,
 
@@ -27,21 +17,21 @@ export default function(state, action) {switch (action.type) {
 	case REHYDRATE:{
 		const { spaces={}, elements={}, meta={} } = action.payload && action.payload.bookmarks||{}
 
+		//restore all non-corrupted spaces
 		_.forEach(spaces, (space, _id)=>{
-			if (!space.status ||
-				space.status.main != 'loaded' ||
-				space.status.nextPage == 'error' ||
-				space.status.nextPage == 'loading')
-				return
+			//is corrupted
+			if (!space.status || space.status.main != 'loaded') return
 
-			state = state
-				.setIn(['spaces', _id], space)
-				.setIn(['spaces', _id, 'ids'], _.uniq(space.ids)/*.slice(0, SPACE_PER_PAGE)*/)
-				//comment out two lines below to support full restore (also remove .slice from line above)
-				// .setIn(['spaces', _id, 'query', 'page'], 0)
-				// .setIn(['spaces', _id, 'status', 'nextPage'], blankSpace.status.nextPage)
+			//clean up
+			const clean = space
+				.set('ids', _.uniq(space.ids).slice(0, SPACE_PER_PAGE))
+				.setIn(['query', 'page'], 0)
+				.setIn(['status', 'nextPage'], blankSpace.status.nextPage)
+
+			state = state.setIn(['spaces', _id], clean)
 		})
 
+		//restore elements with meta data
 		return state
 			.set('elements', elements)
 			.set('meta', meta)
@@ -49,113 +39,179 @@ export default function(state, action) {switch (action.type) {
 
 	//Load bookmarks
 	case SPACE_LOAD_REQ:{
-		const query = action.query||{};
+		const { spaceId, query, lastAction } = action
+		const oldSpace = state.spaces[spaceId]
 
-		if (isQueryChanged(state, action.spaceId, query)){
-			state = state
-				.setIn(['spaces', action.spaceId, 'status', 'main'], 		'loading')
-				.setIn(['spaces', action.spaceId, 'status', 'nextPage'], 	blankSpace.status.nextPage)
-				.setIn(['spaces', action.spaceId, 'query', 'search'], 		(query.search||blankSpace.query.search).trim())
-				.setIn(['spaces', action.spaceId, 'query', 'sort'], 		query.sort||blankSpace.query.sort)
-		}
+		//ignore when nothing changed (including data, query)
+		if (oldSpace && 
+			oldSpace.lastAction == lastAction && 
+			queryIsEqual(oldSpace.query, query)){
+				action.ignore = true
+				return state
+			}
 
-		if (!state.getIn(['spaces', action.spaceId]))
-			state = state.setIn(['spaces', action.spaceId], blankSpace)
-		
-		return state
+		//reset space to initial state
+		let space = (oldSpace || blankSpace)
+			.set('lastAction', lastAction)
+			.merge({ query })
+			.setIn(['query', 'page'], 0)
+			.setIn(['status', 'main'], 'loading')
+			.setIn(['status', 'nextPage'], blankSpace.status.nextPage)
+
+		//send query in action
+		action.query = space.query
+
+		return state.setIn(['spaces', action.spaceId], space)
 	}
 
 	case SPACE_LOAD_SUCCESS:{
-		const statusMain = (action.items.length ? 'loaded' : 'empty')
-		const statusNextPage = ((statusMain == 'empty' || action.items.length < SPACE_PER_PAGE) ? 'noMore' : 'idle')
+		const { spaceId, items=[], query } = action
+		const space = state.spaces[spaceId]
 
-		state = replaceBookmarksSpace(state, normalizeBookmarks(action.items), action.spaceId)
+		//results from other request, ignore
+		if (!space || 
+			!queryIsEqual(space.query, query))
+			return state
+
+		const statusMain = (items.length ? 'loaded' : 'empty')
+		const statusNextPage = ((statusMain == 'empty' || items.length < SPACE_PER_PAGE) ? 'noMore' : 'idle')
+
+		state = replaceBookmarksSpace(state, normalizeBookmarks(items), spaceId)
 
 		return state
-			.setIn(['spaces', action.spaceId, 'status', 'main'], 		statusMain)
-			.setIn(['spaces', action.spaceId, 'status', 'nextPage'], 	statusNextPage)
+			.setIn(['spaces', spaceId, 'status', 'main'], 		statusMain)
+			.setIn(['spaces', spaceId, 'status', 'nextPage'], 	statusNextPage)
 	}
 
 	case SPACE_LOAD_ERROR:{
-		state = replaceBookmarksSpace(state, normalizeBookmarks([]), action.spaceId)
+		const { spaceId, error, query } = action
+		const space = state.spaces[spaceId]
+
+		//results from other request, ignore
+		if (!space || 
+			!queryIsEqual(space.query, query))
+			return state
+
+		state = replaceBookmarksSpace(state, normalizeBookmarks([]), spaceId)
 
 		return state
-			.setIn(['spaces', action.spaceId, 'status', 'main'], 		action.error && action.error.status >= 400 && action.error.status < 500 ? 'notFound' : 'error')
+			.setIn(
+				['spaces', spaceId, 'status', 'main'], 
+				error && error.status >= 400 && error.status < 500 ? 'notFound' : 'error'
+			)
 	}
 
 	//Refresh
 	case SPACE_REFRESH_REQ:{
-		if (
-			!shouldLoadSpace(state, action.spaceId) ||
-			!state.getIn(['spaces', action.spaceId])
-		){
+		const { spaceId } = action
+		let space = state.spaces[spaceId]
+
+		//load from scratch
+		if (!space)
+			return state.setIn(['spaces', spaceId], blankSpace)
+
+		//in progress
+		if (space && 
+			space.status && 
+			space.status.main == 'loading'){
 			action.ignore = true;
 			return state;
 		}
 
-		return state
-			.setIn(['spaces', action.spaceId, 'status', 'main'], 		'loading')
-			.setIn(['spaces', action.spaceId, 'status', 'nextPage'], 	'noMore')
-			.setIn(['spaces', action.spaceId, 'query', 'page'], 		0)
-	}
+		space = space
+			.setIn(['status', 'main'], 		'loading')
+			.setIn(['status', 'nextPage'], 	'noMore')
+			.setIn(['query', 'page'], 		0)
 
-	//Actualize
-	case SPACE_ACTUALIZE_REQ:{
-		if (!shouldLoadSpace(state, action.spaceId)){
-			action.ignore = true;
-			return state;
-		}
+		//send query in action
+		action.query = space.query
 
-		if (state.getIn(['spaces', action.spaceId, 'query', 'page'])!==0)
-			return state;
-
-		return state
-			.setIn(['spaces', action.spaceId, 'status', 'main'], 		'loading')
-			.setIn(['spaces', action.spaceId, 'status', 'nextPage'], 	'noMore')
-			.setIn(['spaces', action.spaceId, 'query', 'page'], 		0)
+		//reload beginning from first page
+		return state.setIn(['spaces', spaceId], space)
 	}
 
 	//Next page
 	case SPACE_NEXTPAGE_REQ:{
-		if (!shouldLoadMoreSpace(state, action.spaceId)){
-			action.ignore = true;
-			return state;
-		}
+		const { spaceId } = action
+		let space = state.spaces[spaceId]
+		
+		//in progress
+		if (!space ||
+			!space.status ||
+			!space.ids.length ||
+			space.status.nextPage == 'loading' ||
+			space.status.nextPage == 'noMore' ||
+			space.status.main == 'loading' ||
+			space.status.main == 'notFound' ||
+			space.status.main == 'idle'){
+				action.ignore = true;
+				return state;
+			}
 
-		const space = state.spaces[action.spaceId]
-		return state
-			.setIn(['spaces', action.spaceId, 'status', 'nextPage'], 	'loading')
-			.setIn(['spaces', action.spaceId, 'query', 'page'], 		space.query.page+1)
+		space = space
+			.setIn(['status', 'nextPage'], 	'loading')
+			.setIn(['query', 'page'], 		space.query.page+1)
+
+		//send query in action
+		action.query = space.query
+
+		//set status and increment page
+		return state.setIn(['spaces', spaceId], space)
 	}
 
 	case SPACE_NEXTPAGE_SUCCESS:{
-		const space = state.spaces[action.spaceId]
-		const clean = normalizeBookmarks(action.items)
+		const { spaceId, items=[], query } = action
+		const space = state.spaces[spaceId]
+
+		//results from other request, ignore
+		if (!space || 
+			!queryIsEqual(space.query, query))
+			return state
+			
+		const clean = normalizeBookmarks(items)
 
 		return state
-			.setIn(['spaces', action.spaceId, 'status', 'nextPage'], 	(action.items.length ? 'idle' : 'noMore'))
-			.setIn(['spaces', action.spaceId, 'ids'], 					[...space.ids||[], ...clean.ids])
-			.set('elements', 										state.elements.merge(clean.elements))
-			.set('meta', 											state.meta.merge(clean.meta))
+			.setIn(['spaces', spaceId, 'status', 'nextPage'], 	(items.length ? 'idle' : 'noMore'))
+			.setIn(['spaces', spaceId, 'ids'], 					[...space.ids||[], ...clean.ids])
+			.set('elements',									state.elements.merge(clean.elements))
+			.set('meta',										state.meta.merge(clean.meta))
 	}
 
 	case SPACE_NEXTPAGE_ERROR:{
-		const space = state.spaces[action.spaceId]
+		const { spaceId, query } = action
+		const space = state.spaces[spaceId]
+
+		//results from other request, ignore
+		if (!space || 
+			!queryIsEqual(space.query, query))
+			return state
+
 		const page = space.query.page-1
+
 		return state
-			.setIn(['spaces', action.spaceId, 'status', 'nextPage'], 	'error')
-			.setIn(['spaces', action.spaceId, 'query', 'page'], 		(page>=0?page:0))
+			.setIn(['spaces', spaceId, 'status', 'nextPage'], 	'error')
+			.setIn(['spaces', spaceId, 'query', 'page'], 		(page>=0?page:0))
 	}
 
 	//Change sort
 	case SPACE_CHANGE_SORT:{
-		if (action.sort != state.getIn(['spaces', action.spaceId, 'query', 'sort']))
-			state = state
-				.setIn(['spaces', action.spaceId, 'ids'], 				blankSpace.ids)
+		const { spaceId, sort } = action
+		let space = state.spaces[spaceId]
 
-		return state
-			.setIn(['spaces', action.spaceId, 'query', 'sort'], 		action.sort)
-			.setIn(['spaces', action.spaceId, 'query', 'page'], 		0)
+		if (!space)
+			return state
+
+		space = space
+			.setIn(['query', 'sort'], sort)
+			.setIn(['query', 'page'], 0)
+
+		if (sort != space.query.sort)
+			space = space.set('ids', blankSpace.ids)
+
+		//send query in action
+		action.query = space.query
+
+		return state.setIn(['spaces', spaceId], space)
 	}
 
 	//Update Space Status when Bookmark Changed

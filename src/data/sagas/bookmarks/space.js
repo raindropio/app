@@ -1,10 +1,10 @@
 import _ from 'lodash'
 import { call, put, takeEvery, select, throttle, all } from 'redux-saga/effects'
 import Api from '../../modules/api'
-import { getSpaceQuery } from '../../helpers/bookmarks'
+import { stringifyQuery } from '../../helpers/bookmarks'
 
 import {
-	SPACE_LOAD_REQ, SPACE_LOAD_SUCCESS, SPACE_LOAD_ERROR,
+	SPACE_LOAD_PRE, SPACE_LOAD_REQ, SPACE_LOAD_SUCCESS, SPACE_LOAD_ERROR,
 	SPACE_REFRESH_REQ,
 	SPACE_NEXTPAGE_REQ, SPACE_NEXTPAGE_SUCCESS, SPACE_NEXTPAGE_ERROR,
 	SPACE_CHANGE_SORT,
@@ -18,6 +18,8 @@ import { USER_UPDATE_REQ } from '../../constants/user'
 //Requests
 export default function* () {
 	//space
+	yield takeEvery(SPACE_LOAD_PRE, preLoadSpace)
+
 	yield takeEvery([
 		SPACE_LOAD_REQ,
 		SPACE_REFRESH_REQ,
@@ -31,36 +33,37 @@ export default function* () {
 	yield takeEvery(SPACE_VIEW_CONFIG, viewConfig)
 }
 
-function* getActualSpaceQuery(spaceId) {
-	const { bookmarks } = yield select()
-	const query = getSpaceQuery(bookmarks, spaceId)
-	return query
+function* preLoadSpace(action) {
+	if (action.ignore) return
+
+	const { lastAction } = yield call(Api.get, `collection/${parseInt(action.spaceId)}/lastAction`)
+
+	yield put({
+		...action,
+		type: SPACE_LOAD_REQ,
+		lastAction
+	})
 }
 
-function* loadSpace({spaceId, ignore=false}) {
-	if (ignore)
-		return;
-
-	const query = yield getActualSpaceQuery(spaceId)
+function* loadSpace({spaceId, query, ignore=false}) {
+	if (ignore) return
 
 	try {
-		const { items=[] } = yield call(Api.get, 'raindrops/'+query.string);
+		const { items=[] } = yield call(Api.get, `raindrops/${parseInt(spaceId)}${stringifyQuery(query)}`);
 
-		//ignore outdated results
-		if (query.string == (yield getActualSpaceQuery(spaceId)).string)
-			yield put({
-				type: (query.object.page ? SPACE_NEXTPAGE_SUCCESS : SPACE_LOAD_SUCCESS),
-				spaceId: spaceId,
-				items: items
-			})
+		yield put({
+			type: (query.page ? SPACE_NEXTPAGE_SUCCESS : SPACE_LOAD_SUCCESS),
+			spaceId: spaceId,
+			items: items,
+			query
+		})
 	} catch (error) {
-		//ignore outdated results
-		if (query.string == (yield getActualSpaceQuery(spaceId)).string)
-			yield put({
-				type: (query.object.page ? SPACE_NEXTPAGE_ERROR : SPACE_LOAD_ERROR),
-				spaceId: spaceId,
-				error
-			})
+		yield put({
+			type: (query.page ? SPACE_NEXTPAGE_ERROR : SPACE_LOAD_ERROR),
+			spaceId: spaceId,
+			error,
+			query
+		})
 	}
 }
 

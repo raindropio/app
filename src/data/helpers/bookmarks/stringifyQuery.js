@@ -13,12 +13,8 @@ const hardcoded = [
     { find: '☠', key: 'broken', val: '1' },
 ]
 
-export const getSpaceQuery = ({spaces={}}, spaceId)=>{
-	if (typeof spaces[spaceId] == 'undefined')
-		return {string: parseInt(spaceId), object:blankSpace.query}
-
-	const query = spaces[spaceId].query || blankSpace.query
-	const entities = _.compact(_.map(query, (val,key)=>{
+export const stringifyQuery = (query)=>{
+	const entities = _.compact(_.map(query||blankSpace.query, (val,key)=>{
 		if (val)
 			switch(key){
 				case 'page':
@@ -26,26 +22,26 @@ export const getSpaceQuery = ({spaces={}}, spaceId)=>{
 					return key+'='+encodeURIComponent(val);
 				case 'search':
 					if (val.length){
-						let query = String(val).trim()
+						let clean = String(val).trim()
 						let parts = []
 
 						//rules
 						for(const { regex, override_key='' } of rules){
-							for(const [_, key, val] of query.matchAll(regex))
+							for(const [_, key, val] of clean.matchAll(regex))
 								if (val)
 									parts.push({ key: override_key||key, val })
-							query = query.replace(regex, '')
+							clean = clean.replace(regex, '')
 						}
 
 						//hardcoded
 						for(const {find, key, val} of hardcoded)
-							if (query.includes(find)){
+							if (clean.includes(find)){
 								parts.push({ key, val })
-								query = query.replace(find, '')
+								clean = clean.replace(find, '')
 							}
 
-						if (query.trim())
-							parts.push({ key: 'word', val: query.trim() })
+						if (clean.trim())
+							parts.push({ key: 'word', val: clean.trim() })
 
 						return 'search='+encodeURIComponent(JSON.stringify(parts))
 					}
@@ -54,5 +50,5 @@ export const getSpaceQuery = ({spaces={}}, spaceId)=>{
 	}))
 	entities.push('perpage='+SPACE_PER_PAGE)
 
-	return {string: parseInt(spaceId)+'?'+entities.join('&'), object: query}
+	return '?'+entities.join('&')
 }

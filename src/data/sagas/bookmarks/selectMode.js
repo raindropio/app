@@ -3,7 +3,7 @@ import _ from 'lodash-es'
 import Api from '../../modules/api'
 import ApiError from '../../modules/error'
 
-import { getSpaceQuery } from '../../helpers/bookmarks'
+import { stringifyQuery } from '../../helpers/bookmarks'
 
 import {
 	SELECT_MODE_IMPORTANT_SELECTED,
@@ -216,12 +216,12 @@ function* batchApiRequestHelper(method, body={}) {
 
 	//apply for each collection
 	for(const [collectionId, ids] of groupByCollection){
-		const query = getSpaceQuery(bookmarks, collectionId).string
+		const query = stringifyQuery(bookmarks.getIn(['spaces', collectionId, 'query']))
 
 		//send request
 		yield call(
 			Api[method],
-			`raindrops/${query}${query.includes('?')?'&':'?'}dangerAll=true`,
+			`raindrops/${parseInt(collectionId)}${query}${query.includes('?')?'&':'?'}dangerAll=true`,
 			{
 				...body,
 				...(selectMode.all ? {} : { ids })

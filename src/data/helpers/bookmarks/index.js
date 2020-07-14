@@ -5,7 +5,8 @@ const emptyArray = []
 const emptyObject = {}
 
 export * from './blankSpace'
-export * from './getSpaceQuery'
+export * from './stringifyQuery'
+export * from './queryIsEqual'
 
 //Iterator by spaceId prefixes and original
 export const iterateSpaceId = (spaceId, func)=>{
@@ -60,41 +61,6 @@ export const getDraft = (drafts, _id)=>{
 }
 
 //Selector helpers
-export const shouldLoadSpace = ({spaces={}}, spaceId)=>{
-	if (typeof spaces[spaceId] == 'undefined' || !spaces[spaceId].status)
-		return true
-
-	switch(spaces[spaceId].status.main){
-		case 'loading':
-			return false
-	}
-
-	return true;
-}
-
-export const shouldLoadMoreSpace = ({spaces={}}, spaceId)=>{
-	if (!shouldLoadSpace(spaces, spaceId))
-		return false
-
-	if (typeof spaces[spaceId] == 'undefined')
-		return false
-
-	switch(spaces[spaceId].status.main){
-		case 'idle':
-		case 'empty':
-		case 'error':
-			return false
-	}
-
-	switch(spaces[spaceId].status.nextPage){
-		case 'loading':
-		case 'noMore':
-			return false
-	}
-
-	return true
-}
-
 export const normalizeBookmark = (item={}, options)=>{
 	if (Immutable.isImmutable(item))
 		return item

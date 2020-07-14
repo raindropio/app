@@ -1,26 +1,5 @@
 import _ from 'lodash-es'
-import {
-	iterateSpaceId,
-	blankSpace
-} from '../../helpers/bookmarks'
-
-export const isQueryChanged = (state, spaceId, nextToCheck)=>{
-	const space = state.getIn(['spaces', spaceId])
-	if (!space)
-		return true
-
-	if (space.fromCache)
-		return true
-
-	const prevQuery = space.query||blankSpace.query
-	var nextQuery = prevQuery
-	_.forEach(nextToCheck, (val,key)=>{
-		if (!_.isEqual(prevQuery[key], val))
-			nextQuery = nextQuery.set(key,val)
-	})
-
-	return !_.isEqual(prevQuery, nextQuery)
-}
+import { iterateSpaceId } from '../../helpers/bookmarks'
 
 export const replaceBookmarksSpace = (state, clean, spaceId)=>{
 	const space = state.getIn(['spaces', spaceId])||{}

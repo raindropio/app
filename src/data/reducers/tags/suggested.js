@@ -18,7 +18,7 @@ export default function(state, action={}){switch (action.type) {
 	case TAGS_SUGGESTED_LOAD_SUCCESS:{
 		return state
 			.setIn(['suggested', action._id], normalizeTags(
-				action.tags
+				_.uniq(action.tags)
 					.slice(0,10)
 					.map(_id=>({ _id }))
 			))

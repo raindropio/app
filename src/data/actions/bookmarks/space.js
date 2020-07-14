@@ -1,7 +1,6 @@
 import { 
-	SPACE_LOAD_REQ,
+	SPACE_LOAD_PRE,
 	SPACE_REFRESH_REQ,
-	SPACE_ACTUALIZE_REQ,
 	SPACE_NEXTPAGE_REQ,
 	SPACE_CHANGE_SORT,
 	SPACE_VIEW_TOGGLE,
@@ -10,18 +9,13 @@ import {
 
 //Loading
 export const load = (spaceId, query={})=>({
-	type: SPACE_LOAD_REQ,
+	type: SPACE_LOAD_PRE,
 	spaceId: String(spaceId),
 	query
 })
 
 export const refresh = (spaceId)=>({
 	type: SPACE_REFRESH_REQ,
-	spaceId: String(spaceId)
-})
-
-export const actualize = (spaceId)=>({
-	type: SPACE_ACTUALIZE_REQ,
 	spaceId: String(spaceId)
 })
 
