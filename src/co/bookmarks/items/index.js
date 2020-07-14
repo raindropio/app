@@ -20,11 +20,6 @@ class BookmarksItems extends React.Component {
 
     componentDidMount() {
         this.load()
-        document.addEventListener('visibilitychange', this.load)
-    }
-
-    componentWillUnmount() {
-        document.removeEventListener('visibilitychange', this.load)
     }
 
     componentDidUpdate(prev) {
