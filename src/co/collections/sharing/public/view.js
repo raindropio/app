@@ -54,7 +54,6 @@ export default class CollectionSharingPublic extends React.Component {
                                 ref={this.rss}
                                 type='text'
                                 readOnly
-                                autoFocus
                                 value={`https://raindrop.io/collection/${_id||''}/feed`}>
                                 <Button 
                                     variant='link'

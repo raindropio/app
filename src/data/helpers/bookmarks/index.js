@@ -121,7 +121,7 @@ export const normalizeBookmarks = (items=[], options)=>{
 export const normalizeMeta = (item={})=>{
 	return Immutable({
 		creatorRef: item.creatorRef||emptyObject,
-		tags: 		_.sortBy(item.tags||emptyArray, tag=>tag.toLowerCase()),
+		tags: 		item.tags||emptyArray,//_.sortBy(item.tags||emptyArray, tag=>tag.toLowerCase()),
 		media: 		item.media||emptyArray,
 		highlight:	item.highlight||emptyObject
 	})

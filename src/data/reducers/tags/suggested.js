@@ -8,7 +8,7 @@ export default function(state, action={}){switch (action.type) {
 		const { suggested={} } = action.payload && action.payload.tags||{}
 
 		_.forEach(suggested, (tags, _id)=>{
-			if (!tags || tags.length) return
+			if (!tags || !tags.length) return
 			state = state.setIn(['suggested', _id], tags)
 		})
 

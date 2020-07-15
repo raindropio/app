@@ -10,11 +10,6 @@ class BookmarkEditFormTags extends React.Component {
         this.props.onChange({ tags })
     }
 
-    onAddSuggestedTag = e => {
-        const name = e.currentTarget.getAttribute('data-tag')
-        this.props.onChange({ tags: [...this.props.item.tags, name] })
-    }
-
     render() {
         const { autoFocus, item: { tags, collectionId }, onSubmit } = this.props
 

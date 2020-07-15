@@ -28,12 +28,13 @@ else
 
 export default {
 	key: 'primary',
-	version: 1,
+	version: 2,
 	whitelist: [
 		'config',
 		'collections',
 		'bookmarks',
 		'filters',
+		'tags',
 		'user',
 		'local',
 

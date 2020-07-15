@@ -35,8 +35,13 @@ class EditBookmarkContainer extends React.Component {
 				Alert(t.s('saveError'), { variant: 'error' })
         }
         
-        if (_id != prev._id)
-            this.handlers.onLoad()
+        if (_id != prev._id){
+			//save unsaved changes if user try to open another bookmark
+			if (prev.unsaved)
+				prev.actions.bookmarks.draftCommit(prev._id)
+
+			this.handlers.onLoad()
+		}
 	}
 
 	onWindowClose = (e)=>{

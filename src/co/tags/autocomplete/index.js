@@ -5,6 +5,7 @@ import { makeTagsAutocomplete } from '~data/selectors/tags'
 
 import Popover from '~co/overlay/popover'
 import TagItemView from '~co/tags/item/view'
+import SectionView from '~co/tags/section/view'
 
 class TagsMenu extends React.PureComponent {
     static defaultProps = {
@@ -38,16 +39,22 @@ class TagsMenu extends React.PureComponent {
                 pin={inputRef}
                 scaleDown={true}
                 {...getMenuProps({ refKey: 'innerRef' })}>
-                {tags.map((item, index)=>(
-                    <TagItemView
-                        {...getItemProps({
-                            key: item._id,
-                            index,
-                            item,
-                            ...item,
-                            active: highlightedIndex === index
-                        })} />
-                ))}
+                {tags.map((item, index)=>
+                    item.type == 'section' ? (
+                        <SectionView 
+                            key={item.type+item._id}
+                            {...item} />
+                    ) : (
+                        <TagItemView
+                            {...getItemProps({
+                                key: item._id,
+                                index,
+                                item,
+                                ...item,
+                                active: highlightedIndex === index
+                            })} />
+                    )
+                )}
             </Popover>
         )
     }
