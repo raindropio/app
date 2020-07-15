@@ -20,13 +20,14 @@ export default function(state, action) {switch (action.type) {
 		//restore all non-corrupted spaces
 		_.forEach(spaces, (space, _id)=>{
 			//is corrupted
-			if (!space.status || space.status.main != 'loaded') return
+			if (!space.status || 
+				space.status.main != 'loaded' ||
+				space.status.nextPage == 'loading') return
 
 			//clean up
 			const clean = space
 				.set('ids', _.uniq(space.ids).slice(0, SPACE_PER_PAGE))
 				.setIn(['query', 'page'], 0)
-				.setIn(['status', 'nextPage'], blankSpace.status.nextPage)
 
 			state = state.setIn(['spaces', _id], clean)
 		})
@@ -43,12 +44,16 @@ export default function(state, action) {switch (action.type) {
 		const oldSpace = state.spaces[spaceId]
 
 		//ignore when nothing changed (including data, query)
-		if (oldSpace && 
-			oldSpace.lastAction == lastAction && 
-			queryIsEqual(oldSpace.query, query)){
+		let queryIsChanged = true
+		if (oldSpace){
+			queryIsChanged = !queryIsEqual(oldSpace.query, query)
+
+			if (oldSpace.lastAction == lastAction &&
+				!queryIsChanged){
 				action.ignore = true
 				return state
 			}
+		}
 
 		//reset space to initial state
 		let space = (oldSpace || blankSpace)
@@ -57,6 +62,9 @@ export default function(state, action) {switch (action.type) {
 			.setIn(['query', 'page'], 0)
 			.setIn(['status', 'main'], 'loading')
 			.setIn(['status', 'nextPage'], blankSpace.status.nextPage)
+
+		if (queryIsChanged)
+			space = space.set('ids', [])
 
 		//send query in action
 		action.query = space.query

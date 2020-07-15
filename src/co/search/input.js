@@ -1,5 +1,6 @@
 import s from './input.module.styl'
 import React from 'react'
+import t from '~t'
 
 import { Text } from '~co/common/form'
 import Button from '~co/common/button'
@@ -36,16 +37,8 @@ class SearchInput extends React.PureComponent {
         this.props.onSubmit()
     }
 
-    onButtonClick = (e)=>{
-        e.preventDefault()
-
-        const id = e.target.getAttribute('data-id')
-        switch(id) {
-            case 'reset':
-                this.onReset()
-            break
-        }
-
+    onCancelClick = ()=>{
+        this.onReset()
         this._input.current.focus()
     }
 
@@ -89,17 +82,6 @@ class SearchInput extends React.PureComponent {
         }
     }
 
-    renderButton = ({id, icon, iconSize='micro'})=>(
-        <Button href='' data-id={id} key={id} tabIndex='-1' onClick={this.onButtonClick}>
-            <Icon name={icon} size={iconSize} />
-        </Button>
-    )
-
-    renderCancel = ()=>this.props.value && this.renderButton({
-        id: 'reset',
-        icon: 'close'
-    })
-
     render() {
         const { loading, forwardedRef, clearOnEscape, ...original } = this.props
 
@@ -121,7 +103,13 @@ class SearchInput extends React.PureComponent {
                         onFocus={this.onInputFocus}
                         onBlur={this.onInputBlur}
                         onKeyDown={this.onInputKeyDown}>
-                        {this.renderCancel()}
+                        {this.props.value && (
+                            <Button 
+                                variant='link'
+                                onClick={this.onCancelClick}>
+                                {t.s('cancel')}
+                            </Button>
+                        )}
                     </Text>
                 </form>
             </div>
