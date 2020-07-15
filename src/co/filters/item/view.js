@@ -28,8 +28,8 @@ export default class FiltersItemView extends React.Component {
                 break
 
             case 'tag':
-                icon = 'tag'
-                title = t.s('tags')+'…'
+                icon = ''
+                title = '#'
                 break
         
             default:
@@ -46,9 +46,11 @@ export default class FiltersItemView extends React.Component {
                 className={s.item}
                 data-id={_id}
                 active={active}>
-                <ItemIcon className={s.icon}>
-                    <Icon name={icon} size='micro' />
-                </ItemIcon>
+                {icon && (
+                    <ItemIcon className={s.icon}>
+                        <Icon name={icon} size='micro' />
+                    </ItemIcon>
+                )}
 
                 <ItemTitle>{title}</ItemTitle>
 

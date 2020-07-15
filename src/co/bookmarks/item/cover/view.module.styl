@@ -2,6 +2,22 @@
     display: none
 }
 
+.wrap {
+    position: relative
+}
+
+.preloader {
+    position: absolute
+    z-index: 1
+    top: var(--padding-mini)
+    left: var(--padding-mini)
+    background: unquote('hsla(var(--background-hsl), .8)')
+    backdrop-filter: blur(20px)
+    padding: var(--padding-mini)
+    border-radius: var(--border-radius)
+    display: flex
+}
+
 .cover {
     background: var(--alternative-background-color)
     display: block
@@ -12,7 +28,6 @@
 .list, .simple {
     &.wrap {
         flex-shrink: 0
-        position: relative
         align-self: flex-start
     }
 }
@@ -35,7 +50,6 @@
 //Grids specific
 .grid, .masonry {
     &.wrap {
-        position: relative;
         overflow: hidden;
         padding-top: 56.25%; //16x9 aspect-ratio
 

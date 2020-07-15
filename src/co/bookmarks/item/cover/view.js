@@ -5,6 +5,7 @@ import getScreenshotUri from '~data/modules/format/screenshot'
 import getFaviconUri from '~data/modules/format/favicon'
 import size from './size'
 import transparentPng from '~assets/images/transparent.png'
+import Preloader from '~co/common/preloader'
 
 //cache cover statuses
 const status = {
@@ -44,6 +45,7 @@ export default class BookmarkItemCover extends React.PureComponent {
         cover:  '',
         link:   '', //required
         view:   'list',
+        indicator:false
     }
 
     constructor(props) {
@@ -52,7 +54,14 @@ export default class BookmarkItemCover extends React.PureComponent {
         if (!props.cover)
             onCoverError(props.cover)
 
-        this.state = {}
+        this.state = {
+            loaded: props.indicator ? false : true
+        }
+    }
+
+    componentDidUpdate(prev) {
+        if (prev.cover != this.props.cover && this.props.indicator)
+            this.setState({ loaded: false })
     }
 
     //rotate status on error
@@ -61,8 +70,12 @@ export default class BookmarkItemCover extends React.PureComponent {
         this.forceUpdate()
     }
 
+    onImageLoadSuccess = ()=>{
+        this.setState({ loaded: true })
+    }
+
     renderImage = ()=>{
-        const { cover, view, link, domain, gridSize, ...etc } = this.props
+        const { cover, view, link, domain, gridSize, indicator, ...etc } = this.props
         let { width, height, ar } = size(view, gridSize) //use height only for img element
         let uri
 
@@ -110,6 +123,7 @@ export default class BookmarkItemCover extends React.PureComponent {
                     height={height}
                     {...etc}
                     src={`${uri}&mode=crop&width=${width||''}&ar=${ar||''}&dpr=${window.devicePixelRatio||1}`}
+                    onLoad={indicator ? this.onImageLoadSuccess : undefined}
                     onError={this.onImageLoadError} />
             </>
         )
@@ -117,10 +131,12 @@ export default class BookmarkItemCover extends React.PureComponent {
 
     render() {
         const { className='', view } = this.props
+        const { loaded } = this.state
 
         return (
             <picture className={s.wrap+' '+s[view]+' '+className}>
                 {this.renderImage()}
+                {!loaded && <div className={s.preloader}><Preloader /></div>}
             </picture>
         )
     }
