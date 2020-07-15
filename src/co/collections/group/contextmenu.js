@@ -5,7 +5,7 @@ import Icon from '~co/common/icon'
 
 export default function CollectionsItemContextmenu({
     system, hidden,
-    onContextMenuClose, onCreateNewGroupClick, onRenameClick, onToggleClick, onRemoveClick, onCollapseAllClick, onSortAllByTitleClick, onSelectAll
+    onContextMenuClose, onCreateNewGroupClick, onRenameClick, onToggleClick, onRemoveClick, onCollapseAllClick, onSortAllByTitleClick, onSelectAll, onCreateNewCollectionClick
 }) {
     return (
         <Popover onClose={onContextMenuClose}>
@@ -16,6 +16,11 @@ export default function CollectionsItemContextmenu({
                 </MenuItem>
 
                 <MenuSeparator />
+
+                <MenuItem onClick={onCreateNewCollectionClick}>
+                    <Icon name='add' />
+                    {t.s('createNewCollection')}
+                </MenuItem>
 
                 <MenuItem onClick={onCollapseAllClick}>
                     <Icon name='collapse_all' />

@@ -25,11 +25,11 @@ export default class CollectionsGroupView extends React.Component {
                 <SectionTitle>{title}</SectionTitle>
 
                 <SectionActions>
-                    <Button 
+                    {/*<Button 
                         title={t.s('createNewCollection')}
                         onClick={onCreateNewCollectionClick}>
                         <Icon name='add' />
-                    </Button>
+                    </Button>*/}
 
                     <Button 
                         title={t.s('more')}

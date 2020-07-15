@@ -36,21 +36,20 @@ Changes
     - test upload files!
     - new optionalDependencie: @sentry/minimal
 - features
-    - nested collections showed up in one list
-    - web preview better
-    - batch remove, merge collections
-    - better reorder of collections
+    + nested collections showed up in one list
+    + web preview better
+    + batch remove, merge collections
+    + better reorder of collections
     - create new collection fancy, reorderable
-    - resizable sidebar
-    - virtual list
-    - fast batch bookmark actions
-    - more reliable file upload
-    - filters/tags in sidebar
-    - caching
+    + resizable sidebar
+    + virtual list
+    + fast batch bookmark actions
+    + more reliable file upload
+    + filters/tags in sidebar
+    + caching
     - bug fixes
-    - list cover position
-    - unified search field
-    - pwa support
-    - thumbnail optimized for transfer and speed
-    - tags autocomplete shows tags from shared collection too
-    - multiline description
+    + list cover position
+    + unified search field
+    + thumbnail optimized for transfer and speed
+    + tags autocomplete shows tags from shared collection too
+    + multiline description

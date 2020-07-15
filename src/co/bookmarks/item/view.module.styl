@@ -1,6 +1,7 @@
 .element {
     background: var(--background-color)
     position: relative
+    overflow: hidden
     
     &.broken {
         .title, p {
@@ -48,7 +49,7 @@
     display: grid
     grid-auto-flow: row
     align-content: flex-start
-    gap: var(--padding-mini)
+    gap: calc(var(--padding-mini) / 2)
 
     em {
         font-weight: 600
@@ -242,7 +243,7 @@ html:not(:global(.blur)) {
 
     .permalink {
         box-shadow: inset 0 0 0 var(--shadow-height) var(--shadow-color)
-        border-radius: var(--border-radius)
+        border-radius: calc(var(--border-radius) + 1px)
     }
 }
 

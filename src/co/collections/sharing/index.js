@@ -1,7 +1,7 @@
 import s from './index.module.styl'
 import React from 'react'
 
-import Modal from '~co/overlay/modal'
+import Modal, { Content } from '~co/overlay/modal'
 import Title from './title'
 import Public from './public'
 import Collaborators from './collaborators'
@@ -14,9 +14,12 @@ export default function CollectionSharingView({ pin, onClose, ...props}) {
             pin={pin}
             onClose={onClose}>
             <Title {...props} />
-            <Public {...props} />
-            <Collaborators {...props} />
-            <Invite {...props} />
+
+            <Content>
+                <Public {...props} />
+                <Collaborators {...props} />
+                <Invite {...props} />
+            </Content>
         </Modal>
     )
 }

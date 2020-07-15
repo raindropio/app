@@ -26,6 +26,8 @@
         0 23px 52.5px rgba(0, 0, 0, 0.087),
         0 47.5px 108px rgba(0, 0, 0, 0.106),
         0 130px 296px rgba(0, 0, 0, 0.18);
+    display: flex
+    flex-direction: column
     overflow: hidden
 
     &[data-stretch] {
@@ -35,11 +37,13 @@
 }
 
 .body {
+    flex: 1
     background: var(--background-color)
     display: flex
     flex-direction: column
     width: 100%
     height: 100%
+    overflow: hidden
 }
 
 @supports (backdrop-filter: none) {
