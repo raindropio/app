@@ -1,4 +1,4 @@
-import styles from './index.module.styl'
+import s from './index.module.styl'
 import React from 'react'
 import t from '~t'
 
@@ -30,12 +30,12 @@ export default class BookmarkEditForm extends React.Component {
     }
 
     render() {
-        const { autoFocus, status, unsaved, item: { title, excerpt, link } } = this.props
+        const { autoFocus, status, item: { title, excerpt, link } } = this.props
         const loading = status=='loading'
         const saving = status == 'saving'
 
         return (
-            <form className={styles.form} onSubmit={this.onSubmitForm}>
+            <form className={s.form} onSubmit={this.onSubmitForm}>
                 <Layout type='grid'>
                     <div>
                         <Cover {...this.props} />
@@ -87,16 +87,12 @@ export default class BookmarkEditForm extends React.Component {
                         onChange={this.onChangeField}
                         onBlur={this.onSubmitForm} />
 
-                    {saving && (
-                        <>
-                            <div />
-
-                            <Button
-                                data-block>
-                                <Preloader />
-                            </Button>
-                        </>
-                    )}
+                    <div />
+                    <Button
+                        className={saving ? '' : s.invisible}
+                        data-block>
+                        <Preloader />
+                    </Button>
                 </Layout>
             </form>
         )

@@ -1,6 +1,7 @@
 import React from 'react'
 import t from '~t'
 import normalizeUrl from 'normalize-url'
+import isURL from 'validator/es/lib/isURL'
 
 import { Layout, Label, Text } from '~co/common/form'
 import { Alert } from '~co/overlay/dialog'
@@ -11,6 +12,17 @@ export default class PickerSourceLink extends React.Component {
     state = {
         link: '',
         status: ''
+    }
+
+    textRef = React.createRef()
+
+    async componentDidMount() {
+        const text = await navigator.clipboard.readText()
+
+        if (isURL(text, { require_host: false }))
+            this.setState({ link: text }, ()=>{
+                this.textRef.current.select()
+            })
     }
     
     onLinkChange = (e)=>
@@ -39,22 +51,25 @@ export default class PickerSourceLink extends React.Component {
                     <Label>URL</Label>
 
                     <Text
-                        type='text'
+                        ref={this.textRef}
                         required
+                        autoSize
                         className='field'
                         placeholder='https://'
                         value={link}
                         disabled={status=='loading'}
                         onChange={this.onLinkChange}
-                        autoFocus
-                        icon={status == 'loading' ? <Preloader /> : null}>
-                        <Button
-                            as='input'
-                            type='submit'
-                            variant='link'
-                            hidden={!link}
-                            disabled={status == 'loading'}
-                            value={t.s('saveLink')} />
+                        autoFocus>
+                        {status == 'loading' ? (
+                            <Preloader />
+                        ) : (
+                            <Button
+                                as='input'
+                                type='submit'
+                                variant='link'
+                                hidden={!link}
+                                value={t.s('saveLink')} />
+                        )}
                     </Text>
                 </Layout>
             </form>

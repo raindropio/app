@@ -71,7 +71,6 @@ const initialState = Immutable({
 		{
 			_id: 0,
 			title: 'All',
-			view: 'list',
 			access: {
 				level: 4
 			}
@@ -79,7 +78,6 @@ const initialState = Immutable({
 		{
 			_id: -1,
 			title: 'Unsorted',
-			view: 'list',
 			access: {
 				level: 4
 			}
@@ -87,7 +85,6 @@ const initialState = Immutable({
 		{
 			_id: -99,
 			title: 'Trash',
-			view: 'list',
 			access: {
 				level: 4
 			}

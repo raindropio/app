@@ -3,7 +3,7 @@ import { normalizeCollection, getChildrens } from '../../helpers/collections'
 import {
 	COLLECTION_TOGGLE, COLLECTION_CHANGE_VIEW,
 	COLLECTION_CREATE_SUCCESS, COLLECTION_CREATE_ERROR,
-	COLLECTION_UPDATE_REQ, COLLECTION_UPDATE_SUCCESS, COLLECTION_UPDATE_ERROR,
+	COLLECTION_UPDATE_SUCCESS, COLLECTION_UPDATE_ERROR,
 	COLLECTION_UPDATE_COUNT,
 	COLLECTION_REMOVE_SUCCESS, COLLECTION_REMOVE_ERROR
 } from '../../constants/collections'
@@ -30,8 +30,13 @@ export default function(state, action) {
 		}
 
 		case COLLECTION_CHANGE_VIEW:{
-			if (action._id<=0)
+			if (action._id<=0){
 				action.ignore = true
+
+				for(const i in state.defaults)
+					if (state.defaults[i]._id == action._id)
+						state = state.setIn(['defaults', i, 'view'], action.view)
+			}
 			
 			return state
 				.setIn(['items', action._id, 'view'], action.view)

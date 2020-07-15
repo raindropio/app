@@ -63,7 +63,7 @@ class BookmarksHeaderSort extends React.Component {
                 {menu ? (
                     <Popover pin={this.pin} onClose={this.onContextMenuClose}>
                         <Layout>
-                            <Label>{t.s('sortBy')}</Label>
+                            <Label>{t.s('sortBy')} {t.s('elements2')}</Label>
                             <div>
                                 {Object.keys(this.options).map(item=>(
                                     <Radio 

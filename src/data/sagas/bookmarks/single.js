@@ -1,4 +1,4 @@
-import { call, put, takeEvery, select, all } from 'redux-saga/effects'
+import { call, spawn, put, takeEvery, select, all } from 'redux-saga/effects'
 import Api from '../../modules/api'
 
 import {
@@ -46,13 +46,13 @@ function* createBookmark({obj={}, ignore=false, onSuccess, onFail}) {
 
 		const [parsed, checkCollectionId] = yield all([
 			call(Api.get, 'parse?url='+encodeURIComponent(obj.link)),
-			call(Api.get, 'collection/'+collectionId)
+			spawn(Api.get, 'collection/'+collectionId)
 		])
 
 		parsed.item = parsed.item || {}
 
 		//Collection not found, so reset it
-		if (!checkCollectionId.result || collectionId<0)
+		if (!checkCollectionId || !checkCollectionId.result || collectionId<0)
 			collectionId = 0
 
 		const canonicalURL = obj.link //parsed.item.meta.canonical||

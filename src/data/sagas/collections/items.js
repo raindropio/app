@@ -39,11 +39,6 @@ function* loadItems({ dontLoadCollections=false, onSuccess, onFail }) {
 		//Prepare default collections
 		const state = yield select()
 		const defColls = state.collections.defaults.map((item)=>{
-			//view
-			const view = state.config.raindrops_view
-			if (view)
-				item = item.set('view', view)
-
 			//count
 			if (stat.items){
 				const statIndex = (stat.items||[]).findIndex((a)=>a._id==item._id)

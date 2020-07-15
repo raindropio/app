@@ -3,6 +3,7 @@
     flex-direction: row
     align-items: center
     min-height: var(--button-height)
+    padding: 0 var(--padding-small)
 
     &[data-disabled="true"] {
         pointer-events: none
@@ -20,7 +21,6 @@
     padding: 0
     resize: none
     background: transparent
-    padding: 0 var(--padding-small)
 
     &[disabled] {
         color: var(--disable-text-color)
@@ -31,7 +31,6 @@
     display: flex
     align-items: center
     color: var(--primary-text-color)
-    margin-left: var(--padding-small)
 }
 
 .wrap[data-font='title'] {
@@ -46,7 +45,8 @@
     border-radius: var(--border-radius)
 
     &[data-multiline], &[data-auto-size] {
-        padding: var(--padding-mini) 0
+        padding-top: var(--padding-mini)
+        padding-bottom: var(--padding-mini)
     }
 
     &[data-focus="true"] {

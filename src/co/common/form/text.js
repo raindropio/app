@@ -27,8 +27,7 @@ class TextInner extends React.Component {
                 e.metaKey || e.ctrlKey || e.shiftKey
             )){
             e.preventDefault()
-            e.currentTarget.blur()
-            e.currentTarget.focus()
+            e.currentTarget.closest('form').requestSubmit()
         }
 
         this.props.onKeyDown && this.props.onKeyDown(e)
