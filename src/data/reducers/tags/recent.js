@@ -30,7 +30,7 @@ export default function(state, action={}){switch (action.type) {
     case BOOKMARK_DRAFT_COMMIT:{
         const { _id } = action
 
-        if (!after[_id] || !before[_id] || !after[_id].length || !before[_id].length)
+        if (!after[_id] || !before[_id] || !after[_id].length)
             return state
 
         return state.set(
