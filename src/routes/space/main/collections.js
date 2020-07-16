@@ -3,9 +3,9 @@ import SearchCollection from '~co/collections/search'
 
 export default class SpaceMainCollection extends React.Component {
     render() {
-        const { search, spaceId } = this.props
+        const { search, spaceId, full } = this.props
 
-        if (!search) return null
+        if (!search || full) return null
 
         return (
             <SearchCollection 

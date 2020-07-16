@@ -1,3 +1,7 @@
 .filled {
-    box-shadow: inset 0 0 0 1px var(--shadow-color)
+    background: var(--background-color) !important
+    box-shadow: 
+        inset 0 0 0 var(--shadow-height) var(--shadow-color),
+        inset 0 calc(var(--shadow-height) * -1) 0 rgba(0,0,0,.15),
+        0 3px 10px rgba(0,0,0,.1)
 }

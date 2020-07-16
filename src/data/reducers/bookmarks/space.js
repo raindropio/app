@@ -4,7 +4,7 @@ import { actualizeSpaceStatus, replaceBookmarksSpace } from './utils'
 import { REHYDRATE } from 'redux-persist/src/constants'
 import {
 	SPACE_PER_PAGE,
-	SPACE_LOAD_REQ, SPACE_LOAD_SUCCESS, SPACE_LOAD_ERROR,
+	SPACE_LOAD_PRE, SPACE_LOAD_REQ, SPACE_LOAD_SUCCESS, SPACE_LOAD_ERROR,
 	SPACE_REFRESH_REQ,
 	SPACE_NEXTPAGE_REQ, SPACE_NEXTPAGE_SUCCESS, SPACE_NEXTPAGE_ERROR,
 	SPACE_CHANGE_SORT,
@@ -39,20 +39,29 @@ export default function(state, action) {switch (action.type) {
 	}
 
 	//Load bookmarks
+	case SPACE_LOAD_PRE:{
+		const { spaceId, query } = action
+		let space = state.spaces[spaceId]
+
+		//reset bookmarks list when query changed
+		if (space && !queryIsEqual(space.query, query)){
+			space = space.set('ids', [])
+			return state.setIn(['spaces', spaceId], space)
+		}
+
+		return state
+	}
+
 	case SPACE_LOAD_REQ:{
 		const { spaceId, query, lastAction } = action
 		const oldSpace = state.spaces[spaceId]
 
 		//ignore when nothing changed (including data, query)
-		let queryIsChanged = true
-		if (oldSpace){
-			queryIsChanged = !queryIsEqual(oldSpace.query, query)
-
-			if (oldSpace.lastAction == lastAction &&
-				!queryIsChanged){
-				action.ignore = true
-				return state
-			}
+		if (oldSpace && 
+			oldSpace.lastAction == lastAction && 
+			oldSpace.ids.length){
+			action.ignore = true
+			return state
 		}
 
 		//reset space to initial state
@@ -62,9 +71,6 @@ export default function(state, action) {switch (action.type) {
 			.setIn(['query', 'page'], 0)
 			.setIn(['status', 'main'], 'loading')
 			.setIn(['status', 'nextPage'], blankSpace.status.nextPage)
-
-		if (queryIsChanged)
-			space = space.set('ids', [])
 
 		//send query in action
 		action.query = space.query
