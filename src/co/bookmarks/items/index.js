@@ -15,6 +15,7 @@ class BookmarksItems extends React.Component {
         index:          0,
         compact:        false,
         compactLimit:   7,
+        ignore:         0,  //ignore some collectionId when showing all bookmarks
         events:         {}  //onItemClick, onItemEditClick, onItemPreviewClick, onTagClick, onCollectionClick
     }
 
@@ -31,11 +32,12 @@ class BookmarksItems extends React.Component {
     load = ()=>{
         if (document.visibilityState !== 'visible') return
 
-        const { actions, spaceId, search, sort } = this.props
+        const { actions, spaceId, search, sort, ignore } = this.props
 
         actions.load(spaceId, {
             search,
-            sort: search ? 'score' : sort
+            sort: search ? 'score' : sort,
+            ignore
         })
     }
 

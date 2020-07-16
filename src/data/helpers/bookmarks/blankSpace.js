@@ -10,7 +10,8 @@ export const blankSpace = Immutable({
 	query: {
 		search: 	'',
 		sort: 		'sort',
-		page: 		0
+		page: 		0,
+		ignore:		0
 	},
 	sorts: {
 		'score':		{ enabled: false },

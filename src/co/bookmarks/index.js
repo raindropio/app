@@ -14,7 +14,7 @@ class Bookmarks extends React.Component {
     }
 
     renderSpace = (index)=>{
-        const { ids, ...etc } = this.props
+        const { ids, ignore, ...etc } = this.props
         const spaceId = ids[index]
 
         return (
@@ -23,7 +23,8 @@ class Bookmarks extends React.Component {
                 {...etc}
                 index={index}
                 spaceId={spaceId}
-                compact={ids.length>1} />
+                compact={ids.length>1}
+                ignore={ignore} />
         )
     }
 
@@ -64,6 +65,7 @@ export default connect(
             else if (search && spaceId>0)
                 return {
                     ids: [ spaceId, 0 ],
+                    ignore: spaceId,
                     dataKey: spaceId+lastChange+activeId+search
                 }
             else{

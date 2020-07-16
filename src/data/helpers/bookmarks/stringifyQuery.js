@@ -19,6 +19,7 @@ export const stringifyQuery = (query)=>{
 			switch(key){
 				case 'page':
 				case 'sort':
+				case 'ignore':
 					return key+'='+encodeURIComponent(val);
 				case 'search':
 					if (val.length){

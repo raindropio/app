@@ -105,9 +105,8 @@ class SearchInput extends React.PureComponent {
                         onKeyDown={this.onInputKeyDown}>
                         {this.props.value && (
                             <Button 
-                                variant='link'
                                 onClick={this.onCancelClick}>
-                                {t.s('cancel')}
+                                <Icon name='close' size='micro' />
                             </Button>
                         )}
                     </Text>

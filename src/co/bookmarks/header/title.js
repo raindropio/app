@@ -36,7 +36,7 @@ class BookmarksHeaderTitle extends React.Component {
 
         return (
             <>
-                {isSearching && <>{t.s('defaultCollection-0')} {t.s('in')}&nbsp;</>}
+                {isSearching && <>{t.s('found')} {t.s('in')}&nbsp;</>}
                 {compact ? (
                     <a href='' onClick={this.onTitleClick}>
                         {this.renderTitle()}
