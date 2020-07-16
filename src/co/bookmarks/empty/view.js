@@ -46,8 +46,6 @@ export default class BookmarksEmptyView extends React.PureComponent {
                                     <h2>{t.s('nothingFound')} {t.s('in')} {title}</h2>
                                 </div>
                             )
-                        else
-                            content = t.s('nothingFound')
                     break
 
                     //noBookmarks

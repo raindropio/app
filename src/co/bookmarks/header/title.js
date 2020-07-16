@@ -15,6 +15,16 @@ class BookmarksHeaderTitle extends React.Component {
         this.props.events.onCollectionClick(this.props.collection)
     }
 
+    renderSearchStatus = ()=>{
+        const { status } = this.props
+
+        switch(status.main) {
+            case 'empty':   return t.s('nothingFound')
+            case 'loading': return t.s('defaultCollection-0')
+            default:        return t.s('found')
+        }
+    }
+
     renderTitle = ()=>{
         const {
             collection: { _id, title },
@@ -36,7 +46,12 @@ class BookmarksHeaderTitle extends React.Component {
 
         return (
             <>
-                {isSearching && <>{t.s('found')} {t.s('in')}&nbsp;</>}
+                {isSearching && (
+                    <>
+                        {this.renderSearchStatus()}&nbsp;
+                        {t.s('in')}&nbsp;
+                    </>
+                )}
                 {compact ? (
                     <a href='' onClick={this.onTitleClick}>
                         {this.renderTitle()}
