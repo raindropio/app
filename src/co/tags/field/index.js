@@ -17,10 +17,11 @@ export default class TagsPicker extends React.Component {
 
     stateReducer = (state, changes) => {
         switch (changes.type) {
+            case 'focus':
             case Downshift.stateChangeTypes.changeInput:
                 return {
                     ...changes,
-                    highlightedIndex: changes.inputValue ? 0 : null
+                    highlightedIndex: state.highlightedIndex || 0
                 }
 
             case Downshift.stateChangeTypes.keyDownEnter:

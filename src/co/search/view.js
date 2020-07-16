@@ -25,10 +25,11 @@ export default class SearchView extends React.Component {
 
     stateReducer = (state, changes) => {
         switch (changes.type) {
+            case 'focus':
             case Downshift.stateChangeTypes.changeInput:
                 return {
                     ...changes,
-                    highlightedIndex: (changes.inputValue||'').startsWith('#') ? 0 : null
+                    highlightedIndex: (!changes.inputValue || (changes.inputValue||'').startsWith('#')) ? 0 : null
                 }
 
             case Downshift.stateChangeTypes.keyDownEnter:
@@ -69,7 +70,7 @@ export default class SearchView extends React.Component {
                 inputValue={lastPart(this.props.value)}
                 selectedItem={null}>
                 {downshift=>{
-                    const Autocomplete = (downshift.inputValue||'').startsWith('#') ? TagsAutocomplete : FiltersAutocomplete
+                    const Autocomplete = downshift.inputValue ? TagsAutocomplete : FiltersAutocomplete
 
                     return (
                         <div className={s.search}>

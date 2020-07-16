@@ -34,17 +34,24 @@ class TagsMenu extends React.PureComponent {
 
         if (!isOpen || !tags.length) return null
 
+        let index = -1
+
         return (
             <Popover 
                 pin={inputRef}
                 scaleDown={true}
                 {...getMenuProps({ refKey: 'innerRef' })}>
-                {tags.map((item, index)=>
-                    item.type == 'section' ? (
-                        <SectionView 
-                            key={item.type+item._id}
-                            {...item} />
-                    ) : (
+                {tags.map(item=>{
+                    if (item.type == 'section')
+                        return (
+                            <SectionView 
+                                key={item.type+item._id}
+                                {...item} />
+                        )
+                    
+                    index++
+
+                    return (
                         <TagItemView
                             {...getItemProps({
                                 key: item._id,
@@ -54,7 +61,7 @@ class TagsMenu extends React.PureComponent {
                                 active: highlightedIndex === index
                             })} />
                     )
-                )}
+                })}
             </Popover>
         )
     }

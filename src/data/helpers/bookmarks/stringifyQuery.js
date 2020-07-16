@@ -49,6 +49,7 @@ export const stringifyQuery = (query)=>{
 			}
 	}))
 	entities.push('perpage='+SPACE_PER_PAGE)
+	entities.push('version=2')
 
 	return '?'+entities.join('&')
 }

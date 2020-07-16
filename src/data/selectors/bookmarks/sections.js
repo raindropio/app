@@ -157,37 +157,3 @@ export const makeBookmarksWithSectionsBlocked = () => createSelector(
 		return sections
 	}
 )
-
-//Fast bookmark ids with sections
-//Section only showed when searching, this section appears when results start appear from other collections (!=spaceId)
-//This section appears as 'other' item
-export const makeBookmarksFlatSections = () => createSelector(
-	[
-		(_, spaceId)=>spaceId,
-		query,
-		bookmarksIds,
-		({bookmarks={}})=>bookmarks.elements
-	],
-	(spaceId, query, ids=[], elements=[])=>{
-		const cid = parseInt(spaceId)
-
-		if (!cid ||
-			!query.search.length ||
-			query.sort != 'score')
-			return ids
-
-		let breakIndex = ids.findIndex(id=>{
-			if (elements[id] && elements[id].collectionId != cid)
-				return true
-		})
-
-		if (breakIndex == -1)
-			return ids
-
-		return [
-			...ids.slice(0, breakIndex),
-			'other',
-			...ids.slice(breakIndex),
-		]
-	}
-)

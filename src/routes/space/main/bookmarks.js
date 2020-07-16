@@ -11,6 +11,10 @@ export default class CollectionsMainContent extends React.Component {
             )
         },
 
+        onCollectionClick: (collection)=>{
+            this.props.onSpaceChange(collection._id)
+        },
+
         onItemClick: (item)=>{
             const { reader } = this.props
             

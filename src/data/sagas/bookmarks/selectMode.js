@@ -221,7 +221,7 @@ function* batchApiRequestHelper(method, body={}) {
 		//send request
 		yield call(
 			Api[method],
-			`raindrops/${parseInt(collectionId)}${query}${query.includes('?')?'&':'?'}dangerAll=true`,
+			`raindrops/${parseInt(collectionId)}${query}&dangerAll=true`,
 			{
 				...body,
 				...(selectMode.all ? {} : { ids })

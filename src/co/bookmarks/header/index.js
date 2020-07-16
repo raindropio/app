@@ -4,7 +4,6 @@ import { makeCollection } from '~data/selectors/collections'
 import { makeStatus } from '~data/selectors/bookmarks'
 
 import Header, { Title as TitleWrap, Space } from '~co/common/header'
-import Back from './back'
 import Icon from './icon'
 import Title from './title'
 import More from './more'
@@ -15,7 +14,8 @@ import SelectAll from './selectAll'
 class BookmarksHeader extends React.Component {
     static defaultProps = {
         spaceId: 0,
-        compact: false
+        compact: false,
+        events: {} //{ onCollectionClick }
     }
 
     render() {
@@ -26,7 +26,6 @@ class BookmarksHeader extends React.Component {
 
         return (
             <Header data-solid>
-                <Back {...this.props} />
                 <Icon {...this.props} />
 
                 <TitleWrap>

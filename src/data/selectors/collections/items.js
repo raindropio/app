@@ -13,15 +13,16 @@ const
 
 //Items
 export const makeFiltered = ()=> createSelector(
-	[_collectionsItems, (state, _search)=>_search],
-	(items, _search)=>{
+	[_collectionsItems, (state, _search)=>_search, (state, _search, ignore)=>ignore],
+	(items, _search, ignore)=>{
 		const search = (_search||'').toLowerCase().trim()
 		if (!search) return emptyArray
 
 		const found = []
 
 		_.forEach(items, item=>{
-			if ((item.title||'').toLowerCase().includes(search))
+			if ((item.title||'').toLowerCase().includes(search) &&
+				item._id != ignore)
 				found.push(item)
 		})
 

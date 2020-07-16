@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as bookmarksActions from '~data/actions/bookmarks'
-import { makeStatus } from '~data/selectors/bookmarks'
+import { makeStatus, getSearchEmpty } from '~data/selectors/bookmarks'
 
 import View from './view'
 
@@ -26,6 +26,7 @@ export default connect(
     
         return (state, { spaceId })=>({
             status: getStatus(state, spaceId),
+            isSearching: !getSearchEmpty(state, spaceId)
         })
     },
 	(dispatch)=>({

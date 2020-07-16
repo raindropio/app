@@ -19,7 +19,7 @@ export default class FiltersItemView extends React.Component {
         switch (_id) {
             case 'important':
                 icon = 'important'
-                title = t.s('favoriteSites')
+                title = t.s('favorites')
                 break
 
             case 'notag':
@@ -29,12 +29,12 @@ export default class FiltersItemView extends React.Component {
 
             case 'tag':
                 icon = ''
-                title = '#'
+                title = 'Type # for tags…'
                 break
         
             default:
                 icon = _id
-                title = t.s(_id)
+                title = t.s(_id)+'s'
                 break
         }
 

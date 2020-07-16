@@ -9,7 +9,6 @@ import Empty from '../empty'
 import Header from '../header'
 import SelectMode from '../selectMode'
 import Footer from '../footer'
-import Section from '../section'
 import coverSize from '../item/cover/size'
 import AccentColor from '~co/collections/item/accentColor'
 
@@ -39,14 +38,6 @@ export default class BookmarksItemsListing extends React.Component {
     renderItem = (index, provided, { isDragging })=>{
         const _id = this.props.items[index]
 
-        if (typeof _id == 'string')
-            return (
-                <Section 
-                    key={_id}
-                    type={_id}
-                    view={this.props.view} />
-            )
-
         return (
             <Item
                 key={_id}
@@ -65,21 +56,30 @@ export default class BookmarksItemsListing extends React.Component {
     }
 
     renderEmpty = ()=>(
-        <Empty spaceId={this.props.spaceId} compact={this.props.compact} />
+        <Empty 
+            spaceId={this.props.spaceId} 
+            compact={this.props.compact}
+            events={this.props.events} />
     )
 
-    renderHeader = ()=>
-        this.props.selectModeEnabled ? (
-            <SelectMode spaceId={this.props.spaceId} />
-        ): (
-            <Header spaceId={this.props.spaceId} compact={this.props.compact} index={this.props.index} />
+    renderHeader = ()=>{
+        const Component = this.props.selectModeEnabled ? SelectMode : Header
+
+        return (
+            <Component 
+                spaceId={this.props.spaceId} 
+                compact={this.props.compact} 
+                index={this.props.index}
+                events={this.props.events} />
         )
+    }
 
     renderFooter = ()=>(
         <Footer 
             spaceId={this.props.spaceId}
             compact={this.props.compact}
-            more={this.props.items.length > this.props.compactLimit} />
+            more={this.props.items.length > this.props.compactLimit}
+            events={this.props.events} />
     )
 
     render() {

@@ -25,7 +25,7 @@
 
     /* text colors */
     color: hsl(0,0%,10%);
-    --primary-text-color: hsl(0,0%,35%);
+    --primary-text-color: hsl(0,0%,30%);
     --secondary-text-color: hsl(0,0%,50%);
     --disable-text-color: rgba(0,0,0,.3);
 

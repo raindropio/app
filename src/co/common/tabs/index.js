@@ -6,6 +6,11 @@ import Select from '~co/common/select'
 import Icon from '~co/common/icon'
 
 export default class Tabs extends React.PureComponent {
+	static defaultProps = {
+		items: [],		//{ hidden:false, key:'', title:'', icon:'' }
+		active: null
+	}
+
 	onItemClick = e => {
 		e.preventDefault()
 		this.props.onChange(e.target.getAttribute('data-key'))
@@ -26,7 +31,7 @@ export default class Tabs extends React.PureComponent {
 				tabIndex='-1'
 				onClick={this.onItemClick} 
 				className={s.item}
-				variant={active && 'primary'} 
+				variant={active && 'active'} 
 				title={title}>
 				{icon ? <Icon name={active ? icon+'_active' : icon} className='show-on-small-body' /> : null}
 				<span className='hide-on-small-body'>{title}</span>
@@ -48,7 +53,7 @@ export default class Tabs extends React.PureComponent {
 		const { items=[], className='', active } = this.props
 
 		return (
-			<div>
+			<>
 				<div className={s.tabs+' '+className+' hide-on-small-body'}>
 					{items.map(this.renderItem)}
 				</div>
@@ -60,7 +65,7 @@ export default class Tabs extends React.PureComponent {
 					onChange={this.onSelectChange}>
 					{items.map(this.renderOption)}
 				</Select>
-			</div>
+			</>
 		)
 	}
 }

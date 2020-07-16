@@ -42,9 +42,8 @@ class BookmarkItem extends React.Component {
                     e.preventDefault()
         },
 
-        onTagClick: (tagName)=>{
-            this.props.events.onTagClick && this.props.events.onTagClick(tagName)
-        },
+        onTagClick: this.props.events.onTagClick,
+        onCollectionClick: this.props.events.onCollectionClick,
 
         onEditClick: ()=>{
             this.props.events.onItemEditClick && this.props.events.onItemEditClick(this.props.item)

@@ -2,7 +2,6 @@ import styles from './view.module.styl'
 import React from 'react'
 import t from '~t'
 
-import { Link } from 'react-router-dom'
 import IllustrationNo from './no.svg?asis'
 import IllustrationSearch from './search.svg?asis'
 import IllustrationError from './error.svg?asis'
@@ -13,12 +12,13 @@ export default class BookmarksEmptyView extends React.PureComponent {
         this.props.actions.reload(this.props.spaceId)
     }
 
-    searchEverywhere = ()=>{
-
+    onAllBookmarksClick = e => {
+        e.preventDefault()
+        this.props.events.onCollectionClick({ _id: 0 })
     }
 
     render() {
-        const { status, spaceId, searchEmpty, compact } = this.props
+        const { status, spaceId, searchEmpty, compact, collection: { title } } = this.props
         let content = null
 
         if (spaceId == -101) return null
@@ -42,7 +42,7 @@ export default class BookmarksEmptyView extends React.PureComponent {
                         content = (
                             <div>
                                 <IllustrationSearch />
-                                <h2>{t.s('nothingFound')}</h2>
+                                <h2>{t.s('nothingFound')} {t.s('in')} {title}</h2>
                             </div>
                         )
                     break
@@ -75,7 +75,7 @@ export default class BookmarksEmptyView extends React.PureComponent {
                         <br/>
 
                         <p>
-							<Link to='/space/0'>{t.s('allBookmarks')}</Link>
+							<a href='' onClick={this.onAllBookmarksClick}>{t.s('allBookmarks')}</a>
                         </p>
                     </div>
                 )

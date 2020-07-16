@@ -16,7 +16,7 @@
     flex-shrink: 0
     white-space: nowrap
     outline: none
-    line-height: 1
+    line-height: 2
 
     > * {
         white-space: nowrap;
@@ -50,6 +50,7 @@
 
 //default
 .button[data-variant='default'] {
+    font-weight: normal
     color: var(--primary-text-color)
 
     &[disabled] {
@@ -163,7 +164,21 @@
     }
 }
 
+//active
+.button[data-variant='active'] {
+    background: unquote('hsla(var(--accent-hsl), .1)');
+    color: var(--accent-color)
+    font-weight: 500
+    pointer-events: none
+
+    &[disabled] {
+        background: var(--disable-background-color)
+        color: var(--disable-text-color)
+    }
+}
+
 //small
 .button[data-size='small'] {
+    line-height: 1
     --button-height: var(--icon-size)
 }

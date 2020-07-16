@@ -36,7 +36,7 @@ function* reloadFilters(params) {
 
 			const { tags, ...items } = yield call(
 				Api.get, 
-				`filters/${parseInt(spaceId)}${query}${query.includes('?')?'&':'?'}tagsSort=${state.config.tags_sort}`
+				`filters/${parseInt(spaceId)}${query}&tagsSort=${state.config.tags_sort}`
 			)
 
 			yield all([

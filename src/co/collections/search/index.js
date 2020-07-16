@@ -43,8 +43,8 @@ export default connect(
     () => {
         const getItems = makeFiltered()
     
-        return (state, { search })=>({
-            items: getItems(state, search),
+        return (state, { search, ignore })=>({
+            items: getItems(state, search, ignore),
             show: state.local.collectionsSearchResults
         })
     },

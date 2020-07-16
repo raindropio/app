@@ -16,7 +16,7 @@ export default class BookmarkItemView extends React.PureComponent {
         const { innerRef, isDragging } = this.props
         const { link, title, excerpt, highlight, creatorRef, cover, domain, tags, type, view, access, created, reparse, collectionId, spaceId } = this.props
         const { active, selected, selectModeEnabled, selectDisabled, important, broken, cache, gridSize } = this.props
-        const { onClick, onTagClick, onEditClick, onPreviewClick, onSelectClick, onRemoveClick, onContextMenu, onKeyUp } = this.props
+        const { onClick, onTagClick, onEditClick, onPreviewClick, onSelectClick, onRemoveClick, onContextMenu, onKeyUp, onCollectionClick } = this.props
 
         return (
             <article 
@@ -57,7 +57,7 @@ export default class BookmarkItemView extends React.PureComponent {
                             </>
                         ) : null}
 
-                        {spaceId != collectionId ? <section><Path collectionId={collectionId} /></section> : null}
+                        {spaceId != collectionId ? <section><Path collectionId={collectionId} onCollectionClick={onCollectionClick} /></section> : null}
 
                         {important ? <section data-inline><Icon name='important' size='micro' className={s.importantIcon} /></section> : null}
 

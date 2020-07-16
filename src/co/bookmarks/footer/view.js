@@ -3,6 +3,7 @@ import React from 'react'
 import t from '~t'
 import { Link } from 'react-router-dom'
 import Button from '~co/common/button'
+import Icon from '~co/common/icon'
 
 export default class BookmarksFooterView extends React.PureComponent {
     loadMore = (e)=>{
@@ -11,7 +12,7 @@ export default class BookmarksFooterView extends React.PureComponent {
     }
 
     render() {
-        const { status, compact, more, spaceId } = this.props
+        const { status, compact, more, spaceId, isSearching } = this.props
         let content = null
 
         switch(status.nextPage) {

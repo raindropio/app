@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as bookmarksActions from '~data/actions/bookmarks'
-import { makeBookmarksFlatSections, makeSelectModeEnabled, makeSort, makeViewHide, getGridSize } from '~data/selectors/bookmarks'
+import { bookmarksIds, makeSelectModeEnabled, makeSort, makeViewHide, getGridSize } from '~data/selectors/bookmarks'
 import { makeCollection } from '~data/selectors/collections'
 
 import Listing from './listing'
@@ -15,7 +15,7 @@ class BookmarksItems extends React.Component {
         index:          0,
         compact:        false,
         compactLimit:   7,
-        events:         {}  //onItemClick, onItemEditClick, onItemPreviewClick, onTagClick
+        events:         {}  //onItemClick, onItemEditClick, onItemPreviewClick, onTagClick, onCollectionClick
     }
 
     componentDidMount() {
@@ -62,7 +62,6 @@ class BookmarksItems extends React.Component {
 
 export default connect(
 	() => {
-        const getBookmarkIds = makeBookmarksFlatSections()
         const getCollection = makeCollection()
         const getSelectModeEnabled = makeSelectModeEnabled()
         const getSort = makeSort()
@@ -72,7 +71,7 @@ export default connect(
             const { view, access } = getCollection(state, spaceId)
 
             return {
-                items: getBookmarkIds(state, spaceId),
+                items: bookmarksIds(state, spaceId),
 
                 view,
                 viewHide: getViewHide(state, spaceId),

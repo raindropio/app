@@ -5,6 +5,7 @@ import { getSearchEmpty } from '~data/selectors/bookmarks'
 import { makeCollection } from '~data/selectors/collections'
 
 import { Link } from 'react-router-dom'
+import Tabs from '~co/common/tabs'
 
 class BookmarksHeaderTitle extends React.Component {
     static defaultProps = {
@@ -12,19 +13,36 @@ class BookmarksHeaderTitle extends React.Component {
         compact: false
     }
 
+    onTabChange = tab => {
+        switch(tab) {
+            case 'all':
+                return this.props.events.onCollectionClick({ _id: 0 })
+        }
+    }
+
     render() {
-        let {
+        const {
             collection: { _id, title },
-            status,
             isSearching,
             compact
         } = this.props
 
         if (isSearching)
-            if (status.main=='loading')
-                title = t.s('defaultCollection-0')+'…'
-            else
-                title = t.s('found')+' '+t.s('bookmarks')
+            return (
+                <>
+                    {t.s('defaultCollection-0')}&nbsp;
+                    {t.s('in')}&nbsp;
+                    {_id ? (
+                        <>
+                            &nbsp;
+                            <Tabs 
+                                items={[{ key: 'current', title: title }, { key: 'all', title: t.s('allBookmarks') }]}
+                                active='current'
+                                onChange={this.onTabChange} />
+                        </>
+                    ) : t.s('allBookmarks').toLowerCase()}
+                </>
+            )
 
         return compact ? <Link to={'/space/'+_id+'full'}>{title}</Link> : title
     }
