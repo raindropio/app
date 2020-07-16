@@ -27,7 +27,7 @@ export default function SidebarProfileMenu({
 
                 <MenuItem href={config.links.download} target='_blank'>
                     <Icon name='install' />
-                    {t.s('install')} {t.s('interest_technology_applications').toLowerCase()}
+                    {t.s('interest_technology_applications')}
                 </MenuItem>
 
                 <MenuItem href={config.links.help} target='_blank'>
