@@ -36,13 +36,21 @@ export default function* () {
 function* preLoadSpace(action) {
 	if (action.ignore) return
 
-	const { lastAction } = yield call(Api.get, `collection/${parseInt(action.spaceId)}/lastAction`)
+	try{
+		const { lastAction } = yield call(Api.get, `collection/${parseInt(action.spaceId)}/lastAction`)
 
-	yield put({
-		...action,
-		type: SPACE_LOAD_REQ,
-		lastAction
-	})
+		yield put({
+			...action,
+			type: SPACE_LOAD_REQ,
+			lastAction
+		})
+	} catch (error) {
+		yield put({
+			...action,
+			type: SPACE_LOAD_ERROR,
+			lastAction: null
+		})
+	}
 }
 
 function* loadSpace({spaceId, query, ignore=false}) {

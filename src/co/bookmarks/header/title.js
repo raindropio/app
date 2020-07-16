@@ -42,7 +42,7 @@ class BookmarksHeaderTitle extends React.Component {
     }
 
     render() {
-        const { isSearching, compact } = this.props
+        const { isSearching, compact, status } = this.props
 
         return (
             <>
@@ -52,7 +52,8 @@ class BookmarksHeaderTitle extends React.Component {
                         {t.s('in')}&nbsp;
                     </>
                 )}
-                {compact ? (
+
+                {compact && status.main=='loaded' ? (
                     <a href='' onClick={this.onTitleClick}>
                         {this.renderTitle()}
                     </a>

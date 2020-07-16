@@ -84,7 +84,7 @@ export default function(state, action) {switch (action.type) {
 
 		//results from other request, ignore
 		if (!space || 
-			!queryIsEqual(space.query, query))
+			(space.ids.length && !queryIsEqual(space.query, query)))
 			return state
 
 		const statusMain = (items.length ? 'loaded' : 'empty')
@@ -99,20 +99,20 @@ export default function(state, action) {switch (action.type) {
 
 	case SPACE_LOAD_ERROR:{
 		const { spaceId, error, query } = action
-		const space = state.spaces[spaceId]
+		let space = state.spaces[spaceId] || blankSpace
 
 		//results from other request, ignore
-		if (!space || 
-			!queryIsEqual(space.query, query))
+		if (!queryIsEqual(space.query, query))
 			return state
 
-		state = replaceBookmarksSpace(state, normalizeBookmarks([]), spaceId)
-
-		return state
+		space = space
+			.set('ids', [])
 			.setIn(
-				['spaces', spaceId, 'status', 'main'], 
+				['status', 'main'], 
 				error && error.status >= 400 && error.status < 500 ? 'notFound' : 'error'
 			)
+
+		return state.setIn(['spaces', action.spaceId], space)
 	}
 
 	//Refresh

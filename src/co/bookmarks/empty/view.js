@@ -7,9 +7,9 @@ import IllustrationSearch from './search.svg?asis'
 import IllustrationError from './error.svg?asis'
 
 export default class BookmarksEmptyView extends React.PureComponent {
-    reload = (e)=>{
+    refresh = (e)=>{
         e.preventDefault()
-        this.props.actions.reload(this.props.spaceId)
+        this.props.actions.refresh(this.props.spaceId)
     }
 
     onAllBookmarksClick = e => {
@@ -89,7 +89,7 @@ export default class BookmarksEmptyView extends React.PureComponent {
 
 						<h2>{t.s('error')}</h2>
 						<p>
-							<a onClick={this.reload}>{t.s('refresh')}</a>
+							<a href='' onClick={this.refresh}>{t.s('refresh')}</a>
 						</p>
 					</div>
                 )
