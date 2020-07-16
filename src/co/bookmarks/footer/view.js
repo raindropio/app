@@ -1,9 +1,7 @@
 import s from './view.module.styl'
 import React from 'react'
 import t from '~t'
-import { Link } from 'react-router-dom'
 import Button from '~co/common/button'
-import Icon from '~co/common/icon'
 
 export default class BookmarksFooterView extends React.PureComponent {
     loadMore = (e)=>{
@@ -11,8 +9,12 @@ export default class BookmarksFooterView extends React.PureComponent {
         this.props.actions.nextPage(this.props.spaceId)
     }
 
+    onFullClick = ()=>{
+        this.props.events.onCollectionClick({ _id: parseInt(this.props.spaceId) })
+    }
+
     render() {
-        const { status, compact, more, spaceId, isSearching } = this.props
+        const { status, compact, count, compactLimit, isSearching } = this.props
         let content = null
 
         switch(status.nextPage) {
@@ -31,6 +33,8 @@ export default class BookmarksFooterView extends React.PureComponent {
                 break
 
             case 'noMore':
+                if (count)
+                    content = `${count} ${t.s('bookmarks')} ${isSearching ? t.s('found').toLowerCase() : ''}`
                 break
 
             default:
@@ -47,16 +51,14 @@ export default class BookmarksFooterView extends React.PureComponent {
         }
 
         if ((compact && status.main == 'loaded' && status.nextPage != 'noMore') ||
-            (compact && more))
+            (compact && count > compactLimit))
             content = (
-                <Link 
-                    component={Button}
-                    to={`/space/${spaceId}full`}
+                <Button 
                     variant='flat'
                     data-block
-                    href='/'>
+                    onClick={this.onFullClick}>
                     {t.s('more')}&hellip;
-                </Link>
+                </Button>
             )
 
         return (

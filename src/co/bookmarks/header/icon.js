@@ -29,7 +29,7 @@ class BookmarksHeaderIcon extends React.PureComponent {
         const { collection: { _id, cover=[] }, status, isSearching } = this.props
         const { show } = this.state
 
-        if ((!cover.length || isSearching) && status.main!='loading') return null
+        if (!cover.length && status.main!='loading') return null
 
         return (
             <FirstAction>

@@ -12,7 +12,7 @@ export default class CollectionsMainContent extends React.Component {
         },
 
         onCollectionClick: (collection)=>{
-            this.props.onSpaceChange(collection._id)
+            this.props.onSpaceChange(collection._id, { full: true, search: true })
         },
 
         onItemClick: (item)=>{

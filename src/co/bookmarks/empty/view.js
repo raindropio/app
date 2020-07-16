@@ -39,12 +39,15 @@ export default class BookmarksEmptyView extends React.PureComponent {
 
                     //search nothing found
                     case (!searchEmpty):
-                        content = (
-                            <div>
-                                <IllustrationSearch />
-                                <h2>{t.s('nothingFound')} {t.s('in')} {title}</h2>
-                            </div>
-                        )
+                        if (!compact)
+                            content = (
+                                <div>
+                                    <IllustrationSearch />
+                                    <h2>{t.s('nothingFound')} {t.s('in')} {title}</h2>
+                                </div>
+                            )
+                        else
+                            content = t.s('nothingFound')
                     break
 
                     //noBookmarks

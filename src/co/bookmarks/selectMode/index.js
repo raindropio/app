@@ -19,7 +19,7 @@ class BookmarksSelectMode extends React.Component {
             return <Working {...this.props} />
 
         return (
-            <Header data-fancy>
+            <Header data-solid>
                 <Checkbox {...this.props} />
                 <TitleWrap><Title {...this.props} /></TitleWrap>
 

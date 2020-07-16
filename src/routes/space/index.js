@@ -28,8 +28,10 @@ export default class SpaceRoute extends React.PureComponent {
     }
 
     handlers = {
-        onSpaceChange: (spaceId, keepSearch=true)=>{
-            this.props.history.push(`/space/${spaceId}${this.state.full?'full':''}/${keepSearch ? encodeURIComponent(this.state.search) : ''}`)
+        onSpaceChange: (spaceId, options={})=>{
+            const { full=false, search=false } = options
+
+            this.props.history.push(`/space/${spaceId}${full?'full':''}/${search ? encodeURIComponent(this.state.search) : ''}`)
         },
 
         onSearch: (value, mode='')=>{
@@ -55,7 +57,7 @@ export default class SpaceRoute extends React.PureComponent {
                 break
             }
 
-            this.props.history.push(`/space/${spaceId}${this.state.full?'full':''}/${encodeURIComponent(search)}`)
+            this.props.history.push(`/space/${spaceId}/${encodeURIComponent(search)}`)
         },
 
         onReader: (update)=>{

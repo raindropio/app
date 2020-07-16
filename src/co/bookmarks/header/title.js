@@ -4,47 +4,46 @@ import { connect } from 'react-redux'
 import { getSearchEmpty } from '~data/selectors/bookmarks'
 import { makeCollection } from '~data/selectors/collections'
 
-import { Link } from 'react-router-dom'
-import Tabs from '~co/common/tabs'
-
 class BookmarksHeaderTitle extends React.Component {
     static defaultProps = {
         spaceId: 0,
         compact: false
     }
 
-    onTabChange = tab => {
-        switch(tab) {
-            case 'all':
-                return this.props.events.onCollectionClick({ _id: 0 })
-        }
+    onTitleClick = e =>{
+        e.preventDefault()
+        this.props.events.onCollectionClick(this.props.collection)
     }
 
-    render() {
+    renderTitle = ()=>{
         const {
             collection: { _id, title },
             isSearching,
             compact
         } = this.props
 
-        if (isSearching)
-            return (
-                <>
-                    {t.s('defaultCollection-0')}&nbsp;
-                    {t.s('in')}&nbsp;
-                    {_id ? (
-                        <>
-                            &nbsp;
-                            <Tabs 
-                                items={[{ key: 'current', title: title }, { key: 'all', title: t.s('allBookmarks') }]}
-                                active='current'
-                                onChange={this.onTabChange} />
-                        </>
-                    ) : t.s('allBookmarks').toLowerCase()}
-                </>
-            )
+        if (!_id && isSearching)
+            if (compact)
+                return t.s('interest_other').toLowerCase() + ' ' + t.s('collectionsCount')
+            else
+                return title.toLowerCase()
 
-        return compact ? <Link to={'/space/'+_id+'full'}>{title}</Link> : title
+        return title
+    }
+
+    render() {
+        const { isSearching, compact } = this.props
+
+        return (
+            <>
+                {isSearching && <>{t.s('defaultCollection-0')} {t.s('in')}&nbsp;</>}
+                {compact ? (
+                    <a href='' onClick={this.onTitleClick}>
+                        {this.renderTitle()}
+                    </a>
+                ) : this.renderTitle()}
+            </>
+        )
     }
 }
 

@@ -78,7 +78,8 @@ export default class BookmarksItemsListing extends React.Component {
         <Footer 
             spaceId={this.props.spaceId}
             compact={this.props.compact}
-            more={this.props.items.length > this.props.compactLimit}
+            compactLimit={this.props.compactLimit}
+            count={this.props.items.length}
             events={this.props.events} />
     )
 

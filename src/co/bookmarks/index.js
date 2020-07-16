@@ -52,15 +52,19 @@ export default connect(
 	() => {
         const getBranchIds = makeBranchIds()
         const getBookmarksLastChange = makeBookmarksLastChange()
-        const cache = {}
     
         return (state, { spaceId, search, full, activeId })=>{
             const lastChange = getBookmarksLastChange(state)
 
-            if (search || full)
+            if (full)
                 return {
-                    ids: cache[spaceId] = cache[spaceId] || [ spaceId ],
+                    ids: [ spaceId ],
                     dataKey: spaceId+lastChange+activeId
+                }
+            else if (search && spaceId>0)
+                return {
+                    ids: [ spaceId, 0 ],
+                    dataKey: spaceId+lastChange+activeId+search
                 }
             else{
                 const ids = getBranchIds(state, spaceId)

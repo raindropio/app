@@ -10,7 +10,8 @@ class BookmarksFooter extends React.Component {
     static defaultProps = {
         spaceId:        0,
         compact:    false,
-        more:       false //useful when compact is true, means that full items count more that showed right now
+        compactLimit:   0, //useful when compact is true, means that full items count more that showed right now
+        events:         {} //{onCollectionClick}
     }
     
     render() {
