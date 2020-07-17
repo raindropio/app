@@ -7,4 +7,8 @@
     padding: 0 var(--padding-medium)
     font-size: var(--secondary-font-size)
     color: var(--secondary-text-color)
+    
+    &[data-compact='true'] {
+        background: unquote('linear-gradient(to bottom, hsla(var(--background-hsl), 0) 0, var(--background-color) 100%)')
+    }
 }
