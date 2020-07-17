@@ -12,7 +12,7 @@ class BookmarksItemPath extends React.Component {
     }
 
     render() {
-        const { collection: { title } } = this.props
+        const { collection } = this.props
 
         return (
             <a 
@@ -21,9 +21,9 @@ class BookmarksItemPath extends React.Component {
                 className={s.path}
                 onClick={this.onClick}>
                 <CollectionIcon 
-                    {...this.props}
+                    {...collection}
                     className={s.icon} />
-                {title}
+                {collection.title}
             </a>
         )
     }
