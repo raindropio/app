@@ -72,6 +72,16 @@
     /* any combination, reader always on top */
     .showReader {
         grid-template-areas: 'reader reader reader reader reader' !important;
+
+        :global(.svReaderFullscreenButton) {
+            display: none
+        }
+
+        //fix for mobile phones
+        > :not(:global(.svReader)) {
+            position: absolute
+            z-index: 0
+        }
     }
 }
 

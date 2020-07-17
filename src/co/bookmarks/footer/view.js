@@ -61,6 +61,8 @@ export default class BookmarksFooterView extends React.PureComponent {
                 </Button>
             )
 
+        if (!content) return null
+
         return (
             <div className={s.footer}>
                 {content}

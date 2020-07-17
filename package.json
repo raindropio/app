@@ -38,6 +38,7 @@
 		"autoprefixer": "^9.8.4",
 		"date-fns": "2.14.x",
 		"downshift": "^5.4.5",
+		"form-request-submit-polyfill": "^2.0.0",
 		"ismobilejs": "^1.1.1",
 		"localforage": "1.7.x",
 		"lodash-es": "4.17.x",

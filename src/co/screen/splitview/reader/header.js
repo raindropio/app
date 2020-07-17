@@ -31,7 +31,12 @@ class SplitViewReaderHeader extends React.Component {
                     <Icon name='close' />
                 </Button>
 
-                <Button href='' onClick={this.onFullscreenClick} variant={this.context.reader.fullscreen ? 'link' : ''} className={'hide-on-extension hide-on-clipper'} title={t.s('fullscreen')}>
+                <Button 
+                    href='' 
+                    onClick={this.onFullscreenClick} 
+                    variant={this.context.reader.fullscreen ? 'link' : ''} 
+                    className='svReaderFullscreenButton'
+                    title={t.s('fullscreen')}>
                     <Icon name={'fullscreen'+(this.context.reader.fullscreen ? '_active' : '')} />
                 </Button>
 

@@ -17,6 +17,13 @@ export default class PickerSourceLink extends React.Component {
     textRef = React.createRef()
 
     async componentDidMount() {
+        //in safari readText works bad, so this line prevents run on safari
+        try{
+            await navigator.permissions.query({name: 'clipboard-read'})
+        }catch(e) {
+            return false
+        }
+
         const text = await navigator.clipboard.readText()
 
         if (isURL(text, { require_host: false }))
@@ -25,10 +32,10 @@ export default class PickerSourceLink extends React.Component {
             })
     }
     
-    onLinkChange = (e)=>
+    onChange = (e)=>
         this.setState({ link: e.target.value })
 
-    onLinkSubmit = async(e)=>{
+    onSubmit = async(e)=>{
         e.preventDefault()
         
         this.setState({ status: 'loading' })
@@ -46,7 +53,7 @@ export default class PickerSourceLink extends React.Component {
         const { link, status='' } = this.state
 
         return (
-            <form onSubmit={this.onLinkSubmit}>
+            <form onSubmit={this.onSubmit}>
                 <Layout>
                     <Label>URL</Label>
 
@@ -58,7 +65,7 @@ export default class PickerSourceLink extends React.Component {
                         placeholder='https://'
                         value={link}
                         disabled={status=='loading'}
-                        onChange={this.onLinkChange}
+                        onChange={this.onChange}
                         autoFocus>
                         {status == 'loading' ? (
                             <Preloader />
