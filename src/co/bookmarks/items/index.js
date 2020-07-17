@@ -16,7 +16,7 @@ class BookmarksItems extends React.Component {
         compact:        false,
         compactLimit:   7,
         ignore:         0,  //ignore some collectionId when showing all bookmarks
-        events:         {}  //onItemClick, onItemEditClick, onItemPreviewClick, onTagClick, onCollectionClick
+        events:         {}  //onItemClick, onItemEditClick, onItemPreviewClick, onTagClick, onSearch, onCollectionClick
     }
 
     componentDidMount() {

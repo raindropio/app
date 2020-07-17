@@ -81,6 +81,7 @@ export const normalizeBookmark = (item={}, options)=>{
 		lastUpdate: 	item.lastUpdate || null,
 		important: 		(item.important ? true : false),
 		broken: 		(item.broken ? true : false),
+		duplicate: 		(item.duplicate ? parseInt(item.duplicate) : null),
 		tags: 			(item.tags||[]).join(', '),
 		reparse:		item.reparse || (item.pleaseParse ? true : false),
 		cache:			item.cache ? item.cache.status : '',

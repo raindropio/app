@@ -43,6 +43,7 @@ class BookmarkItem extends React.Component {
         },
 
         onTagClick: this.props.events.onTagClick,
+        onSearch: this.props.events.onSearch,
         onCollectionClick: this.props.events.onCollectionClick,
 
         onEditClick: ()=>{

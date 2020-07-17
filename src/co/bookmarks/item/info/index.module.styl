@@ -1,0 +1,54 @@
+.info {
+    color: var(--secondary-text-color)
+    font-size: var(--secondary-font-size)
+    
+    align-self: flex-end
+    display: flex
+    flex-direction: row
+    flex-wrap: wrap
+    overflow: hidden
+
+    section {
+        min-width: 0
+        white-space: nowrap
+        overflow: hidden
+        text-overflow: ellipsis
+        word-wrap: break-word
+        position: relative
+
+        &[data-inline] {
+            padding-right: var(--padding-small)
+        }
+
+        &:not(:last-child):not([data-inline]) {
+            padding-right: var(--padding-large)
+
+            &:after {
+                position: absolute
+                right: 0
+                top: 0
+                content: '·'
+                width: var(--padding-large)
+                text-align: center
+            }
+        }
+    }
+
+    a {
+        position: relative
+        z-index: 1
+
+        &:hover {
+            text-decoration: underline
+        }
+    }
+}
+
+//Other
+.importantLabel {
+    color: var(--important-color)
+}
+
+.duplicateLabel, .duplicateLabel a {
+    color: var(--duplicate-color)
+}

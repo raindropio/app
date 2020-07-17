@@ -3,7 +3,8 @@ import React from 'react'
 
 class ButtonInner extends React.Component {
     onKeyDown = e => {
-        if (e.key == 'Enter'){
+        if (e.key == 'Enter' && 
+            e.currentTarget.getAttribute('disabled')==null){
             e.preventDefault()
             e.stopPropagation()
             e.currentTarget.click()

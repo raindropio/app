@@ -11,6 +11,10 @@ export default class CollectionsMainContent extends React.Component {
             )
         },
 
+        onSearch: (search)=>{
+            this.props.onSearch(search, 'current')
+        },
+
         onCollectionClick: (collection)=>{
             this.props.onSpaceChange(collection._id, { full: true, search: true })
         },

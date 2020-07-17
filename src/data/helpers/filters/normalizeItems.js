@@ -1,4 +1,4 @@
-export const normalizeItems = ({ broken, important, notag, types }) => {
+export const normalizeItems = ({ broken, duplicate, important, notag, types }) => {
     let items = []
 
     if (important && important.count)
@@ -10,6 +10,9 @@ export const normalizeItems = ({ broken, important, notag, types }) => {
 
     if (broken && broken.count)
         items.push({ _id: 'broken', count: broken.count, query: '☠' })
+
+    if (duplicate && duplicate.count)
+        items.push({ _id: 'duplicate', count: duplicate.count, query: 'duplicate:1' })
 
     if (notag && notag.count)
         items.push({ _id: 'notag', count: notag.count, query: 'notag:1' })

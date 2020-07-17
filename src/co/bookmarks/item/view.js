@@ -1,7 +1,6 @@
 import s from './view.module.styl'
 import React from 'react'
 import t from '~t'
-import { ShortDate } from '~modules/format/date'
 
 import SuperLink from '~co/common/superLink'
 import Button from '~co/common/button'
@@ -9,14 +8,14 @@ import Icon from '~co/common/icon'
 import SafeHtml from '~co/common/safeHtml'
 import Cover from './cover'
 import Tags from './tags'
-import Path from './path'
+import Info from './info'
 
 export default class BookmarkItemView extends React.PureComponent {
     render() {
         const { innerRef, isDragging } = this.props
-        const { link, title, excerpt, highlight, creatorRef, cover, domain, tags, type, view, access, created, reparse, collectionId, spaceId } = this.props
-        const { active, selected, selectModeEnabled, selectDisabled, important, broken, cache, gridSize } = this.props
-        const { onClick, onTagClick, onEditClick, onPreviewClick, onSelectClick, onRemoveClick, onContextMenu, onKeyUp, onCollectionClick } = this.props
+        const { link, title, excerpt, highlight, cover, domain, tags, view, access } = this.props
+        const { active, selected, selectModeEnabled, selectDisabled, important, broken, gridSize } = this.props
+        const { onClick, onTagClick, onEditClick, onPreviewClick, onSelectClick, onRemoveClick, onContextMenu, onKeyUp } = this.props
 
         return (
             <article 
@@ -49,30 +48,9 @@ export default class BookmarkItemView extends React.PureComponent {
                     </div>
 
                     {/* Info */}
-                    <div className={s.info}>
-                        {creatorRef && creatorRef._id ? (
-                            <>
-                                <section data-inline><Icon name='user' size='micro' /></section>
-                                <section>{creatorRef.fullName}</section>
-                            </>
-                        ) : null}
-
-                        {spaceId != collectionId ? <section><Path collectionId={collectionId} onCollectionClick={onCollectionClick} /></section> : null}
-
-                        {important ? <section data-inline><Icon name='important' size='micro' className={s.importantIcon} /></section> : null}
-
-                        {broken ? <section><Icon name='broken' size='micro' /></section> : null}
-
-                        {reparse ? <section data-inline><Icon name='progress' size='micro' /></section> : null}
-
-                        {cache && cache != 'ready' && cache != 'retry' ? <section data-inline><Icon name='cache_failed' size='micro' /></section> : null}
-
-                        {type != 'link' ? <section data-inline><Icon name={type} size='micro' /></section> : null}
-
-                        <section>{domain}</section>
-
-                        <section><ShortDate date={created}/></section>
-                    </div>
+                    <Info 
+                        className={s.info}
+                        {...this.props} />
                 </div>
 
                 <div className={s.actions}>

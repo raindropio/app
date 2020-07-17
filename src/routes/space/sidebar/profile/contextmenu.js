@@ -30,6 +30,11 @@ export default function SidebarProfileMenu({
                     {t.s('interest_technology_applications')}
                 </MenuItem>
 
+                <MenuItem href={config.links.download} target='_blank'>
+                    <Icon name='extension' />
+                    {t.s('browserExtension')}
+                </MenuItem>
+
                 <MenuItem href={config.links.help} target='_blank'>
                     <Icon name='help' />
                     {t.s('help')}

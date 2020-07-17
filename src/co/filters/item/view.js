@@ -14,11 +14,11 @@ export default class FiltersItemView extends React.Component {
             _id, count, active, canAppend, onAppendClick, focusable, ...etc
         } = this.props
 
-        let icon, title
+        let icon = _id
+        let title = t.s(_id+'s')
 
         switch (_id) {
             case 'important':
-                icon = 'important'
                 title = t.s('favorites')
                 break
 
@@ -31,10 +31,9 @@ export default class FiltersItemView extends React.Component {
                 icon = ''
                 title = 'Type # for tags…'
                 break
-        
-            default:
-                icon = _id
-                title = t.s(_id)+'s'
+
+            case 'broken':
+                title = t.s(_id)
                 break
         }
 

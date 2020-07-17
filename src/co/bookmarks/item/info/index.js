@@ -1,0 +1,72 @@
+import s from './index.module.styl'
+import React from 'react'
+import t from '~t'
+import { ShortDate } from '~modules/format/date'
+
+import Icon from '~co/common/icon'
+import Path from './path'
+
+export default class BookmarkItemView extends React.PureComponent {
+    onDuplicateClick = e => {
+        e.preventDefault()
+        this.props.onSearch(this.props.link)
+    }
+
+    render() {
+        const { className='', creatorRef, domain, type, created, reparse, collectionId, spaceId, important, broken, duplicate, cache } = this.props
+
+        return (
+            <div className={s.info+' '+className}>
+                {creatorRef && creatorRef._id ? (
+                    <>
+                        <section data-inline><Icon name='user' size='micro' /></section>
+                        <section>{creatorRef.fullName}</section>
+                    </>
+                ) : null}
+
+                {spaceId != collectionId ? (
+                    <section><Path {...this.props} /></section>
+                ) : null}
+
+                {important ? (
+                    <section data-inline className={s.importantLabel}>
+                        <Icon name='important' size='micro' />
+                    </section>
+                ) : null}
+
+                {broken ? (
+                    <section><Icon name='broken' size='micro' /></section>
+                ) : null}
+
+                {duplicate ? (
+                    <>
+                        <section data-inline className={s.duplicateLabel}><Icon name='duplicate' size='micro' /></section>
+                        <section className={s.duplicateLabel}>
+                            <a 
+                                href=''
+                                onClick={this.onDuplicateClick}>
+                                {t.s('duplicates')}
+                            </a>
+                        </section>
+                    </>
+                ) : null}
+
+                {reparse ? (
+                    <section data-inline><Icon name='progress' size='micro' /></section>
+                ) : null}
+
+                {cache && cache != 'ready' && cache != 'retry' ? (
+                    <section data-inline><Icon name='cache_failed' size='micro' /></section>
+                ) : null}
+
+                {type != 'link' ? (
+                    <section data-inline><Icon name={type} size='micro' /></section>
+                ) : null}
+
+                <section>{domain}</section>
+
+                <section><ShortDate date={created}/></section>
+            </div>
+        )
+    }
+}
