@@ -35,7 +35,7 @@ export default ({ match })=>(
 
 		<footer className={s.footer}>
 			&copy; 2020 SP Rustem Mussabekov
-			<a href={config.links.help} target='_blank'>{t.s('support')}</a>
+			<a href={config.links.help.index} target='_blank'>{t.s('support')}</a>
 		</footer>
 	</Screen>
 )

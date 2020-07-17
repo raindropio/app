@@ -48,7 +48,8 @@ function* preLoadSpace(action) {
 		yield put({
 			...action,
 			type: SPACE_LOAD_ERROR,
-			lastAction: null
+			lastAction: null,
+			error
 		})
 	}
 }

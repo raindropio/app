@@ -35,7 +35,7 @@ export default function SidebarProfileMenu({
                     {t.s('browserExtension')}
                 </MenuItem>
 
-                <MenuItem href={config.links.help} target='_blank'>
+                <MenuItem href={config.links.help.index} target='_blank'>
                     <Icon name='help' />
                     {t.s('help')}
                 </MenuItem>

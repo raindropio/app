@@ -9,10 +9,14 @@ export default {
 
     'links': {
         'download': 'https://raindrop.io/download',
-        'help': 'https://help.raindrop.io',
         'blog': 'https://blog.raindrop.io',
 
-        'pro': {
+        help: {
+            index: 'https://help.raindrop.io',
+            'open-multiple-links': 'https://help.raindrop.io/open-multiple-links'
+        },
+
+        pro: {
             'buy': 'https://raindrop.io/pro/buy',
             'compare': 'https://raindrop.io/pro',
             'faq': 'https://help.raindrop.io/category/11-pro-account',

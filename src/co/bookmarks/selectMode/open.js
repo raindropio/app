@@ -1,6 +1,6 @@
 import React from 'react'
 import t from '~t'
-import getLinks from '~data/modules/bookmarks/getLinks'
+import openAllBookmarks from '~co/bookmarks/openAll'
 
 import Button from '~co/common/button'
 import Icon from '~co/common/icon'
@@ -13,8 +13,7 @@ class BookmarksSelectModeOpen extends React.Component {
     onOpenSelectedClick = (e)=>{
         e.preventDefault()
 
-        getLinks(this.props.selectMode.spaceId, true)
-            .forEach(link => window.open(link))
+        openAllBookmarks(this.props.selectMode.spaceId, true)
     }
 
     render() {

@@ -1,5 +1,6 @@
 import React from 'react'
 import t from '~t'
+import openAllBookmarks from '~co/bookmarks/openAll'
 
 import { Confirm } from '~co/overlay/dialog'
 import Blank from './blank'
@@ -51,6 +52,10 @@ export default class CollectionsItem extends React.Component {
             }
 
             //otherwise usual click on href
+        },
+
+        onOpenAllClick: ()=>{
+            openAllBookmarks(this.props.item._id, false, true)
         },
 
         onSelectClick: ()=>{

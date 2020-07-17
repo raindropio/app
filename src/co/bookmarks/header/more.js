@@ -1,6 +1,5 @@
 import React from 'react'
 import t from '~t'
-import getLinks from '~data/modules/bookmarks/getLinks'
 import { connect } from 'react-redux'
 import { oneRemove, oneUpdate } from '~data/actions/collections'
 import { getSearchEmpty } from '~data/selectors/bookmarks'
@@ -36,11 +35,6 @@ class BookmarksHeaderMore extends React.Component {
             this.props.oneUpdate(this.props.spaceId, { title })
     }
 
-    onOpenAllClick = (e)=>{
-        e.preventDefault()
-        getLinks(this.props.spaceId).forEach(link => window.open(link))
-    }
-
     onRemoveClick = async()=>{
         if (await Confirm(t.s('areYouSure', { variant: 'warning' })))
             this.props.oneRemove(this.props.collection._id)
@@ -67,7 +61,6 @@ class BookmarksHeaderMore extends React.Component {
                         pin={this.pin}
                         onContextMenuClose={this.onContextMenuClose}
                         onRemoveClick={this.onRemoveClick}
-                        onOpenAllClick={this.onOpenAllClick}
                         onRenameClick={this.onRenameClick}
                         to={`/space/${collection._id}`} />
                 ) : null}

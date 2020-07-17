@@ -14,7 +14,7 @@ export default function DialogConfirmView({ id, message, description, ok, cancel
             <Content>
                 <Layout>
                     <Title>{variant=='warning'?'⚠':''} {message}</Title>
-                    <div>{description}</div>
+                    <div className={s.description}>{description}</div>
 
                     <Buttons>
                         <Button

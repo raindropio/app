@@ -44,6 +44,7 @@ export default class BookmarkItemView extends React.PureComponent {
                         <section className={s.duplicateLabel}>
                             <a 
                                 href=''
+                                title={t.s('defaultCollection-0')+' '+t.s('original').toLowerCase()}
                                 onClick={this.onDuplicateClick}>
                                 {t.s('duplicates')}
                             </a>

@@ -67,10 +67,15 @@ export default function(state, action) {switch (action.type) {
 		//reset space to initial state
 		let space = (oldSpace || blankSpace)
 			.set('lastAction', lastAction)
-			.merge({ query })
-			.setIn(['query', 'page'], 0)
 			.setIn(['status', 'main'], 'loading')
 			.setIn(['status', 'nextPage'], blankSpace.status.nextPage)
+
+		//set correct query
+		space = space.set('query', {
+			...space.query,
+			...query,
+			page: 0
+		})
 
 		//send query in action
 		action.query = space.query
