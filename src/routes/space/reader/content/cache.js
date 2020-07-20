@@ -3,6 +3,8 @@ import React from 'react'
 import t from '~t'
 import getCacheURL from '~data/modules/format/cache_url'
 
+import Header, { Title, Space } from '~co/common/header'
+import Button from '~co/common/button'
 import Icon from '~co/common/icon'
 import SuperFrame from '~co/common/superFrame'
 
@@ -31,31 +33,53 @@ class ReaderCache extends React.Component {
     }
 
     renderStatus() {
-        const { item: {cache} } = this.props
-        let icon = '', text = ''
+        const { url } = this.state
+        const { item: { cache, domain } } = this.props
+
+        let icon = '', title = ''
 
         switch(cache) {
             case 'ready':
                 icon = 'ready'
-                text = <p>{t.s('permanentCopy')} {t.s('saved').toLowerCase()}</p>
+                title = t.s('permanentCopy') + ' ' + t.s('saved').toLowerCase()
             break
 
             case 'retry':
                 icon = 'retry'
-                text = <p>{t.s('permanentCopy')} {t.s('uploadProgress').toLowerCase()}</p>
+                title = t.s('permanentCopy') + ' ' + t.s('uploadProgress').toLowerCase()
             break
 
             default:
                 icon = 'failed'
-                text = <p>{t.s('supportOnlyUrls')} <b>{invalidStatus[cache]}</b></p>
+                title = <>{t.s('supportOnlyUrls')} <b>{invalidStatus[cache]}</b></>
             break
-        } 
+        }
 
         return (
-            <div className={s.status} data-status={cache}>
+            <Header className={s.status} data-status={cache}>
                 {icon && <Icon name={'cache_'+icon} className={s.icon} />}
-                {text}
-            </div>
+                <Title>{title}</Title>
+                <Space />
+
+                {cache == 'ready' && (
+                    <>
+                        <Button 
+                            href={url}
+                            target='_blank'>
+                            <Icon name='open' size='micro' />
+                            {t.s('open')}
+                        </Button>
+
+                        <Button 
+                            href={url}
+                            target='_blank'
+                            download={domain+'.html'}>
+                            <Icon name='document' size='micro' />
+                            Download
+                        </Button>
+                    </>
+                )}
+            </Header>
         )
     }
 

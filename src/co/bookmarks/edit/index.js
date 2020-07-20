@@ -84,7 +84,9 @@ class EditBookmarkContainer extends React.Component {
 		}
 
 		return (
-			<div className={s.edit}>
+			<div
+				key={this.props.item._id} 
+				className={s.edit}>
 				{content}
 			</div>
 		)
