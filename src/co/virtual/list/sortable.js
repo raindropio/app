@@ -153,7 +153,7 @@ class ListContainer extends React.Component {
     }
 }
 
-class ItemContainer extends React.Component {
+class ItemContainer extends React.PureComponent {
     render() {
         return (
             <div {...this.props} style={{'--data-known-size': this.props['data-known-size']+'px'}} />
