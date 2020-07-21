@@ -6,13 +6,6 @@ const Translate = {
 	currentLang: '',
 	loaded: false,
 
-	onChange: (func)=>{
-		Translate._onChange = func
-		Translate.init().catch(()=>{
-			Translate.changeState(true)
-		})
-	},
-
 	s: (key)=>{
 		return Translate.strings[key] || Translate.fallback[key] || key || ''
 	},
@@ -90,7 +83,6 @@ const Translate = {
 
 	changeState: (state)=>{
 		Translate.loaded = state
-		Translate._onChange(Translate.loaded)
 	}
 }
 

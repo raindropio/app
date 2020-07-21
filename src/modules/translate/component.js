@@ -1,33 +1,42 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import t from './index'
 
-export default class UtilsTranslateComponent extends React.PureComponent {
-    constructor(props){
-        super(props)
-
-        t.onChange(this.onTranslateChange)
-        
-        this.state = {
-            loading: !t.loaded,
-            lang: t.currentLang
-        }
+class UtilsTranslateComponent extends React.PureComponent {
+    state = {
+        loading: true
     }
 
-    onTranslateChange = (loaded)=>{
-        if (this.state)
-            this.setState({
-                loading: !loaded,
-                lang: t.currentLang
-            })
+    componentDidMount() {
+        this.setLang()
+    }
+
+    componentDidUpdate(prev) {
+        if (prev.lang == this.props.lang)
+            return
+        this.setLang()
+    }
+
+    setLang = async()=>{
+        this.setState({ loading: true })
+        try{await t.init(this.props.lang)}catch(e){}
+        this.setState({ loading: false })
     }
 
     render() {
-        const { Loading } = this.props
+        const { Loading, lang } = this.props
+
         return (
-            <React.Fragment key={this.state.lang}>
+            <React.Fragment key={lang}>
                 {this.state.loading && Loading && <Loading />}
                 {!this.state.loading && this.props.children}
             </React.Fragment>
         )
     }
 }
+
+export default connect(
+    state=>({
+        lang: state.config.lang
+    })
+)(UtilsTranslateComponent)
