@@ -4,20 +4,7 @@ import getThumbUri from '~data/modules/format/thumb'
 import getScreenshotUri from '~data/modules/format/screenshot'
 import getFaviconUri from '~data/modules/format/favicon'
 import size from './size'
-import transparentPng from '~assets/images/transparent.png'
 import Preloader from '~co/common/preloader'
-
-//cache cover statuses
-const status = {
-    '': 'error' //undefined/error
-}
-
-const onCoverError = (cover)=>{
-    if (!status[cover])
-        status[cover] = 'screenshot'
-    else
-        status[cover] = 'error'
-}
 
 //cache thumb/screenshot uri
 const thumbs = {}
@@ -51,9 +38,6 @@ export default class BookmarkItemCover extends React.PureComponent {
     constructor(props) {
         super(props)
 
-        if (!props.cover)
-            onCoverError(props.cover)
-
         this.state = {
             loaded: props.indicator ? false : true
         }
@@ -62,12 +46,6 @@ export default class BookmarkItemCover extends React.PureComponent {
     componentDidUpdate(prev) {
         if (prev.cover != this.props.cover && this.props.indicator)
             this.setState({ loaded: false })
-    }
-
-    //rotate status on error
-    onImageLoadError = ()=>{
-        onCoverError(this.props.cover)
-        this.forceUpdate()
     }
 
     onImageLoadSuccess = ()=>{
@@ -79,33 +57,15 @@ export default class BookmarkItemCover extends React.PureComponent {
         let { width, height, ar } = size(view, gridSize) //use height only for img element
         let uri
 
-        if (status[cover] == 'error')
-            return (
-                <img 
-                    src={transparentPng}
-                    className={s.cover + ' ' + s.placeholder}
-                    data-ar={ar}
-                    width={width}
-                    height={height} />
-            )
-
         switch(view){
             //simple always have a favicon
             case 'simple':
                 uri = getStellaUri(link, 'favicon', domain)
                 break
 
-            //in other view modes we show a thumbnail, screenshot or placeholder, depends on status
+            //in other view modes we show a thumbnail or screenshot
             default:
-                switch(status[cover]) {
-                    case 'screenshot':
-                        uri = getStellaUri(link, 'screenshot', domain)
-                        break
-        
-                    default:
-                        uri = getStellaUri(cover, '', domain)
-                        break
-                }
+                uri = getStellaUri(cover, cover ? '' : 'screenshot', domain)
                 break
         }
 
@@ -115,16 +75,17 @@ export default class BookmarkItemCover extends React.PureComponent {
                     srcSet={`${uri}&mode=crop&format=webp&width=${width||''}&ar=${ar||''}&dpr=${window.devicePixelRatio||1} ${window.devicePixelRatio||1}x`}
                     type='image/webp' />
 
-                <img 
-                    className={s.cover}
+                <object 
+                    className={s.image}
                     data-ar={ar}
                     loading='lazy'
                     width={width}
                     height={height}
+                    alt=' '
                     {...etc}
-                    src={`${uri}&mode=crop&width=${width||''}&ar=${ar||''}&dpr=${window.devicePixelRatio||1}`}
-                    onLoad={indicator ? this.onImageLoadSuccess : undefined}
-                    onError={this.onImageLoadError} />
+                    data={`${uri}&mode=crop&width=${width||''}&ar=${ar||''}&dpr=${window.devicePixelRatio||1}`}
+                    type='image/jpeg'
+                    onLoad={indicator ? this.onImageLoadSuccess : undefined} />
             </>
         )
     }

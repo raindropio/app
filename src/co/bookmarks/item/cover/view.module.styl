@@ -18,10 +18,25 @@
     display: flex
 }
 
-.cover {
-    background: var(--alternative-background-color)
+.image {
+    position: relative
     display: block
     border-radius: 2px
+
+    &:after {
+        content: ""
+        display: block
+        position: absolute
+        top: 0
+        left: 0
+        width: 100%
+        height: 100%
+        background: var(--sidebar-background-color)
+    }
+
+    &:-moz-broken, &:-moz-loading, &:-moz-suppressed {
+        background: var(--sidebar-background-color)
+    }
 }
 
 //Lists specific
@@ -37,13 +52,9 @@
 }
 
 .simple {
-    .cover {
+    .image {
 		width: var(--icon-size)
 		height: var(--icon-size)
-
-		&:not(.cover-placeholder) {
-			background: transparent
-		}
 	}
 }
 
@@ -65,7 +76,7 @@
         }
     }
 
-    .cover {
+    .image {
         width: 100%;
         height: auto;
         position: absolute;
@@ -84,7 +95,7 @@
         padding: 0
     }
 
-    .cover {
+    .image {
         position: static
     }
 }
