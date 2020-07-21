@@ -11,7 +11,7 @@ import Sharing from '../sharing'
 import ChangeIcon from '../changeIcon'
 import ProCheck from '~co/user/pro/check'
 
-export default class CollectionsItem extends React.Component {
+export default class CollectionsItem extends React.PureComponent {
     static defaultProps = {
         item:       {},
         active:     false,

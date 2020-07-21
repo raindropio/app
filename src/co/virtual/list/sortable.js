@@ -143,13 +143,19 @@ class ListContainer extends React.Component {
                             {...droppableProps}
                             {...etc}
                             ref={this.bindRef(innerRef, listRef)}>
-                            {children}
+                            <ListInnerContainer children={children} />
                             {disableVirtualization ? placeholder : null}
                         </div>
                     )}
                 </Droppable>
             </DragDropContext>
         )
+    }
+}
+
+class ListInnerContainer extends React.PureComponent {
+    render() {
+        return this.props.children
     }
 }
 

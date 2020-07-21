@@ -78,6 +78,7 @@
 		"@babel/preset-env": "7.x",
 		"@babel/preset-react": "7.x",
 		"@svgr/webpack": "^5.4.0",
+		"@welldone-software/why-did-you-render": "^4.2.6",
 		"babel-eslint": "10.x",
 		"babel-loader": "8.x",
 		"babel-plugin-lodash": "3.3.x",
