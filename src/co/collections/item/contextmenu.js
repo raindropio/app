@@ -6,7 +6,7 @@ import Icon from '~co/common/icon'
 export default class CollectionsItemContextmenu extends React.Component {
     render() {
         const {
-            _id, access, count,
+            _id, access,
             pin,
             onContextMenuClose, onCreateNewChildClick, onRenameClick, onIconClick, onRemoveClick, onSharing, onOpenAllClick, onSelectClick
         } = this.props
@@ -14,7 +14,7 @@ export default class CollectionsItemContextmenu extends React.Component {
         return (
             <Popover pin={pin} onClose={onContextMenuClose}>
                 <Menu>
-                    {onOpenAllClick && count ? <MenuItem onClick={onOpenAllClick} target='_blank'>
+                    {onOpenAllClick ? <MenuItem onClick={onOpenAllClick} target='_blank'>
                         <Icon name='open' />
                         {t.s('openLinksInNewTab')}
                     </MenuItem> : null}

@@ -1,6 +1,5 @@
 import React from 'react'
 import t from '~t'
-import openAllBookmarks from '~co/bookmarks/openAll'
 
 import { Confirm } from '~co/overlay/dialog'
 import Blank from './blank'
@@ -10,6 +9,7 @@ import Contextmenu from './contextmenu'
 import Sharing from '../sharing'
 import ChangeIcon from '../changeIcon'
 import ProCheck from '~co/user/pro/check'
+import OpenAllBookmarks from '~co/bookmarks/openAll'
 
 export default class CollectionsItem extends React.PureComponent {
     static defaultProps = {
@@ -23,7 +23,8 @@ export default class CollectionsItem extends React.PureComponent {
     state = {
         rename: false,
         menu: false,
-        sharing: false
+        sharing: false,
+        openAll: false
     }
 
     handlers = {
@@ -54,9 +55,11 @@ export default class CollectionsItem extends React.PureComponent {
             //otherwise usual click on href
         },
 
-        onOpenAllClick: ()=>{
-            openAllBookmarks(this.props.item._id, false, true)
-        },
+        onOpenAllClick: ()=>
+            this.setState({ openAll: true }),
+
+        opOpenAllClose: ()=>
+            this.setState({ openAll: false }),
 
         onSelectClick: ()=>{
             const { active, multiselect, actions: { selectOne, unselectOne } } = this.props
@@ -168,6 +171,13 @@ export default class CollectionsItem extends React.PureComponent {
                     <ChangeIcon
                         _id={item._id}
                         onClose={this.handlers.onIconClose} />
+                ) : null}
+
+                {this.state.openAll ? (
+                    <OpenAllBookmarks
+                        spaceId={item._id}
+                        onClose={this.handlers.opOpenAllClose}
+                        />
                 ) : null}
             </>
         )

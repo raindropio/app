@@ -15,8 +15,10 @@ export const makeBookmarksCount = ()=>createSelector(
 )
 
 //Space itself
-export const makeStatus = () => ({bookmarks}, spaceId)=>
+export const status = ({bookmarks}, spaceId)=>
 	bookmarks.spaces[spaceId] ? bookmarks.spaces[spaceId].status : blankSpace.status
+
+export const makeStatus = () => status
 
 export const makeStatusMain = () => (state, spaceId)=>
 	makeStatus(state, spaceId).main
@@ -69,4 +71,16 @@ export const makeViewHide = ()=> createSelector(
 			.filter(key=>key.startsWith(view+'_'))
 			.map(key=>key.replace(`${view}_`, ''))
 	)
+)
+
+
+//Space elements
+export const makeSpaceElements = ()=> createSelector(
+	[
+		state => state.bookmarks.elements,
+		bookmarksIds
+	],
+	(elements, ids)=>{
+		return _.pick(elements, ids)
+	}
 )
