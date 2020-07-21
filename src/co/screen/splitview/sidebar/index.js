@@ -1,15 +1,13 @@
 import './index.module.styl'
 import React from 'react'
-import { Context } from '../'
 
 import Header from './header'
 import Content from './content'
 import Footer from './footer'
 import Resize from './resize'
+import Backdrop from './backdrop'
 
 export default class SplitViewSidebar extends React.Component {
-    static contextType = Context
-
     render() {
         return (
             <>
@@ -17,7 +15,7 @@ export default class SplitViewSidebar extends React.Component {
                     {this.props.children}
                 </aside>
 
-                <div className='svSidebarBackdrop' onClick={this.context.sidebar.toggle} />
+                <Backdrop />
 
                 <Resize />
             </>

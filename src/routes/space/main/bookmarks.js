@@ -2,7 +2,7 @@ import React from 'react'
 import { Content } from '~co/screen/splitview/main'
 import Bookmarks from '~co/bookmarks'
 
-export default class CollectionsMainContent extends React.Component {
+export default class SpaceMainContent extends React.Component {
     events = {
         onTagClick: (tagName)=>{
             this.props.onSearch(

@@ -53,18 +53,20 @@ export default class ScreenSplitView extends React.Component {
         const { sidebar, reader } = this.state
 
         return (
-            <Basic
-                className={`
-                    ${s.splitview}
-                    ${sidebar.show ? s.showSidebar : ''}
-                    ${sidebar.force ? s.forceSidebar : ''}
-                    ${reader.show ? s.showReader : ''}
-                    ${reader.fullscreen ? s.showReaderFullscreen : ''}
-                `}
-                style={sidebar.width ? {'--preferred-sidebar-width': sidebar.width+'px'} : undefined}>
-                <Context.Provider value={this.state}>
-                    {this.props.children}
-                </Context.Provider>
+            <Basic>
+                <div
+                    className={`
+                        ${s.splitview}
+                        ${sidebar.show ? s.showSidebar : ''}
+                        ${sidebar.force ? s.forceSidebar : ''}
+                        ${reader.show ? s.showReader : ''}
+                        ${reader.fullscreen ? s.showReaderFullscreen : ''}
+                    `}
+                    style={sidebar.width ? {'--preferred-sidebar-width': sidebar.width+'px'} : undefined}>
+                    <Context.Provider value={this.state}>
+                        {this.props.children}
+                    </Context.Provider>
+                </div>
             </Basic>
         )
     }
