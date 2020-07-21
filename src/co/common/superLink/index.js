@@ -5,21 +5,12 @@ import { Link } from 'react-router-dom'
 export default class SuperLink extends React.PureComponent {
 	static defaultProps = {
 		active: false,
-		tabIndex: -1,
-		focusable: true
-	}
-
-	onFocus = (e)=>{
-		try{e.currentTarget.parentElement.setAttribute('data-is-focus','true');}catch(e){}
-	}
-
-	onBlur = (e)=>{
-		try{e.currentTarget.parentElement.removeAttribute('data-is-focus');}catch(e){}
+		tabIndex: -1
 	}
 
 	onMouseDown = (e)=>{
-		if (this.props.focusable !== false)
-			e.currentTarget.focus()
+		e.currentTarget.focus()
+		this.props.onMouseDown && this.props.onMouseDown(e)
 	}
 
 	onKeyDown = (e)=>{
@@ -42,7 +33,7 @@ export default class SuperLink extends React.PureComponent {
 	}
 
 	render() {
-		const { className, active, tabIndex, focusable, ...other } = this.props
+		const { className, active, tabIndex, ...other } = this.props
 		const Component = other.to ? Link : 'a'
 
 		return (
@@ -50,11 +41,9 @@ export default class SuperLink extends React.PureComponent {
 				{...other}
 				className={className+' '+s.superLink}
 				tabIndex={active ? tabIndex : '-1'}
-				data-tab-index={focusable ? tabIndex : undefined}
-				onMouseDown={focusable ? this.onMouseDown : null}
-				onFocus={focusable ? this.onFocus : null}
-				onBlur={focusable ? this.onBlur : null}
-				onKeyDown={focusable ? this.onKeyDown : null} />
+				data-tab-index={tabIndex}
+				onMouseDown={this.onMouseDown}
+				onKeyDown={this.onKeyDown} />
 		)
 	}
 }

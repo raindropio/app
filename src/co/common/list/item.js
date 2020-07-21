@@ -1,13 +1,13 @@
 import s from './item.module.styl'
 import React from 'react'
 
-function ItemInner({ as='div', className='', active, color, style={}, forwardedRef, ...etc }) {
+function ItemInner({ as='div', className='', active, color, focusable, style={}, forwardedRef, ...etc }) {
     const Component = as
     return (
         <Component 
             {...etc}
             ref={forwardedRef}
-            className={`${className} ${s.item} ${active && s.active}`}
+            className={`${className} ${s.item} ${active && s.active} ${focusable && s.focusable}`}
             style={{'--accent-color': color, ...style}} />
     )
 }

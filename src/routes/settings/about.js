@@ -1,6 +1,5 @@
 import React from 'react'
 import t from '~t'
-import environment from '~modules/environment'
 
 import Main, { Header, Content } from '~co/screen/splitview/main'
 import SuperImg from '~co/common/superImg'
@@ -9,13 +8,11 @@ class About extends React.Component {
 	displayName = 'settings/about'
 
 	componentDidMount() {
-		if (!environment.isClipper()){
 			var tw = document.createElement('script');
 			//only executes in another environment. also can't be executed because violates content_security_policy!!
 			//its twitter, nothing special
 			tw.setAttribute('src','https://platform.twitter.com/widgets.js');
 			document.head.appendChild(tw);
-		}
 	}
 
 	render() {

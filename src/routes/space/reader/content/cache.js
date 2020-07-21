@@ -7,6 +7,7 @@ import Header, { Title, Space } from '~co/common/header'
 import Button from '~co/common/button'
 import Icon from '~co/common/icon'
 import SuperFrame from '~co/common/superFrame'
+import Popover from '~co/overlay/popover'
 
 const invalidStatus = {
     'invalid-origin': 'Origin is unreachable.',
@@ -16,7 +17,8 @@ const invalidStatus = {
 
 class ReaderCache extends React.Component {
     state = {
-        url: ''
+        url: '',
+        download: false
     }
 
     async componentDidMount(){
@@ -31,6 +33,14 @@ class ReaderCache extends React.Component {
     load = async()=>{
         this.setState({ url: await getCacheURL(this.props.item._id) })
     }
+
+    onDownloadClick = (e)=>{
+        e.preventDefault()
+        this.setState({ download: true })
+    }
+
+    onDownloadClose = ()=>
+        this.setState({ download: false })
 
     renderStatus() {
         const { url } = this.state
@@ -73,7 +83,8 @@ class ReaderCache extends React.Component {
                         <Button 
                             href={url}
                             target='_blank'
-                            download={domain+'.html'}>
+                            download={domain+'.html'}
+                            onClick={this.onDownloadClick}>
                             <Icon name='document' size='micro' />
                             Download
                         </Button>
@@ -85,7 +96,7 @@ class ReaderCache extends React.Component {
 
 	render() {
         const { item: { cache } } = this.props
-        const { url } = this.state
+        const { url, download } = this.state
 
         switch(cache) {
             case 'ready':
@@ -93,6 +104,8 @@ class ReaderCache extends React.Component {
                     <div className={s.cache}>
                         {this.renderStatus()}
                         <SuperFrame className={s.frame} src={url} />
+
+                        {download && <Popover onClose={this.onDownloadClose}>Right click on this button and select "Save link as..."</Popover>}
                     </div>
                 )
             

@@ -15,10 +15,6 @@ class TextInner extends React.Component {
         icon: null
     }
 
-    state = {
-        focus: false
-    }
-
     onKeyDownField = (e)=>{
         if (e.keyCode == 13 && 
             this.props.autoSize &&
@@ -48,13 +44,7 @@ class TextInner extends React.Component {
                 e.currentTarget.setSelectionRange(e.currentTarget.value.length, -1)
         }
 
-        this.setState({ focus: true })
         onFocus && onFocus(e)
-    }
-
-    onBlur = (e)=>{
-        this.setState({ focus: false })
-        this.props.onBlur && this.props.onBlur(e)
     }
 
     onContainerClick = (e)=>
@@ -62,7 +52,6 @@ class TextInner extends React.Component {
 
     render() {
         const { className='', autoSize, variant, font, multiline, selectAll, hidden, icon, children, forwardedRef, ...etc } = this.props
-        const { focus } = this.state
         const Component = autoSize ? TextareaAutosize : 'input'
 
         return (
@@ -73,7 +62,6 @@ class TextInner extends React.Component {
                 data-multiline={multiline}
                 data-select-all={selectAll}
                 data-font={font}
-                data-focus={focus}
                 data-disabled={etc.disabled}
                 hidden={hidden}
                 onClick={this.onContainerClick}>
@@ -86,8 +74,7 @@ class TextInner extends React.Component {
                     className={s.text}
 
                     onKeyDown={this.onKeyDownField}
-                    onFocus={this.onFocus}
-                    onBlur={this.onBlur} />
+                    onFocus={this.onFocus} />
 
                 {children}
             </div>

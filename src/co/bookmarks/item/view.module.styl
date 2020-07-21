@@ -41,6 +41,18 @@
         box-shadow: 0 1px 3px rgba(0,0,0,.1), 0 3px 15px rgba(0,0,0,.1);
         border-radius: var(--border-radius)
     }
+
+    &:focus-within:not(.selectModeEnabled) {
+        --background-color: var(--accent-color)
+        color: unquote('hsl(var(--background-hsl))')
+        --primary-text-color: unquote('hsla(var(--background-hsl), .8)')
+        --secondary-text-color: unquote('hsla(var(--background-hsl), .6)')
+        --shadow-color: var(--accent-color)
+
+        .description {
+            --accent-color: unquote('hsl(var(--background-hsl))')
+        }
+    }
 }
 
 //About
@@ -94,20 +106,6 @@
         overflow: hidden;
         white-space: pre;
         white-space: pre-wrap;
-    }
-}
-
-html:not(:global(.blur)) {
-    .element[data-is-focus="true"] {
-        --background-color: var(--accent-color)
-        color: unquote('hsl(var(--background-hsl))')
-        --primary-text-color: unquote('hsla(var(--background-hsl), .8)')
-        --secondary-text-color: unquote('hsla(var(--background-hsl), .6)')
-        --shadow-color: var(--accent-color)
-
-        .description {
-            --accent-color: unquote('hsl(var(--background-hsl))')
-        }
     }
 }
 

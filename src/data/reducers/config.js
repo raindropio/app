@@ -47,6 +47,7 @@ const mutate = (state, key='', val='')=>{
 }
 
 const initialState = Immutable({
+	lang:				'',
 	last_collection:	0,
 
 	raindrops_view:		'',

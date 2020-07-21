@@ -10,10 +10,6 @@ class MultiSelectInner extends React.PureComponent {
         onSelectedChange: undefined
     }
 
-    state = {
-        focused: false
-    }
-
     onAddToken = e => {
         const value = (e.target.value||'').trim()
         if (!value) return
@@ -46,16 +42,10 @@ class MultiSelectInner extends React.PureComponent {
             this.props.onKeyDown(e)
     }
 
-    onInputFocus = e => {
-        this.setState({ focused: true })
-        this.props.onFocus && this.props.onFocus(e)
-    }
-
     onInputBlur = e => {
         this.onAddToken(e)
 
         if (this._preventBlur) return
-        this.setState({ focused: false })
         this.props.onBlur && this.props.onBlur(e)
     }
 
@@ -78,12 +68,10 @@ class MultiSelectInner extends React.PureComponent {
 
     render() {
         const { selected, forwardedRef, className='', onSelectedChange, icon, ...etc } = this.props
-        const { focused } = this.state
 
         return (
             <div 
                 className={s.multi}
-                data-focused={focused}
                 data-disabled={etc.disabled}
                 onClick={this.onContainerClick}>
                 {selected.map(item=>
@@ -107,7 +95,6 @@ class MultiSelectInner extends React.PureComponent {
                     {...etc}
                     value={etc.value||''}
                     ref={forwardedRef}
-                    onFocus={this.onInputFocus}
                     onBlur={this.onInputBlur}
                     onKeyDown={this.onInputKeyDown} 
                     />

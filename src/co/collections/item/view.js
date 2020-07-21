@@ -36,6 +36,7 @@ export default class CollectionsItemView extends React.PureComponent {
             <Item
                 ref={innerRef}
                 className={`${s.item} ${expandable && (expanded ? s.expanded : s.collapsed)} ${isDragging && s.isDragging} ${isDropping && s.isDropping}`}
+                focusable={!multiselect}
                 style={{'--level': level}}
                 active={active}
                 color={color}>
@@ -87,7 +88,6 @@ export default class CollectionsItemView extends React.PureComponent {
                     active={active}
                     tabIndex='1'
 
-                    focusable={!multiselect}
 					onClick={onClick}
 					onDoubleClick={onRenameClick}
                     onContextMenu={onContextMenu}

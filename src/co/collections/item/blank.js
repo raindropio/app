@@ -61,7 +61,6 @@ class CollectionsItemBlank extends React.PureComponent {
         return (
             <form onSubmit={this.onSubmit}>
                 <Item
-                    data-is-focus='true'
                     active={true}
                     className={s.item}
                     style={{'--level': level}}>
