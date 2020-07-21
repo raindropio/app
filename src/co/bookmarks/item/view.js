@@ -49,8 +49,8 @@ export default class BookmarkItemView extends React.PureComponent {
 
                     {/* Info */}
                     <Info 
-                        className={s.info}
-                        {...this.props} />
+                        {...this.props}
+                        className={s.info} />
                 </div>
 
                 <div className={s.actions}>

@@ -1,4 +1,4 @@
-import styles from './sortable.module.styl'
+import s from './sortable.module.styl'
 import React from 'react'
 import { ReactSortable } from 'react-sortablejs'
 
@@ -29,13 +29,13 @@ export default class VirtualSortable extends React.PureComponent {
     }
 
     render() {
-        const { className, type, items, children } = this.props
+        const { className='', type, items, children } = this.props
 
         return (
             <ReactSortable 
                 group={type}
-                className={className}
-                ghostClass={styles.ghost}
+                className={s.sortable + ' ' + className}
+                ghostClass={s.ghost}
 
                 animation={150}
 

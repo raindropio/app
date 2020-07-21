@@ -1,3 +1,4 @@
+import './sortable.module.styl'
 import React from 'react'
 import { Droppable, Draggable, DragDropContext } from 'react-beautiful-dnd'
 import Base from './base'
