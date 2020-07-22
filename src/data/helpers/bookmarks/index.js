@@ -5,7 +5,7 @@ const emptyArray = []
 const emptyObject = {}
 
 export * from './blankSpace'
-export * from './stringifyQuery'
+export * from './getUrl'
 export * from './queryIsEqual'
 
 //Iterator by spaceId prefixes and original

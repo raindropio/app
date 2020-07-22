@@ -13,14 +13,21 @@ const hardcoded = [
     { find: '☠', key: 'broken', val: '1' },
 ]
 
-export const stringifyQuery = (query)=>{
+export const getUrl = (id, query)=>{
 	const entities = _.compact(_.map(query||blankSpace.query, (val,key)=>{
 		if (val)
 			switch(key){
+				case 'ignore':
+					if (!parseInt(id)) {
+						id = val
+						return key+'='+1
+					} else
+						return undefined
+
 				case 'page':
 				case 'sort':
-				case 'ignore':
 					return key+'='+encodeURIComponent(val);
+
 				case 'search':
 					if (val.length){
 						let clean = String(val).trim()
@@ -52,5 +59,5 @@ export const stringifyQuery = (query)=>{
 	entities.push('perpage='+SPACE_PER_PAGE)
 	entities.push('version=2')
 
-	return '?'+entities.join('&')
+	return parseInt(id)+'?'+entities.join('&')
 }

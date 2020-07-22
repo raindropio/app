@@ -1,6 +1,6 @@
 import { call, put, debounce, takeEvery, select, all } from 'redux-saga/effects'
 import Api from '../modules/api'
-import { stringifyQuery } from '../helpers/bookmarks'
+import { getUrl } from '../helpers/bookmarks'
 
 import { FILTERS_LOAD_REQ, FILTERS_LOAD_SUCCESS, FILTERS_LOAD_ERROR } from '../constants/filters'
 import { TAGS_LOAD_SUCCESS, TAGS_LOAD_ERROR } from '../constants/tags'
@@ -32,11 +32,11 @@ function* reloadFilters(params) {
 		if (parseInt(spaceId) && !state.bookmarks.spaces[spaceId]) continue
 
 		try {
-			const query = stringifyQuery(state.bookmarks.getIn(['spaces', spaceId, 'query']))
+			const url = getUrl(spaceId, state.bookmarks.getIn(['spaces', spaceId, 'query']))
 
 			const { tags, ...items } = yield call(
 				Api.get, 
-				`filters/${parseInt(spaceId)}${query}&tagsSort=${state.config.tags_sort}`
+				`filters/${url}&tagsSort=${state.config.tags_sort}`
 			)
 
 			yield all([

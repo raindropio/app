@@ -3,7 +3,7 @@ import _ from 'lodash-es'
 import Api from '../../modules/api'
 import ApiError from '../../modules/error'
 
-import { stringifyQuery } from '../../helpers/bookmarks'
+import { getUrl } from '../../helpers/bookmarks'
 
 import {
 	SELECT_MODE_IMPORTANT_SELECTED,
@@ -216,12 +216,12 @@ function* batchApiRequestHelper(method, body={}) {
 
 	//apply for each collection
 	for(const [collectionId, ids] of groupByCollection){
-		const query = stringifyQuery(bookmarks.getIn(['spaces', collectionId, 'query']))
+		const url = getUrl(collectionId, bookmarks.getIn(['spaces', collectionId, 'query']))
 
 		//send request
 		yield call(
 			Api[method],
-			`raindrops/${parseInt(collectionId)}${query}&dangerAll=true`,
+			`raindrops/${url}&dangerAll=true`,
 			{
 				...body,
 				...(selectMode.all ? {} : { ids })

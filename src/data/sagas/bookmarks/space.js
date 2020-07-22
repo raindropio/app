@@ -1,7 +1,7 @@
 import _ from 'lodash'
 import { call, put, takeEvery, select, throttle, all } from 'redux-saga/effects'
 import Api from '../../modules/api'
-import { stringifyQuery } from '../../helpers/bookmarks'
+import { getUrl } from '../../helpers/bookmarks'
 
 import {
 	SPACE_LOAD_PRE, SPACE_LOAD_REQ, SPACE_LOAD_SUCCESS, SPACE_LOAD_ERROR,
@@ -58,7 +58,7 @@ function* loadSpace({spaceId, query, ignore=false}) {
 	if (ignore) return
 
 	try {
-		const { items=[] } = yield call(Api.get, `raindrops/${parseInt(spaceId)}${stringifyQuery(query)}`);
+		const { items=[] } = yield call(Api.get, `raindrops/${getUrl(spaceId, query)}`);
 
 		yield put({
 			type: (query.page ? SPACE_NEXTPAGE_SUCCESS : SPACE_LOAD_SUCCESS),

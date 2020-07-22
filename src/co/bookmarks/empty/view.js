@@ -85,7 +85,7 @@ export default class BookmarksEmptyView extends React.PureComponent {
             case 'error':
                 content = (
                     <div>
-                        <IllustrationError />
+                        {!compact && (<IllustrationError />)}
 
 						<h2>{t.s('error')}</h2>
 						<p>

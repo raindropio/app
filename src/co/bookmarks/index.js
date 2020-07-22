@@ -42,7 +42,7 @@ class Bookmarks extends React.Component {
                 totalCount={ids.length}
                 dataKey={dataKey} //re-render on items change
                 defaultItemHeight={0} //fix initial render
-                overscan={0}
+                overscan={1000}
                 item={this.renderSpace}
                 computeItemKey={this.indexToId} />
         )
