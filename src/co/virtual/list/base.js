@@ -66,6 +66,7 @@ export default class VirtualListBase extends React.PureComponent {
         return (
             <Component
                 className={s.scrollable + ' ' + className}
+                tabIndex='-1'
                 {...etc}
                 ref={this._list}
                 rangeChanged={this.rangeChanged}

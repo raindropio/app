@@ -53,7 +53,7 @@ export default class BookmarkEditForm extends React.Component {
                             autoFocus={autoFocus=='title'}
                             name='title'
                             placeholder={t.s('title')}
-                            defaultValue={title}
+                            value={title}
                             onChange={this.onChangeField}
                             onBlur={this.onSubmitForm} />
 
@@ -67,7 +67,7 @@ export default class BookmarkEditForm extends React.Component {
                             autoFocus={autoFocus=='excerpt'}
                             name='excerpt'
                             maxLength='10000'
-                            defaultValue={excerpt}
+                            value={excerpt}
                             placeholder={t.s('description')}
                             onChange={this.onChangeField}
                             onBlur={this.onSubmitForm} />

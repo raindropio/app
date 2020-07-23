@@ -86,7 +86,7 @@ export default class CollectionsItemView extends React.PureComponent {
                     to={to}
 
                     active={active}
-                    tabIndex='1'
+                    tabIndex='0'
 
 					onClick={onClick}
 					onDoubleClick={onRenameClick}

@@ -48,7 +48,7 @@ export default class TagsItemView extends React.Component {
                 </ItemActions>
 
                 {focusable && (
-                    <SuperLink tabIndex='1'/>
+                    <SuperLink tabIndex='0'/>
                 )}
             </Item>
         )

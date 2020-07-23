@@ -15,7 +15,7 @@
 
     &:hover {
         .select, .actions {
-            opacity: 1;
+            display: flex
         }
 
         .permalink {
@@ -33,7 +33,7 @@
 
     &.active, &.isDragging {
         .actions {
-            opacity: 0
+            display: none
         }
     }
     
@@ -113,14 +113,13 @@
 .select {
     position: absolute;
     z-index: 1;
-    opacity: 0;
     //transition: opacity .1s ease-in-out;
     left:0;
     top:0;
     background: inherit
     width: var(--padding-large)
     height: var(--padding-large)
-    display: flex
+    display: none
     align-items: center
     justify-content: center
     border-bottom-right-radius: var(--border-radius)
@@ -146,7 +145,7 @@
     grid-auto-flow: column
     gap: var(--padding-small)
     justify-content: start
-    opacity: 0
+    display: none
     //transition: opacity .1s linear
 }
 

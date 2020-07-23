@@ -67,24 +67,37 @@ export default function(state, action) {switch (action.type) {
 	}
 
 	case BOOKMARK_DRAFT_LOAD_SUCCESS:{
-		if (!action._id){
+		const { _id, item } = action
+
+		if (!_id){
 			action.ignore = true
 			return state
 		}
 
-		const item = normalizeBookmark(action.item, {flat: false})
-		const status = (item.collectionId!=-99 ? 'loaded' : 'removed')
+		let draft = (state.getIn(['drafts', 'byId', _id]) || blankDraft)
+		
+		//item
+		draft = draft.set(
+			'item',
+			draft.item.merge(
+				_.without(
+					normalizeBookmark(item, {flat: false}),
+					...draft.changedFields
+				)
+			)
+		)
 
-		if (status=='removed')
+		//status
+		draft = draft.set(
+			'status',
+			draft.item.collectionId!=-99 ? 'loaded' : 'removed'
+		)
+
+		if (draft.status=='removed')
 			action.dontLoadSuggestedTags = true;
 
-		return state
-			.setIn(
-				['drafts', 'byId', action._id],
-				blankDraft
-					.set('status', status)
-					.set('item', item)
-			)
+		//commit changes
+		return state.setIn(['drafts', 'byId', _id], draft)
 	}
 
 	case BOOKMARK_DRAFT_LOAD_ERROR:{

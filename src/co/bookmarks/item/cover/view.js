@@ -76,6 +76,7 @@ export default class BookmarkItemCover extends React.PureComponent {
                     type='image/webp' />
 
                 <object 
+                    tabIndex='-1'
                     className={s.image}
                     data-ar={ar}
                     loading='lazy'

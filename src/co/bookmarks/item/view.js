@@ -57,7 +57,6 @@ export default class BookmarkItemView extends React.PureComponent {
                     <Button 
                         variant='outline'
                         onClick={onPreviewClick}
-                        tabIndex='-1'
                         title={t.s('preview')}>
                         <Icon name='show' />
                     </Button>
@@ -93,7 +92,7 @@ export default class BookmarkItemView extends React.PureComponent {
                     href={link}
 
                     active={active}
-                    tabIndex='200'
+                    tabIndex='0'
 
 					onClick={onClick}
                     onContextMenu={onContextMenu}

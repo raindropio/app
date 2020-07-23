@@ -66,7 +66,7 @@ export default class FiltersItemView extends React.Component {
                 ) : null}
 
                 {focusable && (
-                    <SuperLink tabIndex='1'/>
+                    <SuperLink tabIndex='0'/>
                 )}
             </Item>
         )
