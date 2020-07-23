@@ -20,8 +20,7 @@ class BookmarksHeaderTitle extends React.Component {
 
         switch(status.main) {
             case 'empty':   return t.s('nothingFound')
-            case 'loading': return t.s('defaultCollection-0')
-            default:        return t.s('found')
+            default:        return t.s('defaultCollection-0')
         }
     }
 

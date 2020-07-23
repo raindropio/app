@@ -17,9 +17,7 @@ class BookmarksHeaderSelectModeTitle extends React.Component {
                 {selectMode.all ? t.s('all') : selectMode.ids.length}&nbsp;
                 {isSearching ? 
                     (t.s('found').toLowerCase()+' '+t.s('bookmarks')) :
-                    (t.s('bookmarks') + 
-                        (collection._id ? (' ' + t.s('in') + ' ' + collection.title) : '')
-                    )
+                    (collection._id ? (t.s('in') + ' ' + collection.title) : '')
                 }
             </>
         )

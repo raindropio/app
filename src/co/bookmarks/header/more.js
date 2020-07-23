@@ -1,13 +1,13 @@
 import React from 'react'
 import t from '~t'
 import { connect } from 'react-redux'
-import { oneRemove, oneUpdate } from '~data/actions/collections'
+import { oneRemove } from '~data/actions/collections'
 import { getSearchEmpty } from '~data/selectors/bookmarks'
 
-import { Confirm, Prompt } from '~co/overlay/dialog'
+import { Confirm } from '~co/overlay/dialog'
 import Button from '~co/common/button'
 import Icon from '~co/common/icon'
-import Contextmenu from '~co/collections/item/contextmenu'
+import Popover, { Menu, MenuItem, MenuSeparator } from '~co/overlay/popover'
 
 class BookmarksHeaderMore extends React.Component {
     static defaultProps = {
@@ -29,12 +29,6 @@ class BookmarksHeaderMore extends React.Component {
     onContextMenuClose = ()=>
         this.setState({ menu: false })
 
-    onRenameClick = async()=>{
-        const title = await Prompt(t.s('title'), this.props.collection.title)
-        if (title)
-            this.props.oneUpdate(this.props.spaceId, { title })
-    }
-
     onRemoveClick = async()=>{
         if (await Confirm(t.s('areYouSure', { variant: 'warning' })))
             this.props.oneRemove(this.props.collection._id)
@@ -42,9 +36,9 @@ class BookmarksHeaderMore extends React.Component {
 
     render() {
         const { menu } = this.state
-        const { collection, isSearching } = this.props
+        const { collection: { _id, access }, isSearching } = this.props
 
-        if (isSearching) return null
+        if (isSearching || _id <=0 || access.level < 3) return null
 
         return (
             <>
@@ -55,15 +49,18 @@ class BookmarksHeaderMore extends React.Component {
                     <Icon name='more_horizontal' />
                 </Button>
 
-                {menu ? (
-                    <Contextmenu 
-                        {...collection}
-                        pin={this.pin}
-                        onContextMenuClose={this.onContextMenuClose}
-                        onRemoveClick={this.onRemoveClick}
-                        onRenameClick={this.onRenameClick}
-                        to={`/space/${collection._id}`} />
-                ) : null}
+                {menu && (
+                    <Popover 
+                        pin={this.pin} 
+                        onClose={this.onContextMenuClose}>
+                        <Menu>
+                            <MenuItem onClick={this.onRemoveClick}>
+                                <Icon name='trash' />
+                                {t.s('remove')} {t.s('collection').toLowerCase()}
+                            </MenuItem>
+                        </Menu>
+                    </Popover>
+                )}
             </>
         )
     }
@@ -73,5 +70,5 @@ export default connect(
 	(state, { spaceId })=>({
         isSearching: !getSearchEmpty(state, spaceId)
     }),
-	{ oneRemove, oneUpdate }
+	{ oneRemove }
 )(BookmarksHeaderMore)

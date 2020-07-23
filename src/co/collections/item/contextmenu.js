@@ -45,7 +45,7 @@ export default class CollectionsItemContextmenu extends React.Component {
                             {onRenameClick ? (
                                 <MenuItem onClick={onRenameClick}>
                                     <Icon name='edit' />
-                                    {t.s('edit')}
+                                    {t.s('edit')+' '+t.s('title').toLowerCase()}
                                 </MenuItem>
                             ) : null}
 
