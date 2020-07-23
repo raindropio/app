@@ -24,7 +24,7 @@ class Bookmarks extends React.Component {
                 index={index}
                 spaceId={spaceId}
                 compact={ids.length>1}
-                ignore={ignore} />
+                ignore={!spaceId && ignore} />
         )
     }
 
@@ -64,7 +64,7 @@ export default connect(
                 }
             else if (search && spaceId!=0)
                 return {
-                    ids: [ spaceId, 0 ],
+                    ids: [ spaceId+'s', 0 ],
                     ignore: spaceId,
                     dataKey: spaceId+lastChange+activeId+search
                 }

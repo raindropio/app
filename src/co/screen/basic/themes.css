@@ -3,7 +3,7 @@
     /*background*/
     --background-hsl: 0,0%,100%;
     --background-color: hsl(var(--background-hsl));
-    --sidebar-background-color: hsl(0,0%,95%);
+    --sidebar-background-color: hsl(36,8%,96%);
     --alternative-background-color: rgba(0,0,0,.05);
     --hover-background-color: rgba(0,0,0,.05);
     --active-background-color: hsl(0,0%,90%);
@@ -32,8 +32,10 @@
     --disable-text-color: rgba(0,0,0,.3);
 
     /* shadows */
-    --shadow-color: rgba(0,0,0,.15);
-    --shadow-light-color: rgba(0,0,0,.12);
+    --shadow-alpha: .1;
+    --shadow-light-alpha: .07;
+    --shadow-color: rgba(0,0,0, var(--shadow-alpha));
+    --shadow-light-color: rgba(0,0,0, var(--shadow-light-alpha));
 }
 
 [data-theme='night'] {
@@ -58,8 +60,8 @@
     --disable-text-color: rgba(255,255,255,.4);
 
     /* shadows */
-    --shadow-color: rgba(255,255,255,.15);
-    --shadow-light-color: rgba(255,255,255,.12);
+    --shadow-color: rgba(255,255,255, var(--shadow-alpha));
+    --shadow-light-color: rgba(255,255,255, var(--shadow-light-alpha));
 }
 
 [data-theme='sunset'] {
@@ -73,4 +75,14 @@
     color: hsl(43,10%,10%);
     --primary-text-color: hsl(43,10%,35%);
     --secondary-text-color: hsl(43,10%,50%);
+}
+
+@media 
+(-webkit-min-device-pixel-ratio: 2), 
+(min-resolution: 192dpi) {
+    :root, [data-app-size] {
+        --shadow-height: .5px;
+        --shadow-alpha: .15;
+        --shadow-light-alpha: .12;
+    }
 }

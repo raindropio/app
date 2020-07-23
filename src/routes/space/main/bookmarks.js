@@ -16,7 +16,8 @@ export default class SpaceMainContent extends React.Component {
         },
 
         onCollectionClick: (collection)=>{
-            this.props.onSpaceChange(collection._id, { full: true, search: !parseInt(this.props.spaceId) })
+            const spaceId = parseInt(this.props.spaceId)
+            this.props.onSpaceChange(collection._id, { full: true, search: !spaceId || spaceId==collection._id })
         },
 
         onItemClick: (item)=>{

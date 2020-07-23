@@ -23,11 +23,11 @@
 }
 
 [data-app-size='large'],
-html:global(.mobile) [data-app-size='default'] {
+html:global(.mobile)[data-app-size='default'] {
     font-size: 4.5px;
 }
 
-html:global(.mobile) [data-app-size='large'] {
+html:global(.mobile)[data-app-size='large'] {
     font-size: 5px;
 }
 

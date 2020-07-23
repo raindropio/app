@@ -21,7 +21,9 @@ export default class CollectionsPicker extends React.Component {
 
         return (
             <Modal onClose={onClose} data-stretch>
-                <Header title={t.s('selectCollection')} />
+                <Header 
+                    title={t.s('selectCollection')}
+                    data-no-shadow />
 
                 <Layout>
                     <SearchInput 
