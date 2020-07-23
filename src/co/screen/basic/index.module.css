@@ -24,6 +24,7 @@ input, textarea, select, button {
 .page {
     background: var(--background-color);
     height: 100%;
+    scrollbar-color: var(--shadow-color) transparent
 }
 
 a {
@@ -31,30 +32,24 @@ a {
     text-decoration: none;
 }
 
-html:global(.scrollbar-obtrusive) {
-    scrollbar-color: var(--shadow-light-color) transparent;
-
+html:global(.scrollbar-obtrusive) .page {
     ::-webkit-scrollbar {
-        width: 0;
-        height: var(--tertiary-font-size);
-        will-change: width;
-        background: transparent;
-        transition: width .2s ease-in-out;
+        width: 13px
+        height: 13px
+        background: transparent
+        box-shadow: inset var(--shadow-height) 0 0 var(--shadow-light-color);
     }
     ::-webkit-scrollbar * {
         background: transparent;
     }
-    :hover::-webkit-scrollbar, body::-webkit-scrollbar {
-        width: var(--tertiary-font-size)
-    }
-
     ::-webkit-scrollbar-thumb {
-        border: 3px solid unquote('hsla(var(--background-hsl), 0)');
-        border-radius: var(--tertiary-font-size);
-        box-shadow: inset 0px 0px 0px 7px var(--shadow-color);
-        transition: box-shadow .2s ease-in-out;
+        border: 3px solid transparent
+        border-radius: 13px
+        box-shadow: inset 0px 0px 0px 7px var(--shadow-color)
     }
-
+    ::-webkit-scrollbar-thumb:hover {
+        box-shadow: inset 0px 0px 0px 7px var(--disable-text-color)
+    }
     ::-webkit-scrollbar-button{
         width: 0;
         height: 0;

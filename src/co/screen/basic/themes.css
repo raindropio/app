@@ -59,7 +59,7 @@
 
     /* shadows */
     --shadow-color: rgba(255,255,255,.15);
-    --shadow-light-color: rgba(255,255,255,.1);
+    --shadow-light-color: rgba(255,255,255,.12);
 }
 
 [data-theme='sunset'] {

@@ -1,3 +1,4 @@
+import s from './tree.module.styl'
 import React from 'react'
 
 import List from '~co/virtual/list'
@@ -208,7 +209,9 @@ export default class CollectionsTree extends React.Component {
             return <Empty />
 
         return (
-            <List                
+            <List            
+                className={s.tree}
+                    
                 //react-virtuoso
                 item={this.rowRenderer}
                 totalCount={data.length + customRows.length}
