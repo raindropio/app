@@ -1,34 +1,34 @@
-:root, [data-app-size] {
-    --app-base-size: 4px;
+:root {
+    font-size: 4px;
 
-    --padding-mini: var(--app-base-size);
-    --padding-small: calc(var(--app-base-size) * 2); /*8px*/
-    --padding-medium: calc(var(--app-base-size) * 4); /*16px*/
-    --padding-large: calc(var(--app-base-size) * 6); /*24px*/
-    --border-radius: var(--app-base-size); /*4px*/
+    --padding-mini: 1rem;
+    --padding-small: 2rem; /*8px*/
+    --padding-medium: 4rem; /*16px*/
+    --padding-large: 6rem; /*24px*/
+    --border-radius: 1rem; /*4px*/
 
     /* fonts */
-    --head-font-size: calc(var(--app-base-size) * 4); /*16px*/
-    --title-font-size: calc(var(--app-base-size) * 3.75); /*15px*/
-    --primary-font-size: calc(var(--app-base-size) * 3.5); /*14px*/
-    --secondary-font-size: calc(var(--app-base-size) * 3.25); /*13px*/
-    --tertiary-font-size: calc(var(--app-base-size) * 3); /*12px*/
+    --head-font-size: 4rem; /*16px*/
+    --title-font-size: 3.75rem; /*15px*/
+    --primary-font-size: 3.5rem; /*14px*/
+    --secondary-font-size: 3.25rem; /*13px*/
+    --tertiary-font-size: 3rem; /*12px*/
 
     /* size */
-    --icon-size: calc(var(--app-base-size) * 5); /*20px*/
+    --icon-size: 5rem; /*20px*/
     --shadow-height: 1px;
-    --button-height: calc(var(--app-base-size) * 7); /*28px*/
-    --list-item-height: calc(var(--app-base-size) * 8); /*32px*/
-    --header-height: calc(var(--app-base-size) * 12); /*48px*/
+    --button-height: 7rem; /*28px*/
+    --list-item-height: 8rem; /*32px*/
+    --header-height: 12rem; /*48px*/
 }
 
 [data-app-size='large'],
 html:global(.mobile) [data-app-size='default'] {
-    --app-base-size: 4.5px;
+    font-size: 4.5px;
 }
 
 html:global(.mobile) [data-app-size='large'] {
-    --app-base-size: 5px;
+    font-size: 5px;
 }
 
 @media 

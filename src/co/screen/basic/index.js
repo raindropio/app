@@ -1,5 +1,6 @@
 import s from './index.module.css'
 import React from 'react'
+import { Helmet } from 'react-helmet'
 import { connect } from 'react-redux'
 import { setTheme } from '~local/actions'
 
@@ -27,15 +28,21 @@ class ScreenBasic extends React.Component {
         const { className, children, theme, appSize, autoTheme, setTheme, ...etc } = this.props
         
         return (
-            <div 
-                {...etc} 
-                className={s.page + ' ' + className}
-                data-theme={theme}
-                data-app-size={appSize}>
-                {children}
+            <>
+                <Helmet>
+                    <html
+                        data-theme={theme}
+                        data-app-size={appSize} />
+                </Helmet>
 
-                <Dialog />
-            </div>
+                <div 
+                    {...etc} 
+                    className={s.page + ' ' + className}>
+                    {children}
+
+                    <Dialog />
+                </div>
+            </>
         )
     }
 }
