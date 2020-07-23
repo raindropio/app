@@ -19,7 +19,7 @@ class ButtonInner extends React.Component {
 
         return (
             <Component 
-                tabIndex='0'
+                tabIndex={etc.disabled ? '-1' : '0'}
                 ref={forwardedRef}
                 className={s.button+' '+className}
                 data-variant={variant||'default'}

@@ -31,9 +31,7 @@ export default class SmallDetector extends React.Component {
         const small = width < this.props.minWidth
         
         if (small != this.state.small)
-            window.requestAnimationFrame(() => {
-                this.setState({ small })
-            })
+            this.setState({ small })
     }
 
     render() {
