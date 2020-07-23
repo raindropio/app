@@ -53,12 +53,13 @@ export default function(state, action) {switch (action.type) {
 	}
 
 	case SPACE_LOAD_REQ:{
-		const { spaceId, query, lastAction } = action
+		const { spaceId, query, lastAction, version } = action
 		const oldSpace = state.spaces[spaceId]
 
 		//ignore when nothing changed (including data, query)
 		if (oldSpace && 
 			oldSpace.lastAction == lastAction && 
+			oldSpace.version == version &&
 			oldSpace.ids.length){
 			action.ignore = true
 			return state
@@ -67,6 +68,7 @@ export default function(state, action) {switch (action.type) {
 		//reset space to initial state
 		let space = (oldSpace || blankSpace)
 			.set('lastAction', lastAction)
+			.set('version', version)
 			.setIn(['status', 'main'], 'loading')
 			.setIn(['status', 'nextPage'], blankSpace.status.nextPage)
 

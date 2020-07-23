@@ -3,6 +3,7 @@ const emptyArray = []
 
 export const blankSpace = Immutable({
 	lastAction: null,
+	version: '',
 	status: {
 		main: 		'idle', //idle/empty/loading/error/loaded/notFound,
 		nextPage: 	'idle', //idle/noMore/loading/error

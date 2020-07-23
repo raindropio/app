@@ -13,7 +13,7 @@ class BookmarksHeaderSelectModeTitle extends React.Component {
         const { selectMode, collection, isSearching } = this.props
 
         return (
-            <span className={selectMode.all ? 'selected-all-badge' : ''}>
+            <>
                 {selectMode.all ? t.s('all') : selectMode.ids.length}&nbsp;
                 {isSearching ? 
                     (t.s('found').toLowerCase()+' '+t.s('bookmarks')) :
@@ -21,7 +21,7 @@ class BookmarksHeaderSelectModeTitle extends React.Component {
                         (collection._id ? (' ' + t.s('in') + ' ' + collection.title) : '')
                     )
                 }
-            </span>
+            </>
         )
     }
 }

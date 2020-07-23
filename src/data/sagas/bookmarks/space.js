@@ -37,18 +37,20 @@ function* preLoadSpace(action) {
 	if (action.ignore) return
 
 	try{
-		const { lastAction } = yield call(Api.get, `collection/${parseInt(action.spaceId)}/lastAction`)
+		const { lastAction, version } = yield call(Api.get, `collection/${parseInt(action.spaceId)}/lastAction`)
 
 		yield put({
 			...action,
 			type: SPACE_LOAD_REQ,
-			lastAction
+			lastAction,
+			version
 		})
 	} catch (error) {
 		yield put({
 			...action,
 			type: SPACE_LOAD_ERROR,
 			lastAction: null,
+			version: '',
 			error
 		})
 	}
