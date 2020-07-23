@@ -57,7 +57,7 @@ export default class BookmarksFooterView extends React.PureComponent {
                     variant='flat'
                     data-block
                     onClick={this.onFullClick}>
-                    {t.s('more')}&hellip;
+                    {t.s('showAll')}
                 </Button>
             )
 
