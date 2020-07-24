@@ -20,16 +20,23 @@ export default class SearchView extends React.Component {
         onSubmit: undefined,
     }
 
+    state = {
+        isOpen: false
+    }
+
+    componentDidMount() {
+        this.openClose()
+    }
+
+    componentDidUpdate(prev) {
+        if (prev.value != this.props.value)
+            this.openClose()
+    }
+
     inputRef = React.createRef()
 
     stateReducer = (state, changes) => {
         switch (changes.type) {
-            case 'focus':
-                return {
-                    ...changes,
-                    isOpen: true
-                }
-
             case Downshift.stateChangeTypes.changeInput:
                 return {
                     ...changes,
@@ -63,8 +70,15 @@ export default class SearchView extends React.Component {
         })
     }
 
+    openClose = ()=>
+        this.setState({ isOpen: this.props.value ? true : false })
+
+    forceOpen = ()=>
+        this.setState({ isOpen: true })
+
     render() {
         const { spaceId, outerRef, ...etc } = this.props
+        const { isOpen } = this.state
 
         return (
             <Downshift
@@ -72,7 +86,7 @@ export default class SearchView extends React.Component {
                 itemToString={this.itemToString}
                 stateReducer={this.stateReducer}
                 inputValue={lastPart(this.props.value)}
-                isOpen={etc.value ? true : undefined}
+                isOpen={isOpen}
                 selectedItem={null}>
                 {downshift=>(
                     <div className={s.search}>
@@ -82,7 +96,8 @@ export default class SearchView extends React.Component {
                                 ...etc,
                                 ref: this.inputRef,
                                 clearOnEscape: !downshift.isOpen || etc.value,
-                                onFocus: downshift.openMenu
+                                onFocus: this.forceOpen,
+                                onBlur: this.openClose
                             })} />
 
                         <Suggestions

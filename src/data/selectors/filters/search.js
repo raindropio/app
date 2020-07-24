@@ -1,5 +1,5 @@
 import { createSelector } from 'reselect'
-import { getFilters } from './items'
+import { getFilters, getStatus } from './'
 import { getSearch } from '../bookmarks'
 
 //(state, spaceId, filter) -> []
@@ -7,13 +7,14 @@ export const makeFiltersSearch = ()=>createSelector(
     [
         getFilters,
         (state, spaceId, filter)=>filter,
-        getSearch
+        getSearch,
+        getStatus
     ],
-    (filters, _filter, search)=>{
+    (filters, _filter, search, status)=>{
         const filter = (_filter||'').trim().toLowerCase()
 
         return filters.filter(item => {
-            if (search && search.includes(item.query))
+            if (status != 'loading' && search && search.includes(item.query))
                 return false
 
             if (filter)

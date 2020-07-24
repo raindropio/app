@@ -2,10 +2,9 @@ import s from './suggestions.module.styl'
 import React from 'react'
 import { createPortal } from 'react-dom'
 import { connect } from 'react-redux'
-import { load } from '~data/actions/filters'
+import { autoLoad } from '~data/actions/filters'
 import { makeFiltersSearch, getStatus } from '~data/selectors/filters'
 import { makeTagsSearch } from '~data/selectors/tags'
-import { getSearch } from '~data/selectors/bookmarks'
 
 import Button from '~co/common/button'
 import FilterIcon from '~co/filters/item/icon'
@@ -20,13 +19,25 @@ class SearchSuggestions extends React.Component {
     }
 
     componentDidMount() {
-        this.props.load(this.props.spaceId)
+        const { spaceId, downshift: { isOpen }, autoLoad } = this.props
+        autoLoad(spaceId, isOpen)
     }
 
     componentDidUpdate(prev) {
-        if (prev.spaceId != this.props.spaceId ||
-            prev.search != this.props.search)
-            this.props.load(this.props.spaceId)
+        const { spaceId, downshift: { isOpen }, autoLoad } = this.props
+
+        if (prev.spaceId != spaceId ||
+            (prev.downshift.isOpen != isOpen && isOpen)){
+            autoLoad(spaceId, isOpen)
+
+            if (prev.spaceId != spaceId)
+                autoLoad(prev.spaceId, false)
+        }
+    }
+
+    componentWillUnmount() {
+        const { spaceId, autoLoad } = this.props
+        autoLoad(spaceId, false)
     }
 
     renderGroup = (type, inc=0)=>{
@@ -105,9 +116,8 @@ export default connect(
         return (state, { spaceId, downshift: { inputValue } }) => ({
             status: getStatus(state, spaceId),
             filters: getFiltersAutocomplete(state, spaceId, inputValue),
-            tags: getTagsSearch(state, spaceId, inputValue),
-            search: getSearch(state, spaceId)
+            tags: getTagsSearch(state, spaceId, inputValue)
         })
     },
-	{ load }
+	{ autoLoad }
 )(SearchSuggestions)

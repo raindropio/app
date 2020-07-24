@@ -30,6 +30,7 @@ Translation
 Changes
 - data
     - filters reducer structure and selectors
+    - instead of filters.load use filters.autoLoad
     - tags reducer structure and selectors
     - bookmarks search now is string, not array!
     - bookmarks.importantSelected action arguments changed

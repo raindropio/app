@@ -26,9 +26,14 @@ else
 	}
 */
 
+const version = 5
+
 export default {
 	key: 'primary',
-	version: 2,
+	version,
+	migrate: state => {
+		return Promise.resolve(state._persist.version != version ? {} : state)
+	},
 	whitelist: [
 		'config',
 		'collections',
