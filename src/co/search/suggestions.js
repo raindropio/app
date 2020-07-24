@@ -99,6 +99,7 @@ class SearchSuggestions extends React.Component {
                     <div 
                         className={s.suggestions}
                         {...getMenuProps()}>
+                        <div className={s.section}>Filters and tags</div>
                         {items}
                     </div>
                 </div>
