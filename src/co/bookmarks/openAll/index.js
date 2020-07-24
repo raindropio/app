@@ -18,35 +18,41 @@ class BookmarkOpenAll extends React.Component {
     }
 
     componentDidMount() {
-        this.props.refresh(this.props.spaceId)
+        if (!this.props.selected)
+            this.props.refresh(this.props.spaceId)
+        else
+            this.open()
     }
 
     componentDidUpdate(prev) {
-        const { onClose, bookmarks, status, selectMode, selected } = this.props
-        if (prev.status.main == status.main) return
+        if (prev.status.main != this.props.status.main &&
+            this.props.status.main == 'loaded')
+            this.open()
+    }
 
-        if (status.main == 'loaded'){
-            const links = Object.entries(bookmarks)
-                //only selected in selectMode
-                .filter(([_, { _id }])=>{
-                    if (selected)
-                        return selectMode.ids.includes(_id)
+    open = ()=>{
+        const { onClose, bookmarks, selectMode, selected } = this.props
 
-                    return true
-                })
-                .map(([_, {link}])=>link)
+        const links = Object.entries(bookmarks)
+            //only selected in selectMode
+            .filter(([_, { _id }])=>{
+                if (selected)
+                    return selectMode.ids.includes(_id)
 
-            //open links
-            for(const link of links)
-                window.open(link)
+                return true
+            })
+            .map(([_, {link}])=>link)
 
-            //just close dialog when bookmarks less=1, or warning already showen
-            if (links.length <= 1 || !showWarning)
-                onClose()
-            else {
-                localStorage.setItem(_warningKey, 1)
-                showWarning = false
-            }
+        //open links
+        for(const link of links)
+            window.open(link)
+
+        //just close dialog when bookmarks less=1, or warning already showen
+        if (links.length <= 1 || !showWarning)
+            onClose()
+        else {
+            localStorage.setItem(_warningKey, 1)
+            showWarning = false
         }
     }
 

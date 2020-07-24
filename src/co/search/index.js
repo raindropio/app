@@ -8,6 +8,7 @@ export default class Search extends React.Component {
     static defaultProps = {
         spaceId: 0,
         value: '',
+        outerRef: undefined, //where to put suggestions
         events: {} //onSubmit
     }
 
@@ -26,8 +27,10 @@ export default class Search extends React.Component {
 
     handlers = {
         onChange: (e)=>{
+            const changed = (this.state.value||'').trim() != (e.target.value||'').trim()
+
             this.setState({ value: e.target.value }, ()=>{
-                if (lastPart(this.state.value).startsWith('#'))
+                if (!changed || lastPart(this.state.value).startsWith('#'))
                     return
 
                 if (this.state.value.length>1)

@@ -29,7 +29,7 @@ function* reloadFilters(params) {
 	const state = yield select()
 
 	for(const spaceId of (Array.isArray(params.spaceId) ? params.spaceId : [params.spaceId])){
-		if (parseInt(spaceId) && !state.bookmarks.spaces[spaceId]) continue
+		//if (parseInt(spaceId) && !state.bookmarks.spaces[spaceId]) continue
 
 		try {
 			const url = getUrl(spaceId, state.bookmarks.getIn(['spaces', spaceId, 'query']))

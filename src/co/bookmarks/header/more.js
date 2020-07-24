@@ -7,7 +7,7 @@ import { getSearchEmpty } from '~data/selectors/bookmarks'
 import { Confirm } from '~co/overlay/dialog'
 import Button from '~co/common/button'
 import Icon from '~co/common/icon'
-import Popover, { Menu, MenuItem, MenuSeparator } from '~co/overlay/popover'
+import Popover, { Menu, MenuItem } from '~co/overlay/popover'
 
 class BookmarksHeaderMore extends React.Component {
     static defaultProps = {
@@ -30,7 +30,11 @@ class BookmarksHeaderMore extends React.Component {
         this.setState({ menu: false })
 
     onRemoveClick = async()=>{
-        if (await Confirm(t.s('areYouSure', { variant: 'warning' })))
+        if (await Confirm(t.s('areYouSure'), {
+            variant: 'warning',
+            description: t.s('remove')+' '+this.props.collection.title,
+            ok: t.s('remove')
+        }))
             this.props.oneRemove(this.props.collection._id)
     }
 

@@ -58,9 +58,9 @@ export default class PickerSourceLink extends React.Component {
                     <Label>URL</Label>
 
                     <Text
+                        type='url'
                         ref={this.textRef}
                         required
-                        autoSize
                         className='field'
                         placeholder='https://'
                         value={link}

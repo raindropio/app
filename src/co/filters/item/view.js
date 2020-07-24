@@ -8,34 +8,14 @@ import Button from '~co/common/button'
 import Icon from '~co/common/icon'
 import SuperLink from '~co/common/superLink'
 
+import FilterIcon from './icon'
+import Title from './title'
+
 export default class FiltersItemView extends React.Component {
     render() {
         const {
             _id, count, active, canAppend, onAppendClick, focusable, ...etc
         } = this.props
-
-        let icon = _id
-        let title = t.s(_id+'s')
-
-        switch (_id) {
-            case 'important':
-                title = t.s('favorites')
-                break
-
-            case 'notag':
-                icon = 'tag'
-                title = t.s('noTags')
-                break
-
-            case 'tag':
-                icon = ''
-                title = 'Type # for tags…'
-                break
-
-            case 'broken':
-                title = t.s(_id)
-                break
-        }
 
         const showActions = canAppend && onAppendClick
 
@@ -45,13 +25,13 @@ export default class FiltersItemView extends React.Component {
                 className={s.item}
                 data-id={_id}
                 active={active}>
-                {icon && (
-                    <ItemIcon className={s.icon}>
-                        <Icon name={icon} size='micro' />
-                    </ItemIcon>
-                )}
+                <ItemIcon className={s.icon}>
+                    <FilterIcon _id={_id} />
+                </ItemIcon>
 
-                <ItemTitle>{title}</ItemTitle>
+                <ItemTitle>
+                    <Title _id={_id} />
+                </ItemTitle>
 
                 {count ? <ItemInfo>{humanNumber(count)}</ItemInfo> : null}
 

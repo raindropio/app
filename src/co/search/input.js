@@ -60,10 +60,13 @@ class SearchInput extends React.PureComponent {
     onInputKeyDown = (e)=>{
         switch(e.key) {
             case 'Escape':
-                if (this.props.clearOnEscape && 
-                    this.props.value){
+                if (this.props.clearOnEscape){
                     e.stopPropagation()
-                    this.onReset()
+
+                    if (this.props.value)
+                        this.onReset()
+                    else
+                        e.target.blur()
                 }
             break
         }
@@ -97,6 +100,9 @@ class SearchInput extends React.PureComponent {
                         ref={this._input}
                         type='text'
                         spellCheck='false'
+                        autoComplete='hidden'
+                        autoCorrect='off'
+                        inputMode='search'
                         className={s.input+' '+(original.value?s.filled:'')}
                         {...original}
                         icon={loading ? <Preloader /> : <Icon name='search' />}

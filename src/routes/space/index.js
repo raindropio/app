@@ -16,11 +16,13 @@ export default class SpaceRoute extends React.PureComponent {
     }
 
     static getDerivedStateFromProps({ match, location }) {
+        const spaceId = parseInt(match.params.spaceId)
+
         let search = ''
         try{ search = decodeURIComponent(match.params.search||'') } catch(e) {}
 
         return {
-            spaceId: match.params.spaceId,
+            spaceId: spaceId+(spaceId && search ? 's' : ''),
             full: match.params.modifier == 'full',
             search,
             reader: Object.fromEntries(new URLSearchParams(location.search))

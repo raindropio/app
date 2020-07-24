@@ -70,12 +70,12 @@ export default class CollectionSharingInviteView extends React.PureComponent {
                     <Label>{t.s('inviteMorePeople')}</Label>
         
                     <Text
+                        type='email'
+                        multiple={true}
                         placeholder={t.s('enterEmails')}
                         disabled={loading}
                         value={emails}
                         required
-                        autoSize
-                        multiline
                         autoFocus
                         onChange={this.handleEmailsChange} />
 

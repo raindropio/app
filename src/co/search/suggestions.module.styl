@@ -1,0 +1,44 @@
+.outer {
+    position: relative
+}
+
+.suggestions {
+    padding: 0 calc(var(--padding-small) + var(--padding-mini))
+    padding-bottom: var(--padding-small)
+    transition: transform .3s ease-in-out, opacity .3s ease-in-out
+}
+
+//Floating
+.outer[data-floating='true'] {
+    .inner {
+        position: absolute
+        left: 0
+        top: 0
+        right: 0
+        bottom: 0
+        height: 100vh
+        z-index: 90
+        overflow: hidden
+        background: rgba(0,0,0,.03)
+    }
+    
+    .suggestions {
+        background: var(--background-color)
+        box-shadow: 0 var(--shadow-height) 0 var(--shadow-color),
+            0 3px 50px rgba(0,0,0,.08)
+    }
+}
+
+//Loading
+.outer[data-status='loading'] {
+    .suggestions {
+        transform: translateX(-4px)
+        opacity: 0
+    }
+}
+
+.item {
+    font-weight: normal !important
+    margin: var(--padding-mini)
+    --border-radius: var(--icon-size)
+}

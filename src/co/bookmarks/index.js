@@ -64,7 +64,7 @@ export default connect(
                 }
             else if (search && spaceId!=0)
                 return {
-                    ids: [ spaceId+'s', 0 ],
+                    ids: [ spaceId, 0 ],
                     ignore: spaceId,
                     dataKey: spaceId+lastChange+activeId+search
                 }

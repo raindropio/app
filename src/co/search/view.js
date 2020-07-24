@@ -4,9 +4,8 @@ import t from '~t'
 import lastPart from './helpers/lastPart'
 
 import Downshift from 'downshift'
-import FiltersAutocomplete from '~co/filters/autocomplete'
-import TagsAutocomplete from '~co/tags/autocomplete'
 import Input from './input'
+import Suggestions from './suggestions'
 
 function setLastPart(str, val) {
     return str.replace(new RegExp(`${lastPart(str)}$`), val)
@@ -26,10 +25,15 @@ export default class SearchView extends React.Component {
     stateReducer = (state, changes) => {
         switch (changes.type) {
             case 'focus':
+                return {
+                    ...changes,
+                    isOpen: true
+                }
+
             case Downshift.stateChangeTypes.changeInput:
                 return {
                     ...changes,
-                    highlightedIndex: (!changes.inputValue || (changes.inputValue||'').startsWith('#')) ? 0 : null
+                    highlightedIndex: (changes.inputValue||'').startsWith('#') ? 0 : null
                 }
 
             case Downshift.stateChangeTypes.keyDownEnter:
@@ -60,7 +64,7 @@ export default class SearchView extends React.Component {
     }
 
     render() {
-        const { spaceId, ...etc } = this.props
+        const { spaceId, outerRef, ...etc } = this.props
 
         return (
             <Downshift
@@ -68,29 +72,26 @@ export default class SearchView extends React.Component {
                 itemToString={this.itemToString}
                 stateReducer={this.stateReducer}
                 inputValue={lastPart(this.props.value)}
+                isOpen={etc.value ? true : undefined}
                 selectedItem={null}>
-                {downshift=>{
-                    const Autocomplete = downshift.inputValue ? TagsAutocomplete : FiltersAutocomplete
+                {downshift=>(
+                    <div className={s.search}>
+                        <Input 
+                            {...downshift.getInputProps({
+                                placeholder: t.s('defaultCollection-0'),
+                                ...etc,
+                                ref: this.inputRef,
+                                clearOnEscape: !downshift.isOpen || etc.value,
+                                onFocus: downshift.openMenu
+                            })} />
 
-                    return (
-                        <div className={s.search}>
-                            <Input 
-                                {...downshift.getInputProps({
-                                    placeholder: t.s('defaultCollection-0'),
-                                    ...etc,
-                                    ref: this.inputRef,
-                                    clearOnEscape: !downshift.isOpen,
-                                    onFocus: downshift.toggleMenu,
-                                    onDoubleClick: downshift.toggleMenu
-                                })} />
-    
-                            <Autocomplete
-                                inputRef={this.inputRef}
-                                spaceId={spaceId}
-                                downshift={downshift} />
-                        </div>
-                    )
-                }}
+                        <Suggestions
+                            outerRef={outerRef}
+                            floating={!etc.value}
+                            spaceId={spaceId}
+                            downshift={downshift} />
+                    </div>
+                )}
             </Downshift>
         )
     }
