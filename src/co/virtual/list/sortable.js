@@ -15,7 +15,7 @@ export default class VirtuosoWithDnd extends React.Component {
         onDragEnd: undefined,       //func (fromIndex,toIndex,action=combine|move)
         onLongHover: undefined,     //func, optional (fromIndex, toIndex), not works properly when content is changed!!!
     }
-
+    
     renderListContainer = container=>(
         <ListContainer
             {...this.props}
@@ -35,8 +35,7 @@ export default class VirtuosoWithDnd extends React.Component {
                         ref={provided.innerRef}
                         {...provided.draggableProps}
                         {...provided.dragHandleProps}
-                        tabIndex={undefined}
-                        onClick={null}>
+                        tabIndex={undefined}>
                         {this.props.item(index, provided, snapshot)}
                     </div>
                 )}
@@ -46,19 +45,11 @@ export default class VirtuosoWithDnd extends React.Component {
     
     render() {
         return (
-            <>
-                <Base
-                    {...this.props}
-                    ListContainer={this.renderListContainer}
-                    ItemContainer={ItemContainer}
-                    item={this.item} />
-
-                <style dangerouslySetInnerHTML={{__html: `
-                    [data-known-size]:empty {
-                        height: var(--data-known-size)
-                    }
-                `}} />
-            </>
+            <Base
+                {...this.props}
+                ListContainer={this.renderListContainer}
+                ItemContainer={ItemContainer}
+                item={this.item} />
         )
     }
 }
@@ -159,10 +150,12 @@ class ListInnerContainer extends React.PureComponent {
     }
 }
 
-class ItemContainer extends React.PureComponent {
-    render() {
-        return (
-            <div {...this.props} style={{'--data-known-size': this.props['data-known-size']+'px'}} />
-        )
-    }
+//Item
+function itemHeightFix(e){
+    const { offsetHeight, style } = e.currentTarget
+    style.minHeight = offsetHeight+'px'
+}
+
+function ItemContainer(props) {
+    return <div {...props} onMouseDown={itemHeightFix} />
 }
