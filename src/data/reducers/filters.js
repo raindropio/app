@@ -39,10 +39,10 @@ export default function(state = initialState, action={}){switch (action.type) {
 	}
 	
 	case FILTERS_LOAD_SUCCESS:{
-		const { spaceId } = action
+		const { spaceId, items } = action
 
 		let space = (state.spaces[spaceId] || blankSpace)
-			.set('items', normalizeItems(action.items))
+			.set('items', normalizeItems(items))
 			.set('status', 'loaded')
 
 		return state.setIn(['spaces', action.spaceId],	space)
@@ -61,17 +61,10 @@ export default function(state = initialState, action={}){switch (action.type) {
 	case FILTERS_AUTOLOAD:{
 		const { spaceId, enabled } = action
 
-		//ignore
-		if (
-			(!enabled && !state.spaces[spaceId]) ||
-			(enabled && state.spaces[spaceId] && state.spaces[spaceId].autoLoad)
-		){
-			action.ignore = true
-			return state
-		}
-
 		let space = state.spaces[spaceId] || blankSpace
 		space = space.set('autoLoad', enabled)
+
+		action.ignore = space.items.length > 0
 
 		return state.setIn(['spaces', spaceId], space)
 	}

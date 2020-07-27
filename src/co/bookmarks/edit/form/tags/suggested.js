@@ -29,7 +29,6 @@ class BookmarkEditFormTagsSuggested extends React.Component {
                         data-tag={item._id}
                         title={title}
                         onClick={this.onAddSuggestedTag}>
-                        <Icon name='add' size='micro' />
                         {item._id}
                     </Button>
                 ))}

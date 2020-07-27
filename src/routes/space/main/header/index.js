@@ -1,5 +1,6 @@
 import React from 'react'
 import { Header } from '~co/screen/splitview/main'
+import { Space } from '~co/common/header'
 import Search from '~co/search'
 
 import Add from './add'
@@ -30,6 +31,8 @@ export default class CollectionsMainHeader extends React.Component {
                         spaceId={this.props.spaceId}
                         value={this.props.search}
                         events={this.searchEvents} />
+
+                    <Space />
         
                     <Share {...this.props} />
         

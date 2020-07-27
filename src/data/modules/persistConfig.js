@@ -32,7 +32,9 @@ export default {
 	key: 'primary',
 	version,
 	migrate: state => {
-		return Promise.resolve(state._persist.version != version ? {} : state)
+		return Promise.resolve(
+			state._persist && state._persist.version != version ? {} : state
+		)
 	},
 	whitelist: [
 		'config',

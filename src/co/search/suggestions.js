@@ -1,5 +1,6 @@
 import s from './suggestions.module.styl'
 import React from 'react'
+import t from '~t'
 import { createPortal } from 'react-dom'
 import { connect } from 'react-redux'
 import { autoLoad } from '~data/actions/filters'
@@ -52,23 +53,25 @@ class SearchSuggestions extends React.Component {
                         key: item._id,
                         index,
                         item,
-                        size: 'small',
                         className: s.item,
                         variant: highlightedIndex === index ? 'primary' : 'outline'
                     })}>
                     {type == 'filters' && <FilterIcon {...item} />}
-                    {type == 'filters' ? <FilterTitle {...item} /> : item.query}
+                    {type == 'filters' ? <FilterTitle {...item} /> : item._id}
                 </Button>
             )
         })
     }
 
     renderItems = ()=>{
-        const items = this.renderGroup('tags')
+        const tags = this.renderGroup('tags')
+        const filters = this.renderGroup('filters', tags.length)
 
         return [
-            ...items,
-            ...this.renderGroup('filters', items.length)
+            ...(this.props.floating && tags.length ? [<div className={s.section}>{t.s('tags')}</div>] : []),
+            ...tags,
+            ...(this.props.floating && filters.length ? [<div className={s.section}>{t.s('fastFilter')}</div>] : []),
+            ...filters
         ]
     }
 
@@ -78,7 +81,7 @@ class SearchSuggestions extends React.Component {
             outerRef,
             floating,
             downshift: {
-                isOpen, getMenuProps 
+                isOpen, getMenuProps
             }
         } = this.props
 
@@ -97,9 +100,8 @@ class SearchSuggestions extends React.Component {
                 data-status={status}>
                 <div className={s.inner}>
                     <div 
-                        className={s.suggestions}
+                        className={s.body}
                         {...getMenuProps()}>
-                        <div className={s.section}>Filters and tags</div>
                         {items}
                     </div>
                 </div>

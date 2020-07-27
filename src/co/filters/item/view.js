@@ -25,9 +25,8 @@ export default class FiltersItemView extends React.Component {
                 className={s.item}
                 data-id={_id}
                 active={active}>
-                <ItemIcon className={s.icon}>
+                
                     <FilterIcon _id={_id} />
-                </ItemIcon>
 
                 <ItemTitle>
                     <Title _id={_id} />

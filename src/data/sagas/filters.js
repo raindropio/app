@@ -12,8 +12,7 @@ export default function* () {
 	yield takeEvery(FILTERS_LOAD_REQ, reload)
 	yield takeEvery([
 		BOOKMARK_CREATE_SUCCESS, BOOKMARK_UPDATE_SUCCESS, BOOKMARK_REMOVE_SUCCESS,
-		SPACE_LOAD_REQ,
-		FILTERS_AUTOLOAD
+		SPACE_LOAD_REQ, FILTERS_AUTOLOAD
 	], autoReload)
 
 	//update filters on bookmarks/collections change
@@ -31,12 +30,13 @@ function* autoReload(params) {
 	const { filters: { spaces } } = yield select()
 
 	for(const spaceId of (Array.isArray(params.spaceId) ? params.spaceId : [params.spaceId]))
-		if (spaces[spaceId] && spaces[spaceId].autoLoad)
+		if (spaces[spaceId] && spaces[spaceId].autoLoad){
 			yield put({
 				type: FILTERS_LOAD_REQ,
 				spaceId,
 				force: true
 			})
+		}
 }
 
 function* reloadGlobal() {

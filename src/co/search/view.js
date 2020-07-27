@@ -38,6 +38,12 @@ export default class SearchView extends React.Component {
                     inputValue: ''
                 }
 
+            case Downshift.stateChangeTypes.itemMouseEnter:
+                return {
+                    ...changes,
+                    highlightedIndex: null
+                }
+
             default:
                 return changes
         }

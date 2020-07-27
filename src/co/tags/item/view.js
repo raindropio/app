@@ -3,10 +3,11 @@ import React from 'react'
 import t from '~t'
 import { humanNumber } from '~modules/strings'
 
-import { Item, ItemIcon, ItemTitle, ItemInfo, ItemActions } from '~co/common/list'
+import { Item, ItemTitle, ItemInfo, ItemActions } from '~co/common/list'
 import Button from '~co/common/button'
 import Icon from '~co/common/icon'
 import SuperLink from '~co/common/superLink'
+import TagIcon from './icon'
 
 export default class TagsItemView extends React.Component {
     render() {
@@ -23,9 +24,7 @@ export default class TagsItemView extends React.Component {
                 {...etc}
                 className={s.item}
                 active={active}>
-                <ItemIcon className={s.icon}>
-                    <Icon name='tag' size='micro' />
-                </ItemIcon>
+                <TagIcon />
 
                 <ItemTitle>{_id}</ItemTitle>
 

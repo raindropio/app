@@ -1,0 +1,19 @@
+.icon {
+    display: flex
+    align-items: center
+    justify-content: center
+    position: relative
+    color: var(--tag-color)
+
+    &:before {
+        content: ''
+        position: absolute
+        left: 0
+        right: 0
+        top: 0
+        bottom: 0
+        background: currentColor
+        opacity: .12
+        border-radius: var(--icon-size)
+    }
+}

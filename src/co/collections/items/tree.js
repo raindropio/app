@@ -218,7 +218,7 @@ export default class CollectionsTree extends React.Component {
                 dataKey={String(activeId)+(typeof activeId)+dataCheckpoint} //only used to re-render when data re-ordered from outside
                 scrollToIndex={scrollToIndex}
                 defaultItemHeight={32}
-                overscan={200}
+                overscan={1000}
 
                 //custom
                 rowIsDraggable={this.rowIsDraggable}
