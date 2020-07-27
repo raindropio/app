@@ -33,7 +33,7 @@ export default class SpaceRoute extends React.PureComponent {
         onSpaceChange: (spaceId, options={})=>{
             const { full=false, search=false } = options
 
-            this.props.history.push(`/space/${spaceId}${full?'full':''}/${search ? encodeURIComponent(this.state.search) : ''}`)
+            this.props.history.push(`/space/${parseInt(spaceId)}${full?'full':''}/${search ? encodeURIComponent(this.state.search) : ''}`)
         },
 
         onSearch: (value, mode='')=>{
@@ -59,7 +59,7 @@ export default class SpaceRoute extends React.PureComponent {
                 break
             }
 
-            this.props.history.push(`/space/${spaceId}/${encodeURIComponent(search)}`)
+            this.props.history.push(`/space/${parseInt(spaceId)}/${encodeURIComponent(search)}`)
         },
 
         onReader: (update)=>{

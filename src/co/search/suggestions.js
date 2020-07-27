@@ -3,11 +3,11 @@ import React from 'react'
 import t from '~t'
 import { createPortal } from 'react-dom'
 import { connect } from 'react-redux'
-import { autoLoad } from '~data/actions/filters'
 import { makeFiltersSearch, getStatus } from '~data/selectors/filters'
 import { makeTagsSearch } from '~data/selectors/tags'
 
 import Button from '~co/common/button'
+import Icon from '~co/common/icon'
 import FilterIcon from '~co/filters/item/icon'
 import FilterTitle from '~co/filters/item/title'
 
@@ -17,28 +17,6 @@ class SearchSuggestions extends React.Component {
         spaceId: 0,
         floating: false,
         downshift: {}
-    }
-
-    componentDidMount() {
-        const { spaceId, downshift: { isOpen }, autoLoad } = this.props
-        autoLoad(spaceId, isOpen)
-    }
-
-    componentDidUpdate(prev) {
-        const { spaceId, downshift: { isOpen }, autoLoad } = this.props
-
-        if (prev.spaceId != spaceId ||
-            (prev.downshift.isOpen != isOpen && isOpen)){
-            autoLoad(spaceId, isOpen)
-
-            if (prev.spaceId != spaceId)
-                autoLoad(prev.spaceId, false)
-        }
-    }
-
-    componentWillUnmount() {
-        const { spaceId, autoLoad } = this.props
-        autoLoad(spaceId, false)
     }
 
     renderGroup = (type, inc=0)=>{
@@ -56,7 +34,7 @@ class SearchSuggestions extends React.Component {
                         className: s.item,
                         variant: highlightedIndex === index ? 'primary' : 'outline'
                     })}>
-                    {type == 'filters' && <FilterIcon {...item} />}
+                    {type == 'filters' ? <FilterIcon {...item} /> : <Icon name='tag' size='micro' />}
                     {type == 'filters' ? <FilterTitle {...item} /> : item._id}
                 </Button>
             )
@@ -90,7 +68,7 @@ class SearchSuggestions extends React.Component {
 
         const items = this.renderItems()
 
-        if (!items.length)
+        if (!items.length && status!='loading')
             return null
 
         return createPortal(
@@ -121,6 +99,5 @@ export default connect(
             filters: getFiltersAutocomplete(state, spaceId, inputValue),
             tags: getTagsSearch(state, spaceId, inputValue)
         })
-    },
-	{ autoLoad }
+    }
 )(SearchSuggestions)

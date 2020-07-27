@@ -17,32 +17,42 @@ export default function(state, action={}){switch (action.type) {
 	}
 
 	case FILTERS_LOAD_REQ:{
-		if (state.getIn(['spaces', action.spaceId, 'status']) == 'loading'){
+		const { spaceId, force=false } = action
+
+		let space = state.spaces[spaceId] || blankSpace
+
+		//loading already
+		if (!force && space.status == 'loading'){
 			action.ignore = true
 			return state
 		}
 
-		if (!state.spaces[action.spaceId])
-			state = state.setIn(['spaces', action.spaceId], blankSpace)
+		//set loading status
+		space = space
+			.set('status', 'loading')
+			.set('tags', [])
 		
-		return state.setIn(['spaces', action.spaceId, 'status'],	'loading')
+		return state.setIn(['spaces', action.spaceId],	space)
 	}
 	
 	case TAGS_LOAD_SUCCESS:{
 		const { spaceId, tags } = action
 
-		return state
-			.setIn(['spaces', spaceId],					blankSpace)
-			.setIn(['spaces', spaceId, 'tags'],			normalizeTags(tags))
-			.setIn(['spaces', spaceId, 'status'],		'loaded')
+		let space = (state.spaces[spaceId] || blankSpace)
+			.set('tags', normalizeTags(tags))
+			.set('status', 'loaded')
+
+		return state.setIn(['spaces', action.spaceId],	space)
 	}
 
 	case TAGS_LOAD_ERROR:{
 		const { spaceId } = action
 
-		return state
-			.setIn(['spaces', spaceId],					blankSpace)
-			.setIn(['spaces', spaceId, 'status'],		'error')
+		let space = (state.spaces[spaceId] || blankSpace)
+			.set('items', [])
+			.set('status', 'error')
+
+		return state.setIn(['spaces', action.spaceId],	space)
 	}
 
 	//reorder

@@ -47,6 +47,13 @@
         opacity: 0
         transition-duration: .2s
     }
+
+    .body:empty:before {
+        content: ''
+        display: block
+        height: var(--button-height)
+        margin: var(--padding-mini)
+    }
 }
 
 .item {

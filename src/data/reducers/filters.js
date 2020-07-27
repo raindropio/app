@@ -2,7 +2,7 @@ import Immutable from 'seamless-immutable'
 import _ from 'lodash-es'
 import { blankSpace, normalizeItems } from '../helpers/filters'
 import { REHYDRATE } from 'redux-persist/src/constants'
-import { FILTERS_LOAD_REQ, FILTERS_LOAD_SUCCESS, FILTERS_LOAD_ERROR, FILTERS_AUTOLOAD } from '../constants/filters'
+import { FILTERS_LOAD_REQ, FILTERS_LOAD_SUCCESS, FILTERS_LOAD_ERROR } from '../constants/filters'
 
 export default function(state = initialState, action={}){switch (action.type) {
 	case REHYDRATE:{
@@ -14,7 +14,6 @@ export default function(state = initialState, action={}){switch (action.type) {
 			state = state.setIn(
 				['spaces', _id],
 				space
-					.set('autoLoad', false)
 			)
 		})
 
@@ -33,7 +32,9 @@ export default function(state = initialState, action={}){switch (action.type) {
 		}
 
 		//set loading status
-		space = space.set('status', 'loading')
+		space = space
+			.set('status', 'loading')
+			.set('items', [])
 		
 		return state.setIn(['spaces', action.spaceId],	space)
 	}
@@ -56,17 +57,6 @@ export default function(state = initialState, action={}){switch (action.type) {
 			.set('status', 'error')
 
 		return state.setIn(['spaces', action.spaceId],	space)
-	}
-
-	case FILTERS_AUTOLOAD:{
-		const { spaceId, enabled } = action
-
-		let space = state.spaces[spaceId] || blankSpace
-		space = space.set('autoLoad', enabled)
-
-		action.ignore = space.items.length > 0
-
-		return state.setIn(['spaces', spaceId], space)
 	}
 
 	case 'RESET':{

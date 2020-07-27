@@ -45,7 +45,10 @@ export default function(state, action) {switch (action.type) {
 
 		//reset bookmarks list when query changed
 		if (space && !queryIsEqual(space.query, query)){
-			space = space.set('ids', [])
+			space = space
+				.set('ids', [])
+				.set('lastAction', '')
+				.set('version', '')
 			return state.setIn(['spaces', spaceId], space)
 		}
 
@@ -59,8 +62,7 @@ export default function(state, action) {switch (action.type) {
 		//ignore when nothing changed (including data, query)
 		if (oldSpace && 
 			oldSpace.lastAction == lastAction && 
-			oldSpace.version == version &&
-			oldSpace.ids.length){
+			oldSpace.version == version){
 			action.ignore = true
 			return state
 		}
