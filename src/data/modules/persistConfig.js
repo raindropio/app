@@ -26,7 +26,7 @@ else
 	}
 */
 
-const version = 5
+const version = 8
 
 export default {
 	key: 'primary',

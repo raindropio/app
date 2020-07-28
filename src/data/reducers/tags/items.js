@@ -17,28 +17,41 @@ export default function(state, action={}){switch (action.type) {
 	}
 
 	case FILTERS_LOAD_REQ:{
-		const { spaceId, force=false } = action
+		const { spaceId, query: { search = '' }, force=false } = action
 
 		let space = state.spaces[spaceId] || blankSpace
 
-		//loading already
-		if (!force && space.status == 'loading'){
+		//nothing changed
+		if (space.query.search == search && 
+			space.status == 'loaded' &&
+			!force){
 			action.ignore = true
 			return state
 		}
 
 		//set loading status
-		space = space
-			.set('status', 'loading')
-			.set('tags', [])
+		space = space.set('status', 'loading')
+
+		//clean if needed
+		if (!search.startsWith(space.query.search))
+			space = space.set('tags', [])
+
+		//new search query
+		space = space.set('query', { search })
 		
 		return state.setIn(['spaces', action.spaceId],	space)
 	}
 	
 	case TAGS_LOAD_SUCCESS:{
-		const { spaceId, tags } = action
+		const { spaceId, tags, query: { search = '' } } = action
 
 		let space = (state.spaces[spaceId] || blankSpace)
+
+		//prevent override
+		if (space.query.search != search)
+			return state
+			
+		space = space
 			.set('tags', normalizeTags(tags))
 			.set('status', 'loaded')
 
@@ -46,10 +59,15 @@ export default function(state, action={}){switch (action.type) {
 	}
 
 	case TAGS_LOAD_ERROR:{
-		const { spaceId } = action
+		const { spaceId, query: { search = '' } } = action
 
 		let space = (state.spaces[spaceId] || blankSpace)
-			.set('items', [])
+
+		//prevent override
+		if (space.query.search != search)
+			return state
+			
+		space = space.set('items', [])
 			.set('status', 'error')
 
 		return state.setIn(['spaces', action.spaceId],	space)

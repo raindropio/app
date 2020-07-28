@@ -4,6 +4,7 @@ import t from '~t'
 import { createPortal } from 'react-dom'
 import { connect } from 'react-redux'
 import { makeFiltersSearch, getStatus } from '~data/selectors/filters'
+import { autoLoad } from '~data/actions/filters'
 import { makeTagsSearch } from '~data/selectors/tags'
 
 import Button from '~co/common/button'
@@ -17,6 +18,21 @@ class SearchSuggestions extends React.Component {
         spaceId: 0,
         floating: false,
         downshift: {}
+    }
+
+    componentDidMount() {
+        this.props.autoLoad(this.props.spaceId, true)
+    }
+
+    componentDidUpdate(prev) {
+        if (prev.spaceId != this.props.spaceId){
+            this.props.autoLoad(prev.spaceId, false)
+            this.props.autoLoad(this.props.spaceId, true)
+        }
+    }
+
+    componentWillUnmount() {
+        this.props.autoLoad(this.props.spaceId, false)
     }
 
     renderGroup = (type, inc=0)=>{
@@ -99,5 +115,8 @@ export default connect(
             filters: getFiltersAutocomplete(state, spaceId, inputValue),
             tags: getTagsSearch(state, spaceId, inputValue)
         })
+    },
+    {
+        autoLoad
     }
 )(SearchSuggestions)
