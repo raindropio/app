@@ -10,7 +10,7 @@
 	},
 	"sideEffects": false,
 	"scripts": {
-		"local": "export NODE_ENV=development && export APP_PUBLIC_PATH=/ && webpack-dev-server --config build/config.js --no-clipboard --port 2000",
+		"local": "export NODE_ENV=development && export APP_PUBLIC_PATH=/ && webpack-dev-server --config build/config.js",
 		"local:prod": "yarn build && serve dist/default -l 80",
 		"build": "export NODE_ENV=production  && export APP_PUBLIC_PATH=/ && webpack --config build/config.js",
 		"build:extension": "export NODE_ENV=production  && APP_TARGET='clipper' && webpack --config build/config.js",

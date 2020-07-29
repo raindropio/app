@@ -68,11 +68,12 @@ module.exports = {
 	},
 
 	devServer: {
-		compress: true,
+		compress: false,
 		disableHostCheck: true,
+		historyApiFallback: true,
 		//hot: true,inline: true,
 		overlay: true,
-		port: 80
+		port: 2000
 	},
 
 	resolve: {
@@ -221,6 +222,14 @@ module.exports = {
 				oneOf: [
 					{
 						resourceQuery: /asis/,
+						loader: 'file-loader',
+						options: {
+							outputPath: 'assets',
+							name: '[contenthash].[ext]'
+						}
+					},
+					{
+						resourceQuery: /component/,
 						use: ['@svgr/webpack']
 					},
 					{

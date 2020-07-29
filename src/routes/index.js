@@ -1,11 +1,15 @@
 import React from 'react'
-import { HashRouter as Router, Route, Redirect, Switch } from 'react-router-dom'
+import { HashRouter, BrowserRouter, Route, Redirect, Switch } from 'react-router-dom'
 
 import Account from './account'
 import Collection from './collection'
 //import Settings from './settings'
 
 import None from './_none'
+
+const Router = __TARGET__ == 'default' ?
+    BrowserRouter :
+    HashRouter
 
 export default ()=>(
     <Router>

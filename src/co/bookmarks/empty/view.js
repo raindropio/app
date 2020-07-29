@@ -3,9 +3,9 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import t from '~t'
 
-import IllustrationNo from './no.svg?asis'
-import IllustrationSearch from './search.svg?asis'
-import IllustrationError from './error.svg?asis'
+import IllustrationNo from './no.svg?component'
+import IllustrationSearch from './search.svg?component'
+import IllustrationError from './error.svg?component'
 
 export default class BookmarksEmptyView extends React.PureComponent {
     refresh = (e)=>{

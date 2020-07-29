@@ -2,6 +2,7 @@
   "version": 2,
   "name": "app_5",
   "scope": "raindrop-io",
+  "trailingSlash": false,
   "builds": [
     {
       "src": "package.json",
@@ -9,10 +10,15 @@
       "config": { "distDir": "dist/default" }
     }
   ],
+  "headers": [
+    { "source": "/assets/(.*)", "headers": { "cache-control": "public, must-revalidate, max-age=31536000" } },
+    { "source": "/favicon.ico", "headers": { "cache-control": "public, must-revalidate, max-age=31536000" } }
+  ],
+  "rewrites": [
+    { "source": "/legacy/4",              "destination": "/index.html" },
+    { "source": "/bookmarklet/1.0/(.*)",  "destination": "https://bookmarklet1.raindrop-io.now.sh/$1" }
+  ],
   "routes": [
-    { "src": "/assets/(.*)",            "headers": { "cache-control": "public, must-revalidate, max-age=31536000" }, "continue": true },
-    { "src": "/favicon.ico",            "headers": { "cache-control": "public, must-revalidate, max-age=31536000" }, "continue": true },
-    { "src": "/legacy/4/?",             "dest": "/index.html" },
-    { "src": "/bookmarklet/1.0/(.*)",   "dest": "https://bookmarklet1.raindrop-io.now.sh/$1" }
+    { "src": "/(.*)", "dest": "/" }
   ]
 }
