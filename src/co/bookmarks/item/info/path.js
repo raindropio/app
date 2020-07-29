@@ -10,7 +10,7 @@ function BookmarksItemPath({ collection, getLink }) {
     return (
         <Link 
             tabIndex='-1'
-            to={getLink({ _id: collection._id, refine:'', full: true })}
+            to={getLink({ _id: collection._id, refine:'' })}
             className={s.path}>
             <CollectionIcon 
                 {...collection}

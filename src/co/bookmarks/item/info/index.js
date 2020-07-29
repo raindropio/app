@@ -20,7 +20,7 @@ export default class BookmarkItemView extends React.PureComponent {
                     </>
                 ) : null}
 
-                {spaceId != collectionId ? (
+                {spaceId != collectionId && spaceId != collectionId+'s' ? (
                     <section><Path {...this.props} /></section>
                 ) : null}
 

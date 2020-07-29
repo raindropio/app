@@ -19,7 +19,7 @@ export default class CollectionRoute extends React.PureComponent {
         return {
             _id: _id+(_id && search ? 's' : ''),
             search,
-            query: Object.fromEntries(new URLSearchParams(location.search))
+            query: location.search ? Object.fromEntries(new URLSearchParams(location.search)) : {}
         }
     }
 
