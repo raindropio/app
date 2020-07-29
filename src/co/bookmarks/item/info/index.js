@@ -1,5 +1,6 @@
 import s from './index.module.styl'
 import React from 'react'
+import { Link } from 'react-router-dom'
 import t from '~t'
 import { ShortDate } from '~modules/format/date'
 
@@ -7,13 +8,8 @@ import Icon from '~co/common/icon'
 import Path from './path'
 
 export default class BookmarkItemView extends React.PureComponent {
-    onDuplicateClick = e => {
-        e.preventDefault()
-        this.props.onSearch(this.props.link)
-    }
-
     render() {
-        const { className='', creatorRef, domain, type, created, reparse, collectionId, spaceId, important, broken, duplicate, cache } = this.props
+        const { className='', creatorRef, domain, type, link, created, reparse, collectionId, spaceId, important, broken, duplicate, cache, getLink } = this.props
 
         return (
             <div className={s.info+' '+className}>
@@ -42,12 +38,11 @@ export default class BookmarkItemView extends React.PureComponent {
                     <>
                         <section data-inline className={s.duplicateLabel}><Icon name='duplicate' size='micro' /></section>
                         <section className={s.duplicateLabel}>
-                            <a 
-                                href=''
-                                title={t.s('defaultCollection-0')+' '+t.s('original').toLowerCase()}
-                                onClick={this.onDuplicateClick}>
+                            <Link 
+                                to={getLink({ search: link })}
+                                title={t.s('defaultCollection-0')+' '+t.s('original').toLowerCase()}>
                                 {t.s('duplicates')}
-                            </a>
+                            </Link>
                         </section>
                     </>
                 ) : null}

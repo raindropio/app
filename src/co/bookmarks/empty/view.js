@@ -1,5 +1,6 @@
 import styles from './view.module.styl'
 import React from 'react'
+import { Link } from 'react-router-dom'
 import t from '~t'
 
 import IllustrationNo from './no.svg?asis'
@@ -12,13 +13,8 @@ export default class BookmarksEmptyView extends React.PureComponent {
         this.props.actions.refresh(this.props.spaceId)
     }
 
-    onAllBookmarksClick = e => {
-        e.preventDefault()
-        this.props.events.onCollectionClick({ _id: 0 })
-    }
-
     render() {
-        const { status, spaceId, searchEmpty, compact, collection: { title } } = this.props
+        const { status, spaceId, searchEmpty, compact, collection: { title }, getLink } = this.props
         let content = null
 
         if (spaceId == -101) return null
@@ -76,7 +72,7 @@ export default class BookmarksEmptyView extends React.PureComponent {
                         <br/>
 
                         <p>
-							<a href='' onClick={this.onAllBookmarksClick}>{t.s('allBookmarks')}</a>
+							<Link to={getLink({ _id: 0 })}>{t.s('allBookmarks')}</Link>
                         </p>
                     </div>
                 )

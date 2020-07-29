@@ -1,32 +1,23 @@
 import s from './path.module.styl'
 import React from 'react'
+import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { collection } from '~data/selectors/collections'
 
 import CollectionIcon from '~co/collections/item/icon'
 
-class BookmarksItemPath extends React.Component {
-    onClick = e => {
-        e.preventDefault()
-        this.props.onCollectionClick(this.props.collection)
-    }
-
-    render() {
-        const { collection } = this.props
-
-        return (
-            <a 
-                tabIndex='-1'
-                href=''
-                className={s.path}
-                onClick={this.onClick}>
-                <CollectionIcon 
-                    {...collection}
-                    className={s.icon} />
-                {collection.title}
-            </a>
-        )
-    }
+function BookmarksItemPath({ collection, getLink }) {
+    return (
+        <Link 
+            tabIndex='-1'
+            to={getLink({ _id: collection._id, refine:'', full: true })}
+            className={s.path}>
+            <CollectionIcon 
+                {...collection}
+                className={s.icon} />
+            {collection.title}
+        </Link>
+    )
 }
 
 export default connect(

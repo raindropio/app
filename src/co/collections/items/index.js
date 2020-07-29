@@ -12,9 +12,9 @@ import SelectMode from './selectMode'
 
 class CollectionsItems extends React.Component {
     static defaultProps = {
-        uriPrefix:          '',
         activeId:           undefined, //string||number||array
         options:            {}, //hideIds[], showGroups:true, search:''
+        getLink:            undefined,
         events:             {}, //onItemClick, onGroupClick
         
         customRows:         undefined, //[] additional items in tree

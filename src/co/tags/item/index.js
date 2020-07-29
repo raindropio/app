@@ -12,8 +12,7 @@ class TagsItem extends React.PureComponent {
     static defaultProps = {
         //...item,
         active:     false,
-        canAppend:  false,
-        events:     {}  //onItemClick, onItemAppendClick
+        getLink:    undefined
     }
 
     state = {
@@ -23,15 +22,6 @@ class TagsItem extends React.PureComponent {
     }
 
     handlers = {
-        onClick: ()=>
-            this.props.events.onItemClick(this.props.query),
-
-        onAppendClick: this.props.events.onItemAppendClick ? (e)=>{
-            e.preventDefault()
-            e.stopPropagation()
-            this.props.events.onItemAppendClick(this.props.query)
-        } : undefined,
-
         onRenameClick: ()=>
             this.setState({ rename: true }),
         

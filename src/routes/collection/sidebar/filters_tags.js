@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { load } from '~data/actions/filters'
+import { autoLoad, load } from '~data/actions/filters'
 import { getTags } from '~data/selectors/tags'
 import { getFilters } from '~data/selectors/filters'
 
@@ -12,10 +12,11 @@ import Tag from '~co/tags/item'
 class FiltersTagsCustom extends React.Component {
     static defaultProps = {
         activeId:           '',
-        events:             {} //onItemClick, onItemAppendClick
+        getLink:            undefined
     }
 
     componentDidMount() {
+        this.props.autoLoad('0s')
         this.props.load('0s')
     }
 
@@ -29,15 +30,14 @@ class FiltersTagsCustom extends React.Component {
             default: return false
         }
 
-        const { events, activeId } = this.props
+        const { getLink, activeId } = this.props
         const active = activeId.includes(row.query)
 
         return (
             <Component 
                 {...row}
-                events={events}
-                active={active}
-                canAppend={activeId && !active} />
+                getLink={getLink}
+                active={active} />
         )
     }
 
@@ -81,5 +81,5 @@ export default connect(
         filters: getFilters(state, '0s'),
         filters_hide: state.config.filters_hide
     }),
-	{ load }
+	{ load, autoLoad }
 )(FiltersTagsCombined)

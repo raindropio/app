@@ -10,8 +10,8 @@ import View from './view'
 class BookmarksEmpty extends React.Component {
     static defaultProps = {
         spaceId:        0,
-        compact:    false,
-        events:         {} //{onCollectionClick}
+        compact:        false,
+        getLink:        undefined
     }
 
     render() {

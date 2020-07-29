@@ -8,6 +8,7 @@ import Items from './items'
 
 class Bookmarks extends React.Component {
     static defaultProps = {
+        //...+ ./items
         spaceId: 0,
         search: '',
         full: false //don't show nested folders in compact mode

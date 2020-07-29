@@ -39,11 +39,11 @@ export default class ReaderHeader extends React.PureComponent {
 
     render() {
         const { item, tab, tabs, access } = this.props
-        const { setTab, onBackClick, onFullscreenToggleClick } = this.props
+        const { getLink, setTab, onFullscreenToggleClick } = this.props
 
         return (
             <Header
-                onBackClick={onBackClick}
+                backTo={getLink({ bookmark: null, tab: null })}
                 onFullscreenClick={onFullscreenToggleClick}>
                 <Settings
                     tab={tab} />

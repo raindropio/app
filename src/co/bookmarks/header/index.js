@@ -17,7 +17,7 @@ class BookmarksHeader extends React.Component {
     static defaultProps = {
         spaceId: 0,
         compact: false,
-        events: {} //{ onCollectionClick }
+        getLink: undefined
     }
 
     render() {

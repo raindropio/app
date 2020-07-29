@@ -1,29 +1,28 @@
 import s from './tags.module.styl'
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 import Icon from '~co/common/icon'
 
 class BookmarksItemTag extends React.PureComponent {
-    onClick = (e)=>{
-        e.preventDefault()
-        this.props.onClick(this.props.tag)
-    }
-
     render() {
-        const { tag } = this.props
+        const { tag, getLink } = this.props
         
         return (
-            <a href='' tabIndex='-1' key={tag} onClick={this.onClick}>
+            <Link 
+                key={tag} 
+                tabIndex='-1'
+                to={getLink({ refine: tag.includes(' ') ? `"#${tag}"` : `#${tag}` })}>
                 <Icon name='tag' size='micro' />
                 {tag}
-            </a>
+            </Link>
         )
     }
 }
 
 export default class BookmarksItemTags extends React.PureComponent {
     render() {
-        const { tags=[], onTagClick, className } = this.props
+        const { tags=[], getLink, className } = this.props
 
         if (!tags.length)
             return null
@@ -35,7 +34,7 @@ export default class BookmarksItemTags extends React.PureComponent {
                         <BookmarksItemTag 
                             key={tag}
                             tag={tag}
-                            onClick={onTagClick} />
+                            getLink={getLink} />
                     )}
                 </span>
             </div>

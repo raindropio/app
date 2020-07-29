@@ -1,5 +1,6 @@
 import s from './view.module.styl'
 import React from 'react'
+import { Link } from 'react-router-dom'
 import t from '~t'
 import Button from '~co/common/button'
 
@@ -9,12 +10,8 @@ export default class BookmarksFooterView extends React.PureComponent {
         this.props.actions.nextPage(this.props.spaceId)
     }
 
-    onFullClick = ()=>{
-        this.props.events.onCollectionClick({ _id: parseInt(this.props.spaceId) })
-    }
-
     render() {
-        const { status, compact, count, compactLimit, isSearching } = this.props
+        const { status, compact, count, compactLimit, isSearching, getLink } = this.props
         let content = null
 
         switch(status.nextPage) {
@@ -54,9 +51,10 @@ export default class BookmarksFooterView extends React.PureComponent {
             (compact && count > compactLimit))
             content = (
                 <Button 
+                    as={Link}
                     variant='flat'
                     data-block
-                    onClick={this.onFullClick}>
+                    to={getLink({ full:true })}>
                     {t.s('showAll')}
                 </Button>
             )

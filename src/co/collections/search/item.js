@@ -7,7 +7,7 @@ import { Item, ItemTitle, ItemIcon, ItemInfo } from '~co/common/list'
 import CollectionIcon from '../item/icon'
 import SafeHtml from '~co/common/safeHtml'
 
-function CollectionSearchItem({ title, cover, _id, count, search }) {
+function CollectionSearchItem({ title, cover, _id, count, search, getLink }) {
     let highlighted = title.replace(new RegExp(`(${search})`, 'i'), '<em>$1</em>')
 
     return (
@@ -30,7 +30,7 @@ function CollectionSearchItem({ title, cover, _id, count, search }) {
 
             <Link 
                 className={s.link}
-                to={`/space/${_id}`} />
+                to={getLink({ _id })} />
         </Item>
     )
 }

@@ -2,7 +2,7 @@ import React from 'react'
 import { HashRouter as Router, Route, Redirect, Switch } from 'react-router-dom'
 
 import Account from './account'
-import Space from './space'
+import Collection from './collection'
 //import Settings from './settings'
 
 import None from './_none'
@@ -11,7 +11,7 @@ export default ()=>(
     <Router>
         <Switch>
             <Route path='/account' component={Account} />
-            <Route path='/space/:spaceId(-?\d+):modifier?/:search?' component={Space} />
+            <Route path='/:_id(-?\d+)/:search?' component={Collection} />
             {/*<Route path='/settings' component={Settings} />*/}
 
             {/* Redirects */}

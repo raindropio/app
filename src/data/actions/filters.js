@@ -9,8 +9,8 @@ export const autoLoad = (spaceId, enabled=false)=>({
 	enabled
 })
 
-export const load = (spaceId, query={})=>({
+export const load = (spaceId, query)=>({
 	type: FILTERS_LOAD_REQ,
 	spaceId: String(spaceId),
-	query
+	query: query || {}
 })

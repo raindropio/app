@@ -21,10 +21,10 @@ export default class HeaderShare extends React.Component {
         this.setState({ show: false })
     
     render() {
-        const { spaceId } = this.props
+        const { _id } = this.props
         const { show } = this.state
 
-        if (spaceId <= 0) return null
+        if (_id <= 0) return null
 
         return (
             <>
@@ -36,7 +36,7 @@ export default class HeaderShare extends React.Component {
                 {show ? (
                     <Sharing 
                         pin={this.pin}
-                        _id={spaceId}
+                        _id={id}
                         onClose={this.onSharingClose} />
                 ) : null}
             </>

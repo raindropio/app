@@ -11,11 +11,12 @@ import Item from './item'
 
 class CollectionsSearch extends React.PureComponent {
     static defaultProps = {
-        search: ''
+        search: '',
+        getLink: undefined
     }
 
     render() {
-        const { items, show, search, toggleCollectionsSearchResults } = this.props
+        const { items, show, search, toggleCollectionsSearchResults, getLink } = this.props
         if (!items.length) return null
 
         return (
@@ -30,7 +31,11 @@ class CollectionsSearch extends React.PureComponent {
                 {show && (
                     <div className={s.items}>
                         {items.map(item=>(
-                            <Item key={item._id} {...item} search={search} />
+                            <Item 
+                                key={item._id} 
+                                {...item} 
+                                search={search}
+                                getLink={getLink} />
                         ))}
                     </div>
                 )}

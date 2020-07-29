@@ -140,11 +140,13 @@ export default class CollectionsItem extends React.PureComponent {
     }
 
     render() {
-        const { item, uriPrefix, ...props } = this.props
+        const { item, getLink, ...props } = this.props
 
         const Component = item._id == -101 ?
             Blank :
             (this.state.rename ? Rename : View)
+
+        const to = getLink ? getLink({ _id: item._id }) : ''
 
         return (
             <>
@@ -152,14 +154,14 @@ export default class CollectionsItem extends React.PureComponent {
                     {...item}
                     {...props}
                     {...this.handlers}
-                    to={`${uriPrefix}${item._id}`} />
+                    to={to} />
 
                 {this.state.menu ? (
                     <Contextmenu 
                         {...item}
                         {...props}
                         {...this.handlers}
-                        to={`${uriPrefix}${item._id}`} />
+                        to={to} />
                 ) : null}
 
                 {this.state.sharing ? (

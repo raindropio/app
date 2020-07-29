@@ -10,19 +10,19 @@ import Bookmarks from './bookmarks'
 import Collections from './collections'
 import AccentColor from '~co/collections/item/accentColor'
 
-class CollectionsMain extends React.Component {
+class CollectionMain extends React.Component {
     componentDidMount() {
-        this.props.setLastCollection(this.props.spaceId)
+        this.props.setLastCollection(this.props._id)
     }
 
     componentDidUpdate(prev) {
-        if (prev.spaceId != this.props.spaceId)
-            this.props.setLastCollection(this.props.spaceId)
+        if (prev._id != this.props._id)
+            this.props.setLastCollection(this.props._id)
     }
 
     render() {
         return (
-            <AccentColor _id={this.props.spaceId}>{style=>
+            <AccentColor _id={this.props._id}>{style=>
                 <Main style={style}>
                     <Helmet>
                         <title>{this.props.search || this.props.title}</title>
@@ -37,9 +37,9 @@ class CollectionsMain extends React.Component {
 }
 
 export default connect(
-	(state, { spaceId }) => {
-        const { title, access } = collection(state, spaceId)
+	(state, props) => {
+        const { title, access } = collection(state, props._id)
         return { title, access }
     },
 	{ setLastCollection }
-)(CollectionsMain)
+)(CollectionMain)

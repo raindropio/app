@@ -33,7 +33,7 @@ function* doAutoLoad({ spaceId, query }) {
 			put({
 				type: FILTERS_LOAD_REQ,
 				spaceId,
-				query
+				query: query || {}
 			})
 		)
 
@@ -45,7 +45,7 @@ function* doAutoLoad({ spaceId, query }) {
 function* doForceReload() {
 	const { filters: { autoLoad, spaces } } = yield select()
 
-	const actions = [...autoLoad, '0s']
+	const actions = autoLoad
 		.filter(spaceId=>
 			spaces[spaceId]
 		)
@@ -53,7 +53,7 @@ function* doForceReload() {
 			put({
 				type: FILTERS_LOAD_REQ,
 				spaceId,
-				query: spaces[spaceId].query,
+				query: spaces[spaceId].query || {},
 				force: true
 			})
 		)

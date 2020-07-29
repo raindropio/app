@@ -4,10 +4,9 @@ import Popover, { Menu, MenuItem, MenuSeparator } from '~co/overlay/popover'
 import Icon from '~co/common/icon'
 
 export default function BookmarksItemContextmenu({
-    link, important, access, reparse, cache,
-    onContextMenuClose, onRemoveClick, onCopyLinkClick, onPreviewClick, onCacheClick,
-    onSelectClick, onImportantClick, onCreateScreenshotClick, onReparseClick,
-    onEditClick
+    _id, link, important, access, reparse, cache, getLink,
+    onContextMenuClose, onRemoveClick, onCopyLinkClick,
+    onSelectClick, onImportantClick, onCreateScreenshotClick, onReparseClick
 }) {
     return (
         <Popover onClose={onContextMenuClose}>
@@ -24,13 +23,13 @@ export default function BookmarksItemContextmenu({
 
                 <MenuSeparator />
 
-                <MenuItem onClick={onPreviewClick}>
+                <MenuItem to={getLink({ bookmark: _id, tab:'' })}>
                     <Icon name='show' />
                     {t.s('open')+' '+t.s('preview').toLowerCase()}
                 </MenuItem>
 
                 {access.level >= 2 && cache ? (
-                    <MenuItem onClick={onCacheClick}>
+                    <MenuItem to={getLink({ bookmark: _id, tab:'cache' })}>
                         <Icon name={cache ? 'cache_ready' : 'cache_failed'} />
                         {cache != 'ready' ? '⚠️ '+t.s('permanentCopy') : t.s('open') + ' ' +t.s('permanentCopy').toLowerCase()}
                     </MenuItem>
@@ -64,7 +63,7 @@ export default function BookmarksItemContextmenu({
 
                         <MenuSeparator />
 
-                        <MenuItem onClick={onEditClick}>
+                        <MenuItem to={getLink({ bookmark: _id, tab:'edit' })}>
                             <Icon name='edit' />
                             {t.s('edit')}
                         </MenuItem>

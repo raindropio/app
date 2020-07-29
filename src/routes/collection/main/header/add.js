@@ -21,13 +21,18 @@ export default class HeaderAdd extends React.Component {
         this.setState({ show: false })
 
     onCreateItem = item=>
-        this.props.onReader({ bookmark: item._id, tab: 'edit' })
+        this.props.history.push(
+            this.props.getLink({
+                bookmark: item._id,
+                tab: 'edit'
+            })
+        )
     
     render() {
-        const { spaceId, access } = this.props
+        const { _id, access } = this.props
         const { show } = this.state
 
-        if (spaceId == -99 || access.level < 3) return null
+        if (_id == -99 || access.level < 3) return null
 
         return (
             <>
@@ -43,7 +48,7 @@ export default class HeaderAdd extends React.Component {
                 {show ? (
                     <Add 
                         pin={this.pin}
-                        spaceId={spaceId}
+                        spaceId={_id}
                         onCreateItem={this.onCreateItem}
                         onClose={this.onAddClose} />
                 ) : null}

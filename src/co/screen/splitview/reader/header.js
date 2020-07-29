@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import t from '~t'
 import { Context } from '../'
 
@@ -8,6 +9,7 @@ import Icon from '~co/common/icon'
 
 class SplitViewReaderHeader extends React.Component {
     static defaultProps = {
+        backTo: '',
         onBackClick: undefined,
         onFullscreenClick: undefined
     }
@@ -15,8 +17,10 @@ class SplitViewReaderHeader extends React.Component {
     static contextType = Context
 
     onBackClick = (e)=>{
-        e.preventDefault()
-        this.props.onBackClick && this.props.onBackClick()
+        if (!e.currentTarget.href) {
+            e.preventDefault()
+            this.props.onBackClick && this.props.onBackClick()
+        }
     }
 
     onFullscreenClick = (e)=>{
@@ -27,7 +31,10 @@ class SplitViewReaderHeader extends React.Component {
     render() {
         return (
             <Header data-no-shadow data-fancy>
-                <Button onClick={this.onBackClick}>
+                <Button 
+                    as={Link}
+                    to={this.props.backTo}
+                    onClick={this.onBackClick}>
                     <Icon name='close' />
                 </Button>
 

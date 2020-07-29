@@ -33,7 +33,7 @@ export default {
 	version,
 	migrate: state => {
 		return Promise.resolve(
-			state._persist && state._persist.version != version ? {} : state
+			state && state._persist && state._persist.version != version ? {} : state
 		)
 	},
 	whitelist: [

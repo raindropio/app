@@ -1,4 +1,5 @@
 import React from 'react'
+import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as bookmarksActions from '~data/actions/bookmarks'
@@ -12,7 +13,7 @@ import AccentColor from '~co/collections/item/accentColor'
 
 class CollectionsReader extends React.Component {
     static defaultProps = {
-        reader: {} //bookmark, tab
+        query: {} //bookmark, tab
     }
 
     state = {
@@ -20,22 +21,21 @@ class CollectionsReader extends React.Component {
     }
 
     handlers = {
-        onBackClick: ()=>
-            this.props.onReader(),
-
         onFullscreenToggleClick: ()=>
             this.setState({ fullscreen: !this.state.fullscreen }),
 
         setTab: (tab)=>
-            this.props.onReader({ ...this.props.reader, tab }),
+            this.props.history.replace(
+                this.props.getLink({ tab })
+            )
     }
 
     render() {
-        const { item, spaceId, font_color } = this.props
+        const { item, _id, font_color } = this.props
         const { fullscreen } = this.state
 
         return (
-            <AccentColor _id={spaceId}>{style=>
+            <AccentColor _id={_id}>{style=>
                 <Reader 
                     show={item._id?true:false}
                     fullscreen={fullscreen}
@@ -54,12 +54,11 @@ export default connect(
         const getBookmark = makeBookmark()
         const getCollection = makeCollection()
 
-        return (state, { reader })=>{
-            const item = getBookmark(state, parseInt(reader.bookmark))
+        return (state, { query: { tab, bookmark } })=>{
+            const item = getBookmark(state, parseInt(bookmark))
             const { access } = getCollection(state, item.collectionId)
 
             //available tabs
-            const tab = reader.tab
             const tabs = [
                 'preview', 
                 ...access.level>=3?['edit']:[], 
@@ -78,4 +77,8 @@ export default connect(
     (dispatch)=>({
 		actions: bindActionCreators(bookmarksActions, dispatch)
     }),
-)(CollectionsReader)
+)(
+    withRouter(
+        CollectionsReader
+    )
+)

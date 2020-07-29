@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import t from '~t'
 import { connect } from 'react-redux'
 import { getSearchEmpty } from '~data/selectors/bookmarks'
@@ -7,12 +8,8 @@ import { makeCollection } from '~data/selectors/collections'
 class BookmarksHeaderTitle extends React.Component {
     static defaultProps = {
         spaceId: 0,
-        compact: false
-    }
-
-    onTitleClick = e =>{
-        e.preventDefault()
-        this.props.events.onCollectionClick(this.props.collection)
+        compact: false,
+        getLink: undefined
     }
 
     renderSearchStatus = ()=>{
@@ -41,7 +38,7 @@ class BookmarksHeaderTitle extends React.Component {
     }
 
     render() {
-        const { isSearching, compact, status } = this.props
+        const { isSearching, compact, status, collection: { _id }, getLink } = this.props
 
         return (
             <>
@@ -53,9 +50,9 @@ class BookmarksHeaderTitle extends React.Component {
                 )}
 
                 {compact && status.main=='loaded' ? (
-                    <a href='' onClick={this.onTitleClick}>
+                    <Link to={getLink({ _id, full:true })}>
                         {this.renderTitle()}
-                    </a>
+                    </Link>
                 ) : this.renderTitle()}
             </>
         )

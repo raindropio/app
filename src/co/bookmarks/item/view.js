@@ -1,5 +1,6 @@
 import s from './view.module.styl'
 import React from 'react'
+import { Link } from 'react-router-dom'
 import t from '~t'
 
 import SuperLink from '~co/common/superLink'
@@ -13,9 +14,9 @@ import Info from './info'
 export default class BookmarkItemView extends React.PureComponent {
     render() {
         const { innerRef, isDragging } = this.props
-        const { link, title, excerpt, highlight, cover, domain, tags, view, access } = this.props
+        const { _id, link, title, excerpt, highlight, cover, domain, tags, view, access } = this.props
         const { active, selected, selectModeEnabled, selectDisabled, important, broken, gridSize } = this.props
-        const { onClick, onTagClick, onEditClick, onPreviewClick, onSelectClick, onRemoveClick, onContextMenu, onKeyUp } = this.props
+        const { getLink, onClick, onSelectClick, onRemoveClick, onContextMenu, onKeyUp } = this.props
 
         return (
             <article 
@@ -44,7 +45,7 @@ export default class BookmarkItemView extends React.PureComponent {
                     <div className={s.description}>
                         {excerpt ? <SafeHtml className={s.excerpt}>{highlight.excerpt || excerpt}</SafeHtml> : null}
                         {highlight.body ? <SafeHtml className={s.body}>{highlight.body}</SafeHtml> : null}
-                        <Tags tags={tags} onTagClick={onTagClick} />
+                        <Tags tags={tags} getLink={getLink} />
                     </div>
 
                     {/* Info */}
@@ -55,8 +56,9 @@ export default class BookmarkItemView extends React.PureComponent {
 
                 <div className={s.actions}>
                     <Button 
+                        as={Link}
+                        to={getLink({ bookmark: _id, tab: '' })}
                         variant='outline'
-                        onClick={onPreviewClick}
                         title={t.s('preview')}>
                         <Icon name='show' />
                     </Button>
@@ -64,8 +66,9 @@ export default class BookmarkItemView extends React.PureComponent {
                     {access.level >= 3 ? (
                         <>
                             <Button 
-                                variant='outline'
-                                onClick={onEditClick}>
+                                as={Link}
+                                to={getLink({ bookmark: _id, tab: 'edit' })}
+                                variant='outline'>
                                 {t.s('editMin')}
                             </Button>
 

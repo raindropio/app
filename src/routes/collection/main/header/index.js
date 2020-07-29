@@ -2,11 +2,12 @@ import React from 'react'
 import { Header } from '~co/screen/splitview/main'
 import { Space } from '~co/common/header'
 import Search from '~co/search'
+import { withRouter } from 'react-router-dom'
 
 import Add from './add'
 import Share from './share'
 
-export default class CollectionsMainHeader extends React.Component {
+class CollectionsMainHeader extends React.Component {
     state = {
         ssRef: { current: null }
     }
@@ -17,8 +18,10 @@ export default class CollectionsMainHeader extends React.Component {
     }
 
     searchEvents = {
-        onSubmit: val=>{
-            this.props.onSearch(val, 'current')
+        onSubmit: search=>{
+            this.props.history.push(
+                this.props.getLink({ search })
+            )
         }
     }
 
@@ -28,7 +31,7 @@ export default class CollectionsMainHeader extends React.Component {
                 <Header>
                     <Search 
                         outerRef={this.state.ssRef}
-                        spaceId={this.props.spaceId}
+                        spaceId={this.props._id}
                         value={this.props.search}
                         events={this.searchEvents} />
 
@@ -44,3 +47,5 @@ export default class CollectionsMainHeader extends React.Component {
         )
     }
 }
+
+export default withRouter(CollectionsMainHeader)

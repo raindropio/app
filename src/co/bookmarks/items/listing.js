@@ -50,6 +50,7 @@ export default class BookmarksItemsListing extends React.Component {
                 //listing specififc
                 active={this.props.activeId == _id}
                 isDragging={isDragging}
+                getLink={this.props.getLink}
                 events={this.props.events}
                 actions={this.props.actions} />
         )
@@ -59,6 +60,7 @@ export default class BookmarksItemsListing extends React.Component {
         <Empty 
             spaceId={this.props.spaceId} 
             compact={this.props.compact}
+            getLink={this.props.getLink}
             events={this.props.events} />
     )
 
@@ -70,6 +72,7 @@ export default class BookmarksItemsListing extends React.Component {
                 spaceId={this.props.spaceId} 
                 compact={this.props.compact} 
                 index={this.props.index}
+                getLink={this.props.getLink}
                 events={this.props.events} />
         )
     }
@@ -80,6 +83,7 @@ export default class BookmarksItemsListing extends React.Component {
             compact={this.props.compact}
             compactLimit={this.props.compactLimit}
             count={this.props.items.length}
+            getLink={this.props.getLink}
             events={this.props.events} />
     )
 

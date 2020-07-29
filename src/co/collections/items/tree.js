@@ -79,9 +79,9 @@ export default class CollectionsTree extends React.Component {
                 //item,etc
                 {...row}
                 //tree specififc
-                uriPrefix={this.props.uriPrefix}
                 active={active}
                 multiselect={multiselect}
+                getLink={this.props.getLink}
                 events={this.props.events}
                 actions={this.props.actions}
                 //drag/drop specific

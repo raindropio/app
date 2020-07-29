@@ -5,7 +5,7 @@ import Protected from '~co/screen/protected'
 
 const Home = ({ last_collection })=>(
 	<Protected>
-		<Redirect to={`/space/${parseInt(last_collection)||'0'}`} />
+		<Redirect to={`/${parseInt(last_collection)||'0'}`} />
 	</Protected>
 )
 

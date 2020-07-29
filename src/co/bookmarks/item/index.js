@@ -17,6 +17,7 @@ class BookmarkItem extends React.Component {
         access:             {}, //{ level }...
         selectModeEnabled:  false,
         //funcs
+        getLink:            undefined,
         events:             {}, //same as ...items/index
         actions:            {}  //redux collections
     }
@@ -42,14 +43,6 @@ class BookmarkItem extends React.Component {
                     e.preventDefault()
         },
 
-        onTagClick: this.props.events.onTagClick,
-        onSearch: this.props.events.onSearch,
-        onCollectionClick: this.props.events.onCollectionClick,
-
-        onEditClick: ()=>{
-            this.props.events.onItemEditClick && this.props.events.onItemEditClick(this.props.item)
-        },
-
         onSelectClick: ()=>{
             this.props.actions[this.props.selected ? 'unselectOne' : 'selectOne'](this.props.spaceId, this.props.item._id)
         },
@@ -62,12 +55,6 @@ class BookmarkItem extends React.Component {
 
         onCopyLinkClick: ()=>
             copyTextToClipboard(this.props.item.link),
-
-        onPreviewClick: ()=>
-            this.props.events.onItemPreviewClick && this.props.events.onItemPreviewClick(this.props.item),
-
-        onCacheClick: ()=>
-            this.props.events.onItemPreviewClick && this.props.events.onItemPreviewClick(this.props.item, 'cache'),
 
         onCreateScreenshotClick: ()=>
             this.props.actions.oneScreenshot(this.props.item._id),

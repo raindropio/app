@@ -12,8 +12,8 @@ import TagIcon from './icon'
 export default class TagsItemView extends React.Component {
     render() {
         const {
-            _id, count, active, canAppend, focusable,
-            onAppendClick, onRenameClick,
+            _id, count, active, query, focusable, getLink,
+            onRenameClick,
             oneRename, onRenameCancel, onContextMenuClose, onRemoveClick, onRename, //to ignore
             ...etc
         } = this.props
@@ -30,13 +30,6 @@ export default class TagsItemView extends React.Component {
 
                 {count ? <ItemInfo>{humanNumber(count)}</ItemInfo> : null}
                 <ItemActions>
-                    {canAppend && onAppendClick && (
-                        <Button 
-                            title={t.s('add')+' '+t.s('filters')}
-                            onClick={onAppendClick}>
-                            <Icon name='search_add' />
-                        </Button>
-                    )}
                     {etc.onContextMenu && (
                         <Button 
                             title={t.s('more')}
@@ -47,7 +40,9 @@ export default class TagsItemView extends React.Component {
                 </ItemActions>
 
                 {focusable && (
-                    <SuperLink tabIndex='0'/>
+                    <SuperLink 
+                        to={getLink({ _id: 0, search: query+' ' })}
+                        tabIndex='0'/>
                 )}
             </Item>
         )

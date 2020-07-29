@@ -14,27 +14,14 @@ export default class CollectionsSidebar extends React.Component {
     //collections
     collections = React.createRef()
 
-    collectionsEvents = {
-        
-    }
-
     onCreateCollectionClick = (e)=>{
         return this.collections.current.createNewCollection(e)
     }
 
-    //filters
-    filtersEvents = {
-        onItemClick: query=>
-            this.props.onSearch(query),
-
-        onItemAppendClick: query=>
-            this.props.onSearch(query, 'append'),
-    }
-
     render() {
-        const { spaceId, search } = this.props
+        const { _id, search, getLink } = this.props
 
-        let activeId = spaceId
+        let activeId = _id
         if (activeId=='0' && search)
             activeId = search
 
@@ -53,13 +40,11 @@ export default class CollectionsSidebar extends React.Component {
                 <Content>
                     <FiltersTags
                         activeId={search}
-                        events={this.filtersEvents}>
+                        getLink={getLink}>
                         {(customRows, customRowRenderer)=>
                             <Collections 
                                 ref={this.collections}
-                                events={this.collectionsEvents}
-                                
-                                uriPrefix='/space/'
+                                getLink={getLink}
                                 activeId={activeId}
 
                                 customRows={customRows}
