@@ -37,7 +37,7 @@
 @supports (backdrop-filter: none) {
     .outer[data-floating='true'] .body {
 		background: unquote('linear-gradient(to bottom, var(--background-color) 50%, hsla(var(--background-hsl), 0.5) 100%)')
-		backdrop-filter: blur(30px)
+		backdrop-filter: blur(100px)
 	}
 }
 
@@ -46,13 +46,6 @@
     .inner {
         opacity: 0
         transition-duration: .2s
-    }
-
-    .body:empty:before {
-        content: ''
-        display: block
-        height: var(--button-height)
-        margin: var(--padding-mini)
     }
 }
 

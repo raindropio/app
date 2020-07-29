@@ -20,6 +20,10 @@ export default class SearchView extends React.Component {
         onSubmit: undefined,
     }
 
+    state = {
+        forceOpen: false
+    }
+
     inputRef = React.createRef()
 
     stateReducer = (state, changes) => {
@@ -44,6 +48,15 @@ export default class SearchView extends React.Component {
                     highlightedIndex: null
                 }
 
+            case Downshift.stateChangeTypes.keyDownEscape:
+                this.setState({ forceOpen: false })
+                return changes
+
+            case Downshift.stateChangeTypes.keyDownArrowDown:
+            case Downshift.stateChangeTypes.keyDownArrowUp:
+                this.setState({ forceOpen: true })
+                return changes
+
             default:
                 return changes
         }
@@ -62,8 +75,15 @@ export default class SearchView extends React.Component {
         })
     }
 
+    forceOpen = ()=>
+        this.setState({ forceOpen: true })
+
+    forceClose = ()=>
+        this.setState({ forceOpen: false })
+
     render() {
         const { spaceId, outerRef, ...etc } = this.props
+        const { forceOpen } = this.state
 
         return (
             <Downshift
@@ -71,6 +91,7 @@ export default class SearchView extends React.Component {
                 itemToString={this.itemToString}
                 stateReducer={this.stateReducer}
                 inputValue={lastPart(this.props.value)}
+                isOpen={forceOpen || etc.value ? true : false}
                 selectedItem={null}>
                 {downshift=>(
                     <div className={s.search}>
@@ -80,7 +101,9 @@ export default class SearchView extends React.Component {
                                 ...etc,
                                 ref: this.inputRef,
                                 clearOnEscape: !downshift.isOpen || etc.value,
-                                onFocus: downshift.openMenu
+                                onFocus: this.forceOpen,
+                                onBlur: this.forceClose,
+                                onReset: this.forceClose,
                             })} />
 
                         <Suggestions
@@ -88,34 +111,9 @@ export default class SearchView extends React.Component {
                             floating={!etc.value}
                             spaceId={spaceId}
                             downshift={downshift} />
-
-                        <DownshiftOpenState 
-                            downshift={downshift} 
-                            value={etc.value} />
                     </div>
                 )}
             </Downshift>
         )
-    }
-}
-
-class DownshiftOpenState extends React.PureComponent {
-    componentDidMount() {
-        this.fixOpenState()
-    }
-
-    componentDidUpdate(prev) {
-        if (prev.value != this.props.value ||
-            prev.downshift.isOpen != this.props.downshift.isOpen)
-            this.fixOpenState()
-    }
-
-    fixOpenState() {
-        if (this.props.value)
-            this.props.downshift.openMenu()
-    }
-
-    render() {
-        return null
     }
 }

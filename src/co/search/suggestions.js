@@ -62,9 +62,9 @@ class SearchSuggestions extends React.Component {
         const filters = this.renderGroup('filters', tags.length)
 
         return [
-            ...(this.props.floating && tags.length ? [<div className={s.section}>{t.s('tags')}</div>] : []),
+            ...(this.props.floating && tags.length ? [<div key='_tags' className={s.section}>{t.s('tags')}</div>] : []),
             ...tags,
-            ...(this.props.floating && filters.length ? [<div className={s.section}>{t.s('fastFilter')}</div>] : []),
+            ...(this.props.floating && filters.length ? [<div key='_filter' className={s.section}>{t.s('fastFilter')}</div>] : []),
             ...filters
         ]
     }
@@ -84,7 +84,7 @@ class SearchSuggestions extends React.Component {
 
         const items = this.renderItems()
 
-        if (!items.length && status!='loading')
+        if (!items.length)
             return null
 
         return createPortal(

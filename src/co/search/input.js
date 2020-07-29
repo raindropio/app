@@ -13,6 +13,7 @@ class SearchInput extends React.PureComponent {
         clearOnEscape: true,
         value: '',
         onSubmit: undefined,
+        onReset: undefined
     }
 
     state = {
@@ -55,6 +56,7 @@ class SearchInput extends React.PureComponent {
     onReset = ()=>{
         this._input.current.value = ''
         this.props.onChange({ target: this._input.current })
+        this.props.onReset && this.props.onReset()
     }
 
     onInputKeyDown = (e)=>{

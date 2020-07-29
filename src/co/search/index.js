@@ -1,6 +1,5 @@
 import React from 'react'
 import _ from 'lodash'
-import lastPart from './helpers/lastPart'
 
 import View from './view'
 
@@ -26,17 +25,23 @@ export default class Search extends React.Component {
     }
 
     handlers = {
-        onChange: (e)=>{
-            const changed = (this.state.value||'').trim() != (e.target.value||'').trim()
+        onChange: ({ target })=>{
+            const changed = (this.state.value||'').trim() != (target.value||'').trim()
 
-            this.setState({ value: e.target.value }, ()=>{
-                if (!changed || lastPart(this.state.value).startsWith('#'))
+            this.setState({ value: target.value }, ()=>{
+                //nothing changed
+                if (!changed)
                     return
 
-                if (this.state.value.length>1)
-                    this.onSubmitBounced()
-                else if (!this.state.value)
-                    this.handlers.onSubmit()
+                if (!this.state.value)
+                    return this.handlers.onSubmit()
+
+                //suggestions are showing right now, no autoSubmit
+                if (this.props.outerRef.current &&
+                    this.props.outerRef.current.firstChild)
+                    return
+
+                this.onSubmitBounced()
             })
         },
 

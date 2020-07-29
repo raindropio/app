@@ -36,7 +36,7 @@ export default class HeaderShare extends React.Component {
                 {show ? (
                     <Sharing 
                         pin={this.pin}
-                        _id={id}
+                        _id={_id}
                         onClose={this.onSharingClose} />
                 ) : null}
             </>

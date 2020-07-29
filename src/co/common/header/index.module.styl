@@ -44,9 +44,11 @@
 
     a {
         color: currentColor
+        border-bottom: var(--shadow-height) dotted var(--secondary-text-color)
 
         &:hover {
-            text-decoration: underline
+            border-bottom-style: solid
+            border-bottom-color: currentColor
         }
     }
 }

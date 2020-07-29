@@ -43,7 +43,7 @@ class VirtualGrid extends React.Component {
     }
 
     renderRow = row => 
-        <VirtualGridRow {...this.props} {...this.state} row={row} />
+        <VirtualGridRow key={row} {...this.props} {...this.state} row={row} />
 
     render() {
         const { rowCount, perRow, scrollToIndex, style, defaultItemHeight, disableVirtualization } = this.state

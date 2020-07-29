@@ -20,7 +20,7 @@ class Bookmarks extends React.Component {
 
         return (
             <Items 
-                key={spaceId}
+                key={'space'+spaceId}
                 {...etc}
                 index={index}
                 spaceId={spaceId}

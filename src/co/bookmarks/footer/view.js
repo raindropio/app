@@ -11,7 +11,7 @@ export default class BookmarksFooterView extends React.PureComponent {
     }
 
     render() {
-        const { status, compact, count, compactLimit, isSearching, getLink } = this.props
+        const { spaceId, status, compact, count, compactLimit, isSearching, getLink } = this.props
         let content = null
 
         switch(status.nextPage) {
@@ -54,7 +54,7 @@ export default class BookmarksFooterView extends React.PureComponent {
                     as={Link}
                     variant='flat'
                     data-block
-                    to={getLink({ full:true })}>
+                    to={getLink({ _id:spaceId, full:true, refine:'' })}>
                     {t.s('showAll')}
                 </Button>
             )
