@@ -56,12 +56,10 @@ class FormSearch extends React.PureComponent {
         switch(e.key) {
             case 'Escape':
                 if (this.props.clearOnEscape){
-                    e.stopPropagation()
-
-                    console.log('caaa')
-
-                    if (this.props.value)
+                    if (this.props.value){
+                        e.stopPropagation()
                         this.onReset()
+                    }
                     else
                         e.target.blur()
                 }

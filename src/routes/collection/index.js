@@ -35,7 +35,7 @@ export default class CollectionRoute extends React.PureComponent {
             //changed collection
             if (_id !== null){
                 $_id = _id
-                $query = query.full ? '?full=true' : ''
+                $query = query.full ? 'full=true' : ''
     
                 if (refine === null)
                     $searchRaw = ''
@@ -58,7 +58,7 @@ export default class CollectionRoute extends React.PureComponent {
             if (!match.params.search && 
                 $searchRaw &&
                 $searchRaw != match.params.search)
-                $query = query.full ? '?full=true' : ''
+                $query = query.full ? 'full=true' : ''
     
             //changed query
             let queryIsChanged = false

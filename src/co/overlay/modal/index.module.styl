@@ -5,12 +5,22 @@
     top: 0
     bottom: 0
     right: 0
-    background: rgba(0,0,0,.35)
     display: flex
     align-items: center
     justify-content: center
-    animation: modal-appear .25s linear
-    backface-visibility: hidden
+
+    &:before {
+        content: ''
+        position: absolute
+        left: 0
+        top: 0
+        bottom: 0
+        right: 0
+        background: rgba(0,0,0,.35)
+        backface-visibility: hidden
+        pointer-events: none
+        animation: modal-appear .3s ease-in-out
+    }
 
     &.important {
         z-index: 99999999
@@ -18,6 +28,7 @@
 }
 
 .wrap {
+    z-index: 1
     max-width: 90%  
     max-height: 90%
     border-radius: var(--border-radius)
@@ -30,7 +41,7 @@
     display: flex
     flex-direction: column
     overflow: hidden
-    animation: wrap-appear .25s ease-in-out
+    animation: wrap-appear .3s ease-in-out
     backface-visibility: hidden
 
     &[data-stretch] {
@@ -41,8 +52,7 @@
 
 .body {
     flex: 1
-    --background-color: var(--sidebar-background-color)
-    background: var(--background-color)
+    background: var(--sidebar-background-color)
     display: flex
     flex-direction: column
     width: 100%
@@ -56,7 +66,7 @@
 }
 
 @keyframes wrap-appear {
-    0% { transform: scale(0.95) }
-    60% { transform: scale(1.05) }
-    100% { transform: scale(1) }
+    0% { transform: scale(0.9); opacity: 0 }
+    60% { transform: scale(1.05);  }
+    100% { transform: scale(1); opacity: 1 }
 }

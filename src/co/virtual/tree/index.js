@@ -1,3 +1,4 @@
+import s from './index.module.styl'
 import React from 'react'
 import { FixedSizeList, areEqual } from 'react-window'
 import { Droppable, Draggable, DragDropContext } from 'react-beautiful-dnd'
@@ -125,7 +126,7 @@ class VirtuosoTree extends React.Component {
     )
 
     render() {
-        const { className, height, totalCount, itemHeight, dataKey } = this.props
+        const { className='', height, totalCount, itemHeight, dataKey } = this.props
         const { type } = this.props
         const { isCombineEnabled } = this.state
 
@@ -144,7 +145,7 @@ class VirtuosoTree extends React.Component {
                             ref={this._list}
                             outerRef={innerRef}
 
-                            className={className}
+                            className={s.tree+' '+className}
                             width='100%'
                             height={height}
                             itemCount={totalCount}

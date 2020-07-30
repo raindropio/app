@@ -38,6 +38,9 @@ export default class VirtualSortable extends React.PureComponent {
                 ghostClass={s.ghost}
 
                 animation={150}
+                delay={100}
+                delayOnTouchOnly={true}
+                scroll={false}
 
                 list={items}
                 setList={emptyFunc}

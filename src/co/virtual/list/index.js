@@ -9,7 +9,7 @@ export default class VirtualList extends React.Component {
     }
 
     render() {
-        const Component = this.props.rowIsDraggable ? Sortable : Base
+        const Component = this.props.rowIsDraggable && this.props.rowIsDraggable(0) ? Sortable : Base
 
         return (
             <Component {...this.props} />

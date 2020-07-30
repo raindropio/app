@@ -35,7 +35,8 @@ export default class BookmarksItemsListing extends React.Component {
     onDragEnd = (from, toIndex)=>
         this.props.actions.oneReorder(this.computeItemKey(from), this.computeItemKey(toIndex))
 
-    renderItem = (index, provided, { isDragging })=>{
+    renderItem = (index, provided, source={})=>{
+        const { isDragging } = source
         const _id = this.props.items[index]
 
         return (
