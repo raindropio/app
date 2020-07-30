@@ -11,6 +11,7 @@ export default class VirtualSortable extends React.Component {
 
         dragType: '',
         dragGroup: '',
+        dragSubGroup: '',           //optional
         onForceRerender: undefined, //func ()
         onDragEnd: undefined        //func ({ _id, index, dragGroup, dragType }, { _id, index, dragGroup, dragType })
     }
@@ -19,21 +20,22 @@ export default class VirtualSortable extends React.Component {
         items: []
     }
 
-    static getDerivedStateFromProps({ totalCount, dragGroup, dragType, computeItemKey }) {
-        _cache[dragGroup] = Array.from(Array(totalCount), (_, index) => ({
+    static getDerivedStateFromProps({ totalCount, dragGroup, dragSubGroup, dragType, computeItemKey }) {
+        _cache[dragGroup+':'+dragSubGroup] = Array.from(Array(totalCount), (_, index) => ({
             _id: computeItemKey(index),
             dragGroup,
+            dragSubGroup,
             dragType,
             index
         }))
 
         return {
-            items: _cache[dragGroup]
+            items: _cache[dragGroup+':'+dragSubGroup]
         }
     }
 
     onChoose = ({ oldIndex })=>{
-        this._choosed = _cache[this.props.dragGroup][oldIndex]
+        this._choosed = _cache[this.props.dragGroup+':'+this.props.dragSubGroup][oldIndex]
     }
 
     setDataTransferData = (dataTransfer, elem)=>{
@@ -53,12 +55,15 @@ export default class VirtualSortable extends React.Component {
     }
 
     onEnd = ({ oldIndex, newDraggableIndex, to })=>{
-        let oldDragGroup = this.props.dragGroup
-        let newDragGroup = to.parentElement.getAttribute('data-group-id')
-        if (!isNaN(newDragGroup)) newDragGroup = parseInt(newDragGroup)
+        let oldGroupId = this.props.dragGroup+':'+this.props.dragSubGroup
 
-        const origin = _cache[oldDragGroup][oldIndex]
-        const destination = _cache[newDragGroup][newDraggableIndex]
+        //new drag group
+        let newGroupId = to.parentElement.getAttribute('data-group')
+        if (!isNaN(newGroupId)) newGroupId = parseInt(newGroupId)
+        newGroupId += ':'+to.parentElement.getAttribute('data-sub-group')
+
+        const origin = _cache[oldGroupId][oldIndex]
+        const destination = _cache[newGroupId][newDraggableIndex]
 
         if (origin._id != destination._id)
             this.props.onDragEnd(
@@ -68,13 +73,14 @@ export default class VirtualSortable extends React.Component {
     }
 
     render() {
-        const { className='', dragType, dragGroup, listRef, children, onForceRerender, ...etc } = this.props
+        const { className='', dragType, dragGroup, dragSubGroup, listRef, children, onForceRerender, ...etc } = this.props
         const { items } = this.state
         
         return (
             <div 
                 ref={listRef}
-                data-group-id={dragGroup}>
+                data-group={dragGroup}
+                data-sub-group={dragSubGroup}>
                 <ReactSortable
                     {...etc}
                     className={className + ' ' + s.sortable}

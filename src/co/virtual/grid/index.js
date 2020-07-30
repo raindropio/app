@@ -120,20 +120,8 @@ class VirtualGridRow extends React.Component {
     renderItem = ({ index })=>
         this.props.item(index)
 
-    onDragEnd = (from, to)=>{
-        if (typeof from.dragGroup == 'string' &&
-            from.dragGroup.includes(':'))
-            from.dragGroup = from.dragGroup.split(':')[1]
-
-        if (typeof to.dragGroup == 'string' &&
-            to.dragGroup.includes(':'))
-            to.dragGroup = to.dragGroup.split(':')[1]
-
-        this.props.onDragEnd(from, to)
-    }
-
     render() {
-        const { className, row, totalCount, dragType, dragGroup, rowIsDraggable, onForceRerender } = this.props
+        const { className, row, totalCount, dragType, dragGroup, rowIsDraggable, onForceRerender, onDragEnd } = this.props
         const { items } = this.state
 
         if (rowIsDraggable && rowIsDraggable(0))
@@ -143,9 +131,10 @@ class VirtualGridRow extends React.Component {
                     computeItemKey={this.computeItemKey}
                     totalCount={totalCount}
                     dragType={dragType}
-                    dragGroup={row+':'+dragGroup}
+                    dragGroup={dragGroup}
+                    dragSubGroup={row}
                     onForceRerender={onForceRerender}
-                    onDragEnd={this.onDragEnd}>
+                    onDragEnd={onDragEnd}>
                     {items.map(this.renderItem)}
                 </Sortable>
             )
