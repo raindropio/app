@@ -1,5 +1,5 @@
-@import './size.css';
-@import './themes.css';
+@import './size.module.css';
+@import './themes.module.css';
 
 /* Page itself */
 .page {

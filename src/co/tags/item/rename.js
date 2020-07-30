@@ -4,8 +4,8 @@ import t from '~t'
 import { Error } from '~co/overlay/dialog'
 import { Item, ItemTitle, ItemIcon } from '~co/common/list'
 import { Text } from '~co/common/form'
-import Icon from '~co/common/icon'
 import Preloader from '~co/common/preloader'
+import TagIcon from './icon'
 
 export default class FiltersTagRename extends React.PureComponent {
     state = {
@@ -48,10 +48,8 @@ export default class FiltersTagRename extends React.PureComponent {
         return (
             <form onSubmit={this.onSubmit}>
                 <Item>
-                    <ItemIcon>
-                        {loading ? <Preloader /> : <Icon name='tag' />}
-                    </ItemIcon>
-
+                    {loading ? <ItemIcon><Preloader /></ItemIcon> : <TagIcon />}
+                    
                     <ItemTitle>
                         <Text
                             type='text'

@@ -9,6 +9,8 @@
     display: flex
     align-items: center
     justify-content: center
+    animation: modal-appear .25s linear
+    backface-visibility: hidden
 
     &.important {
         z-index: 99999999
@@ -28,6 +30,8 @@
     display: flex
     flex-direction: column
     overflow: hidden
+    animation: wrap-appear .25s ease-in-out
+    backface-visibility: hidden
 
     &[data-stretch] {
         width: max(50%, 500px)
@@ -37,6 +41,7 @@
 
 .body {
     flex: 1
+    --background-color: var(--sidebar-background-color)
     background: var(--background-color)
     display: flex
     flex-direction: column
@@ -45,9 +50,13 @@
     overflow: hidden
 }
 
-@supports (backdrop-filter: none) {
-	.body {
-		background: unquote('hsla(var(--background-hsl), .85)')
-		backdrop-filter: blur(20px)
-	}
+@keyframes modal-appear {
+    0% { opacity: 0 }
+    100% { opacity: 1 }
+}
+
+@keyframes wrap-appear {
+    0% { transform: scale(0.95) }
+    60% { transform: scale(1.05) }
+    100% { transform: scale(1) }
 }
