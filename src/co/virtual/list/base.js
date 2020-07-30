@@ -16,10 +16,7 @@ export default class VirtualListBase extends React.PureComponent {
         disableVirtualization: false,
         defaultItemHeight: 80,
         scrollToIndex: -1,
-        overscan: 500,
-
-        sortable: false,
-        onSort: undefined           //(fromId, toId)
+        overscan: 500
     }
 
     _list = React.createRef()

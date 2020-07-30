@@ -28,7 +28,6 @@ class VirtuosoTree extends React.Component {
         scrollToIndex: -1,
 
         //rbdnd
-        type: 'default',            //optional
         rowIsDraggable: undefined,  //func, optional (index)
         rowIsDroppable: undefined,  //func, optional (fromIndex, toIndex)
         onDragStart: undefined,     //func, optional (index)
@@ -127,7 +126,6 @@ class VirtuosoTree extends React.Component {
 
     render() {
         const { className='', height, totalCount, itemHeight, dataKey } = this.props
-        const { type } = this.props
         const { isCombineEnabled } = this.state
 
         return (
@@ -136,7 +134,7 @@ class VirtuosoTree extends React.Component {
                 onDragUpdate={this.onDragUpdate}
                 onDragEnd={this.onDragEnd}>
                 <Droppable
-                    droppableId={type}
+                    droppableId='default'
                     mode='virtual'
                     isCombineEnabled={isCombineEnabled}
                     renderClone={this.renderClone}>

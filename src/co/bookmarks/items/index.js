@@ -71,9 +71,10 @@ export default connect(
         const getViewHide = makeViewHide()
     
         return (state, { spaceId })=>{
-            const { view, access } = getCollection(state, spaceId)
+            const { _id, view, access } = getCollection(state, spaceId)
 
             return {
+                _id,
                 items: bookmarksIds(state, spaceId),
 
                 view,

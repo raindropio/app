@@ -1,21 +1,20 @@
 import s from './index.module.styl'
 import React from 'react'
 import ListBase from '../list/base'
-import Sortable from './sortable'
+import Sortable from '../helpers/sortable'
 import withAutoSize from '../helpers/withAutoSize'
 
 class VirtualGrid extends React.Component {
     static defaultProps = {
         //...same as List
+        //...same as sortable
         columnWidth: 0,             //required
         defaultItemHeight: 250,     //required
-
-        type: undefined,            //
-        rowIsDraggable: undefined,  //func, optional (index)
-        onDragEnd: undefined,       //func (fromIndex,toIndex)
     }
 
-    state = {}
+    state = {
+        innerDataKey: ''
+    }
 
     //measure columns and rows on container size change
     static getDerivedStateFromProps({ width, height, columnWidth, defaultItemHeight, totalCount, disableVirtualization, ...etc }, state) {
@@ -42,25 +41,32 @@ class VirtualGrid extends React.Component {
         }
     }
 
+    onForceRerender = ()=>
+        this.setState({innerDataKey: new Date().getTime()})
+
     renderRow = row => 
-        <VirtualGridRow key={row} {...this.props} {...this.state} row={row} />
+        <VirtualGridRow 
+            key={row} 
+            {...this.props} 
+            {...this.state} 
+            row={row}
+            onForceRerender={this.onForceRerender} />
 
     render() {
-        const { rowCount, perRow, scrollToIndex, style, defaultItemHeight, disableVirtualization } = this.state
+        const { rowCount, perRow, scrollToIndex, style, defaultItemHeight, innerDataKey } = this.state
         const { dataKey='', ...etc } = this.props
 
         return (
             <ListBase
                 {...etc}
 
-                className={!disableVirtualization ? s.scrollable : ''}
+                className={s.scrollable}
                 computeItemKey={undefined}
-                sortable={false}
 
                 style={style}
                 item={this.renderRow}
 
-                dataKey={dataKey+perRow}
+                dataKey={dataKey+perRow+innerDataKey}
                 totalCount={rowCount}
                 defaultItemHeight={defaultItemHeight}
 
@@ -78,9 +84,12 @@ class VirtualGridRow extends React.Component {
         row: -1,
         perRow: 0,
         totalCount: 0,
-        item: {},
+        item: undefined,
         computeItemKey: undefined,
-        className: ''
+        className: '',
+
+        dragType: '',
+        dragGroup: ''
     }
 
     state = {
@@ -105,22 +114,38 @@ class VirtualGridRow extends React.Component {
         return { items, _prevProps: {row, perRow, dataKey} }
     }
 
-    getSortableId = (index)=>
-        this.state.items[index].id
+    computeItemKey = (index)=>
+        this.state.items && this.state.items[index] && this.state.items[index].id
 
-    renderItem = ({ index }, provided={}, snapshot={})=>
-        this.props.item(index, provided, snapshot)
+    renderItem = ({ index })=>
+        this.props.item(index)
+
+    onDragEnd = (from, to)=>{
+        if (typeof from.dragGroup == 'string' &&
+            from.dragGroup.includes(':'))
+            from.dragGroup = from.dragGroup.split(':')[1]
+
+        if (typeof to.dragGroup == 'string' &&
+            to.dragGroup.includes(':'))
+            to.dragGroup = to.dragGroup.split(':')[1]
+
+        this.props.onDragEnd(from, to)
+    }
 
     render() {
-        const { className, rowIsDraggable, onDragEnd } = this.props
+        const { className, row, totalCount, dragType, dragGroup, rowIsDraggable, onForceRerender } = this.props
         const { items } = this.state
 
         if (rowIsDraggable && rowIsDraggable(0))
             return (
                 <Sortable
                     className={className+' '+s.grid}
-                    items={items}
-                    onDragEnd={onDragEnd}>
+                    computeItemKey={this.computeItemKey}
+                    totalCount={totalCount}
+                    dragType={dragType}
+                    dragGroup={row+':'+dragGroup}
+                    onForceRerender={onForceRerender}
+                    onDragEnd={this.onDragEnd}>
                     {items.map(this.renderItem)}
                 </Sortable>
             )

@@ -32,11 +32,14 @@ export default class BookmarksItemsListing extends React.Component {
     rowIsDraggable = ()=>
         this.props.sort=='sort'
 
-    onDragEnd = (from, toIndex)=>
-        this.props.actions.oneReorder(this.computeItemKey(from), this.computeItemKey(toIndex))
+    onDragEnd = (from, to)=>{
+        if (from.dragGroup != to.dragGroup)
+            this.props.actions.oneMove(from._id, to.dragGroup)
+        else
+            this.props.actions.oneReorder(from._id, to._id)
+    }
 
-    renderItem = (index, provided, source={})=>{
-        const { isDragging } = source
+    renderItem = (index)=>{
         const _id = this.props.items[index]
 
         return (
@@ -50,7 +53,6 @@ export default class BookmarksItemsListing extends React.Component {
                 selectModeEnabled={this.props.selectModeEnabled}
                 //listing specififc
                 active={this.props.activeId == _id}
-                isDragging={isDragging}
                 getLink={this.props.getLink}
                 events={this.props.events}
                 actions={this.props.actions} />
@@ -89,7 +91,7 @@ export default class BookmarksItemsListing extends React.Component {
     )
 
     render() {
-        const { spaceId, items, viewHide, gridSize, listCoverRight, activeId, selectModeEnabled, compact } = this.props
+        const { _id, items, viewHide, gridSize, listCoverRight, activeId, selectModeEnabled, compact } = this.props
         const { isDropping, dropHandlers } = this.props
 
         //specific view
@@ -111,7 +113,7 @@ export default class BookmarksItemsListing extends React.Component {
         }
 
         return (
-            <AccentColor _id={spaceId}>{style=>
+            <AccentColor _id={_id}>{style=>
                 <div 
                     className={`
                         ${s.elements}
@@ -142,7 +144,8 @@ export default class BookmarksItemsListing extends React.Component {
                             endReached={this.endReached}
 
                             //dnd
-                            type='bookmarks'
+                            dragType='bookmark'
+                            dragGroup={_id}
                             rowIsDraggable={this.rowIsDraggable}
                             onDragEnd={this.onDragEnd}
                             />
