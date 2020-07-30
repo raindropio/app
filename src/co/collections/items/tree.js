@@ -1,7 +1,7 @@
 import s from './tree.module.styl'
 import React from 'react'
 
-import List from '~co/virtual/list'
+import Tree from '~co/virtual/tree'
 import Item from '../item'
 import Group from '../group'
 import Empty from './empty'
@@ -210,15 +210,14 @@ export default class CollectionsTree extends React.Component {
             return <Empty />
 
         return (
-            <List            
+            <Tree            
                 className={s.tree}
                     
-                //react-virtuoso
+                //base
                 item={this.rowRenderer}
                 totalCount={data.length + customRows.length}
                 dataKey={String(activeId)+(typeof activeId)+dataCheckpoint} //only used to re-render when data re-ordered from outside
                 scrollToIndex={scrollToIndex}
-                defaultItemHeight={0}
                 itemHeight={32}
 
                 //custom

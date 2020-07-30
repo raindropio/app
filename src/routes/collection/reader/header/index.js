@@ -43,7 +43,7 @@ export default class ReaderHeader extends React.PureComponent {
 
         return (
             <Header
-                backTo={getLink({}, true)}
+                backTo={getLink({ bookmark: null, tab: null })}
                 onFullscreenClick={onFullscreenToggleClick}>
                 <Settings
                     tab={tab} />

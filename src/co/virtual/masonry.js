@@ -72,15 +72,16 @@ class VirtualMasonry extends React.Component {
     }
 }
 
-const VirtualMasonryInner = ({ width, height, scrollTop, isScrolling, columnWidth, columnCount, items, renderItem, itemKey, defaultItemHeight, scrollToIndex, onRender, dataKey }) => {
+const VirtualMasonryInner = ({ width, height, scrollTop, isScrolling, columnWidth, columnCount, items, renderItem, itemKey, defaultItemHeight, scrollToIndex, onRender }) => {
     const positioner = usePositioner({ width, columnCount, columnWidth })
     const resizeObserver = useResizeObserver(positioner)
 
     //scroll to index
-    const sti = useScrollToIndex(positioner, { align: 'center', height })
+    const sti = useScrollToIndex(positioner, { align: 'center', height, offset:0 })
     React.useEffect(() => {
-        if (scrollToIndex)
+        if (scrollToIndex){
             sti(scrollToIndex)
+        }
     }, [scrollToIndex, sti])
   
     return useMasonry({

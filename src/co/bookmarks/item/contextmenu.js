@@ -23,13 +23,13 @@ export default function BookmarksItemContextmenu({
 
                 <MenuSeparator />
 
-                <MenuItem to={getLink({ bookmark: _id }, true)}>
+                <MenuItem to={getLink({ bookmark: _id, tab: '' })}>
                     <Icon name='show' />
                     {t.s('open')+' '+t.s('preview').toLowerCase()}
                 </MenuItem>
 
                 {access.level >= 2 && cache ? (
-                    <MenuItem to={getLink({ bookmark: _id, tab:'cache' }, true)}>
+                    <MenuItem to={getLink({ bookmark: _id, tab:'cache' })}>
                         <Icon name={cache ? 'cache_ready' : 'cache_failed'} />
                         {cache != 'ready' ? '⚠️ '+t.s('permanentCopy') : t.s('open') + ' ' +t.s('permanentCopy').toLowerCase()}
                     </MenuItem>
