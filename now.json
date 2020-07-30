@@ -11,8 +11,8 @@
     }
   ],
   "headers": [
-    { "source": "/assets/(.*)", "headers": { "cache-control": "public, must-revalidate, max-age=31536000" } },
-    { "source": "/favicon.ico", "headers": { "cache-control": "public, must-revalidate, max-age=31536000" } }
+    { "source": "/assets/(.*)", "headers": [{ "key": "cache-control", "value": "public, must-revalidate, max-age=31536000" }] },
+    { "source": "/favicon.ico", "headers": [{ "key": "cache-control", "value": "public, must-revalidate, max-age=31536000" }] }
   ],
   "rewrites": [
     { "source": "/legacy/4",              "destination": "/index.html" },

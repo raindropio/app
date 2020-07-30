@@ -2,8 +2,7 @@ import React from 'react'
 import t from '~t'
 import Modal, { Header, Content } from '~co/overlay/modal'
 import Items from '~co/collections/items'
-import SearchInput from '~co/search/input'
-import { Layout } from '~co/common/form'
+import { Layout, Search } from '~co/common/form'
 
 export default class CollectionsPicker extends React.Component {
     state = {
@@ -26,7 +25,7 @@ export default class CollectionsPicker extends React.Component {
                     data-no-shadow />
 
                 <Layout>
-                    <SearchInput 
+                    <Search 
                         autoFocus
                         value={this.state.options.search}
                         placeholder={t.s('findOrCreateCollection')}

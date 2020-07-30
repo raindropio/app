@@ -1,9 +1,9 @@
 import React from 'react'
 import _ from 'lodash'
+import Input from './input'
+import Suggestions from './suggestions'
 
-import View from './view'
-
-export default class Search extends React.Component {
+export default class Search extends React.PureComponent {
     static defaultProps = {
         spaceId: 0,
         value: '',
@@ -12,6 +12,7 @@ export default class Search extends React.Component {
     }
 
     state = {
+        floating: !this.props.value,
         value: this.props.value||''
     }
 
@@ -21,42 +22,54 @@ export default class Search extends React.Component {
 
     componentDidUpdate(prev) {
         if (prev.value != this.props.value)
-            this.setState({ value: this.props.value||'' })
+            this.setState({
+                floating: !this.props.value,
+                value: this.props.value||''
+            })
     }
 
     handlers = {
-        onChange: ({ target })=>{
-            const changed = (this.state.value||'').trim() != (target.value||'').trim()
+        onChange: (value, autoSubmit=false)=>{
+            const changed = (this.state.value||'').trim() != (value||'').trim()
 
-            this.setState({ value: target.value }, ()=>{
-                //nothing changed
-                if (!changed)
-                    return
+            this.setState(
+                { value },
+                changed ? ()=>{
+                    if (!this.state.value || autoSubmit)
+                        return this.handlers.onSubmit()
 
-                if (!this.state.value)
-                    return this.handlers.onSubmit()
+                    //suggestions are showing right now, no autoSubmit
+                    if (this.props.outerRef.current &&
+                        this.props.outerRef.current.firstChild)
+                        return
 
-                //suggestions are showing right now, no autoSubmit
-                if (this.props.outerRef.current &&
-                    this.props.outerRef.current.firstChild)
-                    return
-
-                this.onSubmitBounced()
-            })
+                    this.onSubmitBounced()
+                } : undefined
+            )
         },
 
-        onSubmit: ()=>{
-            this.props.events.onSubmit && this.props.events.onSubmit(this.state.value)
+        onSubmit: e=>{
+            if (e && e.preventDefault)
+                e.preventDefault()
+            this.props.events.onSubmit(this.state.value)
         }
     }
 
     render() {
         return (
-            <View
+            <Input
                 {...this.props}
                 {...this.state}
-                {...this.handlers}
-                events={undefined} />
+                {...this.handlers}>
+                {downshift => (
+                    <Suggestions 
+                        downshift={downshift}
+
+                        outerRef={this.props.outerRef}
+                        floating={this.state.floating}
+                        spaceId={this.props.spaceId} />
+                )}
+            </Input>
         )
     }
 }
