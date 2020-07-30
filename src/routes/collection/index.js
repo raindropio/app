@@ -24,7 +24,7 @@ export default class CollectionRoute extends React.PureComponent {
     }
 
     handlers = {
-        getLink: ({ _id=null, search=null, refine=null, ...query })=>{
+        getLink: ({ _id=null, search=null, refine=null, ...query }, forceResetQuery=false)=>{
             const { match, location } = this.props
     
             //overrides
@@ -64,8 +64,8 @@ export default class CollectionRoute extends React.PureComponent {
             let queryIsChanged = false
             for(const i in query){ queryIsChanged=true; break; }
     
-            if (queryIsChanged){
-                const merged = {...this.state.query, ...query}
+            if (forceResetQuery || queryIsChanged){
+                const merged = {...(forceResetQuery ? {} : this.state.query), ...query}
                 const params = new URLSearchParams('')
     
                 for(const key in merged||{})

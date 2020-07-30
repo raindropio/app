@@ -176,31 +176,11 @@ module.exports = {
 
 			{
 				test: /\.(styl|css)$/,
-				exclude: /\.module\.(styl|css)$/,
 				sideEffects: true,
 				use: [
 					...(isProd ? [{
 						loader: MiniCssExtractPlugin.loader,
 						options: {
-							esModule: true,
-							hmr: !isProd
-						},
-					}] : ['style-loader']),
-					'css-loader',
-					'postcss-loader',
-					'stylus-loader',
-				]
-			},
-
-			{
-				test: /\.(styl|css)$/,
-				include: /\.module\.(styl|css)$/,
-				sideEffects: true,
-				use: [
-					...(isProd ? [{
-						loader: MiniCssExtractPlugin.loader,
-						options: {
-							esModule: true,
 							hmr: !isProd
 						},
 					}] : ['style-loader']),
@@ -208,7 +188,8 @@ module.exports = {
 						loader: 'css-loader',
 						options: {
 							modules: {
-								localIdentName: '[local][hash:base64:4]'
+								auto: true,
+								localIdentName: '[local]-[hash:base64:4]'
 							}
 						}
 					},

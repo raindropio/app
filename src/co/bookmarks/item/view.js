@@ -57,7 +57,7 @@ export default class BookmarkItemView extends React.PureComponent {
                 <div className={s.actions}>
                     <Button 
                         as={Link}
-                        to={getLink({ bookmark: _id, tab: '' })}
+                        to={getLink({ bookmark: _id }, true)}
                         variant='outline'
                         title={t.s('preview')}>
                         <Icon name='show' />
@@ -67,7 +67,14 @@ export default class BookmarkItemView extends React.PureComponent {
                         <>
                             <Button 
                                 as={Link}
-                                to={getLink({ bookmark: _id, tab: 'edit' })}
+                                to={getLink({ bookmark: _id, tab: 'edit', autoFocus: 'tags' }, true)}
+                                variant='outline'>
+                                <Icon name='tag' />
+                            </Button>
+
+                            <Button 
+                                as={Link}
+                                to={getLink({ bookmark: _id, tab: 'edit' }, true)}
                                 variant='outline'>
                                 {t.s('editMin')}
                             </Button>
