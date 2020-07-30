@@ -29,12 +29,14 @@ export default class BookmarksItemsListing extends React.Component {
         this.props.actions.nextPage(this.props.spaceId)
 
     //dnd
-    rowIsDraggable = ()=>
-        this.props.sort=='sort'
+    sortEnabled = ()=>
+        this.props.sort=='sort' && 
+        !this.props.selectModeEnabled &&
+        this.props.access.level >= 3
 
-    onDragEnd = (from, to)=>{
-        if (from.dragGroup != to.dragGroup)
-            this.props.actions.oneMove(from._id, to.dragGroup)
+    onSort = (from, to)=>{
+        if (from.sortGroup != to.sortGroup)
+            this.props.actions.oneMove(from._id, to.sortGroup)
         else
             this.props.actions.oneReorder(from._id, to._id)
     }
@@ -143,11 +145,11 @@ export default class BookmarksItemsListing extends React.Component {
                             
                             endReached={this.endReached}
 
-                            //dnd
-                            dragType='bookmark'
-                            dragGroup={_id}
-                            rowIsDraggable={this.rowIsDraggable}
-                            onDragEnd={this.onDragEnd}
+                            //sortable
+                            sortType='bookmark'
+                            sortGroup={_id}
+                            sortEnabled={this.sortEnabled()}
+                            onSort={this.onSort}
                             />
                     ) : (
                         <>

@@ -12,6 +12,14 @@ import Tags from './tags'
 import Info from './info'
 
 export default class BookmarkItemView extends React.PureComponent {
+    onDragStart = e=>{
+        const { _id, link } = this.props
+
+        e.dataTransfer.setData('text/uri-list', link)
+        e.dataTransfer.setData('text/plain', link)
+        e.dataTransfer.setData('data', { type: 'bookmark', _id })
+    }
+
     render() {
         const { innerRef, isDragging } = this.props
         const { _id, link, title, excerpt, highlight, cover, domain, tags, view, access } = this.props
@@ -30,7 +38,9 @@ export default class BookmarkItemView extends React.PureComponent {
                     ${isDragging&&s.isDragging}
                     ${s[view]}
                     ${selectModeEnabled&&s.selectModeEnabled}
-                `}>
+                `}
+                draggable
+                onDragStart={this.onDragStart}>
                 <Cover
                     cover={cover}
                     domain={domain}

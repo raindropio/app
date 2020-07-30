@@ -88,8 +88,8 @@ class VirtualGridRow extends React.Component {
         computeItemKey: undefined,
         className: '',
 
-        dragType: '',
-        dragGroup: ''
+        sortType: '',
+        sortGroup: ''
     }
 
     state = {
@@ -121,20 +121,21 @@ class VirtualGridRow extends React.Component {
         this.props.item(index)
 
     render() {
-        const { className, row, totalCount, dragType, dragGroup, rowIsDraggable, onForceRerender, onDragEnd } = this.props
+        const { className, row, totalCount } = this.props
+        const { sortEnabled, sortType, sortGroup, onForceRerender, onSort } = this.props
         const { items } = this.state
 
-        if (rowIsDraggable && rowIsDraggable(0))
+        if (sortEnabled)
             return (
                 <Sortable
                     className={className+' '+s.grid}
                     computeItemKey={this.computeItemKey}
                     totalCount={totalCount}
-                    dragType={dragType}
-                    dragGroup={dragGroup}
-                    dragSubGroup={row}
+                    sortType={sortType}
+                    sortGroup={sortGroup}
+                    sortSubGroup={row}
                     onForceRerender={onForceRerender}
-                    onDragEnd={onDragEnd}>
+                    onSort={onSort}>
                     {items.map(this.renderItem)}
                 </Sortable>
             )
