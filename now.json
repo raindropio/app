@@ -3,6 +3,7 @@
   "name": "app_5",
   "scope": "raindrop-io",
   "trailingSlash": false,
+  "public": false,
   "builds": [
     {
       "src": "package.json",
@@ -16,9 +17,7 @@
   ],
   "rewrites": [
     { "source": "/legacy/4",              "destination": "/index.html" },
-    { "source": "/bookmarklet/1.0/(.*)",  "destination": "https://bookmarklet1.raindrop-io.now.sh/$1" }
-  ],
-  "routes": [
-    { "src": "/(.*)", "dest": "/" }
+    { "source": "/bookmarklet/1.0/(.*)",  "destination": "https://bookmarklet1.raindrop-io.now.sh/$1" },
+    { "source": "/(.*)",                  "destination": "/index.html" }
   ]
 }
