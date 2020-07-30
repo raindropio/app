@@ -17,7 +17,7 @@ export default class BookmarkItemView extends React.PureComponent {
 
         e.dataTransfer.setData('text/uri-list', link)
         e.dataTransfer.setData('text/plain', link)
-        e.dataTransfer.setData('data', { type: 'bookmark', _id })
+        e.dataTransfer.setData('bookmark', _id)
     }
 
     render() {

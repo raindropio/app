@@ -6,6 +6,8 @@ export default Component =>
         static defaultProps = {
             onLink: undefined, //async optional
             onFile: undefined, //async optional
+            onCustom: undefined, //async optional (type, data)
+            validateCustom: undefined, //func optional (type)
         }
 
         state = {

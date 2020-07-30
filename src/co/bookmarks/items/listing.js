@@ -34,12 +34,8 @@ export default class BookmarksItemsListing extends React.Component {
         !this.props.selectModeEnabled &&
         this.props.access.level >= 3
 
-    onSort = (from, to)=>{
-        if (from.sortGroup != to.sortGroup)
-            this.props.actions.oneMove(from._id, to.sortGroup)
-        else
-            this.props.actions.oneReorder(from._id, to._id)
-    }
+    onSort = (from, to)=>
+        this.props.actions.oneReorder(from._id, to._id)
 
     renderItem = (index)=>{
         const _id = this.props.items[index]
@@ -146,7 +142,6 @@ export default class BookmarksItemsListing extends React.Component {
                             endReached={this.endReached}
 
                             //sortable
-                            sortType='bookmark'
                             sortGroup={_id}
                             sortEnabled={this.sortEnabled()}
                             onSort={this.onSort}

@@ -9,23 +9,21 @@ export default class VirtualSortable extends React.Component {
         computeItemKey: undefined,  //(index)
         totalCount: 0,
 
-        sortType: '',
         sortGroup: '',
         sortSubGroup: '',           //optional
         onForceRerender: undefined, //func ()
-        onSort: undefined           //func ({ _id, index, sortGroup, sortType }, { _id, index, sortGroup, sortType })
+        onSort: undefined           //func ({ _id, index, sortGroup }, { _id, index, sortGroup })
     }
 
     state = {
         items: []
     }
 
-    static getDerivedStateFromProps({ totalCount, sortGroup, sortSubGroup, sortType, computeItemKey }) {
+    static getDerivedStateFromProps({ totalCount, sortGroup, sortSubGroup, computeItemKey }) {
         _cache[sortGroup+':'+sortSubGroup] = Array.from(Array(totalCount), (_, index) => ({
             _id: computeItemKey(index),
             sortGroup,
             sortSubGroup,
-            sortType,
             index
         }))
 
@@ -53,7 +51,7 @@ export default class VirtualSortable extends React.Component {
     }
 
     render() {
-        const { className='', sortType, sortGroup, sortSubGroup, listRef, children, onForceRerender, ...etc } = this.props
+        const { className='', sortGroup, sortSubGroup, listRef, children, onForceRerender, ...etc } = this.props
         const { items } = this.state
         
         return (
@@ -65,7 +63,7 @@ export default class VirtualSortable extends React.Component {
                     {...etc}
                     className={className + ' ' + s.sortable}
                     ghostClass={s.ghost}
-                    group={sortType}
+                    group={sortGroup}
 
                     animation={150}
                     delay={100}

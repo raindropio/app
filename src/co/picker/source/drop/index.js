@@ -9,9 +9,7 @@ class PickerSourceDrop extends React.Component {
 
     render() {
         return (
-            <Module onDropFiles={this.props.onDropFiles}>
-                {this.props.children}
-            </Module>
+            <Module {...this.props} />
         )
     }
 }

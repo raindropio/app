@@ -45,14 +45,28 @@ class BookmarksItems extends React.Component {
     onUploadFile = (file)=>
         new Promise((res, rej)=>{
             this.props.actions.oneUpload({
-                collectionId: this.props.spaceId,
+                collectionId: this.props._id,
                 file
             }, res, rej)
         })
 
+    onDropCustom = (type, data)=>{
+        switch(type){
+            case 'bookmark':
+                this.props.actions.oneMove(parseInt(data), this.props._id)
+            break
+        }
+    }
+
+    onDragCustom = (type)=>
+        type == 'bookmark'
+
     render() {
         return (
-            <PickerSourceDrop onFile={this.onUploadFile}>
+            <PickerSourceDrop 
+                onFile={this.onUploadFile}
+                onCustom={this.onDropCustom}
+                validateCustom={this.onDragCustom}>
                 {drop=>
                     <Listing 
                         {...this.props}

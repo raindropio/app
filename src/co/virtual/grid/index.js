@@ -88,7 +88,6 @@ class VirtualGridRow extends React.Component {
         computeItemKey: undefined,
         className: '',
 
-        sortType: '',
         sortGroup: ''
     }
 
@@ -122,7 +121,7 @@ class VirtualGridRow extends React.Component {
 
     render() {
         const { className, row, totalCount } = this.props
-        const { sortEnabled, sortType, sortGroup, onForceRerender, onSort } = this.props
+        const { sortEnabled, sortGroup, onForceRerender, onSort } = this.props
         const { items } = this.state
 
         if (sortEnabled)
@@ -131,7 +130,6 @@ class VirtualGridRow extends React.Component {
                     className={className+' '+s.grid}
                     computeItemKey={this.computeItemKey}
                     totalCount={totalCount}
-                    sortType={sortType}
                     sortGroup={sortGroup}
                     sortSubGroup={row}
                     onForceRerender={onForceRerender}
