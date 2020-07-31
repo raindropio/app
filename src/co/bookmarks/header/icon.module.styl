@@ -1,0 +1,21 @@
+.button[data-selectable="true"][data-no-icon="false"] {
+    &:not(:hover) .select,
+    &:hover .icon {
+        display: none
+    }
+}
+
+.button[data-no-icon="true"] {
+    .icon {
+        display: none
+    }
+}
+
+.select {
+    width: var(--icon-size)
+    height: var(--icon-size)
+    pointer-events: none
+    display: flex
+    align-items: center
+    justify-content: center
+}

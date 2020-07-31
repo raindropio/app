@@ -1,13 +1,14 @@
+import s from './icon.module.styl'
 import React from 'react'
 import t from '~t'
 import { connect } from 'react-redux'
-import { startSelectMode } from '~data/actions/bookmarks'
-import { makeStatus, getSearchEmpty } from '~data/selectors/bookmarks'
+import { selectAll } from '~data/actions/bookmarks'
+import { makeStatus } from '~data/selectors/bookmarks'
 
 import { FirstAction } from '~co/common/header'
 import CollectionIcon from '~co/collections/item/icon'
 import Button from '~co/common/button'
-import ChangeIcon from '~co/collections/changeIcon'
+import Icon from '~co/common/icon'
 
 class BookmarksHeaderIcon extends React.PureComponent {
     static defaultProps = {
@@ -15,39 +16,36 @@ class BookmarksHeaderIcon extends React.PureComponent {
         collection: {}
     }
 
-    state = {
-        show: false
+    onSelectAllClick = ()=>{
+        this.props.selectAll(this.props.spaceId)
     }
 
-    onIconClick = ()=>
-        this.setState({ show: true })
-
-    onIconClose = ()=>
-        this.setState({ show: false })
-
     render() {
-        const { collection: { _id, cover=[] }, status, isSearching } = this.props
-        const { show } = this.state
-
-        // if (!cover.length && !isSearching && status.main!='loading') return null
+        const { collection: { _id, cover=[], access: { level } }, status } = this.props
+        const selectable = level >= 3 && status.main == 'loaded'
 
         return (
             <FirstAction>
                 <Button 
-                    title={t.s('changeIcon')}
-                    disabled={_id <= 0}
-                    onClick={this.onIconClick}>
+                    className={s.button}
+                    data-selectable={selectable}
+                    data-no-icon={!cover.length && _id>0}
+                    title={t.s('select')+' '+t.s('all')}
+                    disabled={!selectable}
+                    onClick={this.onSelectAllClick}>
                     <CollectionIcon
+                        className={s.icon}
                         _id={_id}
                         cover={cover}
                         loading={status.main=='loading'} />
-                </Button>
 
-                {show ? (
-                    <ChangeIcon
-                        _id={_id}
-                        onClose={this.onIconClose} />
-                ) : null}
+                    {selectable && (
+                        <div className={s.select}>
+                            <input 
+                                type='checkbox' />
+                        </div>
+                    )}
+                </Button>
             </FirstAction>
         )
     }
@@ -58,9 +56,8 @@ export default connect(
         const getStatus = makeStatus()
     
         return (state, { spaceId })=>({
-            status: getStatus(state, spaceId),
-            isSearching: !getSearchEmpty(state, spaceId)
+            status: getStatus(state, spaceId)
         })
     },
-	{ startSelectMode }
+	{ selectAll }
 )(BookmarksHeaderIcon)

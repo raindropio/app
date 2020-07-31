@@ -8,6 +8,7 @@ import { Confirm } from '~co/overlay/dialog'
 import Button from '~co/common/button'
 import Icon from '~co/common/icon'
 import Popover, { Menu, MenuItem } from '~co/overlay/popover'
+import ChangeIcon from '~co/collections/changeIcon'
 
 class BookmarksHeaderMore extends React.Component {
     static defaultProps = {
@@ -18,7 +19,8 @@ class BookmarksHeaderMore extends React.Component {
     pin = React.createRef()
 
     state = {
-        menu: false
+        menu: false,
+        icon: false
     }
 
     onContextMenuClick = (e)=>{
@@ -28,6 +30,12 @@ class BookmarksHeaderMore extends React.Component {
 
     onContextMenuClose = ()=>
         this.setState({ menu: false })
+
+    onIconClick = ()=>
+        this.setState({ icon: true })
+
+    onIconClose = ()=>
+        this.setState({ icon: false })
 
     onRemoveClick = async()=>{
         if (await Confirm(t.s('areYouSure'), {
@@ -39,7 +47,7 @@ class BookmarksHeaderMore extends React.Component {
     }
 
     render() {
-        const { menu } = this.state
+        const { menu, icon } = this.state
         const { collection: { _id, access }, isSearching } = this.props
 
         if (isSearching || _id <=0 || access.level < 3) return null
@@ -58,6 +66,11 @@ class BookmarksHeaderMore extends React.Component {
                         pin={this.pin} 
                         onClose={this.onContextMenuClose}>
                         <Menu>
+                            <MenuItem onClick={this.onIconClick}>
+                                <Icon name='image' />
+                                {t.s('changeIcon')}
+                            </MenuItem>
+
                             <MenuItem onClick={this.onRemoveClick}>
                                 <Icon name='trash' />
                                 {t.s('remove')} {t.s('collection').toLowerCase()}
@@ -65,6 +78,12 @@ class BookmarksHeaderMore extends React.Component {
                         </Menu>
                     </Popover>
                 )}
+
+                {icon ? (
+                    <ChangeIcon
+                        _id={_id}
+                        onClose={this.onIconClose} />
+                ) : null}
             </>
         )
     }

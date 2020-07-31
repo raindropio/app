@@ -52,7 +52,7 @@ export default class CollectionsItemContextmenu extends React.Component {
                             {onIconClick ? (
                                 <MenuItem onClick={onIconClick}>
                                     <Icon name='image' />
-                                    {t.s('icon')}
+                                    {t.s('changeIcon')}
                                 </MenuItem>
                             ) : null}
 

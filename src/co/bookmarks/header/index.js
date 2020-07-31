@@ -11,7 +11,6 @@ import Rename from './rename'
 import More from './more'
 import Sort from './sort'
 import View from './view'
-import SelectAll from './selectAll'
 
 class BookmarksHeader extends React.Component {
     static defaultProps = {
@@ -45,7 +44,6 @@ class BookmarksHeader extends React.Component {
                 {status.main == 'loaded' ? (<>
                     <Sort {...this.props} />
                     <View {...this.props} />
-                    <SelectAll {...this.props} />
                 </>) : null}
                 <More {...this.props} />
             </Header>
