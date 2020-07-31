@@ -1,4 +1,4 @@
-import s from './upload.module.styl'
+import s from './progress.module.styl'
 import React from 'react'
 import t from '~t'
 
@@ -11,10 +11,11 @@ const defaultState = {
     uploading: false
 }
 
-export default class PickerSourceBaseUpload extends React.Component {
+export default class PickerSourceBaseProgress extends React.Component {
     static defaultProps = {
-        files: [],
-        onFile: undefined, //async
+        items: [],
+        getName: undefined,
+        process: undefined, //async
         onCancel: undefined
     }
 
@@ -25,18 +26,18 @@ export default class PickerSourceBaseUpload extends React.Component {
     }
 
     componentDidUpdate(prev) {
-        if (prev.files != this.props.files)
+        if (prev.items != this.props.items)
             this.upload()
     }
 
     upload = async()=>{
-        if (!this.props.files.length)
+        if (!this.props.items.length)
             return
 
         this.setState({ ...defaultState, uploading: true })
 
-        for(const i in this.props.files)
-            await this.uploadSingle(this.props.files[i])
+        for(const i in this.props.items)
+            await this.uploadSingle(this.props.items[i])
 
         if (!this.state.failed.length)
             this.cancel()
@@ -44,14 +45,14 @@ export default class PickerSourceBaseUpload extends React.Component {
             this.setState({ uploading: false })
     }
 
-    uploadSingle = (file)=>
+    uploadSingle = (item)=>
         new Promise(res=>{
-            this.props.onFile(file)
+            this.props.process(item)
                 .then(()=>{
-                    this.setState({ done: [...this.state.done, file.name] }, res)
+                    this.setState({ done: [...this.state.done, this.props.getName(item)] }, res)
                 })
                 .catch(e=>{
-                    this.setState({ failed: [...this.state.failed, { name: file.name, message: e.message }] }, res)
+                    this.setState({ failed: [...this.state.failed, { name: this.props.getName(item), message: e.message }] }, res)
                 })
         })
 
@@ -62,7 +63,7 @@ export default class PickerSourceBaseUpload extends React.Component {
 
     render() {
         const { failed, uploading, done } = this.state
-        const { files } = this.props
+        const { items } = this.props
 
         if (!uploading && !failed.length)
             return null
@@ -79,7 +80,7 @@ export default class PickerSourceBaseUpload extends React.Component {
 
                 <Content data-indent>
                     <div className={s.title}>
-                        {done.length} {t.s('of')} {files.length} {t.s('saved').toLowerCase()}
+                        {done.length} {t.s('of')} {items.length} {t.s('saved').toLowerCase()}
                     </div>
 
                     {failed.map(({name, message})=>

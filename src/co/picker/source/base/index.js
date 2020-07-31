@@ -1,5 +1,5 @@
 import React from 'react'
-import Upload from './upload'
+import Progress from './progress'
 
 export default Component =>
     class PickerSourceDrop extends React.Component {
@@ -11,8 +11,13 @@ export default Component =>
         }
 
         state = {
-            files: []
+            files: [],
+            custom: []
         }
+
+        //files
+        getFileName = (file)=>
+            file.name
 
         onDropFiles = (files)=>
             this.setState({ files })
@@ -20,18 +25,36 @@ export default Component =>
         onCancelFiles = ()=>
             this.setState({ files:[] })
 
+        //custom
+        getCustomName = (custom)=>
+            custom[1]
+
+        onDropCustom = (custom)=>
+            this.setState({ custom })
+
+        onCancelCustom = ()=>
+            this.setState({ custom:[] })
+
         render() {
             return (
                 <>
                     <Component 
                         {...this.props}
                         files={this.state.files}
-                        onDropFiles={this.onDropFiles} />
+                        onDropFiles={this.onDropFiles}
+                        onDropCustom={this.onDropCustom} />
 
-                    <Upload
-                        files={this.state.files}
-                        onFile={this.props.onFile}
+                    <Progress
+                        items={this.state.files}
+                        getName={this.getFileName}
+                        process={this.props.onFile}
                         onCancel={this.onCancelFiles} />
+
+                    <Progress
+                        items={this.state.custom}
+                        getName={this.getCustomName}
+                        process={this.props.onCustom}
+                        onCancel={this.onCancelCustom} />
                 </>
             )
         }

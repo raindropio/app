@@ -2,7 +2,7 @@ import s from './sortable.module.styl'
 import React from 'react'
 import { ReactSortable } from 'react-sortablejs'
 
-const _cache = {}
+const _computeItemKeyCache = {}
 
 export default class VirtualSortable extends React.Component {
     static defaultProps = {
@@ -20,28 +20,34 @@ export default class VirtualSortable extends React.Component {
     }
 
     static getDerivedStateFromProps({ totalCount, sortGroup, sortSubGroup, computeItemKey }) {
-        _cache[sortGroup+':'+sortSubGroup] = Array.from(Array(totalCount), (_, index) => ({
-            _id: computeItemKey(index),
+        _computeItemKeyCache[sortGroup+':'+sortSubGroup] = computeItemKey
+
+        return {
+            items: Array.from(Array(totalCount), () => ({}))
+        }
+    }
+
+    componentWillUnmount() {
+        delete _computeItemKeyCache[this.props.sortGroup+':'+this.props.sortSubGroup]
+    }
+
+    getItem = (sortGroup, sortSubGroup, index)=>{
+        return {
+            _id: _computeItemKeyCache[sortGroup+':'+sortSubGroup](index),
             sortGroup,
             sortSubGroup,
             index
-        }))
-
-        return {
-            items: _cache[sortGroup+':'+sortSubGroup]
         }
     }
 
     onEnd = ({ oldIndex, newDraggableIndex, to })=>{
-        let oldGroupId = this.props.sortGroup+':'+this.props.sortSubGroup
-
         //new drag group
-        let newGroupId = to.parentElement.getAttribute('data-group')
-        if (!isNaN(newGroupId)) newGroupId = parseInt(newGroupId)
-        newGroupId += ':'+to.parentElement.getAttribute('data-sub-group')
+        let newGroup = to.parentElement.getAttribute('data-group')
+        let newSubGroup = to.parentElement.getAttribute('data-sub-group')
+        if (!isNaN(newGroup)) newGroup = parseInt(newGroup)
 
-        const origin = _cache[oldGroupId][oldIndex]
-        const destination = _cache[newGroupId][newDraggableIndex]
+        const origin = this.getItem(this.props.sortGroup, this.props.sortSubGroup, oldIndex)
+        const destination = this.getItem(newGroup, newSubGroup, newDraggableIndex)
 
         if (origin._id != destination._id)
             this.props.onSort(
@@ -75,6 +81,7 @@ export default class VirtualSortable extends React.Component {
                     filter='footer'
                     list={items}
                     setList={onForceRerender}
+                    onSort={undefined}
                     onEnd={this.onEnd}>
                     {children}
                 </ReactSortable>

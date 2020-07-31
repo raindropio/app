@@ -50,13 +50,18 @@ class BookmarksItems extends React.Component {
             }, res, rej)
         })
 
-    onDropCustom = (type, data)=>{
-        switch(type){
-            case 'bookmark':
-                this.props.actions.oneMove(parseInt(data), this.props._id)
-            break
-        }
-    }
+    onDropCustom = ([type, data])=>
+        new Promise((res, rej)=>{
+            switch(type){
+                case 'bookmark':
+                    this.props.actions.oneMove(parseInt(data), this.props._id, res, rej)
+                break
+
+                default:
+                    res()
+                break
+            }
+        })
 
     onDragCustom = (type)=>
         type == 'bookmark'

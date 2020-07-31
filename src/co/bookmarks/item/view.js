@@ -18,6 +18,17 @@ export default class BookmarkItemView extends React.PureComponent {
         e.dataTransfer.setData('text/uri-list', link)
         e.dataTransfer.setData('text/plain', link)
         e.dataTransfer.setData('bookmark', _id)
+        
+        //preview
+        this.dragPreview = e.currentTarget.cloneNode(true)
+        this.dragPreview.classList.add(s.dragGhost)
+
+        document.body.appendChild(this.dragPreview)
+        e.dataTransfer.setDragImage(this.dragPreview, this.dragPreview.offsetWidth/6, this.dragPreview.offsetHeight/6)
+    }
+
+    onDragEnd = e=>{
+        this.dragPreview.remove()
     }
 
     render() {
@@ -40,7 +51,8 @@ export default class BookmarkItemView extends React.PureComponent {
                     ${selectModeEnabled&&s.selectModeEnabled}
                 `}
                 draggable
-                onDragStart={this.onDragStart}>
+                onDragStart={this.onDragStart}
+                onDragEnd={this.onDragEnd}>
                 <Cover
                     cover={cover}
                     domain={domain}
