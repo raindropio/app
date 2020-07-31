@@ -23,13 +23,16 @@ class BookmarksHeaderIcon extends React.PureComponent {
     render() {
         const { collection: { _id, cover=[], access: { level } }, status } = this.props
         const selectable = level >= 3 && status.main == 'loaded'
+        const noicon = !cover.length && _id>0
+
+        if (noicon && !selectable) return null
 
         return (
             <FirstAction>
                 <Button 
                     className={s.button}
                     data-selectable={selectable}
-                    data-no-icon={!cover.length && _id>0}
+                    data-no-icon={noicon}
                     title={t.s('select')+' '+t.s('all')}
                     disabled={!selectable}
                     onClick={this.onSelectAllClick}>
