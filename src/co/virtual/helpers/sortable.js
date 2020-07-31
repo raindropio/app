@@ -55,8 +55,17 @@ export default class VirtualSortable extends React.Component {
             )
     }
 
+    cleanChildren = ()=>{
+        const { children } = this.props
+
+        if (children && children.length && !children[0])
+            return children.filter(c=>c)
+        
+        return children
+    }
+
     render() {
-        const { className='', sortGroup, sortSubGroup, listRef, children, onForceRerender, ...etc } = this.props
+        const { className='', sortGroup, sortSubGroup, listRef, onForceRerender, ...etc } = this.props
         const { items } = this.state
         
         return (
@@ -83,7 +92,7 @@ export default class VirtualSortable extends React.Component {
                     setList={onForceRerender}
                     onSort={undefined}
                     onEnd={this.onEnd}>
-                    {children}
+                    {this.cleanChildren()}
                 </ReactSortable>
             </div>
         )

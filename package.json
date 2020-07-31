@@ -55,7 +55,7 @@
 		"react-router-dom": "5.2.x",
 		"react-sortablejs": "^2.0.11",
 		"react-textarea-autosize": "^8.0.1",
-		"react-virtuoso": "0.17.x",
+		"react-virtuoso": "0.18.x",
 		"react-window": "^1.8.5",
 		"string": "3.3.x",
 		"validator": "13.1.x",
