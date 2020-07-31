@@ -29,7 +29,7 @@ export default class CollectionsItemView extends React.PureComponent {
 
     render() {
         const { _id, title, count, color, cover, level, active, expanded, expandable, to, multiselect } = this.props
-        const { innerRef, isDragging, isDropping } = this.props
+        const { innerRef, isDragging, isDropping, dropHandlers={} } = this.props
         const { onClick, onExpandClick, onRenameClick, onContextMenu, onKeyUp } = this.props
 
         return (
@@ -39,7 +39,8 @@ export default class CollectionsItemView extends React.PureComponent {
                 focusable={!multiselect}
                 style={{'--level': level}}
                 active={active}
-                color={color}>
+                color={color}
+                {...dropHandlers}>
                 <div 
                     className={s.expand}
                     title={expanded ? 'Collapse' : 'Expand'}

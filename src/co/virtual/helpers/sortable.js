@@ -2,11 +2,12 @@ import s from './sortable.module.styl'
 import React from 'react'
 import { ReactSortable } from 'react-sortablejs'
 
-const _computeItemKeyCache = {}
+/*
+    Required! Each element should have data-id
+*/
 
 export default class VirtualSortable extends React.Component {
     static defaultProps = {
-        computeItemKey: undefined,  //(index)
         totalCount: 0,
 
         sortGroup: '',
@@ -19,36 +20,34 @@ export default class VirtualSortable extends React.Component {
         items: []
     }
 
-    static getDerivedStateFromProps({ totalCount, sortGroup, sortSubGroup, computeItemKey }) {
-        _computeItemKeyCache[sortGroup+':'+sortSubGroup] = computeItemKey
-
+    static getDerivedStateFromProps({ totalCount }) {
         return {
             items: Array.from(Array(totalCount), () => ({}))
         }
     }
 
-    componentWillUnmount() {
-        delete _computeItemKeyCache[this.props.sortGroup+':'+this.props.sortSubGroup]
-    }
+    getItem = (sortGroup, sortSubGroup, element)=>{
+        let _id = parseInt(element.getAttribute('data-id'))
 
-    getItem = (sortGroup, sortSubGroup, index)=>{
+        if (!_id && element.children.length >= 1)
+            _id = parseInt(element.children[0].getAttribute('data-id'))
+
         return {
-            _id: _computeItemKeyCache[sortGroup+':'+sortSubGroup](index),
+            _id,
             sortGroup,
-            sortSubGroup,
-            index
+            sortSubGroup
         }
     }
 
-    onEnd = ({ oldIndex, newDraggableIndex, to })=>{
+    onEnd = ({ item, newDraggableIndex, to })=>{
         //new drag group
         let newGroup = to.parentElement.getAttribute('data-group')
         let newSubGroup = to.parentElement.getAttribute('data-sub-group')
         if (!isNaN(newGroup)) newGroup = parseInt(newGroup)
 
-        const origin = this.getItem(this.props.sortGroup, this.props.sortSubGroup, oldIndex)
-        const destination = this.getItem(newGroup, newSubGroup, newDraggableIndex)
-
+        const origin = this.getItem(this.props.sortGroup, this.props.sortSubGroup, item)
+        const destination = this.getItem(newGroup, newSubGroup, to.children[newDraggableIndex])
+        
         if (origin._id != destination._id)
             this.props.onSort(
                 origin,

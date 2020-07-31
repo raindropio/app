@@ -128,7 +128,6 @@ class VirtualGridRow extends React.Component {
             return (
                 <Sortable
                     className={className+' '+s.grid}
-                    computeItemKey={this.computeItemKey}
                     totalCount={totalCount}
                     sortGroup={sortGroup}
                     sortSubGroup={row}

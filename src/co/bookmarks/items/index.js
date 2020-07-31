@@ -6,7 +6,7 @@ import { bookmarksIds, makeSelectModeEnabled, makeSort, makeViewHide, getGridSiz
 import { makeCollection } from '~data/selectors/collections'
 
 import Listing from './listing'
-import PickerSourceDrop from '~co/picker/source/drop'
+import DropArea from '../dropArea'
 
 class BookmarksItems extends React.Component {
     static defaultProps = {
@@ -42,42 +42,15 @@ class BookmarksItems extends React.Component {
         })
     }
 
-    onUploadFile = (file)=>
-        new Promise((res, rej)=>{
-            this.props.actions.oneUpload({
-                collectionId: this.props._id,
-                file
-            }, res, rej)
-        })
-
-    onDropCustom = ([type, data])=>
-        new Promise((res, rej)=>{
-            switch(type){
-                case 'bookmark':
-                    this.props.actions.oneMove(parseInt(data), this.props._id, res, rej)
-                break
-
-                default:
-                    res()
-                break
-            }
-        })
-
-    onDragCustom = (type)=>
-        type == 'bookmark'
-
     render() {
         return (
-            <PickerSourceDrop 
-                onFile={this.onUploadFile}
-                onCustom={this.onDropCustom}
-                validateCustom={this.onDragCustom}>
+            <DropArea spaceId={this.props.spaceId}>
                 {drop=>
                     <Listing 
                         {...this.props}
                         {...drop} />
                 }
-            </PickerSourceDrop>
+            </DropArea>
         )
     }
 }

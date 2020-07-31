@@ -50,6 +50,7 @@ export default class BookmarkItemView extends React.PureComponent {
                     ${s[view]}
                     ${selectModeEnabled&&s.selectModeEnabled}
                 `}
+                data-id={_id}
                 draggable
                 onDragStart={this.onDragStart}
                 onDragEnd={this.onDragEnd}>
