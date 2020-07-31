@@ -56,10 +56,12 @@
 }
 
 .dragGhost {
-    transform: translateX(100vw)
+    position: absolute
+    top: -100vh
+    left: -100vw
+    transform: scale(0.5)
     overflow: hidden
     zoom: 0.5
-    opacity: 0.5
     max-width: 300px
     max-height: 300px
     border-radius: calc(var(--border-radius) * 2)

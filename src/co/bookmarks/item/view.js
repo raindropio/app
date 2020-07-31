@@ -13,22 +13,24 @@ import Info from './info'
 
 export default class BookmarkItemView extends React.PureComponent {
     onDragStart = e=>{
-        const { _id, link } = this.props
+        const { _id, link, selectModeEnabled } = this.props
+        if (selectModeEnabled) return
 
         e.dataTransfer.setData('text/uri-list', link)
         e.dataTransfer.setData('text/plain', link)
         e.dataTransfer.setData('bookmark', _id)
         
         //preview
-        this.dragPreview = e.currentTarget.cloneNode(true)
-        this.dragPreview.classList.add(s.dragGhost)
+        const dragPreview = e.currentTarget.cloneNode(true)
+        dragPreview.classList.add(s.dragGhost)
+        dragPreview.id='dragPreview'
 
-        document.body.appendChild(this.dragPreview)
-        e.dataTransfer.setDragImage(this.dragPreview, this.dragPreview.offsetWidth/6, this.dragPreview.offsetHeight/6)
+        document.body.appendChild(dragPreview)
+        e.dataTransfer.setDragImage(dragPreview, dragPreview.offsetWidth/6, dragPreview.offsetHeight/6)
     }
 
     onDragEnd = e=>{
-        this.dragPreview.remove()
+        document.getElementById('dragPreview').remove()
     }
 
     render() {

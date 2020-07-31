@@ -76,6 +76,7 @@ export default class VirtualSortable extends React.Component {
                     scroll={false}
                     revertOnSpill={true}
                     removeOnSpill={true}
+                    supportPointer={false} //fix safari >=13
                     
                     filter='footer'
                     list={items}
