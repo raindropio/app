@@ -1,5 +1,6 @@
 import s from './index.module.styl'
 import React from 'react'
+import _ from 'lodash'
 import Basic from '../basic'
 
 export const Context = React.createContext({})
@@ -22,32 +23,53 @@ export default class ScreenSplitView extends React.Component {
                     force = true
                 }
                 
-                this.state.update('sidebar', { show, force })
+                this.update('sidebar', { show, force })
             },
+
+            resize: (width)=>{
+                this.container.current.style.setProperty('--preferred-sidebar-width', width+'px')
+                this.update('sidebar', { width })
+            }
         },
         reader: {
             show: false,
-            fullscreen: false
-        },
+            fullscreen: false,
 
-        update: (space, obj)=>{
-            this.setState({
-                [space]: {
-                    ...this.state[space],
-                    ...obj
-                }
-            }, ()=>{
-                //persist sidebar preferences
-                if (space=='sidebar'){
-                    if (typeof obj.width == 'number')
-                        localStorage.setItem('splitview-sidebar-width', obj.width)
-
-                    if (typeof obj.show != 'undefined')
-                        localStorage.setItem('splitview-sidebar-show', obj.show)
-                }
-            })
+            update: (props)=>{
+                this.update('reader', props)
+            }
         }
     }
+
+    update = _.debounce((space, obj)=>{
+        let changed = false
+
+        for(const key in obj)
+            if (this.state[space][key] != obj[key]){
+                changed = true
+                break
+            }
+
+        if (!changed) return
+        
+        this.setState({
+            [space]: {
+                ...this.state[space],
+                ...obj
+            }
+        }, ()=>{
+            //persist sidebar preferences
+            if (space=='sidebar'){
+                if (typeof obj.width == 'number')
+                    localStorage.setItem('splitview-sidebar-width', obj.width)
+
+                if (typeof obj.show != 'undefined')
+                    localStorage.setItem('splitview-sidebar-show', obj.show)
+            }
+        })
+    }, 300, { leading: true })
+
+    container = React.createRef()
 
     render() {
         const { sidebar, reader } = this.state
@@ -55,6 +77,7 @@ export default class ScreenSplitView extends React.Component {
         return (
             <Basic>
                 <div
+                    ref={this.container}
                     className={`
                         ${s.splitview}
                         ${sidebar.show ? s.showSidebar : ''}

@@ -18,7 +18,7 @@ export default class SplitViewSidebarResize extends React.Component {
     }
 
     onMouseMove = ({ pageX })=>{
-        this.context.update('sidebar', { width: pageX })
+        this.context.sidebar.resize(pageX)
     }
 
     onDoubleClick = ()=>

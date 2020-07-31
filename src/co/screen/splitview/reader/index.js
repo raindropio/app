@@ -25,7 +25,7 @@ export default class SplitViewReader extends React.PureComponent {
 
     onChange = ()=>{
         const { show=true, fullscreen=false } = this.props
-        this.context.update('reader', { show, fullscreen })
+        this.context.reader.update({ show, fullscreen })
     }
 
     render() {
