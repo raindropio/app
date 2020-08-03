@@ -121,7 +121,7 @@ export default connect(
                 tags: tags(state, _id),
                 selected: selectModeEnabled ? getIsSelected(state, spaceId, _id) : false,
                 selectDisabled: selectModeWorking(state) ? true : false,
-                highlight: getHighlight(state, _id),
+                highlight: getHighlight(state, spaceId, _id),
                 creatorRef: getCreatorRef(state, _id),
                 gridSize: getGridSize(state, spaceId)
             }

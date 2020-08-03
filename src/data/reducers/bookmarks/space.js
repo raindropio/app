@@ -1,6 +1,6 @@
 import _ from 'lodash-es'
 import { normalizeBookmarks, blankSpace, queryIsEqual } from '../../helpers/bookmarks'
-import { actualizeSpaceStatus, replaceBookmarksSpace } from './utils'
+import { actualizeSpaceStatus } from './utils'
 import { REHYDRATE } from 'redux-persist/src/constants'
 import {
 	SPACE_PER_PAGE,
@@ -47,6 +47,7 @@ export default function(state, action) {switch (action.type) {
 		if (space && !queryIsEqual(space.query, query)){
 			space = space
 				.set('ids', [])
+				.set('highlight', {})
 				.set('lastAction', '')
 				.set('version', '')
 			return state.setIn(['spaces', spaceId], space)
@@ -89,21 +90,32 @@ export default function(state, action) {switch (action.type) {
 
 	case SPACE_LOAD_SUCCESS:{
 		const { spaceId, items=[], query } = action
-		const space = state.spaces[spaceId]
+		let space = state.spaces[spaceId]
 
 		//results from other request, ignore
 		if (!space || 
 			(space.ids.length && !queryIsEqual(space.query, query)))
 			return state
 
-		const statusMain = (items.length ? 'loaded' : 'empty')
-		const statusNextPage = ((statusMain == 'empty' || items.length < SPACE_PER_PAGE) ? 'noMore' : 'idle')
+		const { ids, highlight, elements, meta } = normalizeBookmarks(items)
 
-		state = replaceBookmarksSpace(state, normalizeBookmarks(items), spaceId)
+		//items changed
+		if (!space.ids.length ||
+			space.ids.length != ids.length ||
+			!_.isEqual(space.ids.slice(0, ids.length), ids))
+			space = space
+				.set('ids', ids)
+				.set('highlight', highlight)
+				.setIn(['query', 'page'], 0)
+
+		//statuses
+		space = space.setIn(['status', 'main'],		ids.length ? 'loaded' : 'empty')
+		space = space.setIn(['status', 'nextPage'],	(space.status.main == 'empty' || ids.length < SPACE_PER_PAGE) ? 'noMore' : 'idle')
 
 		return state
-			.setIn(['spaces', spaceId, 'status', 'main'], 		statusMain)
-			.setIn(['spaces', spaceId, 'status', 'nextPage'], 	statusNextPage)
+			.setIn(['spaces', spaceId], space)
+			.set('elements',			state.elements.merge(elements))
+			.set('meta',				state.meta.merge(meta))
 	}
 
 	case SPACE_LOAD_ERROR:{
@@ -116,6 +128,7 @@ export default function(state, action) {switch (action.type) {
 
 		space = space
 			.set('ids', [])
+			.set('highlight', {})
 			.setIn(
 				['status', 'main'], 
 				error && error.status >= 400 && error.status < 500 ? 'notFound' : 'error'
@@ -184,20 +197,24 @@ export default function(state, action) {switch (action.type) {
 
 	case SPACE_NEXTPAGE_SUCCESS:{
 		const { spaceId, items=[], query } = action
-		const space = state.spaces[spaceId]
+		let space = state.spaces[spaceId]
 
 		//results from other request, ignore
 		if (!space || 
 			!queryIsEqual(space.query, query))
 			return state
-			
+
 		const clean = normalizeBookmarks(items)
 
+		space = space
+			.setIn(['status', 'nextPage'], (items.length ? 'idle' : 'noMore'))
+			.set('ids',						[...space.ids, ...clean.ids])
+			.set('highlight',				space.highlight.merge(clean.highlight))
+
 		return state
-			.setIn(['spaces', spaceId, 'status', 'nextPage'], 	(items.length ? 'idle' : 'noMore'))
-			.setIn(['spaces', spaceId, 'ids'], 					[...space.ids||[], ...clean.ids])
-			.set('elements',									state.elements.merge(clean.elements))
-			.set('meta',										state.meta.merge(clean.meta))
+			.setIn(['spaces', spaceId],		space)
+			.set('elements',				state.elements.merge(clean.elements))
+			.set('meta',					state.meta.merge(clean.meta))
 	}
 
 	case SPACE_NEXTPAGE_ERROR:{
@@ -229,7 +246,9 @@ export default function(state, action) {switch (action.type) {
 			.setIn(['query', 'page'], 0)
 
 		if (sort != space.query.sort)
-			space = space.set('ids', blankSpace.ids)
+			space = space
+				.set('ids', [])
+				.set('highlight', {})
 
 		//send query in action
 		action.query = space.query
@@ -300,10 +319,16 @@ export default function(state, action) {switch (action.type) {
 			.set('meta', state.meta.without(ids))
 
 		//remove from *all bookmarks* ids
-		for(const spaceId of [0, '0s'])
-			if (state.spaces[spaceId])
-				state = state
-					.setIn(['spaces', spaceId, 'ids'], _.without(state.getIn(['spaces', spaceId, 'ids']), ...ids) )
+		for(const spaceId of [0, '0s']){
+			let space = state.spaces[spaceId]
+			if (!space) continue
+			
+			space = space
+				.set('ids', _.without(space.ids, ...ids))
+				.set('highlight', space.highlight.without(ids))
+
+			state = state.setIn(['spaces', spaceId], space)
+		}
 		
 		return state
 	}

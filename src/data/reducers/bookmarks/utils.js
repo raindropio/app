@@ -1,24 +1,6 @@
 import _ from 'lodash-es'
 import { iterateSpaceId } from '../../helpers/bookmarks'
 
-export const replaceBookmarksSpace = (state, clean, spaceId)=>{
-	const space = state.getIn(['spaces', spaceId])||{}
-	const existing = (space['ids']||[])
-	
-	//reset only when items changed
-	if (!existing.length ||
-		existing.length != clean['ids'].length ||
-		!_.isEqual(existing.slice(0, clean['ids'].length), clean['ids']))
-		state = state
-			.setIn(['spaces', spaceId, 'ids'], clean['ids'])
-			.setIn(['spaces', spaceId, 'query', 'page'], 0)
-
-	state = state.set('elements', state.elements.merge(clean.elements), {deep: true})
-	state = state.set('meta', state.meta.merge(clean.meta))
-
-	return state
-}
-
 export const actualizeSpaceStatus = (state, spaceId)=>{
 	iterateSpaceId(spaceId, (cleanSpaceId)=>{
 		const space = state.getIn(['spaces', cleanSpaceId])

@@ -96,35 +96,34 @@ export const normalizeBookmark = (item={}, options)=>{
 }
 
 export const normalizeBookmarks = (items=[], options)=>{
-	var clean = [],
-		meta = [],
+	var elements = {},
+		meta = {},
+		highlight = {},
 		ids = []
 
 	_.forEach(items, (item)=>{
-		clean.push(normalizeBookmark(item,options))
-		meta.push(normalizeMeta(item))
+		elements[item._id] = normalizeBookmark(item,options)
+		meta[item._id] = normalizeMeta(item)
+
+		if (item.highlight)
+			highlight[item._id] = _.pick(item.highlight, 'title', 'excerpt', 'note', 'body')
+
 		ids.push(item._id)
 	})
 
-	return Immutable({
-		elements: _.zipObject(
-			ids,
-			clean
-		),
-		meta: _.zipObject(
-			ids,
-			meta
-		),
-		ids: ids
-	})
+	return {
+		elements,
+		meta,
+		ids,
+		highlight
+	}
 }
 
 export const normalizeMeta = (item={})=>{
 	return Immutable({
 		creatorRef: item.creatorRef||emptyObject,
 		tags: 		item.tags||emptyArray,//_.sortBy(item.tags||emptyArray, tag=>tag.toLowerCase()),
-		media: 		item.media||emptyArray,
-		highlight:	item.highlight||emptyObject
+		media: 		item.media||emptyArray
 	})
 }
 

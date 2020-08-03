@@ -35,6 +35,7 @@ Changes
     - bookmarks.importantSelected action arguments changed
     - test upload files!
     - new optionalDependencie: @sentry/minimal
+    - makeHighlight selector changed, now have 3 arguments, instead 2
 - features
     + nested collections showed up in one list
     + web preview better

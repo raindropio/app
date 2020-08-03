@@ -1,5 +1,6 @@
 import Immutable from 'seamless-immutable'
 const emptyArray = []
+const emptyObject = {}
 
 export const blankSpace = Immutable({
 	lastAction: null,
@@ -24,5 +25,6 @@ export const blankSpace = Immutable({
 		'-domain':		{ enabled: true },
 		'sort':			{ enabled: true },
 	},
-	ids: emptyArray
+	ids: emptyArray,
+	highlight: emptyObject //{_id: { title, excerpt, note, body }}
 })

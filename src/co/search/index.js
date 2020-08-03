@@ -17,7 +17,7 @@ export default class Search extends React.PureComponent {
     }
 
     componentDidMount() {
-        this.onSubmitBounced = _.debounce(this.handlers.onSubmit, 250, { maxWait: 1000 })
+        this.onSubmitBounced = _.debounce(this.handlers.onSubmit, 350, { maxWait: 1000 })
     }
 
     componentDidUpdate(prev) {
