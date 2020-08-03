@@ -65,9 +65,10 @@ class BookmarksHeaderSort extends React.Component {
                         <Layout>
                             <Label>{t.s('sortBy')} {t.s('elements2')}</Label>
                             <div>
-                                {Object.keys(this.options).map(item=>(
+                                {Object.keys(this.options).map((item, index)=>(
                                     <Radio 
                                         key={item}
+                                        autoFocus={!index}
                                         data-sort={item}
                                         checked={item==sort}
                                         disabled={sorts[item] && !sorts[item].enabled}

@@ -28,6 +28,11 @@ input, textarea, select, button {
     opacity: 1;
 }
 
+:focus {
+    outline: 1px auto var(--accent-color);
+    outline-offset: -1px;
+}
+
 a {
     color: var(--accent-color);
     text-decoration: none;

@@ -45,6 +45,7 @@ class BookmarksHeaderIcon extends React.PureComponent {
                     {selectable && (
                         <div className={s.select}>
                             <input 
+                                tabIndex='-1'
                                 type='checkbox' />
                         </div>
                     )}

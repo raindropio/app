@@ -1,6 +1,6 @@
 .button[data-selectable="true"][data-no-icon="false"] {
-    &:not(:hover) .select,
-    &:hover .icon {
+    &:not(:hover):not(:focus) .select,
+    &:hover .icon, &:focus .icon {
         display: none
     }
 }

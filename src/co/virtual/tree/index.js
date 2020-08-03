@@ -143,6 +143,7 @@ class VirtuosoTree extends React.Component {
                             ref={this._list}
                             outerRef={innerRef}
 
+                            outerElementType={OuterElement}
                             className={s.tree+' '+className}
                             width='100%'
                             height={height}
@@ -159,5 +160,9 @@ class VirtuosoTree extends React.Component {
         )
     }
 }
+
+const OuterElement = React.forwardRef((props, ref) => (
+    <div ref={ref} tabIndex={-1} {...props} />
+ ));
 
 export default withAutoSize(VirtuosoTree, 'tree')
