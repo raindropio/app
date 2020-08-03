@@ -4,14 +4,26 @@ import { getTags } from './items'
 
 const emptyArray = []
 
-function filterSelected(tags, selected) {
-	return tags.filter(item => {
-		for(const tag of selected)
-			if (tag == item._id || tag == item.query)
-				return false
+function filterSelected(tags=[], selected=[]) {
+	if (!selected) return tags
+	return tags.filter(item =>
+		!selected.includes(item._id) && 
+		!selected.includes(item.query)
+	)
+}
 
-		return true
-	})
+function filterOther(tags=[], other=[]) {
+	if (!other.length) return tags
+	return tags.filter(item =>
+		!other.some(({ _id }) => _id == item._id)
+	)
+}
+
+function filterByQuery(tags=[], query='') {
+	if (!query) return tags
+	return tags.filter(item => 
+		item._id.toLowerCase().startsWith(query)
+	)
 }
 
 //(state, spaceId, filter, selected=[])
@@ -23,40 +35,36 @@ export const makeTagsAutocomplete = ()=>createSelector(
 		(state, spaceId, filter)=>filter,
 		(state, spaceId, filter, selected)=>selected||emptyArray
 	],
-	(global, collection, _recent, _filter, selected)=>{
+	(_other, _collection, _recent, _filter, selected)=>{
 		const filter = (_filter||'').trim().toLowerCase().replace(/^#/,'')
 
-		//recent tags
-		let recent = filterSelected(_recent, selected)
+		//tags
+		let recent 		= filterByQuery(filterSelected(_recent, selected), filter)
+		let collection 	= filterByQuery(filterOther(filterSelected(_collection, selected), recent), filter)
+		let other 		= filterByQuery(filterOther(filterSelected(_other, selected), [...recent, ...collection]), filter)
 
-		//main tags
-		let tags = filterSelected([
-			...collection.filter(({ _id }) => !global.some(tag=>tag._id == _id) ),
-			...global
-		], selected)
+		let sections = []
 
-		//remove recent from main list of tags
 		if (recent.length)
-			tags = tags.filter(({ _id })=> !recent.some(tag=>tag._id==_id))
-
-		//filter
-		if (filter)
-			return _.orderBy(
-				[...recent, ...tags].filter(item =>
-					item._id.toLowerCase().startsWith(filter)
-				),
-				(x)=>_.includes(x, filter),
-				'desc'
-			)
-		//recent
-		else if (recent.length)
-			return [
+			sections.push(
 				{ type: 'section', _id: 'recent' },
-				...recent,
-				{ type: 'section', _id: 'other' },
-				...tags
-			]
+				...recent
+			)
 
-		return tags
+		if (collection.length)
+			sections.push(
+				{ type: 'section', _id: 'collection' },
+				...collection
+			)
+
+		if (sections.length)
+			sections.push(
+				{ type: 'section', _id: 'other' }
+			)
+
+		return [
+			...sections,
+			...other
+		]
 	}
 )

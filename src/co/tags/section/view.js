@@ -9,6 +9,7 @@ import Icon from '~co/common/icon'
 
 const titles = {
     recent: 'Recent',
+    collection: t.s('collection'),
     other: _.capitalize(t.s('other'))
 }
 

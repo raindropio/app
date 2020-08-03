@@ -18,7 +18,15 @@ class TagsMenu extends React.PureComponent {
 
     componentDidMount() {
         this.props.load('0s')
+        this.loadSpace()
+    }
 
+    componentDidUpdate(prev) {
+        if (prev.spaceId != this.props.spaceId)
+            this.loadSpace()
+    }
+
+    loadSpace = ()=>{
         if (parseInt(this.props.spaceId))
             this.props.load(this.props.spaceId)
     }
