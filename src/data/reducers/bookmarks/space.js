@@ -28,6 +28,7 @@ export default function(state, action) {switch (action.type) {
 			const clean = space
 				.set('ids', _.uniq(space.ids).slice(0, SPACE_PER_PAGE))
 				.setIn(['query', 'page'], 0)
+				.setIn(['status', 'nextPage'], blankSpace.status.nextPage)
 
 			state = state.setIn(['spaces', _id], clean)
 		})

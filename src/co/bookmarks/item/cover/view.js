@@ -8,7 +8,7 @@ import Preloader from '~co/common/preloader'
 
 //cache thumb/screenshot uri
 const thumbs = {}
-const getStellaUri = (uri, mode='', domain)=>{
+const getUri = (uri, mode='', domain)=>{
     if (!thumbs[uri])
         switch (mode) {
             case 'screenshot':
@@ -60,12 +60,12 @@ export default class BookmarkItemCover extends React.PureComponent {
         switch(view){
             //simple always have a favicon
             case 'simple':
-                uri = getStellaUri(link, 'favicon', domain)
+                uri = getUri(link, 'favicon', domain)
                 break
 
             //in other view modes we show a thumbnail or screenshot
             default:
-                uri = getStellaUri(cover, cover ? '' : 'screenshot', domain)
+                uri = getUri(cover, cover ? '' : 'screenshot', domain)
                 break
         }
 

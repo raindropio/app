@@ -1,5 +1,5 @@
 export default {
-    webPreview: '//web-preview-prod.exentrich.workers.dev/',
+    webPreview: '//rdl.ink/preview/',
 
     vendors: {
         sentry: {

@@ -29,10 +29,10 @@ class BookmarksHeaderViewMenu extends React.Component {
             <>
                 <Label>{t.s('view')}</Label>
                 <div>
-                    {Object.keys(this.options).map((item, index)=>(
+                    {Object.keys(this.options).map(item=>(
                         <Radio 
                             key={item}
-                            autoFocus={!index}
+                            autoFocus={view==item}
                             data-view={item}
                             checked={view==item}
                             onChange={this.onViewClick}>
