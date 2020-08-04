@@ -3,7 +3,7 @@ import { withRouter } from 'react-router-dom'
 import { Content } from '~co/screen/splitview/main'
 import Bookmarks from '~co/bookmarks'
 
-class CollectionMainContent extends React.Component {
+class MyMainContent extends React.Component {
     events = {
         onItemClick: (item)=>{
             const { query } = this.props
@@ -44,4 +44,4 @@ class CollectionMainContent extends React.Component {
     }
 }
 
-export default withRouter(CollectionMainContent)
+export default withRouter(MyMainContent)

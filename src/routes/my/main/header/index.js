@@ -7,7 +7,7 @@ import { withRouter } from 'react-router-dom'
 import Add from './add'
 import Share from './share'
 
-class CollectionsMainHeader extends React.Component {
+class MyMainHeader extends React.Component {
     state = {
         ssRef: { current: null }
     }
@@ -48,4 +48,4 @@ class CollectionsMainHeader extends React.Component {
     }
 }
 
-export default withRouter(CollectionsMainHeader)
+export default withRouter(MyMainHeader)

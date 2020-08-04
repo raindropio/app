@@ -6,7 +6,7 @@ import Sidebar from './sidebar'
 import Main from './main'
 import Reader from './reader'
 
-export default class CollectionRoute extends React.PureComponent {
+export default class MyRoute extends React.PureComponent {
     state = {}
 
     static getDerivedStateFromProps({ match: { params }, location }) {
@@ -75,7 +75,7 @@ export default class CollectionRoute extends React.PureComponent {
                 $query = params.toString()
             }
     
-            return `/${$_id}${$searchRaw ? '/' + $searchRaw : ''}${$query ? '?' + $query : ''}`
+            return `/my/${$_id}${$searchRaw ? '/' + $searchRaw : ''}${$query ? '?' + $query : ''}`
         }
     }
 

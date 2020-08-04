@@ -10,7 +10,7 @@ import FiltersTags from './filters_tags'
 import Profile from './profile'
 import Banner from './banner'
 
-export default class CollectionsSidebar extends React.Component {
+export default class MySidebar extends React.Component {
     //collections
     collections = React.createRef()
 

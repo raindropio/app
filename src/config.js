@@ -1,5 +1,5 @@
 export default {
-    webPreview: '//rdl.ink/preview/',
+    webPreview: '//p.rdl.ink/',
 
     vendors: {
         sentry: {

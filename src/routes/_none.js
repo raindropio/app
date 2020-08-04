@@ -11,7 +11,7 @@ const Home = ({ last_collection, location: { hash } })=>{
 
 	return (
 		<Protected>
-			<Redirect to={`/${parseInt(last_collection)||'0'}`} />
+			<Redirect to={`/my/${parseInt(last_collection)||'0'}`} />
 		</Protected>
 	)
 }

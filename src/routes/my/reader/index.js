@@ -11,7 +11,7 @@ import Header from './header'
 import Content from './content'
 import AccentColor from '~co/collections/item/accentColor'
 
-class CollectionsReader extends React.Component {
+class MyReader extends React.Component {
     static defaultProps = {
         query: {} //bookmark, tab
     }
@@ -79,6 +79,6 @@ export default connect(
     }),
 )(
     withRouter(
-        CollectionsReader
+        MyReader
     )
 )

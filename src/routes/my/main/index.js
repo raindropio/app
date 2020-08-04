@@ -10,7 +10,7 @@ import Bookmarks from './bookmarks'
 import Collections from './collections'
 import AccentColor from '~co/collections/item/accentColor'
 
-class CollectionMain extends React.Component {
+class MyMain extends React.Component {
     componentDidMount() {
         this.props.setLastCollection(this.props._id)
     }
@@ -42,4 +42,4 @@ export default connect(
         return { title, access }
     },
 	{ setLastCollection }
-)(CollectionMain)
+)(MyMain)
