@@ -13,12 +13,14 @@ const hardcoded = [
     { find: '☠', key: 'broken', val: '1' },
 ]
 
-export const getUrl = (id, query)=>{
+export const getUrl = (__id, query)=>{
+	let id = parseInt(__id)||0
+
 	const entities = _.compact(_.map(query||blankSpace.query, (val,key)=>{
 		if (val)
 			switch(key){
 				case 'ignore':
-					if (!parseInt(id)) {
+					if (!id) {
 						id = val
 						return key+'='+1
 					} else

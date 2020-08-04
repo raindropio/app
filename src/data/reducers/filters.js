@@ -99,5 +99,5 @@ export default function(state = initialState, action={}){switch (action.type) {
 
 const initialState = Immutable({
 	spaces: {},
-	autoLoad: []
+	autoLoad: ['global']
 })

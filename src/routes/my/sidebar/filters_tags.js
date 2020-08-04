@@ -16,8 +16,7 @@ class FiltersTagsCustom extends React.Component {
     }
 
     componentDidMount() {
-        this.props.autoLoad('0s')
-        this.props.load('0s')
+        this.props.load('global')
     }
 
     rowRenderer = (row={})=>{
@@ -75,10 +74,10 @@ function FiltersTagsCombined({ tags, tags_hide, filters, filters_hide, ...etc })
 
 export default connect(
 	(state) => ({
-        tags: getTags(state, '0s'), 
+        tags: getTags(state, 'global'), 
         tags_hide: state.config.tags_hide,
 
-        filters: getFilters(state, '0s'),
+        filters: getFilters(state, 'global'),
         filters_hide: state.config.filters_hide
     }),
 	{ load, autoLoad }

@@ -29,7 +29,7 @@ function filterByQuery(tags=[], query='') {
 //(state, spaceId, filter, selected=[])
 export const makeTagsAutocomplete = ()=>createSelector(
 	[
-		(state)=>getTags(state, '0s'),
+		(state)=>getTags(state, 'global'),
 		(state, spaceId)=>parseInt(spaceId) ? getTags(state, spaceId) : emptyArray,
 		(state)=>state.tags.recent,
 		(state, spaceId, filter)=>filter,

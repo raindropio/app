@@ -17,7 +17,7 @@ class TagsMenu extends React.PureComponent {
     }
 
     componentDidMount() {
-        this.props.load('0s')
+        this.props.load('global')
         this.loadSpace()
     }
 

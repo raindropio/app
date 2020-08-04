@@ -36,6 +36,7 @@ Changes
     - test upload files!
     - new optionalDependencie: @sentry/minimal
     - makeHighlight selector changed, now have 3 arguments, instead 2
+    - use 'global' spaceId to get global filters or tags
 - features
     + nested collections showed up in one list
     + web preview better

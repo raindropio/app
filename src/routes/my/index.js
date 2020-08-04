@@ -17,7 +17,7 @@ export default class MyRoute extends React.PureComponent {
         try{ search = (search && decodeURIComponent(search))||'' } catch(e) {}
 
         return {
-            _id: _id+(_id && search ? 's' : ''),
+            _id: _id+(search ? 's' : ''),
             search,
             query: location.search ? Object.fromEntries(new URLSearchParams(location.search)) : {}
         }
