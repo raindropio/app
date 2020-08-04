@@ -44,6 +44,11 @@ export default function(state, action) {switch (action.type) {
 		const { spaceId, query } = action
 		let space = state.spaces[spaceId]
 
+		if (spaceId <= -100){
+			action.ignore = true
+			return state
+		}
+
 		//reset bookmarks list when query changed
 		if (space && !queryIsEqual(space.query, query)){
 			space = space

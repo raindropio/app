@@ -1,11 +1,13 @@
-.header:hover {
-    .rename {
-        opacity: 1
-    }
+.header:hover .rename, .rename:focus {
+    opacity: 1
 }
 
 .rename {
     opacity: 0
     transition: .2s ease-in-out opacity;
     transition-delay: .2s
+
+    &:focus {
+        transition: none
+    }
 }

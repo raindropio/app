@@ -20,10 +20,7 @@ class BookmarksHeader extends React.Component {
     }
 
     render() {
-        let { collection: { title }, status } = this.props
-
-        //removed or not found collection
-        if (!title) return null
+        let { status } = this.props
 
         return (
             <Header 
