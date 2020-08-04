@@ -34,7 +34,7 @@
 		"~package.json": "package.json"
 	},
 	"dependencies": {
-		"@sentry/browser": "5.x",
+		"@sentry/react": "^5.20.1",
 		"autoprefixer": "^9.8.4",
 		"date-fns": "2.15.x",
 		"downshift": "6.0.x",

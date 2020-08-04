@@ -1,10 +1,10 @@
-import * as Sentry from '@sentry/browser'
+import * as Sentry from '@sentry/react'
 import config from '~config'
 import pkg from '~package.json'
 
 class MySentry {
     constructor() {
-        if (process.env.NODE_ENV!='production') return
+        if (process.env.NODE_ENV === 'development') return
             
         Sentry.init({
             ...config.vendors.sentry,
