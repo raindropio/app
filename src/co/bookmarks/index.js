@@ -25,7 +25,7 @@ class Bookmarks extends React.Component {
                 index={index}
                 spaceId={spaceId}
                 compact={ids.length>1}
-                ignore={!spaceId && ignore} />
+                ignore={!parseInt(spaceId) && ignore} />
         )
     }
 

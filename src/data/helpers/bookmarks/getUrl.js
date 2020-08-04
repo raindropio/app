@@ -21,7 +21,7 @@ export const getUrl = (__id, query)=>{
 			switch(key){
 				case 'ignore':
 					if (!id) {
-						id = val
+						id = parseInt(val)
 						return key+'='+1
 					} else
 						return undefined
@@ -61,5 +61,5 @@ export const getUrl = (__id, query)=>{
 	entities.push('perpage='+SPACE_PER_PAGE)
 	entities.push('version=2')
 
-	return parseInt(id)+'?'+entities.join('&')
+	return id+'?'+entities.join('&')
 }
