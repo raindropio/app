@@ -1,5 +1,5 @@
 import {
-	FILTERS_LOAD_REQ,
+	FILTERS_LOAD_PRE,
 	FILTERS_AUTOLOAD,
 } from '../constants/filters'
 
@@ -10,7 +10,7 @@ export const autoLoad = (spaceId, enabled=false)=>({
 })
 
 export const load = (spaceId, query)=>({
-	type: FILTERS_LOAD_REQ,
+	type: FILTERS_LOAD_PRE,
 	spaceId: String(spaceId),
 	query: query || {}
 })

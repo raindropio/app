@@ -2,7 +2,7 @@ import Immutable from 'seamless-immutable'
 import _ from 'lodash-es'
 import { blankSpace, normalizeItems } from '../helpers/filters'
 import { REHYDRATE } from 'redux-persist/src/constants'
-import { FILTERS_AUTOLOAD, FILTERS_LOAD_REQ, FILTERS_LOAD_SUCCESS, FILTERS_LOAD_ERROR } from '../constants/filters'
+import { FILTERS_AUTOLOAD, FILTERS_LOAD_PRE, FILTERS_LOAD_REQ, FILTERS_LOAD_SUCCESS, FILTERS_LOAD_ERROR } from '../constants/filters'
 
 export default function(state = initialState, action={}){switch (action.type) {
 	case REHYDRATE:{
@@ -31,28 +31,41 @@ export default function(state = initialState, action={}){switch (action.type) {
 		)
 	}
 
+	case FILTERS_LOAD_PRE:{
+		const { spaceId, query: { search = '' } } = action
+
+		let space = state.spaces[spaceId] || blankSpace
+
+		//changed
+		if (space.query.search != search){
+			//keep old results when user searching further
+			if (search.startsWith(space.query.search))
+				space = blankSpace.set('tags', space.tags)
+
+			return state.setIn(['spaces', action.spaceId],	space)
+		}
+
+		return state
+	}
+
 	case FILTERS_LOAD_REQ:{
-		const { spaceId, query: { search = '' }, force=false } = action
+		const { spaceId, query: { search = '' }, lastAction, version } = action
 
 		let space = state.spaces[spaceId] || blankSpace
 
 		//nothing changed
-		if (space.query.search == search && 
-			space.status == 'loaded' &&
-			!force){
+		if (space && 
+			space.lastAction == lastAction && 
+			space.version == version){
 			action.ignore = true
 			return state
 		}
 
-		//set loading status
-		space = space.set('status', 'loading')
-
-		//clean if needed
-		if (!search.startsWith(space.query.search))
-			space = space.set('items', [])
-
-		//new search query
-		space = space.set('query', { search })
+		space = space
+			.set('lastAction', lastAction)
+			.set('version', version)
+			.set('status', 'loading')
+			.set('query', { search })
 		
 		return state.setIn(['spaces', action.spaceId],	space)
 	}

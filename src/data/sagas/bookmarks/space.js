@@ -47,10 +47,6 @@ function* preLoadSpace(action) {
 		})
 	} catch (error) {
 		yield put({
-			...action,
-			type: SPACE_LOAD_ERROR,
-			lastAction: null,
-			version: '',
 			error
 		})
 	}
