@@ -79,7 +79,6 @@ export default class BookmarkItemCover extends React.PureComponent {
                     tabIndex='-1'
                     className={s.image}
                     data-ar={ar}
-                    loading='lazy'
                     width={width}
                     height={height}
                     alt=' '
