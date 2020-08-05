@@ -50,7 +50,7 @@ export default class Modal extends React.Component {
                         <div 
                             className={s.wrap+' '+className}
                             {...etc}>
-                            <div className={s.body}>
+                            <div className={s.body} role='dialog'>
                                 {children}
                             </div>
                         </div>

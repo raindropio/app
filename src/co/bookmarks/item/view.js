@@ -42,6 +42,7 @@ export default class BookmarkItemView extends React.PureComponent {
         return (
             <article 
                 ref={innerRef}
+                role='listitem'
                 className={`
                     ${s.element}
                     ${active&&s.active}

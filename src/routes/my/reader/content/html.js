@@ -24,6 +24,7 @@ class ReaderHTML extends React.Component {
             default:
                 return (
                     <article 
+                        role='article'
                         className={s.article}
                         style={{'--html-font-size': font_size+'px', fontFamily: font_family}}>
                         {loading}
@@ -40,7 +41,9 @@ class ReaderHTML extends React.Component {
             case 'video':
             case 'document':
                 return (
-                    <div className={s.content}>
+                    <div
+                        role='article'
+                        className={s.content}>
                         {loading}
                         
                         <div className={s.html} dangerouslySetInnerHTML={{ __html: html }} />

@@ -5,6 +5,7 @@ function ItemInner({ as='div', className='', active, color, focusable, style={},
     const Component = as
     return (
         <Component 
+            role='listitem'
             {...etc}
             ref={forwardedRef}
             className={`${className} ${s.item} ${active && s.active} ${focusable && s.focusable}`}

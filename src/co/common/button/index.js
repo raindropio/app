@@ -19,6 +19,7 @@ class ButtonInner extends React.Component {
 
         return (
             <Component 
+                role='button'
                 tabIndex={etc.disabled ? '-1' : '0'}
                 ref={forwardedRef}
                 className={s.button+' '+className}
