@@ -57,7 +57,7 @@ export const makeTagsAutocomplete = ()=>createSelector(
 				...collection
 			)
 
-		if (sections.length)
+		if (sections.length && other.length)
 			sections.push(
 				{ type: 'section', _id: 'other' }
 			)

@@ -39,8 +39,13 @@ export default function(state = initialState, action={}){switch (action.type) {
 		//changed
 		if (space.query.search != search){
 			//keep old results when user searching further
-			if (search.startsWith(space.query.search))
-				space = blankSpace.set('tags', space.tags)
+			if (!search.startsWith(space.query.search))
+				space = space.set('items', [])
+
+			//reset lastAction/version
+			space = space
+				.set('lastAction', '')
+				.set('version', '')
 
 			return state.setIn(['spaces', action.spaceId],	space)
 		}
