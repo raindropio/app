@@ -199,7 +199,7 @@ function* batchApiRequestHelper(method, body={}) {
 	//all bookmarks
 	if (parseInt(selectMode.spaceId)==0 || selectMode.all)
 		groupByCollection = [
-			[parseInt(selectMode.spaceId), selectMode.ids]
+			[selectMode.spaceId, selectMode.ids]
 		]
 	//per collection
 	else
