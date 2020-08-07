@@ -14,8 +14,10 @@ export default class SmallDetector extends React.Component {
         if (!r || r == this._r) return
 
         this._r = r
-        this._resizeObserver = new ResizeObserver(this.onResize)
-        this._resizeObserver.observe(this._r)
+        if (typeof ResizeObserver != 'undefined'){
+            this._resizeObserver = new ResizeObserver(this.onResize)
+            this._resizeObserver.observe(this._r)
+        }
     }
 
     componentWillUnmount() {

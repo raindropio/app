@@ -11,8 +11,10 @@ export default (Component, cacheId='')=>{
             if (!ref || this._div == ref) return
 
             this._div = ref
-            this._resizeObserver = new ResizeObserver(this.onResize)
-            this._resizeObserver.observe(this._div)
+            if (typeof ResizeObserver != 'undefined'){
+                this._resizeObserver = new ResizeObserver(this.onResize)
+                this._resizeObserver.observe(this._div)
+            }
         }
 
         componentWillUnmount() {

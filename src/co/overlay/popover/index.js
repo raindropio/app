@@ -30,8 +30,10 @@ export default class Popover extends React.Component {
     }
     
     componentDidMount() {
-        this._resizeObserver = new ResizeObserver(this.updatePosition)
-        this._resizeObserver.observe(this._container.current)
+        if (typeof ResizeObserver != 'undefined'){
+            this._resizeObserver = new ResizeObserver(this.updatePosition)
+            this._resizeObserver.observe(this._container.current)
+        }
 
         window.addEventListener('resize', this.updatePosition)
         window.addEventListener('keydown', this.onWindowKeyDown)
