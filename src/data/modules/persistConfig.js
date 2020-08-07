@@ -16,16 +16,6 @@ if (RAINDROP_ENVIRONMENT == 'browser')
 else
 	storage = require('@react-native-community/async-storage').default
 
-/*
-	//fix localStorage if exceeded the quota
-	try{
-		localStorage.setItem('_quotaTest', new Array(1024).join('a'))
-		localStorage.removeItem('_quotaTest')
-	}catch(e){
-		localStorage.clear()
-	}
-*/
-
 const version = 11
 
 export default {

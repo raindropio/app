@@ -5,7 +5,7 @@ import Protected from '~co/screen/protected'
 
 const Home = ({ last_collection, location: { hash } })=>{
 	//redirect hash routes on web to actual routes
-	if (__TARGET__ == 'default' &&
+	if (process.env.APP_TARGET == 'default' &&
 		hash.startsWith('#/'))
 		return <Redirect to={hash.replace(/^#/, '')} />
 

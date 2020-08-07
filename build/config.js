@@ -1,5 +1,4 @@
 const path = require('path')
-const fs = require('fs')
 
 const webpack = require('webpack')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
@@ -8,6 +7,7 @@ const TerserJSPlugin = require('terser-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const WebpackPwaManifest = require('webpack-pwa-manifest')
+const SentryCliPlugin = require('@sentry/webpack-plugin')
 //const { InjectManifest } = require('workbox-webpack-plugin')
 
 //Params
@@ -97,14 +97,9 @@ module.exports = {
 		]),
 
 		new webpack.DefinePlugin({
-			__TARGET__ : JSON.stringify(process.env.APP_TARGET),
-			__DEV__: JSON.stringify(!isProd),
+			'process.env.APP_TARGET': JSON.stringify(process.env.APP_TARGET),
 			'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
-			RAINDROP_ENVIRONMENT: JSON.stringify('browser'),
-
-			__ABOUT__: JSON.stringify({
-				version: JSON.parse(fs.readFileSync(__dirname+'/../package.json', 'utf8')).version
-			})
+			RAINDROP_ENVIRONMENT: JSON.stringify('browser')
 		}),
 
 		new webpack.ExternalsPlugin('commonjs', ['electron']),
@@ -139,6 +134,14 @@ module.exports = {
 					size: '512x512'
 				}
 			]
+		}),
+
+		//Sentry
+		new SentryCliPlugin({
+			dryRun: !isProd,
+			include: '.',
+			ignore: [ 'node_modules', 'build', 'dist' ],
+			configFile: path.resolve(__dirname, 'sentry.properties'),
 		}),
 
 		//Post plugins

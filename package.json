@@ -78,6 +78,7 @@
 		"@babel/plugin-syntax-dynamic-import": "7.x",
 		"@babel/preset-env": "7.x",
 		"@babel/preset-react": "7.x",
+		"@sentry/webpack-plugin": "^1.12.0",
 		"@svgr/webpack": "^5.4.0",
 		"@welldone-software/why-did-you-render": "^4.2.6",
 		"babel-eslint": "10.x",

@@ -7,7 +7,7 @@ import My from './my'
 
 import None from './_none'
 
-const Router = __TARGET__ == 'default' ?
+const Router = process.env.APP_TARGET == 'default' ?
     BrowserRouter :
     HashRouter
 

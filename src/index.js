@@ -2,7 +2,7 @@
 import './wdyr'
 import React from 'react'
 import { render } from 'react-dom'
-import '~modules/vendors/sentry'
+import Sentry from '~modules/vendors/sentry'
 import 'form-request-submit-polyfill'
 
 //redux
@@ -20,16 +20,18 @@ import Document from './routes/_document'
 const { store, persistor } = withLocalReducer(localReducers)
 
 render(
-	//add other global components in co/screen/basic
-	<Provider store={store}>
-		<Document>
-			<PersistGate loading={<Loading />} persistor={persistor}>
-				<Translate Loading={Loading}>
-					<Routes />
-				</Translate>
-			</PersistGate>
-		</Document>
-	</Provider>,
+	//!add other global components in co/screen/basic
+	<Sentry>
+		<Provider store={store}>
+			<Document>
+				<PersistGate loading={<Loading />} persistor={persistor}>
+					<Translate Loading={Loading}>
+						<Routes />
+					</Translate>
+				</PersistGate>
+			</Document>
+		</Provider>
+	</Sentry>,
 	
 	document.getElementById('react')
 )

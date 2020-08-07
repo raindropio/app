@@ -1,19 +1,22 @@
+import React from 'react'
 import * as Sentry from '@sentry/react'
 import config from '~config'
 import pkg from '~package.json'
 
-class MySentry {
-    constructor() {
-        if (process.env.NODE_ENV === 'development') return
-            
-        Sentry.init({
-            ...config.vendors.sentry,
-            environment: `${process.env.__TARGET__}-${process.env.NODE_ENV}`
-        })
-        Sentry.setTag('version', pkg.version)
-
-        this.isEnabled = true
-    }
+if (process.env.NODE_ENV !== 'development') {
+    Sentry.init({
+        ...config.vendors.sentry,
+        environment: `${process.env.APP_TARGET}-${process.env.NODE_ENV}`
+    })
+    Sentry.setTag('version', pkg.version)
 }
 
-export default new MySentry()
+export default class MySentry extends React.Component {
+    render() {
+        return (
+            <Sentry.ErrorBoundary showDialog>
+                {this.props.children}
+            </Sentry.ErrorBoundary>
+        )
+    }
+}
