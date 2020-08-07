@@ -24,9 +24,12 @@ export default class PickerSourceLink extends React.Component {
             return false
         }
 
-        const text = await navigator.clipboard.readText()
+        let text = ''
+        try{
+            text = await navigator.clipboard.readText()
+        }catch(e){}
 
-        if (isURL(text))
+        if (isURL(text, { require_protocol: true }))
             this.setState({ link: text }, ()=>{
                 this.textRef.current.select()
             })
