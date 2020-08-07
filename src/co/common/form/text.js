@@ -40,7 +40,7 @@ class TextInner extends React.Component {
 
             if (this.props.selectAll)
                 e.currentTarget.select()
-            else
+            else if (e.currentTarget.setSelectionRange)
                 e.currentTarget.setSelectionRange(e.currentTarget.value.length, -1)
         }
 

@@ -34,7 +34,7 @@ export default class MyRoute extends React.PureComponent {
     
             //changed collection
             if (_id !== null){
-                $_id = _id
+                $_id = parseInt(_id)
                 $query = query.full ? 'full=true' : ''
     
                 if (refine === null)

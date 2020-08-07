@@ -23,7 +23,7 @@ class BookmarksHeaderTitle extends React.Component {
 
     renderTitle = ()=>{
         const {
-            collection: { _id, title },
+            collection: { _id, title='' },
             isSearching,
             compact
         } = this.props

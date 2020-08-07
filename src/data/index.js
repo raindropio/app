@@ -3,6 +3,7 @@ import { applyMiddleware, combineReducers, compose, createStore } from 'redux'
 import createSagaMiddleware from 'redux-saga'
 import { persistStore, persistReducer } from 'redux-persist'
 import persistConfig from './modules/persistConfig'
+import ApiError from './modules/error'
 
 //Roots
 const getRootSaga = ()=>
@@ -15,8 +16,9 @@ const sagaMiddleware = createSagaMiddleware({
 	onError: e => {
 		if (process.env.NODE_ENV!='production')
 			console.error(e)
-			
-		Sentry.captureException(e)
+		
+		if (e instanceof ApiError == false)
+			Sentry.captureException(e)
 	}
 })
 

@@ -41,6 +41,7 @@ class TagsSection extends React.PureComponent {
         return (
             <>
                 <View 
+                    count={this.props.count}
                     onClick={this.onClick}
                     onContextMenu={this.onContextMenu} />
 

@@ -12,7 +12,7 @@ export default function* () {
 
 //Auth / error check
 function* checkAuth(action={}) {
-	const { error, ...etc } = action
+	const { error } = action
 
 	if (error instanceof ApiError == false){
 		throw error

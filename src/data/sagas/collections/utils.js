@@ -1,4 +1,5 @@
 import { select } from 'redux-saga/effects'
+import ApiError from '../../modules/error'
 
 export function* userIsPro() {
 	const state = yield select()
@@ -8,5 +9,5 @@ export function* userIsPro() {
 export function* onlyForProUsersCheck() {
 	const isPro = yield userIsPro()
 	if (!isPro)
-		throw new Error('needProAccount')
+		throw new ApiError({ status: 403, errorMessage: 'needProAccount' })
 }

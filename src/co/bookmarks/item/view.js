@@ -30,7 +30,8 @@ export default class BookmarkItemView extends React.PureComponent {
     }
 
     onDragEnd = e=>{
-        document.getElementById('dragPreview').remove()
+        const dragPreview = document.getElementById('dragPreview')
+        if (dragPreview) dragPreview.remove()
     }
 
     render() {

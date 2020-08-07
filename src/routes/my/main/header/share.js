@@ -24,7 +24,7 @@ export default class HeaderShare extends React.Component {
         const { _id } = this.props
         const { show } = this.state
 
-        if (_id <= 0) return null
+        if (parseInt(_id) <= 0) return null
 
         return (
             <>

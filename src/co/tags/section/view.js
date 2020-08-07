@@ -13,12 +13,12 @@ const titles = {
     other: _.capitalize(t.s('other'))
 }
 
-export default function TagsSectionView({className='', _id, ...props}) {
+export default function TagsSectionView({className='', _id, count, ...props}) {
     return (
         <Section 
             {...props}
             className={s.section+' '+className}>
-            <SectionTitle>{titles[_id] || t.s('tags')}</SectionTitle>
+            <SectionTitle>{count} {titles[_id] || t.s('tags').toLowerCase()}</SectionTitle>
             
             {props.onContextMenu && (
                 <SectionActions>

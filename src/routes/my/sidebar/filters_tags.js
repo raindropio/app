@@ -59,7 +59,7 @@ function FiltersTagsCombined({ tags, tags_hide, filters, filters_hide, ...etc })
     }
 
     if (tags.length){
-        data.push({ _id: 'tags', hidden: tags_hide })
+        data.push({ _id: 'tags', hidden: tags_hide, count: tags.length })
 
         if (!tags_hide)
             data.push(...tags.map(tag=>({ ...tag, type: 'tag' })))

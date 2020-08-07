@@ -45,7 +45,8 @@ class BookmarkOpenAll extends React.Component {
 
         //open links
         for(const link of links)
-            window.open(link)
+            if (!link.startsWith('file'))
+                window.open(link)
 
         //just close dialog when bookmarks less=1, or warning already showen
         if (links.length <= 1 || !showWarning)
