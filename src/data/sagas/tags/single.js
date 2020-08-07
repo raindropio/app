@@ -25,7 +25,7 @@ function* renameTag({tagName, newName, ignore=false, onSuccess, onFail}) {
 		yield put({
 			type: TAG_RENAME_SUCCESS,
 			tagName,
-			newName: newName.replace(/\s/g, '_'),
+			newName,
 			onSuccess, onFail
 		});
 	} catch (error) {

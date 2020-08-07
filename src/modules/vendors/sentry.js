@@ -6,6 +6,9 @@ import pkg from '~package.json'
 if (process.env.NODE_ENV !== 'development') {
     Sentry.init({
         ...config.vendors.sentry,
+        ignoreErrors: [
+            /ResizeObserver loop.*/i
+        ],
         environment: `${process.env.APP_TARGET}-${process.env.NODE_ENV}`
     })
     Sentry.setTag('version', pkg.version)
