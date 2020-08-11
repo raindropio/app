@@ -37,9 +37,11 @@ export default function(state, action) {
 					if (state.defaults[i]._id == action._id)
 						state = state.setIn(['defaults', i, 'view'], action.view)
 			}
+
+			let item = state.items[action._id] || normalizeCollection(action)
+			item = item.set('view', action.view)
 			
-			return state
-				.setIn(['items', action._id, 'view'], action.view)
+			return state.setIn(['items', action._id], item)
 		}
 
 		//Create
@@ -65,7 +67,13 @@ export default function(state, action) {
 		}
 
 		case COLLECTION_UPDATE_COUNT:{
-			state = state.setIn(['items', action._id, 'count'], parseInt(action.count)||0)
+			let item = state.items[action._id]
+
+			if (!item)
+				return state
+
+			item = item.set('count', parseInt(action.count)||0)
+			state = state.setIn(['items', action._id], item)
 
 			return actualizeStatus(state) 
 		}

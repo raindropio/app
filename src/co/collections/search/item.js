@@ -1,4 +1,5 @@
 import s from './item.module.styl'
+import _ from 'lodash'
 import React from 'react'
 import { humanNumber } from '~modules/strings'
 
@@ -8,7 +9,7 @@ import CollectionIcon from '../item/icon'
 import SafeHtml from '~co/common/safeHtml'
 
 function CollectionSearchItem({ title, cover, _id, count, search, getLink }) {
-    let highlighted = title.replace(new RegExp(`(${search})`, 'i'), '<em>$1</em>')
+    let highlighted = title.replace(new RegExp(`(${_.escapeRegExp(search)})`, 'i'), '<em>$1</em>')
 
     return (
         <Item className={s.item}>

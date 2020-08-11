@@ -1,5 +1,6 @@
 import s from './input.module.styl'
 import React from 'react'
+import _ from 'lodash'
 import t from '~t'
 
 import { Search } from '~co/common/form'
@@ -11,7 +12,7 @@ function lastPart(str) {
 }
 
 function setLastPart(str, val) {
-    return (str+'').replace(new RegExp(`${lastPart(str)}$`), val)
+    return (str+'').replace(new RegExp(`${_.escapeRegExp(lastPart(str))}$`), val)
 }
 
 export default class SearchInput extends React.Component {
