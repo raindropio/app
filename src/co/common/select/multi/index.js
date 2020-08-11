@@ -28,9 +28,7 @@ class MultiSelectInner extends React.PureComponent {
         //remove
         if (e.key === 'Backspace' && !value)
             this.props.onSelectedChange(this.props.selected.slice(0, -1))
-        //add
-        else if (e.key === 'Enter' && value)
-            this.onAddToken(e)
+        
         //add on comma
         else if (e.key === ',' && value.length>1){
             e.target.value = e.target.value.replace(/,/gi, '')
@@ -38,8 +36,17 @@ class MultiSelectInner extends React.PureComponent {
         }
 
         //default
-        if (this.props.onKeyDown)
-            this.props.onKeyDown(e)
+        this.props.onKeyDown && this.props.onKeyDown(e)
+    }
+
+    onInputKeyUp = e => {
+        const value = (e.target.value||'').trim()
+
+        //add, important to put it in KeyUp, to give time for parent component do something with Enter
+        if (e.key === 'Enter' && value)
+            this.onAddToken(e)
+
+        this.props.onKeyUp && this.props.onKeyUp(e)
     }
 
     onInputBlur = e => {
@@ -97,6 +104,7 @@ class MultiSelectInner extends React.PureComponent {
                     ref={forwardedRef}
                     onBlur={this.onInputBlur}
                     onKeyDown={this.onInputKeyDown} 
+                    onKeyUp={this.onInputKeyUp}
                     />
             </div>
         )
