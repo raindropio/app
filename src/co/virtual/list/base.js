@@ -49,8 +49,8 @@ export default class VirtualListBase extends React.PureComponent {
 
         const { totalCount, endReached, rangeChanged } = this.props
 
-        if (endReached &&
-            endIndex >= totalCount - (endIndex - startIndex)*2)
+        if (endReached)
+            if ((endIndex >= totalCount - (endIndex - startIndex)*2) || !endIndex)
             endReached()
 
         rangeChanged && rangeChanged(range)

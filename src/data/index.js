@@ -1,4 +1,3 @@
-import * as Sentry from '@sentry/minimal'
 import { applyMiddleware, combineReducers, compose, createStore } from 'redux'
 import createSagaMiddleware from 'redux-saga'
 import { persistStore, persistReducer } from 'redux-persist'
@@ -18,7 +17,7 @@ const sagaMiddleware = createSagaMiddleware({
 			console.error(e)
 		
 		if (e instanceof ApiError == false)
-			Sentry.captureException(e)
+			throw e
 	}
 })
 

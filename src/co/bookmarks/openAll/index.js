@@ -36,7 +36,7 @@ class BookmarkOpenAll extends React.Component {
         const links = Object.entries(bookmarks)
             //only selected in selectMode
             .filter(([_, { _id }])=>{
-                if (selected)
+                if (selected && !selectMode.all)
                     return selectMode.ids.includes(_id)
 
                 return true

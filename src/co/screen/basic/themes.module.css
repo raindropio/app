@@ -32,8 +32,8 @@
     --disable-text-color: rgba(0,0,0,.3);
 
     /* shadows */
-    --shadow-alpha: .1;
-    --shadow-light-alpha: .07;
+    --shadow-alpha: .13;
+    --shadow-light-alpha: .1;
     --shadow-color: rgba(0,0,0, var(--shadow-alpha));
     --shadow-light-color: rgba(0,0,0, var(--shadow-light-alpha));
 }

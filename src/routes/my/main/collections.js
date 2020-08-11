@@ -9,7 +9,7 @@ export default class MyMainCollection extends React.Component {
 
         return (
             <SearchCollection 
-                ignore={_id}
+                ignore={parseInt(_id)}
                 search={search}
                 getLink={getLink} />
         )
