@@ -26,6 +26,7 @@ class MyMain extends React.Component {
                 <Main style={style}>
                     <Helmet>
                         <title>{this.props.search || this.props.title}</title>
+                        <meta name='theme-color' content={style['--accent-color']} />
                     </Helmet>
                     <Header {...this.props} />
                     <Collections {...this.props} />
