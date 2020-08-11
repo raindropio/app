@@ -63,7 +63,7 @@ invisible() {
 .splitview:not(.s) :global(.svSidebar),
 .splitview:not(.r) :global(.svReader),
 .r.f :global(.svMain), .r.f :global(.svSidebar),
-:global(.svSidebarBackdrop) {
+.splitview:not(.s) :global(.svSidebarBackdrop) {
     invisible()
 }
 
@@ -79,13 +79,19 @@ invisible() {
 
 /* Hide sidebar when not enough space */
 @media screen and (min-width: sidebarMinWidth+mainMinWidth) and (max-width: sidebarMinWidth+mainMinWidth+readerMinWidth+200px)
-    .s.r :global(.svSidebar) {
-        invisible()
+    .s.r {
+        :global(.svSidebar) {
+            invisible()
+        }
+
+        :global(.svSidebarShowButton) {
+            display: none
+        }
     }
 
 /* Force show sidebar when super small screen */
 @media screen and (max-width sidebarMinWidth+mainMinWidth )
-    .s {
+    .s:not(.r) {
         :global(.svSidebar) {
             max-width: 70%;
 
