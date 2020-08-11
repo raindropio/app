@@ -65,7 +65,10 @@ export default class BookmarkItemCover extends React.PureComponent {
 
             //in other view modes we show a thumbnail or screenshot
             default:
-                uri = getUri(cover, cover ? '' : 'screenshot', domain)
+                if (cover)
+                    uri = getUri(cover)
+                else
+                    uri = getUri(link, 'screenshot')
                 break
         }
 
