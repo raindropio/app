@@ -1,16 +1,22 @@
-:global(.svSidebarResize) {
+.resize {
     user-select: none;
     cursor: col-resize;
     position: relative;
     width: 7px;
-    margin-left: -4px;
+    position: absolute;
+    right: -7px;
+    top: 0;
+    bottom: 0;
 }
 
-html:global(.windows) :global(.svSidebarResize) {
-    cursor: e-resize;
+html:global(.windows) {
+    .resize, .disableSelect {
+        cursor: e-resize;
+    }
 }
 
 .disableSelect {
     user-select: none
     pointer-events: none
+    cursor: col-resize
 }

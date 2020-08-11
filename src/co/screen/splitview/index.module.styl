@@ -1,129 +1,113 @@
+/* Configuration */
+sidebarMinWidth = 200px
+sidebarDefaultWidth = 300px
+
+mainMinWidth = 300px
+mainMaxWidth = 500px
+
+readerMinWidth = 300px
+
+
+/* Wrapper */
 .splitview {
     width: 100%;
     height: 100%;
-    --sidebar-width: unquote('max(200px, min(var(--preferred-sidebar-width, 270px), 40vw))');
-    display: grid;
-    grid-template-columns: minmax(200px, var(--sidebar-width)) 0px .5fr 1fr 1.5fr;
-    grid-template-rows: 100%;
-    grid-template-areas: 'main main main main main';
-    grid-auto-rows: 0;
-    grid-auto-columns: 0;
+    display: flex;
+    flex-direction: row;
     overflow: hidden;
 }
 
-/* Areas */
-:global(.svSidebar) {
-    grid-area: sidebar;
+/* Helpers */
+invisible() {
+    visibility: hidden;
+    position: absolute;
+    top: -100vw;
+    left: -100vw;
+    height: 100vh;
+    width: 33vw;
 }
 
-:global(.svSidebarResize) {
-    grid-area: sidebar-resize;
+/* Panels */
+:global(.svSidebar) {
+    z-index: 20;
+    min-width: sidebarMinWidth;
+    width: var(--sidebar-width, sidebarDefaultWidth);
+}
+
+:global(.svMain), :global(.svReader) {
+    flex: 1;
+    min-width: 0;
 }
 
 :global(.svSidebarBackdrop) {
-    grid-area: sidebar-backdrop;
+    z-index: 20
 }
 
-:global(.svMain) {
-    grid-area: main;
-    min-width: unquote('min(95rem, 40vw)') //min(380px, 40vw)
+/* Max width's */
+.s :global(.svSidebar) {
+    max-width: 40%
+}
+.s.r :global(.svSidebar) {
+    max-width: 25%
+}
+.r :global(.svMain) {
+    max-width: mainMaxWidth;
 }
 
-:global(.svReader) {
-    grid-area: reader;
-    justify-self: stretch;
-}
-
-/* Sidebar specific elements */
-:global(.svSidebar), :global(.svSidebarResize), :global(.svSidebarBackdrop) {
-    z-index: 20;
-}
-
+/* Buttons */
 :global(.svSidebarCloseButton) {
     display: none
 }
 
-.showReader :global(.svSidebarShowButton) {
-    display: none
+/* Hide panels when they not required */
+.splitview:not(.s) :global(.svSidebar),
+.splitview:not(.r) :global(.svReader),
+.r.f :global(.svMain), .r.f :global(.svSidebar),
+:global(.svSidebarBackdrop) {
+    invisible()
 }
 
-/* Full screen reader, always on top of all other */
-.showReader.showReaderFullscreen {
-    grid-template-areas: 'reader reader reader reader reader' !important
-}
+/* Full-screen reader when not enough width */
+@media screen and (max-width mainMinWidth+readerMinWidth )
+    .r :global(.svMain) {
+        invisible()
+    }
 
-@media screen and (max-width: 599px) {
-    /* sidebar + main */
-    .showSidebar:not(.showReader).forceSidebar {
+    :global(.svReaderFullscreenButton) {
+        display: none !important
+    }
+
+/* Hide sidebar when not enough space */
+@media screen and (min-width: sidebarMinWidth+mainMinWidth) and (max-width: sidebarMinWidth+mainMinWidth+readerMinWidth+200px)
+    .s.r :global(.svSidebar) {
+        invisible()
+    }
+
+/* Force show sidebar when super small screen */
+@media screen and (max-width sidebarMinWidth+mainMinWidth )
+    .s {
         :global(.svSidebar) {
-            grid-row: 1;
-            grid-column: 1 / 5;
+            max-width: 70%;
+
+            visibility: visible;
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 100%;
         }
 
         :global(.svSidebarBackdrop) {
-            grid-row: 1;
-            grid-column: 5 / -1;
-        }
+            left: 70%;
 
-        :global(.svSidebarCloseButton) {
-            display: block
-        }
-    }
-
-    /* any combination, reader always on top */
-    .showReader {
-        grid-template-areas: 'reader reader reader reader reader' !important;
-
-        :global(.svReaderFullscreenButton) {
-            display: none
-        }
-
-        //fix for mobile phones
-        > :not(:global(.svReader)) {
-            position: absolute
-            z-index: 0
+            visibility: visible;
+            position: absolute;
+            right: 0;
+            top: 0;
+            bottom: 0;
         }
     }
-}
 
-@media screen and (min-width: 600px) and (max-width: 1100px) {
-    /* sidebar + main + reader */
-    .showSidebar.showReader.forceSidebar {
-        grid-template-areas: 'sidebar main main main main';
-
-        :global(.svSidebarBackdrop) {
-            grid-row: 1;
-            grid-column: 3 / -1;
-        }
-
-        :global(.svSidebarCloseButton) {
-            display: block
-        }
+    :global(.svSidebarCloseButton) {
+        display: block
     }
-}
-
-@media screen and (min-width: 600px) {
-    /* sidebar + main */
-    .showSidebar:not(.showReader) {
-        grid-template-areas: 'sidebar sidebar-resize main main main'
-    }
-
-    /* main + reader */
-    .showReader {
-        grid-template-areas: 'reader reader reader reader reader';
-    }
-}
-
-@media screen and (min-width: 700px) {
-    /* main + reader */
-    .showReader {
-        grid-template-areas: 'main main main reader reader';
-    }
-}
-
-@media screen and (min-width: 1101px) {
-    /* sidebar + main + reader */
-    .showSidebar.showReader {
-        grid-template-areas: 'sidebar sidebar-resize main reader reader'
-    }
-}

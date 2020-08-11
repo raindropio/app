@@ -13,11 +13,10 @@ export default class SplitViewSidebar extends React.Component {
             <>
                 <aside className='svSidebar'>
                     {this.props.children}
+                    <Resize />
                 </aside>
 
                 <Backdrop />
-
-                <Resize />
             </>
         )
     }

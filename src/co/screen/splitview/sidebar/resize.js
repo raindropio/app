@@ -27,7 +27,7 @@ export default class SplitViewSidebarResize extends React.Component {
     render() {
         return (
             <div 
-                className='svSidebarResize'
+                className={s.resize}
                 onDoubleClick={this.onDoubleClick}
                 onMouseDown={this.onMouseDown} />
         )

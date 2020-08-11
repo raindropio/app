@@ -10,24 +10,17 @@ export default class ScreenSplitView extends React.Component {
         sidebar: {
             width: parseInt(localStorage.getItem('splitview-sidebar-width')),
             show: localStorage.getItem('splitview-sidebar-show') !== null ? (localStorage.getItem('splitview-sidebar-show')=='true') : true,
-            force: false,
 
             toggle: (e)=>{
                 e && e.preventDefault && e.preventDefault()
 
                 let show = !this.state.sidebar.show
-                let force = this.state.sidebar.force
-
-                if (!show && !force && window.innerWidth <= 1000){
-                    show = true
-                    force = true
-                }
                 
-                this.update('sidebar', { show, force })
+                this.update('sidebar', { show })
             },
 
             resize: (width)=>{
-                this.container.current.style.setProperty('--preferred-sidebar-width', width+'px')
+                this.container.current.style.setProperty('--sidebar-width', width+'px')
                 this.update('sidebar', { width })
             }
         },
@@ -80,12 +73,11 @@ export default class ScreenSplitView extends React.Component {
                     ref={this.container}
                     className={`
                         ${s.splitview}
-                        ${sidebar.show ? s.showSidebar : ''}
-                        ${sidebar.force ? s.forceSidebar : ''}
-                        ${reader.show ? s.showReader : ''}
-                        ${reader.fullscreen ? s.showReaderFullscreen : ''}
+                        ${sidebar.show ? s.s : ''}
+                        ${reader.show ? s.r : ''}
+                        ${reader.fullscreen ? s.f : ''}
                     `}
-                    style={sidebar.width ? {'--preferred-sidebar-width': sidebar.width+'px'} : undefined}>
+                    style={sidebar.width ? {'--sidebar-width': sidebar.width+'px'} : undefined}>
                     <Context.Provider value={this.state}>
                         {this.props.children}
                     </Context.Provider>
