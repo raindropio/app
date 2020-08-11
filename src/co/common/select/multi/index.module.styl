@@ -34,8 +34,18 @@
         color: var(--accent-color)
     }
 
-    &:hover .content {
-        color: var(--danger-color)
+    &:not(:hover) .close {
+        display: none
+    }
+
+    &:hover {
+        .icon {
+            display: none
+        }
+
+        .content {
+            color: var(--danger-color)
+        }
     }
 }
 

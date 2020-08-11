@@ -89,7 +89,12 @@ class MultiSelectInner extends React.PureComponent {
                         onMouseDown={this.TokenMouseDown}
                         onClick={this.onTokenClick}>
                         <div className={s.content}>
-                            {icon && <Icon name={icon} size='micro' />}
+                            {icon && (
+                                <>
+                                    <Icon className={s.icon} name={icon} size='micro' />
+                                    <Icon className={s.close} name='close' size='micro' />
+                                </>
+                            )}
                             <div className={s.title}>{item}</div>
                         </div>
                     </div>
