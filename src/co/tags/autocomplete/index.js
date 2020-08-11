@@ -66,6 +66,7 @@ class TagsMenu extends React.PureComponent {
                                 index,
                                 item,
                                 ...item,
+                                showIcon: false,
                                 active: highlightedIndex === index
                             })} />
                     )

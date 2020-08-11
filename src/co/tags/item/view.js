@@ -12,7 +12,7 @@ import TagIcon from './icon'
 export default class TagsItemView extends React.Component {
     render() {
         const {
-            _id, count, active, query, focusable, getLink,
+            _id, count, active, query, focusable, getLink, showIcon=true,
             onRenameClick,
             oneRename, onRenameCancel, onContextMenuClose, onRemoveClick, onRename, //to ignore
             ...etc
@@ -24,7 +24,7 @@ export default class TagsItemView extends React.Component {
                 {...etc}
                 className={s.item}
                 active={active}>
-                <TagIcon />
+                {showIcon && <TagIcon />}
 
                 <ItemTitle>{_id}</ItemTitle>
 
