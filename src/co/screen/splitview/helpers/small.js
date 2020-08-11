@@ -38,14 +38,15 @@ export default class SmallDetector extends React.Component {
 
     render() {
         const { small } = this.state
-        const { className='', minWidth, ...etc } = this.props
+        const { className='', minWidth, as='div', ...etc } = this.props
+        const Component = as
 
         return (
-            <div 
+            <Component 
                 ref={this.ref} 
                 data-small={small}
                 className={s.small+' '+className}
-                { ...etc }></div>
+                { ...etc }></Component>
         )
     }
 }

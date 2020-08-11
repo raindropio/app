@@ -33,6 +33,7 @@ export default class SplitViewReader extends React.PureComponent {
 
         return (
             <Small 
+                as='aside'
                 {...etc}
                 data-fullscreen={fullscreen}
                 className={'svReader '+className}

@@ -6,7 +6,7 @@ export default class SplitViewSidebarBackdrop extends React.Component {
 
     render() {
         return (
-            <div 
+            <figure 
                 className='svSidebarBackdrop'
                 onClick={this.context.sidebar.toggle} />
         )

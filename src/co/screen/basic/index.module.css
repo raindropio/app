@@ -40,7 +40,7 @@ a {
 
 /* Scrollbars */
 html {
-    scrollbar-color: var(--shadow-color) transparent;
+    scrollbar-color: var(--shadow-color) var(--background-color);
 }
 
 html:global(.scrollbar-obtrusive) ::-webkit-scrollbar {
