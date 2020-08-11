@@ -131,10 +131,15 @@ module.exports = {
 			description: 'All in One Bookmark Manager',
 			start_url: '/',
 			display: 'minimal-ui',
+			background_color: '#0F0F47',
 			icons: [
 				{
 					src: path.resolve('src/assets/images/icons/icon_512.png'),
 					size: '512x512'
+				},
+				{
+					src: path.resolve('src/assets/images/icons/maskable.png'),
+					size: '370x370'
 				}
 			]
 		}),
