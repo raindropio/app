@@ -34,6 +34,7 @@
 		"~package.json": "package.json"
 	},
 	"dependencies": {
+		"@sentry/minimal": "^5.20.1",
 		"@sentry/react": "^5.20.1",
 		"autoprefixer": "^9.8.4",
 		"date-fns": "2.15.x",

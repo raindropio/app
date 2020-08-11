@@ -27,8 +27,8 @@ function* checkAuth(action={}) {
 }
 
 //Send additional info to 3rd-party scripts
-function thirdPartyUserUpdate({ user }) {
+function thirdPartyUserUpdate({ user: { _id, email } }) {
 	Sentry.configureScope(scope => {
-		scope.setUser(user)
+		scope.setUser({ id: _id, email })
 	})
 }
