@@ -9,7 +9,7 @@ import Modal, { Header, Content } from '~co/overlay/modal'
 import Preloader from '~co/common/preloader'
 
 const _warningKey = 'open-multiple-links-help-ignore'
-let showWarning = !localStorage.getItem(_warningKey)
+let showWarning = localStorage && !localStorage.getItem(_warningKey)
 
 class BookmarkOpenAll extends React.Component {
     static defaultProps = {

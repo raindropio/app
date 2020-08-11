@@ -136,7 +136,7 @@ export default function(state, action) {
 			if (!from) return state
 
 			//source/target space and bookmark
-			const [ source, target ] = [ [...state.spaces.getIn([from, 'ids'])], [...state.spaces.getIn([to, 'ids'])] ]
+			const [ source, target ] = [ [...state.spaces.getIn([from, 'ids'])||[]], [...state.spaces.getIn([to, 'ids'])||[]] ]
 			const [ sourceOrder, targetOrder ] = [ source.indexOf(action._id), target.indexOf(action.toId) ]
 
 			//bookmark not found or nothing changed
