@@ -1,7 +1,4 @@
 import React from 'react'
-import t from '~t'
-import { Workbox } from 'workbox-window'
-import { Confirm } from '~co/overlay/dialog'
 
 export default class ServiceWorkerComponent extends React.Component {
     componentDidMount() {
@@ -15,22 +12,7 @@ export default class ServiceWorkerComponent extends React.Component {
     }
 
     init = ()=>{
-        this.wb = new Workbox('/sw.js')
-        this.wb.addEventListener('waiting', this.onUpdate)
-        this.wb.register()
-    }
-
-    onUpdate = ()=>{
-        Confirm('New update is available', { ok: t.s('refreshPage') })
-            .then(yes=>{
-                if (!yes) return
-
-                this.wb.addEventListener('controlling', () => {
-                    window.location.reload()
-                })
-
-                this.wb.messageSW({ type: 'SKIP_WAITING' })
-            })
+        navigator.serviceWorker.register('/sw.js')
     }
 
     render() {

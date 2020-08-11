@@ -8,7 +8,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const WebpackPwaManifest = require('webpack-pwa-manifest')
 const SentryCliPlugin = require('@sentry/webpack-plugin')
-//const { InjectManifest } = require('workbox-webpack-plugin')
+const CopyPlugin = require('copy-webpack-plugin')
 
 //Params
 process.env.APP_TARGET = process.env.APP_TARGET || 'default'
@@ -92,9 +92,12 @@ module.exports = {
 		...(isProd ? [
 			//Clean dist folder
 			new CleanWebpackPlugin(),
-		] : [
-			//new WriteFilePlugin()
-		]),
+			new CopyPlugin({
+				patterns: [
+					{ from: 'assets/sw.js', to: 'sw.js' }
+				]
+			})
+		] : []),
 
 		new webpack.DefinePlugin({
 			'process.env.APP_TARGET': JSON.stringify(process.env.APP_TARGET),

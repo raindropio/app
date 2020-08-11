@@ -85,6 +85,7 @@
 		"babel-loader": "8.x",
 		"babel-plugin-lodash": "3.3.x",
 		"clean-webpack-plugin": "^3.0.0",
+		"copy-webpack-plugin": "^6.0.3",
 		"css-loader": "4.2.x",
 		"eslint": "7.x",
 		"eslint-plugin-react": "7.x",
@@ -108,7 +109,6 @@
 		"webpack-cli": "^3.3.11",
 		"webpack-dev-server": "3.11.x",
 		"webpack-pwa-manifest": "4.x",
-		"workbox-webpack-plugin": "^5.1.3",
 		"write-file-webpack-plugin": "4.5.x"
 	}
 }

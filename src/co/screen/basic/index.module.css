@@ -58,7 +58,6 @@ html:global(.scrollbar-obtrusive) ::-webkit-scrollbar-thumb {
     border: 3px solid transparent;
     border-radius: 14px;
     box-shadow: inset 0px 0px 0px 7px var(--shadow-color);
-    border-left-width: calc(3px + var(--shadow-height));
 }
 
 html:global(.scrollbar-obtrusive) ::-webkit-scrollbar-thumb:hover {

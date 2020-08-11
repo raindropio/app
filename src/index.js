@@ -4,6 +4,7 @@ import React from 'react'
 import { render } from 'react-dom'
 import Sentry from '~modules/vendors/sentry'
 import 'form-request-submit-polyfill'
+import ServiceWorker from '~modules/sw/component'
 
 //redux
 import { Provider } from 'react-redux'
@@ -22,15 +23,17 @@ const { store, persistor } = withLocalReducer(localReducers)
 render(
 	//!add other global components in co/screen/basic
 	<Sentry>
-		<Provider store={store}>
-			<Document>
-				<PersistGate loading={<Loading />} persistor={persistor}>
-					<Translate Loading={Loading}>
-						<Routes />
-					</Translate>
-				</PersistGate>
-			</Document>
-		</Provider>
+		<ServiceWorker>
+			<Provider store={store}>
+				<Document>
+					<PersistGate loading={<Loading />} persistor={persistor}>
+						<Translate Loading={Loading}>
+							<Routes />
+						</Translate>
+					</PersistGate>
+				</Document>
+			</Provider>
+		</ServiceWorker>
 	</Sentry>,
 	
 	document.getElementById('react')
