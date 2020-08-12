@@ -14,6 +14,9 @@
     --accent-color: hsl(var(--accent-hsl));
 
     /* etc */
+    --info-background-color: #cce5ff;
+    --warning-background-color: #fff3cd;
+    --danger-background-color: #f8d7da;
     --danger-color: #E52E1B;
     --important-color: #F44336;
     --article-color: #ec8122;
@@ -55,8 +58,8 @@
 
     /* text colors */
     color: hsl(0,0%,90%);
-    --primary-text-color: hsl(0,0%,75%);
-    --secondary-text-color: hsl(0,0%,50%);
+    --primary-text-color: hsl(0,0%,80%);
+    --secondary-text-color: hsl(0,0%,60%);
     --disable-text-color: rgba(255,255,255,.4);
 
     /* shadows */
@@ -82,7 +85,7 @@
 (min-resolution: 192dpi) {
     :root, [data-app-size] {
         --shadow-height: .5px;
-        --shadow-alpha: .15;
+        --shadow-alpha: .17;
         --shadow-light-alpha: .12;
     }
 }

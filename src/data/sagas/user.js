@@ -52,16 +52,16 @@ function* loadUser({ignore=false, reset=true, way, onSuccess, onFail}) {
 	}
 }
 
-function* updateUser({ ignore=false, ...action }) {
+function* updateUser({ ignore=false, onSuccess, onFail,  ...action }) {
 	if (ignore)
 		return
 
 	try{
 		const { user } = yield call(Api.put, 'user', action.user)
 
-		yield put({type: USER_UPDATE_SUCCESS, user})
+		yield put({type: USER_UPDATE_SUCCESS, user, onSuccess})
 	} catch (error) {
-		yield put({type: USER_UPDATE_ERROR, error})
+		yield put({type: USER_UPDATE_ERROR, error, onFail})
 	}
 }
 

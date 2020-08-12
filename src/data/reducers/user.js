@@ -1,6 +1,6 @@
 import { 
 	USER_LOAD_REQ, USER_LOAD_SUCCESS, USER_LOAD_ERROR,
-	USER_UPDATE_SUCCESS,
+	USER_UPDATE_REQ, USER_UPDATE_SUCCESS, USER_UPDATE_ERROR,
 	USER_NOT_AUTHORIZED,
 	USER_REFRESH_REQ,
 	USER_LOGIN_PASSWORD,
@@ -77,6 +77,10 @@ export default function(state = initialState, action){switch (action.type) {
 		return setSpecificStatus(state, 'recover', 'loading')
 	}
 
+	case USER_UPDATE_REQ:{
+		return setSpecificStatus(state, 'save', 'loading')
+	}
+
 	case USER_LOAD_SUCCESS:
 	case USER_UPDATE_SUCCESS:
 	case COLLECTIONS_LOAD_SUCCESS:{
@@ -86,6 +90,14 @@ export default function(state = initialState, action){switch (action.type) {
 		return initialState
 			.set('status', initialState.status.set('authorized', 'yes'))
 			.set('current', normalizeUser(action.user))
+	}
+
+	case USER_UPDATE_ERROR:{
+		if (typeof action.onFail == 'function')
+			action.onFail(action.error)
+
+		return setSpecificStatus(state, 'save', 'error')
+			.setIn(['errorReason', 'save'], action.error)
 	}
 
 	case USER_LOAD_ERROR:{
@@ -133,6 +145,7 @@ const setSpecificStatus = (state, way='', val='idle')=>{
 		.setIn(['status', 'native'], 	way == 'native' ? val : 'idle')
 		.setIn(['status', 'lost'],		way == 'lost' ? val : 'idle')
 		.setIn(['status', 'recover'], 	way == 'recover' ? val : 'idle')
+		.setIn(['status', 'save'], 		way == 'save' ? val : 'idle')
 }
 
 const initialState = Immutable({
@@ -143,12 +156,14 @@ const initialState = Immutable({
 		register:	'idle',
 		native:		'idle',
 		lost:		'idle', //idle, loading, error, success
-		recover:	'idle'
+		recover:	'idle',
+		save:		'idle', //idle, loading, error
 	},
 	errorReason: {
 		login:'',
 		register:'',
-		native:''
+		native:'',
+		save:''
 	},
 	current: blankCurrent,
 	subscription: blankSubscription

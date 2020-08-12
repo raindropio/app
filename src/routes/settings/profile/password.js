@@ -1,18 +1,52 @@
 import React from 'react'
 import t from '~t'
+import withEdit from '~co/user/withEdit'
 
-import { Label, Text } from '~co/common/form'
+import { Label, Text, Buttons, Title } from '~co/common/form'
+import Button from '~co/common/button'
 
-function SettingsProfilePassword() {
+function SettingsProfilePassword({ password, newpassword='', oldpassword='', status, unsaved, onChange, onSubmit }) {
+    if (!password)
+        return null
+    
     return (
         <>
+            <Title>{t.s('changePassword')}</Title>
+
             <Label>{t.s('currentPassword')}</Label>
-            <Text />
+            <Text 
+                required
+                type='password'
+                disabled={status=='loading'}
+                name='oldpassword'
+                value={oldpassword}
+                onChange={onChange} />
 
             <Label>{t.s('newPassword')}</Label>
-            <Text />
+            <Text 
+                required
+                type='password'
+                disabled={status=='loading'}
+                name='newpassword'
+                value={newpassword}
+                onChange={onChange} />
+
+            {unsaved && newpassword && (
+                <>
+                    <div/>
+                    <Buttons>
+                        <Button 
+                            data-block
+                            disabled={status=='loading'}
+                            variant='primary'
+                            onClick={onSubmit}>
+                            {t.s('changePassword')}
+                        </Button>
+                    </Buttons>
+                </>
+            )}
         </>
     )
 }
 
-export default SettingsProfilePassword
+export default withEdit(SettingsProfilePassword, ['newpassword', 'oldpassword'])

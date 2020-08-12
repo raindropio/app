@@ -4,7 +4,8 @@ import {
 	USER_LOGIN_PASSWORD, USER_REGISTER_PASSWORD,
 	USER_LOGIN_NATIVE,
 	USER_LOST_PASSWORD, USER_RECOVER_PASSWORD,
-	USER_SUBSCRIPTION_LOAD_REQ
+	USER_SUBSCRIPTION_LOAD_REQ,
+	USER_UPDATE_REQ
 } from '../constants/user'
 
 export const load = ()=>({
@@ -14,6 +15,13 @@ export const load = ()=>({
 export const refresh = ()=>({
 	type: USER_REFRESH_REQ,
 	reset: false
+})
+
+export const save = (user, onSuccess, onFail)=>({
+	type: USER_UPDATE_REQ,
+	user,
+	onSuccess: wrapFunc(onSuccess),
+	onFail: wrapFunc(onFail)
 })
 
 export const loginWithPassword = ({email, password})=>({

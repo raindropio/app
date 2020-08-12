@@ -1,6 +1,8 @@
 import s from './index.module.styl'
 import React from 'react'
+import t from '~t'
 import { Route, Switch, Redirect } from 'react-router-dom'
+import { Helmet } from 'react-helmet'
 
 import Protected from '~co/screen/protected'
 import Screen from '~co/screen/basic'
@@ -18,6 +20,8 @@ import Help from './help'
 export default (props)=>(
     <Protected>
         <Screen className={s.settings}>
+            <Helmet><title>{t.s('settings')}</title></Helmet>
+
             <Header {...props} />
             <Tabs {...props} />
 

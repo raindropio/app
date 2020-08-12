@@ -16,7 +16,7 @@ if (RAINDROP_ENVIRONMENT == 'browser')
 else
 	storage = require('@react-native-community/async-storage').default
 
-const version = 11
+const version = 12
 
 export default {
 	key: 'primary',
