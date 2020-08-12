@@ -1,5 +1,12 @@
 import React from 'react'
+import { Layout, Separator } from '~co/common/form'
+import Export from './export'
+import Cloud from './cloud'
 
 export default (props)=>(
-	<b>User</b>
+	<Layout type='grid'>
+		<Export />
+		<Separator />
+		<Cloud />
+	</Layout>
 )

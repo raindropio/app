@@ -5,7 +5,8 @@ import {
 	USER_LOGIN_NATIVE,
 	USER_LOST_PASSWORD, USER_RECOVER_PASSWORD,
 	USER_SUBSCRIPTION_LOAD_REQ,
-	USER_UPDATE_REQ
+	USER_UPDATE_REQ,
+	USER_EXPORT_TO_EMAIL
 } from '../constants/user'
 
 export const load = ()=>({
@@ -20,6 +21,12 @@ export const refresh = ()=>({
 export const save = (user, onSuccess, onFail)=>({
 	type: USER_UPDATE_REQ,
 	user,
+	onSuccess: wrapFunc(onSuccess),
+	onFail: wrapFunc(onFail)
+})
+
+export const exportToEmail = (onSuccess, onFail)=>({
+	type: USER_EXPORT_TO_EMAIL,
 	onSuccess: wrapFunc(onSuccess),
 	onFail: wrapFunc(onFail)
 })

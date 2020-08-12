@@ -12,7 +12,8 @@ import {
 	USER_LOGIN_NATIVE,
 	USER_LOST_PASSWORD, USER_LOST_PASSWORD_SUCCESS,
 	USER_RECOVER_PASSWORD,
-	USER_SUBSCRIPTION_LOAD_REQ, USER_SUBSCRIPTION_LOAD_SUCCESS, USER_SUBSCRIPTION_LOAD_ERROR
+	USER_SUBSCRIPTION_LOAD_REQ, USER_SUBSCRIPTION_LOAD_SUCCESS, USER_SUBSCRIPTION_LOAD_ERROR,
+	USER_EXPORT_TO_EMAIL
 } from '../constants/user'
 
 //Requests
@@ -32,6 +33,8 @@ export default function* () {
 	yield takeLatest(USER_RECOVER_PASSWORD, recoverPassword)
 
 	yield takeLatest(USER_LOGOUT_REQ, logout)
+
+	yield takeLatest(USER_EXPORT_TO_EMAIL, exportToEmail)
 
 	yield takeLatest(USER_SUBSCRIPTION_LOAD_REQ, loadSubscription)
 }
@@ -133,6 +136,18 @@ function* logout({ignore=false}) {
 		yield put({type: USER_NOT_AUTHORIZED})
 	} catch ({message}) {
 		console.log(message)
+	}
+}
+
+function* exportToEmail({ ignore=false, onSuccess, onFail }) {
+	if (ignore)
+		return;
+
+	try {
+		yield call(Api.get, 'user/export?json=1')
+		onSuccess()
+	} catch (error) {
+		onFail(error)
 	}
 }
 
