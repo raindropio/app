@@ -3,7 +3,7 @@ import { HashRouter, BrowserRouter, Route, Redirect, Switch } from 'react-router
 
 import Account from './account'
 import My from './my'
-//import Settings from './settings'
+import Settings from './settings'
 
 import None from './_none'
 
@@ -16,7 +16,7 @@ export default ()=>(
         <Switch>
             <Route path='/account' component={Account} />
             <Route path='/my/:_id(-?\d+)/:search?' component={My} />
-            {/*<Route path='/settings' component={Settings} />*/}
+            <Route path='/settings' component={Settings} />
 
             {/* Redirects */}
             <Route path='/app/duplicates'><Redirect to='/settings/duplicates' /></Route>

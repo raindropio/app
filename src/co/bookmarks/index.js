@@ -57,8 +57,9 @@ export default connect(
     
         return (state, { spaceId, search, full, activeId })=>{
             const lastChange = getBookmarksLastChange(state)
+            const { nested_view_legacy } = state.config
 
-            if (full)
+            if (full || nested_view_legacy)
                 return {
                     ids: [ spaceId ],
                     dataKey: spaceId+lastChange+activeId

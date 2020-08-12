@@ -14,7 +14,7 @@ class BookmarksHeaderRename extends React.Component {
         collection: {}
     }
 
-    title = t.s('edit')+' '+t.s('title').toLowerCase()
+    title = t.s('rename')
 
     onRenameClick = async()=>{
         const newname = await Prompt(this.title, this.props.collection.title)

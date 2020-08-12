@@ -29,16 +29,64 @@ export default class BookmarkItemView extends React.PureComponent {
         e.dataTransfer.setDragImage(dragPreview, dragPreview.offsetWidth/6, dragPreview.offsetHeight/6)
     }
 
-    onDragEnd = e=>{
+    onDragEnd = ()=>{
         const dragPreview = document.getElementById('dragPreview')
         if (dragPreview) dragPreview.remove()
     }
 
+    getLinkProps = ()=>{
+        const { getLink, mainAction, _id, link } = this.props
+
+        switch (mainAction) {
+            case 'new_tab':
+                return {
+                    href: link,
+                    target: '_blank'
+                }
+        
+            default:
+                return {
+                    to: getLink({
+                        bookmark: _id,
+                        tab: mainAction
+                    })
+                }
+        }
+    }
+
+    renderSecondaryAction = ()=>{
+        const { getLink, mainAction, _id, link } = this.props
+
+        switch(mainAction) {
+            case 'new_tab':
+                return (
+                    <Button 
+                        as={Link}
+                        to={getLink({ bookmark: _id, tab: '' })}
+                        variant='outline'
+                        title={t.s('preview')}>
+                        <Icon name='show' />
+                    </Button>
+                )
+
+            default:
+                return (
+                    <Button 
+                        href={link}
+                        target='_blank'
+                        variant='outline'
+                        title={t.s('open')+' '+t.s('inNewTab')}>
+                        <Icon name='open' />
+                    </Button>
+                )
+        }
+    }
+
     render() {
-        const { innerRef, isDragging } = this.props
+        const { innerRef, isDragging, mainAction } = this.props
         const { _id, link, title, excerpt, highlight, cover, domain, tags, view, access } = this.props
         const { active, selected, selectModeEnabled, selectDisabled, important, broken, gridSize } = this.props
-        const { getLink, onClick, onSelectClick, onRemoveClick, onContextMenu, onKeyUp } = this.props
+        const { getLink, onClick, onDoubleClick, onSelectClick, onRemoveClick, onContextMenu, onKeyUp } = this.props
 
         return (
             <article 
@@ -82,13 +130,7 @@ export default class BookmarkItemView extends React.PureComponent {
                 </div>
 
                 <div className={s.actions}>
-                    <Button 
-                        as={Link}
-                        to={getLink({ bookmark: _id, tab: '' })}
-                        variant='outline'
-                        title={t.s('preview')}>
-                        <Icon name='show' />
-                    </Button>
+                    {this.renderSecondaryAction()}
 
                     {access.level >= 3 ? (
                         <>
@@ -99,12 +141,14 @@ export default class BookmarkItemView extends React.PureComponent {
                                 <Icon name='tag' />
                             </Button>
 
-                            <Button 
-                                as={Link}
-                                to={getLink({ bookmark: _id, tab: 'edit', autoFocus: '' })}
-                                variant='outline'>
-                                {t.s('editMin')}
-                            </Button>
+                            {mainAction != 'edit' && (
+                                <Button 
+                                    as={Link}
+                                    to={getLink({ bookmark: _id, tab: 'edit', autoFocus: '' })}
+                                    variant='outline'>
+                                    {t.s('editMin')}
+                                </Button>
+                            )}
 
                             <Button 
                                 variant='outline'
@@ -125,13 +169,14 @@ export default class BookmarkItemView extends React.PureComponent {
                 ) : null}
 
                 <SuperLink
+                    {...this.getLinkProps()}
                     className={s.permalink}
-                    href={link}
 
                     active={active}
                     tabIndex='0'
 
-					onClick={onClick}
+                    onClick={onClick}
+                    onDoubleClick={onDoubleClick}
                     onContextMenu={onContextMenu}
                     onKeyUp={onKeyUp} />
             </article>

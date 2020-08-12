@@ -17,7 +17,8 @@ class BookmarkItem extends React.Component {
         access:             {}, //{ level }...
         selectModeEnabled:  false,
         //funcs
-        getLink:            undefined,
+        getLink:            undefined, //same as ...items/index
+        mainAction:         '', //same as ...items/index
         events:             {}, //same as ...items/index
         actions:            {}  //redux collections
     }
@@ -28,7 +29,9 @@ class BookmarkItem extends React.Component {
 
     handlers = {
         onClick: (e)=>{
-            if (this.props.selectModeEnabled){
+            const { selectModeEnabled } = this.props
+
+            if (selectModeEnabled){
                 e.preventDefault()
                 return this.handlers.onSelectClick()
             }
@@ -37,10 +40,11 @@ class BookmarkItem extends React.Component {
                 e.preventDefault()
                 this.handlers.onSelectClick()
             }
-                
-            if (this.props.events.onItemClick)
-                if (this.props.events.onItemClick(this.props.item) === true)
-                    e.preventDefault()
+        },
+
+        onDoubleClick: (e)=>{
+            e.preventDefault()
+            window.open(this.props.item.link)
         },
 
         onSelectClick: ()=>{

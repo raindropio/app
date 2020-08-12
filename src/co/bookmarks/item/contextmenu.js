@@ -13,7 +13,7 @@ export default function BookmarksItemContextmenu({
             <Menu>
                 <MenuItem href={link} target='_blank'>
                     <Icon name='open' />
-                    {t.s('openInBrowser')}
+                    {t.s('open')} {t.s('inNewTab')}
                 </MenuItem>
 
                 <MenuItem onClick={onCopyLinkClick}>
@@ -25,13 +25,13 @@ export default function BookmarksItemContextmenu({
 
                 <MenuItem to={getLink({ bookmark: _id, tab: '' })}>
                     <Icon name='show' />
-                    {t.s('open')+' '+t.s('preview').toLowerCase()}
+                    {t.s('preview')}
                 </MenuItem>
 
                 {access.level >= 2 && cache ? (
                     <MenuItem to={getLink({ bookmark: _id, tab:'cache' })}>
                         <Icon name={cache ? 'cache_ready' : 'cache_failed'} />
-                        {cache != 'ready' ? '⚠️ '+t.s('permanentCopy') : t.s('open') + ' ' +t.s('permanentCopy').toLowerCase()}
+                        {cache != 'ready' ? '⚠️ ' : ''}{t.s('permanentCopy')}
                     </MenuItem>
                 ) : null}
 

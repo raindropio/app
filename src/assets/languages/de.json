@@ -223,7 +223,7 @@
   "helpBatchD":"Wähle mehrere Lesezeichen für Stapel-Aktionen aus",
   "moreTips":"Weitere Tipps anzeigen",
   "view":"Ansicht",
-  "openLinksInNewTab":"Links in neuem Tab öffnen",
+  "inNewTab":"in neuem Tab",
   "allBookmarks":"Alle Lesezeichen",
   "parent":"Übergeordnete",
   "footerProAd":"Upgrade auf PRO",
@@ -254,8 +254,7 @@
   "screenshotError":"Website kann nicht eingefangen werden!",
   "lastWeek":"Die letzten 7 Tage",
   "copyLinkToClipboard":"Link in Zwischenablage kopieren",
-  "openInBrowser":"Im Browser öffnen",
-  "openInBrowserWithShift":"Um den Link im Browser zu öffnen, halten Sie die STRG- oder UMSCHALT-Taste",
+  "inBrowser":"im browser",
   "selectAIconSet":"Wählen Sie eine Icon Set",
   "sharing":"Teilen",
   "members":"Mitglieder",
@@ -565,5 +564,8 @@
   "canceled": "Abgesagt",
   "willStop": "Wird aufhören",
   "invoices": "Rechnungen",
-  "billingCycle": "Rechnungskreislauf"
+  "billingCycle": "Rechnungskreislauf",
+  "preview": "Zapowiedź",
+  "rename": "Umbenennen",
+  "large": "Groß"
 }

@@ -1,0 +1,16 @@
+.tabs {
+    display: flex
+    flex-wrap: wrap
+    justify-content: space-evenly
+    max-width: 180rem
+    width: 100%
+    margin: 0 auto !important
+
+    > * {
+        margin: .5rem 0
+    }
+
+    > :not(:last-child) {
+        margin-right: var(--padding-small)
+    }
+}

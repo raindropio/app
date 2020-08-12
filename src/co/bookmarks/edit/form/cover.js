@@ -52,7 +52,7 @@ class BookmarkEditFormCover extends React.Component {
         const { item: { cover, link, media } } = this.props
 
         return (
-            <div>
+            <div className={styles.wrap}>
                 <a 
                     href=''
                     className={styles.cover}

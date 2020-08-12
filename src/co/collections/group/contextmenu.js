@@ -44,7 +44,7 @@ export default function CollectionsItemContextmenu({
                     <>
                         <MenuItem onClick={onRenameClick}>
                             <Icon name='edit' />
-                            {t.s('edit')} {t.s('group').toLowerCase()}
+                            {t.s('rename')}
                         </MenuItem>
 
                         <MenuItem onClick={onToggleClick}>

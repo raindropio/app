@@ -1,51 +1,40 @@
+import s from './index.module.styl'
 import React from 'react'
-import { Route, Redirect, Switch, useRouteMatch } from 'react-router-dom'
-import environment from '~modules/environment'
+import { Route, Switch, Redirect } from 'react-router-dom'
 
-import SplitView from '~co/screen/splitview'
 import Protected from '~co/screen/protected'
+import Screen from '~co/screen/basic'
+import Header from './header'
+import Tabs from './tabs'
 
-import Sidebar from './sidebar'
-
-import Upgrade from './upgrade'
-import Common from './common'
+import App from './app'
+import Pro from './pro'
 import Profile from './profile'
-
 import Import from './import'
-import Export from './export'
-import Duplicates from './duplicates'
-import Broken from './broken'
-
+import Backups from './backups'
 import Integrations from './integrations'
-import Apps from './apps'
-import About from './about'
+import Help from './help'
 
-export default ()=>{
-	let { path } = useRouteMatch()
+export default (props)=>(
+    <Protected>
+        <Screen className={s.settings}>
+            <Header {...props} />
+            <Tabs {...props} />
 
-	return (
-		<Protected>
-			<SplitView>
-				<Sidebar />
-				
-				<Switch>
-					<Route path={`${path}/upgrade`} component={Upgrade} />
-					<Route path={`${path}/common`} component={Common} />
-					<Route path={`${path}/profile`} component={Profile} />
+            <div className={s.body}>
+                <Switch>
+                    <Route path={`${props.match.path}/app`} component={App} />
+                    <Route path={`${props.match.path}/profile`} component={Profile} />
+                    <Route path={`${props.match.path}/pro`} component={Pro} />
+                    <Route path={`${props.match.path}/import`} component={Import} />
+                    <Route path={`${props.match.path}/backups`} component={Backups} />
+                    <Route path={`${props.match.path}/integrations`} component={Integrations} />
+                    <Route path={`${props.match.path}/help`} component={Help} />
 
-					<Route path={`${path}/import`} component={Import} />
-					<Route path={`${path}/export`} component={Export} />
-					<Route path={`${path}/duplicates`} component={Duplicates} />
-					<Route path={`${path}/libroken`} component={Broken} />
-
-					<Route path={`${path}/integrations`} component={Integrations} />
-					<Route path={`${path}/apps`} component={Apps} />
-
-					<Route path={`${path}/about`} component={About} />
-
-					<Route><Redirect to={path+'/'+(environment.isClipper()?'common':'upgrade')} /></Route>
-				</Switch>
-			</SplitView>
-		</Protected>
-	)
-}
+                    {/* Default route */}
+                    <Route><Redirect to={`${props.match.path}/app`} /></Route>
+                </Switch>
+            </div>
+        </Screen>
+    </Protected>
+)

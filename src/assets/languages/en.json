@@ -228,7 +228,8 @@
   "helpBatchD":"Select bookmarks for batch actions",
   "moreTips":"Show more tips",
   "view":"View",
-  "openLinksInNewTab":"Open bookmarks in new tab",
+  "bookmarkClick": "Bookmark click",
+  "inNewTab":"in new tab",
   "allBookmarks":"All bookmarks",
   "parent":"Parent",
   "footerProAd":"Upgrade to PRO",
@@ -259,8 +260,7 @@
   "screenshotError":"Web page can't be captured!",
   "lastWeek":"The last 7 days",
   "copyLinkToClipboard":"Copy link to clipboard",
-  "openInBrowser":"Open in browser",
-  "openInBrowserWithShift":"To open link in browser, hold the Ctrl or Shift key",
+  "inBrowser":"Open in browser",
   "selectAIconSet":"Icon set",
   "sharing":"Sharing",
   "members":"Members",
@@ -513,7 +513,6 @@
   "path": "Path",
   "access":"Access",
   "my":"My",
-  "previewBookmarks": "Open bookmarks in preview panel",
   "duplicates": "Duplicates",
   "alwaysShow": "Always show",
   "today": "Today",
@@ -655,5 +654,8 @@
   "willStop": "Will stop",
   "invoices": "Invoices",
   "billingCycle": "Billing cycle",
-  "leave": "Leave"
+  "leave": "Leave",
+  "backups": "Backups",
+  "rename": "Rename",
+  "large": "Large"
 }

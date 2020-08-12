@@ -17,7 +17,8 @@ class BookmarksItems extends React.Component {
         compactLimit:   7,
         ignore:         0,  //ignore some collectionId when showing all bookmarks
         getLink:        undefined,
-        events:         {}  //onItemClick
+        mainAction:     'new_tab', //new_tab||any other...
+        events:         {}  //
     }
 
     componentDidMount() {

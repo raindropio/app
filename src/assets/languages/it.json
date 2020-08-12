@@ -223,7 +223,7 @@
   "helpBatchD":"Seleziona più segnalibri per azioni multiple",
   "moreTips":"Visualizza ulteriori suggerimenti",
   "view":"vista",
-  "openLinksInNewTab":"Apri link in nuova scheda",
+  "inNewTab":"in nuova scheda",
   "allBookmarks":"Tutti i segnalibri",
   "parent":"Superiore",
   "footerProAd":"Aggiornamento a PRO",
@@ -254,8 +254,7 @@
   "screenshotError":"Pagina Web non può essere catturato!",
   "lastWeek":"gli ultimi 7 giorni",
   "copyLinkToClipboard":"Copiare il link negli Appunti",
-  "openInBrowser":"apri nel browser",
-  "openInBrowserWithShift":"Per aprire i link nel browser, tenere premuto il tasto Ctrl o Shift",
+  "inBrowser":"nel browser",
   "selectAIconSet":"Selezionare un set di icone",
   "sharing":"Condivisione",
   "members":"Membri",
@@ -521,5 +520,8 @@
   "canceled": "Annullata",
   "willStop": "Smetterò",
   "invoices": "Fatture",
-  "billingCycle": "Ciclo di fatturazione"
+  "billingCycle": "Ciclo di fatturazione",
+  "preview": "Anteprima",
+  "rename": "Rinominare",
+  "large": "Grande"
 }

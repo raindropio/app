@@ -52,6 +52,7 @@ export default class BookmarksItemsListing extends React.Component {
                 //listing specififc
                 active={this.props.activeId == _id}
                 getLink={this.props.getLink}
+                mainAction={this.props.mainAction}
                 events={this.props.events}
                 actions={this.props.actions} />
         )

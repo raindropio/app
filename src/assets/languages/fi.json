@@ -224,7 +224,7 @@
   "helpBatchD":"Valitse kirjanmerkit joukkotoiminnoille",
   "moreTips":"Näytä lisää vinkkejä",
   "view":"Näytä",
-  "openLinksInNewTab":"Avaa linkit uudessa välilehdessä",
+  "inNewTab":"uudessa välilehdessä",
   "allBookmarks":"Kaikki kirjanmerkit",
   "parent":"Pääryhmä",
   "footerProAd":"Päivitä PRO-versioon",
@@ -255,8 +255,7 @@
   "screenshotError":"Web-sivua ei voida kaapata!",
   "lastWeek":"Viimeisimmät 7 päivää",
   "copyLinkToClipboard":"Kopioi linkki leikepöydälle",
-  "openInBrowser":"Avaa selaimessa",
-  "openInBrowserWithShift":"Avataksesi linkin selaimessa, pidä Ctrl- tai Shift-näppäintä painettuna",
+  "inBrowser":"selaimessa",
   "selectAIconSet":"Valitse kuvakesetti",
   "sharing":"Jakaminen",
   "members":"Ihmiset",
@@ -566,5 +565,8 @@
   "canceled": "peruttu",
   "willStop": "Pysähtyy",
   "invoices": "laskut",
-  "billingCycle": "Laskutusjakso"
+  "billingCycle": "Laskutusjakso",
+  "preview": "esikatselu",
+  "rename": "Nimeä uudelleen",
+  "large": "Suuri"
 }

@@ -13,7 +13,8 @@ export default {
 
         help: {
             index: 'https://help.raindrop.io',
-            'open-multiple-links': 'https://help.raindrop.io/open-multiple-links'
+            'open-multiple-links': 'https://help.raindrop.io/open-multiple-links',
+            'broken-links': 'https://help.raindrop.io/article/41-broken-links-finder'
         },
 
         pro: {

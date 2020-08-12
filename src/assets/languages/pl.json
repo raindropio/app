@@ -224,7 +224,7 @@
   "helpBatchD":"Wybierz zakładki do masowego działania",
   "moreTips":"Pokaż więcej podpowiedzi",
   "view":"Widok",
-  "openLinksInNewTab":"Otwieraj linki w nowej karcie",
+  "inNewTab":"w nowej karcie",
   "allBookmarks":"Wszystkie zakładki",
   "parent":"Nadrzędna",
   "footerProAd":"Uaktualnij do wersji PRO",
@@ -255,8 +255,7 @@
   "screenshotError":"Strona nie może być przechwycona!",
   "lastWeek":"Ostatnie 7 dni",
   "copyLinkToClipboard":"Kopiuj link do schowka",
-  "openInBrowser":"Otwórz w przeglądarce",
-  "openInBrowserWithShift":"Aby otworzyć link w przeglądarce, przytrzymaj klawisz Shift lub Ctrl",
+  "inBrowser":"w przeglądarce",
   "selectAIconSet":"Wybierz zestaw ikon",
   "sharing":"Udostępnione",
   "members":"Członkowie",
@@ -566,5 +565,8 @@
   "canceled": "Anulowany",
   "willStop": "Przestanie",
   "invoices": "Faktury",
-  "billingCycle": "Cykl rozliczeniowy"
+  "billingCycle": "Cykl rozliczeniowy",
+  "preview": "Zapowiedź",
+  "rename": "Przemianować",
+  "large": "Duży"
 }

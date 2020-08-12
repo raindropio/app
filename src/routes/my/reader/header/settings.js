@@ -6,6 +6,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as configActions from '~data/actions/config'
 
+import RaindropsClick from '~routes/settings/app/raindrops_click'
 import Button from '~co/common/button'
 import Icon from '~co/common/icon'
 import Popover from '~co/overlay/popover'
@@ -47,24 +48,29 @@ class ReaderHeaderSettings extends React.Component {
     )
 
     render() {
-        const { tab, font_color, font_size } = this.props
+        const { tab, font_color, font_size, item: { type } } = this.props
 
         return (
             <>
                 <Button ref={this.pin} title={t.s('settings')} onClick={this.onSettingsClick}>
-                    <Icon name={tab == 'preview' ? 'fonts' : 'settings'} />
+                    <Icon name='settings' />
                 </Button>
 
                 {this.state.show && (
                     <Popover pin={this.pin} onClose={this.onSettingsClose}>
-                        <div className={s.switch}>
-                            <a className={s.auto+' '+(font_color==''?s.active:'')} data-key='font_color' data-val='' onClick={this.onSettingChange}></a>
-                            <a className={s.day+' '+(font_color=='day'?s.active:'')} data-key='font_color' data-val='day' onClick={this.onSettingChange}></a>
-                            <a className={s.sunset+' '+(font_color=='sunset'?s.active:'')} data-key='font_color' data-val='sunset' onClick={this.onSettingChange}></a>
-                            <a className={s.dark+' '+(font_color=='night'?s.active:'')} data-key='font_color' data-val='night' onClick={this.onSettingChange}></a>
-                        </div>
+                        <Layout>
+                            <RaindropsClick />
 
-                        {tab == 'preview' ? (
+                            <Label>{t.s('interfaceStyle')}</Label>
+                            <div className={s.switch}>
+                                <a className={s.auto+' '+(font_color==''?s.active:'')} data-key='font_color' data-val='' onClick={this.onSettingChange}></a>
+                                <a className={s.day+' '+(font_color=='day'?s.active:'')} data-key='font_color' data-val='day' onClick={this.onSettingChange}></a>
+                                <a className={s.sunset+' '+(font_color=='sunset'?s.active:'')} data-key='font_color' data-val='sunset' onClick={this.onSettingChange}></a>
+                                <a className={s.dark+' '+(font_color=='night'?s.active:'')} data-key='font_color' data-val='night' onClick={this.onSettingChange}></a>
+                            </div>
+                        </Layout>
+
+                        {tab == 'preview' && type=='article' ? (
                             <Layout>
                                 <Label>{t.s('fontFamily')}</Label>
                                 <div>{fonts.map(this.renderFont)}</div>

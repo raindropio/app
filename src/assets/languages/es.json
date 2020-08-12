@@ -225,7 +225,7 @@
   "helpBatchD":"Seleccione marcadores para acciones por lotes",
   "moreTips":"Ver más consejos",
   "view":"Vista",
-  "openLinksInNewTab":"Abrir vínculos en una nueva pestaña",
+  "inNewTab":"en nueva pestaña",
   "allBookmarks":"Todos los marcadores",
   "parent":"Principal",
   "footerProAd":"Actualizar a PRO",
@@ -256,8 +256,7 @@
   "screenshotError":"Página Web no puede ser capturada!",
   "lastWeek":"Los últimos 7 días",
   "copyLinkToClipboard":"Copiar el enlace al portapapeles",
-  "openInBrowser":"Abrir en navegador",
-  "openInBrowserWithShift":"Para abrir el enlace en el navegador, sostenga las teclas Ctrl o Mayús",
+  "inBrowser":"en navegador",
   "selectAIconSet":"Seleccione un conjunto de iconos",
   "sharing":"Compartir",
   "members":"Miembros",
@@ -567,5 +566,8 @@
   "canceled": "Cancelada",
   "willStop": "Se detendrá",
   "invoices": "Facturas",
-  "billingCycle": "Ciclo de facturación"
+  "billingCycle": "Ciclo de facturación",
+  "preview": "Avance",
+  "rename": "Rebautizar",
+  "large": "Grande"
 }

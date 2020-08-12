@@ -224,7 +224,7 @@
   "helpBatchD":"Toplu işlemler için yer imlerini seçin",
   "moreTips":"Daha fazla ipucu",
   "view":"İncele",
-  "openLinksInNewTab":"Yeni sekmede aç",
+  "inNewTab":"yeni sekmede",
   "allBookmarks":"Tüm yer imleri",
   "parent":"Üst",
   "footerProAd":"PRO sürümüne yükselt",
@@ -255,8 +255,7 @@
   "screenshotError":"Web sayfası yakalanamaz!",
   "lastWeek":"Son 7 gün",
   "copyLinkToClipboard":"Panoya kopyala",
-  "openInBrowser":"Tarayıcıda aç",
-  "openInBrowserWithShift":"Bağlantıyı tarayıcıda açmak için Ctrl veya Shift tuşunu basılı tutun",
+  "inBrowser":"tarayıcıda",
   "selectAIconSet":"Simge seti seçin",
   "sharing":"Paylaşım",
   "members":"Üyeler",
@@ -542,5 +541,8 @@
   "canceled": "İptal edildi",
   "willStop": "Duracak",
   "invoices": "Faturalar",
-  "billingCycle": "Fatura döngüsü"
+  "billingCycle": "Fatura döngüsü",
+  "preview": "Ön izleme",
+  "rename": "Adını değiştirmek",
+  "large": "Büyük"
 }

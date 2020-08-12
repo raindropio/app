@@ -37,9 +37,7 @@ export default class BookmarkEditForm extends React.Component {
         return (
             <form className={s.form} onSubmit={this.onSubmitForm}>
                 <Layout type='grid'>
-                    <div>
-                        <Cover {...this.props} />
-                    </div>
+                    <Cover {...this.props} />
 
                     <div>
                         <Text 

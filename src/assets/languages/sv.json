@@ -224,7 +224,7 @@
   "helpBatchD":"Välj bokmärken för massåtgärder",
   "moreTips":"Visa fler tips",
   "view":"Visa",
-  "openLinksInNewTab":"Öppna länkar i nya flikar",
+  "inNewTab":"i ny flik",
   "allBookmarks":"Alla bokmärken",
   "parent":"Överordnad",
   "footerProAd":"Uppgradera till PRO",
@@ -255,8 +255,7 @@
   "screenshotError":"Webbsida kan inte fångas!",
   "lastWeek":"De senaste 7 dagarna",
   "copyLinkToClipboard":"Kopiera länk till urrklipp",
-  "openInBrowser":"Öppna i webbläsare",
-  "openInBrowserWithShift":"För att öppna länken i webbläsaren, tryck och håll ned Ctrl- eller SKIFT-tangenten",
+  "inBrowser":"i webbläsare",
   "selectAIconSet":"Välj ikoner",
   "sharing":"Delning",
   "members":"Medlemmar",
@@ -542,5 +541,8 @@
   "canceled": "Inställt",
   "willStop": "Ska sluta",
   "invoices": "fakturor",
-  "billingCycle": "Faktureringsperiod"
+  "billingCycle": "Faktureringsperiod",
+  "preview": "Förhandsvisning",
+  "rename": "Döp om",
+  "large": "Stor"
 }

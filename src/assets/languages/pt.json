@@ -223,7 +223,7 @@
   "helpBatchD":"Selecione os favoritos para açōes em lote",
   "moreTips":"Mostrar mais dicas",
   "view":"Ver",
-  "openLinksInNewTab":"Abrir links em nova aba",
+  "inNewTab":"em nova aba",
   "allBookmarks":"Todos os favoritos",
   "parent":"Pai",
   "footerProAd":"Atualize para o PRO",
@@ -254,8 +254,7 @@
   "screenshotError":"Página da Web não pode ser capturada!",
   "lastWeek":"Últimos 7 dias",
   "copyLinkToClipboard":"Copie o link para área de transferência",
-  "openInBrowser":"Abrir no navegador",
-  "openInBrowserWithShift":"Para abrir o link no navegador, segure a tecla Shift ou Ctrl",
+  "inBrowser":"no navegador",
   "selectAIconSet":"Selecione um conjunto de ícones",
   "sharing":"Compartilhando",
   "members":"Membros",
@@ -565,5 +564,8 @@
   "canceled": "Cancelada",
   "willStop": "Vai parar",
   "invoices": "Faturas",
-  "billingCycle": "Ciclo de faturamento"
+  "billingCycle": "Ciclo de faturamento",
+  "preview": "Antevisão",
+  "rename": "Renomear",
+  "large": "ampla"
 }

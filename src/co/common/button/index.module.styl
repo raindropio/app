@@ -174,11 +174,15 @@
     background: unquote('hsla(var(--accent-hsl), .1)');
     color: var(--accent-color)
     font-weight: 600
-    pointer-events: none
+    cursor: default
 
     &[disabled] {
         background: var(--disable-background-color)
         color: var(--disable-text-color)
+    }
+
+    &:focus {
+        box-shadow: inset 0 0 0 1px var(--accent-color), 0 0 0 var(--shadow-height) var(--accent-color)
     }
 }
 

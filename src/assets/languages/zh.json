@@ -225,7 +225,7 @@
   "helpBatchD":"选择多个书签进行批处理",
   "moreTips":"显示更多技巧",
   "view":"查看",
-  "openLinksInNewTab":"在新标签页打开链接",
+  "inNewTab":"在新标签页中",
   "allBookmarks":"所有书签",
   "parent":"上",
   "footerProAd":"升级至专业版",
@@ -256,8 +256,7 @@
   "screenshotError":"无法捕捉到网页",
   "lastWeek":"过去 7 天内",
   "copyLinkToClipboard":"将链接复制到剪贴板",
-  "openInBrowser":"在浏览器中打开",
-  "openInBrowserWithShift":"若要在浏览器中打开链接，按住 ctrl 键或 Shift 键",
+  "inBrowser":"在浏览器中",
   "selectAIconSet":"选择一个图标集",
   "sharing":"共享",
   "members":"成员",
@@ -567,5 +566,8 @@
   "canceled": "取消",
   "willStop": "将会停止",
   "invoices": "发票",
-  "billingCycle": "结算周期"
+  "billingCycle": "结算周期",
+  "preview": "预习",
+  "rename": "改名",
+  "large": "大"
 }

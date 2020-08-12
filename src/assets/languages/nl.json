@@ -223,7 +223,7 @@
   "helpBatchD":"Selecteer bladwijzers voor batch acties",
   "moreTips":"Meer tips weergeven",
   "view":"Bekijk",
-  "openLinksInNewTab":"Koppelingen in nieuw tabblad openen",
+  "inNewTab":"in nieuw tabblad",
   "allBookmarks":"Alle bladwijzers",
   "parent":"Bovenliggende",
   "footerProAd":"Upgrade naar PRO",
@@ -254,8 +254,7 @@
   "screenshotError":"Webpagina kan niet geslagen worden!",
   "lastWeek":"De voorbije 7 dagen",
   "copyLinkToClipboard":"Koppeling kopiëren naar klembord",
-  "openInBrowser":"Open in Browser",
-  "openInBrowserWithShift":"Om de koppeling in de browser te openen, houdt u Ctrl of Shift ingedrukt",
+  "inBrowser":"in browser",
   "selectAIconSet":"Selecteer een pictogramserie",
   "sharing":"Delen",
   "members":"Leden",
@@ -565,5 +564,8 @@
   "canceled": "avbrutt",
   "willStop": "Kommer til å stoppe",
   "invoices": "fakturaer",
-  "billingCycle": "Faktureringssyklus"
+  "billingCycle": "Faktureringssyklus",
+  "preview": "Voorbeeld",
+  "rename": "Gi nytt navn",
+  "large": "Groot"
 }

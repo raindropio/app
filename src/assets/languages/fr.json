@@ -224,7 +224,7 @@
   "helpBatchD":"Sélectionnez les favoris pour des actions groupées",
   "moreTips":"Afficher plus de conseils",
   "view":"Vue",
-  "openLinksInNewTab":"Ouvrir les liens dans un nouvel onglet",
+  "inNewTab":"dans un nouvel onglet",
   "allBookmarks":"Tous les favoris",
   "parent":"Parent",
   "footerProAd":"Passer à la version PRO",
@@ -255,8 +255,7 @@
   "screenshotError":"Cette page web ne peut pas être prise en image !",
   "lastWeek":"Les 7 derniers jours",
   "copyLinkToClipboard":"Copier le lien dans le presse-papiers",
-  "openInBrowser":"Ouvrir dans le navigateur",
-  "openInBrowserWithShift":"Pour ouvrir le lien dans le navigateur, maintenez la touche Ctrl ou Maj",
+  "inBrowser":"dans le navigateur",
   "selectAIconSet":"Sélectionnez un style d'icônes",
   "sharing":"Partager",
   "members":"Membres",
@@ -566,5 +565,8 @@
   "canceled": "Annulé",
   "willStop": "S'arrêtera",
   "invoices": "Factures",
-  "billingCycle": "Cycle de facturation"
+  "billingCycle": "Cycle de facturation",
+  "preview": "Aperçu",
+  "rename": "Renommer",
+  "large": "Grand"
 }

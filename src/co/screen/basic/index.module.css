@@ -5,6 +5,7 @@
 .page {
     background: var(--background-color);
     height: 100%;
+    overflow: auto;
 }
 
 /* Global */

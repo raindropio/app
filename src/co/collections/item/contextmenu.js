@@ -16,7 +16,7 @@ export default class CollectionsItemContextmenu extends React.Component {
                 <Menu>
                     {onOpenAllClick ? <MenuItem onClick={onOpenAllClick} target='_blank'>
                         <Icon name='open' />
-                        {t.s('openLinksInNewTab')}
+                        {t.s('open') + ' ' + t.s('allBookmarks').toLowerCase()}
                     </MenuItem> : null}
 
                     { _id>0 && access.level>=3 && onCreateNewChildClick ? (
@@ -24,7 +24,7 @@ export default class CollectionsItemContextmenu extends React.Component {
                             <MenuSeparator />
                             
                             <MenuItem onClick={onCreateNewChildClick}>
-                                <Icon name='new_collection' />
+                                <Icon name='add' />
                                 {t.s('createSubFolder')}
                             </MenuItem>
 
@@ -45,7 +45,7 @@ export default class CollectionsItemContextmenu extends React.Component {
                             {onRenameClick ? (
                                 <MenuItem onClick={onRenameClick}>
                                     <Icon name='edit' />
-                                    {t.s('edit')+' '+t.s('title').toLowerCase()}
+                                    {t.s('rename')}
                                 </MenuItem>
                             ) : null}
 

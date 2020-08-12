@@ -55,12 +55,16 @@ const initialState = Immutable({
 	raindrops_hide:		[],
 	raindrops_grid_size:2,
 	raindrops_list_cover_right:false,
+	raindrops_click:	'preview',
 	
 	tags_sort:			'_id',
 	tags_hide:			false,
 	filters_hide:		false,
+	nested_view_legacy:	false,
 
 	font_size: 0,
 	font_color: '',
-	font_family: ''
+	font_family: '',
+
+	broken_level:		''
 })

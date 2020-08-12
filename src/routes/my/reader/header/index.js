@@ -8,25 +8,25 @@ import Icon from '~co/common/icon'
 import Tabs from '~co/common/tabs'
 import Settings from './settings'
 
-const defaultTabs = [
-    {
-        key: 'edit',
-        title: t.s('editMin'),
-        icon: 'edit'
-    },
-    {
-        key: 'preview',
-        title: t.s('preview'),
-        icon: 'show'
-    },
-    {
-        key: 'cache',
-        title: t.s('permanentCopy'),
-        icon: 'cloud'
-    }
-]
-
 export default class ReaderHeader extends React.PureComponent {
+    defaultTabs = [
+        {
+            key: 'edit',
+            title: t.s('edit'),
+            icon: 'edit'
+        },
+        {
+            key: 'preview',
+            title: t.s('preview'),
+            icon: 'show'
+        },
+        {
+            key: 'cache',
+            title: t.s('permanentCopy'),
+            icon: 'cloud'
+        }
+    ]
+
     onImportantClick = (e)=>{
         e.preventDefault()
         this.props.actions.oneImportant(this.props.item._id)
@@ -46,12 +46,13 @@ export default class ReaderHeader extends React.PureComponent {
                 backTo={getLink({ bookmark: null, tab: null })}
                 onFullscreenClick={onFullscreenToggleClick}>
                 <Settings
-                    tab={tab} />
+                    tab={tab}
+                    item={item} />
 
                 <Space/>
 
                 <Tabs
-                    items={defaultTabs.filter(({key})=> tabs.includes(key) )}
+                    items={this.defaultTabs.filter(({key})=> tabs.includes(key) )}
                     active={tab}
                     onChange={setTab} />
                     
