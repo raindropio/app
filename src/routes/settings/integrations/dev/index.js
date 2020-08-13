@@ -4,7 +4,7 @@ import t from '~t'
 
 import { Label, Separator, Title } from '~co/common/form'
 import My from './my'
-import New from './new'
+import Create from './create'
 import Help from './help'
 
 export default function SettingsIntegrationsDev() {
@@ -15,7 +15,7 @@ export default function SettingsIntegrationsDev() {
             <Label>{t.s('my')}</Label>
             <div className={s.list}>
                 <My />
-                <New />
+                <Create />
             </div>
 
             <Help />

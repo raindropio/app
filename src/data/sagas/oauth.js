@@ -7,6 +7,7 @@ export default function* () {
 	yield takeLatest(c.OAUTH_MY_LOAD_REQ, myLoad)
 
 	yield takeLatest(c.OAUTH_CLIENT_CREATE_REQ, clientCreate)
+	yield takeLatest(c.OAUTH_CLIENT_UPDATE_REQ, clientUpdate)
 	yield takeLatest(c.OAUTH_CLIENT_REVOKE_REQ, clientRevoke)
 	yield takeLatest(c.OAUTH_CLIENT_REMOVE_REQ, clientRemove)
 }
@@ -55,6 +56,26 @@ function* clientCreate({ obj, onSuccess, onFail }) {
 	} catch (error) {
 		yield put({
 			type: c.OAUTH_CLIENT_CREATE_ERROR,
+			error,
+			onFail
+		})
+	}
+}
+
+function* clientUpdate({ _id, obj, onSuccess, onFail }) {
+    try {
+		const { item } = yield call(Api.put, `oauth/client/${_id}`, obj)
+
+		yield put({
+			type: c.OAUTH_CLIENT_UPDATE_SUCCESS,
+			_id,
+			item,
+			onSuccess
+		})
+	} catch (error) {
+		yield put({
+			type: c.OAUTH_CLIENT_UPDATE_ERROR,
+			_id,
 			error,
 			onFail
 		})

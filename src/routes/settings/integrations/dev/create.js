@@ -11,7 +11,7 @@ import Modal, { Header, Content } from '~co/overlay/modal'
 import { Error } from '~co/overlay/dialog'
 import Button from '~co/common/button'
 
-class DevNew extends React.Component {
+class DevCreate extends React.Component {
     state = {
         show: false,
         name: '',
@@ -103,4 +103,4 @@ class DevNew extends React.Component {
 export default connect(
     undefined,
     { clientCreate }
-)(DevNew)
+)(DevCreate)

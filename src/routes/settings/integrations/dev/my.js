@@ -8,11 +8,26 @@ import { Item, ItemIcon, ItemTitle, ItemInfo, ItemActions } from '~co/common/lis
 import Button from '~co/common/button'
 import Icon from '~co/common/icon'
 import { Confirm } from '~co/overlay/dialog'
+import Edit from './edit'
 
 class SettingsIntegrationsMy extends React.Component {
+    state = {
+        edit: false
+    }
+
     componentDidMount() {
         this.props.myLoad()
     }
+
+    onEditClick = e=>{
+        e.preventDefault()
+        
+        const _id = e.currentTarget.getAttribute('data-id')
+        this.setState({ edit: _id })
+    }
+
+    onCancelEdit = ()=>
+        this.setState({ edit: false })
 
     onRemoveClick = async e => {
         e.preventDefault()
@@ -26,7 +41,10 @@ class SettingsIntegrationsMy extends React.Component {
     renderClient = ({ _id, name, description, icon })=>(
         <Item
             key={_id}
-            as='a'>
+            as='a'
+            href=''
+            data-id={_id}
+            onClick={this.onEditClick}>
             {icon && <ItemIcon><img src={icon} /></ItemIcon>}
             <ItemTitle>{name}</ItemTitle>
             <ItemInfo>{description}</ItemInfo>
@@ -44,11 +62,22 @@ class SettingsIntegrationsMy extends React.Component {
 
     render() {
         const { clients } = this.props
+        const { edit } = this.state
 
         if (!clients.length)
             return null
 
-        return clients.map(this.renderClient)
+        return (
+            <>
+                {clients.map(this.renderClient)}
+
+                {edit ? (
+                    <Edit 
+                        _id={edit}
+                        onClose={this.onCancelEdit} />
+                ) : null}
+            </>
+        )
     }
 }
 

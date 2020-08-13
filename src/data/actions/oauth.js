@@ -18,6 +18,14 @@ export const clientCreate = (obj, onSuccess, onFail)=>({
 	onFail: wrapFunc(onFail)
 })
 
+export const clientUpdate = (_id, obj, onSuccess, onFail)=>({
+    type: c.OAUTH_CLIENT_UPDATE_REQ,
+    _id,
+    obj,
+    onSuccess: wrapFunc(onSuccess),
+	onFail: wrapFunc(onFail)
+})
+
 export const clientRevoke = (_id)=>({
     type: c.OAUTH_CLIENT_REVOKE_REQ,
     _id

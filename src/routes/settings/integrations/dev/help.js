@@ -14,7 +14,7 @@ export default function DevHelp() {
             <Button
                 href={config.links.dev.index}
                 target='_blank'>
-                <Icon name='cloud' size='micro' />
+                <Icon name='open' size='micro' />
                 API Documentation
             </Button>
         </>

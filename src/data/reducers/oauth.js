@@ -65,6 +65,26 @@ export default function(state = initialState, action){switch (action.type) {
         return state
     }
 
+    case c.OAUTH_CLIENT_UPDATE_SUCCESS:{
+        const { _id, item={} } = action
+
+        if (typeof action.onSuccess == 'function')
+            action.onSuccess(item)
+
+        const index = state.my.clients.findIndex(client=>client._id == _id)
+        if (index == -1)
+            return state
+
+        return state.setIn(['my', 'clients', index], normalizeClient(item))
+    }
+
+    case c.OAUTH_CLIENT_UPDATE_ERROR:{
+        if (typeof action.onFail == 'function')
+            action.onFail(action.error)
+
+        return state
+    }
+
     case c.OAUTH_CLIENT_REVOKE_SUCCESS:{
         const { _id } = action
 

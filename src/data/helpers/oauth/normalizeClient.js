@@ -1,4 +1,4 @@
-export const normalizeClient = function(client) {
+export const normalizeClient = function(client={}) {
     return {
         _id: String(client._id),
         name: client.name || '',
