@@ -54,6 +54,7 @@ export default class AccountSocialLogin extends React.Component {
                     <Button
                         variant='outline'
                         data-block
+                        disabled={this.props.disabled}
                         onClick={this.onShowAllClick}>
                         <Icon name='more_horizontal' />
                     </Button>

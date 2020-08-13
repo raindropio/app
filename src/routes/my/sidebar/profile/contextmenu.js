@@ -21,7 +21,7 @@ export default function SidebarProfileMenu({
 
                 <MenuItem href={config.links.download} target='_blank'>
                     <Icon name='extension' />
-                    {t.s('install')} {t.s('browserExtension').toLowerCase()}
+                    {t.s('browserExtension')}
                 </MenuItem>
 
                 <MenuItem href={config.links.download} target='_blank'>
@@ -47,7 +47,7 @@ export default function SidebarProfileMenu({
                 </MenuItem>
 
                 <MenuItem href={config.links.twitter} target='_blank'>
-                    <Icon name='twitter' />
+                    <Icon name='twitter_outline' />
                     Twitter
                 </MenuItem>
 
