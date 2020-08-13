@@ -16,7 +16,8 @@ export default {
         help: {
             index: 'https://help.raindrop.io',
             'open-multiple-links': 'https://help.raindrop.io/open-multiple-links',
-            'broken-links': 'https://help.raindrop.io/article/41-broken-links-finder'
+            'broken-links': 'https://help.raindrop.io/article/41-broken-links-finder',
+            zapier: 'https://help.raindrop.io/article/50-zapier'
         },
 
         pro: {

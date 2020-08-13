@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import { getConnectionsClients } from '~data/selectors/oauth'
 import { loadConnections, clientRevoke } from '~data/actions/oauth'
 
-import { Label, Separator } from '~co/common/form'
+import { Label, Separator, Title } from '~co/common/form'
 import { Item, ItemIcon, ItemTitle, ItemInfo, ItemActions } from '~co/common/list'
 import Button from '~co/common/button'
 import Icon from '~co/common/icon'
@@ -20,7 +20,6 @@ class SettingsIntegrationsConnections extends React.Component {
         e.preventDefault()
         const _id = e.currentTarget.getAttribute('data-id')
 
-        console.log(_id)
         if (await Confirm(t.s('areYouSure'), { ok: t.s('remove')+' '+t.s('app').toLowerCase() }))
             this.props.clientRevoke(_id)
     }
@@ -53,11 +52,9 @@ class SettingsIntegrationsConnections extends React.Component {
 
         return (
             <>
-                <Label>
-                    {t.s('connected')}<br/>
-                    {t.s('interest_technology_applications').toLowerCase()}
-                </Label>
-    
+                <Title>{t.s('connected')} {t.s('interest_technology_applications').toLowerCase()}</Title>
+
+                <Label>{t.s('access')}</Label>
                 <div className={s.list}>
                     {clients.map(this.renderClient)}
                 </div>
