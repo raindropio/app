@@ -37,8 +37,13 @@ export default function SidebarProfileMenu({
                 </MenuItem>
 
                 <MenuItem href={config.links.blog} target='_blank'>
-                    <Icon name='article' />
-                    {t.s('blog')}
+                    <Icon name='history' />
+                    {t.s('whatsNew')}?
+                </MenuItem>
+
+                <MenuItem href={config.links.blog} target='_blank'>
+                    <Icon name='like' />
+                    {t.s('pro_nextFeatures')}
                 </MenuItem>
 
                 <MenuItem href={config.links.twitter} target='_blank'>
