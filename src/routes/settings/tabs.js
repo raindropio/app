@@ -12,8 +12,8 @@ export default class SettingsHeader extends React.Component {
         { to: '/profile', title: t.s('profile') },
         { to: '/pro', title: t.s('subscription') },
         { to: '/import', title: t.s('importBookmarks') },
+        { to: '/integrations', title: t.s('integrations') },
         { to: '/backups', title: t.s('backups') },
-        { to: '/integrations', title: t.s('integrations') }
     ]
 
     renderTab = ({ to, title })=>{
