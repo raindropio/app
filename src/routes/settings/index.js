@@ -8,6 +8,7 @@ import Protected from '~co/screen/protected'
 import Screen from '~co/screen/basic'
 import Header from './header'
 import Tabs from './tabs'
+import Footer from './footer'
 
 import App from './app'
 import Pro from './pro'
@@ -39,6 +40,8 @@ export default (props)=>(
                     </Switch>
                 </div>
             </div>
+
+            <Footer />
         </Screen>
     </Protected>
 )

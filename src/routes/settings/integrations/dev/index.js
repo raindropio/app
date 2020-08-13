@@ -2,7 +2,7 @@ import s from './index.module.styl'
 import React from 'react'
 import t from '~t'
 
-import { Label, Separator, Title } from '~co/common/form'
+import { Label, Title } from '~co/common/form'
 import My from './my'
 import Create from './create'
 import Help from './help'
@@ -19,8 +19,6 @@ export default function SettingsIntegrationsDev() {
             </div>
 
             <Help />
-
-            <Separator />
         </>
     )
 }

@@ -20,23 +20,30 @@ export default function SidebarProfileMenu({
                 <MenuSeparator />
 
                 <MenuItem href={config.links.download} target='_blank'>
-                    <Icon name='install' />
-                    {t.s('interest_technology_applications')}
+                    <Icon name='extension' />
+                    {t.s('install')} {t.s('browserExtension').toLowerCase()}
                 </MenuItem>
 
                 <MenuItem href={config.links.download} target='_blank'>
-                    <Icon name='extension' />
-                    {t.s('browserExtension')}
+                    <Icon name='install' />
+                    {t.s('download')} {t.s('app').toLowerCase()}
                 </MenuItem>
+
+                <MenuSeparator />
 
                 <MenuItem href={config.links.help.index} target='_blank'>
                     <Icon name='help' />
-                    {t.s('help')}
+                    {t.s('help')} {t.s('und')} {t.s('support').toLowerCase()}
                 </MenuItem>
 
                 <MenuItem href={config.links.blog} target='_blank'>
                     <Icon name='article' />
                     {t.s('blog')}
+                </MenuItem>
+
+                <MenuItem href={config.links.twitter} target='_blank'>
+                    <Icon name='twitter' />
+                    Twitter
                 </MenuItem>
 
                 <MenuSeparator />

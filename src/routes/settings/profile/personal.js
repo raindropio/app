@@ -6,7 +6,7 @@ import withEdit from '~co/user/withEdit'
 import { Label, Text, Buttons, Title } from '~co/common/form'
 import Button from '~co/common/button'
 
-function SettingsProfilePersonal({ fullName, email, password, newpassword='', unsaved, status, onChange, onSubmit }) {
+function SettingsProfilePersonal({ _id, fullName, email, password, newpassword='', unsaved, status, onChange, onSubmit }) {
     return (
         <>
             <Title>{_.capitalize(t.s('account'))}</Title>
@@ -28,6 +28,12 @@ function SettingsProfilePersonal({ fullName, email, password, newpassword='', un
                 name='email'
                 value={email}
                 onChange={onChange} />
+
+            <Label>ID</Label>
+            <Text
+                readOnly
+                variant='less'
+                defaultValue={_id} />
 
             {!password && email && (
                 <>
