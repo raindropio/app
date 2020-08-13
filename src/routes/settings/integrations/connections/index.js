@@ -52,9 +52,8 @@ class SettingsIntegrationsConnections extends React.Component {
 
         return (
             <>
-                <Title>{t.s('interest_technology_applications')}</Title>
+                <Title>{t.s('connected')} {t.s('interest_technology_applications').toLowerCase()}</Title>
 
-                <Label>{t.s('connected')}</Label>
                 <div className={s.list}>
                     {clients.map(this.renderClient)}
                 </div>
