@@ -4,6 +4,9 @@ export const normalizeClient = function(client) {
         name: client.name || '',
         icon: client.icon || '',
         site: client.site || '',
-        description: client.description || ''
+        description: client.description || '',
+
+        redirects: client.redirects || [],
+        secret: client.secret || ''
     }
 }

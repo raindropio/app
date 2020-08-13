@@ -26,6 +26,11 @@ export default {
             'faq': 'https://help.raindrop.io/category/11-pro-account',
             'help-legacy-subscription': 'https://help.raindrop.io/article/52-legacy-subscription',
             'help-change-billing-cycle': 'https://help.raindrop.io/article/51-change-billing-cycle'
+        },
+
+        dev: {
+            index: 'https://developer.raindrop.io',
+            terms: 'https://developer.raindrop.io/terms'
         }
     },
 

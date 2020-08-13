@@ -3,7 +3,7 @@ import React from 'react'
 import t from '~t'
 import { connect } from 'react-redux'
 import { getConnectionsClients } from '~data/selectors/oauth'
-import { loadConnections, clientRevoke } from '~data/actions/oauth'
+import { connectionsLoad, clientRevoke } from '~data/actions/oauth'
 
 import { Label, Separator, Title } from '~co/common/form'
 import { Item, ItemIcon, ItemTitle, ItemInfo, ItemActions } from '~co/common/list'
@@ -13,7 +13,7 @@ import { Confirm } from '~co/overlay/dialog'
 
 class SettingsIntegrationsConnections extends React.Component {
     componentDidMount() {
-        this.props.loadConnections()
+        this.props.connectionsLoad()
     }
 
     onRevokeClick = async e => {
@@ -52,9 +52,9 @@ class SettingsIntegrationsConnections extends React.Component {
 
         return (
             <>
-                <Title>{t.s('connected')} {t.s('interest_technology_applications').toLowerCase()}</Title>
+                <Title>{t.s('interest_technology_applications')}</Title>
 
-                <Label>{t.s('access')}</Label>
+                <Label>{t.s('connected')}</Label>
                 <div className={s.list}>
                     {clients.map(this.renderClient)}
                 </div>
@@ -69,5 +69,5 @@ export default connect(
     state => ({
         clients: getConnectionsClients(state)
     }),
-    { loadConnections, clientRevoke }
+    { connectionsLoad, clientRevoke }
 )(SettingsIntegrationsConnections)

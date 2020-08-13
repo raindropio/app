@@ -24,7 +24,47 @@ export default function(state = initialState, action){switch (action.type) {
             .setIn(['connections', 'status'], 'error')
     }
 
+    //My
+    case c.OAUTH_MY_LOAD_REQ:{
+        return state
+            .setIn(['my', 'status'], 'loading')
+    }
+
+    case c.OAUTH_MY_LOAD_SUCCESS:{
+        const { items=[] } = action
+
+        const my = state.my
+            .set('status', 'loaded')
+            .set('clients', items.map(normalizeClient))
+
+        return state.set('my', my)
+    }
+
+    case c.OAUTH_MY_LOAD_ERROR:{
+        return state
+            .setIn(['my', 'status'], 'error')
+    }
+
     //Clients
+    case c.OAUTH_CLIENT_CREATE_SUCCESS:{
+        const { item={} } = action
+
+        if (typeof action.onSuccess == 'function')
+            action.onSuccess(item)
+
+        const my = state.my
+            .set('clients', [...state.my.clients, normalizeClient(item)])
+
+        return state.set('my', my)
+    }
+
+    case c.OAUTH_CLIENT_CREATE_ERROR:{
+        if (typeof action.onFail == 'function')
+            action.onFail(action.error)
+
+        return state
+    }
+
     case c.OAUTH_CLIENT_REVOKE_SUCCESS:{
         const { _id } = action
 
@@ -34,12 +74,26 @@ export default function(state = initialState, action){switch (action.type) {
         return state.set('connections', connections)
     }
 
+    case c.OAUTH_CLIENT_REMOVE_SUCCESS:{
+        const { _id } = action
+
+        const my = state.my
+            .set('clients', state.my.clients.filter(client=>client._id != _id))
+
+        return state.set('my', my)
+    }
+
     default:
 		return state
 }}
 
 const initialState = Immutable({
     connections: {
+        status: 'idle', //idle|loading|loaded|error
+        clients: []
+    },
+
+    my: {
         status: 'idle', //idle|loading|loaded|error
         clients: []
     }
