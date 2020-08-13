@@ -7,6 +7,7 @@ import filters from './filters'
 import tags from './tags'
 import covers from './covers'
 import config from './config'
+import oauth from './oauth'
 
 const root = function* () {
 	//spawn prevents the root sage from failing
@@ -18,6 +19,7 @@ const root = function* () {
 		spawn(filters),
 		spawn(tags),
 		spawn(covers),
+		spawn(oauth),
 
 		spawn(common)
 	])

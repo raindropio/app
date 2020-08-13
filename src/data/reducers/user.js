@@ -22,15 +22,22 @@ import {
 
 export default function(state = initialState, action){switch (action.type) {
 	case REHYDRATE:{
-		const { current, status=initialState.status } = action.payload && action.payload.user||{}
+		const { 
+			current, 
+			subscription, 
+			status 
+		} = action.payload && action.payload.user||{}
 
 		if (!current)
 			return state
+
+		if (subscription && !subscription.loading)
+			state = state.set('subscription', subscription)
 			
 		return state
 			.set('fromCache', true)
 			.set('current', current)
-			.set(['status', 'authorized'], status.authorized)
+			.set(['status', 'authorized'], (status||initialState.status).authorized)
 	}
 
 	//Load
@@ -90,6 +97,7 @@ export default function(state = initialState, action){switch (action.type) {
 		return initialState
 			.set('status', initialState.status.set('authorized', 'yes'))
 			.set('current', normalizeUser(action.user))
+			.set('subscription', state.subscription)
 	}
 
 	case USER_UPDATE_ERROR:{

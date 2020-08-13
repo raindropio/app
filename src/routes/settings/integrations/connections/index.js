@@ -1,38 +1,76 @@
 import s from './index.module.styl'
 import React from 'react'
 import t from '~t'
+import { connect } from 'react-redux'
+import { getConnectionsClients } from '~data/selectors/oauth'
+import { loadConnections, clientRevoke } from '~data/actions/oauth'
 
 import { Label, Separator } from '~co/common/form'
 import { Item, ItemIcon, ItemTitle, ItemInfo, ItemActions } from '~co/common/list'
 import Button from '~co/common/button'
+import Icon from '~co/common/icon'
+import { Confirm } from '~co/overlay/dialog'
 
-export default function SettingsIntegrationsConnections() {
-    return (
-        <>
-            <Label>
-                {t.s('connected')}<br/>
-                {t.s('interest_technology_applications').toLowerCase()}
-            </Label>
+class SettingsIntegrationsConnections extends React.Component {
+    componentDidMount() {
+        this.props.loadConnections()
+    }
 
-            <div className={s.list}>
-                <Item
-                    as='a'
-                    href='https://www.alfredforum.com/topic/14357-search-raindropio-open-bookmarks-in-active-browser/'
-                    target='_blank'>
-                    <ItemIcon><img src='https://up.raindrop.io/user/clients/417/714/d00ebc64-787b-4080-9405-939da8e1f4a5-Alfred.png' /></ItemIcon>
-                    <ItemTitle>Raindrop Alfred Search</ItemTitle>
-                    <ItemInfo>Search your Raindrop.io bookmarks from Alfred</ItemInfo>
-                    <ItemActions>
-                        <Button 
-                            variant='outline'
-                            size='small'>
-                            {t.s('disable')}
-                        </Button>
-                    </ItemActions>
-                </Item>
-            </div>
+    onRevokeClick = async e => {
+        e.preventDefault()
+        const _id = e.currentTarget.getAttribute('data-id')
 
-            <Separator />
-        </>
+        console.log(_id)
+        if (await Confirm(t.s('areYouSure'), { ok: t.s('remove')+' '+t.s('app').toLowerCase() }))
+            this.props.clientRevoke(_id)
+    }
+
+    renderClient = ({ _id, name, description, site, icon })=>(
+        <Item
+            key={_id}
+            as='a'
+            href={site}
+            target='_blank'>
+            {icon && <ItemIcon><img src={icon} /></ItemIcon>}
+            <ItemTitle>{name}</ItemTitle>
+            <ItemInfo>{description}</ItemInfo>
+            <ItemActions>
+                <Button 
+                    data-id={_id}
+                    title={t.s('remove')+' '+t.s('app').toLowerCase()}
+                    onClick={this.onRevokeClick}>
+                    <Icon name='close' />
+                </Button>
+            </ItemActions>
+        </Item>
     )
+
+    render() {
+        const { clients } = this.props
+
+        if (!clients.length)
+            return null
+
+        return (
+            <>
+                <Label>
+                    {t.s('connected')}<br/>
+                    {t.s('interest_technology_applications').toLowerCase()}
+                </Label>
+    
+                <div className={s.list}>
+                    {clients.map(this.renderClient)}
+                </div>
+    
+                <Separator />
+            </>
+        )
+    }
 }
+
+export default connect(
+    state => ({
+        clients: getConnectionsClients(state)
+    }),
+    { loadConnections, clientRevoke }
+)(SettingsIntegrationsConnections)

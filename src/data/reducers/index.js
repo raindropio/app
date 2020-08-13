@@ -5,6 +5,7 @@ import filters from './filters'
 import tags from './tags'
 import covers from './covers'
 import config from './config'
+import oauth from './oauth'
 
 export default {
 	user,
@@ -13,5 +14,6 @@ export default {
 	filters,
 	tags,
 	covers,
-	config
+	config,
+	oauth
 }
