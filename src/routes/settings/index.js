@@ -18,26 +18,28 @@ import Integrations from './integrations'
 import Help from './help'
 
 export default (props)=>(
-    <Protected>
+    <Protected redirect>
         <Screen className={s.settings}>
             <Helmet><title>{t.s('settings')}</title></Helmet>
 
             <Header {...props} />
             <Tabs {...props} />
 
-            <div className={s.body}>
-                <Switch>
-                    <Route path={`${props.match.path}/app`} component={App} />
-                    <Route path={`${props.match.path}/profile`} component={Profile} />
-                    <Route path={`${props.match.path}/pro`} component={Pro} />
-                    <Route path={`${props.match.path}/import`} component={Import} />
-                    <Route path={`${props.match.path}/backups`} component={Backups} />
-                    <Route path={`${props.match.path}/integrations`} component={Integrations} />
-                    <Route path={`${props.match.path}/help`} component={Help} />
+            <div className={s.wrap}>
+                <div className={s.body}>
+                    <Switch>
+                        <Route path={`${props.match.path}/app`} component={App} />
+                        <Route path={`${props.match.path}/profile`} component={Profile} />
+                        <Route path={`${props.match.path}/pro`} component={Pro} />
+                        <Route path={`${props.match.path}/import`} component={Import} />
+                        <Route path={`${props.match.path}/backups`} component={Backups} />
+                        <Route path={`${props.match.path}/integrations`} component={Integrations} />
+                        <Route path={`${props.match.path}/help`} component={Help} />
 
-                    {/* Default route */}
-                    <Route><Redirect to={`${props.match.path}/app`} /></Route>
-                </Switch>
+                        {/* Default route */}
+                        <Route><Redirect to={`${props.match.path}/app`} /></Route>
+                    </Switch>
+                </div>
             </div>
         </Screen>
     </Protected>

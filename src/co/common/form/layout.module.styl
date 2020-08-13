@@ -26,8 +26,13 @@
     grid-auto-flow: column
     gap: var(--padding-small)
     justify-content: flex-end
+    grid-column: 1 / -1
 
     > * {
         min-width: 18rem //72px
+    }
+
+    &[data-variant='between'] {
+        justify-content: space-between
     }
 }

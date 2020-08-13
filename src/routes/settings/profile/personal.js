@@ -43,18 +43,15 @@ function SettingsProfilePersonal({ fullName, email, password, newpassword='', un
             )}
 
             {unsaved && (
-                <>
-                    <div/>
-                    <Buttons>
-                        <Button 
-                            data-block
-                            disabled={status=='loading'}
-                            variant='primary'
-                            onClick={onSubmit}>
-                            {t.s('save')}
-                        </Button>
-                    </Buttons>
-                </>
+                <Buttons>
+                    <Button 
+                        data-block
+                        disabled={status=='loading'}
+                        variant='primary'
+                        onClick={onSubmit}>
+                        {t.s('save')}
+                    </Button>
+            </Buttons>
             )}
         </>
     )

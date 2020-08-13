@@ -1,19 +1,25 @@
 import React from 'react'
-import { Redirect } from 'react-router-dom'
+import { Redirect, withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { isNotAuthorized } from '~data/selectors/user'
 import * as userActions from '~data/actions/user'
 
 class ScreenProtected extends React.Component {
+	static defaultProps = {
+		redirect: false
+	}
+
 	componentDidMount() {
 		this.props.refresh()
 	}
 
 	render() {
-		if(this.props.notLogged)
-			return <Redirect to='/account/login' />
+		const { redirect, notLogged, children, location: { pathname } } = this.props
 
-		return this.props.children
+		if(notLogged)
+			return <Redirect to={`/account/login${redirect?`?redirect=${pathname}`:''}`} />
+
+		return children
 	}
 }
 
@@ -22,4 +28,4 @@ export default connect(
 		notLogged: isNotAuthorized(state)
 	}),
 	userActions
-)(ScreenProtected)
+)(withRouter(ScreenProtected))

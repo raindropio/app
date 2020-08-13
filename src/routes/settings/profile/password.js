@@ -32,18 +32,15 @@ function SettingsProfilePassword({ password, newpassword='', oldpassword='', sta
                 onChange={onChange} />
 
             {unsaved && newpassword && (
-                <>
-                    <div/>
-                    <Buttons>
-                        <Button 
-                            data-block
-                            disabled={status=='loading'}
-                            variant='primary'
-                            onClick={onSubmit}>
-                            {t.s('changePassword')}
-                        </Button>
-                    </Buttons>
-                </>
+                <Buttons>
+                    <Button 
+                        data-block
+                        disabled={status=='loading'}
+                        variant='primary'
+                        onClick={onSubmit}>
+                        {t.s('changePassword')}
+                    </Button>
+                </Buttons>
             )}
         </>
     )

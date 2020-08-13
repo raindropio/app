@@ -9,11 +9,21 @@ import Icon from '~co/common/icon'
 import { Alert, Error } from '~co/overlay/dialog'
 
 class SettingsBackupsExport extends React.Component {
+    state = {
+        loading: false
+    }
+
     onClick = ()=>{
+        this.setState({ loading: true })
+
         this.props.exportToEmail(
-            ()=>Alert(t.s('checkYourEmail'), {
-                description: 'We will send you email with html export file when it be ready! Time depends on bookmarks count and queue.'
-            }),
+            ()=>{
+                Alert(t.s('checkYourEmail'), {
+                    description: 'We will send you email with html export file when it be ready! Time depends on bookmarks count and queue.'
+                })
+
+                this.setState({ loading: false })
+            },
             Error
         )
     }
@@ -26,6 +36,7 @@ class SettingsBackupsExport extends React.Component {
                 <div>
                     <Button 
                         variant='link'
+                        disabled={this.state.loading}
                         onClick={this.onClick}>
                         <Icon name='install' />
                         Download .HTML

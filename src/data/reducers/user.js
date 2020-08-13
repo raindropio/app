@@ -110,6 +110,7 @@ export default function(state = initialState, action){switch (action.type) {
 			state = state.setIn(['errorReason', action.way], action.error)
 
 		return setSpecificStatus(state, action.way, 'error')
+			.setIn(['status', 'authorized'], 'no')
 	}
 
 	//happen on logout too

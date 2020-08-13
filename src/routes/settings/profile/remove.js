@@ -7,18 +7,14 @@ import Button from '~co/common/button'
 
 function SettingsProfileRemove() {
     return (
-        <>
-            <div />
-
-            <Buttons>
-                <Button 
-                    href={`${API_ENDPOINT_URL}user/remove`}
-                    variant='outline'
-                    target={process.env.APP_TARGET == 'default' ? '' : '_blank'}>
-                    {t.s('removeAccount')}
-                </Button>
-            </Buttons>
-        </>
+        <Buttons>
+            <Button 
+                href={`${API_ENDPOINT_URL}user/remove`}
+                variant='outline'
+                target={process.env.APP_TARGET == 'default' ? '' : '_blank'}>
+                {t.s('removeAccount')}
+            </Button>
+        </Buttons>
     )
 }
 

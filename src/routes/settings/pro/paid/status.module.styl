@@ -1,0 +1,25 @@
+.status {
+    align-self: center
+    display: flex
+    align-items: center
+    font-weight: 600
+    font-size: var(--head-font-size)
+
+    > :not(last-child) {
+        margin-right: var(--padding-small)
+    }
+}
+
+.icon {
+    transition: color .3s ease-in-out
+    color: var(--accent-color)
+
+    &.active {
+        color: var(--success-color)
+    }
+
+    &.payment_failed,
+    &.canceled {
+        color: var(--danger-color)
+    }
+}
