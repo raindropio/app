@@ -31,7 +31,7 @@ class SettingsBackupsExport extends React.Component {
     render() {
         return (
             <>
-                <Label>{t.s('exportBookmarks')}</Label>
+                <Label>{t.s('file')}</Label>
     
                 <div>
                     <Button 
@@ -39,7 +39,7 @@ class SettingsBackupsExport extends React.Component {
                         disabled={this.state.loading}
                         onClick={this.onClick}>
                         <Icon name='install' />
-                        Download .HTML
+                        {t.s('download')} .html {t.s('file').toLowerCase()}
                     </Button>
                 </div>
             </>

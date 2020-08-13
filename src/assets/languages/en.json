@@ -408,7 +408,7 @@
   "pro_nesting":"Nested collections",
   "pro_nestingD":"Add rich context and visual structure to your bookmarks with nested collections (folders).",
   "pro_dropbox":"Dropbox backup",
-  "pro_dropboxD":"Backup to your cloud account",
+  "cloudBackup":"Cloud backup",
   "pro_support":"Priority support",
   "pro_supportD":"By email or skype.",
   "pro_nextFeatures":"Vote for next features",
@@ -657,5 +657,7 @@
   "leave": "Leave",
   "backups": "Backups",
   "rename": "Rename",
-  "large": "Large"
+  "large": "Large",
+  "app": "App",
+  "download": "Download"
 }

@@ -401,7 +401,6 @@
   "pro_nesting":"Verschachtelte Sammlungen",
   "pro_nestingD":"Erstelle beliebig viele verschachtelte Sammlungen.",
   "pro_dropbox":"Dropbox Backup",
-  "pro_dropboxD":"Sichere Lesezeichen und Inhalte in deinem Account.",
   "pro_support":"Vorrangiger Support",
   "pro_supportD":"Per E-Mail oder Skype.",
   "pro_nextFeatures":"Vote für die nächsten Features",
@@ -567,5 +566,11 @@
   "billingCycle": "Rechnungskreislauf",
   "preview": "Zapowiedź",
   "rename": "Umbenennen",
-  "large": "Groß"
+  "large": "Groß",
+  "app": "App",
+  "old":"Alt",
+  "backups": "Backups",
+  "integrations": "Integrationen",
+  "download": "Herunterladen",
+  "cloudBackup": "Datensicherung in der Cloud"
 }

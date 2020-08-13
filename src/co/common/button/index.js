@@ -14,7 +14,7 @@ class ButtonInner extends React.Component {
     }
 
     render() {
-        const { as='div', className='', variant, size, forwardedRef, navigate, ...etc } = this.props
+        const { as='div', className='', variant, size, forwardedRef, ...etc } = this.props
         const Component = etc.href ? 'a' : as
 
         return (

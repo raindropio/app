@@ -403,7 +403,6 @@
   "pro_nesting":"包含的集合",
   "pro_nestingD":"创建任意数量的嵌套集合。",
   "pro_dropbox":"Dropbox备份",
-  "pro_dropboxD":"备份书签和内容到你的 账户。",
   "pro_support":"优先支持",
   "pro_supportD":"通过电子邮件或 skype。",
   "pro_nextFeatures":"为下一步要开发的新功能投票",
@@ -569,5 +568,11 @@
   "billingCycle": "结算周期",
   "preview": "预习",
   "rename": "改名",
-  "large": "大"
+  "large": "大",
+  "app": "应用程式",
+  "old":"旧",
+  "backups": "后备",
+  "integrations": "整合方式",
+  "download": "下载",
+  "cloudBackup": "云备份"
 }

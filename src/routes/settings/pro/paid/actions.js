@@ -24,11 +24,19 @@ export default function ProActions({ subscription: { links, plan } }) {
         actions = (
             <>
                 <Button
+                    autoFocus
                     variant='primary'
                     href={links.manage}
                     target='_blank'>
                     <Icon name='user' size='micro' />
                     {t.s('change')} {t.s('subscription').toLowerCase()}
+                </Button>
+
+                <Button
+                    href={config.links.pro['help-change-billing-cycle']}
+                    target='_blank'>
+                    <Icon name='calendar' size='micro' />
+                    {t.s('change')} {t.s('billingCycle').toLowerCase()}
                 </Button>
 
                 {links.payments && (
@@ -39,13 +47,6 @@ export default function ProActions({ subscription: { links, plan } }) {
                         Invoices
                     </Button>
                 )}
-
-                <Button
-                    href={config.links.pro['help-change-billing-cycle']}
-                    target='_blank'>
-                    <Icon name='calendar' size='micro' />
-                    {t.s('change')} {t.s('billingCycle').toLowerCase()}
-                </Button>
             </>
         )
 

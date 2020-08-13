@@ -401,7 +401,6 @@
   "pro_nesting":"Geneste verzamelingen",
   "pro_nestingD":"Maak zoveel geneste verzamelingen als u wil.",
   "pro_dropbox":"Dropbox backup",
-  "pro_dropboxD":"Backup uw bladwijzers en inhoud naar uw account.",
   "pro_support":"Voorkeursondersteuning",
   "pro_supportD":"Via e-mail of via skype.",
   "pro_nextFeatures":"Stem voor de volgende functies",
@@ -567,5 +566,11 @@
   "billingCycle": "Faktureringssyklus",
   "preview": "Voorbeeld",
   "rename": "Gi nytt navn",
-  "large": "Groot"
+  "large": "Groot",
+  "app": "App",
+  "old":"Oud",
+  "backups": "Backups",
+  "integrations": "Integraties",
+  "download": "Downloaden",
+  "cloudBackup": "Cloud backup"
 }

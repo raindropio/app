@@ -402,7 +402,6 @@
   "pro_nesting":"Sous-Collections",
   "pro_nestingD":"Créer autant de collections imbriquées.",
   "pro_dropbox":"Sauvegarde sur Dropbox",
-  "pro_dropboxD":"Sauvegarder les favoris et contenu sur votre compte.",
   "pro_support":"Support prioritaire",
   "pro_supportD":"Par e-mail ou par skype.",
   "pro_nextFeatures":"Votez pour les prochaines fonctionnalités",
@@ -568,5 +567,11 @@
   "billingCycle": "Cycle de facturation",
   "preview": "Aperçu",
   "rename": "Renommer",
-  "large": "Grand"
+  "large": "Grand",
+  "app": "App",
+  "old":"Vieux",
+  "backups": "Sauvegardes",
+  "integrations": "Intégrations",
+  "download": "Télécharger",
+  "cloudBackup": "Sauvegarde sur le cloud"
 }

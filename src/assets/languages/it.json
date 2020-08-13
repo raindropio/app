@@ -401,7 +401,6 @@
   "pro_nesting":"Raccolte annidate",
   "pro_nestingD":"Crea un numero qualsiasi di collezioni nidificate.",
   "pro_dropbox":"Backup su Dropbox",
-  "pro_dropboxD":"Salva i segnalibri e i contenuti nel tuo account.",
   "pro_support":"Supporto prioritario",
   "pro_supportD":"Via email o skype.",
   "pro_nextFeatures":"Vota le prossime funzioni",
@@ -523,5 +522,11 @@
   "billingCycle": "Ciclo di fatturazione",
   "preview": "Anteprima",
   "rename": "Rinominare",
-  "large": "Grande"
+  "large": "Grande",
+  "app": "App",
+  "old":"Vecchio",
+  "backups": "I backup",
+  "integrations": "Integrazioni",
+  "download": "Scarica",
+  "cloudBackup": "Backup su cloud"
 }

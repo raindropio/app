@@ -8,14 +8,15 @@ import Remove from './remove'
 
 export default (props)=>(
 	<Layout type='grid'>
-		<Personal />
-		<Connect />
+		<Personal {...props} />
+		<Connect {...props} />
 
 		<Separator />
 		
-		<Password />
+		<Password {...props} />
 
 		<Separator />
-		<Remove />
+		
+		<Remove {...props} />
 	</Layout>
 )

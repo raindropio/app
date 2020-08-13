@@ -15,7 +15,6 @@ import Profile from './profile'
 import Import from './import'
 import Backups from './backups'
 import Integrations from './integrations'
-import Help from './help'
 
 export default (props)=>(
     <Protected redirect>
@@ -34,7 +33,6 @@ export default (props)=>(
                         <Route path={`${props.match.path}/import`} component={Import} />
                         <Route path={`${props.match.path}/backups`} component={Backups} />
                         <Route path={`${props.match.path}/integrations`} component={Integrations} />
-                        <Route path={`${props.match.path}/help`} component={Help} />
 
                         {/* Default route */}
                         <Route><Redirect to={`${props.match.path}/app`} /></Route>

@@ -5,8 +5,8 @@ import Cloud from './cloud'
 
 export default (props)=>(
 	<Layout type='grid'>
-		<Export />
+		<Export {...props} />
 		<Separator />
-		<Cloud />
+		<Cloud {...props} />
 	</Layout>
 )

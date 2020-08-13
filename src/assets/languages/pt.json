@@ -401,7 +401,6 @@
   "pro_nesting":"Coleçōes agrupadas",
   "pro_nestingD":"Crie quantas coleçōes agrupadas quiser.",
   "pro_dropbox":"Backup Dropbox",
-  "pro_dropboxD":"Faça o backup dos seus favoritos e conteúdos para sua conta no.",
   "pro_support":"Suporte prioritário",
   "pro_supportD":"Por e-mail ou skype.",
   "pro_nextFeatures":"Vote nos próximos recursos",
@@ -567,5 +566,11 @@
   "billingCycle": "Ciclo de faturamento",
   "preview": "Antevisão",
   "rename": "Renomear",
-  "large": "ampla"
+  "large": "ampla",
+  "app": "Aplicativo",
+  "old":"Velho",
+  "backups": "Backups",
+  "integrations": "Integrações",
+  "download": "Baixar",
+  "cloudBackup": "Backup na nuvem"
 }

@@ -403,7 +403,6 @@
   "pro_nesting":"Colecciones anidadas",
   "pro_nestingD":"Crear cualquier número de colecciones anidadas.",
   "pro_dropbox":"Copia de seguridad de Dropbox",
-  "pro_dropboxD":"Copia de seguridad de los marcadores y el contenido en su cuenta.",
   "pro_support":"Soporte prioritario",
   "pro_supportD":"Por correo electrónico o skype.",
   "pro_nextFeatures":"Votación para las siguientes características",
@@ -569,5 +568,11 @@
   "billingCycle": "Ciclo de facturación",
   "preview": "Avance",
   "rename": "Rebautizar",
-  "large": "Grande"
+  "large": "Grande",
+  "app": "Aplicación",
+  "old":"Antiguo",
+  "backups": "Copias de seguridad",
+  "integrations": "Integraciones",
+  "download": "Descargar",
+  "cloudBackup": "Respaldo en la nube"
 }

@@ -37,7 +37,7 @@ export default class SplitViewReader extends React.PureComponent {
                 {...etc}
                 data-fullscreen={fullscreen}
                 className={'svReader '+className}
-                minWidth={600}>
+                minWidth={700}>
                 {show && children}
             </Small>
         )

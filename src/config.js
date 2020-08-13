@@ -7,9 +7,11 @@ export default {
         }
     },
 
-    'links': {
-        'download': 'https://raindrop.io/download',
-        'blog': 'https://blog.raindrop.io',
+    links: {
+        app: 'https://app.raindrop.io',
+        download: 'https://raindrop.io/download',
+        blog: 'https://blog.raindrop.io',
+        translation: 'https://crowdin.com/project/raindrop',
 
         help: {
             index: 'https://help.raindrop.io',

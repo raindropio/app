@@ -402,7 +402,6 @@
   "pro_nesting":"Zagnieżdżone kolekcje",
   "pro_nestingD":"Stwórz dowolną liczbę zagnieżdżonych kolekcji.",
   "pro_dropbox":"Kopia zapasowa Dropbox",
-  "pro_dropboxD":"Zapisuj kopię zapasową swoich zakładek na koncie.",
   "pro_support":"Specjalne wsparcie",
   "pro_supportD":"Przez email lub skype.",
   "pro_nextFeatures":"Głosuj na nowe funkcjonalności",
@@ -568,5 +567,11 @@
   "billingCycle": "Cykl rozliczeniowy",
   "preview": "Zapowiedź",
   "rename": "Przemianować",
-  "large": "Duży"
+  "large": "Duży",
+  "app": "Aplikacja",
+  "old":"Stary",
+  "backups": "Kopie zapasowe",
+  "integrations": "Integracje",
+  "download": "Pobieranie",
+  "cloudBackup": "Kopia zapasowa w chmurze"
 }

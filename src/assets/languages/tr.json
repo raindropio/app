@@ -402,7 +402,6 @@
   "pro_nesting":"İç içe yığınlar",
   "pro_nestingD":"Çok sayıda iç içe koleksiyonlar oluşturun.",
   "pro_dropbox":"Drobox yedekleme",
-  "pro_dropboxD":"Yer imlerini ve içeriği hesabına yedekle.",
   "pro_support":"Öncelikli destek",
   "pro_supportD":"E-Posta veya Skype tarafından.",
   "pro_nextFeatures":"Gelecek özellikler için oyla",
@@ -544,5 +543,11 @@
   "billingCycle": "Fatura döngüsü",
   "preview": "Ön izleme",
   "rename": "Adını değiştirmek",
-  "large": "Büyük"
+  "large": "Büyük",
+  "app": "Uygulama",
+  "old":"Eski",
+  "backups": "Yedekler",
+  "integrations": "Entegrasyonları",
+  "download": "İndir",
+  "cloudBackup": "Bulut yedekleme"
 }

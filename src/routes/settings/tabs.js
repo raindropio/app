@@ -8,13 +8,12 @@ import Button from '~co/common/button'
 
 export default class SettingsHeader extends React.Component {
     tabs = [
-        { to: '/app', title: t.s('basic') },
+        { to: '/app', title: t.s('app') },
         { to: '/profile', title: t.s('profile') },
         { to: '/pro', title: t.s('subscription') },
         { to: '/import', title: t.s('importBookmarks') },
         { to: '/backups', title: t.s('backups') },
-        { to: '/integrations', title: t.s('integrations') },
-        { to: '/help', title: t.s('help') },
+        { to: '/integrations', title: t.s('integrations') }
     ]
 
     renderTab = ({ to, title })=>{
@@ -25,6 +24,7 @@ export default class SettingsHeader extends React.Component {
                 key={to}
                 as={Link}
                 to={`${path}${to}`}
+                data-block
                 variant={new RegExp(`${to}($|/)`).test(pathname) ? 'active' : ''}>
                 {title}
             </Button>

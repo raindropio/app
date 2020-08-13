@@ -402,7 +402,6 @@
   "pro_nesting":"Nästlade samlingar",
   "pro_nestingD":"Skapa valfritt antal nästlade samlingar.",
   "pro_dropbox":"Backup till Dropbox",
-  "pro_dropboxD":"Säkerhetskopiera bokmärkena och innehållet till ditt.",
   "pro_support":"Prioriterad support",
   "pro_supportD":"över e-mail eller skype.",
   "pro_nextFeatures":"Rösta fram kommande funktioner",
@@ -544,5 +543,11 @@
   "billingCycle": "Faktureringsperiod",
   "preview": "Förhandsvisning",
   "rename": "Döp om",
-  "large": "Stor"
+  "large": "Stor",
+  "app": "App",
+  "old":"Gammal",
+  "backups": "Säkerhetskopior",
+  "integrations": "Integrationer",
+  "download": "Ladda ner",
+  "cloudBackup": "Cloud backup"
 }

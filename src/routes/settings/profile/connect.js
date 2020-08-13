@@ -2,6 +2,7 @@ import s from './connect.module.styl'
 import React from 'react'
 import t from '~t'
 import _ from 'lodash'
+import config from '~config'
 import { connect } from 'react-redux'
 import { user } from '~data/selectors/user'
 import { API_ENDPOINT_URL } from '~data/constants/app'
@@ -10,7 +11,7 @@ import { Label, Checkbox } from '~co/common/form'
 import Icon from '~co/common/icon'
 import Alert from '~co/common/alert'
 
-function SettingsProfileConnect({ user }) {
+function SettingsProfileConnect({ user, location: { pathname } }) {
     return (
         <>
             <Label>{t.s('signInSocial')}</Label>
@@ -36,7 +37,7 @@ function SettingsProfileConnect({ user }) {
                 </div>
             ) : (
                 <Alert variant='warning'>
-                    Please <a href='' target='_blank'>open web app</a> to configure social accounts!
+                    Please <a href={`${config.links.app}${pathname}`} target='_blank'>open web app</a> to configure social accounts!
                 </Alert>
             )}
         </>
