@@ -10,6 +10,7 @@ export default function* () {
 	yield takeLatest(c.OAUTH_CLIENT_UPDATE_REQ, clientUpdate)
 	yield takeLatest(c.OAUTH_CLIENT_REVOKE_REQ, clientRevoke)
 	yield takeLatest(c.OAUTH_CLIENT_REMOVE_REQ, clientRemove)
+	yield takeLatest(c.OAUTH_CLIENT_ICON_UPLOAD_REQ, clientIconUpload)
 	yield takeLatest(c.OAUTH_CLIENT_RESET_SECRET_REQ, clientResetSecret)
 
 	yield takeLatest(c.OAUTH_CLIENT_TEST_TOKEN_LOAD_REQ, clientTestTokenLoad)
@@ -116,6 +117,26 @@ function* clientRemove({ _id }) {
 			type: c.OAUTH_CLIENT_REMOVE_ERROR,
 			_id,
 			error
+		})
+	}
+}
+
+function* clientIconUpload({ _id, icon, onSuccess, onFail }) {
+    try {
+		const { item } = yield call(Api.upload, `oauth/client/${_id}/icon`, { icon })
+
+		yield put({
+			type: c.OAUTH_CLIENT_ICON_UPLOAD_SUCCESS,
+			_id,
+			item,
+			onSuccess
+		})
+	} catch (error) {
+		yield put({
+			type: c.OAUTH_CLIENT_ICON_UPLOAD_ERROR,
+			_id,
+			error,
+			onFail
 		})
 	}
 }

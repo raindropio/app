@@ -3,13 +3,14 @@ import React from 'react'
 import t from '~t'
 import config from '~config'
 import { connect } from 'react-redux'
-import { clientUpdate, clientResetToken, clientTestTokenCreate, clientTestTokenLoad, clientRevoke } from '~data/actions/oauth'
+import { clientUpdate, clientResetToken, clientTestTokenCreate, clientTestTokenLoad, clientRevoke, clientIconUpload } from '~data/actions/oauth'
 import { makeClient, getTestToken } from '~data/selectors/oauth'
 
 import { Layout, Label, Text, Buttons, Title, Separator } from '~co/common/form'
 import Modal, { Header, Content } from '~co/overlay/modal'
 import { Error, Confirm } from '~co/overlay/dialog'
 import Button from '~co/common/button'
+import Icon from '~co/common/icon'
 
 class DevEdit extends React.Component {
     static defaultProps = {
@@ -66,6 +67,23 @@ class DevEdit extends React.Component {
         )
     }
 
+    onIconUpload = (e)=>{
+        if (!e.target.files[0]) return
+        this.setState({ loading: true })
+
+        this.props.clientIconUpload(
+            this.props._id,
+            e.target.files[0],
+            ()=>{
+                this.setState({ loading: false })
+            },
+            e => {
+                this.setState({ loading: false })
+                Error(e)
+            }
+        )
+    }
+
     onResetSecretClick = async(e)=>{
         e.preventDefault()
 
@@ -89,7 +107,7 @@ class DevEdit extends React.Component {
 
     render() {
         const { testToken, onClose } = this.props
-        const { loading, unsaved, client: { _id, name, description, site, redirects: [redirect=''], secret } } = this.state
+        const { loading, unsaved, client: { _id, name, description, site, redirects: [redirect=''], secret, icon } } = this.state
 
         return (
             <Modal 
@@ -135,6 +153,29 @@ class DevEdit extends React.Component {
                                 value={redirect}
                                 name='redirects'
                                 onChange={this.onTextChange} />
+
+                            <Label>{t.s('cover')}</Label>
+                            <div>
+                                {icon && (
+                                    <>
+                                        <img src={icon} width='100' />
+                                        <br />
+                                    </>
+                                )}
+
+                                <Button 
+                                    as='label'
+                                    variant='outline'
+                                    disabled={loading}>
+                                    <Icon name='upload' />
+                                    {t.s('upload')}…
+
+                                    <input 
+                                        type='file'
+                                        style={{display: 'none'}}
+                                        onChange={this.onIconUpload} />
+                                </Button>
+                            </div>
 
                             {unsaved && (
                                 <Buttons>
@@ -213,5 +254,5 @@ export default connect(
             testToken: getTestToken(state, _id)
         })
     },
-    { clientUpdate, clientResetToken, clientTestTokenCreate, clientTestTokenLoad, clientRevoke }
+    { clientUpdate, clientResetToken, clientTestTokenCreate, clientTestTokenLoad, clientRevoke, clientIconUpload }
 )(DevEdit)

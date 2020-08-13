@@ -36,6 +36,14 @@ export const clientRemove = (_id)=>({
     _id
 })
 
+export const clientIconUpload = (_id, icon, onSuccess, onFail)=>({
+	type: c.OAUTH_CLIENT_ICON_UPLOAD_REQ,
+	_id,
+	icon,
+	onSuccess: wrapFunc(onSuccess),
+	onFail: wrapFunc(onFail)
+})
+
 export const clientResetToken = (_id)=>({
     type: c.OAUTH_CLIENT_RESET_SECRET_REQ,
     _id

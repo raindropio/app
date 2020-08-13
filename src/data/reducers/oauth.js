@@ -66,7 +66,8 @@ export default function(state = initialState, action){switch (action.type) {
     }
 
     case c.OAUTH_CLIENT_UPDATE_SUCCESS:
-    case c.OAUTH_CLIENT_RESET_SECRET_SUCCESS:{
+    case c.OAUTH_CLIENT_RESET_SECRET_SUCCESS:
+    case c.OAUTH_CLIENT_ICON_UPLOAD_SUCCESS:{
         const { _id, item={} } = action
 
         if (typeof action.onSuccess == 'function')
@@ -80,7 +81,8 @@ export default function(state = initialState, action){switch (action.type) {
     }
 
     case c.OAUTH_CLIENT_UPDATE_ERROR:
-    case c.OAUTH_CLIENT_RESET_SECRET_ERROR:{
+    case c.OAUTH_CLIENT_RESET_SECRET_ERROR:
+    case c.OAUTH_CLIENT_ICON_UPLOAD_ERROR:{
         if (typeof action.onFail == 'function')
             action.onFail(action.error)
 
