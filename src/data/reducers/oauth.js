@@ -65,7 +65,8 @@ export default function(state = initialState, action){switch (action.type) {
         return state
     }
 
-    case c.OAUTH_CLIENT_UPDATE_SUCCESS:{
+    case c.OAUTH_CLIENT_UPDATE_SUCCESS:
+    case c.OAUTH_CLIENT_RESET_SECRET_SUCCESS:{
         const { _id, item={} } = action
 
         if (typeof action.onSuccess == 'function')
@@ -78,7 +79,8 @@ export default function(state = initialState, action){switch (action.type) {
         return state.setIn(['my', 'clients', index], normalizeClient(item))
     }
 
-    case c.OAUTH_CLIENT_UPDATE_ERROR:{
+    case c.OAUTH_CLIENT_UPDATE_ERROR:
+    case c.OAUTH_CLIENT_RESET_SECRET_ERROR:{
         if (typeof action.onFail == 'function')
             action.onFail(action.error)
 
@@ -103,6 +105,14 @@ export default function(state = initialState, action){switch (action.type) {
         return state.set('my', my)
     }
 
+    //Test tokens
+    case c.OAUTH_CLIENT_TEST_TOKEN_LOAD_SUCCESS:
+    case c.OAUTH_CLIENT_TEST_TOKEN_CREATE_SUCCESS:{
+        const { _id, token } = action
+
+        return state.setIn(['my', 'testToken', _id], token)
+    }
+
     default:
 		return state
 }}
@@ -115,6 +125,7 @@ const initialState = Immutable({
 
     my: {
         status: 'idle', //idle|loading|loaded|error
-        clients: []
+        clients: [],
+        testToken: {} //{ _id: token }
     }
 })

@@ -12,3 +12,6 @@ export const makeClient = ()=>createSelector(
     (clients, _id)=>
         clients.find(client=>client._id == _id) || blankClient
 )
+
+export const getTestToken = ({ oauth }, _id)=>
+    oauth.my.testToken[_id] || null

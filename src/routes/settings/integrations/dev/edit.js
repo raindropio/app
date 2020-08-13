@@ -1,13 +1,14 @@
 import s from './edit.module.styl'
 import React from 'react'
 import t from '~t'
+import config from '~config'
 import { connect } from 'react-redux'
-import { clientUpdate } from '~data/actions/oauth'
-import { makeClient } from '~data/selectors/oauth'
+import { clientUpdate, clientResetToken, clientTestTokenCreate, clientTestTokenLoad, clientRevoke } from '~data/actions/oauth'
+import { makeClient, getTestToken } from '~data/selectors/oauth'
 
 import { Layout, Label, Text, Buttons, Title, Separator } from '~co/common/form'
 import Modal, { Header, Content } from '~co/overlay/modal'
-import { Error } from '~co/overlay/dialog'
+import { Error, Confirm } from '~co/overlay/dialog'
 import Button from '~co/common/button'
 
 class DevEdit extends React.Component {
@@ -20,6 +21,10 @@ class DevEdit extends React.Component {
         loading: false,
         unsaved: false,
         client: this.props._client
+    }
+
+    componentDidMount() {
+        this.props.clientTestTokenLoad(this.props._id)
     }
 
     componentDidUpdate(prev) {
@@ -61,8 +66,29 @@ class DevEdit extends React.Component {
         )
     }
 
+    onResetSecretClick = async(e)=>{
+        e.preventDefault()
+
+        if (await Confirm(t.s('areYouSure')))
+            this.props.clientResetToken(this.props._id, ()=>{}, Error)
+    }
+
+    onCreateTestTokenClick = async(e)=>{
+        e.preventDefault()
+
+        if (await Confirm(t.s('areYouSure')))
+            this.props.clientTestTokenCreate(this.props._id, ()=>{}, Error)
+    }
+
+    onRevokeAllTokensClick = async(e)=>{
+        e.preventDefault()
+
+        if (await Confirm(t.s('areYouSure')))
+            this.props.clientRevoke(this.props._id, ()=>{}, Error)
+    }
+
     render() {
-        const { onClose } = this.props
+        const { testToken, onClose } = this.props
         const { loading, unsaved, client: { _id, name, description, site, redirects: [redirect=''], secret } } = this.state
 
         return (
@@ -132,16 +158,44 @@ class DevEdit extends React.Component {
                                 value={_id} />
 
                             <Label>Client secret</Label>
-                            <Text 
-                                readOnly
-                                variant='less'
-                                value={secret} />
+                            <div>
+                                <Text 
+                                    readOnly
+                                    variant='less'
+                                    value={secret} />
+
+                                <a href='' onClick={this.onResetSecretClick}>
+                                    Reset secret
+                                </a>
+                            </div>
 
                             <Label>Test token</Label>
-                            <Text 
-                                readOnly
-                                variant='less'
-                                value={secret} />
+                            <div>
+                                {testToken && (
+                                    <Text 
+                                        readOnly
+                                        variant='less'
+                                        value={testToken} />
+                                )}
+
+                                <a href='' onClick={this.onCreateTestTokenClick}>
+                                    {testToken ? 'Reset' : 'Create'} test token
+                                </a>
+
+                                <br /><br />
+
+                                <a href={config.links.dev.token} target='_blank'>
+                                    {t.s('howToUse')}
+                                </a>
+                            </div>
+
+                            <Buttons>
+                                <Button
+                                    variant='outline'
+                                    onClick={this.onRevokeAllTokensClick}>
+                                    Revoke all user tokens
+                                </Button>
+                            </Buttons>
                         </Layout>
                     </form>
                 </Content>
@@ -155,8 +209,9 @@ export default connect(
         const getClient = makeClient()
 
         return (state, { _id })=>({
-            _client: getClient(state, _id)
+            _client: getClient(state, _id),
+            testToken: getTestToken(state, _id)
         })
     },
-    { clientUpdate }
+    { clientUpdate, clientResetToken, clientTestTokenCreate, clientTestTokenLoad, clientRevoke }
 )(DevEdit)

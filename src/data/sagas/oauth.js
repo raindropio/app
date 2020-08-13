@@ -10,6 +10,10 @@ export default function* () {
 	yield takeLatest(c.OAUTH_CLIENT_UPDATE_REQ, clientUpdate)
 	yield takeLatest(c.OAUTH_CLIENT_REVOKE_REQ, clientRevoke)
 	yield takeLatest(c.OAUTH_CLIENT_REMOVE_REQ, clientRemove)
+	yield takeLatest(c.OAUTH_CLIENT_RESET_SECRET_REQ, clientResetSecret)
+
+	yield takeLatest(c.OAUTH_CLIENT_TEST_TOKEN_LOAD_REQ, clientTestTokenLoad)
+	yield takeLatest(c.OAUTH_CLIENT_TEST_TOKEN_CREATE_REQ, clientTestTokenCreate)
 }
 
 function* connectionsLoad() {
@@ -93,6 +97,7 @@ function* clientRevoke({ _id }) {
 	} catch (error) {
 		yield put({
 			type: c.OAUTH_CLIENT_REVOKE_ERROR,
+			_id,
 			error
 		})
 	}
@@ -109,6 +114,61 @@ function* clientRemove({ _id }) {
 	} catch (error) {
 		yield put({
 			type: c.OAUTH_CLIENT_REMOVE_ERROR,
+			_id,
+			error
+		})
+	}
+}
+
+function* clientResetSecret({ _id }) {
+    try {
+		const { item } = yield call(Api.put, `oauth/client/${_id}/reset_secret`)
+
+		yield put({
+			type: c.OAUTH_CLIENT_RESET_SECRET_SUCCESS,
+			_id,
+			item
+		})
+	} catch (error) {
+		yield put({
+			type: c.OAUTH_CLIENT_RESET_SECRET_ERROR,
+			_id,
+			error
+		})
+	}
+}
+
+function* clientTestTokenLoad({ _id }) {
+    try {
+		const { token } = yield call(Api.get, `oauth/client/${_id}/test_token`)
+
+		yield put({
+			type: c.OAUTH_CLIENT_TEST_TOKEN_LOAD_SUCCESS,
+			_id,
+			token
+		})
+	} catch (error) {
+		yield put({
+			type: c.OAUTH_CLIENT_TEST_TOKEN_LOAD_ERROR,
+			_id,
+			error
+		})
+	}
+}
+
+function* clientTestTokenCreate({ _id }) {
+    try {
+		const { token } = yield call(Api.post, `oauth/client/${_id}/test_token`)
+
+		yield put({
+			type: c.OAUTH_CLIENT_TEST_TOKEN_CREATE_SUCCESS,
+			_id,
+			token
+		})
+	} catch (error) {
+		yield put({
+			type: c.OAUTH_CLIENT_TEST_TOKEN_CREATE_ERROR,
+			_id,
 			error
 		})
 	}

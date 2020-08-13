@@ -35,3 +35,18 @@ export const clientRemove = (_id)=>({
     type: c.OAUTH_CLIENT_REMOVE_REQ,
     _id
 })
+
+export const clientResetToken = (_id)=>({
+    type: c.OAUTH_CLIENT_RESET_SECRET_REQ,
+    _id
+})
+
+export const clientTestTokenLoad = (_id)=>({
+    type: c.OAUTH_CLIENT_TEST_TOKEN_LOAD_REQ,
+    _id
+})
+
+export const clientTestTokenCreate = (_id)=>({
+    type: c.OAUTH_CLIENT_TEST_TOKEN_CREATE_REQ,
+    _id
+})

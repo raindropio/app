@@ -30,7 +30,8 @@ export default {
 
         dev: {
             index: 'https://developer.raindrop.io',
-            terms: 'https://developer.raindrop.io/terms'
+            terms: 'https://developer.raindrop.io/terms',
+            token: 'https://developer.raindrop.io/v1/authentication/token'
         }
     },
 
