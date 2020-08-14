@@ -17,21 +17,6 @@ export const Item = React.forwardRef((props, ref) => {
     return <ItemInner {...props} forwardedRef={ref} />
 })
 
-let _cachedHeight = 0
-export const getItemHeight = ()=>{
-    if (_cachedHeight)
-        return _cachedHeight
-
-    const cssVariable = getComputedStyle(document.documentElement).getPropertyValue('--list-item-height')
-    _cachedHeight = parseInt(cssVariable)
-    
-    //rem parse
-    if (cssVariable.includes('rem'))
-        _cachedHeight = _cachedHeight * parseFloat(getComputedStyle(document.documentElement).fontSize)
-
-    return _cachedHeight
-}
-
 export function ItemIcon({ className='', ...etc }) {
     return (
         <div {...etc} className={s.icon+' '+className} />
@@ -54,4 +39,25 @@ export function ItemActions({ className='', ...etc }) {
     return (
         <div {...etc} className={s.actions+' '+className} />
     )
+}
+
+export class ItemHeightCallback extends React.Component {
+    state = {
+        height: 0
+    }
+    
+    bindRef = r => {
+        if (r == null || this._ref == r) return null
+        this._ref = r
+        this.setState({ height: r.offsetHeight })
+    }
+
+    render() {
+        const { height } = this.state
+
+        if (!height)
+            return (<Item ref={this.bindRef} />)
+
+        return this.props.children(height)
+    }
 }

@@ -5,7 +5,7 @@ import Tree from '~co/virtual/tree'
 import Item from '../item'
 import Group from '../group'
 import Empty from './empty'
-import { getItemHeight } from '~co/common/list'
+import { ItemHeightCallback } from '~co/common/list'
 
 export default class CollectionsTree extends React.Component {
     _scrolled = false
@@ -211,22 +211,24 @@ export default class CollectionsTree extends React.Component {
             return <Empty />
 
         return (
-            <Tree            
-                className={s.tree}
-                    
-                //base
-                item={this.rowRenderer}
-                totalCount={data.length + customRows.length}
-                dataKey={String(activeId)+(typeof activeId)+dataCheckpoint} //only used to re-render when data re-ordered from outside
-                scrollToIndex={scrollToIndex}
-                itemHeight={getItemHeight()}
-
-                //custom
-                rowIsDraggable={this.rowIsDraggable}
-                rowIsDroppable={this.rowIsDroppable}
-                onDragStart={this.onDragStart}
-                onDragEnd={this.onDragEnd} 
-                />
+            <ItemHeightCallback>{itemHeight=>
+                <Tree            
+                    className={s.tree}
+                        
+                    //base
+                    item={this.rowRenderer}
+                    totalCount={data.length + customRows.length}
+                    dataKey={String(activeId)+(typeof activeId)+dataCheckpoint} //only used to re-render when data re-ordered from outside
+                    scrollToIndex={scrollToIndex}
+                    itemHeight={itemHeight}
+    
+                    //custom
+                    rowIsDraggable={this.rowIsDraggable}
+                    rowIsDroppable={this.rowIsDroppable}
+                    onDragStart={this.onDragStart}
+                    onDragEnd={this.onDragEnd} 
+                    />
+            }</ItemHeightCallback>
         )
     }
 }

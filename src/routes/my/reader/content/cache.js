@@ -86,7 +86,7 @@ class ReaderCache extends React.Component {
                             download={domain+'.html'}
                             onClick={this.onDownloadClick}>
                             <Icon name='document' size='micro' />
-                            Download
+                            {t.s('download')}
                         </Button>
                     </>
                 )}

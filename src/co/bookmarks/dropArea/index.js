@@ -3,8 +3,6 @@ import { connect } from 'react-redux'
 import { oneUpload, oneMove } from '~data/actions/bookmarks'
 import PickerSourceDrop from '~co/picker/source/drop'
 
-const emptyObject = {}
-
 class BookmarksDropArea extends React.Component {
     static defaultProps = {
         spaceId: 0
@@ -35,9 +33,6 @@ class BookmarksDropArea extends React.Component {
         type == 'bookmark'
 
     render() {
-        if (!parseInt(this.props.spaceId))
-            return this.props.children(emptyObject)
-
         return (
             <PickerSourceDrop 
                 onFile={this.onUploadFile}
