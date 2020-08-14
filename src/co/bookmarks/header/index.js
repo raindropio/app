@@ -25,7 +25,8 @@ class BookmarksHeader extends React.Component {
         return (
             <Header 
                 className={s.header}
-                data-solid>
+                data-solid
+                data-is-header>
                 <Icon {...this.props} />
 
                 <TitleWrap>

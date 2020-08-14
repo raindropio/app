@@ -11,6 +11,7 @@ function SettingsAppRaindropsClick({ raindrops_click, set }) {
             <Label>{t.s('bookmarkClick')}</Label>
             <div>
                 {[
+                    ['current_tab', t.s('open')],
                     ['new_tab', t.s('open') + ' ' + t.s('inNewTab')],
                     ['preview', t.s('preview')],
                     ['edit', t.s('edit')]

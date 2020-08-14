@@ -1,7 +1,11 @@
+import s from './checkbox.module.styl'
 import React from 'react'
 import t from '~t'
 import { connect } from 'react-redux'
 import { unselectAll, selectAll } from '~data/actions/bookmarks'
+
+import { FirstAction } from '~co/common/header'
+import Button from '~co/common/button'
 
 class BookmarksHeaderSelectModeCheckbox extends React.Component {
     static defaultProps = {
@@ -36,12 +40,19 @@ class BookmarksHeaderSelectModeCheckbox extends React.Component {
         const { selectMode } = this.props
 
         return (
-            <input 
-                ref={this._allCheckbox}
-                type='checkbox'
-                title={t.s('selectAll')}
-                checked={selectMode.all}
-                onChange={this.onInputClick} />
+            <FirstAction>
+                <Button 
+                    variant='active'
+                    onClick={this.onInputClick}>
+                    <label className={s.check}>
+                        <input 
+                            ref={this._allCheckbox}
+                            type='checkbox'
+                            title={t.s('selectAll')}
+                            checked={selectMode.all} />
+                    </label>
+                </Button>
+            </FirstAction>
         )
     }
 }

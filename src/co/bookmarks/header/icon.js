@@ -8,7 +8,6 @@ import { makeStatus } from '~data/selectors/bookmarks'
 import { FirstAction } from '~co/common/header'
 import CollectionIcon from '~co/collections/item/icon'
 import Button from '~co/common/button'
-import Icon from '~co/common/icon'
 
 class BookmarksHeaderIcon extends React.PureComponent {
     static defaultProps = {
@@ -31,10 +30,6 @@ class BookmarksHeaderIcon extends React.PureComponent {
             <FirstAction>
                 <Button 
                     className={s.button}
-                    data-selectable={selectable}
-                    data-no-icon={noicon}
-                    title={t.s('select')+' '+t.s('all')}
-                    disabled={!selectable}
                     onClick={this.onSelectAllClick}>
                     <CollectionIcon
                         className={s.icon}
@@ -43,11 +38,13 @@ class BookmarksHeaderIcon extends React.PureComponent {
                         loading={status.main=='loading'} />
 
                     {selectable && (
-                        <div className={s.select}>
+                        <label 
+                            className={s.select}
+                            title={t.s('select')+' '+t.s('all')}>
                             <input 
                                 tabIndex='-1'
                                 type='checkbox' />
-                        </div>
+                        </label>
                     )}
                 </Button>
             </FirstAction>

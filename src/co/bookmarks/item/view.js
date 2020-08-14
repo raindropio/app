@@ -38,6 +38,11 @@ export default class BookmarkItemView extends React.PureComponent {
         const { getLink, mainAction, _id, link } = this.props
 
         switch (mainAction) {
+            case 'current_tab':
+                return {
+                    href: link
+                }
+
             case 'new_tab':
                 return {
                     href: link,
@@ -59,6 +64,7 @@ export default class BookmarkItemView extends React.PureComponent {
 
         switch(mainAction) {
             case 'new_tab':
+            case 'current_tab':
                 return (
                     <Button 
                         as={Link}
