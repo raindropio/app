@@ -22,36 +22,30 @@ export default class PicketTagsModal extends React.Component {
         const { onSubmit, onClose, ...etc } = this.props
 
         return (
-            <Modal onClose={onClose}>
+            <Modal 
+                as='form'
+                onSubmit={this.onSubmit}
+                onClose={onClose}>
                 <Header 
                     title={t.s('addTags')}
-                    data-no-shadow />
+                    data-no-shadow>
+                    <Button 
+                        as='input'
+                        type='submit'
+                        disabled={!etc.value.length}
+                        variant='primary'
+                        value={etc.value.length ? `${t.s('add')} ${etc.value.length} ${t.s('tags').toLowerCase()}` : t.s('addTags')} />
+                </Header>
 
                 <Content>
-                    <form onSubmit={this.onSubmit}>
-                        <Layout>
-                            <div className={s.field}>
-                                <Field 
-                                    autoFocus={true}
-                                    placeholder=''
-                                    {...etc} />
-                            </div>
-
-                            <Buttons>
-                                <Button 
-                                    as='input'
-                                    type='submit'
-                                    disabled={!etc.value.length}
-                                    variant='primary'
-                                    value={etc.value.length ? `${t.s('add')} ${etc.value.length} ${t.s('tags').toLowerCase()}` : t.s('addTags')} />
-
-                                <Button
-                                    onClick={onClose}
-                                    variant='outline'
-                                    data-block>{t.s('cancel')}</Button>
-                            </Buttons>
-                        </Layout>
-                    </form>
+                    <Layout>
+                        <div className={s.field}>
+                            <Field 
+                                autoFocus={true}
+                                placeholder=''
+                                {...etc} />
+                        </div>
+                    </Layout>
                 </Content>
             </Modal>
         )

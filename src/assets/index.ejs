@@ -9,6 +9,8 @@
 	
 	<title>Raindrop.io</title>
 
+	<meta http-equiv="Content-Security-Policy" content="default-src *; script-src 'self' *.raindrop.io *.googletagmanager.com *.google-analytics.com <%= process.env.NODE_ENV === 'development' ? '\'unsafe-inline\' \'unsafe-eval\'' : '' %>; style-src 'self' <%= process.env.NODE_ENV === 'development' ? '\'unsafe-inline\'' : '' %>;">
+
 	<meta name='apple-itunes-app' content='app-id=1021913807' />
 	<meta name='google-play-app' content='app-id=io.raindrop.raindropio' />
 	<link rel="chrome-webstore-item" href="https://chrome.google.com/webstore/detail/ldgfbffkinooeloadekpmfoklnobpien">

@@ -40,20 +40,21 @@ export default class Modal extends React.Component {
     }
 
     render() {
-        const { children, onClose, closable, important, className='', pin, ...etc } = this.props
+        const { as='div', children, onClose, closable, important, className='', pin, ...etc } = this.props
+        const Component = as
 
         return (
             <Portal>
                 <Context.Provider value={{ onClose, closable }}>
                     <div 
                         className={s.modal+' '+(important ? s.important : '')}>
-                        <div 
+                        <Component 
                             className={s.wrap+' '+className}
                             {...etc}>
                             <div className={s.body} role='dialog'>
                                 {children}
                             </div>
-                        </div>
+                        </Component>
                     </div>
                 </Context.Provider>
             </Portal>

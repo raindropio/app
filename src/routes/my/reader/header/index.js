@@ -1,4 +1,5 @@
 import React from 'react'
+import { Helmet } from 'react-helmet'
 import t from '~t'
 
 import { Header } from '~co/screen/splitview/reader'
@@ -27,6 +28,12 @@ export default class ReaderHeader extends React.PureComponent {
         }
     ]
 
+    getTabTitle = ()=>{
+        const active = this.defaultTabs.find(({key})=>key==this.props.tab)
+        if (active) return active.title
+        return null
+    }
+
     onImportantClick = (e)=>{
         e.preventDefault()
         this.props.actions.oneImportant(this.props.item._id)
@@ -45,6 +52,10 @@ export default class ReaderHeader extends React.PureComponent {
             <Header
                 backTo={getLink({ bookmark: null, tab: null })}
                 onFullscreenClick={onFullscreenToggleClick}>
+                <Helmet>
+                    <title>{this.getTabTitle()+' '+item.title}</title>
+                </Helmet>
+
                 <Settings
                     tab={tab}
                     item={item} />
