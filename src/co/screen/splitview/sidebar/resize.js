@@ -6,19 +6,22 @@ export default class SplitViewSidebarResize extends React.Component {
     static contextType = Context
 
     onMouseDown = ()=>{
-        document.body.classList.add(s.disableSelect)
+        document.documentElement.classList.add(s.resizeMode)
         window.addEventListener('mouseup', this.onMouseUp)
         window.addEventListener('mousemove', this.onMouseMove)
     }
 
     onMouseUp = ()=>{
-        document.body.classList.remove(s.disableSelect)
+        document.documentElement.classList.remove(s.resizeMode)
         window.removeEventListener('mouseup', this.onMouseUp)
         window.removeEventListener('mousemove', this.onMouseMove)
     }
 
     onMouseMove = ({ pageX })=>{
-        this.context.sidebar.resize(pageX)
+        if (pageX < 100)
+            this.context.sidebar.close()
+        else
+            this.context.sidebar.resize(pageX)
     }
 
     onDoubleClick = ()=>

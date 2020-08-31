@@ -4,19 +4,41 @@
     position: relative;
     width: 7px;
     position: absolute;
-    right: -7px;
+    right: -6px;
     top: 0;
     bottom: 0;
+
+    &:before {
+        pointer-events: none
+        display: block
+        content: ''
+        height: 100%
+        width: 50%
+        opacity: 0
+        background: var(--accent-color)
+        transition: opacity .2s ease-in-out
+        transition-delay: .2s
+    }
 }
 
 html:global(.windows) {
-    .resize, .disableSelect {
+    .resize, &.resizeMode {
         cursor: e-resize;
     }
 }
 
-.disableSelect {
-    user-select: none
-    pointer-events: none
+.resizeMode {
     cursor: col-resize
+
+    body {
+        user-select: none
+        pointer-events: none
+    }
+}
+
+.resizeMode .resize,
+.resize:hover {
+    &:before {
+        opacity: 1
+    }
 }

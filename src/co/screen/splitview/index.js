@@ -19,6 +19,12 @@ export default class ScreenSplitView extends React.Component {
                 this.update('sidebar', { show })
             },
 
+            close: (e)=>{
+                e && e.preventDefault && e.preventDefault()
+
+                this.update('sidebar', { show: false })
+            },
+
             resize: (width)=>{
                 this.container.current.style.setProperty('--sidebar-width', width+'px')
                 this.update('sidebar', { width })
