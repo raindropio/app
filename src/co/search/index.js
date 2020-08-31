@@ -30,21 +30,20 @@ export default class Search extends React.PureComponent {
 
     handlers = {
         onChange: (value, autoSubmit=false)=>{
-            const changed = (this.state.value||'').trim() != (value||'').trim()
-
             this.setState(
                 { value },
-                changed ? ()=>{
+                ()=>{
                     if (!this.state.value || autoSubmit)
                         return this.handlers.onSubmit()
 
                     //suggestions are showing right now, no autoSubmit
-                    if (this.props.outerRef.current &&
+                    if (!this.state.value.endsWith(' ') &&
+                        this.props.outerRef.current &&
                         this.props.outerRef.current.firstChild)
                         return
 
                     this.onSubmitBounced()
-                } : undefined
+                }
             )
         },
 
