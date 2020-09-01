@@ -48,6 +48,7 @@ export default class BookmarkEditForm extends React.Component {
                             required={true}
                             disabled={loading}
                             autoComplete='off'
+                            spellCheck='false'
                             autoFocus={autoFocus=='title'}
                             name='title'
                             placeholder={t.s('title')}
@@ -62,6 +63,7 @@ export default class BookmarkEditForm extends React.Component {
                             type='text'
                             disabled={loading}
                             autoComplete='off'
+                            spellCheck='false'
                             autoFocus={autoFocus=='excerpt'}
                             name='excerpt'
                             maxLength='10000'

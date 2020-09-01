@@ -16,17 +16,17 @@
         margin-right: var(--padding-small)
     }
 
-    &[data-no-shadow] {
+    &[data-no-shadow='true'] {
         box-shadow: none
     }
 
-    &[data-fancy], &[data-solid] {
+    &[data-fancy='true'], &[data-solid='true'] {
         background: var(--background-color)
     }
 }
 
 @supports (backdrop-filter: none) {
-	.header[data-fancy] {
+	.header[data-fancy='true'] {
 		background: unquote('linear-gradient(to bottom, var(--background-color) 30%, hsla(var(--background-hsl), .6) 100%)')
 		backdrop-filter: blur(20px)
 	}
