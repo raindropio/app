@@ -14,7 +14,6 @@
     --accent-color: hsl(var(--accent-hsl));
 
     /* etc */
-    --info-background-color: #cce5ff;
     --warning-background-color: #fff3cd;
     --danger-background-color: #f8d7da;
     --danger-color: #E52E1B;

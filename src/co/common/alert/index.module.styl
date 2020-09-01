@@ -1,8 +1,7 @@
 .alert {
-    padding: var(--padding-small)
+    padding: var(--padding-small) calc(var(--padding-small) + 1rem)
     border-radius: var(--border-radius)
     box-shadow: inset 0 0 0 var(--shadow-height) var(--shadow-color)
-    color: rgba(0,0,0,.7)
 
     a {
         text-decoration: underline
@@ -10,13 +9,14 @@
 }
 
 .info {
-    background-color: var(--info-background-color)
 }
 
 .warning {
+    color: rgba(0,0,0,.7)
     background-color: var(--warning-background-color)
 }
 
 .danger {
+    color: rgba(0,0,0,.7)
     background-color: var(--danger-background-color)
 }

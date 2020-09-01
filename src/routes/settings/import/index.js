@@ -1,5 +1,9 @@
 import React from 'react'
+import { Layout } from '~co/common/form'
+import File from './file'
 
 export default (props)=>(
-	<b>User</b>
+	<Layout type='grid'>
+		<File />
+	</Layout>
 )
