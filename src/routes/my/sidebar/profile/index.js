@@ -7,6 +7,7 @@ import { user } from '~data/selectors/user'
 import Button from '~co/common/button'
 import Avatar from '~co/common/avatar'
 import Contextmenu from './contextmenu'
+import Icon from '~co/common/icon'
 
 class SidebarProfile extends React.PureComponent {
     state = {
@@ -40,6 +41,7 @@ class SidebarProfile extends React.PureComponent {
                     onClick={this.onProfileClick}>
                     <Avatar src={user.email_MD5} size='40' />
                     <span>{user.fullName}</span>
+                    <Icon name='arrow' size='micro' />
                 </Button>
                 
                 {menu && <Contextmenu pin={this.pin} {...this.props} {...this.handlers} />}

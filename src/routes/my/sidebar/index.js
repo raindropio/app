@@ -21,7 +21,7 @@ export default class MySidebar extends React.Component {
     render() {
         const { _id, search, getLink } = this.props
 
-        let activeId = _id
+        let activeId = parseInt(_id)
         if (activeId=='0' && search)
             activeId = search
 

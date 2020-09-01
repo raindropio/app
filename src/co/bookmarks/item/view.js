@@ -34,6 +34,15 @@ export default class BookmarkItemView extends React.PureComponent {
         if (dragPreview) dragPreview.remove()
     }
 
+    onMouseDown = e=>{
+        //middle button click
+        if (e.button===1){
+            e.preventDefault()
+            window.open(this.props.link)
+        }else
+            this.forceUpdate() //update target link
+    }
+
     getLinkProps = ()=>{
         const { getLink, mainAction, _id, link } = this.props
 
@@ -184,6 +193,7 @@ export default class BookmarkItemView extends React.PureComponent {
                     onClick={onClick}
                     onDoubleClick={onDoubleClick}
                     onContextMenu={onContextMenu}
+                    onMouseDown={this.onMouseDown}
                     onKeyUp={onKeyUp} />
             </article>
         )
