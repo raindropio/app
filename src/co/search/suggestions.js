@@ -41,7 +41,7 @@ class SearchSuggestions extends React.Component {
     }
 
     renderGroup = (type, inc=0)=>{
-        const { downshift: { getItemProps, highlightedIndex } } = this.props
+        const { downshift: { getItemProps, highlightedIndex }, floating } = this.props
 
         return this.props[type].map((item, _i)=>{
             const index = _i + inc
@@ -53,7 +53,8 @@ class SearchSuggestions extends React.Component {
                         index,
                         item,
                         className: s.item,
-                        variant: highlightedIndex === index ? 'primary' : 'outline'
+                        variant: highlightedIndex === index ? 'primary' : 'outline',
+                        size: floating ? undefined : 'small'
                     })}>
                     {type == 'filters' && <FilterIcon {...item} />}
                     {type == 'filters' ? <FilterTitle {...item} /> : item._id}

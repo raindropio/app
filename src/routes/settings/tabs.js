@@ -25,7 +25,7 @@ export default class SettingsHeader extends React.Component {
                 as={Link}
                 to={`${path}${to}`}
                 data-block
-                variant={new RegExp(`${to}($|/)`).test(pathname) ? 'active' : ''}>
+                variant={new RegExp(`${to}($|/)`).test(pathname) ? 'active' : undefined}>
                 {title}
             </Button>
         )

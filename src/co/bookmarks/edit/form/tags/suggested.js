@@ -5,7 +5,6 @@ import { connect } from 'react-redux'
 import { makeSuggestedTags } from '~data/selectors/tags'
 
 import Button from '~co/common/button'
-import Icon from '~co/common/icon'
 
 class BookmarkEditFormTagsSuggested extends React.Component {
     onAddSuggestedTag = e => {

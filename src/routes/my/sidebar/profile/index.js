@@ -1,3 +1,4 @@
+import s from './index.module.styl'
 import React from 'react'
 import { connect } from 'react-redux'
 import { logout } from '~data/actions/user'
@@ -33,7 +34,10 @@ class SidebarProfile extends React.PureComponent {
 
         return (
             <>
-                <Button ref={this.pin} onClick={this.onProfileClick}>
+                <Button 
+                    ref={this.pin} 
+                    id={s.button}
+                    onClick={this.onProfileClick}>
                     <Avatar src={user.email_MD5} size='40' />
                     <span>{user.fullName}</span>
                 </Button>
