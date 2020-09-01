@@ -3,12 +3,13 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { getHtml } from '~data/selectors/bookmarks'
 import { ShortDate } from '~modules/format/date'
+import { htmlLoad } from '~data/actions/bookmarks'
 
 import Preloader from '~co/common/preloader'
 
 class ReaderHTML extends React.Component {
     componentDidMount() {
-        this.props.actions.htmlLoad(this.props.item._id)
+        this.props.htmlLoad(this.props.item._id)
     }
 
     render() {
@@ -61,5 +62,6 @@ export default connect(
             font_size: state.config.font_size,
             font_family: state.config.font_family
         })
-    }
+    },
+    { htmlLoad }
 )(ReaderHTML)

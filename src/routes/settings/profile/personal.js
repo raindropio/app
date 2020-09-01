@@ -57,7 +57,7 @@ function SettingsProfilePersonal({ _id, fullName, email, password, newpassword='
                         onClick={onSubmit}>
                         {t.s('save')}
                     </Button>
-            </Buttons>
+                </Buttons>
             )}
         </>
     )

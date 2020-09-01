@@ -26,7 +26,7 @@ export default class BookmarkItemView extends React.PureComponent {
 
                 {important ? (
                     <section data-inline className={s.importantLabel}>
-                        <Icon name='important' size='micro' />
+                        <Icon name='important_active' size='micro' />
                     </section>
                 ) : null}
 

@@ -1,8 +1,6 @@
 import React from 'react'
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
-import * as bookmarksActions from '~data/actions/bookmarks'
 import { makeBookmark } from '~data/selectors/bookmarks'
 import { makeCollection } from '~data/selectors/collections'
 
@@ -31,7 +29,7 @@ class MyReader extends React.Component {
     }
 
     render() {
-        const { item, _id, font_color } = this.props
+        const { item, _id, font_color, tab } = this.props
         const { fullscreen } = this.state
 
         return (
@@ -39,7 +37,7 @@ class MyReader extends React.Component {
                 <Reader 
                     show={item._id?true:false}
                     fullscreen={fullscreen}
-                    data-theme={font_color ? font_color : undefined}
+                    data-theme={tab=='preview' && item.type == 'article' && font_color ? font_color : undefined}
                     style={style}>
                     <Header {...this.props} {...this.handlers} />
                     <Content {...this.props} />
@@ -73,10 +71,7 @@ export default connect(
                 font_color: state.config.font_color
             }
         }
-    },
-    (dispatch)=>({
-		actions: bindActionCreators(bookmarksActions, dispatch)
-    }),
+    }
 )(
     withRouter(
         MyReader

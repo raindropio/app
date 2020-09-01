@@ -64,7 +64,10 @@ class EditBookmarkContainer extends React.Component {
             return new Promise((res,rej)=>{
                 this.props.actions.bookmarks.draftCommit(this.props.item._id, res, rej)
             })
-        },
+		},
+		
+		onRemove: ()=>
+			this.props.actions.bookmarks.oneRemove(this.props.item._id),
     
         onRecover: ()=>
             this.props.actions.bookmarks.oneRecover(this.props.item._id)

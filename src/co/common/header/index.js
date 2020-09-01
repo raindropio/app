@@ -1,5 +1,6 @@
 import s from './index.module.styl'
 import React from 'react'
+import Button from '~co/common/button'
 
 function Header({ as='div', className='', forwardedRef, ...etc }) {
     const Component = as
@@ -41,5 +42,13 @@ export function LastAction({ className='', ...etc }) {
         <div 
             className={s.lastAction+' '+className}
             {...etc} />
+    )
+}
+
+export function SpaceAction(props) {
+    return (
+        <Button disabled {...props}>
+            <div className={s.spaceActionIcon} />
+        </Button>
     )
 }

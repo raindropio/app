@@ -3,8 +3,7 @@ import React from 'react'
 import t from '~t'
 import _ from 'lodash'
 import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
-import * as configActions from '~data/actions/config'
+import { set } from '~data/actions/config'
 
 import RaindropsClick from '~routes/settings/app/raindrops_click'
 import Button from '~co/common/button'
@@ -30,10 +29,10 @@ class ReaderHeaderSettings extends React.Component {
         this.setState({ show: false })
 
     onSettingChange = (e)=>
-        this.props.actions.set(e.target.getAttribute('data-key'), e.target.getAttribute('data-val'))
+        this.props.set(e.target.getAttribute('data-key'), e.target.getAttribute('data-val'))
 
     onFontSizeChange = e=>
-        this.props.actions.set('font_size', e.target.value)
+        this.props.set('font_size', e.target.value)
 
     renderFont = (font='')=>(
         <Radio 
@@ -60,18 +59,18 @@ class ReaderHeaderSettings extends React.Component {
                     <Popover pin={this.pin} onClose={this.onSettingsClose}>
                         <Layout>
                             <RaindropsClick />
-
-                            <Label>{t.s('interfaceStyle')}</Label>
-                            <div className={s.switch}>
-                                <a className={s.auto+' '+(font_color==''?s.active:'')} data-key='font_color' data-val='' onClick={this.onSettingChange}></a>
-                                <a className={s.day+' '+(font_color=='day'?s.active:'')} data-key='font_color' data-val='day' onClick={this.onSettingChange}></a>
-                                <a className={s.sunset+' '+(font_color=='sunset'?s.active:'')} data-key='font_color' data-val='sunset' onClick={this.onSettingChange}></a>
-                                <a className={s.dark+' '+(font_color=='night'?s.active:'')} data-key='font_color' data-val='night' onClick={this.onSettingChange}></a>
-                            </div>
                         </Layout>
 
                         {tab == 'preview' && type=='article' ? (
                             <Layout>
+                                <Label>{t.s('interfaceStyle')}</Label>
+                                <div className={s.switch}>
+                                    <a className={s.auto+' '+(font_color==''?s.active:'')} data-key='font_color' data-val='' onClick={this.onSettingChange}></a>
+                                    <a className={s.day+' '+(font_color=='day'?s.active:'')} data-key='font_color' data-val='day' onClick={this.onSettingChange}></a>
+                                    <a className={s.sunset+' '+(font_color=='sunset'?s.active:'')} data-key='font_color' data-val='sunset' onClick={this.onSettingChange}></a>
+                                    <a className={s.dark+' '+(font_color=='night'?s.active:'')} data-key='font_color' data-val='night' onClick={this.onSettingChange}></a>
+                                </div>
+
                                 <Label>{t.s('fontFamily')}</Label>
                                 <div>{fonts.map(this.renderFont)}</div>
 
@@ -92,7 +91,5 @@ export default connect(
         font_color: state.config.font_color,
         font_family: state.config.font_family
     }),
-    (dispatch)=>({
-		actions: bindActionCreators(configActions, dispatch)
-    }),
+    { set },
 )(ReaderHeaderSettings)

@@ -2,6 +2,12 @@ import s from './index.module.styl'
 import React from 'react'
 
 class ButtonInner extends React.Component {
+    static defaultProps = {
+        variant:    'default',  //link, primary, active, outline, flat
+        accent:     'default',  //danger
+        size:       'default'   //small
+    }
+
     onKeyDown = e => {
         if (e.key == 'Enter' && 
             e.currentTarget.getAttribute('disabled')==null){
@@ -14,7 +20,7 @@ class ButtonInner extends React.Component {
     }
 
     render() {
-        const { as='div', className='', variant, size, forwardedRef, ...etc } = this.props
+        const { as='div', className='', variant, accent, size, forwardedRef, ...etc } = this.props
         const Component = etc.href ? 'a' : as
 
         return (
@@ -23,8 +29,9 @@ class ButtonInner extends React.Component {
                 tabIndex={etc.disabled ? '-1' : '0'}
                 ref={forwardedRef}
                 className={s.button+' '+className}
-                data-variant={variant||'default'}
-                data-size={size||'default'}
+                data-variant={variant}
+                data-accent={accent}
+                data-size={size}
                 {...etc}
                 onKeyDown={this.onKeyDown} />
         )
