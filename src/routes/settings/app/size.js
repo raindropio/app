@@ -22,8 +22,7 @@ function SettingsAppSize ({ appSize, setAppSize }){
 
 export default connect(
 	(state)=>({
-		appSize: state.local.appSize,
-		theme: state.local.theme
+		appSize: state.local.appSize
 	}),
 	{ setAppSize }
 )(SettingsAppSize)

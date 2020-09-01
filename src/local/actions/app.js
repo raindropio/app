@@ -4,10 +4,9 @@ import {
 	APP_COLLECTIONS_SEARCH_RESULTS_HIDE,
 } from '../constants'
 
-export const setTheme = (name, autoTheme=true)=>({
+export const setTheme = ({ app, sidebar, auto })=>({
 	type: APP_SET_THEME,
-	name,
-	autoTheme
+	app, sidebar, auto
 })
 
 export const setAppSize = (appSize)=>({

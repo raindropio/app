@@ -10,8 +10,7 @@ import {
 export default function(state, action) {switch (action.type) {
 	//Settings
 	case APP_SET_THEME:
-		state = setTheme(state, action.name)
-		state = state.set('autoTheme', action.autoTheme)
+		state = setTheme(state, action)
 		return state
 
 	case APP_SET_APP_SIZE:
@@ -27,7 +26,6 @@ export default function(state, action) {switch (action.type) {
 			switch(key){
 				case 'theme': state = setTheme(state, val); break
 				case 'appSize': state = state.set('appSize', String(val)); break
-				case 'autoTheme': state = state.set('autoTheme', Boolean(val)); break
 			}
 		})
 
@@ -35,6 +33,10 @@ export default function(state, action) {switch (action.type) {
 	}
 }}
 
-const setTheme = (state, name)=>{
-	return state.set('theme', name)
+const setTheme = (state, { app, sidebar, auto })=>{
+	return state.set('theme', {
+		app,
+		sidebar: sidebar||app,
+		auto: Boolean(auto)
+	})
 }

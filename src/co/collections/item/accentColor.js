@@ -22,7 +22,7 @@ export default connect(
     let hsl = ''
     try{ hsl = HexToHsl(color) }catch(e){}
 
-    return children(theme=='night' || !color ? emptyObj : {
+    return children(theme.app=='night' || !color ? emptyObj : {
         '--accent-color': color,
         '--accent-hsl': hsl
     })

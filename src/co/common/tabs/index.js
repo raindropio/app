@@ -28,7 +28,6 @@ export default class Tabs extends React.PureComponent {
 			<Button 
 				key={key} 
 				data-key={key}
-				tabIndex='-1'
 				onClick={this.onItemClick} 
 				className={s.item}
 				variant={active && 'active'} 

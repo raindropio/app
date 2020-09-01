@@ -18,22 +18,22 @@ class ScreenBasic extends React.Component {
     }
 
     onPrefersColorSchemeChange = e => {
-        const theme = e.matches ? 'night' : 'day'
+        const app = e.matches ? 'night' : 'day'
 
-        if (this.props.autoTheme || this.props.theme == theme)
-            this.props.setTheme(theme)
+        if (this.props.theme.auto || (this.props.theme.app == app && this.props.theme.sidebar == app))
+            this.props.setTheme({ app, sidebar: app, auto: true })
     }
 
     render() {
-        const { className, children, theme, appSize, autoTheme, setTheme, ...etc } = this.props
+        const { className, children, theme, appSize, setTheme, ...etc } = this.props
         
         return (
             <>
                 <Helmet>
                     <html
-                        data-theme={theme}
+                        data-theme={theme.app}
                         data-app-size={appSize} />
-                    <meta name='theme-color' content={theme == 'night' ? '#303030' : '#FFFFFF'} />
+                    <meta name='theme-color' content={theme.app == 'night' ? '#303030' : '#FFFFFF'} />
                 </Helmet>
 
                 <div 
@@ -51,7 +51,6 @@ class ScreenBasic extends React.Component {
 export default connect(
     (state, { appSize })=>({
         theme: state.local.theme,
-        autoTheme: state.local.autoTheme,
         appSize: appSize || state.local.appSize,
     }),
     {

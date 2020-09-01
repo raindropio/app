@@ -1,0 +1,61 @@
+.selector {
+    display: inline-grid
+    grid-auto-flow: column
+    gap: var(--padding-medium)
+}
+
+.theme {
+    width: 16rem //64
+    height: 12rem //48
+    display: flex
+    position: relative
+    border-radius: var(--border-radius)
+    overflow: hidden
+
+    .sidebar {
+        min-width: 0
+        overflow: hidden
+        flex: 1
+        padding: 1.3rem 1.5rem
+        background: var(--sidebar-background-color)
+        font-family: monospace
+        font-size: 1.5rem
+        white-space: pre-wrap
+        line-height: 1rem
+        color: var(--primary-text-color)
+    }
+
+    .main {
+        flex: 2
+        background: var(--background-color)
+        padding: 1.5rem
+        display: grid
+        grid-template-columns: 1fr 1fr 1fr
+        grid-template-rows: 1.5rem 1.5rem
+        gap: 1rem
+
+        span {
+            background: var(--shadow-color)
+
+            &:nth-child(odd) {
+                opacity: .7
+            }
+        }
+    }
+
+    &:before {
+        border-radius: var(--border-radius)
+        content: ''
+        position: absolute
+        top: 0
+        bottom: 0
+        right: 0
+        left: 0
+        box-shadow: inset 0 0 0 var(--shadow-height) var(--shadow-color)
+        transition: box-shadow .2s ease-in-out
+    }
+
+    &[data-active='true']:before {
+        box-shadow: inset 0 0 0 2px var(--accent-color)
+    }
+}
