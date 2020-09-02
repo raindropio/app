@@ -12,7 +12,11 @@ export default class ServiceWorkerComponent extends React.Component {
     }
 
     init = ()=>{
-        navigator.serviceWorker.register('/sw.js')
+        navigator.serviceWorker
+            .register('/sw.js')
+            .catch(e=>
+                console.log('Service worker registration failed:', e)
+            )
     }
 
     render() {

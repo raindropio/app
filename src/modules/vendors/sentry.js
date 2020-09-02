@@ -3,7 +3,10 @@ import * as Sentry from '@sentry/react'
 import config from '~config'
 import pkg from '~package.json'
 
-if (process.env.NODE_ENV !== 'development') {
+const isFirefox = navigator.userAgent.toLowerCase().includes('firefox')
+
+//Firefox sending errors without sourcemap, so just ignore them at all
+if (process.env.NODE_ENV !== 'development' && !isFirefox) {
     Sentry.init({
         ...config.vendors.sentry,
         ignoreErrors: [

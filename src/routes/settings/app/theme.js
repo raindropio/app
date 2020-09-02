@@ -33,6 +33,7 @@ class SettingsAppTheme extends React.PureComponent {
 								className={s.theme}
 								data-active={item.app == theme.app && item.sidebar == theme.sidebar}
 								data-index={index}
+								tabIndex='0'
 								href=''
 								onClick={this.onThemeClick}>
 								<div 
