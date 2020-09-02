@@ -31,9 +31,8 @@ class ImportMode extends React.Component {
         const { parcel: { mode, status } } = this.props
 
         return (
-            <>
-                <Radio 
-                    key={key}
+            <React.Fragment key={key}>
+                <Radio
                     name='mode'
                     data-mode={key}
                     disabled={status!='idle'}
@@ -43,11 +42,12 @@ class ImportMode extends React.Component {
                 </Radio>
 
                 {mode == key && warning && (
-                    <Alert variant={alertVariant}>
+                    <Alert
+                        variant={alertVariant}>
                         {warning}
                     </Alert>
                 )}
-            </>
+            </React.Fragment>
         )
     }
 
