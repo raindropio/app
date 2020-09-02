@@ -36,7 +36,7 @@ export const makeTagsAutocomplete = ()=>createSelector(
 		(state, spaceId, filter, selected)=>selected||emptyArray
 	],
 	(_other, _collection, _recent, _filter, selected)=>{
-		const filter = (_filter||'').trimStart().toLowerCase().replace(/^#/,'')
+		const filter = String(_filter||'').trimStart().toLowerCase().replace(/^#/,'')
 
 		//tags
 		let recent 		= filterByQuery(filterSelected(_recent, selected), filter)

@@ -8,7 +8,7 @@ export const makeTagsSearch = ()=>createSelector(
         (state, spaceId, filter)=>filter,
     ],
     (tags, _filter, _search)=>{
-        const filter = (_filter||'').trimStart().toLowerCase()
+        const filter = String(_filter||'').trimStart().toLowerCase()
 
         return filter ? tags.filter(({ query, _id }) => 
             query.toLowerCase().startsWith(filter) ||

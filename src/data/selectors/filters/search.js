@@ -8,7 +8,7 @@ export const makeFiltersSearch = ()=>createSelector(
         (state, spaceId, filter)=>filter,
     ],
     (filters, _filter)=>{
-        const filter = (_filter||'').trimStart().toLowerCase()
+        const filter = String(_filter||'').trimStart().toLowerCase()
 
         return filter ? filters.filter(({ query }) => 
             query.toLowerCase().includes(filter)

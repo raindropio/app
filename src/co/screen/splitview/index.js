@@ -8,8 +8,8 @@ export const Context = React.createContext({})
 export default class ScreenSplitView extends React.Component {
     state = {
         sidebar: {
-            width: parseInt(localStorage.getItem('splitview-sidebar-width')),
-            show: localStorage.getItem('splitview-sidebar-show') !== null ? (localStorage.getItem('splitview-sidebar-show')=='true') : true,
+            width: parseInt(localStorage && localStorage.getItem('splitview-sidebar-width')),
+            show: localStorage && localStorage.getItem('splitview-sidebar-show') !== null ? (localStorage.getItem('splitview-sidebar-show')=='true') : true,
 
             toggle: (e)=>{
                 e && e.preventDefault && e.preventDefault()
@@ -58,7 +58,7 @@ export default class ScreenSplitView extends React.Component {
             }
         }, ()=>{
             //persist sidebar preferences
-            if (space=='sidebar'){
+            if (space=='sidebar' && localStorage){
                 if (typeof obj.width == 'number')
                     localStorage.setItem('splitview-sidebar-width', obj.width)
 
