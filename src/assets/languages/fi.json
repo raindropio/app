@@ -313,7 +313,7 @@
   "importInfo3":"Tukee Google Chromen, Mozilla Firefoxin, Safarin, Google Kirjanmerkkien, Delicious:n, Kippt:n, Zootoolin tai Netscapen kirjanmerkkien tiedostomuotoa.",
   "loading":"Lataa",
   "noBookmarksToImport":"Ei kirjanmerkkejä!",
-  "foldersWithBookmarks":"Kansiot",
+  "folders":"Kansiot",
   "removeIt":"Poista",
   "startImport":"Aloita tuonti",
   "selectOtherFile":"Valitse toinen tiedosto?",
@@ -573,5 +573,8 @@
   "backups": "Varmuuskopiot",
   "integrations": "Integraatiot",
   "download": "Ladata",
-  "cloudBackup": "Pilvien varmuuskopio"
+  "cloudBackup": "Pilvien varmuuskopio",
+  "mode": "Tila",
+  "ignore": "Jättää huomiotta",
+  "startFromScratch": "Aloittaa alusta"
 }

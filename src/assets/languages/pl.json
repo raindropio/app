@@ -313,7 +313,7 @@
   "importInfo3":"Obsługa Google Chrome, Mozilla Firefox, Safari, Google Bookmarks, Delicious, Kippt, Zootool lub formatu zakładek Netscape.",
   "loading":"Wczytywanie",
   "noBookmarksToImport":"Brak zakładek!",
-  "foldersWithBookmarks":"Foldery",
+  "folders":"Foldery",
   "removeIt":"Usuń",
   "startImport":"Rozpocznij importowanie",
   "selectOtherFile":"Wybierz inny plik?",
@@ -573,5 +573,8 @@
   "backups": "Kopie zapasowe",
   "integrations": "Integracje",
   "download": "Pobieranie",
-  "cloudBackup": "Kopia zapasowa w chmurze"
+  "cloudBackup": "Kopia zapasowa w chmurze",
+  "mode": "Tryb",
+  "ignore": "Ignorować",
+  "startFromScratch": "Zaczynać od początku"
 }

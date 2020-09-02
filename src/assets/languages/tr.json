@@ -313,7 +313,7 @@
   "importInfo3":"Desteklenen Google Chrome, Mozilla Firefox, Safari, Google Bookmarks, Delicious, Kippt, Zootool veya Netscape yer imi dosya tipleri.",
   "loading":"Yükleniyor",
   "noBookmarksToImport":"Yer imi yok!",
-  "foldersWithBookmarks":"Dosyalar",
+  "folders":"Dosyalar",
   "removeIt":"Sil",
   "startImport":"Veri almayı başlat",
   "selectOtherFile":"Başka bir dosya seçilsin mi?",
@@ -549,5 +549,8 @@
   "backups": "Yedekler",
   "integrations": "Entegrasyonları",
   "download": "İndir",
-  "cloudBackup": "Bulut yedekleme"
+  "cloudBackup": "Bulut yedekleme",
+  "mode": "Mod",
+  "ignore": "Göz ardı etmek",
+  "startFromScratch": "Sıfırdan başlamak"
 }

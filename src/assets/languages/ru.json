@@ -318,7 +318,7 @@
   "importInfo3":"Поддерживается Google Chrome, Mozilla Firefox, Safari, Google Bookmarks, Delicious, Kippt, Zootool или файл формата экспорта закладок Netscape.",
   "loading":"Идет загрузка",
   "noBookmarksToImport":"Нет закладок для импортирования!",
-  "foldersWithBookmarks":"Папки для импортирования",
+  "folders":"Папки",
   "removeIt":"Убрать",
   "startImport":"Начать импортирование",
   "selectOtherFile":"Выбрать другой файл?",
@@ -651,5 +651,8 @@
   "rename": "Переименовать",
   "large": "Крупный",
   "app": "Приложение",
-  "download": "Скачать"
+  "download": "Скачать",
+  "mode": "Режим",
+  "ignore": "Игнорировать",
+  "startFromScratch": "Начать с нуля"
 }

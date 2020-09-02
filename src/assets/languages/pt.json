@@ -312,7 +312,7 @@
   "importInfo3":"Suporte para arquivo de favoritos de Google Chrome, Mozilla Firefox, Safari, Google Bookmarks, Delicious, Kippt, Zootool ou Netscape.",
   "loading":"Carregando",
   "noBookmarksToImport":"Sem favoritos!",
-  "foldersWithBookmarks":"Pastas",
+  "folders":"Pastas",
   "removeIt":"Remover",
   "startImport":"Iniciar importação",
   "selectOtherFile":"Selecione outro arquivo?",
@@ -572,5 +572,8 @@
   "backups": "Backups",
   "integrations": "Integrações",
   "download": "Baixar",
-  "cloudBackup": "Backup na nuvem"
+  "cloudBackup": "Backup na nuvem",
+  "mode": "Modo",
+  "ignore": "Ignorar",
+  "startFromScratch": "Começar do zero"
 }

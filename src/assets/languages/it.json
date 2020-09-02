@@ -30,7 +30,7 @@
   "myCollections":"Le mie raccolte",
   "save":"Salva",
   "remove":"Rimuovi",
-  "elements":"Preferito",
+  "elements":"preferito",
   "about":"Chi Siamo",
   "blog":"Blog",
   "tools":"Strumenti",
@@ -158,7 +158,7 @@
   "startToSave":"Per favore, accedi per iniziare!",
   "checkAgain":"Ricontrolla!",
   "clickToMakeScreenshot":"Clicca per screenshot",
-  "elements1":"Preferito",
+  "elements1":"preferito",
   "elements2":"segnalibri",
   "elements5":"segnalibri",
   "defaultCollection-0":"Cerca",
@@ -312,7 +312,7 @@
   "importInfo3":"Supporta i file segnalibro dei seguenti browser Google Chrome, Mozilla Firefox, Safari, Google Bookmarks, Delicious, Kippt, Zootool or Netscape",
   "loading":"Caricamento",
   "noBookmarksToImport":"Nessun segnalibro!",
-  "foldersWithBookmarks":"Cartelle",
+  "folders":"Cartelle",
   "removeIt":"Rimuovi",
   "startImport":"Avvia l'importazione",
   "selectOtherFile":"Selezionare un altro file?",
@@ -528,5 +528,8 @@
   "backups": "I backup",
   "integrations": "Integrazioni",
   "download": "Scarica",
-  "cloudBackup": "Backup su cloud"
+  "cloudBackup": "Backup su cloud",
+  "mode": "Modalità",
+  "ignore": "Ignorare",
+  "startFromScratch": "Iniziare da zero"
 }

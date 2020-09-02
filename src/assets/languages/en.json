@@ -318,7 +318,7 @@
   "importInfo3":"Supports Google Chrome, Mozilla Firefox, Safari, Google Bookmarks, Delicious, Kippt, Zootool or Netscape bookmarks file format.",
   "loading":"Loading",
   "noBookmarksToImport":"No bookmarks!",
-  "foldersWithBookmarks":"Folders",
+  "folders":"Folders",
   "removeIt":"Remove",
   "startImport":"Start import",
   "selectOtherFile":"Select another file?",
@@ -659,5 +659,9 @@
   "rename": "Rename",
   "large": "Large",
   "app": "App",
-  "download": "Download"
+  "download": "Download",
+  "mode": "Mode",
+  "ignore": "Ignore",
+  "startFromScratch": "Start from scratch",
+  "startFromScratchD": "All existing bookmarks and collections will be removed and replaced with new one"
 }

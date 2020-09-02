@@ -6,6 +6,7 @@ import tags from './tags'
 import covers from './covers'
 import config from './config'
 import oauth from './oauth'
+import _import from './import'
 
 export default {
 	user,
@@ -15,5 +16,6 @@ export default {
 	tags,
 	covers,
 	config,
-	oauth
+	oauth,
+	import: _import
 }

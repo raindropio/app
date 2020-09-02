@@ -30,7 +30,7 @@
   "myCollections":"Mis colecciones",
   "save":"Guardar",
   "remove":"Quitar",
-  "elements":"Marcador",
+  "elements":"marcador",
   "about":"Quienes somos",
   "blog":"Blog",
   "tools":"Herramientas",
@@ -160,7 +160,7 @@
   "checkAgain":"Revisa otra vez!",
   "clickToMakeScreenshot":"Haga clic para hacer la captura de pantalla",
   "screenshot":"captura",
-  "elements1":"Marcador",
+  "elements1":"marcador",
   "elements2":"marcadores",
   "elements5":"marcadores",
   "defaultCollection-0":"Búsqueda",
@@ -314,7 +314,7 @@
   "importInfo3":"Admite formato de archivo de marcadores de Google Chrome, Mozilla Firefox, Safari, Google Bookmarks, Delicious, Kippt, Zootool o Netscape.",
   "loading":"Cargando",
   "noBookmarksToImport":"No hay marcadores!",
-  "foldersWithBookmarks":"Carpetas",
+  "folders":"Carpetas",
   "removeIt":"Quitar",
   "startImport":"Iniciar importación",
   "selectOtherFile":"¿Seleccionar otro archivo?",
@@ -574,5 +574,8 @@
   "backups": "Copias de seguridad",
   "integrations": "Integraciones",
   "download": "Descargar",
-  "cloudBackup": "Respaldo en la nube"
+  "cloudBackup": "Respaldo en la nube",
+  "mode": "Modo",
+  "ignore": "Ignorar",
+  "startFromScratch": "Empezar desde el principio"
 }

@@ -312,7 +312,7 @@
   "importInfo3":"Google Chrome, Mozilla Firefox, Safari, Google Bookmarks, Delicious, Kippt, Zootool of Netscape bookmarks-bestandsindeling wordt ondersteund.",
   "loading":"Laden",
   "noBookmarksToImport":"Geen bladwijzers!",
-  "foldersWithBookmarks":"Mappen",
+  "folders":"Mappen",
   "removeIt":"Verwijderen",
   "startImport":"Importeren starten",
   "selectOtherFile":"Selecteer ander bestand?",
@@ -572,5 +572,8 @@
   "backups": "Backups",
   "integrations": "Integraties",
   "download": "Downloaden",
-  "cloudBackup": "Cloud backup"
+  "cloudBackup": "Cloud backup",
+  "mode": "Modus",
+  "ignore": "Negeren",
+  "startFromScratch": "Begin helemaal opnieuw"
 }

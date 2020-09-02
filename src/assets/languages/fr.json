@@ -160,8 +160,8 @@
   "clickToMakeScreenshot":"Cliquez pour prendre une capture d'écran",
   "screenshot":"capture d'écran",
   "elements1":"favori",
-  "elements2":"Signets",
-  "elements5":"Signets",
+  "elements2":"signets",
+  "elements5":"signets",
   "defaultCollection-0":"Rechercher",
   "defaultCollection--1":"Boîte de réception",
   "defaultCollection--99":"Corbeille",
@@ -313,7 +313,7 @@
   "importInfo3":"Prend en charge le format de fichier de signets Google Chrome, Mozilla Firefox, Safari, Google Bookmarks, Delicious, Kippt, Zootool ou Netscape.",
   "loading":"Chargement",
   "noBookmarksToImport":"Aucun favoris  !",
-  "foldersWithBookmarks":"Dossiers",
+  "folders":"Dossiers",
   "removeIt":"Supprimer",
   "startImport":"Commencer l'importation",
   "selectOtherFile":"Sélectionner un autre fichier ?",
@@ -573,5 +573,8 @@
   "backups": "Sauvegardes",
   "integrations": "Intégrations",
   "download": "Télécharger",
-  "cloudBackup": "Sauvegarde sur le cloud"
+  "cloudBackup": "Sauvegarde sur le cloud",
+  "mode": "Mode",
+  "ignore": "Ignorer",
+  "startFromScratch": "Commencer à partir de zéro"
 }

@@ -313,7 +313,7 @@
   "importInfo3":"Stöder Google Chrome, Mozilla Firefox, Safari, Google Bookmarks, Delicious, Kippt, Zootool och Netscape bokmärksfilformat.",
   "loading":"Laddar",
   "noBookmarksToImport":"Inga bokmärken!",
-  "foldersWithBookmarks":"Mappar",
+  "folders":"Mappar",
   "removeIt":"Radera",
   "startImport":"Börja importera",
   "selectOtherFile":"Välj annan fil?",
@@ -549,5 +549,8 @@
   "backups": "Säkerhetskopior",
   "integrations": "Integrationer",
   "download": "Ladda ner",
-  "cloudBackup": "Cloud backup"
+  "cloudBackup": "Cloud backup",
+  "mode": "Läge",
+  "ignore": "Ignorera",
+  "startFromScratch": "Börja från början"
 }

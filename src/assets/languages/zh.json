@@ -314,7 +314,7 @@
   "importInfo3":"支持谷歌Chrome浏览器，火狐浏览器，Safari浏览器，谷歌书签，Delicious，Kippt，Zootool或网景书签文件格式",
   "loading":"载入中",
   "noBookmarksToImport":"没有书签",
-  "foldersWithBookmarks":"文件夹",
+  "folders":"文件夹",
   "removeIt":"删除",
   "startImport":"开始导入",
   "selectOtherFile":"选择其它文件？",
@@ -574,5 +574,8 @@
   "backups": "后备",
   "integrations": "整合方式",
   "download": "下载",
-  "cloudBackup": "云备份"
+  "cloudBackup": "云备份",
+  "mode": "模式",
+  "ignore": "忽视",
+  "startFromScratch": "白手起家"
 }

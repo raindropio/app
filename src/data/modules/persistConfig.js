@@ -34,6 +34,7 @@ export default {
 		'tags',
 		'user',
 		'local',
+		...(process.env.NODE_ENV == 'development' ? ['import'] : []),
 
 		//app specifics
 		'app'

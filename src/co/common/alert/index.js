@@ -1,7 +1,7 @@
 import s from './index.module.styl'
 import React from 'react'
 
-export default function Alert({ className='', variant='info', children, ...etc }) {
+export default function Alert({ className='', variant='default', children, ...etc }) {
     let icon = ''
     switch (variant) {
         case 'warning': icon = '⚠️'; break
