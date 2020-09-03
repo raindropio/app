@@ -10,7 +10,7 @@ class ImportMode extends React.Component {
     modes = [
         [
             'all',
-            t.s('importBookmarks')+' '+t.s('all').toLowerCase()
+            t.s('import')+' '+t.s('all').toLowerCase()
         ],
         [
             'new',

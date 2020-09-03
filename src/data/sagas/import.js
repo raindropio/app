@@ -82,12 +82,20 @@ function* process(items, parentId) {
 
 	//process each
 	for(const { title='', folders=[], bookmarks=[] } of items||file.items){
+		//create or find existing collection
 		const collection = yield ensureCollection(
 			mode, 
 			{ title, parentId }, 
 			existingCollections
 		)
 
+		//increment progress for 1 collection
+		yield put({
+			type: c.IMPORT_PARCEL_SAVE_PROGRESS,
+			folders: 1
+		})
+
+		//save all bookmarks
 		yield processBookmarks(
 			mode,
 			bookmarks,
@@ -154,7 +162,7 @@ function* processBookmarks(mode, bookmarks, collectionId) {
 		//update progress
 		yield put({
 			type: c.IMPORT_PARCEL_SAVE_PROGRESS,
-			inc: chunk.length
+			bookmarks: chunk.length
 		})
 	}
 }

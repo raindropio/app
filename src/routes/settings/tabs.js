@@ -11,7 +11,7 @@ export default class SettingsHeader extends React.Component {
         { to: '/app', title: t.s('app') },
         { to: '/profile', title: t.s('profile') },
         { to: '/pro', title: t.s('subscription') },
-        { to: '/import', title: t.s('importBookmarks') },
+        { to: '/import', title: t.s('import') },
         { to: '/integrations', title: t.s('integrations') },
         { to: '/backups', title: t.s('backups') },
     ]

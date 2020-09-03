@@ -15,8 +15,22 @@ class ImportParcel extends React.Component {
     onStartClick = ()=>
         this.props.parcelSave(undefined, Error)
 
+    renderProgress = (children)=>{
+        const { progress, file } = this.props
+
+        return (
+            <Progress 
+                display='percent'
+                min='0' 
+                max={file.count.bookmarks + file.count.folders} 
+                value={progress.bookmarks + progress.folders}>
+                {children}
+            </Progress>
+        )
+    }
+
     render() {
-        const { status, progress, file, cancel } = this.props
+        const { status, file, cancel } = this.props
 
         if (file.status != 'loaded')
             return null
@@ -27,9 +41,11 @@ class ImportParcel extends React.Component {
                     <>
                         <Label><Preloader /></Label>
                         
-                        <Progress min='0' max={progress.max} value={progress.value}>
-                            <b>{t.s('importing')}</b>. {t.s('importingInfo2')}
-                        </Progress>
+                        {this.renderProgress(
+                            <>
+                                <b>{t.s('importing')}</b>. {t.s('importingInfo2')}
+                            </>
+                        )}
                     </>
                 )
 
@@ -69,11 +85,11 @@ class ImportParcel extends React.Component {
                     <>
                         <div />
 
-                        <Progress min='0' max={progress.max} value={progress.value}>
+                        {this.renderProgress(
                             <Alert variant='danger'>
                                 <b>{t.s('fileUploadError')}</b>
                             </Alert>
-                        </Progress>
+                        )}
 
                         <Buttons>
                             <Button

@@ -10,7 +10,7 @@ import Help from './help'
 
 export default (props)=>(
 	<Layout type='grid'>
-		<Helmet><title>{t.s('importBookmarks')}</title></Helmet>
+		<Helmet><title>{t.s('import')}</title></Helmet>
 
 		<File />
 		<Mode />

@@ -67,11 +67,15 @@ export default function(state = initialState, action){switch (action.type) {
     }
 
     case c.IMPORT_PARCEL_SAVE_PROGRESS:{
-        const { inc } = action
+        const { bookmarks=0, folders=0 } = action
+        const { progress } = state.parcel
 
-        return state
-            .setIn(['parcel', 'progress', 'value'], state.parcel.progress.value + parseInt(inc))
-            .setIn(['parcel', 'progress', 'max'], state.file.count.bookmarks)
+        return state.setIn(
+            ['parcel', 'progress'],
+            progress
+                .set('bookmarks',   progress.bookmarks + parseInt(bookmarks))
+                .set('folders',     progress.folders + parseInt(folders))
+        )
     }
 
     case c.IMPORT_PARCEL_SAVE_SUCCESS:{
@@ -101,22 +105,22 @@ export default function(state = initialState, action){switch (action.type) {
 }}
 
 const initialState = Immutable({
-    mode: 'all', //all|new|from_scratch
+    mode: 'new', //all|new|from_scratch
     file: {
         status: 'empty', //empty|loading|error|loaded
         name: '',
         items: [],
         count: {
             bookmarks: 0,
-            collections: 0,
+            folders: 0,
             tags: 0
         }
     },
     parcel: {
         status: 'idle', //idle|loading|error|success
         progress: {
-            value: 0,
-            max: 0
+            bookmarks: 0,
+            folders: 0
         }
     }
 })
