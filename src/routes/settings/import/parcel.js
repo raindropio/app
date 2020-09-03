@@ -69,7 +69,7 @@ class ImportParcel extends React.Component {
                     <>
                         <div />
 
-                        <Progress min='0' max='100' value={progress}>
+                        <Progress min='0' max={progress.max} value={progress.value}>
                             <Alert variant='danger'>
                                 <b>{t.s('fileUploadError')}</b>
                             </Alert>

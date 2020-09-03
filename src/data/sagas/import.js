@@ -102,10 +102,19 @@ function* process(items, parentId) {
 
 //find or create collection
 function* ensureCollection(mode, obj, existingCollections) {
-	//try to find existing collection with same name
-	// if (mode === 'new'){
+	//try to find existing collection with same name and parent
+	if (mode === 'new'){
+		const found = (
+			obj.parentId ?
+				existingCollections
+					.filter(({parentId}) => parentId == obj.parentId) :
+				existingCollections
+		)
+			.find(({ title })=>title === obj.title)
 
-	// }
+		if (found)
+			return found
+	}
 
 	//create new collection if nothing found
 	return yield createCollection({
@@ -119,13 +128,28 @@ function* processBookmarks(mode, bookmarks, collectionId) {
 	const chunks = _.chunk(bookmarks, 1000)
 
 	for(const chunk of chunks){
+		let items = chunk.map(item=>({
+			...item,
+			collectionId
+		}))
+
+		//prevent duplicates
+		if (mode === 'new'){
+			const { duplicates=[] } = yield call(Api.post, 'import/url/exists', {
+				urls: items.map(({ link })=>link)
+			})
+
+			if (duplicates.length)
+				items = items.filter(({ link })=>
+					!duplicates.some(dup=>
+						dup.link == link
+					)
+				)
+		}
+
 		//create bookmarks
-		yield call(Api.post, 'raindrops', {
-			items: chunk.map(item=>({
-				...item,
-				collectionId
-			}))
-		})
+		if (items.length)
+			yield call(Api.post, 'raindrops', { items })
 
 		//update progress
 		yield put({
