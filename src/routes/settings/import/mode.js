@@ -1,7 +1,7 @@
 import React from 'react'
 import t from '~t'
 import { connect } from 'react-redux'
-import { parcelMode } from '~data/actions/import'
+import { setMode } from '~data/actions/import'
 
 import { Label, Radio } from '~co/common/form'
 import Alert from '~co/common/alert'
@@ -25,10 +25,10 @@ class ImportMode extends React.Component {
     ]
 
     onChange = e =>
-        this.props.parcelMode(e.currentTarget.getAttribute('data-mode'))
+        this.props.setMode(e.currentTarget.getAttribute('data-mode'))
 
     renderMode = ([key, title, warning, alertVariant])=>{
-        const { parcel: { mode, status } } = this.props
+        const { mode, parcel: { status } } = this.props
 
         return (
             <React.Fragment key={key}>
@@ -70,9 +70,6 @@ class ImportMode extends React.Component {
 }
 
 export default connect(
-    state => ({
-        file: state.import.file,
-        parcel: state.import.parcel
-    }),
-    { parcelMode }
+    state => state.import,
+    { setMode }
 )(ImportMode)

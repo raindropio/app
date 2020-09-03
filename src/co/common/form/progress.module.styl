@@ -1,0 +1,36 @@
+.wrap {
+    display: grid
+    grid-template: auto / 1fr auto
+    gap: var(--padding-small)
+    padding: var(--padding-mini) 0
+}
+
+.progress {
+    grid-column: 1 / -1
+    display: block
+    width: 100%
+    height: var(--padding-small)
+    appearance: none
+    border: none
+    border-radius: var(--padding-small)
+    background-color: var(--shadow-light-color)
+    overflow: hidden
+    box-shadow: inset 0 0 0 var(--shadow-height) var(--shadow-light-color)
+
+    &::-webkit-progress-bar {
+        background-color: transparent
+    }
+
+    &::-webkit-progress-value {
+        background-color: var(--accent-color)
+    }
+
+    &::-moz-progress-bar {
+        background-color: var(--accent-color)
+    }
+}
+
+.value {
+    font-size: var(--secondary-font-size)
+    color: var(--secondary-text-color)
+}

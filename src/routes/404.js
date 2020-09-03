@@ -3,7 +3,7 @@ import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import Protected from '~co/screen/protected'
 
-const Home = ({ last_collection, location: { hash } })=>{
+const NotFound = ({ last_collection, location: { hash } })=>{
 	//redirect hash routes on web to actual routes
 	if (process.env.APP_TARGET == 'default' &&
 		hash.startsWith('#/'))
@@ -20,4 +20,4 @@ export default connect(
 	({ config }) => ({
 		last_collection: config.last_collection
 	})
-)(Home)
+)(NotFound)

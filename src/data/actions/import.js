@@ -8,8 +8,8 @@ export const upload = (file, onSuccess, onFail)=>({
 	onFail: wrapFunc(onFail)
 })
 
-export const parcelMode = (mode)=>({
-    type: c.IMPORT_PARCEL_MODE,
+export const setMode = (mode)=>({
+    type: c.IMPORT_SET_MODE,
     mode
 })
 

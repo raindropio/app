@@ -102,7 +102,7 @@ function* actualizeCollectionCount({ ignore, spaceId, movedFromSpaceId }) {
 		yield all(operations)
 }
 
-function* createCollection({obj={}, ignore=false, after, fromBlank=false, onSuccess, onFail}) {
+export function* createCollection({obj={}, ignore=false, after, fromBlank=false, nestedOnlyInPro=true, onSuccess, onFail}) {
 	if (ignore)
 		return;
 
@@ -117,7 +117,7 @@ function* createCollection({obj={}, ignore=false, after, fromBlank=false, onSucc
 			//Make child of specific collection
 			else {
 				const isPro = yield userIsPro()
-				if (isPro)
+				if (isPro || !nestedOnlyInPro)
 					groupId = ''
 			}
 		}
@@ -156,13 +156,15 @@ function* createCollection({obj={}, ignore=false, after, fromBlank=false, onSucc
 				type: COLLECTION_REMOVE_SUCCESS,
 				_id: -101
 			})
+
+		return item
 	} catch (error) {
 		yield put({
 			type: COLLECTION_CREATE_ERROR,
 			obj,
 			error,
 			onSuccess, onFail
-		});
+		})
 	}
 }
 
@@ -193,7 +195,7 @@ function* updateCollection({_id=0, set={}, ignore=false, quiet=false, onSuccess,
 	}
 }
 
-function* removeCollection({_id=0, ignore=false, onSuccess, onFail}) {
+export function* removeCollection({_id=0, ignore=false, onSuccess, onFail}) {
 	if ((ignore)||(_id<=0 && _id!=-99))
 		return;
 

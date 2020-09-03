@@ -116,7 +116,7 @@ function* req(url, options={}) {
 			if (e && e.status && e.status == 408)
 				break;
 			else if(i < API_RETRIES-1) {
-				yield delay(100); //stop 100ms and try again
+				yield delay(100 + (API_RETRIES * 100) ); //stop 100ms and try again
 			}
 		}
 	}

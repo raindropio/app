@@ -5,7 +5,7 @@ import Account from './account'
 import My from './my'
 import Settings from './settings'
 
-import None from './_none'
+import NotFound from './404'
 
 const Router = process.env.APP_TARGET == 'default' ?
     BrowserRouter :
@@ -23,7 +23,7 @@ export default ()=>(
             <Route path='/app/tags'><Redirect to='/settings/tags' /></Route>
             <Route path='/app/libroken'><Redirect to='/settings/libroken' /></Route>
             
-            <Route component={None} />
+            <Route component={NotFound} />
         </Switch>
     </Router>
 )

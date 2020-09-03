@@ -17,13 +17,13 @@ export default function* () {
 		COLLECTIONS_LOAD_REQ,
 		COLLECTIONS_REFRESH_REQ, 
 		COLLECTION_DRAFT_LOAD_REQ
-	], loadItems)
+	], loadCollections)
 
 	yield takeEvery(COLLECTIONS_COLLAPSE_ALL, collapseAll)
 	yield takeEvery(COLLECTIONS_REORDER, reorderAll)
 }
 
-function* loadItems({ dontLoadCollections=false, onSuccess, onFail }) {
+export function* loadCollections({ dontLoadCollections=false, onSuccess, onFail }) {
 	if (dontLoadCollections)
 		return;
 
@@ -31,7 +31,7 @@ function* loadItems({ dontLoadCollections=false, onSuccess, onFail }) {
 		//Load Get
 		const [root, child, stat={}, user={}] = yield all([
 			call(Api.get, 'collections'),
-			call(Api.get, 'childrens'),
+			call(Api.get, 'collections/childrens'),
 			call(Api.get, 'stat'),
 			call(Api.get, 'user')
 		])

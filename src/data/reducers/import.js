@@ -50,8 +50,8 @@ export default function(state = initialState, action){switch (action.type) {
     }
 
     /* Parcel */
-    case c.IMPORT_PARCEL_MODE:{
-        return state.setIn(['parcel', 'mode'], action.mode)
+    case c.IMPORT_SET_MODE:{
+        return state.set('mode', action.mode)
     }
 
     case c.IMPORT_PARCEL_SAVE_REQ:{
@@ -60,13 +60,18 @@ export default function(state = initialState, action){switch (action.type) {
             return state
         }
 
-        return state.setIn(['parcel', 'status'], 'loading')
+        const parcel = initialState.parcel
+            .set('status', 'loading')
+
+        return state.set('parcel', parcel)
     }
 
     case c.IMPORT_PARCEL_SAVE_PROGRESS:{
-        const { progress } = action
+        const { inc } = action
 
-        return state.setIn(['parcel', 'progress'], progress)
+        return state
+            .setIn(['parcel', 'progress', 'value'], state.parcel.progress.value + parseInt(inc))
+            .setIn(['parcel', 'progress', 'max'], state.file.count.bookmarks)
     }
 
     case c.IMPORT_PARCEL_SAVE_SUCCESS:{
@@ -76,7 +81,6 @@ export default function(state = initialState, action){switch (action.type) {
 
         return state
             .setIn(['parcel', 'status'], 'success')
-            .setIn(['parcel', 'progress'], 100)
     }
 
     case c.IMPORT_PARCEL_SAVE_ERROR:{
@@ -97,6 +101,7 @@ export default function(state = initialState, action){switch (action.type) {
 }}
 
 const initialState = Immutable({
+    mode: 'all', //all|new|from_scratch
     file: {
         status: 'empty', //empty|loading|error|loaded
         name: '',
@@ -108,8 +113,10 @@ const initialState = Immutable({
         }
     },
     parcel: {
-        mode: 'all', //all|new|from_scratch
         status: 'idle', //idle|loading|error|success
-        progress: 0 //percent
+        progress: {
+            value: 0,
+            max: 0
+        }
     }
 })

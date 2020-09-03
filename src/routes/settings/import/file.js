@@ -1,3 +1,4 @@
+import s from './file.module.styl'
 import React from 'react'
 import t from '~t'
 import { connect } from 'react-redux'
@@ -36,9 +37,11 @@ class ImportFile extends React.Component {
 
             case 'loaded':
                 return (
-                    <div>
+                    <div className={s.loaded}>
                         <b>{name}</b><br />
-                        {count.folders} {t.s('folders').toLowerCase()}, {count.bookmarks} {t.s('elements5')} {t.s('und')} {count.tags} {t.s('tags').toLowerCase()}
+                        <span>
+                            {count.folders} {t.s('folders').toLowerCase()}, {count.bookmarks} {t.s('elements5')} {t.s('und')} {count.tags} {t.s('tags').toLowerCase()}
+                        </span>
                     </div>
                 )
 
