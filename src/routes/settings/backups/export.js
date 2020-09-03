@@ -39,7 +39,7 @@ class SettingsBackupsExport extends React.Component {
                         disabled={this.state.loading}
                         onClick={this.onClick}>
                         <Icon name='install' />
-                        {t.s('download')} .html {t.s('file').toLowerCase()}
+                        {t.s('export')} .html {t.s('file').toLowerCase()}
                     </Button>
                 </div>
             </>

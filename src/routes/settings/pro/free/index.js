@@ -7,8 +7,5 @@ import SuperFrame from '~co/common/superFrame'
 export default ()=>(
 	<SuperFrame
 		className={s.free}
-		disableProxy={true}
-		disableSandbox={true}
-		src={`${config.links.pro.compare}?frame=1`}
-		domain='raindrop.io' />
+		src={`${config.links.pro.compare}?frame=1`} />
 )

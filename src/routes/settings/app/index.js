@@ -1,4 +1,7 @@
 import React from 'react'
+import t from '~t'
+import { Helmet } from 'react-helmet'
+
 import { Layout, Separator } from '~co/common/form'
 import Theme from './theme'
 import Size from './size'
@@ -10,6 +13,8 @@ import NestedViewLegacy from './nested_view_legacy'
 
 export default (props)=>(
 	<Layout type='grid'>
+		<Helmet><title>{t.s('app')} {t.s('settings').toLowerCase()}</title></Helmet>
+
 		<Lang />
 		<Theme />
 		<Size />

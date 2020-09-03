@@ -22,10 +22,11 @@ export default class SuperFrame extends React.Component {
 		this.setState({ status: 'error' })
 
 	render() {
-		const { src, disableSandbox=false, className='', ...etc } = this.props
+		const { src, className='', ...etc } = this.props
 		const { status } = this.state
 
 		const Component = isNative ? 'webview' : 'iframe'
+		const sandbox = !isNative && !src.includes('raindrop.io')
 
 		return (
 			<div {...etc} className={s.frame+' '+className} data-status={status} data-theme='day'>
@@ -33,8 +34,8 @@ export default class SuperFrame extends React.Component {
 					tabIndex='-1' 
 					allowtransparency='false'
 					plugins='true'
-					src={isNative || src.includes('raindrop.io') ? src : `${config.webPreview}${src}`} 
-					sandbox={!disableSandbox && 'allow-scripts allow-popups'} 
+					src={sandbox ? `${config.webPreview}${src}` : src} 
+					sandbox={sandbox ? true : undefined}
 					target='_self'
 					onLoad={this.onLoad}
 					onError={this.onError} />
