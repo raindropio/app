@@ -143,7 +143,7 @@ module.exports = {
 		//Sentry
 		new SentryCliPlugin({
 			dryRun: !isProd,
-			include: '.',
+			include: './src',
 			ignore: [ 'node_modules', 'build', 'dist' ],
 			configFile: path.resolve(__dirname, 'sentry.properties'),
 		}),

@@ -1,5 +1,9 @@
 .button {
     position: relative
+
+    &[data-selectable='false'] {
+        pointer-events: none
+    }
 }
 
 .icon, .select {
@@ -20,7 +24,8 @@
     justify-content: center
 }
 
-[data-is-header]:hover, .button:focus {
+[data-is-header]:hover .button[data-selectable='true'],
+.button[data-selectable='true']:focus {
     .select {
         opacity: 1
     }

@@ -30,7 +30,8 @@ class BookmarksHeaderIcon extends React.PureComponent {
             <FirstAction>
                 <Button 
                     className={s.button}
-                    onClick={this.onSelectAllClick}>
+                    data-selectable={selectable}
+                    onClick={selectable ? this.onSelectAllClick : undefined}>
                     <CollectionIcon
                         className={s.icon}
                         _id={_id}
