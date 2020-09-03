@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { oneRename } from '~data/actions/tags'
+import { oneRename, oneRemove } from '~data/actions/tags'
 import t from '~t'
 
 import { Confirm } from '~co/overlay/dialog'
@@ -33,7 +33,7 @@ class TagsItem extends React.PureComponent {
     
         onRemoveClick: async()=>{
             if (await Confirm(t.s('areYouSure'), { variant: 'warning' }))
-                this.props.oneRename(this.props._id)
+                this.props.oneRemove(this.props._id)
         },
     
         onContextMenu: (e)=>{
@@ -81,5 +81,5 @@ class TagsItem extends React.PureComponent {
 
 export default connect(
 	undefined,
-	{ oneRename }
+	{ oneRename, oneRemove }
 )(TagsItem)

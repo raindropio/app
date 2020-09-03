@@ -14,7 +14,7 @@ export default class TagsItemView extends React.Component {
         const {
             _id, count, active, query, focusable, getLink, showIcon=true,
             onRenameClick,
-            oneRename, onRenameCancel, onContextMenuClose, onRemoveClick, onRename, //to ignore
+            oneRename, onRenameCancel, onContextMenuClose, onRemoveClick, onRename, oneRemove, //to ignore
             ...etc
         } = this.props
 
