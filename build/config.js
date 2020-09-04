@@ -150,14 +150,6 @@ module.exports = {
 
 		//Post plugins
 		...(isProd ? [
-			//service worker
-			//UNSTABLE!!!
-			// new InjectManifest({
-			// 	swSrc: '../src/modules/sw/src-sw.js',
-			// 	swDest: 'sw.js',
-			// 	// clientsClaim: true,
-			// 	// skipWaiting: true
-			// })
 		] : []),
 	],
 

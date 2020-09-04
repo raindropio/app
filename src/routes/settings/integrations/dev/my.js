@@ -31,6 +31,7 @@ class SettingsIntegrationsMy extends React.Component {
 
     onRemoveClick = async e => {
         e.preventDefault()
+        e.stopPropagation()
         const _id = e.currentTarget.getAttribute('data-id')
         const name = e.currentTarget.getAttribute('data-name')
 
@@ -54,7 +55,7 @@ class SettingsIntegrationsMy extends React.Component {
                     data-name={name}
                     title={t.s('remove')+' '+t.s('app').toLowerCase()}
                     onClick={this.onRemoveClick}>
-                    <Icon name='close' />
+                    <Icon name='trash' />
                 </Button>
             </ItemActions>
         </Item>

@@ -1,5 +1,4 @@
 import React from 'react'
-import _ from 'lodash'
 import t from '~t'
 import { connect } from 'react-redux'
 import { user } from '~data/selectors/user'

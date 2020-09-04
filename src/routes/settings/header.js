@@ -1,13 +1,19 @@
 import React from 'react'
 import t from '~t'
-import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { user } from '~data/selectors/user'
+import { logout } from '~data/actions/user'
 
-import Header, { Title, FirstAction } from '~co/common/header'
+import { Link } from 'react-router-dom'
+import Header, { Title, FirstAction, Space } from '~co/common/header'
 import Icon from '~co/common/icon'
 import Button from '~co/common/button'
+import Avatar from '~co/common/avatar'
 
-export default class SettingsHeader extends React.Component {
+class SettingsHeader extends React.Component {
     render() {
+        const { user: { fullName, email_MD5 }, logout } = this.props
+
         return (
             <Header 
                 data-solid>
@@ -20,8 +26,25 @@ export default class SettingsHeader extends React.Component {
                     </Button>
                 </FirstAction>
 
-                <Title>{t.s('settings')}</Title>
+                <Space />
+
+                <Title>
+                    {t.s('settings')} &nbsp;·&nbsp; <Avatar src={email_MD5} size='40' /> {fullName}
+                </Title>
+                
+                <Space />
+
+                <Button onClick={logout}>
+                    <Icon name='exit' />
+                </Button>
             </Header>
         )
     }
 }
+
+export default connect(
+	(state)=>({
+        user: user(state)
+    }),
+    { logout }
+)(SettingsHeader)
