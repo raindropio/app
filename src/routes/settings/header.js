@@ -34,7 +34,9 @@ class SettingsHeader extends React.Component {
                 
                 <Space />
 
-                <Button onClick={logout}>
+                <Button 
+                    title={t.s('logOut')}
+                    onClick={logout}>
                     <Icon name='exit' />
                 </Button>
             </Header>

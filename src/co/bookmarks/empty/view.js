@@ -2,10 +2,13 @@ import styles from './view.module.styl'
 import React from 'react'
 import { Link } from 'react-router-dom'
 import t from '~t'
+import config from '~config'
 
 import IllustrationNo from './no.svg?component'
 import IllustrationSearch from './search.svg?component'
 import IllustrationError from './error.svg?component'
+import Button from '~co/common/button'
+import Icon from '~co/common/icon'
 
 export default class BookmarksEmptyView extends React.PureComponent {
     refresh = (e)=>{
@@ -55,6 +58,27 @@ export default class BookmarksEmptyView extends React.PureComponent {
                                     <p>
                                         {t.s('noItemsTip')}
                                     </p>
+
+                                    <br />
+
+                                    <Button 
+                                        as='a'
+                                        href={config.links.download}
+                                        target='_blank'
+                                        variant='outline'>
+                                        <Icon name='open' size='micro' />
+                                        {t.s('install')} {t.s('browserExtension').toLowerCase()}
+                                    </Button>
+
+                                    <br /><br />
+
+                                    <Button
+                                        as={Link}
+                                        to='/settings/import'
+                                        variant='outline'>
+                                        <Icon name='cloud' size='micro' />
+                                        {t.s('import')} {t.s('bookmarks')}
+                                    </Button>
                                 </div>
                             )
                     break

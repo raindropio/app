@@ -7,13 +7,23 @@ import { cancel, parcelSave } from '~data/actions/import'
 import { Buttons, Label, Progress } from '~co/common/form'
 import Button from '~co/common/button'
 import Icon from '~co/common/icon'
-import { Error } from '~co/overlay/dialog'
+import { Error, Confirm } from '~co/overlay/dialog'
 import Preloader from '~co/common/preloader'
 import Alert from '~co/common/alert'
 
 class ImportParcel extends React.Component {
-    onStartClick = ()=>
+    onStartClick = async()=>{
+        const { mode } = this.props
+
+        if (mode == 'from_scratch')
+            if (!await Confirm(
+                t.s('startFromScratch')+'?',
+                { description: t.s('startFromScratchD') }
+            ))
+            return
+
         this.props.parcelSave(undefined, Error)
+    }
 
     renderProgress = (children)=>{
         const { progress, file } = this.props
@@ -129,6 +139,7 @@ class ImportParcel extends React.Component {
 
 export default connect(
     state => ({
+        mode: state.import.mode,
         file: state.import.file,
         status: state.import.parcel.status,
         progress: state.import.parcel.progress,
