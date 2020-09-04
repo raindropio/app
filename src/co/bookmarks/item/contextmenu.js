@@ -46,7 +46,7 @@ export default function BookmarksItemContextmenu({
 
                         <MenuItem onClick={onImportantClick}>
                             <Icon name={'like'+(important?'_active':'')} />
-                            {(important ? (t.s('remove')+' '+t.s('from')) : (t.s('add') +' ' + t.s('to'))) + ' ' + t.s('favoriteSites').toLowerCase()}
+                            {(important ? (t.s('remove')+' '+t.s('from')) : (t.s('add') +' ' + t.s('to'))) + ' ' + t.s('favorites').toLowerCase()}
                         </MenuItem>
 
                         <MenuItem onClick={onCreateScreenshotClick}>

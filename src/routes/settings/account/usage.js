@@ -37,7 +37,7 @@ class SettingsAccountUsage extends React.Component {
                     value={files.used}>
                     {t.s('usedThisMonth').toLowerCase()} {t.s('forUploads')}
                     {!pro && (
-                        <>. <Link to='/settings/pro'>{t.s('goToPRO')}</Link></>  
+                        <>. <Link to='/settings/pro'>{t.s('upgradeToPro')}</Link></>  
                     )}
                 </Progress>
     

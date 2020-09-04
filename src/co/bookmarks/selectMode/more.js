@@ -88,12 +88,12 @@ class BookmarksSelectModeMore extends React.Component {
 
                             <MenuItem onClick={this.onImportantClick}>
                                 <Icon name='like_active' />
-                                {_.capitalize(t.s('to')) + ' ' + t.s('favoriteSites').toLowerCase()}
+                                {_.capitalize(t.s('to')) + ' ' + t.s('favorites').toLowerCase()}
                             </MenuItem>
 
                             <MenuItem onClick={this.onImportantRemoveClick}>
                                 <Icon name='like' />
-                                {t.s('remove')} {t.s('from')} {t.s('favoriteSites').toLowerCase()}
+                                {t.s('remove')} {t.s('from')} {t.s('favorites').toLowerCase()}
                             </MenuItem>
 
                             <MenuSeparator />

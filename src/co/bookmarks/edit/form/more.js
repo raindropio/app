@@ -18,7 +18,7 @@ export default class BookmarkEditFormMore extends React.Component {
                 <Checkbox
                     checked={important}
                     onChange={this.onChange}>
-                    {t.s('favoriteSites')}
+                    {t.s('favorites')}
                 </Checkbox>
             </>
         )

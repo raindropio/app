@@ -28,7 +28,7 @@ function SettingsBackupsCloud({ user, pro, location: { pathname } }) {
 
                 {!pro && (
                     <Alert variant='warning'>
-                        {t.s('onlyInPro')}. <Link to='/settings/pro'>{t.s('goToPRO')}</Link>
+                        {t.s('onlyInPro')}. <Link to='/settings/pro'>{t.s('upgradeToPro')}</Link>
                     </Alert>
                 )}
 

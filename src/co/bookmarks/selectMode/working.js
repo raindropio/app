@@ -12,8 +12,8 @@ export default class BookmarksHeaderSelectModeLoading extends React.Component {
     
     strings = {
         move: t.s('move'),
-        important: _.capitalize(t.s('to')) + ' ' + t.s('favoriteSites').toLowerCase(),
-        importantRemove: t.s('remove')+' '+t.s('from')+' '+t.s('favoriteSites').toLowerCase(),
+        important: _.capitalize(t.s('to')) + ' ' + t.s('favorites').toLowerCase(),
+        importantRemove: t.s('remove')+' '+t.s('from')+' '+t.s('favorites').toLowerCase(),
         screenshot: t.s('clickToMakeScreenshot'),
         removeTags: t.s('remove')+' '+t.s('tags').toLowerCase(),
         reparse: t.s('refresh')+' '+t.s('preview').toLowerCase(),
