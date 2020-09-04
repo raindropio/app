@@ -2,16 +2,24 @@ import React from 'react'
 import t from '~t'
 import { parseDate } from './parse'
 
-export const longDate = (original) => {
-    try{
-        return new Intl.DateTimeFormat(
+let _format
+function getFormat() {
+    if (!_format)
+        _format = new Intl.DateTimeFormat(
             t.currentLang,
             {
                 year: 'numeric',
                 month: 'long',
                 day: 'numeric',
             }
-        ).format(parseDate(original))
+        ).format
+
+    return _format
+}
+
+export const longDate = (original) => {
+    try{
+        return getFormat()(parseDate(original))
     }catch(e){}
 
     return ''

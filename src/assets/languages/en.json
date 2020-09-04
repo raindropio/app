@@ -441,7 +441,7 @@
   "newBookmark":"New bookmark",
   "thankYou":"Thank you!",
   "nowYouHave":"Now you have a",
-  "account":"account",
+  "account":"Account",
   "goHome":"Go to home",
   "until":"until",
   "goToPayment":"Go to payment",
@@ -663,5 +663,9 @@
   "mode": "Mode",
   "ignore": "Ignore",
   "startFromScratch": "Start from scratch",
-  "startFromScratchD": "All existing bookmarks and collections will be removed and replaced with new one"
+  "startFromScratchD": "All existing bookmarks and collections will be removed and replaced with new one",
+  "usedSpace": "Used space",
+  "usedThisMonth": "Used this month",
+  "forUploads": "for uploads",
+  "registered": "Member since"
 }

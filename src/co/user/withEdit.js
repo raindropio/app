@@ -40,21 +40,26 @@ export default (Component, fields=[])  => {
                     unsaved: true
                 }),
         
-            onSubmit: ()=>
+            onSubmit: (onSuccess)=>                
                 this.props.save(
                     _.pick(this.state.user, fields),
-                    ()=>Alert(t.s('saveSuccess')),
+                    ()=>{
+                        Alert(t.s('saveSuccess'))
+                        onSuccess()
+                    },
                     Error
                 )
         }
     
         render() {
+            const { user, error, ...etc } = this.props
+
             return (
                 <Component
+                    {...etc}
                     {...this.state.user}
                     {...this.handlers}
-                    unsaved={this.state.unsaved}
-                    status={this.props.status} />
+                    unsaved={this.state.unsaved} />
             )
         }
     }

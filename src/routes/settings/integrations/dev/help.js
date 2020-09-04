@@ -9,17 +9,18 @@ export default function DevHelp() {
     return (
         <Buttons>
             <Button
-                href={config.links.dev.index}
-                target='_blank'>
-                <Icon name='dev' />
-                API Documentation
-            </Button>
-
-            <Button
                 href={config.links.dev.github}
                 target='_blank'>
                 <Icon name='github' />
                 Github
+            </Button>
+
+            <Button
+                href={config.links.dev.index}
+                target='_blank'
+                variant='link'>
+                <Icon name='help' />
+                API Documentation
             </Button>
         </Buttons>
     )

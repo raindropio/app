@@ -3,21 +3,24 @@ import t from '~t'
 import { Helmet } from 'react-helmet'
 
 import { Layout, Separator } from '~co/common/form'
-import Personal from './personal'
+import Profile from './profile'
 import Connect from './connect'
-import Password from './password'
+import Usage from './usage'
 import Remove from './remove'
 
 export default (props)=>(
 	<Layout type='grid'>
-		<Helmet><title>{t.s('profile')}</title></Helmet>
+		<Helmet><title>{t.s('account')} {t.s('settings').toLowerCase()}</title></Helmet>
 
-		<Personal {...props} />
+		<Profile {...props} />
+
+		<Separator />
+
 		<Connect {...props} />
 
 		<Separator />
-		
-		<Password {...props} />
+
+		<Usage {...props} />
 
 		<Separator />
 		

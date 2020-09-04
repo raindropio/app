@@ -4,24 +4,31 @@ import isToday from 'date-fns/isToday'
 import isThisYear from 'date-fns/isThisYear'
 import { parseDate } from './parse'
 
+let _formats = {}
+function getFormat(type) {
+    if (!_formats[type]){
+        let params = {}
+
+        switch (type) {
+            case 'time':    params = { hour: 'numeric', minute: 'numeric' }; break;
+            case 'compact': params = { month: 'short', day: 'numeric' }; break;
+            default:        params = { year: 'numeric', month: 'short', day: 'numeric' }; break;
+        }
+
+        _formats[type] = new Intl.DateTimeFormat(t.currentLang, params).format
+    }
+
+    return _formats[type]
+}
+
 export const shortDate = (original) => {
     try{
         const d = parseDate(original)
 
         if (isToday(d))
-            return t.s('today')+', '+new Intl.DateTimeFormat(
-                t.currentLang,
-                { hour: 'numeric', minute: 'numeric' }
-            ).format(d)
+            return t.s('today')+', '+getFormat('time')(d)
 
-        return new Intl.DateTimeFormat(
-            t.currentLang,
-            {
-                ...(!isThisYear(d) ? {year: 'numeric'} : {}),
-                month: 'short',
-                day: 'numeric',
-            }
-        ).format(d)
+        return getFormat(!isThisYear(d) ? 'full' : 'compact')(d)
     }catch(e){}
 
     return ''

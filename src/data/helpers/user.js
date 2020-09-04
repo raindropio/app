@@ -10,6 +10,7 @@ export const normalizeUser = (user={})=>{
 		pro: 				Boolean(user.pro)||false,
 		proExpire: 			user.proExpire||null,
 		files:				user.files||{ size: 0, used: 0 },
+		registered:			user.registered||null,
 
 		//connect
 		google:				user.google || {},

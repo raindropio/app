@@ -1,16 +1,21 @@
 import React from 'react'
 import t from '~t'
 import config from '~config'
+import { connect } from 'react-redux'
+import { logout } from '~data/actions/user'
+import { user } from '~data/selectors/user'
+
 import Popover, { Menu, MenuItem, MenuSeparator } from '~co/overlay/popover'
 import Icon from '~co/common/icon'
 
-export default function SidebarProfileMenu({
+function SidebarProfileMenu({
     pin,
-    onLogoutClick,
-    onMenuClose
+    onClose,
+
+    logout
 }) {
     return (
-        <Popover pin={pin} onClose={onMenuClose}>
+        <Popover pin={pin} onClose={onClose}>
             <Menu>
                 <MenuItem to='/settings'>
                     <Icon name='settings' />
@@ -53,7 +58,7 @@ export default function SidebarProfileMenu({
 
                 <MenuSeparator />
 
-                <MenuItem onClick={onLogoutClick}>
+                <MenuItem onClick={logout}>
                     <Icon name='exit' />
                     {t.s('logOut')}
                 </MenuItem>
@@ -61,3 +66,10 @@ export default function SidebarProfileMenu({
         </Popover>
     )
 }
+
+export default connect(
+	(state)=>({
+        user: user(state)
+	}),
+	{ logout }
+)(SidebarProfileMenu)

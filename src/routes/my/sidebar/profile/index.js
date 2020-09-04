@@ -1,12 +1,11 @@
 import s from './index.module.styl'
 import React from 'react'
 import { connect } from 'react-redux'
-import { logout } from '~data/actions/user'
 import { user } from '~data/selectors/user'
 
 import Button from '~co/common/button'
 import Avatar from '~co/common/avatar'
-import Contextmenu from './contextmenu'
+import Contextmenu from '~co/user/profile'
 import Icon from '~co/common/icon'
 
 class SidebarProfile extends React.PureComponent {
@@ -21,13 +20,8 @@ class SidebarProfile extends React.PureComponent {
         this.setState({menu: true})
     }
 
-    handlers = {
-        onLogoutClick: ()=>
-            this.props.logout(),
-
-        onMenuClose: ()=>
-            this.setState({menu: false})
-    }
+    onProfileClose = ()=>
+        this.setState({menu: false})
 
     render() {
         const { user } = this.props
@@ -44,7 +38,7 @@ class SidebarProfile extends React.PureComponent {
                     <Icon name='arrow' size='micro' />
                 </Button>
                 
-                {menu && <Contextmenu pin={this.pin} {...this.props} {...this.handlers} />}
+                {menu && <Contextmenu pin={this.pin} onClose={this.onProfileClose} />}
             </>
         )
     }
@@ -53,6 +47,5 @@ class SidebarProfile extends React.PureComponent {
 export default connect(
 	(state)=>({
         user: user(state)
-	}),
-	{ logout }
+	})
 )(SidebarProfile)

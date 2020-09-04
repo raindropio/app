@@ -12,7 +12,7 @@ import Footer from './footer'
 
 import App from './app'
 import Pro from './pro'
-import Profile from './profile'
+import Account from './account'
 import Import from './import'
 import Backups from './backups'
 import Integrations from './integrations'
@@ -29,7 +29,7 @@ export default (props)=>(
                 <div className={s.body}>
                     <Switch>
                         <Route path={`${props.match.path}/app`} component={App} />
-                        <Route path={`${props.match.path}/profile`} component={Profile} />
+                        <Route path={`${props.match.path}/account`} component={Account} />
                         <Route path={`${props.match.path}/pro`} component={Pro} />
                         <Route path={`${props.match.path}/import`} component={Import} />
                         <Route path={`${props.match.path}/backups`} component={Backups} />
