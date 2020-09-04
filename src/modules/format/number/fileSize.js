@@ -11,16 +11,30 @@ function makeFormat(unit) {
     return _formats[unit]
 }
 
-export function fileSize(val=0) {
-    if (!val)
+export function fileSize(_val=0) {
+    if (!_val)
         return 0
+
+    let style = '', val = parseInt(_val)
+    if (val < 1000){
+        style = 'byte'
+    }
+    if (val < 1000000){
+        style = 'kilobyte'
+        val = val / 1000
+    }
+    else if (val < 1000000000){
+        style = 'megabyte'
+        val = val / 1000000
+    }
+    else{
+        style = 'gigabyte'
+        val = val / 1000000000
+    }
   
-    if (val < 1000)
-        return makeFormat('byte')(val)
-    if (val < 1000000)
-        return makeFormat('kilobyte')(val / 1000)
-    else if (val < 1000000000)
-        return makeFormat('megabyte')(val / 1000000)
-    else
-        return makeFormat('gigabyte')(val / 1000000000)
+    try{
+        return makeFormat(style)(val)
+    } catch(e) {}
+
+    return val
 }

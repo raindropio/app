@@ -12,7 +12,12 @@ export default class SettingsHeader extends React.Component {
             <Header 
                 data-solid>
                 <FirstAction>
-                    <Button as={Link} to='/'><Icon name='back' /></Button>
+                    <Button 
+                        as={Link} 
+                        to='/'
+                        title={t.s('back')}>
+                        <Icon name='back' />
+                    </Button>
                 </FirstAction>
 
                 <Title>{t.s('settings')}</Title>

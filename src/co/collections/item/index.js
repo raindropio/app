@@ -93,10 +93,10 @@ export default class CollectionsItem extends React.PureComponent {
     
         onRemoveClick: async()=>{
             if ((!this.props.item.count && !this.props.expandable) || 
-                await Confirm(t.s('remove')+' '+this.props.item.title+'?', {
+                await Confirm(t.s('areYouSure'), {
                     variant: 'warning',
-                    description: 'Bookmarks will be moved to Trash',
-                    ok: t.s('remove')
+                    description: t.s('collectionDeleteConfirm'),
+                    ok: t.s('remove')+' '+this.props.item.title
                 }))
                 this.props.actions.oneRemove(this.props.item._id)
         },

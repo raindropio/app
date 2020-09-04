@@ -1,4 +1,5 @@
 import React from 'react'
+import t from '~t'
 import Context from './context'
 
 import Header, { Title, Space, LastAction } from '~co/common/header'
@@ -23,7 +24,9 @@ class ModalHeader extends React.Component {
 
                 {this.context.closable ? (
                     <LastAction>
-                        <Button onClick={this.context.onClose}>
+                        <Button 
+                            title={t.s('close')}
+                            onClick={this.context.onClose}>
                             <Icon name='close' />
                         </Button>
                     </LastAction>
