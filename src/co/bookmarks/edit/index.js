@@ -1,9 +1,8 @@
 import s from './index.module.styl'
 import React from 'react'
 import t from '~t'
-import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import * as bookmarksActions from '~data/actions/bookmarks'
+import { draftLoad, draftCommit, draftChange, oneRemove, oneRecover } from '~data/actions/bookmarks'
 import { makeDraftItem, makeDraftStatus, makeDraftUnsaved } from '~data/selectors/bookmarks'
 
 import { Alert } from '~co/overlay/dialog'
@@ -12,7 +11,8 @@ import Error from './error'
 
 class EditBookmarkContainer extends React.Component {
 	static defaultProps = {
-		_id: 0
+		_id: undefined, //_id or link
+		blank: {}		//optional { title, excerpt, ...etc } used for new bookmarks
 	}
 
 	componentDidMount() {
@@ -38,7 +38,7 @@ class EditBookmarkContainer extends React.Component {
         if (_id != prev._id){
 			//save unsaved changes if user try to open another bookmark
 			if (prev.unsaved)
-				prev.actions.bookmarks.draftCommit(prev._id)
+				prev.draftCommit({ _id: prev._id })
 
 			this.handlers.onLoad()
 		}
@@ -54,23 +54,34 @@ class EditBookmarkContainer extends React.Component {
 	}
 
 	handlers = {
-        onLoad: ()=>
-            this.props.actions.bookmarks.draftLoad(this.props._id),
+        onLoad: ()=>{
+			const { draftLoad, _id, blank } = this.props
+			draftLoad(_id, blank, { save: false })
+		},
 
-        onChange: (obj)=>
-            this.props.actions.bookmarks.draftChange(this.props.item._id, obj),
+        onChange: (obj)=>{
+			const { draftChange, _id } = this.props
+			draftChange(_id, obj)
+		},
     
         onSubmit: ()=>{
             return new Promise((res,rej)=>{
-                this.props.actions.bookmarks.draftCommit(this.props.item._id, res, rej)
+				const { draftCommit, _id } = this.props
+                draftCommit(_id, res, rej)
             })
 		},
 		
-		onRemove: ()=>
-			this.props.actions.bookmarks.oneRemove(this.props.item._id),
+		onRemove: ()=>{
+			const { oneRemove, item: { _id } } = this.props
+			if (_id)
+				oneRemove(_id)
+		},
     
-        onRecover: ()=>
-            this.props.actions.bookmarks.oneRecover(this.props.item._id)
+        onRecover: ()=>{
+			const { oneRecover, item: { _id } } = this.props
+			if (_id)
+				oneRecover(_id)
+		}
     }
 
 	render() {
@@ -109,9 +120,5 @@ const makeMapStateToProps = () => {
 
 export default connect(
 	makeMapStateToProps,
-	(dispatch)=>({
-		actions: {
-			bookmarks: bindActionCreators(bookmarksActions, dispatch)
-		}
-	})
+	{ draftLoad, draftCommit, draftChange, oneRemove, oneRecover }
 )(EditBookmarkContainer)

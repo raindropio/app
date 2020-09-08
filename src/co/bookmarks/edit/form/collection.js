@@ -2,6 +2,7 @@ import React from 'react'
 import t from '~t'
 import { connect } from 'react-redux'
 import { makeCollectionPath } from '~data/selectors/collections'
+import { refresh } from '~data/actions/collections'
 
 import { Label } from '~co/common/form'
 import Button from '~co/common/button'
@@ -15,6 +16,10 @@ class BookmarkEditFormCollection extends React.Component {
     }
 
     linkRef = React.createRef()
+
+    componentDidMount() {
+        this.props.refresh()
+    }
 
     onPickerClick = (e)=>{
         e.preventDefault()
@@ -76,5 +81,5 @@ export default connect(
             path: getCollectionPath(state, collectionId, options)
         })
     },
-	undefined
+	{ refresh }
 )(BookmarkEditFormCollection)

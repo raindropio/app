@@ -36,7 +36,7 @@ export default function* () {
 	yield takeEvery(BOOKMARK_UPLOAD_REQ, uploadBookmark)
 }
 
-function* createBookmark({obj={}, ignore=false, onSuccess, onFail}) {
+function* createBookmark({obj={}, ignore=false, draft, onSuccess, onFail}) {
 	if (ignore)
 		return;
 
@@ -70,18 +70,18 @@ function* createBookmark({obj={}, ignore=false, onSuccess, onFail}) {
 			parser: parsed.item.parser
 		}))
 
-		item.new = true
-
 		yield put({
 			type: BOOKMARK_CREATE_SUCCESS,
 			_id: item._id,
 			item,
+			draft,
 			onSuccess, onFail
 		});
 	} catch (error) {
 		yield put({
 			type: BOOKMARK_CREATE_ERROR,
 			obj,
+			draft,
 			error,
 			onSuccess, onFail
 		});
@@ -128,7 +128,7 @@ function* updateBookmark({_id, set={}, ignore=false, onSuccess, onFail}) {
 	} catch (error) {
 		yield put({
 			type: BOOKMARK_UPDATE_ERROR,
-			_id: _id,
+			_id,
 			error,
 			onSuccess, onFail
 		});

@@ -1,14 +1,10 @@
 import { call, put, takeEvery, select } from 'redux-saga/effects'
 import Api from '../../modules/api'
-import ApiError from '../../modules/error'
+import _ from 'lodash'
 
 import {
-	BOOKMARK_UPDATE_REQ, BOOKMARK_UPDATE_ERROR,
-	BOOKMARK_CREATE_REQ,
-
-	BOOKMARK_DRAFT_LOAD_REQ, BOOKMARK_DRAFT_LOAD_SUCCESS, BOOKMARK_DRAFT_LOAD_ERROR, BOOKMARK_DRAFT_COMMIT,
-
-	BOOKMARK_DRAFT_ENSURE_REQ, BOOKMARK_DRAFT_SET_STATUS
+	BOOKMARK_UPDATE_REQ, BOOKMARK_CREATE_REQ,
+	BOOKMARK_DRAFT_LOAD_REQ, BOOKMARK_DRAFT_LOAD_SUCCESS, BOOKMARK_DRAFT_LOAD_ERROR, BOOKMARK_DRAFT_COMMIT
 } from '../../constants/bookmarks'
 
 //Requests
@@ -16,99 +12,85 @@ export default function* () {
 	//draft
 	yield takeEvery(BOOKMARK_DRAFT_LOAD_REQ, draftLoad)
 	yield takeEvery(BOOKMARK_DRAFT_COMMIT, draftCommit)
-	yield takeEvery(BOOKMARK_DRAFT_ENSURE_REQ, draftEnsure)
 }
 
-function* draftLoad({_id, ignore=false}) {
-	if (ignore)
-		return;
+function* draftLoad({_id, obj, config, ignore=false}) {
+	if (ignore) return;
 
 	try{
+		//load by link
+		if (!Number.isInteger(parseInt(_id))){
+			const { ids=[] } = yield call(Api.post, 'check/url', { url: _id })
+
+			//existing bookmark, load it by id
+			if (ids.length)
+				_id = ids[0]
+			//not found, it's new
+			else{
+				//config
+				const { save = true } = config
+
+				//set draft by link
+				yield put({
+					type: BOOKMARK_DRAFT_LOAD_SUCCESS,
+					_id,
+					item: {
+						collectionId: -1,
+						...obj,
+						link: _id
+					}
+				})
+
+				//save new bookmark automatically
+				if (save)
+					yield put({
+						type: BOOKMARK_DRAFT_COMMIT,
+						_id
+					})
+
+				return
+			}
+		}
+
+		//load exact ID
 		const { item={} } = yield call(Api.get, 'raindrop/'+_id)
 
 		yield put({
 			type: BOOKMARK_DRAFT_LOAD_SUCCESS,
-			_id: _id,
-			item: item
+			_id,
+			item
 		});
 	} catch (error) {
 		yield put({
 			type: BOOKMARK_DRAFT_LOAD_ERROR,
-			_id: _id,
+			_id,
 			error
 		});
 	}
 }
 
-function* draftCommit({_id, onSuccess, onFail}) {
-	try{
-		const state = yield select()
-		const changedFields = state.bookmarks.getIn(['drafts', 'byId', _id, 'changedFields'])||[]
-		const item = state.bookmarks.getIn(['drafts', 'byId', _id, 'item'])
+function* draftCommit({ _id, onSuccess, onFail}) {
+	const state = yield select()
+	const draft = state.bookmarks.getIn(['drafts', _id])
+	if (!draft) return
 
-		if ((changedFields.length)&&(item)) {
-			var setItem = {}
-			changedFields.forEach((key)=>{
-				setItem[key] = item[key]
-			})
-
-			yield put({
-				type: BOOKMARK_UPDATE_REQ,
-				_id: _id,
-				set: setItem,
-				onSuccess, onFail
-			})
-		}else{
-			onSuccess(item)
-		}
-	}catch(error){
-		yield put({
-			type: BOOKMARK_UPDATE_ERROR,
-			_id: _id,
-			error,
+	//new
+	if (!draft.item._id)
+		return yield put({
+			type: BOOKMARK_CREATE_REQ,
+			draft: _id,
+			obj: draft.item,
 			onSuccess, onFail
 		})
-	}
-}
 
-function* draftEnsure({link, obj, config}) {
-	try{
-		if (link=='empty')
-			throw new ApiError({ status: 400, error: 'link', errorMessage: 'link is empty'})
-
-		const {id, result=false} = yield call(Api.post, 'check/url', {url: link})
-
-		//found
-		if (result)
-			yield put({
-				type: BOOKMARK_DRAFT_LOAD_REQ,
-				_id: id
-			});
-		//create new
-		else{
-			if (config.save === false){
-				yield put({
-					type: BOOKMARK_DRAFT_SET_STATUS,
-					status: 'notFound',
-					obj: Object.assign({
-						link
-					}, obj)
-				});
-			}
-			else{
-				yield put({
-					type: BOOKMARK_CREATE_REQ,
-					obj: Object.assign({
-						link
-					}, obj)
-				});
-			}
-		}
-	}catch(error){
-		yield put({
-			type: BOOKMARK_DRAFT_LOAD_ERROR,
-			link,
-			error
+	//update
+	if (draft.changedFields.length)
+		return yield put({
+			type: BOOKMARK_UPDATE_REQ,
+			_id: draft.item._id,
+			set: _.pick(draft.item, draft.changedFields),
+			onSuccess, onFail
 		})
-	}
+
+	onSuccess(draft.item)
 }

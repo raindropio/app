@@ -14,7 +14,7 @@ export const makeSuggestedTags = ()=>createSelector(
 		getSuggested,
 		//get current tags of draft
 		({bookmarks={}}, _id)=>{
-			return bookmarks.getIn(['drafts', 'byId', _id, 'item', 'tags'])||emptyTags
+			return bookmarks.getIn(['drafts', _id, 'item', 'tags'])||emptyTags
 		}
 	],
 	(pro, suggested, current)=>

@@ -47,10 +47,8 @@ export default function(state = initialState, action={}){
 
 const initialState = Immutable({
 	spaces: {},
-	drafts: {
-		byId: {},
-		linkStatus: {}
-	},
+
+	drafts: {}, //{ number|string: {} }
 
 	elements: {},
 	meta: {},

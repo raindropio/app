@@ -9,34 +9,73 @@ import Icon from '~co/common/icon'
 
 export default class BookmarkEditFormButtons extends React.Component {
     render() {
-        const { unsaved, status, item: { created } } = this.props
+        const { status, item: { created, lastUpdate } } = this.props
 
-        if (status == 'saving')
-            return (
-                <Buttons>
-                    <Button data-block>
-                        <Preloader />
-                    </Button>
-                </Buttons>
-            )
+        switch(status){
+            case 'saving':
+            case 'loading':
+                return (
+                    <Buttons>
+                        <Button data-block>
+                            <Preloader />
+                        </Button>
+                    </Buttons>
+                )
 
-        return (
-            <Buttons>
-                <Button
-                    disabled
-                    data-block>
-                    <Icon name='check_active' />
-                    {t.s('addSuccess')} <ShortDate date={created} />
-                </Button>
+            case 'loaded':
+                return (
+                    <Buttons>
+                        <Button
+                            disabled
+                            data-block>
+                            <Icon name='check_active' />
+                            {t.s('addSuccess')} <ShortDate date={created} />
+                        </Button>
+        
+                        <Button 
+                            data-block
+                            variant='link'
+                            accent='danger'
+                            onClick={this.props.onRemove}>
+                            {t.s('remove')}
+                        </Button>
+                    </Buttons>
+                )
 
-                <Button 
-                    data-block
-                    variant='link'
-                    accent='danger'
-                    onClick={this.props.onRemove}>
-                    {t.s('remove')}
-                </Button>
-            </Buttons>
-        )
+            case 'removed':
+                return (
+                    <Buttons>
+                        <Button
+                            disabled
+                            data-block>
+                            <Icon name='check_active' />
+                            {t.s('removeSuccess')} <ShortDate date={lastUpdate} />
+                        </Button>
+        
+                        <Button 
+                            data-block
+                            variant='link'
+                            accent='danger'
+                            onClick={this.props.onRemove}>
+                            {t.s('remove')} {t.s('from')} {t.s('defaultCollection--99')}
+                        </Button>
+                    </Buttons>
+                )
+
+            case 'idle':
+                return null
+
+            default: //new|error|errorSaving
+                return (
+                    <Buttons>
+                        <Button
+                            as='input'
+                            type='submit'
+                            variant='primary'
+                            data-block
+                            value={t.s('saveLink')} />
+                    </Buttons>
+                )
+        }
     }
 }

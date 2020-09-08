@@ -60,14 +60,15 @@ export default class BookmarkItemCover extends React.PureComponent {
         switch(view){
             //simple always have a favicon
             case 'simple':
-                uri = getUri(link, 'favicon', domain)
+                if (link)
+                    uri = getUri(link, 'favicon', domain)
                 break
 
             //in other view modes we show a thumbnail or screenshot
             default:
                 if (cover)
                     uri = getUri(cover)
-                else
+                else if (link)
                     uri = getUri(link, 'screenshot')
                 break
         }
@@ -75,7 +76,7 @@ export default class BookmarkItemCover extends React.PureComponent {
         return (
             <>
                 <source
-                    srcSet={`${uri}&mode=crop&format=webp&width=${width||''}&ar=${ar||''}&dpr=${window.devicePixelRatio||1} ${window.devicePixelRatio||1}x`}
+                    srcSet={uri && `${uri}&mode=crop&format=webp&width=${width||''}&ar=${ar||''}&dpr=${window.devicePixelRatio||1} ${window.devicePixelRatio||1}x`}
                     type='image/webp' />
 
                 <img 
@@ -86,15 +87,15 @@ export default class BookmarkItemCover extends React.PureComponent {
                     height={height}
                     alt=' '
                     {...etc}
-                    src={`${uri}&mode=crop&width=${width||''}&ar=${ar||''}&dpr=${window.devicePixelRatio||1}`}
+                    src={uri && `${uri}&mode=crop&width=${width||''}&ar=${ar||''}&dpr=${window.devicePixelRatio||1}`}
                     //type='image/jpeg'
-                    onLoad={indicator ? this.onImageLoadSuccess : undefined} />
+                    onLoad={indicator && uri ? this.onImageLoadSuccess : undefined} />
             </>
         )
     }
 
     render() {
-        const { className='', view } = this.props
+        const { className='', view, cover, link } = this.props
         const { loaded } = this.state
 
         return (
@@ -102,7 +103,7 @@ export default class BookmarkItemCover extends React.PureComponent {
                 role='image'
                 className={s.wrap+' '+s[view]+' '+className}>
                 {this.renderImage()}
-                {!loaded && <div className={s.preloader}><Preloader /></div>}
+                {!loaded && (cover||link) && <div className={s.preloader}><Preloader /></div>}
             </picture>
         )
     }

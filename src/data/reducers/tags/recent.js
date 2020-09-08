@@ -14,17 +14,20 @@ export default function(state, action={}){switch (action.type) {
     }
 
     case BOOKMARK_DRAFT_LOAD_SUCCESS:{
-        const { item } = action
+        const { _id, item } = action
 
-        before[item._id] = item.tags
-        after[item._id] = {}
+        if (item && item.tags){
+            before[_id] = item.tags
+            after[_id] = {}
+        }
     }break
     
     case BOOKMARK_DRAFT_CHANGE:{
         const { changed={}, _id } = action
         const { tags=[] } = changed
 
-        after[_id] = tags
+        if (_id)
+            after[_id] = tags
     }break
 
     case BOOKMARK_DRAFT_COMMIT:{

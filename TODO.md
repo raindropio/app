@@ -37,6 +37,9 @@ Changes
     - new optionalDependencie: @sentry/minimal
     - makeHighlight selector changed, now have 3 arguments, instead 2
     - use 'global' spaceId to get global filters or tags
+    - bookmarks
+        - draftLoad, draftChange, draftCommit actions changed, first argument now can be id or link
+        - no more draftEnsure, use draftLoad instead
 - features
     + nested collections showed up in one list
     + web preview better

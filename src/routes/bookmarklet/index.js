@@ -1,18 +1,22 @@
 import React from 'react'
-import t from '~t'
 
-import LogoIcon from '~assets/images/icons/icon_raw.svg?component'
 import Protected from '~co/screen/protected'
 import Screen from '~co/screen/basic'
-import Header, { Title } from '~co/common/header'
+import Header from './header'
+import Bookmark from '~co/bookmarks/edit'
 
-export default ({ match })=>(
-    <Protected redirect>
-        <Screen>
-            <Header>
-                <LogoIcon />
-                <Title>{t.s('addBookmark')}</Title>
-            </Header>
-        </Screen>
-    </Protected>
-)
+export default ({ location: { search } })=>{
+    const { url, title='' } = Object.fromEntries(new URLSearchParams(search))||{}
+
+    return (
+        <Protected redirect>
+            <Screen>
+                <Header />
+    
+                <Bookmark 
+                    _id={url}
+                    blank={{ title }} />
+            </Screen>
+        </Protected>
+    )
+}

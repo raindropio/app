@@ -47,7 +47,7 @@ export const getBookmarkScreenshotIndex = ({meta, drafts}, _id)=>{
 }
 
 export const getDraft = (drafts, _id)=>{
-	const draft = drafts.byId[_id] || {}
+	const draft = drafts[_id] || {}
 
 	switch(draft.status){
 		case 'loaded':
@@ -85,8 +85,6 @@ export const normalizeBookmark = (item={}, options)=>{
 		tags: 			(item.tags||[]).join(', '),
 		reparse:		item.reparse || (item.pleaseParse ? true : false),
 		cache:			item.cache ? item.cache.status : '',
-
-		new: 			item.new ? true : false
 	}
 
 	if (!options.flat)
@@ -138,8 +136,8 @@ export const blankSelectMode = Immutable({
 
 
 export const blankDraft = Immutable({
-	status: 'idle', //idle/loading/loaded/removed/error/saving/errorSaving
-	item: emptyObject,
+	status: 'idle', //idle/loading/loaded/removed/error/saving/errorSaving/new
+	item: normalizeBookmark({}, {flat: false}),
 	changedFields: emptyArray
 })
 

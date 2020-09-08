@@ -10,13 +10,15 @@ export default class BookmarkEditFormMore extends React.Component {
     }
 
     render() {
-        const { item: { important } } = this.props
+        const { item: { important }, status } = this.props
+        const loading = status=='loading'
 
         return (
             <>
                 <div />
                 <Checkbox
                     checked={important}
+                    disabled={loading}
                     onChange={this.onChange}>
                     {t.s('favorites')}
                 </Checkbox>
