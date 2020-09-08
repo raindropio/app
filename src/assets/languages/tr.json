@@ -25,7 +25,6 @@
   "myCollections": "Koleksiyonlarım",
   "save": "Kaydet",
   "remove": "Sil",
-  "elements": "yer imi",
   "about": "Hakkımızda",
   "blog": "Blog",
   "signInSocial": "Giriş yap:",
@@ -85,9 +84,6 @@
   "createGroup": "Grup oluştur",
   "clickToMakeScreenshot": "Ekran görüntüsü için tıkla",
   "screenshot": "screenshot",
-  "elements1": "yer imi",
-  "elements2": "yer imleri",
-  "elements5": "yer imleri",
   "defaultCollection-0": "Ara",
   "defaultCollection--1": "Gelen kutusu",
   "defaultCollection--99": "Çöp kutusu",
@@ -156,7 +152,6 @@
   "importInfo2": "Bu dosyayı tarayıcından veya hizmetteki \"Yer imlerini dışarı aktar\" bölümünden yakalayabilirsin",
   "loading": "Yükleniyor",
   "folders": "Dosyalar",
-  "removeIt": "Sil",
   "startImport": "Veri almayı başlat",
   "selectOtherFile": "Başka bir dosya seçilsin mi",
   "importing": "İçe aktarılıyor",
@@ -320,5 +315,6 @@
   "done": "Done",
   "darkTheme": "Dark theme",
   "me": "Ben",
-  "collaboratorsLead": "Koleksiyonlarını paylaş ve arkadaşların, ailen ve iş arkadaşlarınla iş birliği içinde çalış"
+  "collaboratorsLead": "Koleksiyonlarını paylaş ve arkadaşların, ailen ve iş arkadaşlarınla iş birliği içinde çalış",
+  "emptyTrash": "Empty trash"
 }

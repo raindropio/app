@@ -25,7 +25,6 @@
   "myCollections": "Mijn verzamelingen",
   "save": "Opslaan",
   "remove": "Verwijderen",
-  "elements": "bladwijzer",
   "about": "Over ons",
   "blog": "Blog",
   "signInSocial": "Log in met",
@@ -85,9 +84,6 @@
   "createGroup": "Groep maken",
   "clickToMakeScreenshot": "Klik om screenshot te maken",
   "screenshot": "screenshot",
-  "elements1": "bladwijzer",
-  "elements2": "bladwijzers",
-  "elements5": "bladwijzers",
   "defaultCollection-0": "Zoeken",
   "defaultCollection--1": "Postvak in",
   "defaultCollection--99": "Prullenbak",
@@ -156,7 +152,6 @@
   "importInfo2": "Haal dit bestand vanuit uw browser of service in de \"Bladwijzers exporteren\" sectie",
   "loading": "Laden",
   "folders": "Mappen",
-  "removeIt": "Verwijderen",
   "startImport": "Importeren starten",
   "selectOtherFile": "Selecteer ander bestand",
   "importing": "Importeren",
@@ -320,5 +315,6 @@
   "done": "Gereed",
   "darkTheme": "Donkere modus",
   "me": "Det er jeg",
-  "collaboratorsLead": "Del samlingene og samarbeid med kollegaer, venner og familie"
+  "collaboratorsLead": "Del samlingene og samarbeid med kollegaer, venner og familie",
+  "emptyTrash": "Empty trash"
 }

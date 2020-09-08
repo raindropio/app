@@ -29,9 +29,9 @@ class ButtonInner extends React.Component {
                 tabIndex={etc.disabled ? '-1' : '0'}
                 ref={forwardedRef}
                 className={s.button+' '+className}
-                data-variant={variant}
-                data-accent={accent}
-                data-size={size}
+                data-variant={variant||'default'}
+                data-accent={accent||'default'}
+                data-size={size||'default'}
                 {...etc}
                 onKeyDown={this.onKeyDown} />
         )

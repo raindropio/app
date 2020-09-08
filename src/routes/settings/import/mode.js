@@ -14,7 +14,7 @@ class ImportMode extends React.Component {
         ],
         [
             'new',
-            t.s('only')+' '+(t.s('newString')+' '+t.s('folders')+' '+t.s('und')+' '+t.s('elements2')).toLowerCase()
+            t.s('only')+' '+(t.s('newString')+' '+t.s('folders')+' '+t.s('und')+' '+t.s('bookmarks')).toLowerCase()
         ],
         [
             'from_scratch',

@@ -40,7 +40,7 @@ class ImportFile extends React.Component {
                     <div className={s.loaded}>
                         <b>{name}</b><br />
                         <span>
-                            {count.folders} {t.s('folders').toLowerCase()}, {count.bookmarks} {t.s('elements5')} {t.s('und')} {count.tags} {t.s('tags').toLowerCase()}
+                            {count.folders} {t.s('folders').toLowerCase()}, {count.bookmarks} {t.s('bookmarks')} {t.s('und')} {count.tags} {t.s('tags').toLowerCase()}
                         </span>
                     </div>
                 )

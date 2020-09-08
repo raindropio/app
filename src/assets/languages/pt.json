@@ -25,7 +25,6 @@
   "myCollections": "Minhas coleções",
   "save": "Salvar",
   "remove": "Remover",
-  "elements": "bookmark",
   "about": "Sobre nós",
   "blog": "Blog",
   "signInSocial": "Faça o login com",
@@ -85,9 +84,6 @@
   "createGroup": "Criar grupo",
   "clickToMakeScreenshot": "Click para tirar uma screenshot",
   "screenshot": "screenshot",
-  "elements1": "bookmark",
-  "elements2": "bookmarks",
-  "elements5": "bookmarks",
   "defaultCollection-0": "Procurar",
   "defaultCollection--1": "Caixa de entrada",
   "defaultCollection--99": "Lixeira",
@@ -156,7 +152,6 @@
   "importInfo2": "Você pode pegar esse arquivo a partir do seu navegador ou na área de serviço 'Exportar favoritos'",
   "loading": "Carregando",
   "folders": "Pastas",
-  "removeIt": "Remover",
   "startImport": "Iniciar importação",
   "selectOtherFile": "Selecione outro arquivo",
   "importing": "Importando",
@@ -320,5 +315,6 @@
   "done": "Done",
   "darkTheme": "Dark theme",
   "me": "Eu sou",
-  "collaboratorsLead": "Compartilhe suas coleções e trabalhe em cooperação com seus colegas, amigos e familiares"
+  "collaboratorsLead": "Compartilhe suas coleções e trabalhe em cooperação com seus colegas, amigos e familiares",
+  "emptyTrash": "Empty trash"
 }

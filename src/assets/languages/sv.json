@@ -25,7 +25,6 @@
   "myCollections": "Mina samlingar",
   "save": "Spara",
   "remove": "Radera",
-  "elements": "bokmärke",
   "about": "Om oss",
   "blog": "Blogg",
   "signInSocial": "Logga in med",
@@ -85,9 +84,6 @@
   "createGroup": "Skapa grupp",
   "clickToMakeScreenshot": "Klicka för att fånga en skärmbild",
   "screenshot": "fånga en skärmbild",
-  "elements1": "bokmärke",
-  "elements2": "bokmärken",
-  "elements5": "bokmärken",
   "defaultCollection-0": "Sök",
   "defaultCollection--1": "Inkorg",
   "defaultCollection--99": "Papperskorgen",
@@ -156,7 +152,6 @@
   "importInfo2": "Ta den här filen från din webbläsare eller från tjänster i \"exportera bokmärken\"-sektionen",
   "loading": "Laddar",
   "folders": "Mappar",
-  "removeIt": "Radera",
   "startImport": "Börja importera",
   "selectOtherFile": "Välj annan fil",
   "importing": "Importerar",
@@ -320,5 +315,6 @@
   "done": "Done",
   "darkTheme": "Dark theme",
   "me": "Det är jag",
-  "collaboratorsLead": "Dela dina samlingar och arbeta kollaborativt  med dina kollegor, vänner och din familj"
+  "collaboratorsLead": "Dela dina samlingar och arbeta kollaborativt  med dina kollegor, vänner och din familj",
+  "emptyTrash": "Empty trash"
 }

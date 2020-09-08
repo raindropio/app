@@ -25,7 +25,6 @@
   "myCollections": "我的收藏",
   "save": "保存",
   "remove": "删除",
-  "elements": "书签",
   "about": "关于我们",
   "blog": "博客",
   "signInSocial": "使用……登入",
@@ -85,9 +84,6 @@
   "createGroup": "创建群组",
   "clickToMakeScreenshot": "单击此处进行截屏",
   "screenshot": "截屏",
-  "elements1": "书签",
-  "elements2": "书签",
-  "elements5": "书签",
   "defaultCollection-0": "搜索",
   "defaultCollection--1": "收件箱",
   "defaultCollection--99": "废纸篓",
@@ -156,7 +152,6 @@
   "importInfo2": "你可以从浏览器或服务的“导出书签”部分得到这个文件",
   "loading": "载入中",
   "folders": "文件夹",
-  "removeIt": "删除",
   "startImport": "开始导入",
   "selectOtherFile": "选择其它文件",
   "importing": "导入中",
@@ -320,5 +315,6 @@
   "done": "Done",
   "darkTheme": "Dark theme",
   "me": "我是",
-  "collaboratorsLead": "和同事、朋友及家人分享你的收藏并协同工作"
+  "collaboratorsLead": "和同事、朋友及家人分享你的收藏并协同工作",
+  "emptyTrash": "Empty trash"
 }

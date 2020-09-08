@@ -25,7 +25,6 @@
   "myCollections": "Omat kokoelmat",
   "save": "Tallenna",
   "remove": "Poista",
-  "elements": "kirjanmerkki",
   "about": "Tietoja",
   "blog": "Blogi",
   "signInSocial": "Kirjaudu sisään jollain näistä",
@@ -85,9 +84,6 @@
   "createGroup": "Luo ryhmä",
   "clickToMakeScreenshot": "Klikkaa ottaaksesi kuvankaappauksen",
   "screenshot": "kuvankaappauksen",
-  "elements1": "kirjanmerkki",
-  "elements2": "kirjanmerkit",
-  "elements5": "kirjanmerkit",
   "defaultCollection-0": "Etsi",
   "defaultCollection--1": "Saapuneet",
   "defaultCollection--99": "Roskakori",
@@ -156,7 +152,6 @@
   "importInfo2": "Tuo tämä tiedosto selaimestasi tai \"Vie kirjanmerkit\" -kohdasta",
   "loading": "Lataa",
   "folders": "Kansiot",
-  "removeIt": "Poista",
   "startImport": "Aloita tuonti",
   "selectOtherFile": "Valitse toinen tiedosto",
   "importing": "Tuonti",
@@ -320,5 +315,6 @@
   "done": "Done",
   "darkTheme": "Dark theme",
   "me": "Minä olen",
-  "collaboratorsLead": "Jaa kokoelmasi ja työskentele yhdessä työtovereidesi, ystäviesi tai perheesi kanssa"
+  "collaboratorsLead": "Jaa kokoelmasi ja työskentele yhdessä työtovereidesi, ystäviesi tai perheesi kanssa",
+  "emptyTrash": "Empty trash"
 }

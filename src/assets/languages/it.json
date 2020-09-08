@@ -25,7 +25,6 @@
   "myCollections": "Le mie raccolte",
   "save": "Salva",
   "remove": "Rimuovi",
-  "elements": "Preferito",
   "about": "Chi Siamo",
   "blog": "Blog",
   "signInSocial": "Accedi con",
@@ -85,9 +84,6 @@
   "createGroup": "Crea un gruppo",
   "clickToMakeScreenshot": "Clicca per screenshot",
   "screenshot": "screenshot",
-  "elements1": "Preferito",
-  "elements2": "segnalibri",
-  "elements5": "segnalibri",
   "defaultCollection-0": "Cerca",
   "defaultCollection--1": "In arrivo",
   "defaultCollection--99": "Cestino",
@@ -156,7 +152,6 @@
   "importInfo2": "Puoi prendere questo file dal tuo browser o servizio nella sezione \"Esporta segnalibro\"",
   "loading": "Caricamento",
   "folders": "Cartelle",
-  "removeIt": "Rimuovi",
   "startImport": "Avvia l'importazione",
   "selectOtherFile": "Selezionare un altro file",
   "importing": "importando",
@@ -213,7 +208,7 @@
   "preview": "Anteprima",
   "site": "Site",
   "hide": "Nascondere",
-  "show": "spettacolo",
+  "show": "Mostra",
   "favorites": "Preferiti",
   "note": "Note",
   "bookmark": "Bookmark",
@@ -320,5 +315,6 @@
   "done": "Done",
   "darkTheme": "Dark theme",
   "me": "Lo sono",
-  "collaboratorsLead": "Condividi le tue raccolte e lavora in collaborazione con i tuoi colleghi, amici e familiari"
+  "collaboratorsLead": "Condividi le tue raccolte e lavora in collaborazione con i tuoi colleghi, amici e familiari",
+  "emptyTrash": "Empty trash"
 }

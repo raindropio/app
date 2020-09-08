@@ -44,7 +44,7 @@ class SettingsAccountUsage extends React.Component {
                 <Progress
                     display='infinite'
                     value={allBookmarksCollection.count}>
-                    {t.s('elements2')}
+                    {t.s('bookmarks')}
                 </Progress>
     
                 {/* User */}

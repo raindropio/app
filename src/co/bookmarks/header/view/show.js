@@ -30,12 +30,12 @@ class BookmarksHeaderViewShow extends React.Component {
             ['title', t.s('title')],
             ...(view != 'simple' ? [['excerpt', t.s('description')]] : []),
             ['tags', t.s('tags')],
-            ['info', _.capitalize(t.s('elements')) + ' ' + t.s('info').toLowerCase()]
+            ['info', _.capitalize(t.s('bookmarks')) + ' ' + t.s('info').toLowerCase()]
         ]
 
         return (
             <>
-                <Label>{t.s('show')} {t.s('in')} {t.s('view_'+view)}</Label>
+                <Label>{t.s('show')} {t.s('in')} {t.s('view_'+view).toLowerCase()}</Label>
                 
                 <div>
                     {options.map(([key, title])=>
