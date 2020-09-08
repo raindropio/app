@@ -13,7 +13,7 @@ import More from './more'
 export default class BookmarkEditForm extends React.Component {
     onSubmitForm = e=>{
         e.preventDefault()
-        this.props.onSubmit()
+        this.props.onSave()
     }
 
     render() {

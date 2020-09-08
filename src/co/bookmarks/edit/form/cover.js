@@ -35,7 +35,7 @@ class BookmarkEditFormCover extends React.Component {
                 coverId,
                 media
             })
-            this.props.onSubmit()
+            this.props.onCommit()
         },
 
         onScreenshot: async()=>{

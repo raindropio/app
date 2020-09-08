@@ -6,7 +6,7 @@ import { Checkbox } from '~co/common/form'
 export default class BookmarkEditFormMore extends React.Component {
     onChange = e=>{
         this.props.onChange({ important: e.target.checked })
-        this.props.onSubmit()
+        this.props.onCommit()
     }
 
     render() {

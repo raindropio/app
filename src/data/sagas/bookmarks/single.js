@@ -140,17 +140,18 @@ function* removeBookmark({_id, ignore=false, onSuccess, onFail}) {
 		return;
 
 	try{
-		yield call(Api.del, 'raindrop/'+_id)
+		const { item={} } = yield call(Api.del, 'raindrop/'+_id)
 
 		yield put({
 			type: BOOKMARK_REMOVE_SUCCESS,
 			_id,
+			item,
 			onSuccess, onFail
 		});
 	} catch (error) {
 		yield put({
 			type: BOOKMARK_REMOVE_ERROR,
-			_id: _id,
+			_id,
 			error,
 			onSuccess, onFail
 		});

@@ -11,7 +11,7 @@ class BookmarkEditFormTags extends React.Component {
     }
 
     render() {
-        const { autoFocus, status, item: { tags, collectionId }, onSubmit } = this.props
+        const { autoFocus, status, item: { tags, collectionId }, onCommit } = this.props
         const loading = status=='loading'
 
         return (
@@ -25,7 +25,7 @@ class BookmarkEditFormTags extends React.Component {
                         autoFocus={autoFocus=='tags'}
                         disabled={loading}
                         onChange={this.onChange}
-                        onBlur={onSubmit} />
+                        onBlur={onCommit} />
 
                     <Suggested {...this.props} />
                 </div>

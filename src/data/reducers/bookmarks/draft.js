@@ -155,8 +155,9 @@ export default function(state, action) {switch (action.type) {
 		return state
 	}
 
-	//Update drafts also
-	case BOOKMARK_UPDATE_SUCCESS:{
+	//Update/remove drafts also
+	case BOOKMARK_UPDATE_SUCCESS:
+	case BOOKMARK_REMOVE_SUCCESS:{
 		(Array.isArray(action.item) ? action.item : [action.item]).forEach(item=>{
 			for(const key in state.drafts)
 				if (state.drafts[key].item._id == item._id){
@@ -167,19 +168,6 @@ export default function(state, action) {switch (action.type) {
 					draft = draft.set('changedFields', [])
 
 					state = state.setIn(['drafts', key], draft)
-				}
-		})
-
-		return state
-	}
-
-	//Remove draft
-	case BOOKMARK_REMOVE_SUCCESS:{
-		(Array.isArray(action._id) ? action._id : [action._id]).forEach(_id=>{
-			for(const key in state.drafts)
-				if (state.drafts[key].item._id == _id){
-					state = state.setIn(['drafts', key, 'status'], 'removed')
-					break
 				}
 		})
 

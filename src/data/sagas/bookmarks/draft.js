@@ -14,56 +14,67 @@ export default function* () {
 	yield takeEvery(BOOKMARK_DRAFT_COMMIT, draftCommit)
 }
 
-function* draftLoad({_id, obj, config, ignore=false}) {
+function* draftLoad({ obj, config, ignore=false, ...draft }) {
 	if (ignore) return;
 
 	try{
-		//load by link
-		if (!Number.isInteger(parseInt(_id))){
-			const { ids=[] } = yield call(Api.post, 'check/url', { url: _id })
+		let _id, link
 
-			//existing bookmark, load it by id
+		//Known exact bookmark id
+		if (Number.isInteger(parseInt(draft._id)))
+			_id = draft._id
+		//Need to find out by link only
+		else {
+			const { ids=[] } = yield call(Api.post, 'check/url', { url: draft._id })
+
+			//existing
 			if (ids.length)
 				_id = ids[0]
 			//not found, it's new
-			else{
-				//config
-				const { save = true } = config
-
-				//set draft by link
-				yield put({
-					type: BOOKMARK_DRAFT_LOAD_SUCCESS,
-					_id,
-					item: {
-						collectionId: -1,
-						...obj,
-						link: _id
-					}
-				})
-
-				//save new bookmark automatically
-				if (save)
-					yield put({
-						type: BOOKMARK_DRAFT_COMMIT,
-						_id
-					})
-
-				return
-			}
+			else
+				link = draft._id				
 		}
 
-		//load exact ID
-		const { item={} } = yield call(Api.get, 'raindrop/'+_id)
+		//Existing bookmark
+		if (_id) {
+			const { item={} } = yield call(Api.get, 'raindrop/'+_id)
 
-		yield put({
-			type: BOOKMARK_DRAFT_LOAD_SUCCESS,
-			_id,
-			item
-		});
+			yield put({
+				type: BOOKMARK_DRAFT_LOAD_SUCCESS,
+				_id: draft._id,
+				item
+			})
+
+			return
+		}
+
+		//New
+		if (link) {
+			//config
+			const { save = true } = config
+
+			//set draft by link
+			yield put({
+				type: BOOKMARK_DRAFT_LOAD_SUCCESS,
+				_id: draft._id,
+				item: {
+					collectionId: -1,
+					...obj,
+					link
+				}
+			})
+
+			//save new bookmark automatically
+			if (save)
+				yield put({
+					type: BOOKMARK_DRAFT_COMMIT,
+					_id: draft._id
+				})
+		}
 	} catch (error) {
 		yield put({
 			type: BOOKMARK_DRAFT_LOAD_ERROR,
-			_id,
+			_id: draft._id,
 			error
 		});
 	}

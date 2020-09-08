@@ -12,7 +12,8 @@ import Error from './error'
 class EditBookmarkContainer extends React.Component {
 	static defaultProps = {
 		_id: undefined, //_id or link
-		blank: {}		//optional { title, excerpt, ...etc } used for new bookmarks
+		blank: {},		//optional { title, excerpt, ...etc } used for new bookmarks
+		autoFocus: ''
 	}
 
 	componentDidMount() {
@@ -22,7 +23,7 @@ class EditBookmarkContainer extends React.Component {
 	}
 
 	async componentWillUnmount() {
-		await this.handlers.onSubmit()
+		await this.handlers.onCommit()
 		
 		window.removeEventListener('beforeunload', this.onWindowClose)
 	}
@@ -46,7 +47,7 @@ class EditBookmarkContainer extends React.Component {
 
 	onWindowClose = (e)=>{
 		if (this.props.unsaved){
-			this.handlers.onSubmit()
+			this.handlers.onCommit()
 			
 			e.preventDefault()
 			e.returnValue = ''
@@ -63,8 +64,14 @@ class EditBookmarkContainer extends React.Component {
 			const { draftChange, _id } = this.props
 			draftChange(_id, obj)
 		},
+
+		onCommit: ()=>{
+			const { status } = this.props
+			if (status != 'new')
+				return this.handlers.onSave()
+		},
     
-        onSubmit: ()=>{
+        onSave: ()=>{
             return new Promise((res,rej)=>{
 				const { draftCommit, _id } = this.props
                 draftCommit(_id, res, rej)

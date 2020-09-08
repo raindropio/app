@@ -40,8 +40,8 @@ export default connect(
     () => {
         const getSuggestedTags = makeSuggestedTags()
     
-        return (state, props) => ({
-            suggested: getSuggestedTags(state, props.item._id)
+        return (state, { _id }) => ({
+            suggested: getSuggestedTags(state, _id)
         })
     }
 )(BookmarkEditFormTagsSuggested)
