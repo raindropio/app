@@ -24,14 +24,7 @@ export default class BookmarkEditFormButtons extends React.Component {
 
             case 'loaded':
                 return (
-                    <Buttons>
-                        <Button
-                            disabled
-                            data-block>
-                            <Icon name='check_active' />
-                            {t.s('saved')} <ShortDate date={created} />
-                        </Button>
-        
+                    <Buttons variant='between'>
                         <Button 
                             data-block
                             variant='link'
@@ -39,25 +32,32 @@ export default class BookmarkEditFormButtons extends React.Component {
                             onClick={this.props.onRemove}>
                             {t.s('remove')}
                         </Button>
+
+                        <Button
+                            disabled
+                            data-block>
+                            <Icon name='check_active' />
+                            {t.s('saved')} <ShortDate date={created} />
+                        </Button>
                     </Buttons>
                 )
 
             case 'removed':
                 return (
-                    <Buttons>
-                        <Button
-                            disabled
-                            data-block>
-                            <Icon name='check_active' />
-                            {t.s('removeSuccess')} <ShortDate date={lastUpdate} />
-                        </Button>
-        
+                    <Buttons variant='between'>
                         <Button 
                             data-block
                             variant='link'
                             accent='danger'
                             onClick={this.props.onRemove}>
                             {t.s('remove')} {t.s('from')} {t.s('defaultCollection--99')}
+                        </Button>
+
+                        <Button
+                            disabled
+                            data-block>
+                            <Icon name='check_active' />
+                            {t.s('removeSuccess')} <ShortDate date={lastUpdate} />
                         </Button>
                     </Buttons>
                 )

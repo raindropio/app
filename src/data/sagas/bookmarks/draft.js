@@ -92,21 +92,18 @@ function* draftCommit({ _id, ignore=false, onSuccess, onFail}) {
 
 	//new
 	if (!draft.item._id)
-		return yield put({
+		yield put({
 			type: BOOKMARK_CREATE_REQ,
 			draft: _id,
 			obj: draft.item,
 			onSuccess, onFail
 		})
-
 	//update
-	if (draft.changedFields.length)
-		return yield put({
+	else
+		yield put({
 			type: BOOKMARK_UPDATE_REQ,
 			_id: draft.item._id,
 			set: _.pick(draft.item, draft.changedFields),
 			onSuccess, onFail
 		})
-
-	onSuccess(draft.item)
 }

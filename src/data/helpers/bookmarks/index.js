@@ -137,6 +137,7 @@ export const blankSelectMode = Immutable({
 
 export const blankDraft = Immutable({
 	status: 'idle', //idle/loading/loaded/removed/error/saving/errorSaving/new
+	error: undefined,
 	item: normalizeBookmark({}, {flat: false}),
 	changedFields: emptyArray
 })

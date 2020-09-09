@@ -1,6 +1,10 @@
 .layout {
     grid-column: 1 / -1
     display: grid
+
+    &[data-stretch] {
+        width: 100%
+    }
 }
 
 .layout[data-type='default'] {

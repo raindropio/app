@@ -1,7 +1,7 @@
 import s from './index.module.styl'
 import React from 'react'
 
-import { Layout } from '~co/common/form'
+import { Layout, Separator } from '~co/common/form'
 import Cover from './cover'
 import Collection from './collection'
 import Tags from './tags'
@@ -22,10 +22,13 @@ export default class BookmarkEditForm extends React.Component {
                 <Layout type='grid'>
                     <Cover {...this.props} />
                     <Title  {...this.props} />
+                    
                     <Collection {...this.props} />
                     <Tags {...this.props} />
                     <Link {...this.props} />
                     <More {...this.props} />
+
+                    <Separator />
 
                     <Buttons {...this.props} />
                 </Layout>

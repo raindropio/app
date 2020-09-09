@@ -1,13 +1,12 @@
 import s from './index.module.styl'
 import React from 'react'
-import t from '~t'
 import { connect } from 'react-redux'
 import { draftLoad, draftCommit, draftChange, oneRemove, oneRecover } from '~data/actions/bookmarks'
 import { makeDraftItem, makeDraftStatus, makeDraftUnsaved } from '~data/selectors/bookmarks'
 
-import { Alert } from '~co/overlay/dialog'
+import { Error } from '~co/overlay/dialog'
 import Form from './form'
-import Error from './error'
+import Crash from './crash'
 
 class EditBookmarkContainer extends React.Component {
 	static defaultProps = {
@@ -29,13 +28,8 @@ class EditBookmarkContainer extends React.Component {
 	}
 
 	componentDidUpdate(prev) {
-		const { _id, status, item } = this.props
+		const { _id } = this.props
 
-		if (status != prev.status || item.type != prev.item.type) {
-			if (status == 'errorSaving')
-				Alert(t.s('saveError'), { variant: 'error' })
-        }
-        
         if (_id != prev._id){
 			//save unsaved changes if user try to open another bookmark
 			if (prev.unsaved)
@@ -74,58 +68,57 @@ class EditBookmarkContainer extends React.Component {
         onSave: ()=>{
             return new Promise((res,rej)=>{
 				const { draftCommit, _id } = this.props
-                draftCommit(_id, res, rej)
+
+                draftCommit(_id, res, e=>{
+					Error(e)
+					rej(e)
+				})
             })
 		},
 		
 		onRemove: ()=>{
 			const { oneRemove, item: { _id } } = this.props
 			if (_id)
-				oneRemove(_id)
+				oneRemove(_id, undefined, Error)
 		},
     
         onRecover: ()=>{
 			const { oneRecover, item: { _id } } = this.props
 			if (_id)
-				oneRecover(_id)
+				oneRecover(_id, undefined, Error)
 		}
     }
 
 	render() {
-		let content
+		let Component
 
 		switch(this.props.status){
-			case 'error':
-				content = <Error />;
-				break
-
-			default:
-				content = <Form {...this.props} {...this.handlers} />;
-				break
+			case 'error':	Component = Crash; break
+			default:		Component = Form; break
 		}
 
 		return (
 			<div className={s.edit}>
-				{content}
+				<Component 
+					{...this.props}
+					{...this.handlers} />
 			</div>
 		)
 	}
 }
 
-const makeMapStateToProps = () => {
-	const 
-		getDraftItem = makeDraftItem(),
-		getDraftStatus = makeDraftStatus(),
-		getDraftUnsaved = makeDraftUnsaved()
-
-	return (state, props)=>({
-		status: getDraftStatus(state, props),
-		item: getDraftItem(state, props),
-		unsaved: getDraftUnsaved(state, props)
-	})
-}
-
 export default connect(
-	makeMapStateToProps,
+	() => {
+		const 
+			getDraftItem = makeDraftItem(),
+			getDraftStatus = makeDraftStatus(),
+			getDraftUnsaved = makeDraftUnsaved()
+	
+		return (state, props)=>({
+			status: getDraftStatus(state, props),
+			item: getDraftItem(state, props),
+			unsaved: getDraftUnsaved(state, props)
+		})
+	},
 	{ draftLoad, draftCommit, draftChange, oneRemove, oneRecover }
 )(EditBookmarkContainer)

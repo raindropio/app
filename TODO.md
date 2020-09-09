@@ -39,8 +39,9 @@ Changes
     - use 'global' spaceId to get global filters or tags
     - bookmarks
         - draftLoad, draftChange, draftCommit actions changed, first argument now can be id or link
-        - no more draftEnsure, use draftLoad instead
+        - no more draftEnsure, use draftLoad instead; instead { save } use { autoCreate }
         - be sure to change draft selectors too! no more dedicated *link* param
+            - status notFound now 'new'
 - features
     + nested collections showed up in one list
     + web preview better

@@ -1,26 +1,30 @@
 import { createSelector } from 'reselect'
 import { blankDraft } from '../../helpers/bookmarks'
 
-//Draft
+export const getDraft = ({ bookmarks: { drafts } }, { _id })=>
+	(drafts[_id] || blankDraft)
+
+//Item
 export const makeDraftItem = ()=>createSelector(
-	[({bookmarks={}}, { _id })=>{
-		return (bookmarks.drafts[_id] || blankDraft).item
-	}],
-	(item)=>item
+	[getDraft],
+	({ item }) => item
 )
 
-//Draft Status
+//Status
 export const makeDraftStatus = ()=>createSelector(
-	[({bookmarks={}}, { _id })=>{
-		return (bookmarks.drafts[_id] || blankDraft).status
-	}],
-	(status)=>status
+	[getDraft],
+	({ status }) => status
 )
 
 //Unsaved
 export const makeDraftUnsaved = ()=>createSelector(
-	[({bookmarks={}}, { _id })=>{
-		return (bookmarks.drafts[_id] || blankDraft).changedFields
-	}],
-	(changedFields=[])=>changedFields.length>0
+	[getDraft],
+	({ changedFields=[] })=>changedFields.length>0
+)
+
+//Error
+export const makeDraftError = ()=>createSelector(
+	[getDraft],
+	({ status, error })=>
+		status == 'error' ? error : undefined
 )

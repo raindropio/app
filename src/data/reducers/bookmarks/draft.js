@@ -88,22 +88,32 @@ export default function(state, action) {switch (action.type) {
 	}
 
 	case BOOKMARK_DRAFT_LOAD_ERROR:{
-		const { _id } = action
+		const { _id, error } = action
 		let draft = state.drafts[_id] || blankDraft
 
 		//status
-		draft = draft.set('status','error')
+		draft = draft
+			.set('status','error')
+			.set('error', error)
 
 		return state.setIn(['drafts', _id], draft)
 	}
 
 	case BOOKMARK_DRAFT_COMMIT:{
 		const { _id } = action
-		let draft = state.drafts[_id] || blankDraft
+		let draft = state.drafts[_id]
 
-		if (draft.status == 'saving' ||
-			draft.status == 'loading')
+		//ignore when saving/loading/etc or when bookmark is not changed (and not new)
+		if (!draft ||
+			draft.status == 'idle' ||
+			draft.status == 'saving' ||
+			draft.status == 'loading' ||
+			(draft.item._id && !draft.changedFields.length)){
 			action.ignore = true
+			
+			if (typeof action.onSuccess == 'function')
+				action.onSuccess()
+		}
 		
 		return state
 	}
@@ -137,7 +147,7 @@ export default function(state, action) {switch (action.type) {
 		if (!draft) return state
 
 		return state
-			.setIn(['drafts', draft, 'status'], 'errorSaving')
+			.setIn(['drafts', draft, 'status'], 'new')
 	}
 
 	//Updating/Removing
@@ -167,36 +177,55 @@ export default function(state, action) {switch (action.type) {
 	}
 
 	//Update/remove drafts also
-	case BOOKMARK_UPDATE_SUCCESS:
-	case BOOKMARK_REMOVE_SUCCESS:{
+	case BOOKMARK_UPDATE_SUCCESS:{
 		(Array.isArray(action.item) ? action.item : [action.item]).forEach(item=>{
-			for(const key in state.drafts)
-				if (state.drafts[key] && 
-					state.drafts[key].item._id == item._id){
-					let draft = state.drafts[key]
+			for(const key in state.drafts){
+				let draft = state.drafts[key]
 
-					const update = normalizeBookmark(item, {flat: false})
+				//draft not found
+				if (!draft || !draft.item ||
+					draft.item._id != item._id) continue
 
-					//keep only changedFields that are not updated after last commit for some reason
-					draft = draft.set(
-						'changedFields',
-						draft.changedFields.filter(field=>
-							!_.isEqual(update[field], draft.item[field])
-						)
+				const update = normalizeBookmark(item, {flat: false})
+
+				//keep only changedFields that are not updated after last commit for some reason
+				draft = draft.set(
+					'changedFields',
+					draft.changedFields.filter(field=>
+						!_.isEqual(update[field], draft.item[field])
 					)
+				)
 
-					//do not override unsaved changedFields
-					draft = draft.set(
-						'item', {
-							...draft.item,
-							..._.omit(update, draft.changedFields)
-						}
-					)
+				//do not override unsaved changedFields
+				draft = draft.set(
+					'item', {
+						...draft.item,
+						..._.omit(update, draft.changedFields)
+					}
+				)
 
-					draft = draft.set('status', parseInt(draft.item.collectionId)!=-99 ? 'loaded' : 'removed')
+				draft = draft.set('status', parseInt(draft.item.collectionId)!=-99 ? 'loaded' : 'removed')
 
-					state = state.setIn(['drafts', key], draft)
-				}
+				state = state.setIn(['drafts', key], draft)
+			}
+		})
+
+		return state
+	}
+
+	case BOOKMARK_REMOVE_SUCCESS:{
+		(Array.isArray(action._id) ? action._id : [action._id]).forEach(_id=>{
+			for(const key in state.drafts){
+				let draft = state.drafts[key]
+
+				//draft not found
+				if (!draft || !draft.item ||
+					draft.item._id != _id) continue
+
+				draft = draft.set('status', 'removed')
+
+				state = state.setIn(['drafts', key], draft)
+			}
 		})
 
 		return state
