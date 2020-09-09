@@ -83,7 +83,9 @@ function* draftLoad({ newOne, ignore=false, ...draft }) {
 	}
 }
 
-function* draftCommit({ _id, onSuccess, onFail}) {
+function* draftCommit({ _id, ignore=false, onSuccess, onFail}) {
+	if (ignore) return;
+
 	const state = yield select()
 	const draft = state.bookmarks.getIn(['drafts', _id])
 	if (!draft) return

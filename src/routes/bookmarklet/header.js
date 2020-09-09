@@ -22,7 +22,7 @@ export default ()=>(
             </Button>
         </FirstAction>
 
-        <Title>{t.s('addBookmark')}</Title>
+        <Title>{t.s('saveLink')}</Title>
 
         <Space />
 

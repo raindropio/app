@@ -4,7 +4,7 @@ import {
 	BOOKMARK_CREATE_REQ, BOOKMARK_CREATE_SUCCESS, BOOKMARK_CREATE_ERROR,
 	BOOKMARK_UPDATE_REQ, BOOKMARK_UPDATE_SUCCESS, BOOKMARK_UPDATE_ERROR,
 	BOOKMARK_REMOVE_REQ, BOOKMARK_REMOVE_SUCCESS, BOOKMARK_REMOVE_ERROR,
-	BOOKMARK_DRAFT_LOAD_REQ, BOOKMARK_DRAFT_LOAD_SUCCESS, BOOKMARK_DRAFT_LOAD_ERROR, BOOKMARK_DRAFT_CHANGE
+	BOOKMARK_DRAFT_LOAD_REQ, BOOKMARK_DRAFT_LOAD_SUCCESS, BOOKMARK_DRAFT_LOAD_ERROR, BOOKMARK_DRAFT_CHANGE, BOOKMARK_DRAFT_COMMIT
 } from '../../constants/bookmarks'
 
 export default function(state, action) {switch (action.type) {
@@ -97,6 +97,17 @@ export default function(state, action) {switch (action.type) {
 		return state.setIn(['drafts', _id], draft)
 	}
 
+	case BOOKMARK_DRAFT_COMMIT:{
+		const { _id } = action
+		let draft = state.drafts[_id] || blankDraft
+
+		if (draft.status == 'saving' ||
+			draft.status == 'loading')
+			action.ignore = true
+		
+		return state
+	}
+
 	//Create new bookmark from draft
 	case BOOKMARK_CREATE_REQ:{
 		const { draft } = action
@@ -160,12 +171,29 @@ export default function(state, action) {switch (action.type) {
 	case BOOKMARK_REMOVE_SUCCESS:{
 		(Array.isArray(action.item) ? action.item : [action.item]).forEach(item=>{
 			for(const key in state.drafts)
-				if (state.drafts[key].item._id == item._id){
+				if (state.drafts[key] && 
+					state.drafts[key].item._id == item._id){
 					let draft = state.drafts[key]
 
-					draft = draft.set('item', normalizeBookmark(item, {flat: false}))
+					const update = normalizeBookmark(item, {flat: false})
+
+					//keep only changedFields that are not updated after last commit for some reason
+					draft = draft.set(
+						'changedFields',
+						draft.changedFields.filter(field=>
+							!_.isEqual(update[field], draft.item[field])
+						)
+					)
+
+					//do not override unsaved changedFields
+					draft = draft.set(
+						'item', {
+							...draft.item,
+							..._.omit(update, draft.changedFields)
+						}
+					)
+
 					draft = draft.set('status', parseInt(draft.item.collectionId)!=-99 ? 'loaded' : 'removed')
-					draft = draft.set('changedFields', [])
 
 					state = state.setIn(['drafts', key], draft)
 				}

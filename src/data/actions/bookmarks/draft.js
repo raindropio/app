@@ -7,7 +7,7 @@ import {
 export const draftLoad = (_id, newOne={})=>({
 	type: BOOKMARK_DRAFT_LOAD_REQ,
 	_id,
-	newOne
+	newOne //{ item: {}, autoCreate: true, preventDuplicate: true }
 })
 
 export const draftChange = (_id, changed)=>({

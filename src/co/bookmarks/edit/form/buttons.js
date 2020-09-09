@@ -29,7 +29,7 @@ export default class BookmarkEditFormButtons extends React.Component {
                             disabled
                             data-block>
                             <Icon name='check_active' />
-                            {t.s('addSuccess')} <ShortDate date={created} />
+                            {t.s('saved')} <ShortDate date={created} />
                         </Button>
         
                         <Button 
