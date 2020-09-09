@@ -34,31 +34,27 @@ export default class PickerImage extends React.Component {
         }
     }
 
-    onAddClick = (e)=>{
-        e.preventDefault()
+    onAddClick = ()=>
         this.setState({ add: true })
-    }
 
     onAddClose = ()=>
         this.setState({ add: false })
 
-    onScreenshotClick = async(e)=>{
-        e.preventDefault()
-
+    onScreenshotClick = async()=>{
         await this.props.onScreenshot()
         this.props.onClose()
     }
 
-    renderItem = ({ link })=>
-        <a 
+    renderItem = ({ link }, index)=>
+        <button 
             key={link}
-            href=''
             className={s.item}
-            onClick={(e)=>{ e.preventDefault(); this.handlers.onLink(link) }}>
+            autoFocus={!index}
+            onClick={()=>this.handlers.onLink(link)}>
             <img 
                 src={`${getThumbUri(link)}&mode=crop&width=128&height=96&dpr=${window.devicePixelRatio||1}`}
                 loading='lazy' />
-        </a>
+        </button>
 
     render() {
         const { items, onClose } = this.props
@@ -73,22 +69,21 @@ export default class PickerImage extends React.Component {
                         {items.map(this.renderItem)}
 
                         {!screenshotExists ? (
-                            <a 
-                                href=''
+                            <button 
                                 className={s.item}
                                 title={t.s('clickToMakeScreenshot')}
                                 onClick={this.onScreenshotClick}>
                                 <Icon name='web' />
-                            </a>
+                            </button>
                         ) : null}
 
-                        <a 
+                        <button 
                             ref={this.pinAdd}
                             className={s.item}
                             title={t.s('coverUpload')}
                             onClick={this.onAddClick}>
                             <Icon name='add' />
-                        </a>
+                        </button>
 
                         {this.state.add ? (
                             <PickerSource 

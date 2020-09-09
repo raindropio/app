@@ -8,8 +8,7 @@ export default class BookmarkEditFormTitle extends React.Component {
         this.props.onChange({ [e.target.getAttribute('name')]: e.target.value })
 
     render() {
-        const { autoFocus, status, item: { title, excerpt }, onCommit } = this.props
-        const loading = status=='loading'
+        const { autoFocus, item: { title, excerpt }, onCommit } = this.props
 
         return (
             <div>
@@ -19,7 +18,6 @@ export default class BookmarkEditFormTitle extends React.Component {
                     autoSize={true}
                     type='text'
                     required={true}
-                    disabled={loading}
                     autoComplete='off'
                     spellCheck='false'
                     autoFocus={autoFocus=='title'}
@@ -34,7 +32,6 @@ export default class BookmarkEditFormTitle extends React.Component {
                     autoSize={true}
                     multiline={true}
                     type='text'
-                    disabled={loading}
                     autoComplete='off'
                     spellCheck='false'
                     autoFocus={autoFocus=='excerpt'}

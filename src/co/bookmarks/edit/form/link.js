@@ -7,7 +7,7 @@ export default class BookmarkEditFormLink extends React.Component {
         this.props.onChange({ [e.target.getAttribute('name')]: e.target.value })
 
     render() {
-        const { autoFocus, status, item: { link }, onCommit } = this.props
+        const { autoFocus, item: { link }, onCommit } = this.props
 
         return (
             <>
@@ -16,7 +16,6 @@ export default class BookmarkEditFormLink extends React.Component {
                     autoSize={true}
                     autoFocus={autoFocus=='link'}
                     type='url'
-                    disabled={status=='loading'}
                     name='link'
                     value={link}
                     onChange={this.onChangeField}
