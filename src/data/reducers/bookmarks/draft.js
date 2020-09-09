@@ -233,10 +233,12 @@ export default function(state, action) {switch (action.type) {
 				const update = normalizeBookmark(item, {flat: false})
 
 				//keep only changedFields that are not updated after last commit for some reason
+				//be sure that only simple fields (non objects) are kept
 				draft = draft.set(
 					'changedFields',
 					draft.changedFields.filter(field=>
-						!_.isEqual(update[field], draft.item[field])
+						typeof draft.item[field] != 'object' &&
+						update[field] != draft.item[field]
 					)
 				)
 

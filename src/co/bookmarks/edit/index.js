@@ -98,9 +98,7 @@ class EditBookmarkContainer extends React.Component {
 		}
 
 		return (
-			<div 
-				key={this.props.status} //fix autoFocus
-				className={s.edit}>
+			<div className={s.edit}>
 				<Component 
 					{...this.props}
 					{...this.handlers} />
