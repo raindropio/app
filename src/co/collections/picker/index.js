@@ -28,7 +28,7 @@ export default class CollectionsPicker extends React.Component {
                     <Search 
                         autoFocus
                         value={this.state.options.search}
-                        placeholder={t.s('findOrCreateCollection')}
+                        placeholder={t.s('findOrCreateCollection')+'…'}
                         onChange={this.onSearchChange} />
                 </Layout>
 

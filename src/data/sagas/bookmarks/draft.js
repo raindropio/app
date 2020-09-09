@@ -4,7 +4,9 @@ import _ from 'lodash'
 
 import {
 	BOOKMARK_UPDATE_REQ, BOOKMARK_CREATE_REQ,
-	BOOKMARK_DRAFT_LOAD_REQ, BOOKMARK_DRAFT_LOAD_SUCCESS, BOOKMARK_DRAFT_LOAD_ERROR, BOOKMARK_DRAFT_COMMIT
+	BOOKMARK_DRAFT_LOAD_REQ, BOOKMARK_DRAFT_LOAD_SUCCESS, BOOKMARK_DRAFT_LOAD_ERROR,
+	BOOKMARK_DRAFT_COMMIT,
+	BOOKMARK_DRAFT_ENRICH_REQ, BOOKMARK_DRAFT_ENRICH_SUCCESS, BOOKMARK_DRAFT_ENRICH_ERROR
 } from '../../constants/bookmarks'
 
 //Requests
@@ -12,6 +14,7 @@ export default function* () {
 	//draft
 	yield takeEvery(BOOKMARK_DRAFT_LOAD_REQ, draftLoad)
 	yield takeEvery(BOOKMARK_DRAFT_COMMIT, draftCommit)
+	yield takeEvery(BOOKMARK_DRAFT_ENRICH_REQ, draftEnrich)
 }
 
 function* draftLoad({ newOne, ignore=false, ...draft }) {
@@ -73,6 +76,11 @@ function* draftLoad({ newOne, ignore=false, ...draft }) {
 					type: BOOKMARK_DRAFT_COMMIT,
 					_id: draft._id
 				})
+			else
+				yield put({
+					type: BOOKMARK_DRAFT_ENRICH_REQ,
+					_id: draft._id
+				})
 		}
 	} catch (error) {
 		yield put({
@@ -106,4 +114,28 @@ function* draftCommit({ _id, ignore=false, onSuccess, onFail}) {
 			set: _.pick(draft.item, draft.changedFields),
 			onSuccess, onFail
 		})
+}
+
+function* draftEnrich({ _id, ignore=false }) {
+	if (ignore) return;
+
+	const state = yield select()
+	const draft = state.bookmarks.getIn(['drafts', _id])
+	if (!draft) return
+
+	try{
+		const { item } = yield call(Api.get, 'parse?url='+encodeURIComponent(draft.item.link))
+
+		yield put({
+			type: BOOKMARK_DRAFT_ENRICH_SUCCESS,
+			_id,
+			item
+		})
+	} catch (error) {
+		yield put({
+			type: BOOKMARK_DRAFT_ENRICH_ERROR,
+			_id,
+			error
+		})
+	}
 }

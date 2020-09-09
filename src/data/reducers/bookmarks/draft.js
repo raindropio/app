@@ -4,7 +4,8 @@ import {
 	BOOKMARK_CREATE_REQ, BOOKMARK_CREATE_SUCCESS, BOOKMARK_CREATE_ERROR,
 	BOOKMARK_UPDATE_REQ, BOOKMARK_UPDATE_SUCCESS, BOOKMARK_UPDATE_ERROR,
 	BOOKMARK_REMOVE_REQ, BOOKMARK_REMOVE_SUCCESS, BOOKMARK_REMOVE_ERROR,
-	BOOKMARK_DRAFT_LOAD_REQ, BOOKMARK_DRAFT_LOAD_SUCCESS, BOOKMARK_DRAFT_LOAD_ERROR, BOOKMARK_DRAFT_CHANGE, BOOKMARK_DRAFT_COMMIT
+	BOOKMARK_DRAFT_LOAD_REQ, BOOKMARK_DRAFT_LOAD_SUCCESS, BOOKMARK_DRAFT_LOAD_ERROR, BOOKMARK_DRAFT_CHANGE, BOOKMARK_DRAFT_COMMIT,
+	BOOKMARK_DRAFT_ENRICH_REQ, BOOKMARK_DRAFT_ENRICH_SUCCESS
 } from '../../constants/bookmarks'
 
 export default function(state, action) {switch (action.type) {
@@ -116,6 +117,49 @@ export default function(state, action) {switch (action.type) {
 		}
 		
 		return state
+	}
+
+	//Enrich
+	case BOOKMARK_DRAFT_ENRICH_REQ:{
+		const { _id } = action
+		let draft = state.drafts[_id]
+
+		if (!draft){
+			action.ignore = true
+			return state
+		}
+
+		return state
+	}
+
+	case BOOKMARK_DRAFT_ENRICH_SUCCESS:{
+		const { _id, item } = action
+		let draft = state.drafts[_id]
+
+		if (!draft)
+			return state
+
+		//simple fields replace (if empty)
+		draft = draft.set(
+			'item',
+			draft.item.merge(
+				_.pick(
+					item,
+					['title']
+						.filter(field=>
+							!draft.item[field]
+						)
+				)
+			)
+		)
+
+		//cover/media
+		if (!draft.item.cover && item.media && item.media.length)
+			draft = draft
+				.setIn(['item', 'media'], item.media)
+				.setIn(['item', 'cover'], item.media[0].link)
+
+		return state.setIn(['drafts', _id], draft)
 	}
 
 	//Create new bookmark from draft
