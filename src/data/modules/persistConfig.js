@@ -1,7 +1,7 @@
 import Immutable from 'seamless-immutable'
 import { createTransform } from 'redux-persist'
 
-var throttle = 300
+var throttle = 0
 
 const ImmutableTransform = createTransform(
 	//save

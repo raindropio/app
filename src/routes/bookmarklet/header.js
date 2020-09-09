@@ -9,7 +9,9 @@ import Button from '~co/common/button'
 import Icon from '~co/common/icon'
 
 export default ()=>(
-    <Header>
+    <Header
+        data-fancy
+        data-no-shadow>
         <FirstAction>
             <Button
                 as='a'

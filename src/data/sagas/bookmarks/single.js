@@ -41,39 +41,35 @@ function* createBookmark({obj={}, ignore=false, draft, onSuccess, onFail}) {
 		return;
 
 	try{
-		const state = yield select()
-		var collectionId = obj.collectionId || state.config.last_collection
+		let item = { ...obj }
 
-		const [parsed, checkCollectionId] = yield all([
-			call(Api.get, 'parse?url='+encodeURIComponent(obj.link)),
-			spawn(Api.get, 'collection/'+collectionId)
-		])
+		//minimum info is already provided, grab all other in background on server
+		if (item.title)
+			item.pleaseParse = { weight: 1 }
+		//parse bookmark otherwise
+		else {
+			const parsed = yield call(Api.get, 'parse?url='+encodeURIComponent(item.link))
 
-		parsed.item = parsed.item || {}
+			//override empty values
+			for(const key in parsed.item)
+				if (!item[key])
+					item[key] = parsed.item[key]
+		}
 
-		//Collection not found, so reset it
-		if (!checkCollectionId || !checkCollectionId.result || collectionId<0)
-			collectionId = 0
+		//try to create bookmark on server
+		let res
+		try {
+			res = yield call(Api.post, 'raindrop', item)
+		} catch (e) {}
 
-		const canonicalURL = obj.link //parsed.item.meta.canonical||
-
-		const { item={} } = yield call(Api.post, 'raindrop', Object.assign({}, obj, {
-			url: canonicalURL,
-			link: canonicalURL,
-			title: parsed.item.title,
-			excerpt: parsed.item.excerpt,
-			media: parsed.item.media,
-			type: parsed.item.type,
-			html: parsed.item.html,
-			collectionId: parseInt(collectionId||-1),
-			cover: 0,
-			parser: parsed.item.parser
-		}))
+		//try again, maybe it's collectionId related issue
+		if (!res)
+			res = yield call(Api.post, 'raindrop', {...item, collectionId: -1 })
 
 		yield put({
 			type: BOOKMARK_CREATE_SUCCESS,
-			_id: item._id,
-			item,
+			_id: res.item._id,
+			item: res.item,
 			draft,
 			onSuccess, onFail
 		});

@@ -1,7 +1,7 @@
 import React from 'react'
 import t from '~t'
 import { connect } from 'react-redux'
-import { makeCollectionPath } from '~data/selectors/collections'
+import { makeCollectionPath, makeCollectionsStatus } from '~data/selectors/collections'
 import { refresh } from '~data/actions/collections'
 
 import { Label } from '~co/common/form'
@@ -55,7 +55,9 @@ class BookmarkEditFormCollection extends React.Component {
                         variant='outline'
                         disabled={status=='loading'}
                         onClick={this.onPickerClick}>
-                        <CollectionIcon {...path[path.length-1]} />
+                        <CollectionIcon 
+                            {...path[path.length-1]}
+                            loading={status=='loading'} />
                         {pathText}
                         <Icon name='arrow' />
                     </Button>
@@ -75,10 +77,12 @@ class BookmarkEditFormCollection extends React.Component {
 export default connect(
 	() => {
         const getCollectionPath = makeCollectionPath()
+        const getStatus = makeCollectionsStatus()
         const options = { self: true }
     
         return (state, { item: { collectionId } })=>({
-            path: getCollectionPath(state, collectionId, options)
+            path: getCollectionPath(state, collectionId, options),
+            status: getStatus(state)
         })
     },
 	{ refresh }
