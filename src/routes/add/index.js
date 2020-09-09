@@ -1,4 +1,6 @@
 import React from 'react'
+import { connect } from 'react-redux'
+import { getDraftStatus } from '~data/selectors/bookmarks'
 
 import Protected from '~co/screen/protected'
 import Screen from '~co/screen/basic'
@@ -9,9 +11,7 @@ import Events from './events'
 /*
     ?link=&title=
 */
-export default ({ location: { search } })=>{
-    const props = Object.fromEntries(new URLSearchParams(search))||{}
-
+function Add(props) {
     return (
         <Protected redirect>
             <Screen>
@@ -22,3 +22,14 @@ export default ({ location: { search } })=>{
         </Protected>
     )
 }
+
+export default connect(
+    (state, { location: { search } })=>{
+        const item = Object.fromEntries(new URLSearchParams(search))||{}
+
+        return {
+            status: getDraftStatus(state, item.link),
+            item
+        }
+    }
+)(Add)

@@ -1,9 +1,7 @@
 import React from 'react'
-import { connect } from 'react-redux'
-import { getDraftStatus } from '~data/selectors/bookmarks'
 
 //React to draft change events
-class BookmarkletEvents extends React.Component {
+export default class AddEvents extends React.Component {
     componentDidUpdate(prev) {
         const { status } = this.props
 
@@ -17,9 +15,3 @@ class BookmarkletEvents extends React.Component {
         return null
     }
 }
-
-export default connect(
-    (state, { link })=>({
-        status: getDraftStatus(state, link)
-    })
-)(BookmarkletEvents)

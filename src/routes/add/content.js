@@ -1,15 +1,13 @@
 import React from 'react'
 import Bookmark from '~co/bookmarks/edit'
 
-export default function BookmarkletContent({ link, title='' }) {
+export default function AddContent({ item }) {
     return (
         <Bookmark 
-            _id={link}
+            _id={item.link}
             
             new={{
-                item: {
-                    title
-                },
+                item,
                 autoCreate: false
             }}
 

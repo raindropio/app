@@ -2,7 +2,7 @@ import React from 'react'
 import { HashRouter, BrowserRouter, Route, Redirect, Switch } from 'react-router-dom'
 
 import Account from './account'
-import Bookmarklet from './bookmarklet'
+import Add from './add'
 import My from './my'
 import Settings from './settings'
 
@@ -16,7 +16,7 @@ export default ()=>(
     <Router>
         <Switch>
             <Route path='/account' component={Account} />
-            <Route path='/bookmarklet' component={Bookmarklet} />
+            <Route path='/add' component={Add} />
             <Route path='/my/:_id(-?\d+)/:search?' component={My} />
             <Route path='/settings' component={Settings} />
 
