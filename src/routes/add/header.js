@@ -8,12 +8,13 @@ import LogoIcon from '~assets/images/icons/icon_raw.svg?component'
 import Header, { Title, FirstAction, Space } from '~co/common/header'
 import Button from '~co/common/button'
 import Icon from '~co/common/icon'
+import { Button as ProfileButton } from '~co/user/profile'
 
 export default ({ status })=>{
     let title = ''
 
     switch(status) {
-        case 'new':     title = t.s('saveLink'); break
+        case 'new':     title = t.s('newBookmark'); break
         case 'loading': title = t.s('loading')+'…'; break
         default:        title = t.s('edit')+' '+t.s('bookmark').toLowerCase(); break
     }
@@ -37,6 +38,8 @@ export default ({ status })=>{
             <Title>{title}</Title>
     
             <Space />
+
+            <ProfileButton />
     
             <Button onClick={window.close}>
                 <Icon name='close' />
