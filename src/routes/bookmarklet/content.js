@@ -1,10 +1,10 @@
 import React from 'react'
 import Bookmark from '~co/bookmarks/edit'
 
-export default function BookmarkletContent({ url, title='' }) {
+export default function BookmarkletContent({ link, title='' }) {
     return (
         <Bookmark 
-            _id={url}
+            _id={link}
             
             new={{
                 item: {

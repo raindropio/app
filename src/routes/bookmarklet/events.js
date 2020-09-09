@@ -19,7 +19,7 @@ class BookmarkletEvents extends React.Component {
 }
 
 export default connect(
-    (state, { url })=>({
-        status: getDraftStatus(state, url)
+    (state, { link })=>({
+        status: getDraftStatus(state, link)
     })
 )(BookmarkletEvents)
