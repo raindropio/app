@@ -15,7 +15,14 @@ export default ({ location: { search } })=>{
     
                 <Bookmark 
                     _id={url}
-                    blank={{ title }}
+                    
+                    new={{
+                        item: {
+                            title
+                        },
+                        autoCreate: false
+                    }}
+
                     autoFocus='title' />
             </Screen>
         </Protected>

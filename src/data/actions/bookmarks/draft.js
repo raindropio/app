@@ -4,11 +4,10 @@ import {
 } from '../../constants/bookmarks'
 
 //Drafts
-export const draftLoad = (_id, obj={}, config={})=>({
+export const draftLoad = (_id, newOne={})=>({
 	type: BOOKMARK_DRAFT_LOAD_REQ,
 	_id,
-	obj,
-	config
+	newOne
 })
 
 export const draftChange = (_id, changed)=>({

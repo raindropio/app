@@ -14,10 +14,13 @@ export default function* () {
 	yield takeEvery(BOOKMARK_DRAFT_COMMIT, draftCommit)
 }
 
-function* draftLoad({ obj, config, ignore=false, ...draft }) {
+function* draftLoad({ newOne, ignore=false, ...draft }) {
 	if (ignore) return;
 
 	try{
+		//config for newly created
+		const { autoCreate = true, preventDuplicate = true } = newOne
+
 		let _id, link
 
 		//Known exact bookmark id
@@ -25,13 +28,16 @@ function* draftLoad({ obj, config, ignore=false, ...draft }) {
 			_id = draft._id
 		//Need to find out by link only
 		else {
-			const { ids=[] } = yield call(Api.post, 'check/url', { url: draft._id })
+			if (preventDuplicate){
+				const { ids=[] } = yield call(Api.post, 'check/url', { url: draft._id })
 
-			//existing
-			if (ids.length)
-				_id = ids[0]
+				//existing
+				if (ids.length)
+					_id = ids[0]
+			}
+			
 			//not found, it's new
-			else
+			if (!_id)
 				link = draft._id				
 		}
 
@@ -50,22 +56,19 @@ function* draftLoad({ obj, config, ignore=false, ...draft }) {
 
 		//New
 		if (link) {
-			//config
-			const { save = true } = config
-
 			//set draft by link
 			yield put({
 				type: BOOKMARK_DRAFT_LOAD_SUCCESS,
 				_id: draft._id,
 				item: {
 					collectionId: -1,
-					...obj,
+					...newOne.item||{},
 					link
 				}
 			})
 
-			//save new bookmark automatically
-			if (save)
+			//create new bookmark automatically
+			if (autoCreate)
 				yield put({
 					type: BOOKMARK_DRAFT_COMMIT,
 					_id: draft._id

@@ -40,6 +40,7 @@ Changes
     - bookmarks
         - draftLoad, draftChange, draftCommit actions changed, first argument now can be id or link
         - no more draftEnsure, use draftLoad instead
+        - be sure to change draft selectors too! no more dedicated *link* param
 - features
     + nested collections showed up in one list
     + web preview better

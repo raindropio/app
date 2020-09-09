@@ -11,9 +11,9 @@ import Error from './error'
 
 class EditBookmarkContainer extends React.Component {
 	static defaultProps = {
-		_id: undefined, //_id or link
-		blank: {},		//optional { title, excerpt, ...etc } used for new bookmarks
-		autoFocus: ''
+		_id:				undefined, //_id or link
+		new:				{}, //optional, { item: {}, autoCreate: true, preventDuplicate: true }
+		autoFocus:			''
 	}
 
 	componentDidMount() {
@@ -56,8 +56,8 @@ class EditBookmarkContainer extends React.Component {
 
 	handlers = {
         onLoad: ()=>{
-			const { draftLoad, _id, blank } = this.props
-			draftLoad(_id, blank, { save: false })
+			const { draftLoad, _id } = this.props
+			draftLoad(_id, this.props.new)
 		},
 
         onChange: (obj)=>{
