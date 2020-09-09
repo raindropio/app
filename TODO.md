@@ -40,8 +40,8 @@ Changes
     - bookmarks
         - draftLoad, draftChange, draftCommit actions changed, first argument now can be id or link
         - no more draftEnsure, use draftLoad instead; instead { save } use { autoCreate }
-        - be sure to change draft selectors too! no more dedicated *link* param
-            - status notFound now 'new'
+        - be sure to change draft selectors too! instead object it accepts only 1 argument
+            - status notFound now called 'new'
 - features
     + nested collections showed up in one list
     + web preview better

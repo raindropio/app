@@ -2,7 +2,7 @@ import s from './index.module.styl'
 import React from 'react'
 import { connect } from 'react-redux'
 import { draftLoad, draftCommit, draftChange, oneRemove, oneRecover } from '~data/actions/bookmarks'
-import { makeDraftItem, makeDraftStatus, makeDraftUnsaved } from '~data/selectors/bookmarks'
+import { getDraftItem, getDraftStatus, makeDraftUnsaved } from '~data/selectors/bookmarks'
 
 import { Error } from '~co/overlay/dialog'
 import Form from './form'
@@ -109,15 +109,12 @@ class EditBookmarkContainer extends React.Component {
 
 export default connect(
 	() => {
-		const 
-			getDraftItem = makeDraftItem(),
-			getDraftStatus = makeDraftStatus(),
-			getDraftUnsaved = makeDraftUnsaved()
+		const getDraftUnsaved = makeDraftUnsaved()
 	
-		return (state, props)=>({
-			status: getDraftStatus(state, props),
-			item: getDraftItem(state, props),
-			unsaved: getDraftUnsaved(state, props)
+		return (state, { _id })=>({
+			status: getDraftStatus(state, _id),
+			item: getDraftItem(state, _id),
+			unsaved: getDraftUnsaved(state, _id)
 		})
 	},
 	{ draftLoad, draftCommit, draftChange, oneRemove, oneRecover }

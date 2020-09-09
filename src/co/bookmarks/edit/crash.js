@@ -1,7 +1,7 @@
 import React from 'react'
 import t from '~t'
 import { connect } from 'react-redux'
-import { makeDraftError } from '~data/selectors/bookmarks'
+import { getDraftError } from '~data/selectors/bookmarks'
 
 import { Layout, Buttons } from '~co/common/form'
 import Alert from '~co/common/alert'
@@ -27,11 +27,7 @@ function EditBookmarkCrash({ error, onLoad }) {
 }
 
 export default connect(
-    () => {
-        const getDraftError = makeDraftError()
-    
-        return (state, props)=>({
-            error: getDraftError(state, props)
-        })
-    }
+    (state, { _id })=>({
+        error: getDraftError(state, _id)
+    })
 )(EditBookmarkCrash)

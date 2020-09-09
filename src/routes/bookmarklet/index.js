@@ -3,27 +3,18 @@ import React from 'react'
 import Protected from '~co/screen/protected'
 import Screen from '~co/screen/basic'
 import Header from './header'
-import Bookmark from '~co/bookmarks/edit'
+import Content from './content'
+import Events from './events'
 
 export default ({ location: { search } })=>{
-    const { url, title='' } = Object.fromEntries(new URLSearchParams(search))||{}
+    const props = Object.fromEntries(new URLSearchParams(search))||{}
 
     return (
         <Protected redirect>
             <Screen>
-                <Header />
-    
-                <Bookmark 
-                    _id={url}
-                    
-                    new={{
-                        item: {
-                            title
-                        },
-                        autoCreate: false
-                    }}
-
-                    autoFocus='title' />
+                <Header {...props} />
+                <Content {...props} />
+                <Events {...props} />
             </Screen>
         </Protected>
     )
