@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { bookmark, tags, makeIsSelected, makeHighlight, makeCreatorRef, selectModeWorking, getGridSize } from '~data/selectors/bookmarks'
-import { copyTextToClipboard } from '~modules/strings'
+import { copyText } from '~modules/browser'
 
 import View from './view'
 import Contextmenu from './contextmenu'
@@ -58,7 +58,7 @@ class BookmarkItem extends React.Component {
             this.props.actions.oneRemove(this.props.item._id),
 
         onCopyLinkClick: ()=>
-            copyTextToClipboard(this.props.item.link),
+            copyText(this.props.item.link),
 
         onCreateScreenshotClick: ()=>
             this.props.actions.oneScreenshot(this.props.item._id),

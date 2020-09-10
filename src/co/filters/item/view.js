@@ -1,6 +1,6 @@
 import s from './view.module.styl'
 import React from 'react'
-import { humanNumber } from '~modules/strings'
+import { compact } from '~modules/format/number'
 
 import { Item, ItemTitle, ItemInfo } from '~co/common/list'
 import SuperLink from '~co/common/superLink'
@@ -26,7 +26,7 @@ export default class FiltersItemView extends React.Component {
                     <Title _id={_id} />
                 </ItemTitle>
 
-                {count ? <ItemInfo>{humanNumber(count)}</ItemInfo> : null}
+                {count ? <ItemInfo>{compact(count)}</ItemInfo> : null}
 
                 {focusable && (
                     <SuperLink 

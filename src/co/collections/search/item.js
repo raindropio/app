@@ -1,7 +1,7 @@
 import s from './item.module.styl'
 import _ from 'lodash'
 import React from 'react'
-import { humanNumber } from '~modules/strings'
+import { compact } from '~modules/format/number'
 
 import { Link } from 'react-router-dom'
 import { Item, ItemTitle, ItemIcon, ItemInfo } from '~co/common/list'
@@ -25,7 +25,7 @@ function CollectionSearchItem({ title, cover, _id, count, search, getLink }) {
 
             {count ? (
                     <ItemInfo className={s.count}>
-                        {humanNumber(count)}
+                        {compact(count)}
                     </ItemInfo>
                 ) : null}
 

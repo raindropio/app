@@ -1,7 +1,7 @@
 import s from './view.module.styl'
 import React from 'react'
 import t from '~t'
-import { humanNumber } from '~modules/strings'
+import { compact } from '~modules/format/number'
 
 import { Item, ItemTitle, ItemInfo, ItemActions } from '~co/common/list'
 import SuperLink from '../../common/superLink'
@@ -69,7 +69,7 @@ export default class CollectionsItemView extends React.PureComponent {
 
                 {count ? (
                     <ItemInfo className={s.count}>
-                        {humanNumber(count)}
+                        {compact(count)}
                     </ItemInfo>
                 ) : null}
 

@@ -1,7 +1,7 @@
 import s from './view.module.styl'
 import React from 'react'
 import t from '~t'
-import { humanNumber } from '~modules/strings'
+import { compact } from '~modules/format/number'
 
 import { Item, ItemTitle, ItemInfo, ItemActions } from '~co/common/list'
 import Button from '~co/common/button'
@@ -28,7 +28,7 @@ export default class TagsItemView extends React.Component {
 
                 <ItemTitle>{_id}</ItemTitle>
 
-                {count ? <ItemInfo>{humanNumber(count)}</ItemInfo> : null}
+                {count ? <ItemInfo>{compact(count)}</ItemInfo> : null}
                 <ItemActions>
                     {etc.onContextMenu && (
                         <Button 
