@@ -6,7 +6,8 @@ import {
 	BOOKMARK_UPDATE_REQ, BOOKMARK_CREATE_REQ,
 	BOOKMARK_DRAFT_LOAD_REQ, BOOKMARK_DRAFT_LOAD_SUCCESS, BOOKMARK_DRAFT_LOAD_ERROR,
 	BOOKMARK_DRAFT_COMMIT,
-	BOOKMARK_DRAFT_ENRICH, BOOKMARK_DRAFT_CHANGE
+	BOOKMARK_DRAFT_ENRICH, BOOKMARK_DRAFT_CHANGE,
+	BOOKMARK_DRAFT_COVER_UPLOAD
 } from '../../constants/bookmarks'
 
 //Requests
@@ -15,6 +16,7 @@ export default function* () {
 	yield takeEvery(BOOKMARK_DRAFT_LOAD_REQ, draftLoad)
 	yield takeEvery(BOOKMARK_DRAFT_COMMIT, draftCommit)
 	yield takeEvery(BOOKMARK_DRAFT_ENRICH, draftEnrich)
+	yield takeEvery(BOOKMARK_DRAFT_COVER_UPLOAD, draftCoverUpload)
 }
 
 function* draftLoad({ newOne, ignore=false, ...draft }) {
@@ -96,7 +98,7 @@ function* draftCommit({ _id, ignore=false, onSuccess, onFail}) {
 
 	const state = yield select()
 	const draft = state.bookmarks.getIn(['drafts', _id])
-	if (!draft) return
+	if (!draft) return onSuccess()
 
 	//new
 	if (!draft.item._id)
@@ -143,4 +145,29 @@ function* draftEnrich({ _id, ignore=false }) {
 				changed
 			})
 	} catch (error) {}
+}
+
+function* draftCoverUpload({ _id, cover, ignore=false, onSuccess, onFail }) {
+	if (ignore) return
+
+	try{
+		const state = yield select()
+		const draft = state.bookmarks.getIn(['drafts', _id])
+		if (!draft || !draft.item._id) throw new Error('draft is new, so it should be saved first to upload cover')
+
+		const { item={} } = yield call(Api.upload, `raindrop/${draft.item._id}/cover`, { cover })
+
+		yield put({
+			type: BOOKMARK_UPDATE_REQ,
+			_id: draft.item._id,
+			set: {
+				media: item.media,
+				coverId: item.coverId,
+				cover: item.cover
+			},
+			onSuccess, onFail
+		});
+	} catch (error) {
+		onFail(error)
+	}
 }

@@ -19,7 +19,6 @@ export default class BookmarkEditForm extends React.Component {
     render() {
         return (
             <form 
-                key={this.props.item._id+this.props.autoFocus} //fix autoFocus
                 className={s.form}
                 onSubmit={this.onSubmitForm}>
                 <Layout type='grid'>

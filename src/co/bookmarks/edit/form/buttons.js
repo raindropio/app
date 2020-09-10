@@ -73,7 +73,7 @@ export default class BookmarkEditFormButtons extends React.Component {
                             type='submit'
                             variant='primary'
                             data-block
-                            value={t.s('saveLink')} />
+                            value={t.s('save')} />
                     </Buttons>
                 )
         }

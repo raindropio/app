@@ -1,7 +1,7 @@
 import s from './index.module.styl'
 import React from 'react'
 import { connect } from 'react-redux'
-import { draftLoad, draftCommit, draftChange, oneRemove, oneRecover } from '~data/actions/bookmarks'
+import { draftLoad, draftCommit, draftChange, draftCoverUpload, oneRemove, oneRecover } from '~data/actions/bookmarks'
 import { getDraftItem, getDraftStatus, makeDraftUnsaved } from '~data/selectors/bookmarks'
 
 import { Error } from '~co/overlay/dialog'
@@ -59,7 +59,7 @@ class EditBookmarkContainer extends React.Component {
 			draftChange(_id, obj)
 		},
 
-		onCommit: ()=>{
+		onCommit: async()=>{
 			const { status } = this.props
 			if (status != 'new')
 				return this.handlers.onSave()
@@ -74,6 +74,18 @@ class EditBookmarkContainer extends React.Component {
 					rej(e)
 				})
             })
+		},
+
+		onUploadCover: async(file)=>{
+			//save draft before if it's new
+            if (!this.props.item._id)
+                await this.handlers.onSave()
+
+            await new Promise((res, rej)=>
+                this.props.draftCoverUpload(this.props._id, file, res, rej)
+            )
+
+            await this.handlers.onCommit()
 		},
 		
 		onRemove: ()=>{
@@ -117,5 +129,5 @@ export default connect(
 			unsaved: getDraftUnsaved(state, _id)
 		})
 	},
-	{ draftLoad, draftCommit, draftChange, oneRemove, oneRecover }
+	{ draftLoad, draftCommit, draftChange, draftCoverUpload, oneRemove, oneRecover }
 )(EditBookmarkContainer)

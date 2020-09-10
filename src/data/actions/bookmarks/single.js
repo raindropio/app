@@ -2,7 +2,7 @@ import wrapFunc from '../../utils/wrapFunc'
 import {
 	BOOKMARK_CREATE_REQ, BOOKMARK_UPDATE_REQ, BOOKMARK_REMOVE_REQ, BOOKMARK_UPLOAD_REQ,
 	BOOKMARK_RECOVER, BOOKMARK_IMPORTANT, BOOKMARK_SCREENSHOT, BOOKMARK_REPARSE, BOOKMARK_MOVE, BOOKMARK_PRELOAD,
-	BOOKMARK_REORDER, BOOKMARK_COVER_UPLOAD_REQ
+	BOOKMARK_REORDER
 } from '../../constants/bookmarks'
 
 //High level API
@@ -58,14 +58,6 @@ export const oneReorder = (_id, toId)=>({
 	type: BOOKMARK_REORDER,
 	_id: parseInt(_id),
 	toId: parseInt(toId)
-})
-
-export const oneCoverUpload = (_id, cover, onSuccess, onFail)=>({
-	type: BOOKMARK_COVER_UPLOAD_REQ,
-	_id: parseInt(_id),
-	cover,
-	onSuccess: wrapFunc(onSuccess),
-	onFail: wrapFunc(onFail)
 })
 
 //Low-level API

@@ -10,6 +10,7 @@ import PickerSource from '~co/picker/source/popover'
 export default class PickerImage extends React.Component {
     static defaultProps = {
         items: [], //[{ link }]
+        selected: 0, //index
         onLink: undefined, //async
         onFile: undefined, //async
         onScreenshot: undefined, //async
@@ -49,7 +50,7 @@ export default class PickerImage extends React.Component {
         <button 
             key={link}
             className={s.item}
-            autoFocus={!index}
+            autoFocus={this.props.selected == index}
             onClick={()=>this.handlers.onLink(link)}>
             <img 
                 src={`${getThumbUri(link)}&mode=crop&width=128&height=96&dpr=${window.devicePixelRatio||1}`}

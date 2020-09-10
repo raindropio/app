@@ -1,14 +1,12 @@
 import styles from './cover.module.styl'
 import React from 'react'
 import t from '~t'
-import { connect } from 'react-redux'
-import { oneCoverUpload } from '~data/actions/bookmarks'
 
 import Cover from '~co/bookmarks/item/cover'
 import Icon from '~co/common/icon'
 import ImagePicker from '~co/picker/image'
 
-class BookmarkEditFormCover extends React.Component {
+export default class BookmarkEditFormCover extends React.Component {
     state = {
         modal: false
     }
@@ -42,14 +40,13 @@ class BookmarkEditFormCover extends React.Component {
             this.handlers.onLink('<screenshot>')
         },
 
-        onFile: (file)=>
-            new Promise((res, rej)=>
-                this.props.oneCoverUpload(this.props.item._id, file, res, rej)
-            )
+        onFile: async(file)=>{
+            return this.props.onUploadCover(file)
+        }
     }
 
     render() {
-        const { item: { cover, link, media } } = this.props
+        const { item: { cover, coverId, link, media } } = this.props
 
         return (
             <div className={styles.wrap}>
@@ -72,14 +69,10 @@ class BookmarkEditFormCover extends React.Component {
                 {this.state.modal && (
                     <ImagePicker
                         items={media}
+                        selected={coverId}
                         {...this.handlers} />
                 )}
             </div>
         )
     }
 }
-
-export default connect(
-	undefined,
-	{ oneCoverUpload },
-)(BookmarkEditFormCover)
