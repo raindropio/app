@@ -3,9 +3,11 @@ import { Helmet } from 'react-helmet'
 import t from '~t'
 
 import { Header } from '~co/screen/splitview/reader'
-import { Space, SpaceAction } from '~co/common/header'
+import { Space } from '~co/common/header'
 import Tabs from '~co/common/tabs'
 import Settings from './settings'
+import Button from '~co/common/button'
+import Icon from '~co/common/icon'
 
 export default class ReaderHeader extends React.PureComponent {
     defaultTabs = [
@@ -53,7 +55,13 @@ export default class ReaderHeader extends React.PureComponent {
                     
                 <Space/>
 
-                <SpaceAction />
+                <Button
+                    as='a'
+                    href={item.link}
+                    target='_blank'>
+                    <Icon name='open' />
+                </Button>
+
                 <Settings
                     tab={tab}
                     item={item} />
