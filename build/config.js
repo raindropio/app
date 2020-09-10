@@ -13,6 +13,7 @@ const CopyPlugin = require('copy-webpack-plugin')
 //Params
 process.env.APP_TARGET = process.env.APP_TARGET || 'default'
 process.env.APP_PUBLIC_PATH = process.env.APP_PUBLIC_PATH || ''
+process.env.SENTRY_RELEASE = String(new Date().getTime())
 
 const isProd = (process.env.NODE_ENV == 'production')
 
@@ -141,12 +142,15 @@ module.exports = {
 		}),
 
 		//Sentry
-		new SentryCliPlugin({
-			dryRun: !isProd,
-			include: './src',
-			ignore: [ 'node_modules', 'build', 'dist' ],
-			configFile: path.resolve(__dirname, 'sentry.properties'),
-		}),
+		...(process.env.SENTRY_AUTH_TOKEN ? [
+			new SentryCliPlugin({
+				release: process.env.SENTRY_RELEASE,
+				dryRun: !isProd,
+				include: './src',
+				ignore: [ 'node_modules', 'build', 'dist' ],
+				configFile: path.resolve(__dirname, 'sentry.properties'),
+			})	
+		] : []),
 
 		//Post plugins
 		...(isProd ? [

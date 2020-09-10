@@ -4,9 +4,11 @@ import config from '~config'
 import pkg from '~package.json'
 
 //Firefox sending errors without sourcemap, so just ignore them at all
-if (process.env.NODE_ENV !== 'development') {
+if (process.env.NODE_ENV !== 'development' &&
+    process.env.SENTRY_RELEASE) {
     Sentry.init({
         ...config.vendors.sentry,
+        release: process.env.SENTRY_RELEASE,
         ignoreErrors: [
             /ResizeObserver loop.*/i
         ],
