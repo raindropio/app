@@ -11,6 +11,7 @@ export default {
         app: 'https://app.raindrop.io',
         download: 'https://raindrop.io/download',
         blog: 'https://blog.raindrop.io',
+        better: 'https://better.raindrop.io',
         twitter: 'https://twitter.com/raindrop_io',
         translation: 'https://crowdin.com/project/raindrop',
         about: 'https://raindrop.io/about',

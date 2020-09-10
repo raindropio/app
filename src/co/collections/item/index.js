@@ -95,7 +95,7 @@ export default class CollectionsItem extends React.PureComponent {
             if ((!this.props.item.count && !this.props.expandable) || 
                 await Confirm(t.s('areYouSure'), {
                     variant: 'warning',
-                    description: t.s('collectionDeleteConfirm'),
+                    description: this.props.item._id != -99 ? t.s('collectionDeleteConfirm') : '',
                     ok: t.s('remove')+' '+this.props.item.title
                 }))
                 this.props.actions.oneRemove(this.props.item._id)

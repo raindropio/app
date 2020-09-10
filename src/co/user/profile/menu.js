@@ -46,7 +46,7 @@ function UserProfileMenu({
                     {t.s('whatsNew')}?
                 </MenuItem>
 
-                <MenuItem href={config.links.blog} target='_blank'>
+                <MenuItem href={config.links.better} target='_blank'>
                     <Icon name='like' />
                     {t.s('pro_nextFeatures')}
                 </MenuItem>
