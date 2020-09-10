@@ -107,7 +107,7 @@ export default function(state = initialState, action){switch (action.type) {
 const initialState = Immutable({
     mode: 'new', //all|new|from_scratch
     file: {
-        status: 'empty', //empty|loading|error|loaded
+        status: 'idle', //idle|empty|loading|error|loaded
         name: '',
         items: [],
         count: {

@@ -2,7 +2,7 @@ import s from './file.module.styl'
 import React from 'react'
 import t from '~t'
 import { connect } from 'react-redux'
-import { upload } from '~data/actions/import'
+import { upload, cancel } from '~data/actions/import'
 
 import { Error } from '~co/overlay/dialog'
 import { Label } from '~co/common/form'
@@ -24,7 +24,7 @@ class ImportFile extends React.Component {
     }
 
     renderButton = ()=>{
-        const { file: { status, name, count } } = this.props
+        const { file: { status, name, count }, cancel } = this.props
 
         switch(status) {
             case 'loading':
@@ -42,6 +42,23 @@ class ImportFile extends React.Component {
                         <span>
                             {count.folders} {t.s('folders').toLowerCase()}, {count.bookmarks} {t.s('bookmarks')} {t.s('und')} {count.tags} {t.s('tags').toLowerCase()}
                         </span>
+                    </div>
+                )
+
+            case 'empty':
+                return (
+                    <div>
+                        <Alert variant='warning'>
+                            <b>{t.s('noBookmarks')}</b>
+                        </Alert>
+                        <br />
+        
+                        <Button
+                            variant='outline'
+                            onClick={cancel}>
+                            <Icon name='refresh' />
+                            {t.s('selectOtherFile')}
+                        </Button>
                     </div>
                 )
 
@@ -85,5 +102,5 @@ export default connect(
     state => ({
         file: state.import.file
     }),
-    { upload }
+    { upload, cancel }
 )(ImportFile)
