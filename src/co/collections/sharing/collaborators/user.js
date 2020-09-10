@@ -31,7 +31,7 @@ export default class CollectionSharingCollaboratorsUser extends React.PureCompon
         return (
             <Item>
                 <ItemIcon>
-                    <Avatar src={email_MD5} size='64' />
+                    <Avatar src={email_MD5} size='60' />
                 </ItemIcon>
 
                 <ItemTitle>

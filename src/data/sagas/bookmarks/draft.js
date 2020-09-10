@@ -6,7 +6,7 @@ import {
 	BOOKMARK_UPDATE_REQ, BOOKMARK_CREATE_REQ,
 	BOOKMARK_DRAFT_LOAD_REQ, BOOKMARK_DRAFT_LOAD_SUCCESS, BOOKMARK_DRAFT_LOAD_ERROR,
 	BOOKMARK_DRAFT_COMMIT,
-	BOOKMARK_DRAFT_ENRICH_REQ, BOOKMARK_DRAFT_ENRICH_SUCCESS, BOOKMARK_DRAFT_ENRICH_ERROR
+	BOOKMARK_DRAFT_ENRICH, BOOKMARK_DRAFT_CHANGE
 } from '../../constants/bookmarks'
 
 //Requests
@@ -14,7 +14,7 @@ export default function* () {
 	//draft
 	yield takeEvery(BOOKMARK_DRAFT_LOAD_REQ, draftLoad)
 	yield takeEvery(BOOKMARK_DRAFT_COMMIT, draftCommit)
-	yield takeEvery(BOOKMARK_DRAFT_ENRICH_REQ, draftEnrich)
+	yield takeEvery(BOOKMARK_DRAFT_ENRICH, draftEnrich)
 }
 
 function* draftLoad({ newOne, ignore=false, ...draft }) {
@@ -76,11 +76,11 @@ function* draftLoad({ newOne, ignore=false, ...draft }) {
 					type: BOOKMARK_DRAFT_COMMIT,
 					_id: draft._id
 				})
-			else
-				yield put({
-					type: BOOKMARK_DRAFT_ENRICH_REQ,
-					_id: draft._id
-				})
+
+			yield put({
+				type: BOOKMARK_DRAFT_ENRICH,
+				_id: draft._id
+			})
 		}
 	} catch (error) {
 		yield put({
@@ -124,18 +124,23 @@ function* draftEnrich({ _id, ignore=false }) {
 	if (!draft) return
 
 	try{
-		const { item } = yield call(Api.get, 'parse?url='+encodeURIComponent(draft.item.link))
+		const { item, error } = yield call(Api.get, 'parse?url='+encodeURIComponent(draft.item.link))
+		if (error) return
 
-		yield put({
-			type: BOOKMARK_DRAFT_ENRICH_SUCCESS,
-			_id,
-			item
-		})
-	} catch (error) {
-		yield put({
-			type: BOOKMARK_DRAFT_ENRICH_ERROR,
-			_id,
-			error
-		})
-	}
+		let changed = {}
+
+		//set cover/media
+		if (item.media && item.media.length){
+			changed.media = item.media
+			changed.cover = item.media[0].link
+			changed.coverId = 0
+		}
+
+		if (Object.keys(changed).length)
+			yield put({
+				type: BOOKMARK_DRAFT_CHANGE,
+				_id,
+				changed
+			})
+	} catch (error) {}
 }

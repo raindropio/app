@@ -36,7 +36,7 @@ class UserProfileButton extends React.PureComponent {
                     {...etc}
                     ref={this.pin}
                     onClick={this.onProfileClick}>
-                    <Avatar src={user.email_MD5} size='40' />
+                    <Avatar src={user.email_MD5} size='60' />
                     {children && children(user)}
                     <Icon name='arrow' size='micro' />
                 </Button>

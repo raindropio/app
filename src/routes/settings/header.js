@@ -29,7 +29,7 @@ class SettingsHeader extends React.Component {
                 <Space />
 
                 <Title>
-                    {t.s('settings')} &nbsp;·&nbsp; <Avatar src={email_MD5} size='40' /> {fullName}
+                    {t.s('settings')} &nbsp;·&nbsp; <Avatar src={email_MD5} size='60' /> {fullName}
                 </Title>
                 
                 <Space />
