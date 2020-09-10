@@ -7,7 +7,7 @@ import View from './view'
 import Rename from './rename'
 import Contextmenu from './contextmenu'
 
-import DropArea from '~co/bookmarks/dropArea'
+import DropBookmarks from '~co/bookmarks/dnd/drop'
 import Sharing from '../sharing'
 import ChangeIcon from '../changeIcon'
 import ProCheck from '~co/user/pro/check'
@@ -156,7 +156,7 @@ export default class CollectionsItem extends React.PureComponent {
 
         return (
             <>
-                <DropArea spaceId={item._id}>
+                <DropBookmarks spaceId={item._id}>
                     {drop=>
                         <Component 
                             {...item}
@@ -166,7 +166,7 @@ export default class CollectionsItem extends React.PureComponent {
                             {...this.handlers}
                             to={to} />
                     }
-                </DropArea>
+                </DropBookmarks>
 
                 {this.state.menu ? (
                     <Contextmenu 

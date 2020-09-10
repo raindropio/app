@@ -6,7 +6,7 @@ import { bookmarksIds, makeSelectModeEnabled, makeSort, makeViewHide, getGridSiz
 import { makeCollection } from '~data/selectors/collections'
 
 import Listing from './listing'
-import DropArea from '../dropArea'
+import Drop from '../dnd/drop'
 
 class BookmarksItems extends React.Component {
     static defaultProps = {
@@ -45,13 +45,13 @@ class BookmarksItems extends React.Component {
 
     render() {
         return (
-            <DropArea spaceId={this.props.spaceId}>
+            <Drop spaceId={this.props.spaceId}>
                 {drop=>
                     <Listing 
                         {...this.props}
                         {...drop} />
                 }
-            </DropArea>
+            </Drop>
         )
     }
 }

@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { oneUpload, oneMove } from '~data/actions/bookmarks'
+import { oneUpload, oneMove, moveSelected } from '~data/actions/bookmarks'
 import PickerSourceDrop from '~co/picker/source/drop'
 
 class BookmarksDropArea extends React.Component {
@@ -23,6 +23,10 @@ class BookmarksDropArea extends React.Component {
                     this.props.oneMove(parseInt(data), parseInt(this.props.spaceId), res, rej)
                 break
 
+                case 'selected_bookmarks':
+                    this.props.moveSelected(parseInt(data), parseInt(this.props.spaceId), res, rej)
+                break
+
                 default:
                     res()
                 break
@@ -30,7 +34,7 @@ class BookmarksDropArea extends React.Component {
         })
 
     onDragCustom = (type)=>
-        type == 'bookmark'
+        type == 'bookmark' || type == 'selected_bookmarks'
 
     render() {
         return (
@@ -46,5 +50,5 @@ class BookmarksDropArea extends React.Component {
 
 export default connect(
 	undefined,
-	{ oneUpload, oneMove }
+	{ oneUpload, oneMove, moveSelected }
 )(BookmarksDropArea)
