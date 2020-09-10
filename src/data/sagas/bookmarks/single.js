@@ -118,6 +118,7 @@ function* updateBookmark({_id, set={}, ignore=false, onSuccess, onFail}) {
 		yield put({
 			type: BOOKMARK_UPDATE_SUCCESS,
 			item: item,
+			changedFields: Object.keys(set),
 			onSuccess, onFail
 		});
 	} catch (error) {

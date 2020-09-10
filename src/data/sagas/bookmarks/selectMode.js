@@ -129,6 +129,7 @@ const updateBookmarks = ({validate, set, mutate}) => (
 					//update local state
 					put({
 						type: BOOKMARK_UPDATE_SUCCESS,
+						changedFields: Object.keys(fields),
 						item: changed.map(_id => {
 							let item = {
 								...state.bookmarks.elements[_id],

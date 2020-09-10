@@ -186,25 +186,13 @@ export default function(state, action) {switch (action.type) {
 				if (!draft || !draft.item ||
 					draft.item._id != item._id) continue
 
-				const update = normalizeBookmark(item, {flat: false})
-
-				//keep only changedFields that are not updated after last commit for some reason
-				//be sure that only simple fields (non objects) are kept
-				draft = draft.set(
-					'changedFields',
-					draft.changedFields.filter(field=>
-						typeof draft.item[field] != 'object' &&
-						update[field] != draft.item[field]
-					)
-				)
-
-				//do not override unsaved changedFields
-				draft = draft.set(
-					'item', {
+				//override only fields that have been saved
+				draft = draft
+					.set('item', {
 						...draft.item,
-						..._.omit(update, draft.changedFields)
-					}
-				)
+						..._.pick(normalizeBookmark(item, {flat: false}), action.changedFields)
+					})
+					.set('changedFields', _.without(draft.changedFields, ...action.changedFields))
 
 				draft = draft.set('status', parseInt(draft.item.collectionId)!=-99 ? 'loaded' : 'removed')
 
