@@ -17,7 +17,8 @@ export const makeDraftStatus = ()=>getDraftStatus //deprecated
 //Unsaved
 export const makeDraftUnsaved = ()=>createSelector(
 	[getDraft],
-	({ changedFields=[] })=>changedFields.length>0
+	({ status, changedFields=[] })=>
+		status == 'new' || changedFields.length>0
 )
 
 //Error

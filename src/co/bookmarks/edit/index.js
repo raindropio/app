@@ -32,7 +32,7 @@ class EditBookmarkContainer extends React.Component {
 
         if (_id != prev._id){
 			//save unsaved changes if user try to open another bookmark
-			if (prev.unsaved)
+			if (prev.unsaved && prev.status != 'new')
 				prev.draftCommit({ _id: prev._id })
 
 			this.handlers.onLoad()
@@ -40,7 +40,8 @@ class EditBookmarkContainer extends React.Component {
 	}
 
 	onWindowClose = (e)=>{
-		if (this.props.unsaved){
+		//save unsaved changes if user try to close window
+		if (this.props.unsaved && this.props.status != 'new'){
 			this.handlers.onCommit()
 			
 			e.preventDefault()

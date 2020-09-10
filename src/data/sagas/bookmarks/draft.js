@@ -6,8 +6,9 @@ import {
 	BOOKMARK_UPDATE_REQ, BOOKMARK_CREATE_REQ,
 	BOOKMARK_DRAFT_LOAD_REQ, BOOKMARK_DRAFT_LOAD_SUCCESS, BOOKMARK_DRAFT_LOAD_ERROR,
 	BOOKMARK_DRAFT_COMMIT,
-	BOOKMARK_DRAFT_ENRICH, BOOKMARK_DRAFT_CHANGE,
-	BOOKMARK_DRAFT_COVER_UPLOAD
+	BOOKMARK_DRAFT_COVER_UPLOAD,
+	BOOKMARK_CREATE_SUCCESS,
+	BOOKMARK_DRAFT_CHANGE
 } from '../../constants/bookmarks'
 
 //Requests
@@ -15,8 +16,10 @@ export default function* () {
 	//draft
 	yield takeEvery(BOOKMARK_DRAFT_LOAD_REQ, draftLoad)
 	yield takeEvery(BOOKMARK_DRAFT_COMMIT, draftCommit)
-	yield takeEvery(BOOKMARK_DRAFT_ENRICH, draftEnrich)
 	yield takeEvery(BOOKMARK_DRAFT_COVER_UPLOAD, draftCoverUpload)
+
+	//bookmark
+	yield takeEvery(BOOKMARK_CREATE_SUCCESS, enrichCreated)
 }
 
 function* draftLoad({ newOne, ignore=false, ...draft }) {
@@ -61,15 +64,17 @@ function* draftLoad({ newOne, ignore=false, ...draft }) {
 
 		//New
 		if (link) {
+			const item = {
+				collectionId: -1,
+				...newOne.item||{},
+				link
+			}
+
 			//set draft by link
 			yield put({
 				type: BOOKMARK_DRAFT_LOAD_SUCCESS,
 				_id: draft._id,
-				item: {
-					collectionId: -1,
-					...newOne.item||{},
-					link
-				}
+				item
 			})
 
 			//create new bookmark automatically
@@ -78,11 +83,11 @@ function* draftLoad({ newOne, ignore=false, ...draft }) {
 					type: BOOKMARK_DRAFT_COMMIT,
 					_id: draft._id
 				})
-
-			yield put({
-				type: BOOKMARK_DRAFT_ENRICH,
-				_id: draft._id
-			})
+			else
+				yield enrichCreated({
+					draft: draft._id,
+					item
+				})
 		}
 	} catch (error) {
 		yield put({
@@ -118,35 +123,6 @@ function* draftCommit({ _id, ignore=false, onSuccess, onFail}) {
 		})
 }
 
-function* draftEnrich({ _id, ignore=false }) {
-	if (ignore) return;
-
-	const state = yield select()
-	const draft = state.bookmarks.getIn(['drafts', _id])
-	if (!draft) return
-
-	try{
-		const { item, error } = yield call(Api.get, 'parse?url='+encodeURIComponent(draft.item.link))
-		if (error) return
-
-		let changed = {}
-
-		//set cover/media
-		if (item.media && item.media.length){
-			changed.media = item.media
-			changed.cover = item.media[0].link
-			changed.coverId = 0
-		}
-
-		if (Object.keys(changed).length)
-			yield put({
-				type: BOOKMARK_DRAFT_CHANGE,
-				_id,
-				changed
-			})
-	} catch (error) {}
-}
-
 function* draftCoverUpload({ _id, cover, ignore=false, onSuccess, onFail }) {
 	if (ignore) return
 
@@ -170,4 +146,49 @@ function* draftCoverUpload({ _id, cover, ignore=false, onSuccess, onFail }) {
 	} catch (error) {
 		onFail(error)
 	}
+}
+
+/*
+	When brand new bookmark is saved (or unsaved yet) it can be unparsed yet, so it can look pretty empty
+	This method parse esential details and replace them (if empty) on draft
+	It should be called exactly after 'new' draft saved (locally) or after actual create of bookmark
+*/
+function* enrichCreated({ draft, item }) {
+	if (!draft) return
+
+	try{
+		//media filled, so no need to parse
+		if (item.media && item.media.length)
+			return
+
+		const parse = yield call(Api.get, 'parse?url='+encodeURIComponent(draft))
+		if (parse.error) return
+
+		let changed = {}
+
+		//set cover/media
+		if (parse.item.media && parse.item.media.length){
+			changed.media = parse.item.media
+			changed.cover = parse.item.media[0].link
+			changed.coverId = 0
+		}
+
+		if (!Object.keys(changed))
+			return
+
+		//set changes
+		yield put({
+			type: BOOKMARK_DRAFT_CHANGE,
+			_id: draft,
+			changed
+		})
+
+		//when bookmark is brand new, we don't want to save this changes automatically
+		//but otherwise absolutely must
+		if (item._id)
+			yield put({
+				type: BOOKMARK_DRAFT_COMMIT,
+				_id: draft
+			})
+	} catch (error) {}
 }
