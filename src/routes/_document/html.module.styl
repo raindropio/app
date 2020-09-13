@@ -6,7 +6,7 @@ progress::-webkit-progress-value {
     transition: width .3s ease-in-out;
 }
 
-body, :global(#react) {
+html:global(:not(.extension)), body, :global(#react) {
     overflow: hidden
     margin:0
     width: 100%
