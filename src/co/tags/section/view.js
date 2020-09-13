@@ -7,10 +7,15 @@ import { Section, SectionTitle, SectionActions } from '~co/common/list'
 import Button from '~co/common/button'
 import Icon from '~co/common/icon'
 
-const titles = {
-    recent: t.s('recent'),
-    collection: t.s('collection'),
-    other: _.capitalize(t.s('other'))
+let _titles
+function getTitles() {
+    if (!_titles)
+        _titles = {
+            recent: t.s('recent'),
+            collection: t.s('collection'),
+            other: _.capitalize(t.s('other'))
+        }
+    return _titles
 }
 
 export default function TagsSectionView({className='', _id, count, ...props}) {
@@ -18,7 +23,7 @@ export default function TagsSectionView({className='', _id, count, ...props}) {
         <Section 
             {...props}
             className={s.section+' '+className}>
-            <SectionTitle>{count} {titles[_id] || t.s('tags').toLowerCase()}</SectionTitle>
+            <SectionTitle>{count} {getTitles()[_id] || t.s('tags').toLowerCase()}</SectionTitle>
             
             {props.onContextMenu && (
                 <SectionActions>
