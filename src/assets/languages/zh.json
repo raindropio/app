@@ -322,5 +322,6 @@
   "clipperD": "Clipper is the fastest way to save new bookmarks.",
   "automatically": "Automatically",
   "lastUsed": "Last used",
-  "defaultCollection": "Default collection"
+  "defaultCollection": "Default collection",
+  "recent": "Recent"
 }

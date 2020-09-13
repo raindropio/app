@@ -8,7 +8,7 @@ import Button from '~co/common/button'
 import Icon from '~co/common/icon'
 
 const titles = {
-    recent: 'Recent',
+    recent: t.s('recent'),
     collection: t.s('collection'),
     other: _.capitalize(t.s('other'))
 }
