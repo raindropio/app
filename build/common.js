@@ -11,10 +11,10 @@ const SentryCliPlugin = require('@sentry/webpack-plugin')
 //defaults
 process.env.SENTRY_RELEASE = String(new Date().getTime())
 
-module.exports = ({ env='development', filename='[name].[contenthash]' }) => ({
-	mode:		env,
+module.exports = ({ production, filename='[name].[contenthash]' }) => ({
+	mode:		production ? 'production' : 'development',
 	context:	path.resolve(__dirname, '../src'),
-	devtool:	env == 'production' ? 'source-map' : 'cheap-module-eval-source-map',
+	devtool:	production ? 'source-map' : 'cheap-module-eval-source-map',
 	
 	entry: {
 		app: './index.js'
@@ -34,13 +34,13 @@ module.exports = ({ env='development', filename='[name].[contenthash]' }) => ({
 	},
 
 	performance: {
-		hints: env == 'production' ? 'error' : false,
+		hints: production ? 'error' : false,
 		maxEntrypointSize: 2000000,
 		maxAssetSize: 2000000
 	},
 
 	optimization: {
-		minimize: env == 'production',
+		minimize: production,
 		minimizer: [
 			new TerserJSPlugin({
 				parallel: true
@@ -84,14 +84,14 @@ module.exports = ({ env='development', filename='[name].[contenthash]' }) => ({
 
 	plugins: [
 		//pre plugins
-		...(env == 'production' ? [
+		...(production ? [
 			//Clean dist folder
 			new CleanWebpackPlugin(),
 
 			//Sentry
 			new SentryCliPlugin({
 				release: process.env.SENTRY_RELEASE,
-				dryRun: env != 'production',
+				dryRun: !production,
 				include: './src',
 				ignore: [ 'node_modules', 'build', 'dist' ],
 				configFile: path.resolve(__dirname, 'sentry.properties'),
@@ -99,7 +99,7 @@ module.exports = ({ env='development', filename='[name].[contenthash]' }) => ({
 		] : []),
 
 		new webpack.DefinePlugin({
-			'process.env.NODE_ENV': JSON.stringify(env),
+			'process.env.NODE_ENV': JSON.stringify(production?'production':'development'),
 			RAINDROP_ENVIRONMENT: JSON.stringify('browser')
 		}),
 
@@ -108,8 +108,8 @@ module.exports = ({ env='development', filename='[name].[contenthash]' }) => ({
 		//HTML
 		new HtmlWebpackPlugin({
 			title: 'Raindrop.io',
-			template: './assets/index.ejs',
-			favicon: './assets/images/icons/favicon.ico',
+			template: './index.ejs',
+			favicon: './assets/brand/favicon.ico',
 			hash: true,
 			scriptLoading: 'defer',
 			inject: 'body'
@@ -145,7 +145,7 @@ module.exports = ({ env='development', filename='[name].[contenthash]' }) => ({
 			test: /\.(styl|css)$/,
 			sideEffects: true,
 			use: [
-				...(env=='production' ? [{
+				...(production ? [{
 					loader: MiniCssExtractPlugin.loader
 				}] : ['style-loader']),
 				{
@@ -218,7 +218,7 @@ module.exports = ({ env='development', filename='[name].[contenthash]' }) => ({
 				{
 					loader: 'image-webpack-loader',
 					options: {
-						disable: env!='production'
+						disable: !production
 					},
 				},
 			],

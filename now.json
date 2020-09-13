@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "name": "app_5",
+  "name": "app",
   "scope": "raindrop-io",
   "trailingSlash": false,
   "public": false,
@@ -8,7 +8,7 @@
     {
       "src": "package.json",
       "use": "@vercel/static-build",
-      "config": { "distDir": "dist/production/web" }
+      "config": { "distDir": "dist/web/prod" }
     }
   ],
   "headers": [

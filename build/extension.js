@@ -3,12 +3,16 @@ const webpack = require('webpack')
 const { merge } = require('webpack-merge')
 const common = require('./common')
 
-module.exports = (env='development') =>
+module.exports = (env={}) =>
     merge(
-        common({ env, filename: '[name]' }),
+        common({ ...env, filename: '[name]' }),
         {
+            entry: {
+                manifest: './extension/manifest.json.js'
+            },
+
             output: {
-                path: path.resolve(__dirname, '..', 'dist', env, 'extension'),
+                path: path.resolve(__dirname, '..', 'dist', env.vendor, env.production?'prod':'dev'),
                 publicPath: ''
             },
 
@@ -24,6 +28,26 @@ module.exports = (env='development') =>
                 new webpack.DefinePlugin({
                     'process.env.APP_TARGET': JSON.stringify('extension')
                 })
-            ]
+            ],
+
+            module: {
+                rules: [{
+                    test: /manifest\.json\.js$/,
+                    use: [
+                        {
+                            loader: 'file-loader',
+                            options: {
+                                name: 'manifest.json'
+                            }
+                        },
+                        {
+                            loader: 'val-loader',
+                            options: {
+                                vendor: 'chrome'
+                            }
+                        }
+                    ]
+                }]
+            }
         }
     )

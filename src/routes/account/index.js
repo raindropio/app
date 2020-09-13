@@ -4,7 +4,7 @@ import t from '~t'
 import { Route, Switch, Redirect } from 'react-router-dom'
 import Screen from '~co/screen/basic'
 import config from '~config'
-import Logo from '~assets/images/icons/icon_raw.svg?component'
+import Logo from '~assets/brand/icon_raw.svg?component'
 
 import Auth from './auth'
 import Login from './login'

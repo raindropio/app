@@ -3,12 +3,12 @@ const webpack = require('webpack')
 const { merge } = require('webpack-merge')
 const common = require('./common')
 
-module.exports = (env='development') =>
+module.exports = (env={}) =>
     merge(
-        common({ env }),
+        common(env),
         {
             output: {
-                path: path.resolve(__dirname, '..', 'dist', env, 'electron'),
+                path: path.resolve(__dirname, '..', 'dist', 'electron', env.production?'prod':'dev'),
                 publicPath: ''
             },
 

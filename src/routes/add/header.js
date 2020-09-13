@@ -4,7 +4,7 @@ import t from '~t'
 import config from '~config'
 
 import { Helmet } from 'react-helmet'
-import LogoIcon from '~assets/images/icons/icon_raw.svg?component'
+import LogoIcon from '~assets/brand/icon_raw.svg?component'
 import Header, { Title, FirstAction, Space } from '~co/common/header'
 import Button from '~co/common/button'
 import Icon from '~co/common/icon'

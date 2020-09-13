@@ -6,12 +6,12 @@ const common = require('./common')
 const WebpackPwaManifest = require('webpack-pwa-manifest')
 const CopyPlugin = require('copy-webpack-plugin')
 
-module.exports = (env='development') =>
+module.exports = (env={}) =>
     merge(
-        common({ env }),
+        common(env),
         {
             output: {
-                path: path.resolve(__dirname, '..', 'dist', env, 'web'),
+                path: path.resolve(__dirname, '..', 'dist', 'web', env.production?'prod':'dev'),
                 publicPath: '/'
             },
 
@@ -38,7 +38,7 @@ module.exports = (env='development') =>
                     background_color: '#0F0F47',
                     icons: [
                         {
-                            src: path.resolve('src/assets/images/icons/macos_512.png'),
+                            src: path.resolve('src/assets/brand/macos_512.png'),
                             size: '512x512'
                         }
                     ]

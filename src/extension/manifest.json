@@ -1,0 +1,22 @@
+{
+    "manifest_version": 2,
+    "name": "Raindrop.io",
+    "description": "All In One Bookmark Manager",
+    "homepage_url": "https://raindrop.io",
+    "author": "Mussabekov Rustem",
+    "short_name": "Raindrop.io",
+    "icons": {
+        "16": "assets/icon_16.png",
+        "32": "assets/icon_32.png",
+        "48": "assets/icon_48.png",
+        "128": "assets/icon_128.png"
+    },
+    "browser_action": {
+        "name": "Raindrop.io",
+        "default_icon": {
+            "16": "assets/light-16.png",
+            "24": "assets/light-24.png",
+            "32": "assets/light-32.png"
+        }
+    }
+}
