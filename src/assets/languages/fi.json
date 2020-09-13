@@ -171,7 +171,7 @@
   "startCollecting": "Valmis!",
   "showAll": "Näytä kaikki",
   "noTags": "Ei tageja",
-  "to": "Aan",
+  "to": "aan",
   "mailNotifications": "Sähköposti-ilmoitukset",
   "trashEmpty": "Roskakori tyhjä",
   "saveLink": "Tallenna sivu",
@@ -316,5 +316,11 @@
   "darkTheme": "Dark theme",
   "me": "Minä olen",
   "collaboratorsLead": "Jaa kokoelmasi ja työskentele yhdessä työtovereidesi, ystäviesi tai perheesi kanssa",
-  "emptyTrash": "Empty trash"
+  "emptyTrash": "Empty trash",
+  "mini": "Mini",
+  "miniAppD": "Mini App gives you the same experience as our web site but in compact size. You can browse, search, organize and add new bookmarks.",
+  "clipperD": "Clipper is the fastest way to save new bookmarks.",
+  "automatically": "Automatically",
+  "lastUsed": "Last used",
+  "defaultCollection": "Default collection"
 }

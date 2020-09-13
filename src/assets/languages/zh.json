@@ -316,5 +316,11 @@
   "darkTheme": "Dark theme",
   "me": "我是",
   "collaboratorsLead": "和同事、朋友及家人分享你的收藏并协同工作",
-  "emptyTrash": "Empty trash"
+  "emptyTrash": "Empty trash",
+  "mini": "Mini",
+  "miniAppD": "Mini App gives you the same experience as our web site but in compact size. You can browse, search, organize and add new bookmarks.",
+  "clipperD": "Clipper is the fastest way to save new bookmarks.",
+  "automatically": "Automatically",
+  "lastUsed": "Last used",
+  "defaultCollection": "Default collection"
 }

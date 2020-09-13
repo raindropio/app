@@ -47,24 +47,29 @@ const mutate = (state, key='', val='')=>{
 }
 
 const initialState = Immutable({
-	lang:				'en',
-	last_collection:	0,
+	lang:					'en',
+	last_collection:		0,
 
-	raindrops_view:		'',
-	raindrops_sort:		'sort',
-	raindrops_hide:		[],
-	raindrops_grid_size:2,
+	raindrops_view:			'',
+	raindrops_sort:			'sort',
+	raindrops_hide:			[],
+	raindrops_grid_size:	2,
 	raindrops_list_cover_right:false,
-	raindrops_click:	'preview',
+	raindrops_click:		'preview',
 	
-	tags_sort:			'_id',
-	tags_hide:			false,
-	filters_hide:		false,
-	nested_view_legacy:	false,
+	tags_sort:				'_id',
+	tags_hide:				false,
+	filters_hide:			false,
+	nested_view_legacy:		false,
 
-	font_size: 0,
-	font_color: '',
-	font_family: '',
+	font_size: 				0,
+	font_color: 			'',
+	font_family: 			'',
 
-	broken_level:		''
+	broken_level:			'',
+
+	add_default_collection: -1,
+	add_auto_save:			false,
+	
+	browser_extension_mode: ''
 })

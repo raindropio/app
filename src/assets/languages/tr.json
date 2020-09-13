@@ -202,7 +202,7 @@
   "support": "Destek",
   "info": "Info",
   "open": "Open",
-  "share": "Paylaş\n",
+  "share": "Paylaş",
   "fullscreen": "Fullscreen",
   "noItemsTip": "Add link or drop file here.",
   "preview": "Ön izleme",
@@ -316,5 +316,11 @@
   "darkTheme": "Dark theme",
   "me": "Ben",
   "collaboratorsLead": "Koleksiyonlarını paylaş ve arkadaşların, ailen ve iş arkadaşlarınla iş birliği içinde çalış",
-  "emptyTrash": "Empty trash"
+  "emptyTrash": "Empty trash",
+  "mini": "Mini",
+  "miniAppD": "Mini App gives you the same experience as our web site but in compact size. You can browse, search, organize and add new bookmarks.",
+  "clipperD": "Clipper is the fastest way to save new bookmarks.",
+  "automatically": "Automatically",
+  "lastUsed": "Last used",
+  "defaultCollection": "Default collection"
 }

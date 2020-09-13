@@ -65,7 +65,7 @@ function* draftLoad({ newOne, ignore=false, ...draft }) {
 		//New
 		if (link) {
 			const item = {
-				collectionId: -1,
+				collectionId: -1, //just to be sure that some collectionId is specified
 				...newOne.item||{},
 				link
 			}

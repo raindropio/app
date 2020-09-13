@@ -1,5 +1,6 @@
 export * from './title'
 export * from './label'
+export * from './sub_label'
 export * from './text'
 export * from './layout'
 export * from './checkbox'

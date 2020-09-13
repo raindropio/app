@@ -316,5 +316,11 @@
   "darkTheme": "Ciemny motyw",
   "me": "Ja jestem",
   "collaboratorsLead": "Dziel się swoimi kolekcjami i pracuj na nich wspólnie ze znajomymi czy rodziną",
-  "emptyTrash": "Opróżnij kosz"
+  "emptyTrash": "Opróżnij kosz",
+  "mini": "Mini",
+  "miniAppD": "Mini App gives you the same experience as our web site but in compact size. You can browse, search, organize and add new bookmarks.",
+  "clipperD": "Clipper is the fastest way to save new bookmarks.",
+  "automatically": "Automatically",
+  "lastUsed": "Last used",
+  "defaultCollection": "Default collection"
 }

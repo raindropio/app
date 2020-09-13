@@ -78,7 +78,7 @@ export default class PickerSourceLink extends React.Component {
                                 type='submit'
                                 variant='link'
                                 hidden={!link}
-                                value={t.s('saveLink')} />
+                                value={t.s('save')} />
                         )}
                     </Text>
                 </Layout>

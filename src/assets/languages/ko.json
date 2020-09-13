@@ -225,7 +225,7 @@
   "today": "오늘",
   "file": "파일",
   "soon": "곧",
-  "privacyTerms": "위의 '가입 버튼'을 클릭하면 동의하는 것으로 간주합니다.",
+  "privacyTerms": "위의 '가입 버튼'을 클릭하면 동의하는 것으로 간주합니다 ",
   "termsOfService": "서비스 약관",
   "privacyPolicy": "개인 정보 정책",
   "whatsNew": "What's new",
@@ -315,6 +315,12 @@
   "done": "완료",
   "darkTheme": "어두운 테마",
   "me": "나에게",
-  "collaboratorsLead": "개인 컬렉션을 공유하여 동료, 친구 및 가족과 함께 작업하세요\n",
-  "emptyTrash": "Empty trash"
+  "collaboratorsLead": "개인 컬렉션을 공유하여 동료, 친구 및 가족과 함께 작업하세요",
+  "emptyTrash": "Empty trash",
+  "mini": "Mini",
+  "miniAppD": "Mini App gives you the same experience as our web site but in compact size. You can browse, search, organize and add new bookmarks.",
+  "clipperD": "Clipper is the fastest way to save new bookmarks.",
+  "automatically": "Automatically",
+  "lastUsed": "Last used",
+  "defaultCollection": "Default collection"
 }
