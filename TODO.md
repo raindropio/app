@@ -1,15 +1,9 @@
-- persist lang change
-- show count for duplicates
-- fix user load for duplicates, broken
-
 Bugs
 - Minor
-    - in search results when change bookmark, `highlight` data lost
     - masonry keyboard navigation unordered
 
 Not ready
 - electron
-- pro banner
 
 Server
 - Send screenshot without ?width, then in data/getscreenshot remove regex
@@ -23,9 +17,6 @@ Good to have
 - Show (?) icon in Filters and Tags sidebar sections, click opens help page about those items
 - bookmarks/item remove selectDisabled, and move this logic to /items + css
 - Move all logic of Cover to Cloduflare worker
-
-Translation
-- leave
 
 Changes
 - data
@@ -60,3 +51,4 @@ Changes
     + thumbnail optimized for transfer and speed
     + tags autocomplete shows tags from shared collection too
     + multiline description
+    + import upload only new
