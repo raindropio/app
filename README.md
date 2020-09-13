@@ -11,3 +11,9 @@ Be sure to run `yarn` before calling any commands below
 | firefox  | `yarn build:extension:firefox` |
 | opera    | `yarn build:extension:opera` |
 | safari   | `yarn build:extension:safari` |
+
+## Development
+| target   | command |
+|----------|---------|
+| web      | `yarn local` |
+| chrome   | `yarn local:extension:chrome` |

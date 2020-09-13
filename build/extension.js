@@ -3,12 +3,15 @@ const webpack = require('webpack')
 const { merge } = require('webpack-merge')
 const common = require('./common')
 
+const WriteFilePlugin = require('write-file-webpack-plugin')
+
 module.exports = (env={}) =>
     merge(
         common({ ...env, filename: '[name]' }),
         {
             entry: {
-                manifest: './extension/manifest.json.js'
+                manifest: './extension/manifest.json.js',
+                background: './extension/background/index.js'
             },
 
             output: {
@@ -27,7 +30,9 @@ module.exports = (env={}) =>
             plugins: [
                 new webpack.DefinePlugin({
                     'process.env.APP_TARGET': JSON.stringify('extension')
-                })
+                }),
+
+                new WriteFilePlugin()
             ],
 
             module: {
@@ -42,9 +47,7 @@ module.exports = (env={}) =>
                         },
                         {
                             loader: 'val-loader',
-                            options: {
-                                vendor: 'chrome'
-                            }
+                            options: env
                         }
                     ]
                 }]

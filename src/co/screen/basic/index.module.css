@@ -8,6 +8,11 @@
     overflow: auto;
 }
 
+html:global(.extension) .page {
+    min-width: 400px;
+    height: auto;
+}
+
 /* Global */
 * {
     box-sizing: border-box;
