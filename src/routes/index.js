@@ -8,7 +8,7 @@ import Settings from './settings'
 
 import NotFound from './404'
 
-const Router = process.env.APP_TARGET == 'default' ?
+const Router = process.env.APP_TARGET == 'web' ?
     BrowserRouter :
     HashRouter
 

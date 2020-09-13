@@ -5,7 +5,7 @@ import Protected from '~co/screen/protected'
 
 const NotFound = ({ last_collection, location: { hash } })=>{
 	//redirect hash routes on web to actual routes
-	if (process.env.APP_TARGET == 'default' &&
+	if (process.env.APP_TARGET == 'web' &&
 		hash.startsWith('#/'))
 		return <Redirect to={hash.replace(/^#/, '')} />
 

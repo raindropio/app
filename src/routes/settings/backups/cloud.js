@@ -13,7 +13,7 @@ import Alert from '~co/common/alert'
 import Icon from '~co/common/icon'
 
 function SettingsBackupsCloud({ user, pro, location: { pathname } }) {
-    const webApp = process.env.APP_TARGET == 'default'
+    const webApp = process.env.APP_TARGET == 'web'
 
     return (
         <>

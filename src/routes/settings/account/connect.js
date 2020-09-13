@@ -16,7 +16,7 @@ function SettingsProfileConnect({ user, location: { pathname } }) {
         <>
             <Label>{t.s('signInSocial')}</Label>
             
-            {process.env.APP_TARGET == 'default' ? (
+            {process.env.APP_TARGET == 'web' ? (
                 <div>
                     {['google', 'apple', 'facebook', 'twitter', 'vkontakte'].map(key=>{
                         const enabled = user[key] && user[key].enabled

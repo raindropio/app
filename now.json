@@ -7,8 +7,8 @@
   "builds": [
     {
       "src": "package.json",
-      "use": "@now/static-build",
-      "config": { "distDir": "dist/default" }
+      "use": "@vercel/static-build",
+      "config": { "distDir": "dist/production/web" }
     }
   ],
   "headers": [

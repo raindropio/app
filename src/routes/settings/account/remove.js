@@ -12,7 +12,7 @@ function SettingsProfileRemove() {
                 href={`${API_ENDPOINT_URL}user/remove`}
                 variant='link'
                 accent='danger'
-                target={process.env.APP_TARGET == 'default' ? '' : '_blank'}>
+                target={process.env.APP_TARGET == 'web' ? '' : '_blank'}>
                 {t.s('removeAccount')}
             </Button>
         </Buttons>

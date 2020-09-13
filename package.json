@@ -10,12 +10,12 @@
 	},
 	"sideEffects": false,
 	"scripts": {
-		"local": "export NODE_ENV=development && export APP_PUBLIC_PATH=/ && webpack-dev-server --config build/config.js",
-		"local:prod": "yarn build && serve dist/default -l 80",
-		"build": "export NODE_ENV=production  && export APP_PUBLIC_PATH=/ && webpack --config build/config.js",
-		"build:extension": "export NODE_ENV=production  && APP_TARGET='extension' && webpack --config build/config.js",
-		"build:desktop": "export NODE_ENV=production  && APP_TARGET='desktop' && webpack --config build/config.js",
-		"size": "export NODE_ENV=production && export APP_PUBLIC_PATH=/ && webpack --config build/config.js --profile --json > dist/stats.json && webpack-bundle-analyzer dist/stats.json dist/default",
+		"local": "webpack-dev-server --config build/web.js",
+		"local:prod": "yarn build && serve dist/web -l 80",
+		"build": "webpack --config build/web.js --env production",
+		"build:extension": "webpack --config build/extension.js --env production",
+		"build:electron": "webpack --config build/electron.js --env production",
+		"size": "webpack --config build/web.js --env production --profile --json > dist/stats.json && webpack-bundle-analyzer dist/stats.json dist/web",
 		"deploy:prod": "git branch -f release/production master && git push --force origin release/production",
 		"preinstall": "command -v link-module-alias && link-module-alias clean || true",
 		"postinstall": "link-module-alias"
@@ -107,6 +107,7 @@
 		"webpack-bundle-analyzer": "3.8.x",
 		"webpack-cli": "^3.3.11",
 		"webpack-dev-server": "3.11.x",
+		"webpack-merge": "^5.1.4",
 		"webpack-pwa-manifest": "4.x",
 		"write-file-webpack-plugin": "4.5.x"
 	}

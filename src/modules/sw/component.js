@@ -2,7 +2,8 @@ import React from 'react'
 
 export default class ServiceWorkerComponent extends React.Component {
     componentDidMount() {
-        if (process.env.NODE_ENV=='production' && 
+        if (process.env.NODE_ENV=='production' &&
+            process.env.APP_TARGET=='web' &&
             'serviceWorker' in navigator)
             window.addEventListener('load', this.init)
     }
