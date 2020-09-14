@@ -27,7 +27,7 @@ render(
 			<Provider store={store}>
 				<Document>
 					<PersistGate loading={<Loading />} persistor={persistor}>
-						<Translate Loading={Loading}>
+						<Translate loading={<Loading />}>
 							<Routes />
 						</Translate>
 					</PersistGate>

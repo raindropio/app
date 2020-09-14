@@ -6,13 +6,13 @@ import { Buttons } from '~co/common/form'
 import Button from '~co/common/button'
 
 function SettingsProfileRemove() {
+    //don't do target=_blank, otherwise it can make a mistake (due to different auth in app and browser)
     return (
         <Buttons>
             <Button 
                 href={`${API_ENDPOINT_URL}user/remove`}
                 variant='link'
-                accent='danger'
-                target={process.env.APP_TARGET == 'web' ? '' : '_blank'}>
+                accent='danger'>
                 {t.s('removeAccount')}
             </Button>
         </Buttons>

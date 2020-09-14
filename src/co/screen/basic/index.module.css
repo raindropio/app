@@ -9,8 +9,11 @@
 }
 
 html:global(.extension) .page {
-    min-width: 400px;
+    width: auto;
+    max-width: var(--extension-max-width);
+    min-width: var(--extension-min-width);
     height: auto;
+    max-height: var(--extension-max-height);
 }
 
 /* Global */

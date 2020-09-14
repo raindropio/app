@@ -17,9 +17,9 @@ readerMinWidth = 300px
     overflow: hidden;
 }
 
-:global(html.extension) .splitview {
-    width: 750px
-    height: 600px
+html:global(.extension) .splitview {
+    width: var(--extension-max-width)
+    height: var(--extension-max-height)
 }
 
 /* Helpers */

@@ -1,0 +1,14 @@
+.overlay {
+    position: absolute
+    left: 0
+    top: 0
+    bottom: 0
+    right: 0
+    z-index: 99999999
+    pointer-events: none
+
+    &[data-show='false'] {
+        transition: opacity .15s ease-in-out
+        opacity: 0
+    }
+}
