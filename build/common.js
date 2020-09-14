@@ -47,7 +47,7 @@ module.exports = ({ production, filename='[name].[contenthash]' }) => ({
 			}),
 			new OptimizeCSSAssetsPlugin({})
 		],
-		runtimeChunk: true,
+		runtimeChunk: false,
 		splitChunks: {
 			maxInitialRequests: 10,
 			cacheGroups: {
@@ -112,7 +112,8 @@ module.exports = ({ production, filename='[name].[contenthash]' }) => ({
 			favicon: './assets/brand/favicon.ico',
 			hash: true,
 			scriptLoading: 'defer',
-			inject: 'body'
+			inject: 'body',
+			excludeChunks: ['manifest', 'background']
 		}),
 
 		//CSS

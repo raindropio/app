@@ -23,6 +23,12 @@ const Translate = {
 		if (Translate.loaded && Translate.currentLang == browserLang)
 			return;
 
+		//extension
+		if (!browserLang)
+			try{
+				browserLang = browser.i18n.getUILanguage()
+			}catch(e){}
+
 		if (!browserLang)
 			try{
 				browserLang = navigator.language || navigator.userLanguage || ''

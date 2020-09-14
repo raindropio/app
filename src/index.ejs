@@ -30,6 +30,8 @@
 	<meta property='og:title' content='Raindrop.io &mdash; All in One Bookmark Manager' />
 	<meta property='og:description' content='For your inspiration, read later, media and stuff' />
 	<meta property='og:image' content='<%= require("./assets/brand/og.png").default %>' />
+
+	<%= process.env.APP_TARGET=='extension' ? "<script src='assets/browser-polyfill.js'></script>" : "" %>
 </head>
 <body>
 	<div id="react">

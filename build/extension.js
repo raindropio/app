@@ -20,7 +20,8 @@ module.exports = (env={}) =>
             },
 
             optimization: {
-                minimize: false
+                minimize: false,
+                runtimeChunk: false
             },
 
             performance: {

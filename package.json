@@ -63,7 +63,8 @@
 		"react-virtuoso": "0.20.x",
 		"react-window": "^1.8.5",
 		"string": "3.3.x",
-		"validator": "13.1.x"
+		"validator": "13.1.x",
+		"webextension-polyfill": "^0.6.0"
 	},
 	"optionalDependencies": {
 		"react-redux": "7.2.x",
