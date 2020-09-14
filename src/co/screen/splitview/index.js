@@ -74,7 +74,7 @@ export default class ScreenSplitView extends React.Component {
         const { sidebar, reader } = this.state
 
         return (
-            <Basic>
+            <Basic {...this.props}>
                 <div
                     ref={this.container}
                     className={`

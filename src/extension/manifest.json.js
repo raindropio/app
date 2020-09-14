@@ -7,9 +7,12 @@ function file({ emitFile }, filename) {
 }
 
 module.exports = ({ vendor, production=false }, l) => {
+	const { version } = JSON.parse(fs.readFileSync(`${__dirname}/../../package.json`, 'utf-8'))
+
 	const json = {
 		manifest_version:2,
-		version:		JSON.parse(fs.readFileSync(`${__dirname}/../../package.json`, 'utf-8')).version,
+		version:		version.replace(/^5/, '6'), //internal version bigger
+		version_name:	version, //showed for user
 
 		name:			'Raindrop.io'+(!production?' (Dev)':''),
 		description:	'All In One Bookmark Manager',
@@ -77,6 +80,10 @@ module.exports = ({ vendor, production=false }, l) => {
 				},
 				description: 'Save page'
 			}
+		},
+
+		options_ui: {
+			page: 'index.html#/settings'
 		},
 
 		...(!production ? {
