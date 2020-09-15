@@ -98,27 +98,23 @@ function* draftLoad({ newOne, ignore=false, ...draft }) {
 	}
 }
 
-function* draftCommit({ _id, ignore=false, onSuccess, onFail}) {
+function* draftCommit({ _id, item, changedFields, ignore=false, onSuccess, onFail}) {
 	if (ignore) return;
 
-	const state = yield select()
-	const draft = state.bookmarks.getIn(['drafts', _id])
-	if (!draft) return onSuccess()
-
 	//new
-	if (!draft.item._id)
+	if (!item._id)
 		yield put({
 			type: BOOKMARK_CREATE_REQ,
 			draft: _id,
-			obj: draft.item,
+			obj: item,
 			onSuccess, onFail
 		})
 	//update
 	else
 		yield put({
 			type: BOOKMARK_UPDATE_REQ,
-			_id: draft.item._id,
-			set: _.pick(draft.item, draft.changedFields),
+			_id: item._id,
+			set: _.pick(item, changedFields),
 			onSuccess, onFail
 		})
 }

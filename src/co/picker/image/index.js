@@ -6,6 +6,7 @@ import getThumbUri from '~data/modules/format/thumb'
 import Icon from '~co/common/icon'
 import Modal, { Header, Content } from '~co/overlay/modal'
 import PickerSource from '~co/picker/source/popover'
+import Preloader from '~co/common/preloader'
 
 export default class PickerImage extends React.Component {
     static defaultProps = {
@@ -20,7 +21,8 @@ export default class PickerImage extends React.Component {
     pinAdd = React.createRef()
 
     state = {
-        add: false
+        add: false,
+        screenshot_loading: false
     }
 
     handlers = {
@@ -42,7 +44,13 @@ export default class PickerImage extends React.Component {
         this.setState({ add: false })
 
     onScreenshotClick = async()=>{
+        if (this.state.screenshot_loading)
+            return
+
+        this.setState({ screenshot_loading: true })
         await this.props.onScreenshot()
+        this.setState({ screenshot_loading: false })
+
         this.props.onClose()
     }
 
@@ -59,6 +67,7 @@ export default class PickerImage extends React.Component {
 
     render() {
         const { items, onClose } = this.props
+        const { screenshot_loading } = this.state
         const screenshotExists = items.some(({screenshot})=>screenshot)
 
         return (
@@ -74,7 +83,7 @@ export default class PickerImage extends React.Component {
                                 className={s.item}
                                 title={t.s('clickToMakeScreenshot')}
                                 onClick={this.onScreenshotClick}>
-                                <Icon name='web' />
+                                {screenshot_loading ? <Preloader /> : <Icon name='web' />}
                             </button>
                         ) : null}
 

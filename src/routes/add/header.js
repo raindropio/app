@@ -16,7 +16,7 @@ export default ({ status })=>{
     switch(status) {
         case 'new':     title = t.s('newBookmark'); break
         case 'loading': title = t.s('loading')+'…'; break
-        default:        title = t.s('edit')+' '+t.s('bookmark').toLowerCase(); break
+        default:        title = t.s('bookmark')+' '+t.s('saved').toLowerCase(); break
     }
 
     return (

@@ -114,8 +114,16 @@ export default function(state, action) {switch (action.type) {
 			if (typeof action.onSuccess == 'function')
 				action.onSuccess()
 		}
+
+		//attach current item/changedFields to action
+		action.item = draft.item
+		action.changedFields = draft.changedFields
+
+		//clean current changedFields
+		draft = draft
+			.set('changedFields', [])
 		
-		return state
+		return state.setIn(['drafts', _id], draft)
 	}
 
 	//Create new bookmark from draft
@@ -190,9 +198,8 @@ export default function(state, action) {switch (action.type) {
 				draft = draft
 					.set('item', {
 						...draft.item,
-						..._.pick(normalizeBookmark(item, {flat: false}), action.changedFields)
+						..._.without(normalizeBookmark(item, {flat: false}), ...draft.changedFields)
 					})
-					.set('changedFields', _.without(draft.changedFields, ...action.changedFields))
 
 				draft = draft.set('status', parseInt(draft.item.collectionId)!=-99 ? 'loaded' : 'removed')
 

@@ -1,6 +1,7 @@
 import styles from './cover.module.styl'
 import React from 'react'
 import t from '~t'
+import { captureTab } from '~target'
 
 import Cover from '~co/bookmarks/item/cover'
 import Icon from '~co/common/icon'
@@ -37,7 +38,12 @@ export default class BookmarkEditFormCover extends React.Component {
         },
 
         onScreenshot: async()=>{
-            this.handlers.onLink('<screenshot>')
+            const screenshot = await captureTab(this.props.item.link)
+
+            if (typeof screenshot == 'string')
+                await this.handlers.onLink('<screenshot>')
+            else
+                await this.handlers.onFile(screenshot)
         },
 
         onFile: async(file)=>{

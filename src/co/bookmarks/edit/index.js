@@ -19,12 +19,18 @@ class EditBookmarkContainer extends React.Component {
 		this.handlers.onLoad()
 
 		window.addEventListener('beforeunload', this.onWindowClose)
+
+		//must have in extension
+		window.addEventListener('blur', this.onWindowClose)
+		document.addEventListener('mouseleave', this.onWindowClose)
 	}
 
 	async componentWillUnmount() {
 		await this.handlers.onCommit()
 		
 		window.removeEventListener('beforeunload', this.onWindowClose)
+		window.removeEventListener('blur', this.onWindowClose)
+		document.removeEventListener('mouseleave', this.onWindowClose)
 	}
 
 	componentDidUpdate(prev) {
