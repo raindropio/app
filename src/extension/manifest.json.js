@@ -30,7 +30,6 @@ module.exports = ({ vendor, production=false }, l) => {
 
 		background: {
 			scripts: [
-				file(l, '../../node_modules/webextension-polyfill/dist/browser-polyfill.js'),
 				'assets/background.js'
 			],
 			...(vendor!='firefox' ? {'persistent': true} : {})

@@ -12,10 +12,10 @@ import { PersistGate } from 'redux-persist/es/integration/react'
 import { withLocalReducer } from '~data'
 import localReducers from './local/reducers'
 
-import Document from './routes/_document'
 import Translate from '~modules/translate/component'
 import Routes from '~routes'
-import LoadingRoute from '~routes/_loading'
+import Document from './routes/_document'
+import Splash from './routes/_splash'
 
 //init redux
 const { store, persistor } = withLocalReducer(localReducers)
@@ -26,8 +26,8 @@ render(
 		<ServiceWorker>
 			<Provider store={store}>
 				<Document>
-					<PersistGate loading={<LoadingRoute />} persistor={persistor}>
-						<Translate loading={<LoadingRoute />}>
+					<PersistGate loading={<Splash />} persistor={persistor}>
+						<Translate loading={<Splash />}>
 							<Routes />
 						</Translate>
 					</PersistGate>

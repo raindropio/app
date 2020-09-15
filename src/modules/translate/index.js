@@ -26,6 +26,7 @@ const Translate = {
 		//extension
 		if (!browserLang)
 			try{
+				const browser = typeof browser != 'undefined' ? browser : chrome
 				browserLang = browser.i18n.getUILanguage()
 			}catch(e){}
 

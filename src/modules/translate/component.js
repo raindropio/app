@@ -1,4 +1,3 @@
-import s from './component.module.styl'
 import React from 'react'
 import { connect } from 'react-redux'
 import t from './index'
@@ -20,25 +19,18 @@ class UtilsTranslateComponent extends React.PureComponent {
 
     setLang = async()=>{
         this.setState({ loading: true })
-        try{await t.init(this.props.lang)}catch(e){console.log(e)}
+        try{await t.init(this.props.lang)}catch(e){}
         this.setState({ loading: false })
     }
 
     render() {
-        const { loading } = this.props
+        const { loading, lang } = this.props
 
         return (
-            <>
-                <div 
-                    className={s.overlay} 
-                    data-show={this.state.loading}>
-                    {loading}
-                </div>
-
-                <React.Fragment key={this.state.loading}>
-                    {this.props.children}
-                </React.Fragment>
-            </>
+            <React.Fragment key={lang}>
+                {this.state.loading && loading}
+                {!this.state.loading && this.props.children}
+            </React.Fragment>
         )
     }
 }
