@@ -71,5 +71,5 @@ const initialState = Immutable({
 	add_default_collection: -1,
 	add_auto_save:			false,
 	
-	browser_extension_mode: ''
+	browser_extension_mode: 'clipper'
 })

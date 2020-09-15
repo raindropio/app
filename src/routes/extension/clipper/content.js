@@ -1,7 +1,8 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import Bookmark from '~co/bookmarks/edit'
 
-export default function ClipperContent({ item }) {
+function ClipperContent({ item, add_auto_save }) {
     return (
         <Bookmark 
             _id={item.link}
@@ -9,9 +10,15 @@ export default function ClipperContent({ item }) {
             new={{
                 item,
                 //preventDuplicate: false,
-                autoCreate: false
+                autoCreate: add_auto_save
             }}
 
             autoFocus='title' />
     )
 }
+
+export default connect(
+    ({ config: { add_auto_save } })=>({
+        add_auto_save
+    })
+)(ClipperContent)
