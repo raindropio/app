@@ -53,8 +53,8 @@ module.exports = ({ vendor, production=false }, l) => {
 				//safari icon
 				...(vendor == 'safari' ? {
 					16: file(l, '../../../assets/target/extension/button_solid_16.png'),
-					24: file(l, '../../../assets/target/extension/button_solid_124.png'),
-					32: file(l, '../../../assets/target/extension/button_solid_132.png')
+					24: file(l, '../../../assets/target/extension/button_solid_24.png'),
+					32: file(l, '../../../assets/target/extension/button_solid_32.png')
 				} : {})
 			},
 			//firefox
