@@ -1,1 +1,1 @@
-export * from './openLink'
+export * from './openTab'

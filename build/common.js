@@ -47,28 +47,7 @@ module.exports = ({ production, filename='[name].[contenthash]' }) => ({
 			}),
 			new OptimizeCSSAssetsPlugin({})
 		],
-		runtimeChunk: false,
-		splitChunks: {
-			maxInitialRequests: 10,
-			cacheGroups: {
-				vendors: {
-					test: /[\\/]node_modules[\\/]/,
-					priority: -10,
-					chunks: 'all',
-					name: 'vendors'
-				},
-				default: {
-					minChunks: 2,
-					priority: -20,
-					reuseExistingChunk: true
-				},
-				svgs: {
-					test: /[\\/]src\/.+\.svg$/,
-					chunks: 'all',
-					name: 'svgs'
-				}
-			}
-		}
+		runtimeChunk: false
 	},
 
 	resolve: {

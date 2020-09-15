@@ -12,11 +12,6 @@ export default ()=>{
         <Header
             data-fancy
             data-no-shadow>
-            <ProfileButton />
-            
-    
-            <Space />
-
             <FirstAction>
                 <Button
                     as='a'
@@ -26,6 +21,13 @@ export default ()=>{
                     <LogoIcon className={s.logo} />
                 </Button>
             </FirstAction>
+            
+    
+            <Space />
+
+            
+
+            <ProfileButton />
         </Header>
     )
 }

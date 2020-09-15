@@ -15,6 +15,30 @@ module.exports = (env={}) =>
                 publicPath: '/'
             },
 
+            optimization: {
+                splitChunks: {
+                    maxInitialRequests: 10,
+                    cacheGroups: {
+                        vendors: {
+                            test: /[\\/]node_modules[\\/]/,
+                            priority: -10,
+                            chunks: 'all',
+                            name: 'vendors'
+                        },
+                        default: {
+                            minChunks: 2,
+                            priority: -20,
+                            reuseExistingChunk: true
+                        },
+                        svgs: {
+                            test: /[\\/]src\/.+\.svg$/,
+                            chunks: 'all',
+                            name: 'svgs'
+                        }
+                    }
+                }
+            },
+
             plugins: [
                 new webpack.DefinePlugin({
                     'process.env.APP_TARGET': JSON.stringify('web')
