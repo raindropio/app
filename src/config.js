@@ -1,10 +1,15 @@
-export default {
+//commonjs, because used in extension manifest and index.ejs
+module.exports = {
     webPreview: '//p.rdl.ink/',
 
     vendors: {
         sentry: {
             dsn: 'https://c647a147102b4de68dd9dd8690e06840@o199199.ingest.sentry.io/5264532'
         }
+    },
+
+    csp: {
+        hosts: 'https://*.raindrop.io https://*.sentry.io https://sentry.io'
     },
 
     links: {
@@ -38,9 +43,5 @@ export default {
             token: 'https://developer.raindrop.io/v1/authentication/token',
             github:'https://github.com/raindropio'
         }
-    },
-
-    getImportLink: function() {
-        return this.host+'/app#/settings/import';
     }
 }

@@ -1,4 +1,5 @@
 const fs = require('fs')
+const config = require('~config')
 
 function file({ emitFile }, filename) {
 	const name = 'assets/'+filename.split('/').pop()
@@ -49,7 +50,7 @@ module.exports = ({ vendor, production=false }, l) => {
 			'contextMenus',
 			'notifications',
 			'activeTab',
-			'https://api.raindrop.io/',
+			'https://*.raindrop.io/',
 			'https://*.rdl.ink/'
 		],
 
@@ -87,9 +88,7 @@ module.exports = ({ vendor, production=false }, l) => {
 			page: 'index.html#/settings'
 		},
 
-		...(!production ? {
-			content_security_policy: 'script-src \'self\' \'unsafe-eval\'; object-src \'self\''
-		} : {})
+		content_security_policy: `script-src 'self' ${config.csp.hosts} ${!production?'\'unsafe-eval\'':''}; object-src 'self';`
 	}
 
 	//additional files

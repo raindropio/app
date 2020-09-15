@@ -9,7 +9,7 @@
 	
 	<title>Raindrop.io</title>
 
-	<meta http-equiv="Content-Security-Policy" content="default-src *; script-src 'self' *.raindrop.io *.googletagmanager.com *.google-analytics.com *.sentry.io sentry.io <%= process.env.NODE_ENV === 'development' ? '\'unsafe-inline\' \'unsafe-eval\'' : '' %>; style-src 'self' 'unsafe-inline';">
+	<meta http-equiv="Content-Security-Policy" content="default-src *; script-src 'self' <%= require('./config.js').csp.hosts %> <%= process.env.NODE_ENV === 'development' ? '\'unsafe-inline\' \'unsafe-eval\'' : '' %>; style-src 'self' 'unsafe-inline';">
 
 	<meta name='apple-itunes-app' content='app-id=1021913807' />
 	<meta name='google-play-app' content='app-id=io.raindrop.raindropio' />
@@ -32,6 +32,8 @@
 	<meta property='og:image' content='<%= require("./assets/brand/og.png").default %>' />
 
 	<%= process.env.APP_TARGET=='extension' ? "<script src='assets/browser-polyfill.js'></script>" : "" %>
+	<!--analytics-->
+	<script async defer data-domain="app.raindrop.io" src="https://stats.raindrop.io/js/index.js"></script>
 </head>
 <body>
 	<div id="react">
@@ -43,7 +45,5 @@
 			@media (prefers-color-scheme: dark) {#react > * {background: #303030 !important;height: 100%}}
 		</style>
 	</div>
-
-	<script async src='<%= require("./assets/analytics.js?asis").default %>'></script>
 </body>
 </html>
