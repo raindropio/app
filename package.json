@@ -35,6 +35,7 @@
 		"~local": "src/local",
 		"~modules": "src/modules",
 		"~routes": "src/routes",
+		"~target": "src/target",
 		"~package.json": "package.json"
 	},
 	"dependencies": {

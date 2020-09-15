@@ -2,13 +2,14 @@ import s from './tabs.module.styl'
 import React from 'react'
 import t from '~t'
 import { Link } from 'react-router-dom'
+import { target } from '~target'
 
 import Header from '~co/common/header'
 import Button from '~co/common/button'
 
 export default class SettingsHeader extends React.Component {
     tabs = [
-        { to: '/app', title: process.env.APP_TARGET == 'extension' ? t.s('browserExtension') : t.s('app')},
+        { to: '/app', title: target == 'extension' ? t.s('browserExtension') : t.s('app')},
         { to: '/account', title: t.s('account') },
         { to: '/pro', title: t.s('subscription') },
         { to: '/import', title: t.s('import') },

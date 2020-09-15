@@ -1,3 +1,5 @@
+import { target } from '~target'
+
 export function parseAgent() {
   var browser = [];
 
@@ -30,7 +32,7 @@ export function parseAgent() {
     if (navigator.appVersion.indexOf('Electron')!=-1) browser.push('electron');
   }
 
-  browser.push(process.env.APP_TARGET)
+  browser.push(target)
 
   return browser;
 }

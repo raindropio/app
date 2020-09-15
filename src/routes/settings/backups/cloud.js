@@ -3,6 +3,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import t from '~t'
 import _ from 'lodash'
+import { target } from '~target'
 import config from '~config'
 import { connect } from 'react-redux'
 import { user, isPro } from '~data/selectors/user'
@@ -13,7 +14,7 @@ import Alert from '~co/common/alert'
 import Icon from '~co/common/icon'
 
 function SettingsBackupsCloud({ user, pro, location: { pathname } }) {
-    const webApp = process.env.APP_TARGET == 'web'
+    const webApp = target == 'web'
 
     return (
         <>

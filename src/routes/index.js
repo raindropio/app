@@ -1,5 +1,6 @@
 import React from 'react'
 import { HashRouter, BrowserRouter, Route, Switch } from 'react-router-dom'
+import { target } from '~target'
 
 import Account from './account'
 import Add from './add'
@@ -9,7 +10,7 @@ import Settings from './settings'
 
 import NotFound from './notFound'
 
-const Router = process.env.APP_TARGET == 'web' ?
+const Router = target == 'web' ?
     BrowserRouter :
     HashRouter
 

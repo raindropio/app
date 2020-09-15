@@ -2,6 +2,7 @@ import React from 'react'
 import * as Sentry from '@sentry/react'
 import config from '~config'
 import pkg from '~package.json'
+import { target } from '~target'
 
 //Firefox sending errors without sourcemap, so just ignore them at all
 if (process.env.NODE_ENV !== 'development' &&
@@ -12,7 +13,7 @@ if (process.env.NODE_ENV !== 'development' &&
         ignoreErrors: [
             /ResizeObserver loop.*/i
         ],
-        environment: `${process.env.APP_TARGET}-${process.env.NODE_ENV}`
+        environment: `${target}-${process.env.NODE_ENV}`
     })
     Sentry.setTag('version', pkg.version)
 }

@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { refresh } from '~data/actions/bookmarks'
 import { makeSpaceElements, makeSelectMode, status } from '~data/selectors/bookmarks'
 import config from '~config'
+import { openLink } from '~target'
 
 import Modal, { Header, Content } from '~co/overlay/modal'
 import Preloader from '~co/common/preloader'
@@ -44,9 +45,7 @@ class BookmarkOpenAll extends React.Component {
             .map(([_, {link}])=>link)
 
         //open links
-        for(const link of links)
-            if (!link.startsWith('file'))
-                window.open(link)
+        openLink(links)
 
         //just close dialog when bookmarks less=1, or warning already showen
         if (links.length <= 1 || !showWarning)

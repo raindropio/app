@@ -10,8 +10,8 @@ module.exports = (env={}) =>
         common({ ...env, filename: '[name]' }),
         {
             entry: {
-                manifest: './extension/manifest.json.js',
-                background: './extension/background/index.js'
+                manifest: './target/extension/manifest/index.js',
+                background: './target/extension/background/index.js'
             },
 
             output: {
@@ -38,7 +38,7 @@ module.exports = (env={}) =>
 
             module: {
                 rules: [{
-                    test: /manifest\.json\.js$/,
+                    test: /manifest\/index\.js$/,
                     use: [
                         {
                             loader: 'file-loader',

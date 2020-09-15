@@ -6,6 +6,7 @@ import config from '~config'
 import { connect } from 'react-redux'
 import { user } from '~data/selectors/user'
 import { API_ENDPOINT_URL } from '~data/constants/app'
+import { target } from '~target'
 
 import { Label, Checkbox } from '~co/common/form'
 import Icon from '~co/common/icon'
@@ -16,7 +17,7 @@ function SettingsProfileConnect({ user, location: { pathname } }) {
         <>
             <Label>{t.s('signInSocial')}</Label>
             
-            {process.env.APP_TARGET == 'web' ? (
+            {target == 'web' ? (
                 <div>
                     {['google', 'apple', 'facebook', 'twitter', 'vkontakte'].map(key=>{
                         const enabled = user[key] && user[key].enabled
