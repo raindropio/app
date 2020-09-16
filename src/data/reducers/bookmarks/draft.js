@@ -67,7 +67,7 @@ export default function(state, action) {switch (action.type) {
 			'item',
 			draft.item.merge(
 				draft.changedFields.length ?
-					_.without(clean, ...draft.changedFields) :
+					_.omit(clean, draft.changedFields) :
 					clean
 			)
 		)
@@ -196,10 +196,9 @@ export default function(state, action) {switch (action.type) {
 
 				//override only fields that have been saved
 				draft = draft
-					.set('item', {
-						...draft.item,
-						..._.without(normalizeBookmark(item, {flat: false}), ...draft.changedFields)
-					})
+					.set('item', draft.item.merge(
+						_.omit(normalizeBookmark(item, {flat: false}), draft.changedFields)
+					))
 
 				draft = draft.set('status', parseInt(draft.item.collectionId)!=-99 ? 'loaded' : 'removed')
 
