@@ -322,5 +322,6 @@
   "automatically": "Automatically",
   "lastUsed": "Last used",
   "defaultCollection": "Default collection",
-  "recent": "Recent"
+  "recent": "Recent",
+  "logOutOfAllDevices": "Log out of all devices"
 }

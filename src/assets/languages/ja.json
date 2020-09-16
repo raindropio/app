@@ -322,5 +322,6 @@
   "automatically": "自動的に",
   "lastUsed": "Last used",
   "defaultCollection": "デフォルトコレクション",
-  "recent": "最近の"
+  "recent": "最近の",
+  "logOutOfAllDevices": "Log out of all devices"
 }

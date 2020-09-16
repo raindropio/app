@@ -322,5 +322,6 @@
   "automatically": "स्वतः",
   "lastUsed": "आखरी बार इस्त्तमाल किया गया",
   "defaultCollection": "व्यतिक्रम संग्रह",
-  "recent": "हाल का"
+  "recent": "हाल का",
+  "logOutOfAllDevices": "Log out of all devices"
 }

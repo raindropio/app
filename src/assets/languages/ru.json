@@ -322,5 +322,6 @@
   "automatically": "Автоматически",
   "lastUsed": "Последняя использованная",
   "defaultCollection": "Коллекция по умолчанию",
-  "recent": "Недавние"
+  "recent": "Недавние",
+  "logOutOfAllDevices": "Выйти из всех устройств"
 }

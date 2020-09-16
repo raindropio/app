@@ -322,5 +322,6 @@
   "automatically": "自动",
   "lastUsed": "上次使用的",
   "defaultCollection": "预设收藏夹",
-  "recent": "最近使用的"
+  "recent": "最近使用的",
+  "logOutOfAllDevices": "Log out of all devices"
 }

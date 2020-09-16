@@ -58,8 +58,9 @@ export const recoverPassword = ({ token, password })=>({
 	token, password
 })
 
-export const logout = ()=>({
-	type: USER_LOGOUT_REQ
+export const logout = (all=false)=>({
+	type: USER_LOGOUT_REQ,
+	all
 })
 
 export const loadSubscription = ()=>({

@@ -6,6 +6,7 @@ import { Layout, Separator } from '~co/common/form'
 import Profile from './profile'
 import Connect from './connect'
 import Usage from './usage'
+import LogoutAll from './logoutAll'
 import Remove from './remove'
 
 export default (props)=>(
@@ -23,7 +24,7 @@ export default (props)=>(
 		<Usage {...props} />
 
 		<Separator />
-		
+		<LogoutAll {...props} />
 		<Remove {...props} />
 	</Layout>
 )
