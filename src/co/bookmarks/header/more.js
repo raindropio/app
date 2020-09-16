@@ -41,7 +41,7 @@ class BookmarksHeaderMore extends React.Component {
         if (await Confirm(t.s('areYouSure'), {
             variant: 'warning',
             description: this.props.collection._id != -99 ? t.s('collectionDeleteConfirm') : '',
-            ok: t.s('remove')+' '+this.props.collection.title
+            ok: this.props.collection._id != -99 ? (t.s('remove')+' '+this.props.collection.title) : t.s('emptyTrash')
         }))
             this.props.oneRemove(this.props.collection._id)
     }

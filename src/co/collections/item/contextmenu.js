@@ -80,7 +80,7 @@ export default class CollectionsItemContextmenu extends React.Component {
                     { _id==-99 ? (
                         <MenuItem onClick={onRemoveClick}>
                             <Icon name='trash' />
-                            {t.s('remove')} {t.s('all').toLowerCase()} {t.s('in')} {t.s('defaultCollection--99').toLowerCase()}
+                            {t.s('emptyTrash')}
                         </MenuItem>
                     ) : null}
                 </Menu>

@@ -96,7 +96,7 @@ export default class CollectionsItem extends React.PureComponent {
                 await Confirm(t.s('areYouSure'), {
                     variant: 'warning',
                     description: this.props.item._id != -99 ? t.s('collectionDeleteConfirm') : '',
-                    ok: t.s('remove')+' '+this.props.item.title
+                    ok: this.props.item._id != -99 ? (t.s('remove')+' '+this.props.item.title) : t.s('emptyTrash')
                 }))
                 this.props.actions.oneRemove(this.props.item._id)
         },

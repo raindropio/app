@@ -56,7 +56,7 @@ class BookmarkEditFormCollection extends React.Component {
                         onClick={this.onPickerClick}>
                         <CollectionIcon 
                             {...path[path.length-1]} />
-                        {pathText}
+                        <span>{pathText}</span>
                         <Icon name='arrow' />
                     </Button>
                 </div>

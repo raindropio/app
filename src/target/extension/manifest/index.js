@@ -115,7 +115,10 @@ module.exports = ({ vendor, production=false }, l) => {
 					16: file(l, '../../../assets/target/extension/action_firefox_light_16.png'),
 					24: file(l, '../../../assets/target/extension/action_firefox_light_24.png'),
 					32: file(l, '../../../assets/target/extension/action_firefox_light_32.png')
-				}
+				},
+				...(vendor == 'firefox' ? {
+					open_at_install: false
+				} : {})
 			}
 		}: {}),
 
