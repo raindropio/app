@@ -20,21 +20,23 @@ import Splash from './routes/_splash'
 //init redux
 const { store, persistor } = withLocalReducer(localReducers)
 
-render(
-	//!add other global components in co/screen/basic
-	<Sentry>
-		<ServiceWorker>
-			<Provider store={store}>
-				<Document>
-					<PersistGate loading={<Splash />} persistor={persistor}>
-						<Translate loading={<Splash />}>
-							<Routes />
-						</Translate>
-					</PersistGate>
-				</Document>
-			</Provider>
-		</ServiceWorker>
-	</Sentry>,
-	
-	document.getElementById('react')
-)
+window.onload = ()=>{
+	render(
+		//!add other global components in co/screen/basic
+		<Sentry>
+			<ServiceWorker>
+				<Provider store={store}>
+					<Document>
+						<PersistGate loading={<Splash />} persistor={persistor}>
+							<Translate loading={<Splash />}>
+								<Routes />
+							</Translate>
+						</PersistGate>
+					</Document>
+				</Provider>
+			</ServiceWorker>
+		</Sentry>,
+		
+		document.getElementById('react')
+	)
+}

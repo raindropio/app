@@ -91,7 +91,7 @@ module.exports = ({ production, filename='[name].[contenthash]' }) => ({
 			favicon: './assets/brand/favicon.ico',
 			hash: true,
 			scriptLoading: 'defer',
-			inject: 'body',
+			inject: 'head', //head better for extension
 			excludeChunks: ['manifest', 'background']
 		}),
 

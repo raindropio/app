@@ -6,7 +6,7 @@ import Context from './context'
 
 //save mouse position
 let _mousePos = { x:-1, y:-1 }
-document.body.addEventListener('mousedown', function(e){
+document.documentElement.addEventListener('mousedown', function(e){
     _mousePos = { x: e.pageX, y: e.pageY }
 })
 

@@ -83,7 +83,7 @@ export default class PickerImage extends React.Component {
                                 className={s.item}
                                 title={t.s('clickToMakeScreenshot')}
                                 onClick={this.onScreenshotClick}>
-                                {screenshot_loading ? <Preloader /> : <Icon name='web' />}
+                                {screenshot_loading ? <Preloader /> : t.s('screenshot')}
                             </button>
                         ) : null}
 

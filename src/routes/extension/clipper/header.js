@@ -15,7 +15,8 @@ function ClipperHeader({ status }) {
 
     switch(status) {
         case 'new':     title = t.s('newBookmark'); break
-        case 'loading': title = t.s('loading')+'…'; break
+        case 'loading': title = ''; break
+        case 'removed': title = t.s('removeSuccess'); break
         default:        title = t.s('bookmark')+' '+t.s('saved').toLowerCase(); break
     }
 
