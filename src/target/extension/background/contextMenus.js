@@ -1,8 +1,9 @@
 import browser from 'webextension-polyfill'
+import { openAdd } from './utils'
 
 async function onClicked({ menuItemId, pageUrl, srcUrl, linkUrl, linkText, selectionText }) {
     switch(menuItemId) {
-        case 'savePage':{
+        case 'save_page':{
             let title
 
             try{
@@ -10,34 +11,18 @@ async function onClicked({ menuItemId, pageUrl, srcUrl, linkUrl, linkText, selec
                 title = tab.title
             } catch(e) {}
             
-            return Add({ link: pageUrl, title })
+            return openAdd({ link: pageUrl, title })
         }
 
-        case 'saveLink':
-            return Add({ link: linkUrl, title: linkText||selectionText })
+        case 'save_link':
+            return openAdd({ link: linkUrl, title: linkText||selectionText })
 
-        case 'saveVideo':
-            return Add({ link: srcUrl })
+        case 'save_video':
+            return openAdd({ link: srcUrl })
 
-        case 'saveImage':
-            return Add({ link: srcUrl })
+        case 'save_image':
+            return openAdd({ link: srcUrl })
     }
-}
-
-function Add(props) {
-    const width = 400;
-    const height = 600;
-    const left = (screen.width/2)-(width/2);
-    const top = (screen.height/2)-(height/2); 
-
-    browser.windows.create({
-        type: 'popup',
-        url: `index.html#/add?${new URLSearchParams(props).toString()}`,
-        width,
-        height,
-        left,
-        top
-    })
 }
 
 export default async function() {
@@ -49,22 +34,22 @@ export default async function() {
     //create
     await Promise.all([
         browser.contextMenus.create({
-            id: 'savePage',
+            id: 'save_page',
             title: 'Save page',
             contexts: ['page']
         }),
         browser.contextMenus.create({
-            id: 'saveLink',
+            id: 'save_link',
             title: 'Save link',
             contexts: ['link']
         }),
         browser.contextMenus.create({
-            id: 'saveVideo',
+            id: 'save_video',
             title: 'Save video',
             contexts: ['video']
         }),
         browser.contextMenus.create({
-            id: 'saveImage',
+            id: 'save_image',
             title: 'Save image',
             contexts: ['image']
         })
