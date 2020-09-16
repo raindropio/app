@@ -11,6 +11,12 @@ const Translate = {
 		return Translate.strings[key] || Translate.fallback[key] || key || ''
 	},
 
+	has: (key)=>{
+		if (Translate.strings[key] || Translate.fallback[key])
+			return true
+		return false
+	},
+
 	format: function(key) {
 		var formatted = Translate.s(key)
 		for( var arg in arguments ) {

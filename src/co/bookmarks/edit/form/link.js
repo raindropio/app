@@ -13,6 +13,7 @@ export default class BookmarkEditFormLink extends React.Component {
             <>
                 <Label>URL</Label>
                 <Text 
+                    required
                     autoSize={true}
                     autoFocus={autoFocus=='link'}
                     type='url'

@@ -12,6 +12,7 @@ import { PersistGate } from 'redux-persist/es/integration/react'
 import { withLocalReducer } from '~data'
 import localReducers from './local/reducers'
 
+import { Component as Target } from '~target'
 import Translate from '~modules/translate/component'
 import Routes from '~routes'
 import Document from './routes/_document'
@@ -27,11 +28,13 @@ window.onload = ()=>{
 			<ServiceWorker>
 				<Provider store={store}>
 					<Document>
-						<PersistGate loading={<Splash />} persistor={persistor}>
-							<Translate loading={<Splash />}>
-								<Routes />
-							</Translate>
-						</PersistGate>
+						<Target>
+							<PersistGate loading={<Splash />} persistor={persistor}>
+								<Translate loading={<Splash />}>
+									<Routes />
+								</Translate>
+							</PersistGate>
+						</Target>
 					</Document>
 				</Provider>
 			</ServiceWorker>

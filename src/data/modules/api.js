@@ -12,11 +12,16 @@ function* get(url, overrideOptions={}) {
 	const res = yield req(url, overrideOptions)
 
 	var json = {}
-	if (res.headers)
-		if ((res.headers.get('Content-Type')||'').toLowerCase().indexOf('application/json')!=-1){
+	if (res.headers){
+		const contentType = (res.headers.get('Content-Type')||'').toLowerCase()
+
+		if (contentType.includes('application/json')){
 			json = yield res.json()
 			checkJSON(json)
 		}
+		else if (contentType.includes('text/plain'))
+			return yield res.text()
+	}
 
 	return json;
 }
