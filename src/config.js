@@ -14,6 +14,7 @@ module.exports = {
 
     links: {
         app: 'https://app.raindrop.io',
+        search: 'https://app.raindrop.io/my/0/',
         download: 'https://raindrop.io/download',
         blog: 'https://blog.raindrop.io',
         better: 'https://better.raindrop.io',

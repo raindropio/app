@@ -56,5 +56,6 @@ export default async function() {
     ])
 
     //event
+    browser.contextMenus.onClicked.removeListener(onClicked)
     browser.contextMenus.onClicked.addListener(onClicked)      
 }
