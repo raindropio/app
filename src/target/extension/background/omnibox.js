@@ -3,11 +3,16 @@ import config from '~config'
 import Api from '~data/modules/api'
 import _ from 'lodash'
 
-function emToMatch(str) {
-    if (!str) return ''
+function emToMatch(str='') {
+    if (!str)
+        return ''
+
+    if (process.env.EXTENSION_VENDOR == 'firefox')
+        return str.replaceAll(/<[^>]*>/g, '')
+
     return _.escape(str)
         .replaceAll(_.escape('<em>'), '<match>')
-        .replaceAll(_.escape('</em>'), '</match>')+'. '
+        .replaceAll(_.escape('</em>'), '</match>')
 }
 
 async function onInputChanged(text, addSuggestions) {
@@ -18,7 +23,9 @@ async function onInputChanged(text, addSuggestions) {
     addSuggestions(
         items.map(({ link, title, highlight={} })=>({
             content: link,
-            description: `${emToMatch(highlight.title||title)}<url>${link}</url>`
+            description: 
+                emToMatch(highlight.title||title) +
+                (process.env.EXTENSION_VENDOR != 'firefox' ? ` - <url>${link}</url>` : '')
         }))
     )
 }

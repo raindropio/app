@@ -25,7 +25,8 @@ module.exports = (env={}) =>
 
             plugins: [
                 new webpack.DefinePlugin({
-                    'process.env.APP_TARGET': JSON.stringify('extension')
+                    'process.env.APP_TARGET': JSON.stringify('extension'),
+                    'process.env.EXTENSION_VENDOR': JSON.stringify(env.vendor)
                 }),
 
                 new WriteFilePlugin()

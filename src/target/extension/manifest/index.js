@@ -41,7 +41,6 @@ module.exports = ({ vendor, production=false }, l) => {
 		},
 
 		browser_action: {
-			default_title: 'Raindrop.io',
 			default_popup: 'index.html',
 			default_icon: {
 				//chrome based icon
