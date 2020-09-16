@@ -4,4 +4,5 @@ export const environment = [
     ...fallbackEnvironment,
     process.env.EXTENSION_VENDOR,
     ...(location.search.includes('browser_action') ? ['browser_action'] : []),
+    ...(location.search.includes('sidebar') ? ['sidebar'] : []),
 ]

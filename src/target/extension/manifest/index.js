@@ -108,6 +108,17 @@ module.exports = ({ vendor, production=false }, l) => {
 			page: 'index.html#/settings'
 		},
 
+		...(vendor == 'firefox' || vendor == 'opera' ? {
+			sidebar_action: {
+				default_panel: 'index.html?sidebar',
+				default_icon: {
+					16: file(l, '../../../assets/target/extension/button_light_16.png'),
+					24: file(l, '../../../assets/target/extension/button_light_24.png'),
+					32: file(l, '../../../assets/target/extension/button_light_32.png')
+				}
+			}
+		}: {}),
+
 		content_security_policy: `script-src 'self' ${config.csp.hosts} ${!production?'\'unsafe-eval\'':''}; object-src 'self';`
 	}
 
