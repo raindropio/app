@@ -14,7 +14,7 @@ function SettingsBrowserExtensionMode({ browser_extension_mode, set }) {
             <div>
                 {[
                     ['clipper', 'Clipper', t.s('clipperD')],
-                    ['mini_app', t.s('mini') + ' ' + t.s('app'), t.s('miniAppD')]
+                    ['mini_app', t.s('mini') + ' ' + t.s('app') + ' (beta)', t.s('miniAppD')]
                 ].map(([key, title, desc])=>
                     <>
                         <Radio 

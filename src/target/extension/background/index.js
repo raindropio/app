@@ -1,1 +1,5 @@
-import browser from 'webextension-polyfill'
+import contextMenus from './contextMenus'
+
+Promise.all([
+    contextMenus()
+])

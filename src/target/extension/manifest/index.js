@@ -22,7 +22,7 @@ module.exports = ({ vendor, production=false }, l) => {
 
 		name:			'Raindrop.io'+(!production?' (Dev)':''),
 		description:	'All In One Bookmark Manager',
-		homepage_url:	'https://raindrop.io',
+		homepage_url:	'https://app.raindrop.io',
 		author:			'Mussabekov Rustem',
 		short_name:		'Raindrop.io',
 
