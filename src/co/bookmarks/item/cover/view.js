@@ -89,7 +89,8 @@ export default class BookmarkItemCover extends React.PureComponent {
                     {...etc}
                     src={uri && `${uri}&mode=crop&width=${width||''}&ar=${ar||''}&dpr=${window.devicePixelRatio||1}`}
                     //type='image/jpeg'
-                    onLoad={indicator && uri ? this.onImageLoadSuccess : undefined} />
+                    onLoad={indicator && uri ? this.onImageLoadSuccess : undefined}
+                    onError={indicator && uri ? this.onImageLoadSuccess : undefined} />
             </>
         )
     }

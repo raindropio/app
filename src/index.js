@@ -4,7 +4,6 @@ import React from 'react'
 import { render } from 'react-dom'
 import Sentry from '~modules/vendors/sentry'
 import 'form-request-submit-polyfill'
-import ServiceWorker from '~modules/sw/component'
 
 //redux
 import { Provider } from 'react-redux'
@@ -12,6 +11,7 @@ import { PersistGate } from 'redux-persist/es/integration/react'
 import { withLocalReducer } from '~data'
 import localReducers from './local/reducers'
 
+import ServiceWorker from '~modules/sw/component'
 import { Component as Target } from '~target'
 import Translate from '~modules/translate/component'
 import Routes from '~routes'

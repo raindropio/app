@@ -1,6 +1,7 @@
 import React from 'react'
-import { HashRouter, BrowserRouter, Route, Switch } from 'react-router-dom'
 import { target } from '~target'
+import { HashRouter, BrowserRouter, Route, Switch } from 'react-router-dom'
+import Analytics from '~modules/analytics'
 
 import Account from './account'
 import Add from './add'
@@ -16,14 +17,16 @@ const Router = target == 'web' ?
 
 export default ()=>(
     <Router>
-        <Switch>
-            <Route path='/account' component={Account} />
-            <Route path='/add' component={Add} />
-            <Route path='/extension' component={Extension} />
-            <Route path='/my' component={My} />
-            <Route path='/settings' component={Settings} />
+        <Analytics>
+            <Switch>
+                <Route path='/account' component={Account} />
+                <Route path='/add' component={Add} />
+                <Route path='/extension' component={Extension} />
+                <Route path='/my' component={My} />
+                <Route path='/settings' component={Settings} />
 
-            <Route component={NotFound} />
-        </Switch>
+                <Route component={NotFound} />
+            </Switch>
+        </Analytics>
     </Router>
 )
