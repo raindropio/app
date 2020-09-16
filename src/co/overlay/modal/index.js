@@ -26,6 +26,7 @@ export default class Modal extends React.Component {
     onWindowKeyDown = e=>{
         switch(e.key) {
             case 'Escape':
+                e.preventDefault()
                 e.stopPropagation()
                 this.props.onClose()
             break

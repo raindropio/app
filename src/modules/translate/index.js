@@ -1,4 +1,5 @@
 import en_US from '~assets/languages/en.json'
+import { getLanguage } from '~target'
 
 const Translate = {
 	fallback: en_US,
@@ -23,18 +24,8 @@ const Translate = {
 		if (Translate.loaded && Translate.currentLang == browserLang)
 			return;
 
-		//extension
 		if (!browserLang)
-			try{
-				const browser = typeof browser != 'undefined' ? browser : chrome
-				browserLang = browser.i18n.getUILanguage()
-			}catch(e){}
-
-		if (!browserLang)
-			try{
-				browserLang = navigator.language || navigator.userLanguage || ''
-				browserLang = browserLang.trim().toLowerCase()
-			}catch(e){}
+			browserLang = getLanguage()
 
 		Translate.currentLang = browserLang.toLowerCase().substr(0,2)
 

@@ -1,13 +1,9 @@
-let methods = {}
+let methods = require('./fallback')
 
 switch (process.env.APP_TARGET) {
     case 'extension':
-        methods = require('./extension')
-        break;
-
-    default:
-        methods = require('./fallback')
-        break;
+        methods = { ...methods, ...require('./extension') }
+        break
 }
 
 module.exports = {

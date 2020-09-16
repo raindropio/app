@@ -4,6 +4,7 @@ import config from '~config'
 import { connect } from 'react-redux'
 import { logout } from '~data/actions/user'
 import { user } from '~data/selectors/user'
+import { target } from '~target'
 
 import Popover, { Menu, MenuItem, MenuSeparator } from '~co/overlay/popover'
 import Icon from '~co/common/icon'
@@ -24,10 +25,12 @@ function UserProfileMenu({
 
                 <MenuSeparator />
 
-                <MenuItem href={config.links.download} target='_blank'>
-                    <Icon name='extension' />
-                    {t.s('browserExtension')}
-                </MenuItem>
+                {target != 'extension' && (
+                    <MenuItem href={config.links.download} target='_blank'>
+                        <Icon name='extension' />
+                        {t.s('browserExtension')}
+                    </MenuItem>
+                )}
 
                 <MenuItem href={config.links.download} target='_blank'>
                     <Icon name='install' />
