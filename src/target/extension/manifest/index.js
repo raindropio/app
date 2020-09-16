@@ -45,23 +45,23 @@ module.exports = ({ vendor, production=false }, l) => {
 			default_icon: {
 				//chrome based icon
 				...(vendor == 'chrome' || vendor == 'opera' ? {
-					16: file(l, '../../../assets/target/extension/button_16.png'),
-					24: file(l, '../../../assets/target/extension/button_24.png'),
-					32: file(l, '../../../assets/target/extension/button_32.png')
+					16: file(l, '../../../assets/target/extension/action_chrome_16.png'),
+					24: file(l, '../../../assets/target/extension/action_chrome_24.png'),
+					32: file(l, '../../../assets/target/extension/action_chrome_32.png')
 				} : {}),
 				//safari icon
 				...(vendor == 'safari' ? {
-					16: file(l, '../../../assets/target/extension/button_solid_16.png'),
-					24: file(l, '../../../assets/target/extension/button_solid_24.png'),
-					32: file(l, '../../../assets/target/extension/button_solid_32.png')
+					16: file(l, '../../../assets/target/extension/action_safari_16.png'),
+					24: file(l, '../../../assets/target/extension/action_safari_24.png'),
+					32: file(l, '../../../assets/target/extension/action_safari_32.png')
 				} : {})
 			},
 			//firefox
 			...(vendor == 'firefox' ? {
 				theme_icons: [
-					{'light': file(l, '../../../assets/target/extension/button_dark_16.png'), 'dark': file(l, '../../../assets/target/extension/button_light_16.png'), size: 16},
-					{'light': file(l, '../../../assets/target/extension/button_dark_24.png'), 'dark': file(l, '../../../assets/target/extension/button_light_24.png'), size: 24},
-					{'light': file(l, '../../../assets/target/extension/button_dark_32.png'), 'dark': file(l, '../../../assets/target/extension/button_light_32.png'), size: 32}
+					{'light': file(l, '../../../assets/target/extension/action_firefox_dark_16.png'), 'dark': file(l, '../../../assets/target/extension/action_firefox_light_16.png'), size: 16},
+					{'light': file(l, '../../../assets/target/extension/action_firefox_dark_24.png'), 'dark': file(l, '../../../assets/target/extension/action_firefox_light_24.png'), size: 24},
+					{'light': file(l, '../../../assets/target/extension/action_firefox_dark_32.png'), 'dark': file(l, '../../../assets/target/extension/action_firefox_light_32.png'), size: 32}
 				]
 			} : {})
 		},
@@ -112,9 +112,9 @@ module.exports = ({ vendor, production=false }, l) => {
 			sidebar_action: {
 				default_panel: 'index.html?sidebar',
 				default_icon: {
-					16: file(l, '../../../assets/target/extension/button_light_16.png'),
-					24: file(l, '../../../assets/target/extension/button_light_24.png'),
-					32: file(l, '../../../assets/target/extension/button_light_32.png')
+					16: file(l, '../../../assets/target/extension/action_firefox_light_16.png'),
+					24: file(l, '../../../assets/target/extension/action_firefox_light_24.png'),
+					32: file(l, '../../../assets/target/extension/action_firefox_light_32.png')
 				}
 			}
 		}: {}),
