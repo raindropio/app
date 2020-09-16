@@ -8,7 +8,7 @@
     overflow: auto;
 }
 
-html:global(.extension) .page {
+html:global(.extension):global(.browser_action) .page {
     width: auto;
     max-width: var(--extension-max-width);
     min-width: var(--extension-min-width);

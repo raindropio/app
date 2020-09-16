@@ -4,13 +4,15 @@ import t from '~t'
 import { Helmet } from 'react-helmet'
 
 import isMobile from 'ismobilejs'
-import { parseAgent, scrollbarIsObtrusive } from '~modules/browser'
+import { scrollbarIsObtrusive } from '~modules/browser'
+import { target, environment } from '~target'
 
 export default class DocumentHtml extends React.PureComponent {
     state = {
         className: [
-            isMobile(navigator.userAgent).phone ? 'mobile' : 'web',
-            ...parseAgent(),
+            ...(isMobile(navigator.userAgent).phone ? ['mobile'] : []),
+            target,
+            ...environment,
             scrollbarIsObtrusive() ? 'scrollbar-obtrusive' : '',
         ]
     }

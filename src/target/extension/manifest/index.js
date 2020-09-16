@@ -41,7 +41,7 @@ module.exports = ({ vendor, production=false }, l) => {
 		},
 
 		browser_action: {
-			default_popup: 'index.html',
+			default_popup: 'index.html?browser_action',
 			default_icon: {
 				//chrome based icon
 				...(vendor == 'chrome' || vendor == 'opera' ? {
