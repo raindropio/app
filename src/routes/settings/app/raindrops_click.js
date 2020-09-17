@@ -1,5 +1,6 @@
 import React from 'react'
 import t from '~t'
+import { target } from '~target'
 import { connect } from 'react-redux'
 import { set } from '~data/actions/config'
 
@@ -13,7 +14,7 @@ function SettingsAppRaindropsClick({ raindrops_click, set }) {
                 {[
                     ['current_tab', t.s('open')],
                     ['new_tab', t.s('open') + ' ' + t.s('inNewTab')],
-                    ['preview', t.s('preview')],
+                    ...(target != 'extension' ? [['preview', t.s('preview')]] : []),
                     ['edit', t.s('edit')]
                 ].map(([key, label])=>
                     <Radio 

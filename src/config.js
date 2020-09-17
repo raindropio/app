@@ -1,6 +1,6 @@
 //commonjs, because used in extension manifest and index.ejs
 module.exports = {
-    webPreview: '//p.rdl.ink/',
+    webPreview: 'https://p.rdl.ink/',
 
     vendors: {
         sentry: {

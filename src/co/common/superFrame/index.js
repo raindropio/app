@@ -35,7 +35,7 @@ export default class SuperFrame extends React.Component {
 					allowtransparency='false'
 					plugins='true'
 					src={sandbox ? `${config.webPreview}${src}` : src} 
-					sandbox={sandbox ? true : undefined}
+					sandbox={sandbox ? 'allow-scripts allow-popups' : undefined}
 					target='_self'
 					onLoad={this.onLoad}
 					onError={this.onError} />

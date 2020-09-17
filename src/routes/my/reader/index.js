@@ -1,6 +1,7 @@
 import React from 'react'
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
+import { target } from '~target'
 import { makeBookmark } from '~data/selectors/bookmarks'
 import { makeCollection } from '~data/selectors/collections'
 
@@ -58,7 +59,7 @@ export default connect(
 
             //available tabs
             const tabs = [
-                'preview', 
+                ...target != 'extension' ? ['preview'] : [], 
                 ...access.level>=3?['edit']:[], 
                 ...item.cache && access.level>=3?['cache']:[],
             ]

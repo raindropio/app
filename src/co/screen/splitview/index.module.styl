@@ -85,6 +85,12 @@ invisible() {
             invisible()
         }
     }
+    .r {
+        :global(.svMain) {
+            --background-color: var(--sidebar-background-color)
+            background-color: var(--background-color)
+        }
+    }
 
 /* Force show sidebar when super small screen */
 @media screen and (max-width sidebarMinWidth+mainMinWidth )
