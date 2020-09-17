@@ -23,6 +23,12 @@ function ClipperHeader({ status }) {
     return (
         <Header
             data-fancy>
+            <ProfileButton />
+
+            <Title>{title}</Title>
+
+            <Space />
+            
             <FirstAction>
                 <Button
                     as='a'
@@ -32,12 +38,6 @@ function ClipperHeader({ status }) {
                     <LogoIcon className={s.logo} />
                 </Button>
             </FirstAction>
-
-            <Title>{title}</Title>
-
-            <Space />
-
-            <ProfileButton />
         </Header>
     )
 }

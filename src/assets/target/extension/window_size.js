@@ -5,8 +5,9 @@
 if (location.search.includes('browser_action')){
     var container, _lastSavedWidth
 
-    function updateSize({ width='450px', height='auto' }) {
-        if (location.hash.startsWith('#/my')){
+    function updateSize({ width='420px', height='auto' }) {
+        if (location.hash.startsWith('#/my') ||
+            location.hash.startsWith('#/settings')){
             width = '750px'
             height = '600px'
         }

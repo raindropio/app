@@ -1,7 +1,26 @@
 .avatar {
-    display: inline
+    display: inline-block
     width: var(--icon-size)
     height: var(--icon-size)
     border-radius: var(--icon-size)
     vertical-align: middle
+    position: relative
+    overflow: hidden
+
+    img {
+        width: 100%
+        height: 100%
+        display: block
+    }
+
+    &:before {
+        content: ''
+        position: absolute
+        left: 0
+        right: 0
+        bottom: 0
+        top: 0
+        box-shadow: inset 0 0 0 var(--shadow-height) var(--shadow-color)
+        border-radius: var(--icon-size)
+    }
 }

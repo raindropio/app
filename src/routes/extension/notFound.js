@@ -8,6 +8,12 @@ function ExtensionNotFound({ browser_extension_mode, match: { path } }) {
         switch(browser_extension_mode) {
             case 'clipper':
                 return <Redirect to={`${path}/clipper`} />
+
+            case 'mini_app':
+                return <Redirect to='/my' />
+
+            default:
+                return <Redirect to={`${path}/welcome`} />
         }
 
     return <Redirect to='/my' />

@@ -38,7 +38,7 @@ export default class BookmarkEditFormTitle extends React.Component {
                     name='excerpt'
                     maxLength='10000'
                     value={excerpt}
-                    placeholder={t.s('description')}
+                    placeholder={t.s('enterDescription')}
                     onChange={this.onChangeField}
                     onBlur={onCommit} />
             </div>

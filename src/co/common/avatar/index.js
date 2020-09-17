@@ -12,9 +12,9 @@ export default class HelpersAvatar extends React.Component{
 
     if (src)
         return (
-          <img 
-            src={'https://www.gravatar.com/avatar/'+src+'?d=mm&s='+(size||40)}
-            className={s.avatar + ' ' + className} />
+          <div className={s.avatar + ' ' + className}>
+            <img src={'https://www.gravatar.com/avatar/'+src+'?d=mm&s='+(size||40)} />
+          </div>
         )
     else
         return <Icon name='profile' className={this.props.className} />

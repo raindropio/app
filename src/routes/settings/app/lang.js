@@ -11,11 +11,17 @@ import Button from '~co/common/button'
 import Icon from '~co/common/icon'
 
 class SettingsAppLang extends React.Component {
+    static defaultProps = {
+        showContribute: true
+    }
+
     onChange = (e)=>{
         this.props.set('lang', e.target.value)
     }
 
     render() {
+        const { lang, showContribute } = this.props
+
         return (
             <>
                 <Label>{t.s('language')}</Label>
@@ -23,7 +29,7 @@ class SettingsAppLang extends React.Component {
                     <Select 
                         autoFocus
                         variant='outline'
-                        value={this.props.lang}
+                        value={lang}
                         onChange={this.onChange}>
                         {Object.entries(supported).map(([key, label])=>
                             <option key={key} value={key}>{label}</option>
@@ -32,13 +38,15 @@ class SettingsAppLang extends React.Component {
                     
                     &nbsp;&nbsp;
 
-                    <Button 
-                        href={config.links.translation}
-                        target='_blank'
-                        variant='flat'>
-                        <Icon name='open' size='micro' />
-                        Help in translation
-                    </Button>
+                    {showContribute && (
+                        <Button 
+                            href={config.links.translation}
+                            target='_blank'
+                            variant='flat'>
+                            <Icon name='open' size='micro' />
+                            Help in translation
+                        </Button>
+                    )}
                 </div>
             </>
         )
