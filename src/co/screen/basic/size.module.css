@@ -20,11 +20,6 @@
     --button-height: 7rem; /*28px*/
     --list-item-height: 8rem; /*32px*/
     --header-height: 12rem; /*48px*/
-
-    /* extension */
-    --extension-min-width: 400px;
-    --extension-max-width: 750px;
-    --extension-max-height: 600px;
 }
 
 [data-app-size='large'],

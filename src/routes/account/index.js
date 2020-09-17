@@ -36,7 +36,7 @@ export default ({ match })=>(
 		</div>
 
 		<footer className={s.footer}>
-			&copy; 2020 SP Rustem Mussabekov
+			&copy; 2020 Raindrop.io
 			<a href={config.links.help.index} target='_blank'>{t.s('support')}</a>
 		</footer>
 	</Screen>

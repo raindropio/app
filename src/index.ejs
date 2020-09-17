@@ -33,13 +33,12 @@
 </head>
 <body>
 	<div id="react">
-		<span id="js_markup_status"></span>
-		<aside id="sidebar"></aside>
-		<section id="main"></section>
 		<style>
-			html, body, #react {width:100%;height:100%;margin:0;padding:0;}
-			@media (prefers-color-scheme: dark) {#react > * {background: #303030 !important;height: 100%}}
+			@media (prefers-color-scheme: dark) {html {background: #303030 !important}}
 		</style>
 	</div>
+
+	<!-- extension popover size, script should be right after #react tag -->
+	<%= process.env.APP_TARGET == 'extension' ? `<script src='${require('./assets/target/extension/window_size.js?asis').default}'></script>` : '' %>
 </body>
 </html>

@@ -70,8 +70,7 @@ module.exports = ({ vendor, production=false }, l) => {
 			'contextMenus',
 			'notifications',
 			'activeTab',
-			'https://*.raindrop.io/',
-			'https://*.rdl.ink/'
+			'https://*.raindrop.io/'
 		],
 
 		optional_permissions: [
