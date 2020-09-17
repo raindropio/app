@@ -9,7 +9,7 @@ export default ({children})=>{
         return children
 
     return (
-        <Analytics id={config.vendors.ga.id} debug>
+        <Analytics id={config.vendors.ga.id}>
             {children}
         </Analytics>
     )

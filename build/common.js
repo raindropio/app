@@ -66,8 +66,10 @@ module.exports = ({ production, filename='[name].[contenthash]' }) => ({
 		...(production ? [
 			//Clean dist folder
 			new CleanWebpackPlugin(),
+		] : []),
 
-			//Sentry
+		//Sentry
+		...(typeof process.env.SENTRY_UPLOAD_SOURCEMAPS != 'undefined' ? [
 			new SentryCliPlugin({
 				release: process.env.SENTRY_RELEASE,
 				dryRun: !production,
@@ -75,7 +77,7 @@ module.exports = ({ production, filename='[name].[contenthash]' }) => ({
 				ignore: [ 'node_modules', 'build', 'dist' ],
 				configFile: path.resolve(__dirname, 'sentry.properties'),
 			})
-		] : []),
+		]: []),
 
 		new webpack.DefinePlugin({
 			'process.env.NODE_ENV': JSON.stringify(production?'production':'development'),

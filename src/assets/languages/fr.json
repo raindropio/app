@@ -132,7 +132,6 @@
   "members": "Membres",
   "enterEmails": "Entrer un email ou des emails séparés par des virgules...",
   "role_member": "Peut modifier",
-  "role_members": "Peut modifier",
   "role_viewer": "Peut consulter",
   "role_owner": "Propriétaire",
   "inviteMorePeople": "Inviter plus de personnes",
@@ -315,13 +314,5 @@
   "darkTheme": "Thème sombre",
   "me": "Je suis",
   "collaboratorsLead": "Partagez vos collections et collaborez avec vos collègues, amis, famille",
-  "emptyTrash": "Vider la poubelle",
-  "mini": "Mini",
-  "miniAppD": "Mini App gives you the same experience as our web site but in compact size. You can browse, search, organize and add new bookmarks.",
-  "clipperD": "Clipper is the fastest way to save new bookmarks.",
-  "automatically": "Automatically",
-  "lastUsed": "Last used",
-  "defaultCollection": "Default collection",
-  "recent": "Recent",
-  "logOutOfAllDevices": "Log out of all devices"
+  "emptyTrash": "Vider la poubelle"
 }

@@ -323,5 +323,7 @@
   "lastUsed": "Last used",
   "defaultCollection": "Default collection",
   "recent": "Recent",
-  "logOutOfAllDevices": "Log out of all devices"
+  "logOutOfAllDevices": "Log out of all devices",
+  "tabs": "Tabs",
+  "permissions": "Permissions"
 }

@@ -7,13 +7,22 @@ async function updateBadge() {
     
     await Promise.all([
         browser.browserAction.setBadgeBackgroundColor({color: '#0087EA'}),
-        browser.browserAction.setBadgeText({text: has(url) ? '✓' : ''})
+        browser.browserAction.setBadgeText({text: has(url) ? '✓' : ''}),
+
+        ...(typeof browser.browserAction.setBadgeTextColor == 'function' ? [
+            browser.browserAction.setBadgeTextColor({color: '#FFFFFF'})
+        ] : []),
     ])
 }
 
+async function onTabsUpdated(id,{ status }) {
+    if (status == 'complete')
+        await updateBadge()
+}
+
 export default async function() {
-    browser.tabs.onUpdated.removeListener(updateBadge)
-    browser.tabs.onUpdated.addListener(updateBadge)
+    browser.tabs.onUpdated.removeListener(onTabsUpdated)
+    browser.tabs.onUpdated.addListener(onTabsUpdated)
 
     browser.tabs.onActivated.removeListener(updateBadge)
     browser.tabs.onActivated.addListener(updateBadge)

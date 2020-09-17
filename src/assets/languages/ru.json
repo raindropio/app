@@ -323,5 +323,7 @@
   "lastUsed": "Последняя использованная",
   "defaultCollection": "Коллекция по умолчанию",
   "recent": "Недавние",
-  "logOutOfAllDevices": "Выйти из всех устройств"
+  "logOutOfAllDevices": "Выйти из всех устройств",
+  "tabs": "Вкладки",
+  "permissions": "Разрешения"
 }

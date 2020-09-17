@@ -16,16 +16,15 @@ function SettingsBrowserExtensionMode({ browser_extension_mode, set }) {
                     ['clipper', 'Clipper', t.s('clipperD')],
                     ['mini_app', t.s('mini') + ' ' + t.s('app') + ' (beta)', t.s('miniAppD')]
                 ].map(([key, title, desc])=>
-                    <>
+                    <React.Fragment key={key}>
                         <Radio 
-                            key={key}
                             checked={browser_extension_mode==key}
                             name='browser_extension_mode'
-                            onChange={e=>set('browser_extension_mode', key)}>
+                            onChange={()=>set('browser_extension_mode', key)}>
                             {title}
                         </Radio>
                         <SubLabel>{desc}</SubLabel>
-                    </>
+                    </React.Fragment>
                 )}
             </div>
         </>

@@ -315,13 +315,5 @@
   "darkTheme": "Dunkles Thema",
   "me": "Ich bin",
   "collaboratorsLead": "Teile deine Sammlungen und Arbeiten mit deinen Kollegen, Freunden oder deiner Familie",
-  "emptyTrash": "Papierkorb leeren",
-  "mini": "Mini",
-  "miniAppD": "Mini App gives you the same experience as our web site but in compact size. You can browse, search, organize and add new bookmarks.",
-  "clipperD": "Clipper is the fastest way to save new bookmarks.",
-  "automatically": "Automatically",
-  "lastUsed": "Last used",
-  "defaultCollection": "Default collection",
-  "recent": "Recent",
-  "logOutOfAllDevices": "Log out of all devices"
+  "emptyTrash": "Papierkorb leeren"
 }

@@ -104,10 +104,6 @@ module.exports = ({ vendor, production=false }, l) => {
 			}
 		},
 
-		options_ui: {
-			page: 'index.html#/settings'
-		},
-
 		...(vendor == 'firefox' || vendor == 'opera' ? {
 			sidebar_action: {
 				default_panel: 'index.html?sidebar',
