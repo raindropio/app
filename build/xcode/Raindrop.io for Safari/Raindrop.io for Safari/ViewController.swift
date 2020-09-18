@@ -1,16 +1,16 @@
 //
 //  ViewController.swift
-//  safari
+//  Raindrop.io for Safari
 //
-//  Created by Rustem Mussabekov on 15.09.2020.
+//  Created by Rustem Mussabekov on 18.09.2020.
 //
 
 import Cocoa
 import SafariServices.SFSafariApplication
 import SafariServices.SFSafariExtensionManager
 
-let appName = "safari"
-let extensionBundleIdentifier = "io.raindrop.safari-Extension"
+let appName = "Raindrop.io for Safari"
+let extensionBundleIdentifier = "io.raindrop.safari-extension"
 
 class ViewController: NSViewController {
 
@@ -27,9 +27,9 @@ class ViewController: NSViewController {
 
             DispatchQueue.main.async {
                 if (state.isEnabled) {
-                    self.appNameLabel.stringValue = "\(appName)'s extension is currently on."
+                    self.appNameLabel.stringValue = "Extension is currently on"
                 } else {
-                    self.appNameLabel.stringValue = "\(appName)'s extension is currently off. You can turn it on in Safari Extensions preferences."
+                    self.appNameLabel.stringValue = "Extension is currently off. You can turn it on in Safari Extensions preferences"
                 }
             }
         }

@@ -1,13 +1,13 @@
 //
 //  AppDelegate.swift
-//  safari
+//  Raindrop.io for Safari
 //
-//  Created by Rustem Mussabekov on 15.09.2020.
+//  Created by Rustem Mussabekov on 18.09.2020.
 //
 
 import Cocoa
 
-@main
+@NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {

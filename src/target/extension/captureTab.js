@@ -9,6 +9,7 @@ export async function captureTab(link) {
 
     if (normalizeUri(url) == normalizeUri(link))
         try{
+            //doesn't work in firefox, because it requires <all_urls> permissions
             const dataURI = await browser.tabs.captureVisibleTab(null, { format: 'jpeg', quality: 100 })
 
             return resize(

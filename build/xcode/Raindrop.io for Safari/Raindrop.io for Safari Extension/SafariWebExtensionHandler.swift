@@ -1,12 +1,14 @@
 //
 //  SafariWebExtensionHandler.swift
-//  safari Extension
+//  Raindrop.io for Safari Extension
 //
-//  Created by Rustem Mussabekov on 15.09.2020.
+//  Created by Rustem Mussabekov on 18.09.2020.
 //
 
 import SafariServices
 import os.log
+
+let SFExtensionMessageKey = "message"
 
 class SafariWebExtensionHandler: NSObject, NSExtensionRequestHandling {
 
@@ -17,7 +19,7 @@ class SafariWebExtensionHandler: NSObject, NSExtensionRequestHandling {
 
         let response = NSExtensionItem()
         response.userInfo = [ SFExtensionMessageKey: [ "Response to": message ] ]
-        
+
         context.completeRequest(returningItems: [response], completionHandler: nil)
     }
     

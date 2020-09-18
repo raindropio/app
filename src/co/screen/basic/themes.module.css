@@ -43,6 +43,8 @@
 }
 
 [data-theme='night'] {
+    color-scheme: dark;
+    
     /* background */
     --background-hsl: 0,0%,19%;
     --sidebar-background-color: hsl(0,0%,16%);

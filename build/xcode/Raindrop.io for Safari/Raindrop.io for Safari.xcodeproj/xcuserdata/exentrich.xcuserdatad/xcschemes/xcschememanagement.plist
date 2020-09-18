@@ -4,25 +4,25 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>safari Extension.xcscheme_^#shared#^_</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>1</integer>
-		</dict>
-		<key>safari.xcscheme_^#shared#^_</key>
+		<key>App.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>Extension.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>76382DF42510F14900C7FC4A</key>
+		<key>76E78B372514A30200D331A8</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>76382E062510F14900C7FC4A</key>
+		<key>76E78B492514A30300D331A8</key>
 		<dict>
 			<key>primary</key>
 			<true/>

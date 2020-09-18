@@ -79,8 +79,7 @@ module.exports = ({ vendor, production=false }, l) => {
 		],
 
 		optional_permissions: [
-			'tabs',
-			...(vendor == 'firefox' ? ['<all_urls>'] : []) //otherwise screenshot not working
+			'tabs'
 		],
 
 		omnibox: {

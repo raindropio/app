@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "76382DF42510F14900C7FC4A"
+               BlueprintIdentifier = "76E78B372514A30200D331A8"
                BuildableName = "Raindrop.io for Safari.app"
                BlueprintName = "Raindrop.io for Safari"
                ReferencedContainer = "container:Raindrop.io for Safari.xcodeproj">
@@ -44,7 +44,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "76382DF42510F14900C7FC4A"
+            BlueprintIdentifier = "76E78B372514A30200D331A8"
             BuildableName = "Raindrop.io for Safari.app"
             BlueprintName = "Raindrop.io for Safari"
             ReferencedContainer = "container:Raindrop.io for Safari.xcodeproj">
@@ -61,7 +61,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "76382DF42510F14900C7FC4A"
+            BlueprintIdentifier = "76E78B372514A30200D331A8"
             BuildableName = "Raindrop.io for Safari.app"
             BlueprintName = "Raindrop.io for Safari"
             ReferencedContainer = "container:Raindrop.io for Safari.xcodeproj">
