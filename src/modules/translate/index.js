@@ -35,7 +35,7 @@ const Translate = {
 
 		Translate.currentLang = browserLang.toLowerCase().substr(0,2)
 
-		switch (browserLang) {
+		switch (Translate.currentLang) {
 			case 'de':
 				Translate.strings = await import(/* webpackPreload: true */ '~assets/languages/de.json');
 				break;
@@ -58,7 +58,8 @@ const Translate = {
 				Translate.strings = await import(/* webpackPreload: true */ '~assets/languages/pl.json');
 				break;
 			case 'pt':
-				Translate.strings = await import(/* webpackPreload: true */ '~assets/languages/pt.json');
+				Translate.strings = await import(/* webpackPreload: true */ '~assets/languages/pt_BR.json');
+				Translate.currentLang = 'pt_BR'
 				break;
 			case 'kk':
 			case 'uk':
@@ -72,7 +73,8 @@ const Translate = {
 				Translate.strings = await import(/* webpackPreload: true */ '~assets/languages/tr.json');
 				break;
 			case 'zh':
-				Translate.strings = await import(/* webpackPreload: true */ '~assets/languages/zh.json');
+				Translate.strings = await import(/* webpackPreload: true */ '~assets/languages/zh-Hans.json');
+				Translate.currentLang = 'zh-Hans'
 				break;
 
 			//Reset to default

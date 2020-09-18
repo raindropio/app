@@ -1,5 +1,6 @@
 const fs = require('fs')
 const config = require('~config')
+const locales = require('./locales')
 
 function file({ emitFile }, filename) {
 	const name = 'assets/'+filename.split('/').pop()
@@ -9,6 +10,9 @@ function file({ emitFile }, filename) {
 
 module.exports = ({ vendor, production=false }, l) => {
 	const { version } = JSON.parse(fs.readFileSync(`${__dirname}/../../../../package.json`, 'utf-8'))
+
+	//locales generation
+	locales(l)
 
 	const json = {
 		manifest_version:2,
@@ -21,10 +25,11 @@ module.exports = ({ vendor, production=false }, l) => {
 		} : {}),
 
 		name:			'Raindrop.io'+(!production?' (Dev)':''),
-		description:	'All In One Bookmark Manager',
+		description:	'__MSG_appDesc__',
 		homepage_url:	'https://app.raindrop.io',
 		author:			'Mussabekov Rustem',
 		short_name:		'Raindrop.io',
+		default_locale:	'en',
 
 		icons: {
 			16: file(l, '../../../assets/brand/icon_16.png'),
@@ -74,7 +79,8 @@ module.exports = ({ vendor, production=false }, l) => {
 		],
 
 		optional_permissions: [
-			'tabs'
+			'tabs',
+			...(vendor == 'firefox' ? ['<all_urls>'] : []) //otherwise screenshot not working
 		],
 
 		omnibox: {
@@ -99,7 +105,7 @@ module.exports = ({ vendor, production=false }, l) => {
 					chromeos: 'Ctrl+Shift+O',
 					linux: 'Ctrl+Shift+O'
 				},
-				description: 'Save page'
+				description: '__MSG_savePage__'
 			}
 		},
 

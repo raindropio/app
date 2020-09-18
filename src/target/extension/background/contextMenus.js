@@ -35,22 +35,22 @@ export default async function() {
     await Promise.all([
         browser.contextMenus.create({
             id: 'save_page',
-            title: 'Save page',
+            title: browser.i18n.getMessage('savePage'),
             contexts: ['page']
         }),
         browser.contextMenus.create({
             id: 'save_link',
-            title: 'Save link',
+            title: browser.i18n.getMessage('saveLink'),
             contexts: ['link']
         }),
         browser.contextMenus.create({
             id: 'save_video',
-            title: 'Save video',
+            title: browser.i18n.getMessage('saveVideo'),
             contexts: ['video']
         }),
         browser.contextMenus.create({
             id: 'save_image',
-            title: 'Save image',
+            title: browser.i18n.getMessage('saveImage'),
             contexts: ['image']
         })
     ])

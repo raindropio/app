@@ -1,16 +1,20 @@
 import browser from 'webextension-polyfill'
 import { has } from './links'
 
+let icon = '✓' //glitchy on safari
+if (process.env.EXTENSION_VENDOR == 'safari')
+    icon = ' '
+
 async function updateBadge() {
-    const [ { url } ] = await browser.tabs.query({ active: true })
+    const [ { url, id: tabId } ] = await browser.tabs.query({ active: true })
     if (!url) return
     
     await Promise.all([
-        browser.browserAction.setBadgeBackgroundColor({color: '#0087EA'}),
-        browser.browserAction.setBadgeText({text: has(url) ? '✓' : ''}),
+        browser.browserAction.setBadgeBackgroundColor({tabId, color: '#0087EA'}),
+        browser.browserAction.setBadgeText({tabId, text: has(url) ? icon : ''}),
 
         ...(typeof browser.browserAction.setBadgeTextColor == 'function' ? [
-            browser.browserAction.setBadgeTextColor({color: '#FFFFFF'})
+            browser.browserAction.setBadgeTextColor({tabId, color: '#FFFFFF'})
         ] : []),
     ])
 }
