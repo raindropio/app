@@ -2,6 +2,7 @@ import { call, put, takeEvery, select } from 'redux-saga/effects'
 import Api from '../../modules/api'
 
 import {
+	BOOKMARK_LOAD_REQ, BOOKMARK_LOAD_SUCCESS, BOOKMARK_LOAD_ERROR,
 	BOOKMARK_CREATE_REQ, BOOKMARK_CREATE_SUCCESS, BOOKMARK_CREATE_ERROR,
 	BOOKMARK_UPDATE_REQ, BOOKMARK_UPDATE_SUCCESS, BOOKMARK_UPDATE_ERROR,
 	BOOKMARK_REMOVE_REQ, BOOKMARK_REMOVE_SUCCESS, BOOKMARK_REMOVE_ERROR,
@@ -29,10 +30,32 @@ export default function* () {
 	yield takeEvery(BOOKMARK_REORDER, reorder)
 
 	//single
+	yield takeEvery(BOOKMARK_LOAD_REQ, loadBookmark)
 	yield takeEvery(BOOKMARK_CREATE_REQ, createBookmark)
 	yield takeEvery(BOOKMARK_UPDATE_REQ, updateBookmark)
 	yield takeEvery(BOOKMARK_REMOVE_REQ, removeBookmark)
 	yield takeEvery(BOOKMARK_UPLOAD_REQ, uploadBookmark)
+}
+
+function* loadBookmark({ ignore=false, _id }) {
+	if (ignore)
+		return;
+
+	try{
+		const { item } = yield call(Api.get, `raindrop/${_id}`)
+
+		yield put({
+			type: BOOKMARK_LOAD_SUCCESS,
+			_id,
+			item
+		})
+	} catch (error) {
+		yield put({
+			type: BOOKMARK_LOAD_ERROR,
+			_id,
+			error
+		})
+	}
 }
 
 function* createBookmark({obj={}, ignore=false, draft, onSuccess, onFail}) {
@@ -117,7 +140,7 @@ function* updateBookmark({_id, set={}, ignore=false, onSuccess, onFail}) {
 
 		yield put({
 			type: BOOKMARK_UPDATE_SUCCESS,
-			item: item,
+			item,
 			onSuccess, onFail
 		});
 	} catch (error) {

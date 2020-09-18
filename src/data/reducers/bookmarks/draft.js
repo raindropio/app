@@ -41,6 +41,12 @@ export default function(state, action) {switch (action.type) {
 	//Load by Id
 	case BOOKMARK_DRAFT_LOAD_REQ:{
 		const { _id } = action
+
+		if (!_id){
+			action.ignore = true
+			return state
+		}
+		
 		let draft = state.drafts[_id] || blankDraft
 
 		//get data from already loaded bookmarks

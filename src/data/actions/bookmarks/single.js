@@ -1,11 +1,16 @@
 import wrapFunc from '../../utils/wrapFunc'
 import {
-	BOOKMARK_CREATE_REQ, BOOKMARK_UPDATE_REQ, BOOKMARK_REMOVE_REQ, BOOKMARK_UPLOAD_REQ,
+	BOOKMARK_LOAD_REQ, BOOKMARK_CREATE_REQ, BOOKMARK_UPDATE_REQ, BOOKMARK_REMOVE_REQ, BOOKMARK_UPLOAD_REQ,
 	BOOKMARK_RECOVER, BOOKMARK_IMPORTANT, BOOKMARK_SCREENSHOT, BOOKMARK_REPARSE, BOOKMARK_MOVE, BOOKMARK_PRELOAD,
 	BOOKMARK_REORDER
 } from '../../constants/bookmarks'
 
 //High level API
+export const oneLoad = (_id)=>({
+	type: BOOKMARK_LOAD_REQ,
+	_id: parseInt(_id)
+})
+
 export const oneRemove = (_id, onSuccess, onFail)=>({
 	type: BOOKMARK_REMOVE_REQ,
 	_id: parseInt(_id),

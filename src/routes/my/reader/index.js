@@ -2,6 +2,7 @@ import React from 'react'
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { target } from '~target'
+import { oneLoad } from '~data/actions/bookmarks'
 import { makeBookmark } from '~data/selectors/bookmarks'
 import { makeCollection } from '~data/selectors/collections'
 
@@ -17,6 +18,22 @@ class MyReader extends React.Component {
 
     state = {
         fullscreen: false
+    }
+
+    componentDidMount() {
+        this.load()
+    }
+
+    componentDidUpdate(prev) {
+        const { query } = this.props
+        if (prev.query.bookmark != query.bookmark)
+            this.load()
+    }
+
+    load = ()=>{
+        const { query, item } = this.props
+        if (query.bookmark && !item._id)
+            this.props.oneLoad(query.bookmark)
     }
 
     handlers = {
@@ -72,7 +89,8 @@ export default connect(
                 font_color: state.config.font_color
             }
         }
-    }
+    },
+    { oneLoad }
 )(
     withRouter(
         MyReader

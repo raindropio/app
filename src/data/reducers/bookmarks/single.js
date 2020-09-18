@@ -8,6 +8,7 @@ import {
 	removeIdFromSpace
 } from './utils'
 import {
+	BOOKMARK_LOAD_REQ, BOOKMARK_LOAD_SUCCESS, BOOKMARK_LOAD_ERROR,
 	BOOKMARK_CREATE_SUCCESS, BOOKMARK_CREATE_ERROR,
 	BOOKMARK_UPDATE_SUCCESS, BOOKMARK_UPDATE_ERROR,
 	BOOKMARK_REMOVE_SUCCESS, BOOKMARK_REMOVE_ERROR,
@@ -23,11 +24,38 @@ import {
 export default function(state, action) {
 	switch (action.type) {
 		//Error
+		case BOOKMARK_LOAD_ERROR:
 		case BOOKMARK_CREATE_ERROR:
 		case BOOKMARK_UPDATE_ERROR:
 		case BOOKMARK_REMOVE_ERROR:{
 			if (typeof action.onFail == 'function')
 				action.onFail(action.error)
+
+			return state
+		}
+
+		//Load
+		case BOOKMARK_LOAD_REQ:{
+			const { _id } = action
+
+			if (!_id)
+				action.ignore = true
+
+			return state
+		}
+
+		case BOOKMARK_LOAD_SUCCESS:{
+			const 
+				updatedItem = normalizeBookmark(action.item),
+				updatedMeta = normalizeMeta(action.item)
+
+			//propogate collection id for next listeners
+			action.spaceId = String(updatedItem.collectionId)
+
+			//Insert to elements and meta
+			state = state
+				.setIn(['elements', updatedItem._id], updatedItem)
+				.setIn(['meta', updatedItem._id], updatedMeta)
 
 			return state
 		}
