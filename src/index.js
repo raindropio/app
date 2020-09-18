@@ -12,10 +12,10 @@ import { withLocalReducer } from '~data'
 import localReducers from './local/reducers'
 
 import ServiceWorker from '~modules/sw/component'
-import { Component as Target } from '~target'
 import Translate from '~modules/translate/component'
 import Routes from '~routes'
 import Document from './routes/_document'
+import App from './routes/_app'
 import Splash from './routes/_splash'
 
 //init redux
@@ -28,13 +28,13 @@ window.onload = ()=>{
 			<ServiceWorker>
 				<Provider store={store}>
 					<Document>
-						<Target>
+						<App>
 							<PersistGate loading={<Splash />} persistor={persistor}>
 								<Translate loading={<Splash />}>
 									<Routes />
 								</Translate>
 							</PersistGate>
-						</Target>
+						</App>
 					</Document>
 				</Provider>
 			</ServiceWorker>

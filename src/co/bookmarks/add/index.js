@@ -1,56 +1,18 @@
 import React from 'react'
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
-import * as bookmarksActions from '~data/actions/bookmarks'
 
-import SourcePicker from '~co/picker/source/popover'
+let Component = process.env.APP_TARGET == 'extension' ? 
+	require('./extension').default :
+	require('./fallback').default
 
-class BookmarksAdd extends React.Component {
-    static defaultProps = {
-        pin: undefined, //pin to dom element
-        spaceId: 0,
-        onCreateItem: undefined,
-        onClose: undefined
-    }
+export default class BookmarksAddWrap extends React.PureComponent {
+	static defaultProps = {
+		spaceId: 0,
+		onEdit: undefined //func(item)
+	}
 
-    onFile = file=>
-        new Promise((res, rej)=>{
-            this.props.actions.oneUpload({
-                collectionId: this.props.spaceId,
-                file
-            }, (item)=>{
-                this.props.onCreateItem && this.props.onCreateItem(item)
-                res(item)
-            }, rej)
-        })
-
-    onLink = link=>
-        new Promise((res, rej)=>{
-            this.props.actions.oneCreate({
-                collectionId: this.props.spaceId,
-                link
-            }, (item)=>{
-                this.props.onCreateItem && this.props.onCreateItem(item)
-                res(item)
-            }, rej)
-        })
-
-    render() {
-        const { pin, onClose } = this.props
-
-        return (
-            <SourcePicker
-                pin={pin}
-                onLink={this.onLink}
-                onFile={this.onFile}
-                onClose={onClose} />
-        )
-    }
+	render() {
+		return (
+			<Component {...this.props} />
+		)
+	}
 }
-
-export default connect(
-	undefined,
-	(dispatch)=>({
-		actions: bindActionCreators(bookmarksActions, dispatch)
-    })
-)(BookmarksAdd)

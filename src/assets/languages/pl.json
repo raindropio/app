@@ -322,5 +322,9 @@
   "automatically": "Automatycznie",
   "lastUsed": "Ostatnio używane",
   "defaultCollection": "Domyślna kolekcja",
-  "recent": "Ostatnie"
+  "recent": "Ostatnie",
+  "logOutOfAllDevices": "Wyloguj się ze wszystkich urządzeń",
+  "tabs": "Karty",
+  "permissions": "Uprawnienia",
+  "raindropTagline": "Uniwersalny menedżer zakładek"
 }

@@ -110,9 +110,9 @@ export default function(state, action) {switch (action.type) {
 			draft.status == 'loading' ||
 			(draft.item._id && !draft.changedFields.length)){
 			action.ignore = true
-			
+
 			if (typeof action.onSuccess == 'function')
-				action.onSuccess()
+				action.onSuccess(draft && draft.item)
 		}
 
 		//attach current item/changedFields to action

@@ -1,9 +1,9 @@
 import React from 'react'
-import browser from './browser'
+import browser from '~target/extension/browser'
 import { connect } from 'react-redux'
 import { makeBookmarksLastChange } from '~data/selectors/bookmarks'
 
-class ExtensionComponent extends React.Component {
+class App extends React.Component {
     componentDidMount() {
         document.addEventListener('click', this.onClickExternalLink)
     }
@@ -48,7 +48,7 @@ class ExtensionComponent extends React.Component {
     }
 }
 
-export const Component = connect(
+export default connect(
     ()=>{
         const getBookmarksLastChange = makeBookmarksLastChange()
 
@@ -56,4 +56,4 @@ export const Component = connect(
             bookmarksChange: getBookmarksLastChange(state)
         })
     }
-)(ExtensionComponent)
+)(App)

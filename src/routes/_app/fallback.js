@@ -1,5 +1,5 @@
 import React from 'react'
 
-export function Component({ children }) {
+export default function App({ children }) {
     return children
 }

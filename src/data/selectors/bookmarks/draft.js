@@ -5,13 +5,13 @@ export const getDraft = ({ bookmarks: { drafts } }, _id)=>
 	(drafts[_id] || blankDraft)
 
 //Item
-export const getDraftItem = (state, props)=>
-	getDraft(state, props).item
+export const getDraftItem = (state, _id)=>
+	getDraft(state, _id).item
 export const makeDraftItem = ()=>getDraftItem //deprecated
 
 //Status
-export const getDraftStatus = (state, props)=>
-	getDraft(state, props).status
+export const getDraftStatus = (state, _id)=>
+	getDraft(state, _id).status
 export const makeDraftStatus = ()=>getDraftStatus //deprecated
 
 //Unsaved
@@ -22,7 +22,7 @@ export const makeDraftUnsaved = ()=>createSelector(
 )
 
 //Error
-export const getDraftError = (state, props)=>{
-	const { status, error } = getDraft(state, props)
+export const getDraftError = (state, _id)=>{
+	const { status, error } = getDraft(state, _id)
 	return status == 'error' ? error : undefined
 }

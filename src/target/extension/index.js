@@ -1,5 +1,4 @@
 export * from './captureTab'
-export * from './component'
 export * from './currentTab'
 export * from './environment'
 export * from './getLanguage'

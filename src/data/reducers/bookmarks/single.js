@@ -71,7 +71,8 @@ export default function(state, action) {
 				action.spaceId.push(String(updatedItem.collectionId))
 
 				//Maybe bookmark moved to another collection
-				if (originalItem.collectionId != updatedItem.collectionId){
+				if (originalItem && 
+					originalItem.collectionId != updatedItem.collectionId){
 					//Remove from original collection
 					action.movedFromSpaceId.push(String(originalItem.collectionId))
 					state = removeIdFromSpace(state, String(originalItem.collectionId), originalItem._id)
