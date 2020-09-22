@@ -2,13 +2,16 @@
   "de": "Deutsch",
   "en": "English",
   "es": "Español",
+  "fi": "Suomi",
   "fr": "Français",
+  "hi": "हिन्दी",
+  "ja": "日本語",
   "nl": "Nederlands",
   "pl": "Polski",
   "pt_BR": "Português (Brasil)",
-  "sv": "Svenska",
-  "fi": "Suomi",
-  "tr": "Türkçe",
   "ru": "Русский",
-  "zh-Hans": "中文（简体)"
+  "sv": "Svenska",
+  "tr": "Türkçe",
+  "zh-Hans": "中文（汉语)",
+  "zh-Hant": "中文（漢語)"
 }

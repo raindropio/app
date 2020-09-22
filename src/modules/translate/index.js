@@ -1,6 +1,17 @@
 import en_US from '~assets/languages/en.json'
 import { getLanguage } from '~target'
 
+function normalizeLangCode(_lang='') {
+	const lang = String(_lang).toLowerCase()
+
+	if (lang == 'zh-cn' || lang.includes('hans'))
+		return 'zh-Hans'
+	else if (lang.startsWith('zh'))
+		return 'zh-Hant'
+
+	return lang.substr(0,2)
+}
+
 const Translate = {
 	fallback: en_US,
 	strings: {},
@@ -33,7 +44,7 @@ const Translate = {
 		if (!browserLang)
 			browserLang = getLanguage()
 
-		Translate.currentLang = browserLang.toLowerCase().substr(0,2)
+		Translate.currentLang = normalizeLangCode(browserLang)
 
 		switch (Translate.currentLang) {
 			case 'de':
@@ -48,8 +59,14 @@ const Translate = {
 			case 'fr':
 				Translate.strings = await import(/* webpackPreload: true */ '~assets/languages/fr.json');
 				break;
+			case 'hi':
+				Translate.strings = await import(/* webpackPreload: true */ '~assets/languages/hi.json');
+				break;
 			case 'it':
 				Translate.strings = await import(/* webpackPreload: true */ '~assets/languages/it.json');
+				break;
+			case 'ja':
+				Translate.strings = await import(/* webpackPreload: true */ '~assets/languages/ja.json');
 				break;
 			case 'nl':
 				Translate.strings = await import(/* webpackPreload: true */ '~assets/languages/nl.json');
@@ -72,9 +89,11 @@ const Translate = {
 			case 'tr':
 				Translate.strings = await import(/* webpackPreload: true */ '~assets/languages/tr.json');
 				break;
-			case 'zh':
+			case 'zh-Hans':
 				Translate.strings = await import(/* webpackPreload: true */ '~assets/languages/zh-Hans.json');
-				Translate.currentLang = 'zh-Hans'
+				break;
+			case 'zh-Hant':
+				Translate.strings = await import(/* webpackPreload: true */ '~assets/languages/zh-Hant.json');
 				break;
 
 			//Reset to default
