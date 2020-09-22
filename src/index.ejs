@@ -35,18 +35,12 @@
 	<meta property='og:title' content='Raindrop.io &mdash; All in One Bookmark Manager' />
 	<meta property='og:description' content='For your inspiration, read later, media and stuff' />
 	<meta property='og:image' content='<%= require("./assets/brand/og.png").default %>' />
+
+	<!-- special -->
+	<meta name="color-scheme" content="dark light">
 </head>
 <body>
-	<div id="react">
-		<style>
-			@media (prefers-color-scheme: dark) {
-				html {
-					color-scheme: dark;
-					background: #303030 !important;
-				}
-			}
-		</style>
-	</div>
+	<div id="react"></div>
 
 	<!-- extension popover size, script should be right after #react tag -->
 	<%= process.env.APP_TARGET == 'extension' ? `<script src='${require('./assets/target/extension/window_size.js?asis').default}'></script>` : '' %>

@@ -30,7 +30,7 @@ export default function BookmarksItemContextmenu({
 
                 {access.level >= 2 && cache ? (
                     <MenuItem to={getLink({ bookmark: _id, tab:'cache' })}>
-                        <Icon name={cache ? 'cache_ready' : 'cache_failed'} />
+                        <Icon name={cache == 'ready' ? 'cache_ready' : 'cache_failed'} />
                         {cache != 'ready' ? '⚠️ ' : ''}{t.s('permanentCopy')}
                     </MenuItem>
                 ) : null}

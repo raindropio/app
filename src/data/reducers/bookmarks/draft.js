@@ -40,7 +40,7 @@ export default function(state, action) {switch (action.type) {
 
 	//Load by Id
 	case BOOKMARK_DRAFT_LOAD_REQ:{
-		const { _id } = action
+		const { _id, newOne } = action
 
 		if (!_id){
 			action.ignore = true
@@ -55,9 +55,14 @@ export default function(state, action) {switch (action.type) {
 				.set('status', state.elements[_id].collectionId!=-99 ? 'loaded' : 'removed')
 				.set('item', {...state.elements[_id], ...state.meta[_id]})
 		//not loaded yet
-		else
+		else{
 			draft = draft
 				.set('status', 'loading')
+
+			//clean up new collectionId
+			if (newOne && newOne.item && newOne.item.collectionId == -99)
+				newOne.item.collectionId = -1
+		}
 
 		return state.setIn(['drafts', _id], draft)
 	}

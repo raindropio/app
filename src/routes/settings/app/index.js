@@ -11,15 +11,12 @@ import RaindropsClick from './raindrops_click'
 import TagsSort from './tags_sort'
 import BrokenLevel from './broken_level'
 import NestedViewLegacy from './nested_view_legacy'
-import Extension from './extension'
 
 export default ()=>{
 	return (
 		<Layout type='grid'>
 			<Helmet><title>{t.s('app')} {t.s('settings').toLowerCase()}</title></Helmet>
-	
-			<Extension />
-	
+		
 			<Lang />
 			<Theme />
 			<Size />

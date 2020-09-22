@@ -4,6 +4,8 @@ import { connect } from 'react-redux'
 import { set } from '~data/actions/config'
 
 import { Label, Radio, Checkbox } from '~co/common/form'
+import Icon from '~co/common/icon'
+import CollectionIcon from '~co/collections/item/icon'
 
 function SettingsExtensionAdd({ add_default_collection, add_auto_save, browser_extension_mode, set }) {
     if (browser_extension_mode != 'clipper')
@@ -27,14 +29,15 @@ function SettingsExtensionAdd({ add_default_collection, add_auto_save, browser_e
             </Label>
             <div>
                 {[
-                    [-1, t.s('defaultCollection--1')],
-                    [0, t.s('lastUsed')]
-                ].map(([key, title])=>
+                    [-1, t.s('defaultCollection--1'), <CollectionIcon _id={-1} />],
+                    [0, t.s('lastUsed'), <Icon name='sort_-created' />]
+                ].map(([key, title, icon])=>
                     <Radio 
                         key={key}
                         checked={add_default_collection==key}
                         name='add_default_collection'
                         onChange={e=>set('add_default_collection', key)}>
+                        {icon}
                         {title}
                     </Radio>
                 )}

@@ -12,8 +12,9 @@ import Button from '~co/common/button'
 import Logo from '~assets/brand/icon_raw.svg?component'
 import Icon from '~co/common/icon'
 
+import Protected from '~co/screen/protected'
 import Screen from '~co/screen/basic'
-import BrowserExtensionMode from '~routes/settings/app/extension/browser_extension_mode'
+import BrowserExtensionMode from '~routes/settings/extension/browser_extension_mode'
 import Language from '~routes/settings/app/lang'
 
 class ExtensionWelcome extends React.Component {
@@ -23,38 +24,40 @@ class ExtensionWelcome extends React.Component {
 
     render() {
         return (
-            <Screen>
-                <Logo className={s.logo} />
-    
-                <Header>
-                    <Title>{t.s('welcome')} Raindrop.io</Title>
-                </Header>
-                
-                <Layout type='grid'>
-                    <BrowserExtensionMode />
-                    <Language showContribute={false} />
-    
-                    <Separator />
-    
-                    <Buttons variant='between'>
-                        <Button 
-                            link={config.links.help.index}
-                            target='_blank'
-                            data-block>
-                            <Icon name='help' />
-                            {t.s('help')}
-                        </Button>
-    
-                        <Button 
-                            as={Link}
-                            to='/'
-                            variant='primary'
-                            data-block>
-                            {t.s('continue')}
-                        </Button>
-                    </Buttons>
-                </Layout>
-            </Screen>
+            <Protected>
+                <Screen>
+                    <Logo className={s.logo} />
+        
+                    <Header>
+                        <Title>{t.s('welcome')} Raindrop.io</Title>
+                    </Header>
+                    
+                    <Layout type='grid'>
+                        <BrowserExtensionMode />
+                        <Language showContribute={false} />
+        
+                        <Separator />
+        
+                        <Buttons variant='between'>
+                            <Button 
+                                link={config.links.help.index}
+                                target='_blank'
+                                data-block>
+                                <Icon name='help' />
+                                {t.s('help')}
+                            </Button>
+        
+                            <Button 
+                                as={Link}
+                                to='/'
+                                variant='primary'
+                                data-block>
+                                {t.s('continue')}
+                            </Button>
+                        </Buttons>
+                    </Layout>
+                </Screen>
+            </Protected>
         )
     }
 }

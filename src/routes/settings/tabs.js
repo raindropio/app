@@ -9,7 +9,8 @@ import Button from '~co/common/button'
 
 export default class SettingsHeader extends React.Component {
     tabs = [
-        { to: '/app', title: target == 'extension' ? t.s('browserExtension') : t.s('app')},
+        ...(target == 'extension' ? [{ to: '/extension', title: t.s('browserExtension')}] : []),
+        { to: '/app', title: t.s('app')},
         { to: '/account', title: t.s('account') },
         { to: '/pro', title: t.s('subscription') },
         { to: '/import', title: t.s('import') },
