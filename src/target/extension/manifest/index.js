@@ -117,6 +117,7 @@ module.exports = ({ vendor, production=false }, l) => {
 					32: file(l, '../../../assets/target/extension/action_firefox_light_32.png')
 				},
 				...(vendor == 'firefox' ? {
+					browser_style: false,
 					open_at_install: false
 				} : {})
 			}

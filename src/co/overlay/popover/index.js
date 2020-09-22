@@ -33,9 +33,9 @@ export default class Popover extends React.Component {
         if (typeof ResizeObserver != 'undefined'){
             this._resizeObserver = new ResizeObserver(this.updatePosition)
             this._resizeObserver.observe(this._container.current)
+            this._resizeObserver.observe(document.body)
         }
 
-        window.addEventListener('resize', this.updatePosition)
         window.addEventListener('keydown', this.onWindowKeyDown)
         document.body.addEventListener('mousedown', this.onBodyMouseDown)
     }
@@ -44,10 +44,10 @@ export default class Popover extends React.Component {
         if (this._resizeObserver){
             if (this._container.current)
                 this._resizeObserver.unobserve(this._container.current)
+            this._resizeObserver.unobserve(document.body)
             this._resizeObserver.disconnect()
         }
 
-        window.removeEventListener('resize', this.updatePosition)
         window.removeEventListener('keydown', this.onWindowKeyDown)
         document.body.removeEventListener('mousedown', this.onBodyMouseDown)
     }
@@ -78,6 +78,10 @@ export default class Popover extends React.Component {
                 e.stopPropagation()
                 return this.store.close()
         }
+    }
+
+    onContextMenu = (e)=>{
+        e.preventDefault()
     }
 
     updatePosition = _.debounce(()=>{
@@ -114,7 +118,7 @@ export default class Popover extends React.Component {
             y = 16
 
         this._container.current.setAttribute('style', `--top: ${parseInt(y)}px; --left: ${parseInt(x)}px;`)
-    }, 50, { leading: true })
+    }, 100, { leading: true })
 
     render() {
         const { className='', children, closable, scaleDown, pin, innerRef, ...etc } = this.props
@@ -130,7 +134,8 @@ export default class Popover extends React.Component {
                         ref={this._container}
                         className={className+' '+s.wrap}
                         data-closable={closable}
-                        data-scale-down={scaleDown}>
+                        data-scale-down={scaleDown}
+                        onContextMenu={this.onContextMenu}>
                         <div className={s.body}>
                             {children}
                         </div>

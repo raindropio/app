@@ -26,6 +26,7 @@ export default class BookmarksAdd extends React.Component {
     
     render() {
         const { show } = this.state
+        const { autoFocus } = this.props
 
         return (
             <>
@@ -33,6 +34,7 @@ export default class BookmarksAdd extends React.Component {
                     ref={this.pin}
                     variant='primary'
                     title={t.s('add')}
+                    autoFocus={autoFocus}
                     onClick={this.onAddClick}>
                     <Icon name='new_bookmark' />
                     {t.s('add')}

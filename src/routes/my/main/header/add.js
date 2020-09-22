@@ -18,6 +18,7 @@ export default class HeaderAdd extends React.Component {
 
         return (
             <Add 
+                autoFocus={true}
                 spaceId={_id}
                 onEdit={this.onEdit} />
         )
