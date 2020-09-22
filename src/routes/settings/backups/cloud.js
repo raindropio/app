@@ -23,7 +23,7 @@ function SettingsBackupsCloud({ user, pro, location: { pathname } }) {
             <div>
                 {!webApp && (
                     <Alert variant='warning'>
-                        Please <a href={`${config.links.app}${pathname}`} target='_blank'>open web app</a> to configure cloud backup!
+                        Please <a href={`${config.links.app.index}${pathname}`} target='_blank'>open web app</a> to configure cloud backup!
                     </Alert>
                 )}
 

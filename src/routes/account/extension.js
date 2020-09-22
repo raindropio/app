@@ -13,7 +13,7 @@ export default function AccountEmbedded() {
                 <div />
 
                 <Button
-                    href={config.links.app}
+                    href={config.links.app.index}
                     target='_blank'
                     variant='primary'
                     data-block>

@@ -42,11 +42,6 @@ export default function(state, action) {switch (action.type) {
 	case BOOKMARK_DRAFT_LOAD_REQ:{
 		const { _id, newOne } = action
 
-		if (!_id){
-			action.ignore = true
-			return state
-		}
-		
 		let draft = state.drafts[_id] || blankDraft
 
 		//get data from already loaded bookmarks
@@ -124,6 +119,8 @@ export default function(state, action) {switch (action.type) {
 
 			if (typeof action.onSuccess == 'function')
 				action.onSuccess(draft && draft.item)
+
+			return state
 		}
 
 		//attach current item/changedFields to action

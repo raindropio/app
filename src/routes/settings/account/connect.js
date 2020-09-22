@@ -38,7 +38,7 @@ function SettingsProfileConnect({ user, location: { pathname } }) {
                 </div>
             ) : (
                 <Alert variant='warning'>
-                    Please <a href={`${config.links.app}${pathname}`} target='_blank'>open web app</a> to configure social accounts!
+                    Please <a href={`${config.links.app.index}${pathname}`} target='_blank'>open web app</a> to configure social accounts!
                 </Alert>
             )}
         </>

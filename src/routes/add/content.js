@@ -1,12 +1,12 @@
 import React from 'react'
 import Bookmark from '~co/bookmarks/edit'
 
-export default function AddContent(newOne) {
+export default function AddContent({ item, autoCreate }) {
     return (
         <Bookmark 
-            _id={newOne.item.link}
+            _id={item.link}
             
-            new={newOne}
+            new={{ item, autoCreate }}
 
             autoFocus='title' />
     )

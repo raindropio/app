@@ -36,7 +36,7 @@ function* draftLoad({ newOne, ignore=false, ...draft }) {
 			_id = draft._id
 		//Need to find out by link only
 		else {
-			if (preventDuplicate){
+			if (preventDuplicate && draft._id){
 				const { ids=[] } = yield call(Api.post, 'check/url', { url: draft._id })
 
 				//existing
@@ -63,32 +63,30 @@ function* draftLoad({ newOne, ignore=false, ...draft }) {
 		}
 
 		//New
-		if (link) {
-			const item = {
-				collectionId: -1, //just to be sure that some collectionId is specified
-				...newOne.item||{},
-				link
-			}
+		const item = {
+			collectionId: -1, //just to be sure that some collectionId is specified
+			...newOne.item||{},
+			link
+		}
 
-			//set draft by link
+		//set draft by link
+		yield put({
+			type: BOOKMARK_DRAFT_LOAD_SUCCESS,
+			_id: draft._id,
+			item
+		})
+
+		//create new bookmark automatically
+		if (autoCreate)
 			yield put({
-				type: BOOKMARK_DRAFT_LOAD_SUCCESS,
-				_id: draft._id,
+				type: BOOKMARK_DRAFT_COMMIT,
+				_id: draft._id
+			})
+		else
+			yield enrichCreated({
+				draft: draft._id,
 				item
 			})
-
-			//create new bookmark automatically
-			if (autoCreate)
-				yield put({
-					type: BOOKMARK_DRAFT_COMMIT,
-					_id: draft._id
-				})
-			else
-				yield enrichCreated({
-					draft: draft._id,
-					item
-				})
-		}
 	} catch (error) {
 		yield put({
 			type: BOOKMARK_DRAFT_LOAD_ERROR,

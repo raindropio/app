@@ -16,7 +16,7 @@ export default function Import({ location: { pathname } }) {
 		return (
 			<Layout>
 				<Alert variant='warning'>
-					<a href={`${config.links.app}${pathname}`} target='_blank'>{t.s('open')} {t.s('inNewTab')}</a> {t.s('forUploads')}!
+					<a href={`${config.links.app.index}${pathname}`} target='_blank'>{t.s('open')} {t.s('inNewTab')}</a> {t.s('forUploads')}!
 				</Alert>
 			</Layout>
 		)

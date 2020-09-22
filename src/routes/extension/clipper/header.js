@@ -15,6 +15,7 @@ function ClipperHeader({ status }) {
 
     switch(status) {
         case 'new':     title = t.s('newBookmark'); break
+        case 'idle':    title = ''; break
         case 'loading': title = ''; break
         case 'removed': title = t.s('removeSuccess'); break
         default:        title = t.s('bookmark')+' '+t.s('saved').toLowerCase(); break
@@ -32,7 +33,7 @@ function ClipperHeader({ status }) {
             <FirstAction>
                 <Button
                     as='a'
-                    href={config.links.app}
+                    href={config.links.app.index}
                     target='_blank'
                     title='Raindrop.io'>
                     <LogoIcon className={s.logo} />

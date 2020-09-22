@@ -11,11 +11,11 @@ async function onClicked({ menuItemId, pageUrl, srcUrl, linkUrl, linkText, selec
                 title = tab.title
             } catch(e) {}
             
-            return openAdd({ link: pageUrl, title })
+            return openAdd({ link: pageUrl, title: title||'' })
         }
 
         case 'save_link':
-            return openAdd({ link: linkUrl, title: linkText||selectionText })
+            return openAdd({ link: linkUrl, title: linkText||selectionText||'' })
 
         case 'save_video':
             return openAdd({ link: srcUrl })
