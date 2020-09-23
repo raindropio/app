@@ -9,7 +9,7 @@ if (location.search.includes('browser_action')){
         if (location.hash.startsWith('#/my') ||
             location.hash.startsWith('#/settings')){
             width = '750px'
-            height = '600px'
+            height = '600px' //safari have bug with height >440px
         }
 
         container.style.width = width

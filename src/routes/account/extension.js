@@ -5,21 +5,35 @@ import config from '~config'
 import { Layout, Label } from '~co/common/form'
 import Button from '~co/common/button'
 
-export default function AccountEmbedded() {
-    return (
-        <>
-            <Layout>
-                <Label>{t.s('startToSave')}</Label>
-                <div />
+export default class AccountEmbedded extends React.Component {
+    componentDidMount() {
+        window.addEventListener('focus', this.onWindowFocus)
+    }
 
-                <Button
-                    href={config.links.app.index}
-                    target='_blank'
-                    variant='primary'
-                    data-block>
-                    {t.s('signIn')}
-                </Button>
-            </Layout>
-        </>
-    )
+    componentWillUnmount() {
+        window.removeEventListener('focus', this.onWindowFocus)
+    }
+
+    onWindowFocus = ()=>{
+        this.props.history.replace('/')
+    }
+
+    render() {
+        return (
+            <>
+                <Layout>
+                    <Label>{t.s('startToSave')}</Label>
+                    <div />
+    
+                    <Button
+                        href={config.links.app.index}
+                        target='_blank'
+                        variant='primary'
+                        data-block>
+                        {t.s('signIn')}
+                    </Button>
+                </Layout>
+            </>
+        )
+    }
 }

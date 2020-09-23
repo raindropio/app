@@ -54,8 +54,6 @@ class BookmarksAddButton extends React.Component {
         const { status } = this.props
 
         switch(status) {
-            case 'loading':
-            case 'idle':
             case 'saving':
                 return (
                     <Button>
@@ -77,6 +75,7 @@ class BookmarksAddButton extends React.Component {
             default:
                 return (
                     <Button 
+                        disabled={status == 'loading' || status == 'idle'}
                         variant='primary'
                         title={t.s('add')}
                         onClick={this.onAddClick}>
