@@ -4,6 +4,7 @@ import { Helmet } from 'react-helmet'
 import { connect } from 'react-redux'
 import { setTheme } from '~local/actions'
 
+import Header from './header'
 import Dialog from '~co/overlay/dialog'
 
 class ScreenBasic extends React.Component {
@@ -57,3 +58,5 @@ export default connect(
         setTheme
     }
 )(ScreenBasic)
+
+export { Header }

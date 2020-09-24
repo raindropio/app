@@ -2,6 +2,7 @@ import s from './index.module.styl'
 import React from 'react'
 import config from '~config'
 import Preloader from '~co/common/preloader'
+import WebView from './webview'
 
 export let isNative = ('plugins' in document.createElement('webview'))
 
@@ -25,7 +26,7 @@ export default class SuperFrame extends React.Component {
 		const { src, className='', ...etc } = this.props
 		const { status } = this.state
 
-		const Component = isNative ? 'webview' : 'iframe'
+		const Component = isNative ? WebView : 'iframe'
 		const sandbox = !isNative && !src.includes('raindrop.io')
 
 		return (

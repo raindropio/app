@@ -3,7 +3,6 @@ import t from '~t'
 
 import Button from '~co/common/button'
 import Icon from '~co/common/icon'
-import { FirstAction } from '~co/common/header'
 import Sidebar, { Header, Content } from '~co/screen/splitview/sidebar'
 import Collections from '~co/collections/items'
 import FiltersTags from './filters_tags'
@@ -28,7 +27,7 @@ export default class MySidebar extends React.Component {
         return (
             <Sidebar>
                 <Header>
-                    <FirstAction style={{flex: 1}}><Profile /></FirstAction>
+                    <Profile />
                     
                     <Button 
                         title={`${t.s('createNewCollection')}\nShift+click: ${t.s('createSubFolder').toLowerCase()}`}

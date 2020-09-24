@@ -30,7 +30,10 @@ class SplitViewReaderHeader extends React.Component {
 
     render() {
         return (
-            <Header data-no-shadow data-fancy>
+            <Header 
+                data-no-shadow 
+                data-fancy
+                className='svReaderHeader'>
                 <Button 
                     as={Link}
                     to={this.props.backTo}

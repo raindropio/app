@@ -1,6 +1,7 @@
 import './html.module.styl'
 import React from 'react'
 import t from '~t'
+import _ from 'lodash'
 import { Helmet } from 'react-helmet'
 
 import isMobile from 'ismobilejs'
@@ -16,6 +17,22 @@ export default class DocumentHtml extends React.PureComponent {
             scrollbarIsObtrusive() ? 'scrollbar-obtrusive' : '',
         ]
     }
+
+    componentDidMount() {
+        window.addEventListener('resize', this.onWindowResize)
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener('resize', this.onWindowResize)
+    }
+
+    onWindowResize = _.debounce(() => {
+        if (screen.width === window.innerWidth &&
+            screen.height === window.innerHeight)
+            this.addClass('fullscreen')
+        else
+            this.removeClass('fullscreen')
+    }, 300)
 
     //utils
     addClass = (c)=>{
