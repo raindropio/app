@@ -12,16 +12,7 @@ import Cover from './cover'
 import Tags from './tags'
 import Info from './info'
 
-export default class BookmarkItemView extends React.PureComponent {
-    onMouseDown = e=>{
-        //middle button click
-        if (e.button===1){
-            e.preventDefault()
-            window.open(this.props.link)
-        }else
-            this.forceUpdate() //update target link
-    }
-
+export default class BookmarkItemView extends React.Component {
     getLinkProps = ()=>{
         const { getLink, mainAction, _id, link } = this.props
 
@@ -80,7 +71,7 @@ export default class BookmarkItemView extends React.PureComponent {
         const { innerRef, isDragging, mainAction } = this.props
         const { _id, link, title, excerpt, highlight, cover, domain, tags, view, access } = this.props
         const { active, selected, selectModeEnabled, selectDisabled, important, broken, gridSize } = this.props
-        const { getLink, onClick, onDoubleClick, onSelectClick, onRemoveClick, onContextMenu, onKeyUp } = this.props
+        const { getLink, onClick, onDoubleClick, onMouseDown, onSelectClick, onRemoveClick, onContextMenu, onKeyUp } = this.props
 
         return (
             <DragItem 
@@ -173,7 +164,7 @@ export default class BookmarkItemView extends React.PureComponent {
                         onClick={onClick}
                         onDoubleClick={onDoubleClick}
                         onContextMenu={onContextMenu}
-                        onMouseDown={this.onMouseDown}
+                        onMouseDown={onMouseDown}
                         onKeyUp={onKeyUp} />
                 </article>
             )}</DragItem>

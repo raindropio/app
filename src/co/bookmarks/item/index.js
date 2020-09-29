@@ -47,6 +47,15 @@ class BookmarkItem extends React.Component {
             window.open(this.props.item.link)
         },
 
+        onMouseDown: e=>{
+            //middle button click
+            if (e.button===1){
+                e.preventDefault()
+                window.open(this.props.item.link)
+            }else
+                this.forceUpdate() //update target link
+        },
+
         onSelectClick: ()=>{
             this.props.actions[this.props.selected ? 'unselectOne' : 'selectOne'](this.props.spaceId, this.props.item._id)
         },
