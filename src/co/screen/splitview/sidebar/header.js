@@ -1,4 +1,3 @@
-import s from './header.module.styl'
 import React from 'react'
 import { Context } from '../'
 
@@ -13,14 +12,12 @@ class SplitViewSidebarHeader extends React.Component {
         return (
             <Header 
                 data-no-shadow
-                className={s.header}>
+                data-mac-inset>
                 <FirstAction className='svSidebarCloseButton'>
                     <Button onClick={this.context.sidebar.toggle}>
                         <Icon name='close' />
                     </Button>
                 </FirstAction>
-
-                <div className={s.space} />
 
                 {this.props.children}
             </Header>

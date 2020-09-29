@@ -12,7 +12,6 @@ export default class WebView extends React.Component {
         if (this._webview.current) {
             this._webview.current.addEventListener('did-finish-load', this.props.onLoad)
             this._webview.current.addEventListener('did-fail-load', this.props.onError)
-            this._webview.current.addEventListener('new-window', this.onNewWindow)
         }
     }
 
@@ -20,18 +19,14 @@ export default class WebView extends React.Component {
         if (this._webview.current) {
             this._webview.current.removeEventListener('did-finish-load', this.props.onLoad)
             this._webview.current.removeEventListener('did-fail-load', this.props.onError)
-            this._webview.current.removeEventListener('new-window', this.onNewWindow)
         }
-    }
-
-    onNewWindow = (e)=>{
-        window.open(e.url)
     }
 
     render() {
         return (
             <webview 
                 ref={this._webview}
+                allowpopups='true'
                 {...this.props} />
         )
     }

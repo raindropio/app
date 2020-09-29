@@ -27,10 +27,6 @@ invisible() {
     width: 33vw;
 }
 
-headerInset() {
-    padding-left: var(--target-electron-mac-title-bar-inset)
-}
-
 /* Panels */
 :global(.svSidebar) {
     z-index: 20;
@@ -71,16 +67,6 @@ headerInset() {
 .splitview:not(.s) :global(.svSidebarBackdrop) {
     invisible()
 }
-:global(.electron.mac:not(.fullscreen)) .splitview:not(.s) :global(.svMainHeader) {
-    headerInset()
-}
-
-/* Full-screen reader */
-html:global(.electron.mac:not(.fullscreen)) .r.f {
-    :global(.svReaderHeader) {
-        headerInset()
-    }
-}
 
 /* Full-screen reader when not enough width */
 @media screen and (max-width mainMinWidth+readerMinWidth )
@@ -90,10 +76,6 @@ html:global(.electron.mac:not(.fullscreen)) .r.f {
 
     :global(.svReaderFullscreenButton) {
         display: none !important
-    }
-
-    :global(.electron.mac:not(.fullscreen) .svReaderHeader) {
-        headerInset()
     }
 
 /* Hide sidebar when not enough space */
@@ -108,9 +90,6 @@ html:global(.electron.mac:not(.fullscreen)) .r.f {
             --background-color: var(--sidebar-background-color)
             background-color: var(--background-color)
         }
-    }
-    :global(.electron.mac:not(.fullscreen)) .r :global(.svMainHeader) {
-        headerInset()
     }
 
 /* Force show sidebar when super small screen */
@@ -140,8 +119,4 @@ html:global(.electron.mac:not(.fullscreen)) .r.f {
 
     :global(.svSidebarCloseButton) {
         display: block
-    }
-
-    :global(.electron.mac:not(.fullscreen) .svMainHeader) {
-        headerInset()
     }

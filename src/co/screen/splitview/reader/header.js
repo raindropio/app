@@ -33,6 +33,7 @@ class SplitViewReaderHeader extends React.Component {
             <Header 
                 data-no-shadow 
                 data-fancy
+                data-mac-inset
                 className='svReaderHeader'>
                 <Button 
                     as={Link}
