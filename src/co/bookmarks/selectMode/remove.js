@@ -23,10 +23,13 @@ class BookmarksHeaderSelectModeRemove extends React.Component {
     }
 
     render() {
+        const { selectMode: { all, ids } } = this.props
+
         return (
             <Button 
                 variant='outline'
                 title={t.s('remove')}
+                disabled={!all && !ids.length}
                 onClick={this.onRemoveClick}>
                 <Icon name='trash' />
                 

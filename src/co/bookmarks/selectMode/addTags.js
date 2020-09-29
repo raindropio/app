@@ -34,7 +34,7 @@ class BookmarksHeaderSelectMode extends React.Component {
     }
 
     render() {
-        const { selectMode: { spaceId } } = this.props
+        const { selectMode: { spaceId, all, ids } } = this.props
         const { tags, show } = this.state
 
         return (
@@ -42,6 +42,7 @@ class BookmarksHeaderSelectMode extends React.Component {
                 <Button 
                     variant='outline'
                     title={t.s('addTags')}
+                    disabled={!all && !ids.length}
                     onClick={this.onClick}>
                     <Icon name='tag' />
                     

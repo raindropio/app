@@ -11,6 +11,7 @@ export default class BookmarksAdd extends React.Component {
     }
 
     state = {
+        loading: true,
         current: {}
     }
 
@@ -32,9 +33,12 @@ export default class BookmarksAdd extends React.Component {
     }
 
     reload = async()=>{
+        this.setState({ loading: true })
+
         const { url, title } = await currentTab()
 
         this.setState({
+            loading: false,
             current: {
                 url, title
             }
@@ -42,7 +46,8 @@ export default class BookmarksAdd extends React.Component {
     }
 
     render() {
-        if (!this.state.current.url)
+        if (!this.state.loading &&
+            !this.state.current.url)
             return <Permission onChange={this.reload} />
 
         return (

@@ -30,11 +30,14 @@ class BookmarksSelectModeMove extends React.Component {
     }
 
     render() {
+        const { selectMode: { all, ids } } = this.props
+
         return (
             <>
                 <Button 
                     variant='outline'
                     title={t.s('move')}
+                    disabled={!all && !ids.length}
                     onClick={this.onClick}>
                     <Icon name='move_to' />
                     

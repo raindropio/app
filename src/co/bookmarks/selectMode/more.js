@@ -65,9 +65,14 @@ class BookmarksSelectModeMore extends React.Component {
     }
 
     render() {
+        const { selectMode: { all, ids } } = this.props
+
         return (
             <>
-                <Button ref={this.pin} onClick={this.onContextMenuClick}>
+                <Button 
+                    ref={this.pin} 
+                    disabled={!all && !ids.length}
+                    onClick={this.onContextMenuClick}>
                     {t.s('more')}…
                 </Button>
 

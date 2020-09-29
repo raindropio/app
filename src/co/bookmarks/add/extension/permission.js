@@ -1,7 +1,7 @@
 import React from 'react'
 import Button from '~co/common/button'
 import browser from '~target/extension/browser'
-import { Error } from '~co/overlay/dialog'
+import { Alert } from '~co/overlay/dialog'
 
 export default class BookmarksAddPermission extends React.Component {
     static defaultProps = {
@@ -14,7 +14,12 @@ export default class BookmarksAddPermission extends React.Component {
                 permissions: ['tabs']
             })
             .then(this.props.onChange)
-            .catch(Error)
+            .catch(e=>{
+                Alert('Can`t set required permissions', {
+                    variant: 'error',
+                    description: 'Try to click on our extension (button on browser toolbar), then click your profile name and open Settings. Then enable "All tabs" access.'
+                })
+            })
     }
 
     render() {

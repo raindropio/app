@@ -24,11 +24,17 @@ export async function reload() {
     loading = true
     items = new Set()
 
-    const text = await Api._get('raindrops/links', {
-        headers: {
-            'Content-Type': 'text/plain'
-        }
-    })
+    let text = ''
+
+    try{
+        text = await Api._get('raindrops/links', {
+            headers: {
+                'Content-Type': 'text/plain'
+            }
+        })
+    } catch(e) {
+        console.error(e)
+    }
     loading = false
 
     if (!text) return;

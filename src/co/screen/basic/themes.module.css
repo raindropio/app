@@ -35,6 +35,9 @@
     --secondary-text-color: hsl(0,0%,50%);
     --disable-text-color: rgba(0,0,0,.3);
 
+    /* scrollbar */
+    --scrollbar-color: rgba(0,0,0,.18);
+
     /* shadows */
     --shadow-alpha: .13;
     --shadow-light-alpha: .1;
@@ -64,6 +67,9 @@
     --primary-text-color: hsl(0,0%,80%);
     --secondary-text-color: hsl(0,0%,60%);
     --disable-text-color: rgba(255,255,255,.4);
+
+    /* scrollbar */
+    --scrollbar-color: rgba(255,255,255,.2);
 
     /* shadows */
     --shadow-color: rgba(255,255,255, var(--shadow-alpha));

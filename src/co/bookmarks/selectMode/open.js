@@ -21,10 +21,13 @@ class BookmarksSelectModeOpen extends React.Component {
         this.setState({ show: false })
 
     render() {
+        const { selectMode: { all, ids } } = this.props
+
         return (
             <Button 
                 variant='outline'
                 title={t.s('open')}
+                disabled={!all && !ids.length}
                 onClick={this.onOpenSelectedClick}>
                 <Icon name='open' />
                 

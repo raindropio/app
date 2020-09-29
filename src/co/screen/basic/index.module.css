@@ -45,14 +45,17 @@ a {
 
 /* Scrollbars */
 html {
-    scrollbar-color: var(--shadow-color) var(--background-color);
+    scrollbar-color: var(--scrollbar-color) transparent;
+}
+
+* {
+    scrollbar-width: thin
 }
 
 html:global(.scrollbar-obtrusive) ::-webkit-scrollbar {
     width: 14px;
     height: 14px;
     background: var(--background-color);
-    box-shadow: inset var(--shadow-height) 0 0 var(--shadow-light-color);
 }
     
 html:global(.scrollbar-obtrusive) ::-webkit-scrollbar * {
@@ -62,7 +65,7 @@ html:global(.scrollbar-obtrusive) ::-webkit-scrollbar * {
 html:global(.scrollbar-obtrusive) ::-webkit-scrollbar-thumb {
     border: 3px solid transparent;
     border-radius: 14px;
-    box-shadow: inset 0px 0px 0px 7px var(--shadow-color);
+    box-shadow: inset 0px 0px 0px 7px var(--scrollbar-color);
 }
 
 html:global(.scrollbar-obtrusive) ::-webkit-scrollbar-thumb:hover {
