@@ -123,7 +123,7 @@ module.exports = ({ vendor, production=false }, l) => {
 			}
 		}: {}),
 
-		content_security_policy: `script-src 'self' ${config.csp.hosts} ${!production?'\'unsafe-eval\'':''}; object-src 'self';`
+		content_security_policy: `script-src 'self' ${config.csp.hosts} ${!production?'\'unsafe-eval\'':''}; object-src 'none';`
 	}
 
 	//disable google analytics for firefox extension

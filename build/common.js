@@ -84,8 +84,6 @@ module.exports = ({ production, filename='[name].[contenthash]' }) => ({
 			RAINDROP_ENVIRONMENT: JSON.stringify('browser')
 		}),
 
-		new webpack.ExternalsPlugin('commonjs', ['electron']),
-
 		//HTML
 		new HtmlWebpackPlugin({
 			title: 'Raindrop.io',

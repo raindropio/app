@@ -10,7 +10,7 @@
 	<title>Raindrop.io</title>
 
 	<!-- security -->
-	<meta http-equiv="Content-Security-Policy" content="default-src *; script-src 'self' <%= require('./config.js').csp.hosts %> <%= process.env.NODE_ENV === 'development' ? '\'unsafe-inline\' \'unsafe-eval\'' : '' %>; style-src 'self' 'unsafe-inline'; img-src * blob:;">
+	<meta http-equiv="Content-Security-Policy" content="default-src *; script-src 'self' <%= require('./config.js').csp.hosts %> <%= process.env.NODE_ENV === 'development' ? '\'unsafe-inline\' \'unsafe-eval\'' : '' %>; style-src 'self' 'unsafe-inline'; img-src * blob:; object-src 'none';">
 	<meta name="referrer" content="origin">
 
 	<!-- native apps -->
