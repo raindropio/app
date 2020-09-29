@@ -85,6 +85,11 @@ export default function(state = initialState, action){switch (action.type) {
 	}
 
 	case USER_UPDATE_REQ:{
+		if (state.status.authorized!='yes'){
+			action.ignore = true
+			return state;
+		}
+
 		return setSpecificStatus(state, 'save', 'loading')
 	}
 

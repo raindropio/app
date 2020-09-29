@@ -33,6 +33,7 @@ Changes
         - no more draftEnsure, use draftLoad instead; instead { save } use { autoCreate }
         - be sure to change draft selectors too! instead object it accepts only 1 argument
             - status notFound now called 'new'
+    - different image thumbnails/screenshots url format!
 - features
     + nested collections showed up in one list
     + web preview better

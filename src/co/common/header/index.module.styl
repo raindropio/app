@@ -24,8 +24,10 @@
     &[data-fancy='true'], &[data-solid='true'] {
         background: var(--background-color)
     }
+}
 
-    &[data-mac-inset='true'] {
+html:global(.electron.mac) {
+    .header[data-mac-inset='true'] {
         padding-top: var(--target-electron-mac-header-inset)
         padding-bottom: var(--padding-small)
     }

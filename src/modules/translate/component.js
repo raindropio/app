@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { set } from '~data/actions/config'
 import t from './index'
 
 class UtilsTranslateComponent extends React.PureComponent {
@@ -20,6 +21,7 @@ class UtilsTranslateComponent extends React.PureComponent {
     setLang = async()=>{
         this.setState({ loading: true })
         try{await t.init(this.props.lang)}catch(e){}
+        this.props.set('lang', t.currentLang)
         this.setState({ loading: false })
     }
 
@@ -38,5 +40,6 @@ class UtilsTranslateComponent extends React.PureComponent {
 export default connect(
     state=>({
         lang: state.config.lang
-    })
+    }),
+    { set }
 )(UtilsTranslateComponent)

@@ -5,5 +5,5 @@ export default function(url='') {
         url.includes(LEGACY_WORKERS_BASE_URL))
         return url
 
-    return RENDER_URL+encodeURIComponent(url)
+    return RENDER_URL+'/'+encodeURIComponent(url)
 }

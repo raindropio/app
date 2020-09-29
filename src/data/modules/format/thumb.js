@@ -10,5 +10,5 @@ export default function(url='') {
         finalURL.includes(LEGACY_WORKERS_BASE_URL))
         return finalURL.replace(/width=\d+/, 'a')
 
-    return RENDER_URL+encodeURIComponent(finalURL)
+    return RENDER_URL+'/'+encodeURIComponent(finalURL)
 }

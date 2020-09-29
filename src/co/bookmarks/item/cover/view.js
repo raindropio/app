@@ -76,7 +76,7 @@ export default class BookmarkItemCover extends React.PureComponent {
         return (
             <>
                 <source
-                    srcSet={uri && `${uri}&mode=crop&format=webp&width=${width||''}&ar=${ar||''}&dpr=${window.devicePixelRatio||1} ${window.devicePixelRatio||1}x`}
+                    srcSet={uri && `${uri}?mode=crop&format=webp&width=${width||''}&ar=${ar||''}&dpr=${window.devicePixelRatio||1} ${window.devicePixelRatio||1}x`}
                     type='image/webp' />
 
                 <img 
@@ -87,7 +87,7 @@ export default class BookmarkItemCover extends React.PureComponent {
                     height={height}
                     alt=' '
                     {...etc}
-                    src={uri && `${uri}&mode=crop&width=${width||''}&ar=${ar||''}&dpr=${window.devicePixelRatio||1}`}
+                    src={uri && `${uri}?mode=crop&width=${width||''}&ar=${ar||''}&dpr=${window.devicePixelRatio||1}`}
                     //type='image/jpeg'
                     onLoad={indicator && uri ? this.onImageLoadSuccess : undefined}
                     onError={indicator && uri ? this.onImageLoadSuccess : undefined} />
