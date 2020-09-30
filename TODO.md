@@ -2,9 +2,6 @@ Bugs
 - Minor
     - masonry keyboard navigation unordered
 
-Not ready
-- electron
-
 Server
 - Send screenshot without ?width, then in data/getscreenshot remove regex
 
@@ -53,3 +50,4 @@ Changes
     + tags autocomplete shows tags from shared collection too
     + multiline description
     + import upload only new
+    + pwa

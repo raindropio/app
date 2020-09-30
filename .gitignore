@@ -1,5 +1,6 @@
 # OSX
 .DS_Store
+__MACOSX
 
 # Node
 node_modules
