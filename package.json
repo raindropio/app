@@ -46,7 +46,6 @@
 		"date-fns": "2.16.x",
 		"downshift": "6.0.x",
 		"form-request-submit-polyfill": "^2.0.0",
-		"ismobilejs": "^1.1.1",
 		"localforage": "1.9.x",
 		"lodash-es": "4.17.x",
 		"masonic": "3.3.x",
@@ -66,7 +65,6 @@
 		"react-virtuoso": "0.20.x",
 		"react-window": "^1.8.5",
 		"sortablejs": "^1.12.0",
-		"string": "3.3.x",
 		"validator": "13.1.x",
 		"webextension-polyfill": "^0.6.0"
 	},
