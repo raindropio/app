@@ -30,15 +30,14 @@
 		"~network": "src/modules/network.js",
 		"~config": "src/config.js",
 		"~icon": "src/co/common/icon.js",
-		"~t": "src/modules/translate/index.js",
+		"~t": "src/modules/translate",
 		"~assets": "src/assets",
 		"~co": "src/co",
 		"~data": "src/data",
 		"~local": "src/local",
 		"~modules": "src/modules",
 		"~routes": "src/routes",
-		"~target": "src/target",
-		"~package.json": "package.json"
+		"~target": "src/target"
 	},
 	"dependencies": {
 		"@sentry/minimal": "^5.20.1",

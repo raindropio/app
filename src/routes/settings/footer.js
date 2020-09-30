@@ -1,7 +1,7 @@
 import s from './footer.module.styl'
 import React from 'react'
 import t from '~t'
-import pjson from '~package.json'
+import pjson from '../../../package.json'
 import config from '~config'
 
 export default class SettingsFooter extends React.Component {

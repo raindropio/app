@@ -1,7 +1,7 @@
 import React from 'react'
 import * as Sentry from '@sentry/react'
 import config from '~config'
-import pkg from '~package.json'
+import pkg from '../../../package.json'
 import { target } from '~target'
 
 //Firefox sending errors without sourcemap, so just ignore them at all
