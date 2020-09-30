@@ -4,7 +4,8 @@ const path = require('path')
 const folder = path.resolve(__dirname, '../../../assets/languages')
 const _strings = {}
 const overrideLangCode = {
-    'zh-Hans': 'zh_CN'
+    'zh-Hans': 'zh_CN',
+    'zh-Hant': 'zh_TW'
 }
 
 function s(lang, key) {

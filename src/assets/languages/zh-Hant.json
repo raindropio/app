@@ -322,5 +322,9 @@
   "automatically": "自動地",
   "lastUsed": "上次使用",
   "defaultCollection": "預設收藏夾",
-  "recent": "最近"
+  "recent": "最近",
+  "logOutOfAllDevices": "從所有裝置上登出",
+  "tabs": "分頁",
+  "permissions": "權限",
+  "raindropTagline": "整合式全功能的書簽管理工具"
 }
