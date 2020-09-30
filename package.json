@@ -23,7 +23,7 @@
 		"build:electron": "webpack --config build/electron.js --env.production",
 		"size": "webpack --config build/web.js --env.production --profile --json > dist/stats.json && webpack-bundle-analyzer dist/stats.json dist/web",
 		"deploy:prod": "git branch -f release/production master && git push --force origin release/production",
-		"preinstall": "command -v link-module-alias && link-module-alias clean || true",
+		"preinstall": "npm list link-module-alias && link-module-alias clean || (exit 0)",
 		"postinstall": "link-module-alias"
 	},
 	"_moduleAliases": {

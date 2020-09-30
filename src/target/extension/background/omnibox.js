@@ -33,8 +33,10 @@ async function onInputChanged(text, addSuggestions) {
 function onInputEntered(text, disposition) {
     let url = text
 
-    if (!/.*:\/\//g.test(text))
-        url = `${config.links.search}${encodeURIComponent(text)}`
+    if (!text)
+        url = config.links.app.index
+    else if (!/.*:\/\//g.test(text))
+        url = `${config.links.app.search}${encodeURIComponent(text)}`
 
     switch (disposition) {
         case 'currentTab':
