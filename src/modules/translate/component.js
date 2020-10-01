@@ -21,7 +21,10 @@ class UtilsTranslateComponent extends React.PureComponent {
     setLang = async()=>{
         this.setState({ loading: true })
         try{await t.init(this.props.lang)}catch(e){}
-        this.props.set('lang', t.currentLang)
+
+        if (!this.props.lang)
+            this.props.set('lang', t.currentLang)
+
         this.setState({ loading: false })
     }
 

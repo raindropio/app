@@ -6,7 +6,7 @@ if (process.env.EXTENSION_VENDOR == 'safari')
     icon = ' '
 
 async function updateBadge() {
-    const [ { url, id: tabId } ] = await browser.tabs.query({ active: true })
+    const [ { url, id: tabId } ] = await browser.tabs.query({ active: true, currentWindow: true })
     if (!url) return
     
     await Promise.all([

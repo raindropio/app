@@ -4,7 +4,7 @@ import { openAdd } from './utils'
 async function onCommand(command) {
     switch(command) {
         case 'save_page':{
-            const [ { url='', title='' } ] = await browser.tabs.query({ active: true })
+            const [ { url='', title='' } ] = await browser.tabs.query({ active: true, currentWindow: true })
             return openAdd({ link: url, title })
         }
     }

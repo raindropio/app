@@ -7,7 +7,7 @@ async function onClicked({ menuItemId, pageUrl, srcUrl, linkUrl, linkText, selec
             let title
 
             try{
-                const [ tab ] = await browser.tabs.query({ active: true })
+                const [ tab ] = await browser.tabs.query({ active: true, currentWindow: true })
                 title = tab.title
             } catch(e) {}
             
