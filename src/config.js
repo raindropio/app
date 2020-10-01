@@ -18,8 +18,7 @@ module.exports = {
     links: {
         app: {
             index: 'https://app.raindrop.io',
-            search: 'https://app.raindrop.io/my/0/',
-            add: 'https://app.raindrop.io/add'
+            search: 'https://app.raindrop.io/my/0/'
         },
         
         download: 'https://raindrop.io/download',
