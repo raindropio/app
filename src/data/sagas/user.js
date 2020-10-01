@@ -131,7 +131,7 @@ function* logout({ ignore=false, all=false }) {
 		return;
 
 	try {
-		yield call(Api.get, 'auth/logout?no_redirect&'+(all?'all':''))
+		yield call(Api.get, 'auth/logout?no_redirect&'+(all===true?'all':''))
 		yield put({type: 'RESET'})
 		yield put({type: USER_NOT_AUTHORIZED})
 	} catch ({message}) {
