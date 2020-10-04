@@ -5,7 +5,6 @@ import Analytics from '~modules/analytics'
 
 import Account from './account'
 import Add from './add'
-import AddLegacy from './add/legacy'
 import Extension from './extension'
 import My from './my'
 import Settings from './settings'
@@ -22,7 +21,6 @@ export default ()=>(
             <Switch>
                 <Route path='/account' component={Account} />
                 <Route path='/add' component={Add} />
-                <Route path='/bookmarklet/1.0' component={AddLegacy} />{/*deprecated*/}
                 <Route path='/extension' component={Extension} />
                 <Route path='/my' component={My} />
                 <Route path='/settings' component={Settings} />
