@@ -75,7 +75,7 @@ module.exports = ({ vendor, production=false }, l) => {
 			'contextMenus',
 			'notifications',
 			'activeTab',
-			'https://*.raindrop.io/'
+			'https://api.raindrop.io/'
 		],
 
 		optional_permissions: [

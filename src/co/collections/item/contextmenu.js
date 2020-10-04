@@ -1,12 +1,14 @@
 import React from 'react'
 import t from '~t'
+import config from '~config'
+import { target } from '~target'
 import Popover, { Menu, MenuItem, MenuSeparator } from '~co/overlay/popover'
 import Icon from '~co/common/icon'
 
 export default class CollectionsItemContextmenu extends React.Component {
     render() {
         const {
-            _id, access,
+            _id, access, to,
             pin,
             onContextMenuClose, onCreateNewChildClick, onRenameClick, onIconClick, onRemoveClick, onSharing, onOpenAllClick, onSelectClick
         } = this.props
@@ -14,8 +16,15 @@ export default class CollectionsItemContextmenu extends React.Component {
         return (
             <Popover pin={pin} onClose={onContextMenuClose}>
                 <Menu>
-                    {onOpenAllClick ? <MenuItem onClick={onOpenAllClick} target='_blank'>
-                        <Icon name='open' />
+                    {to && target!='web' ? (
+                        <MenuItem href={new URL(to, config.links.app.index).toString()} target='_blank'>
+                            <Icon name='open' />
+                            {t.s('open')} {t.s('inNewTab')}
+                        </MenuItem>
+                    ) : null}
+
+                    {onOpenAllClick ? <MenuItem onClick={onOpenAllClick}>
+                        <Icon name='web' />
                         {t.s('open') + ' ' + t.s('allBookmarks').toLowerCase()}
                     </MenuItem> : null}
 

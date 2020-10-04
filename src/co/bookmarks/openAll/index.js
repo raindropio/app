@@ -4,13 +4,13 @@ import { connect } from 'react-redux'
 import { refresh } from '~data/actions/bookmarks'
 import { makeSpaceElements, makeSelectMode, status } from '~data/selectors/bookmarks'
 import config from '~config'
-import { openTab } from '~target'
+import { target, openTab } from '~target'
 
 import Modal, { Header, Content } from '~co/overlay/modal'
 import Preloader from '~co/common/preloader'
 
 const _warningKey = 'open-multiple-links-help-ignore'
-let showWarning = localStorage && !localStorage.getItem(_warningKey)
+let showWarning = target == 'web' && localStorage && !localStorage.getItem(_warningKey)
 
 class BookmarkOpenAll extends React.Component {
     static defaultProps = {
