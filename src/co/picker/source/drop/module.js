@@ -3,6 +3,7 @@ import React from 'react'
 export default class DropModule extends React.Component {
     static defaultProps = {
         onDropFiles: undefined, //required func
+        onDropLinks: undefined, //required func
         onDropCustom: undefined, //required func
         validateCustom: undefined //(type)
     }
@@ -26,6 +27,12 @@ export default class DropModule extends React.Component {
                 break
             }
 
+            //link
+            if (record.type === 'text/uri-list'){
+                contains = 'link'
+                break
+            }
+
             //custom
             if (this.props.validateCustom &&
                 this.props.validateCustom(record.type)){
@@ -46,6 +53,7 @@ export default class DropModule extends React.Component {
             e.stopPropagation()
 
             let files = []
+            let links = []
             let custom = []
 
             for(const record of e.dataTransfer.items) {
@@ -53,6 +61,8 @@ export default class DropModule extends React.Component {
                 if (record.kind === 'file' &&
                     this.props.onDropFiles)
                     files.push(record.getAsFile())
+                else if (record.type == 'text/uri-list')
+                    links.push(e.dataTransfer.getData(record.type))
                 //custom
                 else if (this.props.onDropCustom &&
                     this.props.validateCustom &&
@@ -62,6 +72,9 @@ export default class DropModule extends React.Component {
 
             if (files.length)
                 this.props.onDropFiles(files)
+
+            if (links)
+                this.props.onDropLinks(links)
 
             if (custom.length)
                 this.props.onDropCustom(custom)

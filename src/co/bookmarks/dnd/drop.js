@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { oneUpload, oneMove, moveSelected } from '~data/actions/bookmarks'
+import { oneCreate, oneUpload, oneMove, moveSelected } from '~data/actions/bookmarks'
 import PickerSourceDrop from '~co/picker/source/drop'
 
 class BookmarksDropArea extends React.Component {
@@ -13,6 +13,14 @@ class BookmarksDropArea extends React.Component {
             this.props.oneUpload({
                 collectionId: parseInt(this.props.spaceId),
                 file
+            }, res, rej)
+        })
+
+    onDropLink = (link)=>
+        new Promise((res, rej)=>{
+            this.props.oneCreate({
+                collectionId: parseInt(this.props.spaceId),
+                link
             }, res, rej)
         })
 
@@ -40,6 +48,7 @@ class BookmarksDropArea extends React.Component {
         return (
             <PickerSourceDrop 
                 onFile={this.onUploadFile}
+                onLink={this.onDropLink}
                 onCustom={this.onDropCustom}
                 validateCustom={this.onDragCustom}>
                 {this.props.children}
@@ -50,5 +59,5 @@ class BookmarksDropArea extends React.Component {
 
 export default connect(
 	undefined,
-	{ oneUpload, oneMove, moveSelected }
+	{ oneCreate, oneUpload, oneMove, moveSelected }
 )(BookmarksDropArea)

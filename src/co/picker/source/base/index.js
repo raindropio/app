@@ -12,6 +12,7 @@ export default Component =>
 
         state = {
             files: [],
+            links: [],
             custom: []
         }
 
@@ -24,6 +25,16 @@ export default Component =>
 
         onCancelFiles = ()=>
             this.setState({ files:[] })
+
+        //links
+        getLinkName = (link)=>
+            link
+
+        onDropLinks = (links)=>
+            this.setState({ links })
+
+        onCancelLinks = ()=>
+            this.setState({ links:[] })
 
         //custom
         getCustomName = (custom)=>
@@ -42,6 +53,7 @@ export default Component =>
                         {...this.props}
                         files={this.state.files}
                         onDropFiles={this.onDropFiles}
+                        onDropLinks={this.onDropLinks}
                         onDropCustom={this.onDropCustom} />
 
                     <Progress
@@ -49,6 +61,12 @@ export default Component =>
                         getName={this.getFileName}
                         process={this.props.onFile}
                         onCancel={this.onCancelFiles} />
+
+                    <Progress
+                        items={this.state.links}
+                        getName={this.getLinkName}
+                        process={this.props.onLink}
+                        onCancel={this.onCancelLinks} />
 
                     <Progress
                         items={this.state.custom}
