@@ -13,10 +13,10 @@
   ],
   "headers": [
     { "source": "/assets/(.*)", "headers": [{ "key": "cache-control", "value": "public, must-revalidate, max-age=31536000" }] },
-    { "source": "/favicon.ico", "headers": [{ "key": "cache-control", "value": "public, must-revalidate, max-age=31536000" }] }
+    { "source": "/favicon.ico", "headers": [{ "key": "cache-control", "value": "public, max-age=31536000" }] }
   ],
   "rewrites": [
-    { "source": "/legacy/4",              "destination": "https://app4.raindrop-io.now.sh/$1" },
+    { "source": "/legacy/4/:match*",      "destination": "https://app4.raindrop-io.now.sh/:match*" },
     { "source": "/(.*)",                  "destination": "/index.html" }
   ]
 }

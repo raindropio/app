@@ -14,7 +14,7 @@
 		"local:extension:chrome": "webpack-dev-server --config build/extension.js --env.vendor=chrome",
 		"local:extension:opera": "webpack-dev-server --config build/extension.js --env.vendor=opera",
 		"local:electron": "webpack-dev-server --config build/electron.js",
-		"local:prod": "yarn build && serve dist/web -l 80",
+		"local:prod": "yarn build && serve dist/web/prod -l 80",
 		"build": "webpack --config build/web.js --env.production",
 		"build:extension:chrome": "webpack --config build/extension.js --env.production --env.vendor=chrome",
 		"build:extension:firefox": "webpack --config build/extension.js --env.production --env.vendor=firefox",
