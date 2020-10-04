@@ -16,8 +16,7 @@
     { "source": "/favicon.ico", "headers": [{ "key": "cache-control", "value": "public, must-revalidate, max-age=31536000" }] }
   ],
   "rewrites": [
-    { "source": "/legacy/4",              "destination": "/index.html" },
-    { "source": "/bookmarklet/1.0/(.*)",  "destination": "https://bookmarklet1.raindrop-io.now.sh/$1" },
+    { "source": "/legacy/4",              "destination": "https://app4.raindrop-io.now.sh/$1" },
     { "source": "/(.*)",                  "destination": "/index.html" }
   ]
 }
