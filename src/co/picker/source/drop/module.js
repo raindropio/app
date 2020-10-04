@@ -3,8 +3,8 @@ import React from 'react'
 export default class DropModule extends React.Component {
     static defaultProps = {
         onDropFiles: undefined, //required func
-        onDropLinks: undefined, //required func
         onDropCustom: undefined, //required func
+        onDropLinks: undefined, //required func
         validateCustom: undefined //(type)
     }
 
@@ -27,16 +27,16 @@ export default class DropModule extends React.Component {
                 break
             }
 
-            //link
-            if (record.type === 'text/uri-list'){
-                contains = 'link'
-                break
-            }
-
             //custom
             if (this.props.validateCustom &&
                 this.props.validateCustom(record.type)){
                 contains = record.type
+                break
+            }
+
+            //link
+            if (record.type === 'text/uri-list'){
+                contains = 'link'
                 break
             }
         }
@@ -61,23 +61,24 @@ export default class DropModule extends React.Component {
                 if (record.kind === 'file' &&
                     this.props.onDropFiles)
                     files.push(record.getAsFile())
-                else if (record.type == 'text/uri-list')
-                    links.push(e.dataTransfer.getData(record.type))
                 //custom
                 else if (this.props.onDropCustom &&
                     this.props.validateCustom &&
                     this.props.validateCustom(record.type))
                     custom.push([record.type, JSON.parse(e.dataTransfer.getData(record.type))])
+                //link
+                else if (record.type == 'text/uri-list')
+                    links.push(e.dataTransfer.getData(record.type))
             }
 
             if (files.length)
                 this.props.onDropFiles(files)
-
-            if (links)
-                this.props.onDropLinks(links)
-
+            
+            //do not send both of them
             if (custom.length)
                 this.props.onDropCustom(custom)
+            else if (links.length)
+                this.props.onDropLinks(links)
 
             if (this.state.isDropping)
                 this.setState({ isDropping: false })
