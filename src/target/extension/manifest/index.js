@@ -105,6 +105,16 @@ module.exports = ({ vendor, production=false }, l) => {
 					linux: 'Ctrl+Shift+O'
 				},
 				description: '__MSG_savePage__'
+			},
+			open_raindrop: {
+				suggested_key: {
+					default: 'Ctrl+Shift+A',
+					windows: 'Ctrl+Shift+A',
+					mac: 'Command+Shift+A',
+					chromeos: 'Ctrl+Shift+A',
+					linux: 'Ctrl+Shift+A'
+				},
+				description: '__MSG_openRaindrop__',
 			}
 		},
 

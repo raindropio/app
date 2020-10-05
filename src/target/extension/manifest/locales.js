@@ -48,6 +48,10 @@ module.exports = ({ emitFile })=>{
                 saveVideo: {
                     message: s(lang, 'save') + ' ' + s(lang, 'video').toLowerCase(),
                     description: ''
+                },
+                openRaindrop: {
+                    message: s(lang, 'open') + ' Raindrop.io web-' + s(lang, 'site').toLowerCase(),
+                    description: ''
                 }
             },
             null,
