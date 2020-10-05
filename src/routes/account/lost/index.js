@@ -56,7 +56,6 @@ class AccountLost extends React.Component {
                         disabled={status=='loading'}
                         autoFocus
                         required
-                        placeholder='john@appleseed.com'
                         value={this.state.email}
                         onChange={this.onChangeValue} />
 

@@ -52,7 +52,6 @@ class AccountRecover extends React.Component {
                         name='password'
                         disabled={status=='loading'}
                         required
-                        placeholder='••••••••'
                         value={this.state.password}
                         onChange={this.onChangeValue} />
 

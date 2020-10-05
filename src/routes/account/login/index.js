@@ -46,7 +46,6 @@ class AccountLogin extends React.Component {
                         disabled={status=='loading'}
                         autoFocus
                         required
-                        placeholder='john@appleseed.com'
                         value={this.state.email}
                         onChange={this.onChangeValue} />
 
@@ -63,7 +62,6 @@ class AccountLogin extends React.Component {
                         name='password'
                         disabled={status=='loading'}
                         required
-                        placeholder='••••••••'
                         value={this.state.password}
                         onChange={this.onChangeValue} />
 

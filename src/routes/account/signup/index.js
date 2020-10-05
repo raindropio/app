@@ -52,7 +52,6 @@ class AccountSignup extends React.Component {
                         disabled={status=='loading'}
                         autoFocus
                         required
-                        placeholder='John Appleseed'
                         value={this.state.fullName}
                         onChange={this.onChangeValue} />
 
@@ -62,7 +61,6 @@ class AccountSignup extends React.Component {
                         name='email'
                         disabled={status=='loading'}
                         required
-                        placeholder='john@appleseed.com'
                         value={this.state.email}
                         onChange={this.onChangeValue} />
 
@@ -72,7 +70,6 @@ class AccountSignup extends React.Component {
                         name='password'
                         disabled={status=='loading'}
                         required
-                        placeholder='••••••••'
                         value={this.state.password}
                         onChange={this.onChangeValue} />
 

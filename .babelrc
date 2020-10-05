@@ -1,12 +1,8 @@
 {
     "presets": ["@babel/preset-react"],
     "plugins": [
-        ["@babel/plugin-proposal-decorators",{"legacy": true}],
-        ["@babel/plugin-proposal-class-properties",{"useBuiltIns": false}],
-        ["@babel/plugin-proposal-object-rest-spread",{"useBuiltIns": false}],
-        "@babel/plugin-syntax-dynamic-import"
+        ["@babel/plugin-proposal-class-properties",{"useBuiltIns": false}]
     ],
-
     "env": {
         "production": {
             "presets": [
@@ -14,19 +10,22 @@
                     "@babel/env",
                     {
                         "targets": {
-                            "chrome": "69"
+                            "esmodules": true
                         },
-                        "modules": false
+                        "modules": false,
+                        "useBuiltIns": "usage",
+                        "corejs": 3
                     }
                 ]
             ],
             "plugins": [
+                ["@babel/plugin-proposal-object-rest-spread",{"useBuiltIns": false}],
+                "@babel/plugin-syntax-dynamic-import",
                 "lodash"
             ]
         },
 
         "development": {
-            
         }
     }
 }
