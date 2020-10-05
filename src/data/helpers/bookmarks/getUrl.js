@@ -37,10 +37,15 @@ export const getUrl = (__id, query)=>{
 
 						//rules
 						for(const { regex, override_key='' } of rules){
-							const matches = clean.matchAll(regex)||[]
-							for(const [_, key, val] of matches)
+							let match
+
+							while ((match = regex.exec(clean)) !== null) {
+								const [_, key, val] = match
+								
 								if (val)
 									parts.push({ key: override_key||key, val })
+							}
+							
 							clean = clean.replace(regex, '')
 						}
 
