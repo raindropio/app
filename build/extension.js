@@ -4,6 +4,7 @@ const { merge } = require('webpack-merge')
 const common = require('./common')
 
 const WriteFilePlugin = require('write-file-webpack-plugin')
+const ZipPlugin = require('zip-webpack-plugin')
 
 module.exports = (env={}) =>
     merge(
@@ -19,6 +20,10 @@ module.exports = (env={}) =>
                 publicPath: ''
             },
 
+            performance: {
+                hints: false //because generated zip always big
+            },
+
             optimization: {
                 runtimeChunk: false
             },
@@ -29,7 +34,14 @@ module.exports = (env={}) =>
                     'process.env.EXTENSION_VENDOR': JSON.stringify(env.vendor)
                 }),
 
-                new WriteFilePlugin()
+                new WriteFilePlugin(),
+
+                ...(env.production ? [
+                    new ZipPlugin({
+                        path: '../../',
+                        filename: `${env.vendor}-${env.production?'prod':'dev'}.zip`
+                    })
+                ] : [])
             ],
 
             module: {

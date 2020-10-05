@@ -117,6 +117,7 @@
 		"webpack-dev-server": "3.11.x",
 		"webpack-merge": "^5.1.4",
 		"webpack-pwa-manifest": "4.x",
-		"write-file-webpack-plugin": "^4.5.1"
+		"write-file-webpack-plugin": "^4.5.1",
+		"zip-webpack-plugin": "^3.0.0"
 	}
 }
