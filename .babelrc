@@ -1,31 +1,22 @@
 {
-    "presets": ["@babel/preset-react"],
-    "plugins": [
-        ["@babel/plugin-proposal-class-properties",{"useBuiltIns": false}]
+    "presets": [
+        "@babel/preset-react",
+        [
+            "@babel/env",
+            {
+                "targets": {
+                    "esmodules": true
+                },
+                "modules": false,
+                "useBuiltIns": "usage",
+                "corejs": 3
+            }
+        ]
     ],
-    "env": {
-        "production": {
-            "presets": [
-                [
-                    "@babel/env",
-                    {
-                        "targets": {
-                            "esmodules": true
-                        },
-                        "modules": false,
-                        "useBuiltIns": "usage",
-                        "corejs": 3
-                    }
-                ]
-            ],
-            "plugins": [
-                ["@babel/plugin-proposal-object-rest-spread",{"useBuiltIns": false}],
-                "@babel/plugin-syntax-dynamic-import",
-                "lodash"
-            ]
-        },
-
-        "development": {
-        }
-    }
+    "plugins": [
+        ["@babel/plugin-proposal-class-properties",{"useBuiltIns": false}],
+        ["@babel/plugin-proposal-object-rest-spread",{"useBuiltIns": false}],
+        "@babel/plugin-syntax-dynamic-import",
+        "lodash"
+    ]
 }
