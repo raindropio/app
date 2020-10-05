@@ -22,7 +22,7 @@ function filterOther(tags=[], other=[]) {
 function filterByQuery(tags=[], query='') {
 	if (!query) return tags
 	return tags.filter(item => 
-		item._id.toLowerCase().startsWith(query)
+		item._id.toLowerCase().includes(query)
 	)
 }
 

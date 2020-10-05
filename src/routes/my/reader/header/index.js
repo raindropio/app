@@ -14,17 +14,18 @@ export default class ReaderHeader extends React.PureComponent {
         {
             key: 'edit',
             title: t.s('edit'),
-            icon: 'edit'
+        },
+        {
+            key: 'web',
+            title: 'Web',
         },
         {
             key: 'preview',
             title: t.s('preview'),
-            icon: 'show'
         },
         {
             key: 'cache',
             title: t.s('permanentCopy'),
-            icon: 'cloud'
         }
     ]
 

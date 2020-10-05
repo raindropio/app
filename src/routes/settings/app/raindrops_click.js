@@ -14,7 +14,10 @@ function SettingsAppRaindropsClick({ raindrops_click, set }) {
                 {[
                     ['current_tab', t.s('open')],
                     ['new_tab', t.s('open') + ' ' + t.s('inNewTab')],
-                    ...(target != 'extension' ? [['preview', t.s('preview')]] : []),
+                    ...(target != 'extension' ? [
+                        ['preview', t.s('preview')],
+                        ['web', 'Web'],
+                    ] : []),
                     ['edit', t.s('edit')]
                 ].map(([key, label])=>
                     <Radio 

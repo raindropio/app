@@ -8,6 +8,7 @@ import SuperLink from '../../common/superLink'
 import Button from '~co/common/button'
 import Icon from '~co/common/icon'
 import CollectionIcon from './icon'
+import CollectionTitle from './title'
 
 export default class CollectionsItemView extends React.PureComponent {
     renderStatus = ()=>{
@@ -28,7 +29,7 @@ export default class CollectionsItemView extends React.PureComponent {
 	}
 
     render() {
-        const { _id, title, count, color, cover, level, active, expanded, expandable, to, multiselect } = this.props
+        const { _id, count, color, cover, level, active, expanded, expandable, to, multiselect } = this.props
         const { innerRef, isDragging, isDropping, dropHandlers={} } = this.props
         const { onClick, onExpandClick, onRenameClick, onContextMenu, onKeyUp } = this.props
 
@@ -62,7 +63,7 @@ export default class CollectionsItemView extends React.PureComponent {
                     active={active} />
 
                 <ItemTitle>
-                    {title}
+                    <CollectionTitle {...this.props} />
                 </ItemTitle>
 
                 {this.renderStatus()}

@@ -10,14 +10,8 @@ export default ({ tab, ...props })=>{
 
     switch(tab) {
         case 'edit': content = <Edit {...props} />; break
-
-        case 'preview':
-            if (props.item.type == 'link')
-                content = <Web key={props.item._id} {...props} />
-            else
-                content = <HTML key={props.item._id} {...props} />
-        break
-
+        case 'preview': content = <HTML key={props.item._id} {...props} />; break
+        case 'web': content = <Web key={props.item._id} {...props} />; break
         case 'cache': content = <Cache key={props.item._id} {...props} />; break
     }
 
