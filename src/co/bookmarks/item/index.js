@@ -36,7 +36,7 @@ class BookmarkItem extends React.Component {
                 return this.handlers.onSelectClick()
             }
 
-            if (e.metaKey || e.ctrlKey || e.shiftKey){
+            if (e.shiftKey){
                 e.preventDefault()
                 this.handlers.onSelectClick()
             }
@@ -49,7 +49,7 @@ class BookmarkItem extends React.Component {
 
         onMouseDown: e=>{
             //middle button click
-            if (e.button===1){
+            if (e.button===1 || e.metaKey || e.ctrlKey){
                 e.preventDefault()
                 window.open(this.props.item.link)
             }else
