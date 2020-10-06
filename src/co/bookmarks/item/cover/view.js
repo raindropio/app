@@ -73,10 +73,21 @@ export default class BookmarkItemCover extends React.PureComponent {
                 break
         }
 
+        let mode
+        switch(view) {
+            case 'grid':
+                mode = 'fillmax'
+                break
+
+            default:
+                mode = 'crop'
+                break
+        }
+
         return (
             <>
                 <source
-                    srcSet={uri && `${uri}?mode=crop&format=webp&width=${width||''}&ar=${ar||''}&dpr=${window.devicePixelRatio||1}`}
+                    srcSet={uri && `${uri}?mode=${mode}&fill=solid&format=webp&width=${width||''}&ar=${ar||''}&dpr=${window.devicePixelRatio||1}`}
                     type='image/webp' />
 
                 <img 
@@ -87,7 +98,7 @@ export default class BookmarkItemCover extends React.PureComponent {
                     height={height}
                     alt=' '
                     {...etc}
-                    src={uri && `${uri}?mode=crop&width=${width||''}&ar=${ar||''}&dpr=${window.devicePixelRatio||1}`}
+                    src={uri && `${uri}?mode=${mode}&fill=solid&width=${width||''}&ar=${ar||''}&dpr=${window.devicePixelRatio||1}`}
                     //type='image/jpeg'
                     onLoad={indicator && uri ? this.onImageLoadSuccess : undefined}
                     onError={indicator && uri ? this.onImageLoadSuccess : undefined} />
