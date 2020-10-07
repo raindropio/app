@@ -11,6 +11,7 @@ class SettingsAppRaindropsButtons extends React.Component {
     _button = React.createRef()
 
     options = [
+        ['select',      t.s('select'), 'select_all'],
         ['current_tab', t.s('open'), 'click'],
         ['new_tab',     t.s('open') + ' ' + t.s('inNewTab'), 'open'],
         ['preview',     t.s('preview'), 'show'],
@@ -78,13 +79,18 @@ class SettingsAppRaindropsButtons extends React.Component {
                             ref={this._button}
                             variant='outline'
                             onClick={this.onShowClick}>
-                            {raindrops_buttons.length ? raindrops_buttons.map(id=>
-                                <Icon 
-                                    key={id}
-                                    name={this.getOption(id)[2]} />
-                            ) : (
+                            {raindrops_buttons.length ? 
+                                //icons
+                                this.options
+                                    .filter(([id])=>raindrops_buttons.includes(id))
+                                    .map(([id])=>
+                                        <Icon 
+                                            key={id}
+                                            name={this.getOption(id)[2]} />
+                                    ) :
+                                //nothing selected
                                 <span>{t.s('hide')} {t.s('all').toLowerCase()}</span>
-                            )}
+                            }
                             <Icon name='expand' size='micro' />
                         </Button>
                     </div>

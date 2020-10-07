@@ -40,7 +40,7 @@ class ExtensionWelcome extends React.Component {
         
                         <Buttons variant='between'>
                             <Button 
-                                link={config.links.help.index}
+                                href={config.links.help.index}
                                 target='_blank'
                                 data-block>
                                 <Icon name='help' />

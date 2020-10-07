@@ -14,7 +14,7 @@
     }
 
     &:hover {
-        .select, .actions {
+        .actions {
             display: flex
         }
 
@@ -130,6 +130,12 @@
     align-items: center
     justify-content: center
     border-bottom-right-radius: var(--border-radius)
+}
+
+:global(.button-select) {
+    .element:hover .select {
+        display: flex
+    }
 }
 
 
