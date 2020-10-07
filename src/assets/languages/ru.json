@@ -326,5 +326,6 @@
   "logOutOfAllDevices": "Выйти из всех устройств",
   "tabs": "Вкладки",
   "permissions": "Разрешения",
-  "raindropTagline": "Закладочный сервис все в одном"
+  "raindropTagline": "Закладочный сервис все в одном",
+  "buttons": "Кнопки"
 }

@@ -74,6 +74,7 @@ export default connect(
                 viewHide: getViewHide(state, spaceId),
                 gridSize: getGridSize(state, spaceId),
                 listCoverRight: state.config.raindrops_list_cover_right,
+                buttons: state.config.raindrops_buttons,
 
                 access,
                 sort: getSort(state, spaceId),

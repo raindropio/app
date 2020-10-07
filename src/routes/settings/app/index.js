@@ -8,7 +8,7 @@ import Theme from './theme'
 import Size from './size'
 import Lang from './lang'
 import RaindropsClick from './raindrops_click'
-//import RaindropsButtons from './raindrops_buttons'
+import RaindropsButtons from './raindrops_buttons'
 import TagsSort from './tags_sort'
 import BrokenLevel from './broken_level'
 import NestedViewLegacy from './nested_view_legacy'
@@ -24,7 +24,7 @@ export default ()=>{
 			<Separator />
 
 			<RaindropsClick />
-			{/*<RaindropsButtons />*/}
+			<RaindropsButtons />
 			<Separator />
 					
 			<TagsSort />

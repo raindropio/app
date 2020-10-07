@@ -50,7 +50,7 @@ export default class Select extends React.Component {
                 data-value={child.props.value}
                 onClick={this.onOptionClick}>
                 <Icon name={child.props.value == this.props.value ? 'check' : 'blank'} />
-                {{...child, type: 'span'}}
+                {child.props.children}
             </MenuItem>
         )
     }
@@ -63,7 +63,11 @@ export default class Select extends React.Component {
             return null
         
         if (child && child.type == 'option')
-            return {...child, type: 'span'}
+            return (
+                <React.Fragment key={child.props.value}>
+                    {child.props.children}
+                </React.Fragment>
+            )
             
         return child
     }

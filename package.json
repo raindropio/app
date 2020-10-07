@@ -1,6 +1,6 @@
 {
 	"name": "app",
-	"version": "5.1.20",
+	"version": "5.1.21",
 	"description": "",
 	"author": "",
 	"license": "ISC",
@@ -16,6 +16,7 @@
 		"local:electron": "webpack-dev-server --config build/electron.js",
 		"local:prod": "yarn build && serve dist/web/prod -l 80",
 		"build": "webpack --config build/web.js --env.production",
+		"build:extension": "yarn build:extension:chrome && yarn build:extension:firefox && yarn build:extension:opera && yarn build:extension:safari",
 		"build:extension:chrome": "webpack --config build/extension.js --env.production --env.vendor=chrome",
 		"build:extension:firefox": "webpack --config build/extension.js --env.production --env.vendor=firefox",
 		"build:extension:opera": "webpack --config build/extension.js --env.production --env.vendor=opera",

@@ -6,6 +6,8 @@ import { connect } from 'react-redux'
 import { set } from '~data/actions/config'
 
 import RaindropsClick from '~routes/settings/app/raindrops_click'
+import RaindropsButtons from '~routes/settings/app/raindrops_buttons'
+
 import Button from '~co/common/button'
 import Icon from '~co/common/icon'
 import Popover from '~co/overlay/popover'
@@ -59,6 +61,7 @@ class ReaderHeaderSettings extends React.Component {
                     <Popover pin={this.pin} onClose={this.onSettingsClose}>
                         <Layout>
                             <RaindropsClick />
+                            <RaindropsButtons />
                         </Layout>
 
                         {tab == 'preview' && type=='article' ? (

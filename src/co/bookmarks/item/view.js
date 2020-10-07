@@ -1,16 +1,14 @@
 import s from './view.module.styl'
 import React from 'react'
-import { Link } from 'react-router-dom'
 import t from '~t'
 
 import DragItem from '~co/bookmarks/dnd/drag/item'
 import SuperLink from '~co/common/superLink'
-import Button from '~co/common/button'
-import Icon from '~co/common/icon'
 import SafeHtml from '~co/common/safeHtml'
 import Cover from './cover'
 import Tags from './tags'
 import Info from './info'
+import Actions from './actions'
 
 export default class BookmarkItemView extends React.Component {
     getLinkProps = ()=>{
@@ -38,40 +36,11 @@ export default class BookmarkItemView extends React.Component {
         }
     }
 
-    renderSecondaryAction = ()=>{
-        const { getLink, mainAction, _id, link } = this.props
-
-        switch(mainAction) {
-            case 'new_tab':
-            case 'current_tab':
-                return (
-                    <Button 
-                        as={Link}
-                        to={getLink({ bookmark: _id, tab: '' })}
-                        variant='outline'
-                        title={t.s('preview')}>
-                        <Icon name='show' />
-                    </Button>
-                )
-
-            default:
-                return (
-                    <Button 
-                        href={link}
-                        target='_blank'
-                        variant='outline'
-                        title={t.s('open')+' '+t.s('inNewTab')}>
-                        <Icon name='open' />
-                    </Button>
-                )
-        }
-    }
-
     render() {
-        const { innerRef, isDragging, mainAction } = this.props
+        const { innerRef, isDragging } = this.props
         const { _id, link, title, excerpt, highlight, cover, domain, tags, view, access } = this.props
         const { active, selected, selectModeEnabled, selectDisabled, important, broken, gridSize } = this.props
-        const { getLink, onClick, onDoubleClick, onMouseDown, onSelectClick, onRemoveClick, onContextMenu, onKeyUp } = this.props
+        const { getLink, onClick, onDoubleClick, onMouseDown, onSelectClick, onContextMenu, onKeyUp } = this.props
 
         return (
             <DragItem 
@@ -115,36 +84,9 @@ export default class BookmarkItemView extends React.Component {
                             className={s.info} />
                     </div>
 
-                    <div className={s.actions}>
-                        {this.renderSecondaryAction()}
-
-                        {access.level >= 3 ? (
-                            <>
-                                <Button 
-                                    as={Link}
-                                    to={getLink({ bookmark: _id, tab: 'edit', autoFocus: 'tags' })}
-                                    variant='outline'>
-                                    <Icon name='tag' />
-                                </Button>
-
-                                {mainAction != 'edit' && (
-                                    <Button 
-                                        as={Link}
-                                        to={getLink({ bookmark: _id, tab: 'edit', autoFocus: '' })}
-                                        variant='outline'>
-                                        {t.s('editMin')}
-                                    </Button>
-                                )}
-
-                                <Button 
-                                    variant='outline'
-                                    title={t.s('remove')}
-                                    onClick={onRemoveClick}>
-                                    <Icon name='trash' />
-                                </Button>
-                            </>
-                        ) : null}
-                    </div>
+                    <Actions 
+                        {...this.props}
+                        className={s.actions} />
 
                     {access.level >= 3 ? (
                         <label

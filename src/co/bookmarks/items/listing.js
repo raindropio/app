@@ -90,7 +90,7 @@ export default class BookmarksItemsListing extends React.Component {
     )
 
     render() {
-        const { _id, items, viewHide, gridSize, listCoverRight, activeId, selectModeEnabled, compact } = this.props
+        const { _id, items, viewHide, gridSize, listCoverRight, buttons, activeId, selectModeEnabled, compact } = this.props
         const { isDropping, dropHandlers } = this.props
 
         //specific view
@@ -119,6 +119,7 @@ export default class BookmarksItemsListing extends React.Component {
                         ${s['wrap-'+view]}
                         ${isDropping && s.isDropping}
                         ${viewHide.map(field=>`hide-${field}`).join(' ')}
+                        ${buttons.map(field=>`button-${field}`).join(' ')}
                         ${listCoverRight && 'list-cover-right'}
                     `}
                     style={style}

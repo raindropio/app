@@ -326,5 +326,6 @@
   "logOutOfAllDevices": "Log out of all devices",
   "tabs": "Tabs",
   "permissions": "Permissions",
-  "raindropTagline": "All-in-one bookmark manager"
+  "raindropTagline": "All-in-one bookmark manager",
+  "buttons": "Buttons"
 }
