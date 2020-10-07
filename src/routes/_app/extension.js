@@ -29,7 +29,12 @@ class App extends React.Component {
         if (!href || target=='_blank') return
 
         //ignore own link
-        const { host, protocol } = new URL(href)
+        let host, protocol
+        try{
+            const parsed = new URL(href)
+            host = parsed.host
+            protocol = parsed.protocol
+        } catch(e) {}
         if (host == location.host && protocol == location.protocol) return
 
         //update current tab

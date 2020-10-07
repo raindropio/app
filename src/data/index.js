@@ -16,7 +16,8 @@ const sagaMiddleware = createSagaMiddleware({
 		if (process.env.NODE_ENV!='production')
 			console.error(e)
 		
-		if (e instanceof ApiError == false)
+		if (typeof e != 'object' ||
+			e instanceof ApiError == false)
 			throw e
 	}
 })

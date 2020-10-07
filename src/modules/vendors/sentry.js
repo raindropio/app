@@ -11,7 +11,8 @@ if (process.env.NODE_ENV !== 'development' &&
         ...config.vendors.sentry,
         release: process.env.SENTRY_RELEASE,
         ignoreErrors: [
-            /ResizeObserver loop.*/i
+            /ResizeObserver loop.*/gi,
+            /.*connection.*Receiving end does not exist.*/gi //extension specific bug
         ],
         environment: `${target}-${process.env.NODE_ENV}`
     })

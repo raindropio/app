@@ -46,12 +46,14 @@ export default class Popover extends React.Component {
     componentWillUnmount() {
         eventOrder.delete(this)
 
-        if (this._resizeObserver){
-            if (this._container.current)
-                this._resizeObserver.unobserve(this._container.current)
+        if (this._container.current && this._resizeObserver)
+            this._resizeObserver.unobserve(this._container.current)
+
+        if (this._resizeObserver)
             this._resizeObserver.unobserve(document.body)
+
+        if (this._resizeObserver)
             this._resizeObserver.disconnect()
-        }
 
         window.removeEventListener('keydown', this.onWindowKeyDown)
         document.body.removeEventListener('mousedown', this.onBodyMouseDown)

@@ -14,11 +14,13 @@ export default function* () {
 function* checkAuth(action={}) {
 	const { error } = action
 
-	if (error instanceof ApiError == false){
+	if (typeof error != 'object' ||
+		error instanceof ApiError == false){
 		throw error
 	}
 
-	if (error instanceof ApiError &&
+	if (typeof error == 'object' &&
+		error instanceof ApiError &&
 		error.status==401 &&
 		action.type != USER_LOAD_ERROR){
 		yield put({type: 'RESET'})

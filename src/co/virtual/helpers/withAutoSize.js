@@ -18,11 +18,11 @@ export default (Component, cacheId='')=>{
         }
 
         componentWillUnmount() {
-            if (this._resizeObserver){
-                if (this._div)
-                    this._resizeObserver.unobserve(this._div)
+            if (this._div && this._resizeObserver)
+                this._resizeObserver.unobserve(this._div)
+
+            if (this._resizeObserver)
                 this._resizeObserver.disconnect()
-            }
         }
 
         onResize = ([div])=>{
