@@ -1,6 +1,6 @@
 {
 	"name": "app",
-	"version": "5.1.18",
+	"version": "5.1.19",
 	"description": "",
 	"author": "",
 	"license": "ISC",
@@ -24,7 +24,7 @@
 		"size": "webpack --config build/web.js --env.production --profile --json > dist/stats.json && webpack-bundle-analyzer dist/stats.json dist/web",
 		"deploy:prod": "git branch -f release/production master && git push --force origin release/production",
 		"preinstall": "npm list link-module-alias && link-module-alias clean || (exit 0)",
-		"postinstall": "link-module-alias"
+		"postinstall": "link-module-alias && patch-package"
 	},
 	"_moduleAliases": {
 		"~network": "src/modules/network.js",
@@ -103,6 +103,7 @@
 		"lodash-webpack-plugin": "^0.11.5",
 		"mini-css-extract-plugin": "0.11.x",
 		"optimize-css-assets-webpack-plugin": "^5.0.3",
+		"patch-package": "^6.2.2",
 		"prerender-loader": "^1.3.0",
 		"serve": "^11.3.0",
 		"style-loader": "1.2.x",

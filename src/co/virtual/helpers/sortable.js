@@ -8,8 +8,6 @@ import { ReactSortable } from 'react-sortablejs'
 
 export default class VirtualSortable extends React.Component {
     static defaultProps = {
-        totalCount: 0,
-
         sortGroup: '',
         sortSubGroup: '',           //optional
         onForceRerender: undefined, //func ()
@@ -20,9 +18,9 @@ export default class VirtualSortable extends React.Component {
         items: []
     }
 
-    static getDerivedStateFromProps({ totalCount }) {
+    static getDerivedStateFromProps({ children }) {
         return {
-            items: Array.from(Array(totalCount), () => ({}))
+            items: Array.from(Array(children.length), () => ({}))
         }
     }
 
@@ -55,17 +53,8 @@ export default class VirtualSortable extends React.Component {
             )
     }
 
-    cleanChildren = ()=>{
-        const { children } = this.props
-
-        if (children && children.length && !children[0])
-            return children.filter(c=>c)
-        
-        return children
-    }
-
     render() {
-        const { className='', sortGroup, sortSubGroup, listRef, onForceRerender, ...etc } = this.props
+        const { className='', children, sortGroup, sortSubGroup, listRef, onForceRerender, ...etc } = this.props
         const { items } = this.state
         
         return (
@@ -92,7 +81,7 @@ export default class VirtualSortable extends React.Component {
                     setList={onForceRerender}
                     onSort={undefined}
                     onEnd={this.onEnd}>
-                    {this.cleanChildren()}
+                    {children}
                 </ReactSortable>
             </div>
         )
