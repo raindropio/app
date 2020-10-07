@@ -1,6 +1,7 @@
 import s from './index.module.styl'
 import React from 'react'
 import { Portal } from 'react-portal'
+import { eventOrder } from '~modules/browser'
 
 import Context from './context'
 import Header from './header'
@@ -14,11 +15,15 @@ export default class Modal extends React.Component {
     }
 
     componentDidMount() {
+        eventOrder.add(this)
+
         window.addEventListener('keydown', this.onWindowKeyDown)
         window.addEventListener('mousedown', this.onWindowMouseDown, true)
     }
 
     componentWillUnmount() {
+        eventOrder.delete(this)
+
         window.removeEventListener('keydown', this.onWindowKeyDown)
         window.removeEventListener('mousedown', this.onWindowMouseDown, true)
     }
@@ -26,6 +31,9 @@ export default class Modal extends React.Component {
     onWindowKeyDown = e=>{
         switch(e.key) {
             case 'Escape':
+                if (!eventOrder.isLast(this))
+                    return
+
                 e.preventDefault()
                 e.stopPropagation()
                 this.props.onClose()

@@ -5,6 +5,7 @@ import { set } from '~data/actions/config'
 import config from '~config'
 
 import { Label, Radio } from '~co/common/form'
+import Select from '~co/common/select'
 
 function SettingsAppBrokenLevel({ broken_level, set }) {
     return (
@@ -14,20 +15,23 @@ function SettingsAppBrokenLevel({ broken_level, set }) {
                 <a href={config.links.help['broken-links']} target='_blank'>[?]</a>
             </Label>
             <div>
-                {[
-                    ['basic', 'Basic mode'],
-                    ['default', 'Default mode'],
-                    ['strict', 'Strict mode'],
-                    ['off', t.s('disable')]
-                ].map(([key, label])=>
-                    <Radio 
-                        key={key}
-                        checked={broken_level==key}
-                        name='broken_level'
-                        onChange={e=>set('broken_level', key)}>
-                        {label}
-                    </Radio>
-                )}
+                <Select 
+                    variant='outline'
+                    value={broken_level}
+                    onChange={e=>set('broken_level', e.target.value)}>
+                    {[
+                        ['basic', 'Basic mode'],
+                        ['default', 'Default mode'],
+                        ['strict', 'Strict mode'],
+                        ['off', t.s('disable')]
+                    ].map(([key, label])=>
+                        <option 
+                            key={key}
+                            value={key}>
+                            {label}
+                        </option>
+                    )}
+                </Select>
             </div>
         </>
     )

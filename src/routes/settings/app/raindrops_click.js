@@ -4,30 +4,34 @@ import { target } from '~target'
 import { connect } from 'react-redux'
 import { set } from '~data/actions/config'
 
-import { Label, Radio } from '~co/common/form'
+import { Label } from '~co/common/form'
+import Select from '~co/common/select'
 
 function SettingsAppRaindropsClick({ raindrops_click, set }) {
     return (
         <>
             <Label>{t.s('bookmarkClick')}</Label>
             <div>
-                {[
-                    ['current_tab', t.s('open')],
-                    ['new_tab', t.s('open') + ' ' + t.s('inNewTab')],
-                    ...(target != 'extension' ? [
-                        ['preview', t.s('preview')],
-                        ['web', 'Web'],
-                    ] : []),
-                    ['edit', t.s('edit')]
-                ].map(([key, label])=>
-                    <Radio 
-                        key={key}
-                        name='raindrops_click'
-                        checked={raindrops_click==key}
-                        onChange={e=>set('raindrops_click', key)}>
-                        {label}
-                    </Radio>
-                )}
+                <Select 
+                    variant='outline'
+                    value={raindrops_click}
+                    onChange={e=>set('raindrops_click', e.target.value)}>
+                    {[
+                        ['current_tab', t.s('open')],
+                        ['new_tab', t.s('open') + ' ' + t.s('inNewTab')],
+                        ...(target != 'extension' ? [
+                            ['preview', t.s('preview')],
+                            ['web', 'Web'],
+                        ] : []),
+                        ['edit', t.s('edit')]
+                    ].map(([key, label])=>
+                        <option 
+                            key={key}
+                            value={key}>
+                            {label}
+                        </option>
+                    )}
+                </Select>
             </div>
         </>
     )

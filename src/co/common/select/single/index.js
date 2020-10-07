@@ -18,7 +18,9 @@ export default class Select extends React.Component {
     pin = React.createRef()
     
     onButtonClick = (e)=>{
-        const haveOptions = this.props.children.some(child=>child && child.type == 'option')
+        const { children=[] } = this.props
+
+        const haveOptions = (Array.isArray(children) ? children : [children]).some(child=>child && child.type == 'option')
 
         if (haveOptions)
             this.setState({ show: true })
@@ -78,7 +80,7 @@ export default class Select extends React.Component {
                     className={s.select+' '+className}
                     {...etc}
                     onClick={this.onButtonClick}>
-                    {children.map(this.renderChildren)}
+                    {(Array.isArray(children) ? children : [children]).map(this.renderChildren)}
                     <Icon name='arrow' />
                 </Button>
 
@@ -87,7 +89,7 @@ export default class Select extends React.Component {
                         pin={this.pin}
                         onClose={this.onPopoverClose}>
                         <Menu>
-                            {children.map(this.renderOption)}
+                            {(Array.isArray(children) ? children : [children]).map(this.renderOption)}
                         </Menu>
                     </Popover>
                 )}

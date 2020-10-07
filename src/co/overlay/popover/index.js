@@ -2,6 +2,7 @@ import s from './index.module.styl'
 import React from 'react'
 import _ from 'lodash'
 import { Portal } from 'react-portal'
+import { eventOrder } from '~modules/browser'
 import Context from './context'
 
 //save mouse position
@@ -30,6 +31,8 @@ export default class Popover extends React.Component {
     }
     
     componentDidMount() {
+        eventOrder.add(this)
+
         if (typeof ResizeObserver != 'undefined'){
             this._resizeObserver = new ResizeObserver(this.updatePosition)
             this._resizeObserver.observe(this._container.current)
@@ -41,6 +44,8 @@ export default class Popover extends React.Component {
     }
 
     componentWillUnmount() {
+        eventOrder.delete(this)
+
         if (this._resizeObserver){
             if (this._container.current)
                 this._resizeObserver.unobserve(this._container.current)
@@ -59,6 +64,9 @@ export default class Popover extends React.Component {
 
     //click outside
     onBodyMouseDown = (e)=>{
+        if (!eventOrder.isLast(this))
+            return
+
         if (!this.props.closable)
             return
         
@@ -74,6 +82,9 @@ export default class Popover extends React.Component {
     onWindowKeyDown = (e)=>{
         switch(e.key) {
             case 'Escape':
+                if (!eventOrder.isLast(this))
+                    return
+
                 e.preventDefault()
                 e.stopPropagation()
                 return this.store.close()

@@ -45,7 +45,9 @@ export default (Component, fields=[])  => {
                     _.pick(this.state.user, fields),
                     ()=>{
                         Alert(t.s('saveSuccess'))
-                        onSuccess()
+                        
+                        if (typeof onSuccess == 'function')
+                            onSuccess()
                     },
                     Error
                 )
