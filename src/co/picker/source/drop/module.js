@@ -94,7 +94,7 @@ export default class DropModule extends React.Component {
             if (this.validate(e)){
                 e.preventDefault()
                 e.stopPropagation()
-                e.dataTransfer.dropEffect = 'move'
+                //don't change dropEffect! on safari and firefox(win) prevent drop
 
                 if (!this.state.isDropping)
                     this.setState({ isDropping: true })

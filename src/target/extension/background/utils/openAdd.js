@@ -1,7 +1,7 @@
 import browser from 'webextension-polyfill'
 import config from '~config'
 
-export async function openAdd(props) {
+export function openAdd(props) {
     const width = 420;
     const height = 600;
     const left = (screen.width/2)-(width/2);
@@ -11,8 +11,7 @@ export async function openAdd(props) {
 
     // /add route loaded from actual site because of bug of safari extension (local files doesn't have access)
     try{
-        const { name } = await browser.runtime.getBrowserInfo()
-        if (name.toLowerCase() == 'safari')
+        if (browser.runtime.getURL('').includes('safari-web-extension'))
             path = config.links.app.index
     }catch(e) {}
 
