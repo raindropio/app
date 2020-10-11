@@ -43,14 +43,37 @@ export default function(state, action) {switch (action.type) {
 	}break
 
 	case SELECT_MODE_SELECT_BOOKMARK:{
-		if (state.selectMode.enabled && state.selectMode.all && state.selectMode.spaceId == action.spaceId)
+		const { spaceId, _id, shift=false } = action
+
+		if (state.selectMode.enabled && state.selectMode.all && state.selectMode.spaceId == spaceId)
 			return state
+
+		//get ids
+		let selected = [...getEstimatedIds(state, spaceId)]
+
+		if (!shift)
+			selected.unshift(_id)
+		else {
+			const already = state.selectMode.ids
+			const all = state.spaces[spaceId].ids
+			const fromIndex = already.length ? all.findIndex(id=>id==already[0]) : 0
+			const toIndex = all.findIndex(id=>id==_id)
+
+			selected.push(...all.filter((id,index)=>{
+				if (fromIndex > toIndex)
+					return index <= fromIndex && index >= toIndex
+				else if (fromIndex < toIndex)
+					return index >= fromIndex && index <= toIndex
+				else
+					return false
+			}))
+		}
 
 		return state
 			.set('selectMode', blankSelectMode)
 			.setIn(['selectMode', 'enabled'], true)
-			.setIn(['selectMode', 'spaceId'], action.spaceId)
-			.setIn(['selectMode', 'ids'], _.uniq([action._id].concat(getEstimatedIds(state, action.spaceId))))
+			.setIn(['selectMode', 'spaceId'], spaceId)
+			.setIn(['selectMode', 'ids'], _.uniq(selected))
 	}
 
 	case SELECT_MODE_UNSELECT_BOOKMARK:{

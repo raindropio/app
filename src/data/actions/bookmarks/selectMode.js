@@ -17,10 +17,11 @@ export const cancelSelectMode = (spaceId)=>({
 	spaceId: String(spaceId)
 })
 
-export const selectOne = (spaceId, _id)=>({
+export const selectOne = (spaceId, _id, shift=false)=>({
 	type: SELECT_MODE_SELECT_BOOKMARK,
 	_id: parseInt(_id),
-	spaceId: String(spaceId)
+	spaceId: String(spaceId),
+	shift
 })
 
 export const unselectOne = (spaceId, _id)=>({

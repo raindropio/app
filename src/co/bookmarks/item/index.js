@@ -30,14 +30,14 @@ class BookmarkItem extends React.Component {
         onClick: (e)=>{
             const { selectModeEnabled, item } = this.props
 
-            if (selectModeEnabled){
+            if (selectModeEnabled || e.shiftKey){
                 e.preventDefault()
-                return this.handlers.onSelectClick()
+                return this.handlers.onSelectClick(e)
             }
 
-            if (e.shiftKey){
+            if (e.metaKey || e.ctrlKey){
                 e.preventDefault()
-                this.handlers.onSelectClick()
+                return window.open(item.link)
             }
 
             if (typeof this.props.events.onBookmarkClick == 'function' && 
@@ -50,9 +50,8 @@ class BookmarkItem extends React.Component {
             window.open(this.props.item.link)
         },
 
-        onSelectClick: ()=>{
-            this.props.actions[this.props.selected ? 'unselectOne' : 'selectOne'](this.props.spaceId, this.props.item._id)
-        },
+        onSelectClick: (e={})=>
+            this.props.actions[(this.props.selected && !e.shiftKey) ? 'unselectOne' : 'selectOne'](this.props.spaceId, this.props.item._id, e.shiftKey),
 
         onImportantClick: ()=>
             this.props.actions.oneImportant(this.props.item._id),
