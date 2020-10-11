@@ -205,7 +205,7 @@
   "share": "Teilen",
   "fullscreen": "Vollbildschirm",
   "noItemsTip": "Datei auswählen oder hier ablegen.",
-  "preview": "Zapowiedź",
+  "preview": "Vorschau",
   "site": "Seite",
   "hide": "Verstecken",
   "show": "Zeigen",
@@ -315,5 +315,17 @@
   "darkTheme": "Dunkles Thema",
   "me": "Ich bin",
   "collaboratorsLead": "Teile deine Sammlungen und Arbeiten mit deinen Kollegen, Freunden oder deiner Familie",
-  "emptyTrash": "Papierkorb leeren"
+  "emptyTrash": "Papierkorb leeren",
+  "mini": "Mini",
+  "miniAppD": "Die Mini-App bietet die gleiche Nutzererfahrung wie die Website, aber in kompakter Größe. Du kannst Lesezeichen browsen, suchen, verwalten und neue Lesezeichen hinzufügen.",
+  "clipperD": "Clipper ist der schnellste Weg neue Lesezeichen anzulegen.",
+  "automatically": "Automatisch",
+  "lastUsed": "Zuletzt verwendet",
+  "defaultCollection": "Standard-Sammlung",
+  "recent": "Zuletzt aufgerufen",
+  "logOutOfAllDevices": "Bei allen Endgeräten ausloggen",
+  "tabs": "Tabs",
+  "permissions": "Berechtigungen",
+  "raindropTagline": "Allumfassender Lesezeichen-Manager",
+  "buttons": "Buttons"
 }

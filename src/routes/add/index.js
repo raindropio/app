@@ -48,12 +48,17 @@ export default connect(
 	
 		return (state, { location: { search } })=>{
             const { autoCreate=false, ...item } = Object.fromEntries(new URLSearchParams(search))||{}
+            const { config: { add_default_collection, last_collection } } = state
     
             return {
                 status: getDraftStatus(state, item.link),
                 unsaved: getDraftUnsaved(state, item.link),
 
-                item,
+                item: {
+                    ...item,
+                    collectionId: add_default_collection || last_collection
+                },
+                
                 autoCreate: autoCreate ? true : false,
             }
         }

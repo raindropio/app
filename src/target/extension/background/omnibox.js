@@ -18,14 +18,14 @@ function emToMatch(str='') {
 async function onInputChanged(text, addSuggestions) {
     const query = { key: 'word', val: text }
 
-    const { items=[] } = await Api._get(`raindrops/0?search=${encodeURIComponent(JSON.stringify([query]))}&perpage=10`)
+    const { items=[] } = await Api._get(`raindrops/0?search=${encodeURIComponent(JSON.stringify([query]))}&perpage=10&sort=score`)
 
     addSuggestions(
         items.map(({ link, title, highlight={} })=>({
             content: link,
             description: 
                 emToMatch(highlight.title||title) +
-                (process.env.EXTENSION_VENDOR != 'firefox' ? ` - <url>${link}</url>` : '')
+                (process.env.EXTENSION_VENDOR != 'firefox' ? ` - <url>${_.escape(link)}</url>` : '')
         }))
     )
 }

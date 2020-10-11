@@ -69,7 +69,7 @@ const initialState = Immutable({
 
 	broken_level:			'',
 
-	add_default_collection: -1,
+	add_default_collection: 0, //last_used
 	add_auto_save:			false,
 	
 	browser_extension_mode: ''

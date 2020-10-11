@@ -3,7 +3,7 @@
     It restored on next open
 */
 if (location.search.includes('browser_action')){
-    var container, _lastSavedWidth
+    var _lastSavedWidth
 
     function updateSize({ width='420px', height='auto' }) {
         if (location.hash.startsWith('#/my') ||
@@ -12,8 +12,8 @@ if (location.search.includes('browser_action')){
             height = '600px' //safari have bug with height >440px
         }
 
-        container.style.width = width
-        container.style.height = height
+        document.body.style.width = width
+        document.body.style.height = height
 
         saveSize(width)
     }
@@ -42,12 +42,9 @@ if (location.search.includes('browser_action')){
     }
 
     //restore old size
-    container = document.querySelector('#react')
     restoreSize()
 
-    //reset size for html/body
+    //reset size for html
     document.documentElement.style.width = 'auto'
     document.documentElement.style.height = 'auto'
-    document.body.style.width = 'auto'
-    document.body.style.height = 'auto'
 }

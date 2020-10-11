@@ -321,5 +321,10 @@
   "clipperD": "Clipper is de snelste manier om nieuwe bladwijzers toe te voegen.",
   "automatically": "Automatisch",
   "lastUsed": "Laatste gebruikte",
-  "defaultCollection": "Standaard collectie"
+  "defaultCollection": "Standaard collectie",
+  "recent": "Recent",
+  "logOutOfAllDevices": "Overal uitloggen",
+  "tabs": "Tabbladen",
+  "permissions": "Toestemming",
+  "raindropTagline": "Alles-in-1 bladwijzer manager"
 }
