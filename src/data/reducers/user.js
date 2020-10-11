@@ -117,13 +117,12 @@ export default function(state = initialState, action){switch (action.type) {
 		if (typeof action.onFail == 'function')
 			action.onFail(action.error)
 
-		state = initialState
-
 		if (action.way)
 			state = state.setIn(['errorReason', action.way], action.error)
 
+		//but don't change auth state here, maybe it's temporary issue
+
 		return setSpecificStatus(state, action.way, 'error')
-			.setIn(['status', 'authorized'], 'no')
 	}
 
 	//happen on logout too
