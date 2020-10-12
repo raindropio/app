@@ -30,14 +30,14 @@ class BookmarkItem extends React.Component {
         onClick: (e)=>{
             const { selectModeEnabled, item } = this.props
 
-            if (selectModeEnabled || e.shiftKey){
-                e.preventDefault()
-                return this.handlers.onSelectClick(e)
-            }
-
             if (e.metaKey || e.ctrlKey){
                 e.preventDefault()
                 return window.open(item.link)
+            }
+
+            if (selectModeEnabled || e.shiftKey){
+                e.preventDefault()
+                return this.handlers.onSelectClick(e)
             }
 
             if (typeof this.props.events.onBookmarkClick == 'function' && 

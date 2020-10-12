@@ -19,7 +19,7 @@ export default class CollectionsPicker extends React.Component {
         const { onClose, ...etc } = this.props
 
         return (
-            <Modal onClose={onClose} data-stretch>
+            <Modal onClose={onClose} stretch>
                 <Header 
                     title={t.s('selectCollection')}
                     data-no-shadow />

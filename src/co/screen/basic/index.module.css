@@ -2,8 +2,11 @@
 @import './themes.module.css';
 
 /* Page itself */
-.page {
+body {
     background: var(--background-color);
+}
+
+.page {
     height: 100%;
     overflow: auto;
 }

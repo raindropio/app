@@ -2,6 +2,7 @@ import s from './index.module.styl'
 import React from 'react'
 import _ from 'lodash'
 import { Portal } from 'react-portal'
+import { Helmet } from 'react-helmet'
 import { eventOrder } from '~modules/browser'
 import Context from './context'
 
@@ -16,7 +17,7 @@ export default class Popover extends React.Component {
         pin: undefined,         //react ref
         closable: true,
         hidden: false,
-        scaleDown: false,
+        stretch: false,         //should stretch in extension, on web show max content as possible
         onClose: undefined      //func, required
     }
 
@@ -124,7 +125,7 @@ export default class Popover extends React.Component {
         if (x < 0)
             x = 16
 
-        if (!this.props.scaleDown && y + offsetHeight > innerHeight)
+        if (!this.props.stretch && y + offsetHeight > innerHeight)
             y = innerHeight - offsetHeight - 16
 
         if (y < 0)
@@ -134,7 +135,7 @@ export default class Popover extends React.Component {
     }, 100, { leading: true })
 
     render() {
-        const { className='', children, closable, scaleDown, pin, innerRef, ...etc } = this.props
+        const { className='', children, closable, stretch, pin, innerRef, ...etc } = this.props
 
         if (innerRef)
             innerRef(this._container)
@@ -142,12 +143,18 @@ export default class Popover extends React.Component {
         return (
             <Portal>
                 <Context.Provider value={this.store}>
+                    {stretch ? (
+                        <Helmet>
+                            <html data-popover-showing />
+                        </Helmet>
+                    ) : null}
+
                     <div 
                         {...etc}
                         ref={this._container}
                         className={className+' '+s.wrap}
                         data-closable={closable}
-                        data-scale-down={scaleDown}
+                        data-stretch={stretch}
                         onContextMenu={this.onContextMenu}>
                         <div className={s.body}>
                             {children}

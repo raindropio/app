@@ -57,7 +57,7 @@ class PickerIcon extends React.Component {
         return (
             <Modal 
                 onClose={this.props.onClose}
-                data-stretch>
+                stretch>
                 <Header 
                     title={t.s('changeIcon')}
                     data-no-shadow>

@@ -40,7 +40,7 @@ class FiltersAutocomplete extends React.PureComponent {
         return (
             <Popover 
                 pin={inputRef}
-                scaleDown={true}
+                stretch={true}
                 {...getMenuProps({ refKey: 'innerRef' })}>
                 {filters.map((item, index)=>(
                     <FilterItemView

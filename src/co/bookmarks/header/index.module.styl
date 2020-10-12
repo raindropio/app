@@ -1,13 +1,18 @@
-.header:hover .rename, .rename:focus {
+.header:hover .rename, .rename:focus,
+.header:hover .open, .open:focus {
     opacity: 1
 }
 
-.rename {
+.rename, .open {
     opacity: 0
     transition: .2s ease-in-out opacity;
-    transition-delay: .2s
+    transition-delay: .1s
 
     &:focus {
         transition: none
     }
+}
+
+html:global(:not(.extension)) .open {
+    display: none
 }

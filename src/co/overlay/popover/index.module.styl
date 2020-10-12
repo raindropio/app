@@ -16,7 +16,7 @@
 	top: var(--top, var(--padding-medium))
 	left: var(--left, var(--padding-medium))
 
-	&[data-scale-down='true'] {
+	&[data-stretch='true'] {
 		max-height: calc( 100vh - var(--top) - var(--padding-medium) )
 	}
 }
@@ -32,4 +32,9 @@
 		background: unquote('hsla(var(--background-hsl), .85)')
 		backdrop-filter: blur(20px)
 	}
+}
+
+//extension specific
+html:global(.extension)[data-popover-showing='true'] body {
+	min-height: 600px
 }

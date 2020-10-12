@@ -8,6 +8,7 @@ import Header, { Title as TitleWrap, Space } from '~co/common/header'
 import Icon from './icon'
 import Title from './title'
 import Rename from './rename'
+import Open from './open'
 import More from './more'
 import Sort from './sort'
 import View from './view'
@@ -35,6 +36,10 @@ class BookmarksHeader extends React.Component {
 
                 <Rename 
                     className={s.rename}
+                    {...this.props} />
+
+                <Open 
+                    className={s.open}
                     {...this.props} />
 
                 <Space />

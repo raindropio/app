@@ -1,6 +1,7 @@
 import { call, put, takeEvery, takeLatest, all } from 'redux-saga/effects'
 import _ from 'lodash-es'
 import Api from '../../modules/api'
+import ApiError from '../../modules/error'
 
 import {
 	TAGS_SUGGESTED_LOAD_SUCCESS, TAGS_SUGGESTED_LOAD_ERROR,
@@ -21,6 +22,11 @@ export default function* () {
 
 function* loadSuggestedTags({_id, item, ignore=false, dontLoadSuggestedTags=false}) {
 	if ((ignore)||(dontLoadSuggestedTags))
+		return;
+
+	if (!item ||
+		!item.title ||
+		!item.link)
 		return;
 
 	try {
@@ -45,6 +51,12 @@ function* loadSuggestedTags({_id, item, ignore=false, dontLoadSuggestedTags=fals
 			tags
 		});
 	} catch (error) {
+		//ignore auth error
+		if (typeof error == 'object' &&
+			error instanceof ApiError &&
+			error.status==401)
+			return
+
 		yield put({
 			type: TAGS_SUGGESTED_LOAD_ERROR,
 			error

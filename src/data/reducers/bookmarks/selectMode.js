@@ -64,6 +64,8 @@ export default function(state, action) {switch (action.type) {
 					return index <= fromIndex && index >= toIndex
 				else if (fromIndex < toIndex)
 					return index >= fromIndex && index <= toIndex
+				else if (fromIndex == toIndex)
+					return index == fromIndex
 				else
 					return false
 			}))

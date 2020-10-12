@@ -44,7 +44,7 @@
     animation: wrap-appear .3s ease-in-out
     backface-visibility: hidden
 
-    &[data-stretch] {
+    &[data-stretch='true'] {
         width: max(50%, 500px)
         height: 90%
     }
@@ -69,4 +69,9 @@
     0% { transform: scale(0.9); opacity: 0 }
     60% { transform: scale(1.05);  }
     100% { transform: scale(1); opacity: 1 }
+}
+
+//extension specific
+html:global(.extension)[data-modal-showing='true'] body {
+	min-height: 600px
 }

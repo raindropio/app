@@ -47,7 +47,7 @@ class TagsMenu extends React.PureComponent {
         return (
             <Popover 
                 pin={inputRef}
-                scaleDown={true}
+                stretch={true}
                 {...getMenuProps({ refKey: 'innerRef' })}>
                 {tags.map(item=>{
                     if (item.type == 'section')
