@@ -19,7 +19,7 @@ import Language from '~routes/settings/app/lang'
 
 class ExtensionWelcome extends React.Component {
     componentDidMount() {
-        this.props.set('browser_extension_mode', 'clipper')
+        this.props.set('browser_extension_mode', 'mini_app')
     }
 
     render() {

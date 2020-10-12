@@ -13,8 +13,8 @@ function SettingsBrowserExtensionMode({ browser_extension_mode, set }) {
             </Label>
             <div>
                 {[
+                    ['mini_app', t.s('mini') + ' ' + t.s('app'), t.s('miniAppD')],
                     ['clipper', 'Clipper', t.s('clipperD')],
-                    ['mini_app', t.s('mini') + ' ' + t.s('app') + ' (beta)', t.s('miniAppD')]
                 ].map(([key, title, desc])=>
                     <React.Fragment key={key}>
                         <Radio 

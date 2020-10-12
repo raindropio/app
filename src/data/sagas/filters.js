@@ -14,9 +14,8 @@ export default function* () {
 	yield takeEvery([SPACE_LOAD_PRE, SPACE_REFRESH_REQ], onSpaceReload)
 
 	//update filters on bookmarks/collections change
-	//with delay, to give server a time to recalculate them
 	yield debounce(
-		3500,
+		500,
 		[BOOKMARK_CREATE_SUCCESS, BOOKMARK_UPDATE_SUCCESS, BOOKMARK_REMOVE_SUCCESS, COLLECTION_REMOVE_SUCCESS],
 		onDataChange
 	)
