@@ -5,11 +5,12 @@ import { makeBookmarksLastChange } from '~data/selectors/bookmarks'
 
 class App extends React.Component {
     componentDidMount() {
-        document.addEventListener('click', this.onClickExternalLink)
+        //very important to bind to window insted of document, to be sure that it happen after all other event listeners
+        window.addEventListener('click', this.onClickExternalLink)
     }
 
     componentWillUnmount() {
-        document.removeEventListener('click', this.onClickExternalLink)
+        window.removeEventListener('click', this.onClickExternalLink)
     }
 
     componentDidUpdate(prev) {
@@ -20,6 +21,8 @@ class App extends React.Component {
     }
 
     onClickExternalLink = (e)=>{
+        if (e.defaultPrevented) return
+
         //ignore non links
         const { target: a } = e
         if (a.tagName != 'A') return

@@ -17,7 +17,7 @@ export function openAdd(props) {
 
     browser.windows.create({
         type: 'popup',
-        url: `${path}/add?autoCreate=true&${new URLSearchParams(props).toString()}`,
+        url: `${path}/add?${new URLSearchParams(props).toString()}`,
         width,
         height,
         left,

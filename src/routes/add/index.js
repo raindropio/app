@@ -9,7 +9,7 @@ import Content from './content'
 import Events from './events'
 
 /*
-    ?link=&title=&autoCreate=
+    ?link=&title=
 */
 class Add extends React.Component {
     componentDidMount() {
@@ -47,7 +47,7 @@ export default connect(
 		const getDraftUnsaved = makeDraftUnsaved()
 	
 		return (state, { location: { search } })=>{
-            const { autoCreate=false, ...item } = Object.fromEntries(new URLSearchParams(search))||{}
+            const item = Object.fromEntries(new URLSearchParams(search))||{}
             const { config: { add_default_collection, last_collection } } = state
     
             return {
@@ -57,9 +57,7 @@ export default connect(
                 item: {
                     ...item,
                     collectionId: add_default_collection || last_collection
-                },
-                
-                autoCreate: autoCreate ? true : false,
+                }
             }
         }
 	}
