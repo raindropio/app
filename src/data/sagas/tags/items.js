@@ -26,8 +26,8 @@ function* loadSuggestedTags({_id, item, ignore=false, dontLoadSuggestedTags=fals
 	try {
 		const titleDescription = _.truncate((item.title||'')+' '+(item.excerpt||''), {length: 700}).trim()
 		const [keywords, parsed] = yield all([
-			call(Api.get, `keywords?text=${encodeURIComponent(titleDescription)}&domain=${encodeURIComponent(item.domain||'')}`, {cache: 'force-cache'}),
-			call(Api.get, 'parse?url='+encodeURIComponent(item.link), {cache: 'force-cache'})
+			call(Api.get, `keywords?text=${encodeURIComponent(titleDescription)}&domain=${encodeURIComponent(item.domain||'')}`),
+			call(Api.get, 'parse?url='+encodeURIComponent(item.link))
 		])
 
 		var tags = []
