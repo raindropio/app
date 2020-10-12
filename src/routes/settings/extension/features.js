@@ -5,14 +5,13 @@ import browser from '~target/extension/browser'
 import { Label, Checkbox, SubLabel } from '~co/common/form'
 import { Error } from '~co/overlay/dialog'
 
-export default class SettingsExtensionPermissions extends React.Component {
+export default class SettingsExtensionFeatures extends React.Component {
     state = {
         permissions: [
             {
                 id: 'tabs',
                 enabled: false,
-                title: `${t.s('access')} ${t.s('all').toLowerCase()} ${t.s('tabs').toLowerCase()}`,
-                excerpt: 'Saved pages will be marked with [✓] icon'
+                title: t.s('highlightSavedPages')
             }
         ]
     }
@@ -60,7 +59,7 @@ export default class SettingsExtensionPermissions extends React.Component {
         return (
             <>
                 <Label>
-                    {t.s('permissions')}
+                    {t.s('features')}
                 </Label>
                 <div>
                     {this.state.permissions.map(this.renderPermission)}

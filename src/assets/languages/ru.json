@@ -327,5 +327,6 @@
   "tabs": "Вкладки",
   "permissions": "Разрешения",
   "raindropTagline": "Закладочный сервис все в одном",
-  "buttons": "Кнопки"
+  "buttons": "Кнопки",
+  "highlightSavedPages": "Подсвечивать сохраненные страницы"
 }

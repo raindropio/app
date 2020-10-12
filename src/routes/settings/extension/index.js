@@ -3,7 +3,8 @@ import { Layout, Separator } from '~co/common/form'
 
 import BrowserExtensionMode from './browser_extension_mode'
 import Add from './add'
-import Permissions from './permissions'
+import Features from './features'
+import Info from './info'
 
 export default ()=>{
 	return (
@@ -16,7 +17,11 @@ export default ()=>{
 
             <Separator />
 
-            <Permissions />
+            <Features />
+
+            <Separator />
+
+            <Info />
         </Layout>
 	)
 }

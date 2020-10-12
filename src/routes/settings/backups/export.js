@@ -35,7 +35,7 @@ class SettingsBackupsExport extends React.Component {
     
                 <div>
                     <Button 
-                        variant='link'
+                        variant='outline'
                         disabled={this.state.loading}
                         onClick={this.onClick}>
                         <Icon name='install' />

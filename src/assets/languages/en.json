@@ -114,7 +114,7 @@
   "howToUse": "How to use?",
   "helpContext": "Context menu",
   "helpContextD": "Right mouse click on bookmarks or collections for more actions",
-  "helpHotKey": "Hotkey",
+  "helpHotKey": "Hotkeys",
   "helpHotKeyD": "You can change key on extensions page",
   "view": "View",
   "bookmarkClick": "Click on a bookmark",
@@ -327,5 +327,6 @@
   "tabs": "Tabs",
   "permissions": "Permissions",
   "raindropTagline": "All-in-one bookmark manager",
-  "buttons": "Buttons"
+  "buttons": "Buttons",
+  "highlightSavedPages": "Highlight saved pages"
 }

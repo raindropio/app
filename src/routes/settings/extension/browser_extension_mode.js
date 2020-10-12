@@ -9,7 +9,7 @@ function SettingsBrowserExtensionMode({ browser_extension_mode, set }) {
     return (
         <>
             <Label>
-                {t.s('mode')}
+                {t.s('open')} {t.s('to')}
             </Label>
             <div>
                 {[
