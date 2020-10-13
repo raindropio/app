@@ -43,6 +43,9 @@ export default class VirtualSortable extends React.Component {
         let newSubGroup = to.parentElement.getAttribute('data-sub-group')
         if (!isNaN(newGroup)) newGroup = parseInt(newGroup)
 
+        if (!item || !to.children[newDraggableIndex])
+            return
+
         const origin = this.getItem(this.props.sortGroup, this.props.sortSubGroup, item)
         const destination = this.getItem(newGroup, newSubGroup, to.children[newDraggableIndex])
         

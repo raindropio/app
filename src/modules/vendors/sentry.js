@@ -11,8 +11,10 @@ if (process.env.NODE_ENV !== 'development' &&
         ...config.vendors.sentry,
         release: process.env.SENTRY_RELEASE,
         ignoreErrors: [
-            /ResizeObserver loop.*/gi,
-            /.*connection.*Receiving end does not exist.*/gi //extension specific bug
+            'ResizeObserver loop',
+            'Non-Error promise rejection captured with keys: message', //happen when extension background page crash
+            'The string did not match the expected pattern', //weird safari error
+            'call screen.orientation.lock', //weird android chrome error
         ],
         environment: `${target}-${process.env.NODE_ENV}`
     })

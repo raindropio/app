@@ -1,5 +1,5 @@
 import browser from 'webextension-polyfill'
-import normalizeURL from 'normalize-url'
+import { normalizeURL } from '~modules/format/url'
 import Api from '~data/modules/api'
 import _ from 'lodash'
 

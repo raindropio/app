@@ -36,5 +36,6 @@ export function fileSize(_val=0) {
         return makeFormat(style)(val)
     } catch(e) {}
 
-    return val
+    return val + 
+        (style[0]!='b' ? ' '+style[0].toUpperCase()+'b' : '') //for non bytes show kb,mb,gb...
 }

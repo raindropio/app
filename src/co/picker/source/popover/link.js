@@ -1,6 +1,6 @@
 import React from 'react'
 import t from '~t'
-import normalizeUrl from 'normalize-url'
+import { normalizeURL } from '~modules/format/url'
 import isURL from 'validator/es/lib/isURL'
 
 import { Layout, Label, Text } from '~co/common/form'
@@ -44,7 +44,7 @@ export default class PickerSourceLink extends React.Component {
         this.setState({ status: 'loading' })
 
         try{
-            await this.props.onLink(normalizeUrl(this.state.link, { defaultProtocol: 'https:' }))
+            await this.props.onLink(normalizeURL(this.state.link, { defaultProtocol: 'https:' }))
             this.props.onClose()
         } catch (e) {
             await Alert(`${t.s('saveError')}\n${e.message}`)

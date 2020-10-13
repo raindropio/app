@@ -2,14 +2,13 @@
 @import './themes.module.css';
 
 /* Page itself */
-body {
-    background: var(--background-color);
-}
-
 .page {
+    background: var(--background-color);
     height: 100%;
     overflow: auto;
 }
+
+/* Do not set background color for page! otherwise glitch in firefox */
 
 html:global(.extension):global(.browser_action) .page {
     max-height: 600px;
