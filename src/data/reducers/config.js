@@ -22,7 +22,10 @@ export default function(state = initialState, action){switch (action.type) {
 	}
 
 	case 'RESET':{
-		return initialState
+		return {
+			...state,
+			..._.omit(initialState, safeKeys)
+		}
 	}
 
 	default:
@@ -72,5 +75,14 @@ const initialState = Immutable({
 	add_default_collection: 0, //last_used
 	add_auto_save:			false,
 	
-	browser_extension_mode: ''
+	browser_extension_mode: 'mini_app'
 })
+
+//this keys can be kept untouched on reset
+//useful when they configured before user login
+const safeKeys = [
+	'lang',
+	'add_default_collection',
+	'add_auto_save',
+	'browser_extension_mode'
+]

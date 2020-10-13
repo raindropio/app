@@ -17,7 +17,9 @@ import Extension from './extension'
 export default ({ match })=>(
 	<Screen className={s.page} appSize='large'>
 		<div className={s.content}>
-			<Logo className={s.logo} />
+			<a href='https://raindrop.io' target='_blank'>
+				<Logo className={s.logo} />
+			</a>
 
 			{/* Check auth status and make redirects */}
 			<Auth />

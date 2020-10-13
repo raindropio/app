@@ -1,4 +1,10 @@
+import browser from './browser'
+
 export const hotkeys = {
+    async getAll() {
+        return browser.commands.getAll() //[{ description, shortcut }]
+    },
+
     link() {
         switch(process.env.EXTENSION_VENDOR) {
             case 'firefox':

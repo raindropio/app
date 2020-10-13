@@ -1,14 +1,14 @@
 import React from 'react'
 import { Layout, Separator } from '~co/common/form'
 
-import BrowserExtensionMode from './browser_extension_mode'
 import Add from './add'
+import BrowserExtensionMode from './browser_extension_mode'
 import Features from './features'
-import Info from './info'
+import Hotkeys from './hotkeys'
 
 export default ()=>{
 	return (
-		<Layout type='grid'>
+		<Layout>
             <BrowserExtensionMode />
             
             <Separator />
@@ -21,7 +21,7 @@ export default ()=>{
 
             <Separator />
 
-            <Info />
+            <Hotkeys />
         </Layout>
 	)
 }

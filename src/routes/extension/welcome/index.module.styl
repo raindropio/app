@@ -1,6 +1,24 @@
+.page {
+	-webkit-app-region: drag
+	width: 100%
+	height: 100%
+	overflow: auto
+    display: grid
+	grid-template-columns: minmax(auto, 175rem) //700px
+    grid-template-rows: 1fr auto
+	align-items: center
+	justify-content: center
+	background: var(--alternative-background-color)
+}
+
+.content {
+	width: 100%
+	padding: calc(var(--padding-large) * 2) var(--padding-large)
+}
+
 .logo {
+	margin: var(--padding-medium)
 	display: block
-	margin: var(--padding-medium) auto
-	width: 16rem //64px
-	height: 16rem //64px
+	width: 48px
+	height: 48px
 }

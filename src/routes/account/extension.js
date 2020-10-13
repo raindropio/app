@@ -30,6 +30,14 @@ export default class AccountEmbedded extends React.Component {
                         target='_blank'
                         variant='primary'
                         data-block>
+                        {t.s('register')}
+                    </Button>
+
+                    <Button
+                        href={config.links.app.index}
+                        target='_blank'
+                        variant='outline'
+                        data-block>
                         {t.s('signIn')}
                     </Button>
                 </Layout>

@@ -318,7 +318,7 @@
   "emptyTrash": "Empty trash",
   "mini": "Mini",
   "miniAppD": "Mini App gives you the same experience as our web site but in compact size. You can browse, search, organize and add new bookmarks.",
-  "clipperD": "Clipper is the fastest way to save new bookmarks.",
+  "clipperD": "Clipper is the most simple and fastest way to save new bookmarks.",
   "automatically": "Automatically",
   "lastUsed": "Last used",
   "defaultCollection": "Default collection",
@@ -328,5 +328,9 @@
   "permissions": "Permissions",
   "raindropTagline": "All-in-one bookmark manager",
   "buttons": "Buttons",
-  "highlightSavedPages": "Highlight saved pages"
+  "highlightSavedPages": "Highlight saved pages",
+  "appearance": "Appearance",
+  "omniboxD": "Search bookmarks right from address bar",
+  "highlightSavedPagesD": "Show [✔] indicator when you visit already saved page",
+  "changeLaterInSettings": "You can change this options later in settings"
 }

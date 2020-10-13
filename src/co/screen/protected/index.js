@@ -2,7 +2,7 @@ import React from 'react'
 import { Redirect, withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { isNotAuthorized } from '~data/selectors/user'
-import * as userActions from '~data/actions/user'
+import { refresh } from '~data/actions/user'
 
 class ScreenProtected extends React.Component {
 	static defaultProps = {
@@ -27,5 +27,5 @@ export default connect(
 	state => ({
 		notLogged: isNotAuthorized(state)
 	}),
-	userActions
+	{ refresh }
 )(withRouter(ScreenProtected))
