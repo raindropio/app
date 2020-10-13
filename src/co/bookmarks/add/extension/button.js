@@ -28,7 +28,7 @@ class BookmarksAddButton extends React.Component {
             this.onEditClick()
     }
 
-    load = ({ autoCreate = false })=>{
+    load = (details={})=>{
         const { draftLoad, current, spaceId } = this.props
 
         draftLoad(current.url, {
@@ -36,12 +36,16 @@ class BookmarksAddButton extends React.Component {
                 ...current,
                 collectionId: parseInt(spaceId)
             },
-            autoCreate
+            autoCreate: false,
+            ...details
         })
     }
 
     onAddClick = ()=>{
-        this.load({ autoCreate: true })
+        this.load({
+            autoCreate: true,
+            preventDuplicate: false //no need to check for duplicate, because we already know that it's new
+        })
     }
 
     onEditClick = ()=>{

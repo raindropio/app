@@ -151,14 +151,14 @@ function* enrichCreated({ draft, item }) {
 	if (!draft) return
 
 	try{
-		//media filled, so no need to parse
-		if (item.media && item.media.length)
-			return
-
 		const parse = yield call(Api.get, 'parse?url='+encodeURIComponent(draft))
 		if (parse.error) return
 
 		let changed = {}
+
+		//set excerpt
+		if (parse.item.excerpt)
+			changed.excerpt = parse.item.excerpt
 
 		//set cover/media
 		if (parse.item.media && parse.item.media.length){
@@ -174,7 +174,8 @@ function* enrichCreated({ draft, item }) {
 		yield put({
 			type: BOOKMARK_DRAFT_CHANGE,
 			_id: draft,
-			changed
+			changed,
+			enrich: true
 		})
 
 		//when bookmark is brand new, we don't want to save this changes automatically

@@ -22,10 +22,7 @@ export default function(state = initialState, action){switch (action.type) {
 	}
 
 	case 'RESET':{
-		return {
-			...state,
-			..._.omit(initialState, safeKeys)
-		}
+		return state.merge(_.omit(initialState, safeKeys))
 	}
 
 	default:

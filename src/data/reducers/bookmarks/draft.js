@@ -10,7 +10,7 @@ import {
 export default function(state, action) {switch (action.type) {
 	//Change draft
 	case BOOKMARK_DRAFT_CHANGE:{
-		const { changed, _id } = action
+		const { changed, _id, enrich=false } = action
 
 		//nothing changed
 		if (!Object.keys(changed||{}).length)
@@ -20,6 +20,9 @@ export default function(state, action) {switch (action.type) {
 
 		_.forEach(changed, (val, key)=>{
 			if (draft.getIn(['item', key]) == val) return
+
+			//enrich: update only empty fields
+			if (enrich && !_.isEmpty(draft.getIn(['item', key]))) return
 
 			//fix tags
 			if (key=='tags')

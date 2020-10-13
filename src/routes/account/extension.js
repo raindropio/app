@@ -26,7 +26,7 @@ export default class AccountEmbedded extends React.Component {
                     <div />
     
                     <Button
-                        href={config.links.app.index}
+                        href={new URL('/account/signup', config.links.app.index).toString()}
                         target='_blank'
                         variant='primary'
                         data-block>
@@ -34,7 +34,7 @@ export default class AccountEmbedded extends React.Component {
                     </Button>
 
                     <Button
-                        href={config.links.app.index}
+                        href={new URL('/account/login', config.links.app.index).toString()}
                         target='_blank'
                         variant='outline'
                         data-block>
