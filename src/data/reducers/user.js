@@ -37,7 +37,7 @@ export default function(state = initialState, action){switch (action.type) {
 		return state
 			.set('fromCache', true)
 			.set('current', current)
-			.set(['status', 'authorized'], (status||initialState.status).authorized)
+			.setIn(['status', 'authorized'], (status||initialState.status).authorized)
 	}
 
 	//Load
