@@ -332,5 +332,6 @@
   "appearance": "Appearance",
   "omniboxD": "Search bookmarks right from address bar",
   "highlightSavedPagesD": "Show [✔] indicator when you visit already saved page",
-  "changeLaterInSettings": "You can change this options later in settings"
+  "changeLaterInSettings": "You can change this options later in settings",
+  "fullTextSearch": "Full-text search"
 }

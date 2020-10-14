@@ -2,7 +2,7 @@ import React from 'react'
 import t from '~t'
 
 import { Alert } from '~co/overlay/dialog'
-import { Layout, Label, Text, Radio } from '~co/common/form'
+import { Layout, Label, Text, Radio, Buttons } from '~co/common/form'
 import Button from '~co/common/button'
 import Icon from '~co/common/icon'
 
@@ -99,12 +99,15 @@ export default class CollectionSharingInviteView extends React.PureComponent {
                         </Radio>
                     </div>
 
-                    <Button 
-                        as='input'
-                        type='submit'
-                        variant='primary'
-                        disabled={loading}
-                        value={t.s('sendInvites')+(loading ? '…' : '')} />
+                    <Buttons>
+                        <Button 
+                            as='input'
+                            type='submit'
+                            variant='primary'
+                            disabled={loading}
+                            data-block
+                            value={t.s('sendInvites')+(loading ? '…' : '')} />
+                    </Buttons>
                 </Layout>
             </form>
         )

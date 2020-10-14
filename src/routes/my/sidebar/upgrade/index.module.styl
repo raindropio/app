@@ -1,22 +1,28 @@
-.banner {
+.upgrade {
     box-shadow: 0 calc(var(--shadow-height) * -1) 0 var(--shadow-color)
-    background: var(--background-color)
+    background: var(--alternative-background-color)
     font-size: var(--secondary-font-size)
     color: var(--primary-text-color)
     padding: calc(var(--padding-small) + var(--padding-mini)) var(--padding-medium)
     display: flex
     align-items: center
+    overflow: hidden
+    position: relative
+    z-index: 1
 
     &:hover {
-        background: var(--alternative-background-color)
+        background: var(--accent-color)
+        color: var(--background-color)
     }
 }
 
-.icon {
-    color: var(--accent-color)
+.pic {
+    position: absolute
+    right: 16px
+    transform: rotate(15deg)
 }
 
 .title {
     flex: 1
-    margin-right: var(--padding-small)
+    margin-right: 85px
 }
