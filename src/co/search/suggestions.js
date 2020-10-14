@@ -9,8 +9,11 @@ import { autoLoad } from '~data/actions/filters'
 import { makeTagsSearch } from '~data/selectors/tags'
 
 import Button from '~co/common/button'
+import Icon from '~co/common/icon'
 import FilterIcon from '~co/filters/item/icon'
 import FilterTitle from '~co/filters/item/title'
+
+const max = 13
 
 class SearchSuggestions extends React.Component {
     static defaultProps = {
@@ -18,6 +21,10 @@ class SearchSuggestions extends React.Component {
         spaceId: 0,
         floating: false,
         downshift: {}
+    }
+
+    state = {
+        limit: true
     }
 
     sections = {
@@ -39,6 +46,9 @@ class SearchSuggestions extends React.Component {
     componentWillUnmount() {
         this.props.autoLoad(this.props.spaceId, false)
     }
+
+    onToggleLimitClick = ()=>
+        this.setState({ limit: !this.state.limit })
 
     renderGroup = (type, inc=0)=>{
         const { downshift: { getItemProps, highlightedIndex }, floating } = this.props
@@ -85,14 +95,13 @@ class SearchSuggestions extends React.Component {
                 isOpen, getMenuProps
             }
         } = this.props
+        const { limit } = this.state
 
         if (!isOpen || !outerRef || !outerRef.current)
             return null
 
         const items = this.renderItems()
-
-        if (!items.length)
-            return null
+        if (!items.length) return null
 
         return createPortal(
             <div 
@@ -103,7 +112,18 @@ class SearchSuggestions extends React.Component {
                     <div 
                         className={s.body}
                         {...getMenuProps()}>
-                        {items}
+                        {limit && !floating && items.length>max ? items.slice(0, max) : items}
+                        
+                        {!floating && items.length>max && (
+                            <Button
+                                variant='flat'
+                                size='small'
+                                className={s.item}
+                                onClick={this.onToggleLimitClick}>
+                                {limit ? t.s('more') : t.s('less')}
+                                <Icon name={limit ? 'expand' : 'colapse'} size='micro' />
+                            </Button>
+                        )}
                     </div>
                 </div>
             </div>,
