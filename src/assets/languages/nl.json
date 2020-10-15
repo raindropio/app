@@ -326,5 +326,9 @@
   "logOutOfAllDevices": "Overal uitloggen",
   "tabs": "Tabbladen",
   "permissions": "Toestemming",
-  "raindropTagline": "Alles-in-1 bladwijzer manager"
+  "raindropTagline": "Alles-in-1 bladwijzer manager",
+  "buttons": "Knoppen",
+  "appearance": "Uiterlijk",
+  "omniboxD": "Zoek bladwijzers vanuit de adresbalk",
+  "changeLaterInSettings": "Je kunt deze opties later wijzigen in instellingen"
 }

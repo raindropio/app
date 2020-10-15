@@ -327,5 +327,11 @@
   "tabs": "탭",
   "permissions": "권한",
   "raindropTagline": "올인원 북마크 매니저",
-  "buttons": "버튼"
+  "buttons": "버튼",
+  "highlightSavedPages": "저장된 페이지 표시",
+  "appearance": "모습",
+  "omniboxD": "주소창에서 바로 북마크를 검색하세요",
+  "highlightSavedPagesD": "이미 저장된 페이지를 방문하면 [✔] 표시가 나타납니다",
+  "changeLaterInSettings": "나중에 설정에서 이 옵션을 변경할 수 있습니다",
+  "fullTextSearch": "전체 텍스트 검색"
 }
