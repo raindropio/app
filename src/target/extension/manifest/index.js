@@ -98,11 +98,11 @@ module.exports = ({ vendor, production=false }, l) => {
 			},
 			save_page: {
 				suggested_key: {
-					default: 'Ctrl+Shift+O',
-					windows: 'Ctrl+Shift+O',
-					mac: 'Command+Shift+O',
-					chromeos: 'Ctrl+Shift+O',
-					linux: 'Ctrl+Shift+O'
+					default: 'Ctrl+Shift+S',
+					windows: 'Ctrl+Shift+S',
+					mac: 'Command+Shift+S',
+					chromeos: 'Ctrl+Shift+S',
+					linux: 'Ctrl+Shift+S'
 				},
 				description: '__MSG_savePage__'
 			},
