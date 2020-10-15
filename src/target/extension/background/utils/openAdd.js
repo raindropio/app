@@ -4,8 +4,8 @@ import config from '~config'
 export function openAdd(props) {
     const width = 420;
     const height = 600;
-    const left = (screen.width/2)-(width/2);
-    const top = (screen.height/2)-(height/2); 
+    const left = parseInt((screen.width/2)-(width/2));
+    const top = parseInt((screen.height/2)-(height/2)); 
 
     let path = 'index.html#'
 
