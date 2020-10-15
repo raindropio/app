@@ -13,11 +13,11 @@ function ExtensionNotFound({ browser_extension_mode, match: { path } }) {
             case 'clipper':
                 content = <Redirect to={`${path}/clipper`} />
                 break
-
-            default:
-                content = <Redirect to='/my' />
-                break
         }
+
+    //default
+    if (!content)
+        content = <Redirect to='/my' />
 
     return (
         <Protected>

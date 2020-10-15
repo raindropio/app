@@ -16,7 +16,7 @@ export default function ExtensionWelcomeIsUpdate({ location: { search } }) {
                 Thank you for using Raindrop.io {_.capitalize(process.env.EXTENSION_VENDOR)} extension!<br />
                 Recently we have updated all our apps with a lot of new features and improvements.<br/>
                 <br/>
-                <a href='https://blog.raindrop.io'><b>{t.s('whatsNew')}?</b></a>
+                <a href='https://medium.com/raindrop-io/raindrop-io-5-0-c146c4770bc6'><b>{t.s('whatsNew')}?</b></a>
             </Alert>
         </>
     )

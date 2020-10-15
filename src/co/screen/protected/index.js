@@ -22,7 +22,7 @@ class ScreenProtected extends React.Component {
 
 		switch (authorized) {
 			case 'yes':
-				return children
+				return children||null
 
 			case 'no':
 				return <Redirect to={`/account/login${redirect?`?redirect=${pathname}`:''}`} />
