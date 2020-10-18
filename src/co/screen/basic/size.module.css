@@ -1,25 +1,25 @@
 :root {
-    font-size: 4px;
+    font-size: 40px; /* why so big number? because it breaks if browser have min font size setting (especially in safari) */
 
-    --padding-mini: 1rem;
-    --padding-small: 2rem; /*8px*/
-    --padding-medium: 4rem; /*16px*/
-    --padding-large: 6rem; /*24px*/
-    --border-radius: 1rem; /*4px*/
+    --padding-mini: .1rem;
+    --padding-small: .2rem; /*8px*/
+    --padding-medium: .4rem; /*16px*/
+    --padding-large: .6rem; /*24px*/
+    --border-radius: .1rem; /*4px*/
 
     /* fonts */
-    --head-font-size: 4rem; /*16px*/
-    --title-font-size: 3.75rem; /*15px*/
-    --primary-font-size: 3.5rem; /*14px*/
-    --secondary-font-size: 3.25rem; /*13px*/
-    --tertiary-font-size: 3rem; /*12px*/
+    --head-font-size: .4rem; /*16px*/
+    --title-font-size: .375rem; /*15px*/
+    --primary-font-size: .35rem; /*14px*/
+    --secondary-font-size: .325rem; /*13px*/
+    --tertiary-font-size: .3rem; /*12px*/
 
     /* size */
-    --icon-size: 5rem; /*20px*/
+    --icon-size: .5rem; /*20px*/
     --shadow-height: 1px;
-    --button-height: 7rem; /*28px*/
-    --list-item-height: 8rem; /*32px*/
-    --header-height: 12rem; /*48px*/
+    --button-height: .7rem; /*28px*/
+    --list-item-height: .8rem; /*32px*/
+    --header-height: 1.2rem; /*48px*/
 
     /* target specific */
     --target-electron-mac-header-inset: 23px;
@@ -27,11 +27,11 @@
 
 [data-app-size='large'],
 html:global(.mobile)[data-app-size='default'] {
-    font-size: 4.5px;
+    font-size: 45px;
 }
 
 html:global(.mobile)[data-app-size='large'] {
-    font-size: 5px;
+    font-size: 50px;
 }
 
 @media 

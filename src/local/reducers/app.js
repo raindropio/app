@@ -14,7 +14,7 @@ export default function(state, action) {switch (action.type) {
 		return state
 
 	case APP_SET_APP_SIZE:
-		return state.set('appSize', action.appSize)
+		return state.set('appSize', action.appSize||'default')
 
 	case APP_COLLECTIONS_SEARCH_RESULTS_HIDE:
 		return state.set('collectionsSearchResults', !state.collectionsSearchResults)
@@ -25,7 +25,7 @@ export default function(state, action) {switch (action.type) {
 		_.forEach(incoming, (val,key)=>{
 			switch(key){
 				case 'theme': state = setTheme(state, val); break
-				case 'appSize': state = state.set('appSize', String(val)); break
+				case 'appSize': state = state.set('appSize', String(val)||'default'); break
 			}
 		})
 

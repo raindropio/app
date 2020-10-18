@@ -5,8 +5,8 @@
 }
 
 .theme {
-    width: 16rem //64
-    height: 12rem //48
+    width: 1.6rem //64
+    height: 1.2rem //48
     display: flex
     position: relative
     border-radius: var(--border-radius)
@@ -16,23 +16,23 @@
         min-width: 0
         overflow: hidden
         flex: 1
-        padding: 1.3rem 1.5rem
+        padding: .13rem .15rem
         background: var(--sidebar-background-color)
         font-family: monospace
-        font-size: 1.5rem
+        font-size: .15rem
         white-space: pre-wrap
-        line-height: 1rem
+        line-height: var(--padding-mini)
         color: var(--primary-text-color)
     }
 
     .main {
         flex: 2
         background: var(--background-color)
-        padding: 1.5rem
+        padding: .15rem
         display: grid
         grid-template-columns: 1fr 1fr 1fr
-        grid-template-rows: 1.5rem 1.5rem
-        gap: 1rem
+        grid-template-rows: .15rem .15rem
+        gap: var(--padding-mini)
 
         span {
             background: var(--shadow-color)
