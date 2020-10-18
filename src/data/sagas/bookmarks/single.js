@@ -72,10 +72,7 @@ function* createBookmark({obj={}, ignore=false, draft, onSuccess, onFail}) {
 		else {
 			const parsed = yield call(Api.get, 'parse?url='+encodeURIComponent(item.link))
 
-			//override empty values
-			for(const key in parsed.item)
-				if (!item[key])
-					item[key] = parsed.item[key]
+			item = { ...item, ...parsed.item }
 		}
 
 		//try to create bookmark on server
