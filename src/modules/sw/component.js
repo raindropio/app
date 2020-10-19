@@ -1,24 +1,21 @@
 import React from 'react'
 import { target } from '~target'
 
+let registered = false
+
 export default class ServiceWorkerComponent extends React.Component {
-    componentDidMount() {
+    async componentDidMount() {
         if (process.env.NODE_ENV=='production' &&
             target=='web' &&
-            'serviceWorker' in navigator)
-            window.addEventListener('load', this.init)
-    }
-
-    componentWillUnmount() {
-        window.removeEventListener('load', this.init)
-    }
-
-    init = ()=>{
-        navigator.serviceWorker
-            .register('/sw.js')
-            .catch(e=>
+            'serviceWorker' in navigator &&
+            !registered){
+            try{
+                await navigator.serviceWorker.register('/sw.js')
+                registered = true 
+            } catch(e) {
                 console.log('Service worker registration failed:', e)
-            )
+            }
+        }
     }
 
     render() {

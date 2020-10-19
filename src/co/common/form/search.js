@@ -92,7 +92,7 @@ class FormSearch extends React.PureComponent {
                 data-clear-on-escape={clearOnEscape}>
                 <Text
                     ref={this._input}
-                    role='search'
+                    role='searchbox'
                     type='text'
                     spellCheck='false'
                     autoComplete='hidden'

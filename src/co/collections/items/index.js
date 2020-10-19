@@ -69,7 +69,7 @@ class CollectionsItems extends React.Component {
         const { selectMode, activeId, ...etc } = this.props
 
         return (
-            <div className={s.wrap}>
+            <div className={s.wrap} role='list'>
                 <SelectMode 
                     selectMode={selectMode}
                     {...etc} />

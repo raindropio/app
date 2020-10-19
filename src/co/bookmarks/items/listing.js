@@ -113,6 +113,7 @@ export default class BookmarksItemsListing extends React.Component {
         return (
             <AccentColor _id={_id}>{style=>
                 <div 
+                    role='list'
                     className={`
                         ${s.elements}
                         ${s['wrap-'+view]}

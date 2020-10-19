@@ -112,7 +112,7 @@ export default class BookmarkItemCover extends React.PureComponent {
 
         return (
             <picture 
-                role='image'
+                role='img'
                 className={s.wrap+' '+s[view]+' '+className}>
                 {this.renderImage()}
                 {!loaded && (cover||link) && <div className={s.preloader}><Preloader /></div>}

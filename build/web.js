@@ -47,7 +47,8 @@ module.exports = (env={}) =>
                 //Service worker
                 new CopyPlugin({
                     patterns: [
-                        { from: 'assets/sw.js', to: 'sw.js' }
+                        { from: 'assets/sw.js', to: 'sw.js' },
+                        { from: 'assets/robots.txt', to: 'robots.txt' }
                     ]
                 }),
 
