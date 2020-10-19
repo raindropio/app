@@ -13,6 +13,10 @@
 	<meta http-equiv="Content-Security-Policy" content="default-src *; script-src 'self' <%= require('./config.js').csp.hosts %> <%= process.env.NODE_ENV === 'development' ? '\'unsafe-inline\' \'unsafe-eval\'' : '' %>; style-src 'self' 'unsafe-inline'; img-src * blob:; object-src 'none';">
 	<meta name="referrer" content="origin">
 
+	<!-- performance -->
+	<link rel="dns-prefetch" href="https://api.raindrop.io/" >
+	<link rel="preconnect" href="https://rdl.ink">
+
 	<!-- native apps -->
 	<meta name='apple-itunes-app' content='app-id=1021913807' />
 	<meta name='google-play-app' content='app-id=io.raindrop.raindropio' />

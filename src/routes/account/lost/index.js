@@ -36,9 +36,19 @@ class AccountLost extends React.Component {
 
         if (status == 'success')
             return (
-                <div>
-                    <h2>{t.s('checkYourEmail')}</h2>
-                </div>
+                <Layout>
+                    <Header data-fancy>
+                        <Title>{t.s('checkYourEmail')}</Title>
+                    </Header>
+
+                    <Button
+                        as={Link}
+                        variant='outline'
+                        data-block
+                        to='/account/login'>
+                        {t.s('signIn')}
+                    </Button>
+                </Layout>
             )
 
         return (
