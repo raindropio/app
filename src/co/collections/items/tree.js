@@ -6,6 +6,7 @@ import Item from '../item'
 import Group from '../group'
 import Empty from './empty'
 import { ItemHeightCallback } from '~co/common/list'
+import ProCheck from '~co/user/pro/check'
 
 export default class CollectionsTree extends React.Component {
     _scrolled = false
@@ -143,7 +144,7 @@ export default class CollectionsTree extends React.Component {
             }
     }
 
-    onDragEnd = (from, to, action)=>{
+    onDragEnd = async(from, to, action)=>{
         const origin = this.props.data[from]
         const target = this.props.data[to]
 
@@ -170,7 +171,7 @@ export default class CollectionsTree extends React.Component {
                             action = 'combine'
                     }
 
-                if (action=='combine')
+                if (action=='combine' && await ProCheck('nested'))
                     this.props.actions.oneReorder(origin.item._id, { to: target.item ? target.item._id : target._id })
             }break
             

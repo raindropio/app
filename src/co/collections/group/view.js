@@ -8,7 +8,7 @@ import Icon from '~co/common/icon'
 
 export default class CollectionsGroupView extends React.Component {
     render() {
-        const { title, system, active } = this.props
+        const { title, system, active, hidden } = this.props
         const { isDragging, isDropping } = this.props
         const { onClick, onContextMenu, onCreateNewCollectionClick } = this.props
 
@@ -22,7 +22,9 @@ export default class CollectionsGroupView extends React.Component {
                 isDropping={isDropping}
                 onClick={onClick}
                 onContextMenu={onContextMenu}>
-                <SectionTitle>{title}</SectionTitle>
+                <SectionTitle>
+                    {title}
+                </SectionTitle>
 
                 <SectionActions>
                     {/*<Button 
@@ -31,11 +33,19 @@ export default class CollectionsGroupView extends React.Component {
                         <Icon name='add' />
                     </Button>*/}
 
-                    <Button 
-                        title={t.s('more')}
-                        onClick={onContextMenu}>
-                        <Icon name='more_horizontal' />
-                    </Button>
+                    {hidden ?
+                        <Button 
+                            variant='outline'
+                            size='small'>
+                            {t.s('show')}
+                        </Button>
+                        :
+                        <Button 
+                            title={t.s('more')}
+                            onClick={onContextMenu}>
+                            <Icon name='more_horizontal' />
+                        </Button>
+                    }
                 </SectionActions>
             </Section>
         )

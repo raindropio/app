@@ -508,8 +508,6 @@ function* reorderCollection({_id=0, ignore=false, to, after, before}) {
 				else{
 					if (collection.access.draggable === false)
 						throw new ApiError({ status: 403, errorMessage: 'collection is not draggable' })
-
-					yield onlyForProUsersCheck()
 					
 					let order = 0
 					let siblings = 0
@@ -526,6 +524,10 @@ function* reorderCollection({_id=0, ignore=false, to, after, before}) {
 							}
 						}
 					)
+
+					//prevent for non-pro users
+					if (collection.parentId != target.parentId)
+						yield onlyForProUsersCheck()
 
 					actions.push({
 						type: COLLECTION_UPDATE_REQ,

@@ -32,6 +32,7 @@ class FiltersSection extends React.PureComponent {
         return (
             <>
                 <View 
+                    hidden={this.props.hidden}
                     onClick={this.onClick}
                     onContextMenu={this.onContextMenu} />
 

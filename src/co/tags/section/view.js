@@ -18,7 +18,7 @@ function getTitles() {
     return _titles
 }
 
-export default function TagsSectionView({className='', _id, count, ...props}) {
+export default function TagsSectionView({className='', _id, count, hidden, ...props}) {
     return (
         <Section 
             {...props}
@@ -27,11 +27,19 @@ export default function TagsSectionView({className='', _id, count, ...props}) {
             
             {props.onContextMenu && (
                 <SectionActions>
-                    <Button 
-                        title={t.s('more')}
-                        onClick={props.onContextMenu}>
-                        <Icon name='more_horizontal' />
-                    </Button>
+                    {hidden ?
+                        <Button 
+                            variant='outline'
+                            size='small'>
+                            {t.s('show')}
+                        </Button>
+                        :
+                        <Button 
+                            title={t.s('more')}
+                            onClick={props.onContextMenu}>
+                            <Icon name='more_horizontal' />
+                        </Button>
+                    }
                 </SectionActions>
             )}
         </Section>

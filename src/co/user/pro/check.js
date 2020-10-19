@@ -11,9 +11,9 @@ export default async function Check(type='') {
     switch(type) {
         case 'nested':
             go = await Confirm(
-                t.s('onlyInPro'),
+                t.s('nestedCollections'),
                 {
-                    description: `${t.s('nestedCollections')} ${t.s('onlyInPro').toLowerCase()}`,
+                    description: t.s('onlyInPro'),
                     ok: t.s('upgradeToPro')
                 }
             )

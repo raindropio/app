@@ -7,7 +7,7 @@ import { Section, SectionTitle, SectionActions } from '~co/common/list'
 import Button from '~co/common/button'
 import Icon from '~co/common/icon'
 
-export default function FiltersSection({ className='', ...props}) {
+export default function FiltersSection({ className='', hidden, ...props}) {
     return (
         <Section 
             {...props}
@@ -16,11 +16,19 @@ export default function FiltersSection({ className='', ...props}) {
 
             {props.onContextMenu && (
                 <SectionActions>
-                    <Button 
-                        title={t.s('more')}
-                        onClick={props.onContextMenu}>
-                        <Icon name='more_horizontal' />
-                    </Button>
+                    {hidden ?
+                        <Button 
+                            variant='outline'
+                            size='small'>
+                            {t.s('show')}
+                        </Button>
+                        :
+                        <Button 
+                            title={t.s('more')}
+                            onClick={props.onContextMenu}>
+                            <Icon name='more_horizontal' />
+                        </Button>
+                    }
                 </SectionActions>
             )}
         </Section>
