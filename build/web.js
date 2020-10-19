@@ -61,7 +61,6 @@ module.exports = (env={}) =>
                     start_url: '/',
                     display: 'minimal-ui',
                     background_color: '#0F0F47',
-                    theme_color: '#FFFFFF',
                     orientation: 'any',
                     icons: [
                         {
