@@ -29,7 +29,7 @@ export default class CollectionsItemView extends React.PureComponent {
 	}
 
     render() {
-        const { _id, count, color, cover, level, active, expanded, expandable, to, multiselect } = this.props
+        const { _id, title, count, color, cover, level, active, expanded, expandable, to, multiselect } = this.props
         const { innerRef, isDragging, isDropping, dropHandlers={} } = this.props
         const { onClick, onExpandClick, onRenameClick, onContextMenu, onKeyUp } = this.props
 
@@ -93,7 +93,9 @@ export default class CollectionsItemView extends React.PureComponent {
 					onClick={onClick}
 					onDoubleClick={onRenameClick}
                     onContextMenu={onContextMenu}
-					onKeyUp={onKeyUp} />
+					onKeyUp={onKeyUp}>
+                    {title}
+                </SuperLink>
             </Item>
         )
     }

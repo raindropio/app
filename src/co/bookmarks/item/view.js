@@ -81,7 +81,9 @@ export default function BookmarkItemView(props) {
                     onClick={onClick}
                     onDoubleClick={onDoubleClick}
                     onContextMenu={onContextMenu}
-                    onKeyUp={onKeyUp} />
+                    onKeyUp={onKeyUp}>
+                    {title}
+                </SuperLink>
             </article>
         )}</DragItem>
     )

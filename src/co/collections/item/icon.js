@@ -9,7 +9,7 @@ const CollectionIcon = React.memo(({ _id, cover, active, loading })=>{
 		return <Preloader />
 
 	if (cover && cover[0])
-		return <img src={cover[0]} />
+		return <img src={cover[0]} alt='★' />
 
 	var name = '', prefix = (active ? '_active' : '')
 	

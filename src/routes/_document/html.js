@@ -1,13 +1,13 @@
 import './html.module.styl'
 import React from 'react'
-import t from '~t'
 import _ from 'lodash'
 import { Helmet } from 'react-helmet'
+import { connect } from 'react-redux'
 
 import { scrollbarIsObtrusive } from '~modules/browser'
 import { target, environment } from '~target'
 
-export default class DocumentHtml extends React.PureComponent {
+class DocumentHtml extends React.PureComponent {
     state = {
         className: [
             target,
@@ -55,9 +55,15 @@ export default class DocumentHtml extends React.PureComponent {
         return (
             <Helmet>
                 <html 
-                    lang={t.currentLang}
+                    lang={this.props.lang}
                     className={this.state.className.join(' ')} />
             </Helmet>
         )
     }
 }
+
+export default connect(
+    state=>({
+        lang: state.config.lang
+    })
+)(DocumentHtml)
