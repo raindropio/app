@@ -7,11 +7,12 @@ const emptyObject = {}
 
 export default class VirtualListBase extends React.PureComponent {
     static defaultProps = {
-        className: '',              //
+        className: '',
         item: undefined,            //required
         computeItemKey: undefined,  //required
         totalCount: 0,              //required
-        endReached: undefined,      //
+        dataKey: undefined,
+        endReached: undefined,
         footer: undefined,
         disableVirtualization: false,
         defaultItemHeight: 80,
