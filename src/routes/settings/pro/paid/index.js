@@ -14,6 +14,12 @@ import Help from './help'
 class SettingsProPaid extends React.Component {
 	componentDidMount() {
 		this.props.loadSubscription()
+
+		window.addEventListener('focus', this.props.loadSubscription)
+	}
+
+	componentWillUnmount() {
+		window.removeEventListener('focus', this.props.loadSubscription)
 	}
 
 	render() {

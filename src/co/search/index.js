@@ -8,6 +8,7 @@ export default class Search extends React.PureComponent {
         spaceId: 0,
         value: '',
         outerRef: undefined, //where to put suggestions
+        autoFocus: false,
         events: {} //onSubmit
     }
 

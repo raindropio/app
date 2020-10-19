@@ -15,6 +15,12 @@ class ScreenProtected extends React.Component {
 
 	componentDidMount() {
 		this.props.refresh()
+
+		window.addEventListener('focus', this.props.refresh)
+	}
+
+	componentWillUnmount() {
+		window.removeEventListener('focus', this.props.refresh)
 	}
 
 	render() {

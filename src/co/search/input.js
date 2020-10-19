@@ -17,6 +17,7 @@ function setLastPart(str, val) {
 
 export default class SearchInput extends React.Component {
     static defaultProps = {
+        autoFocus: false,
         value: '',
         onChange: undefined, //(e)
         onSubmit: undefined,
@@ -80,14 +81,18 @@ export default class SearchInput extends React.Component {
     onInputChange = e=>
         this.props.onChange(e.target.value)
 
-    forceOpen = ()=>
-        this.setState({ forceOpen: true })
+    forceOpen = ()=>{
+        if (this.props.autoFocus && !this._first)
+            this._first=true
+        else
+            this.setState({ forceOpen: true })
+    }
 
     forceClose = ()=>
         this.setState({ forceOpen: false })
 
     render() {
-        const { value, children, onSubmit } = this.props
+        const { value, children, autoFocus, onSubmit } = this.props
         const { forceOpen } = this.state
 
         return (
@@ -104,6 +109,7 @@ export default class SearchInput extends React.Component {
                         onSubmit={onSubmit}>
                         <Search 
                             {...downshift.getInputProps({
+                                autoFocus,
                                 placeholder: t.s('defaultCollection-0'),
                                 ref: this.inputRef,
                                 value,

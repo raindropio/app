@@ -5,6 +5,9 @@ export default class HeaderAdd extends React.Component {
     onEdit = item=>
         this.props.history.push(
             this.props.getLink({
+                _id: item.collectionId,
+                full: true,
+                
                 bookmark: item._id,
                 tab: 'edit'
             })
