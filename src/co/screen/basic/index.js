@@ -38,7 +38,8 @@ class ScreenBasic extends React.Component {
                 </Helmet>
 
                 <div 
-                    {...etc} 
+                    {...etc}
+                    data-is-page
                     className={s.page + ' ' + className}>
                     {children}
 
