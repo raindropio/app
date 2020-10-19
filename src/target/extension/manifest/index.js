@@ -115,7 +115,20 @@ module.exports = ({ vendor, production=false }, l) => {
 					linux: 'Ctrl+Shift+A'
 				},
 				description: '__MSG_openRaindrop__',
-			}
+			},
+
+			...(vendor == 'firefox' || vendor == 'opera' ? {
+				_execute_sidebar_action: {
+					suggested_key: {
+						default: 'Ctrl+E',
+						windows: 'Ctrl+E',
+						mac: 'MacCtrl+E',
+						chromeos: 'Ctrl+E',
+						linux: 'Ctrl+E'
+					},
+					description: '__MSG_openSidebar__'
+				}
+			}: {}),
 		},
 
 		...(vendor == 'firefox' || vendor == 'opera' ? {

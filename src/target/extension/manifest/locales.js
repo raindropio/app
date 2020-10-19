@@ -52,6 +52,10 @@ module.exports = ({ emitFile })=>{
                 openRaindrop: {
                     message: s(lang, 'open') + ' Raindrop.io web-' + s(lang, 'site').toLowerCase(),
                     description: ''
+                },
+                openSidebar: {
+                    message: s(lang, 'open') + ' ' + s(lang, 'sidebar').toLowerCase(),
+                    description: ''
                 }
             },
             null,

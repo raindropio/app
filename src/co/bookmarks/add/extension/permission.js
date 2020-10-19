@@ -1,4 +1,5 @@
 import React from 'react'
+import t from '~t'
 import Button from '~co/common/button'
 import browser from '~target/extension/browser'
 import { Alert } from '~co/overlay/dialog'
@@ -17,7 +18,7 @@ export default class BookmarksAddPermission extends React.Component {
             .catch(e=>{
                 Alert('Can`t set required permissions', {
                     variant: 'error',
-                    description: 'Try to click on our extension (button on browser toolbar), then click your profile name and open Settings. Then enable "All tabs" access.'
+                    description: `Fix: Click Raindrop.io extension button in browser toolbar, then click your profile picture and open Settings. In settings screen enable "${t.s('highlightSavedPages')}" checkbox.`
                 })
             })
     }
