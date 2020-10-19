@@ -61,10 +61,18 @@ module.exports = (env={}) =>
                     start_url: '/',
                     display: 'minimal-ui',
                     background_color: '#0F0F47',
+                    theme_color: '#FFFFFF',
+                    orientation: 'any',
                     icons: [
                         {
                             src: path.resolve('src/assets/brand/macos_512.png'),
-                            size: '512x512'
+                            size: '512x512',
+                            purpose: 'any'
+                        },
+                        {
+                            src: path.resolve('src/assets/brand/maskable_512.png'),
+                            size: '512x512',
+                            purpose: 'maskable'
                         }
                     ]
                 })
