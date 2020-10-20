@@ -10,10 +10,11 @@ import Avatar from '~co/common/avatar'
 
 export default class CollectionSharingCollaboratorsUser extends React.PureComponent {
     onChangeRole = (e)=>{
-        const role = e.currentTarget.value
+        const role = e.target.value
         const userId = parseInt(e.currentTarget.getAttribute('data-userid'))
 
-        this.props.onUserUpdate(userId, { role })
+        if (role && userId)
+            this.props.onUserUpdate(userId, { role })
     }
 
     onRemove = e => {

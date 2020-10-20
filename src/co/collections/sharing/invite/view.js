@@ -17,7 +17,7 @@ export default class CollectionSharingInviteView extends React.PureComponent {
 		if (prev.status != this.props.status)
 			switch(this.props.status) {
                 case 'error':
-					Alert(t.s('sendInvites')+' '+t.s('server').toLowerCase())
+					Alert(t.s('sendInvites')+' '+t.s('server').toLowerCase(), { variant: 'error' })
                 break
                 
 				case 'done':

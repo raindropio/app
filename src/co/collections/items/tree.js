@@ -105,12 +105,13 @@ export default class CollectionsTree extends React.Component {
         if (row)
             switch(row.type){
                 case 'collection':
-                    if (row.item._id <= 0)
+                    if (row.item._id <= 0){
                         if (row.item._id==-101)
                             return true
                         else
                             return false
-                    return true
+                    }
+                    return row.item.access.root || row.item.access.draggable
 
                 case 'group':
                     return row.system ? false : true
@@ -119,12 +120,15 @@ export default class CollectionsTree extends React.Component {
         return false
     }
 
-    rowIsDroppable = (from)=>{
+    rowIsDroppable = (from, to)=>{
         const origin = this.props.data[from]
+        const target = this.props.data[to]
 
         if (origin)
             switch(origin.type){
-                case 'collection': return origin.item.access.draggable
+                case 'collection': 
+                    return (origin.item.access && origin.item.access.draggable) && 
+                            (target.item.access && (target.item.access.root || target.item.access.draggable))
             }
 
         return false
