@@ -19,7 +19,7 @@ export default class BookmarksDragItem extends React.Component {
             //multiselect
             if (selectModeEnabled) {
                 if (selected)
-                    e.dataTransfer.setData('selected_bookmarks', spaceId)
+                    e.dataTransfer.setData('selected_bookmarks', parseInt(spaceId))
             }
             //single
             else {
