@@ -328,7 +328,10 @@
   "permissions": "Toestemming",
   "raindropTagline": "Alles-in-1 bladwijzer manager",
   "buttons": "Knoppen",
+  "highlightSavedPages": "Markeer opgeslagen pagina's",
   "appearance": "Uiterlijk",
   "omniboxD": "Zoek bladwijzers vanuit de adresbalk",
-  "changeLaterInSettings": "Je kunt deze opties later wijzigen in instellingen"
+  "highlightSavedPagesD": "Laat een [✔] indicator zien wanneer je een eerder opgeslagen pagina bezoekt",
+  "changeLaterInSettings": "Je kunt deze opties later wijzigen in instellingen",
+  "fullTextSearch": "Volledige tekst zoeken"
 }

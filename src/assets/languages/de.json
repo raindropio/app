@@ -14,7 +14,7 @@
   "collectionDeleteConfirm": "Möchtest du diese Sammlung wirklich löschen?\nAlle Lesezeichen innerhalb der Sammlung werden ebenfalls gelöscht!",
   "saveError": "Fehler beim Speichern!",
   "saveSuccess": "Erfolgreich gespeichert!",
-  "saved": "gespeichert",
+  "saved": "Gespeichert",
   "addSuccess": "Hinzugefügt",
   "removeSuccess": "Erfolgreich entfernt!",
   "coverUpload": "Cover hochladen",
@@ -327,5 +327,11 @@
   "tabs": "Tabs",
   "permissions": "Berechtigungen",
   "raindropTagline": "Allumfassender Lesezeichen-Manager",
-  "buttons": "Buttons"
+  "buttons": "Buttons",
+  "highlightSavedPages": "Bereits gespeicherte Seite hervorheben",
+  "appearance": "Aussehen",
+  "omniboxD": "Lesezeichen direkt in der Adressleiste suchen",
+  "highlightSavedPagesD": "Den [✔] Indikator anzeigen bei bereits gespeicherten Seiten",
+  "changeLaterInSettings": "Du kannst diese Option nachträglich in den Einstellungen ändern",
+  "fullTextSearch": "Ganztext-Suche"
 }
