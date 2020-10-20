@@ -124,11 +124,11 @@ export default class CollectionsTree extends React.Component {
         const origin = this.props.data[from]
         const target = this.props.data[to]
 
-        if (origin)
+        if (origin && origin.item)
             switch(origin.type){
                 case 'collection': 
                     return (origin.item.access && origin.item.access.draggable) && 
-                            (target.item.access && (target.item.access.root || target.item.access.draggable))
+                            (target.item && target.item.access && (target.item.access.root || target.item.access.draggable))
             }
 
         return false
