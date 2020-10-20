@@ -20,7 +20,7 @@ function Auth({ status: { authorized }, location: { search } }) {
     //redirect when authorized
     if (authorized == 'yes'){
         //use redirect link saved previously
-        if (sessionStorage.getItem('redirect'))
+        if (sessionStorage && sessionStorage.getItem('redirect'))
             return location.href = sessionStorage.getItem('redirect')
             
         return <Redirect to='/' />

@@ -15,7 +15,7 @@ export default class AccountSocialLogin extends React.Component {
 
     render() {
         const { all } = this.state
-        const redirect = sessionStorage.getItem('redirect') || ''
+        const redirect = (sessionStorage && sessionStorage.getItem('redirect')) || ''
 
         return (
             <div className={s.buttons}>

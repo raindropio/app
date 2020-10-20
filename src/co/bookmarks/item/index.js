@@ -28,6 +28,8 @@ class BookmarkItem extends React.Component {
 
     handlers = {
         onClick: (e)=>{
+            if (!e) return
+
             const { selectModeEnabled, item } = this.props
 
             if (e.metaKey || e.ctrlKey){

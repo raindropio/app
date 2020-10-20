@@ -7,7 +7,7 @@ import { Label } from '~co/common/form'
 import Button from '~co/common/button'
 import Icon from '~co/common/icon'
 
-export default function ProActions({ subscription: { links, plan } }) {
+export default function ProActions({ subscription: { links={}, plan } }) {
     let actions = null
 
     if (plan == 'legacy')

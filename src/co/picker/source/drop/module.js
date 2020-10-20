@@ -64,8 +64,16 @@ export default class DropModule extends React.Component {
                 //custom
                 else if (this.props.onDropCustom &&
                     this.props.validateCustom &&
-                    this.props.validateCustom(record.type))
-                    custom.push([record.type, JSON.parse(e.dataTransfer.getData(record.type))])
+                    this.props.validateCustom(record.type)){
+                        const data = e.dataTransfer.getData(record.type)||''
+
+                        try{
+                            const json = JSON.parse(data)
+                            custom.push([record.type, json])
+                        }catch(e) {
+                            throw new Error('drag data is incorrect json: '+String(data))
+                        }
+                    }
                 //link
                 else if (record.type == 'text/uri-list')
                     links.push(e.dataTransfer.getData(record.type))
