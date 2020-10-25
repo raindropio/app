@@ -175,8 +175,13 @@ export default class CollectionsTree extends React.Component {
                             action = 'combine'
                     }
 
-                if (action=='combine' && await ProCheck('nested'))
+                if (action=='combine'){
+                    //prevent move collection to collection for non-pro
+                    if (target.item && await ProCheck('nested'))
+                        return
+
                     this.props.actions.oneReorder(origin.item._id, { to: target.item ? target.item._id : target._id })
+                }
             }break
             
             case 'group':{
