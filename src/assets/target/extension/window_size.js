@@ -15,6 +15,17 @@ if (location.search.includes('browser_action')){
         document.body.style.width = width
         document.body.style.height = height
 
+        //when browser have global zoom setting, actual max width of popover can be alot smaller, 
+        //it's bug of chrome browsers. this is the fix:
+        if (document.documentElement.offsetWidth < parseInt(width) ||
+            document.documentElement.offsetHeight < parseInt(height)){
+            width = document.documentElement.offsetWidth+'px'
+            height = document.documentElement.offsetHeight+'px'
+
+            document.body.style.width = width
+            document.body.style.height = height
+        }
+
         saveSize(width)
     }
 
