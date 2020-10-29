@@ -26,7 +26,7 @@ export default class AccountSocialLogin extends React.Component {
                         variant='outline'
                         disabled={this.props.disabled}
                         data-block
-                        href={`${API_ENDPOINT_URL}auth/${vendor}?redirect=${redirect}`}>
+                        href={`${API_ENDPOINT_URL}auth/${vendor}?redirect=${encodeURIComponent(redirect)}`}>
                         <Icon name={vendor} />
                     </Button>
                 ))}

@@ -2,9 +2,9 @@ import s from './content.module.styl'
 import React from 'react'
 
 //data-stretch
-export default function ModalContent({ children, ...etc }) {
+export default function ModalContent({ children, className='', ...etc }) {
     return (
-        <div className={s.content} {...etc}>
+        <div {...etc} className={s.content+' '+className}>
             {children}
         </div>
     )

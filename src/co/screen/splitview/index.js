@@ -73,9 +73,12 @@ export default class ScreenSplitView extends React.Component {
 
     render() {
         const { sidebar, reader } = this.state
+        const { children, className='', ...etc } = this.props
 
         return (
-            <Basic {...this.props}>
+            <Basic 
+                {...etc}
+                className={s.page+' '+className}>
                 <div
                     ref={this.container}
                     className={`
@@ -86,7 +89,7 @@ export default class ScreenSplitView extends React.Component {
                     `}
                     style={sidebar.width ? {'--sidebar-width': sidebar.width+'px'} : undefined}>
                     <Context.Provider value={this.state}>
-                        {this.props.children}
+                        {children}
                     </Context.Provider>
                 </div>
             </Basic>

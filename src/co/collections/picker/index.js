@@ -1,3 +1,4 @@
+import s from './index.module.styl'
 import React from 'react'
 import t from '~t'
 import Modal, { Header, Content } from '~co/overlay/modal'
@@ -32,7 +33,7 @@ export default class CollectionsPicker extends React.Component {
                         onChange={this.onSearchChange} />
                 </Layout>
 
-                <Content>
+                <Content className={s.content}>
                     <Items 
                         pauseId='picker'
                         {...etc}
