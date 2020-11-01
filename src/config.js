@@ -12,7 +12,7 @@ module.exports = {
     },
 
     csp: {
-        hosts: 'https://*.raindrop.io https://*.sentry.io https://sentry.io https://*.google-analytics.com'
+        hosts: 'https://*.sentry.io https://sentry.io https://*.google-analytics.com'
     },
 
     links: {

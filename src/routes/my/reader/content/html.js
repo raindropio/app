@@ -1,6 +1,7 @@
 import s from './html.module.styl'
 import React from 'react'
 import { connect } from 'react-redux'
+import DOMPurify from 'dompurify'
 import { getHtml } from '~data/selectors/bookmarks'
 import { ShortDate } from '~modules/format/date'
 import { htmlLoad } from '~data/actions/bookmarks'
@@ -12,10 +13,25 @@ class ReaderHTML extends React.Component {
         this.props.htmlLoad(this.props.item._id)
     }
 
+    getHtml = ()=>{
+        const {
+            html: { html }
+        } = this.props
+
+        return {
+            dangerouslySetInnerHTML: {
+                __html: DOMPurify.sanitize(html, {
+                    ADD_TAGS: ['iframe'],
+                    ADD_ATTR: ['frameborder', 'allowfullscreen']
+                })
+            }
+        }
+    }
+
     render() {
         const {
             item: { type, title, domain, created  },
-            html: { html, status },
+            html: { status },
             font_family, font_size
         } = this.props
 
@@ -33,7 +49,7 @@ class ReaderHTML extends React.Component {
                         <div className={s.domain}><b>{domain}</b> &nbsp;&middot;&nbsp; <ShortDate date={created}/></div>
                         <h1 className={s.title}><a href={(this.props.item||{}).link} target='_blank'>{title}</a></h1>
 
-                        <div dangerouslySetInnerHTML={{ __html: html }} />
+                        <div {...this.getHtml()} />
                     </article>
                 )
 
@@ -47,7 +63,7 @@ class ReaderHTML extends React.Component {
                         className={s.content}>
                         {loading}
                         
-                        <div className={s.html} dangerouslySetInnerHTML={{ __html: html }} />
+                        <div className={s.html} {...this.getHtml()} />
                     </div>
                 )
         }

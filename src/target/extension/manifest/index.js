@@ -146,12 +146,11 @@ module.exports = ({ vendor, production=false }, l) => {
 			}
 		}: {}),
 
-		content_security_policy: `script-src 'self' ${config.csp.hosts} ${!production?'\'unsafe-eval\'':''}; object-src 'none';`
+		//firefox review not pass if csp have custom domains in script-src
+		...(vendor != 'firefox' ? {
+			content_security_policy: `script-src 'self' ${config.csp.hosts} ${!production?'\'unsafe-eval\'':''}; object-src 'none';`
+		} : {})
 	}
-
-	//disable google analytics for firefox extension
-	if (vendor == 'firefox')
-		json.content_security_policy = json.content_security_policy.replace('https://*.google-analytics.com', '')
 
 	return { code: JSON.stringify(json, null, 2) };
 }

@@ -1,21 +1,24 @@
 import React, { memo } from 'react'
+import DOMPurify from 'dompurify'
 
-const unsafeTagsTest = /<[^/?em]/m
+function safe(content) {
+    return {
+        dangerouslySetInnerHTML: {
+            __html: DOMPurify.sanitize(content, { ALLOWED_TAGS: ['em'], ALLOWED_ATTR: [] })
+        }
+    }
+}
 
 export default memo(
     function({ children='', tagName='div', ...etc }) {
         const Tag = tagName
 
-        if (children.includes('<')){
-            if (unsafeTagsTest.test(children))
-                return null
-
+        if (children.includes('<'))
             return (
                 <Tag 
                     {...etc}
-                    dangerouslySetInnerHTML={{ __html: children }} />
+                    {...safe(children)} />
             )
-        }
 
         return <Tag {...etc}>{children}</Tag>
     }

@@ -1,6 +1,6 @@
 {
 	"name": "app",
-	"version": "5.1.36",
+	"version": "5.1.37",
 	"description": "",
 	"author": "",
 	"license": "ISC",
@@ -45,6 +45,7 @@
 		"@sentry/react": "^5.20.1",
 		"autoprefixer": "10.0.x",
 		"date-fns": "2.16.x",
+		"dompurify": "^2.2.0",
 		"downshift": "6.0.x",
 		"form-request-submit-polyfill": "^2.0.0",
 		"localforage": "1.9.x",
