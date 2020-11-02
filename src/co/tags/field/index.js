@@ -68,6 +68,17 @@ export default class TagsPicker extends React.Component {
         }
     }
 
+    onInputKeyDown = e => {
+        switch(e.key) {
+            case 'Escape':
+                if (e.target.value){
+                    e.preventDefault()
+                    e.stopPropagation()
+                }
+            break
+        }
+    }
+
     render() {
         const { value, onChange, spaceId, ...etc } = this.props
 
@@ -87,7 +98,8 @@ export default class TagsPicker extends React.Component {
                                 selected: value,
                                 onSelectedChange: onChange,
                                 icon: 'tag',
-                                onFocus: downshift.toggleMenu
+                                onFocus: downshift.toggleMenu,
+                                onKeyDown: this.onInputKeyDown
                             })} />
 
                         <Autocomplete 
