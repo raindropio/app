@@ -10,7 +10,7 @@ export default function(view, amplifier=1) {
         case 'grid':
         case 'masonry':
             return {
-                width: 194 + (amplifier * 30),
+                width: 300 + (amplifier * 30),
                 ar: view == 'grid' ? '16:9' : undefined
             }
 
