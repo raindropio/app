@@ -10,7 +10,7 @@ export default function ProAlert({ subscription: { status, stopAt } }) {
                 <Alert 
                     className={s.alert}
                     variant='warning'>
-                    Your subscription has been <b>canceled</b>, but is active through <LongDate data={stopAt}/><br /><br />
+                    Your subscription has been <b>canceled</b>, but is active through <LongDate date={stopAt}/><br /><br />
                     You'll still be able to take advantage of PRO plan through this date,
                     but you will not be charged a subscription fee moving forward.
                 </Alert>
