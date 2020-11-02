@@ -15,6 +15,15 @@ export default class TagsPicker extends React.Component {
 
     inputRef = React.createRef()
 
+    componentDidMount() {
+        //prevent closing window when typed value is not yet commited
+        window.addEventListener('beforeunload', this.onWindowClose)
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener('beforeunload', this.onWindowClose)
+    }
+
     stateReducer = (state, changes) => {
         switch (changes.type) {
             case 'focus':
@@ -51,6 +60,13 @@ export default class TagsPicker extends React.Component {
             ...this.props.value,
             this.itemToString(item)
         ])
+
+    onWindowClose = e => {
+        if (this.inputRef.current.value) {
+            e.preventDefault()
+            e.returnValue = ''
+        }
+    }
 
     render() {
         const { value, onChange, spaceId, ...etc } = this.props
