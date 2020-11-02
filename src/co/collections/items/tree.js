@@ -111,7 +111,7 @@ export default class CollectionsTree extends React.Component {
                         else
                             return false
                     }
-                    return row.item.access.root || row.item.access.draggable
+                    return true
 
                 case 'group':
                     return row.system ? false : true
@@ -127,8 +127,13 @@ export default class CollectionsTree extends React.Component {
         if (origin && origin.item)
             switch(origin.type){
                 case 'collection': 
-                    return (origin.item.access && origin.item.access.draggable) && 
-                            (target.item && target.item.access && (target.item.access.root || target.item.access.draggable))
+                    if (!origin.item.access || !origin.item.access.draggable)
+                        return false
+
+                    if (target.item)
+                        return target.item.access && (target.item.access.root || target.item.access.draggable)
+                    
+                    return true
             }
 
         return false
@@ -163,12 +168,16 @@ export default class CollectionsTree extends React.Component {
                     }
                     else {
                         //to end of previous group
-                        if (to < from){
-                            for(let i=to-1; i>0; i--)
-                                if (this.props.data[i].type=='collection'){
-                                    this.props.actions.oneReorder(origin.item._id, { after: this.props.data[i].item._id })
-                                    break
-                                }
+                        if (to < from &&
+                            this.props.data[to-1]){
+                            const prev = this.props.data[to-1]
+
+                            this.props.actions.oneReorder(
+                                origin.item._id, 
+                                prev.item ? 
+                                    { after: this.props.data[to-1].item._id } : 
+                                    { to: prev._id }
+                            )
                         }
                         //to start of current group
                         else
