@@ -149,7 +149,11 @@ module.exports = ({ vendor, production=false }, l) => {
 		//firefox review not pass if csp have custom domains in script-src
 		...(vendor != 'firefox' ? {
 			content_security_policy: `script-src 'self' ${config.csp.hosts} ${!production?'\'unsafe-eval\'':''}; object-src 'none';`
-		} : {})
+		} : {}),
+
+		// web_accessible_resources: [
+		// 	'index.html'
+		// ]
 	}
 
 	return { code: JSON.stringify(json, null, 2) };
