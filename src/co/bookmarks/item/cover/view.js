@@ -26,6 +26,13 @@ const getUri = (uri, mode='', domain)=>{
     return thumbs[uri]
 }
 
+//pixel density
+const dpr = {
+    grid: (window.devicePixelRatio||1)+1,
+    masonry: (window.devicePixelRatio||1)+1,
+    default: window.devicePixelRatio||1
+}
+
 //main component
 export default class BookmarkItemCover extends React.PureComponent {
     static defaultProps = {
@@ -87,7 +94,7 @@ export default class BookmarkItemCover extends React.PureComponent {
         return (
             <>
                 <source
-                    srcSet={uri && `${uri}?mode=${mode}&fill=solid&format=webp&width=${width||''}&ar=${ar||''}&dpr=${window.devicePixelRatio||1}`}
+                    srcSet={uri && `${uri}?mode=${mode}&fill=solid&format=webp&width=${width||''}&ar=${ar||''}&dpr=${dpr[view]||dpr.default}`}
                     type='image/webp' />
 
                 <img 
@@ -98,7 +105,7 @@ export default class BookmarkItemCover extends React.PureComponent {
                     height={height}
                     alt=' '
                     {...etc}
-                    src={uri && `${uri}?mode=${mode}&fill=solid&width=${width||''}&ar=${ar||''}&dpr=${window.devicePixelRatio||1}`}
+                    src={uri && `${uri}?mode=${mode}&fill=solid&width=${width||''}&ar=${ar||''}&dpr=${dpr[view]||dpr.default}`}
                     //type='image/jpeg'
                     onLoad={indicator && uri ? this.onImageLoadSuccess : undefined}
                     onError={indicator && uri ? this.onImageLoadSuccess : undefined} />
