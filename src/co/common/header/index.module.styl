@@ -38,6 +38,7 @@ html:global(.extension.browser_action.firefox) .header {
     position: static
 }
 
+//very heavy for performance!
 @supports (backdrop-filter: none) {
 	.header[data-fancy='true'] {
 		background: unquote('linear-gradient(to bottom, var(--background-color) 30%, hsla(var(--background-hsl), .6) 100%)')

@@ -22,8 +22,7 @@ function ClipperHeader({ status }) {
     }
 
     return (
-        <Header
-            data-fancy>
+        <Header>
             <ProfileButton />
 
             <Title>{title}</Title>

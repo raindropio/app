@@ -29,13 +29,6 @@
 	height: 100%
 }
 
-@supports (backdrop-filter: none) {
-	.body {
-		background: unquote('hsla(var(--background-hsl), .85)')
-		backdrop-filter: blur(20px)
-	}
-}
-
 //extension specific
 html:global(.extension)[data-popover-showing='true'] [data-is-page] {
 	min-height: 600px

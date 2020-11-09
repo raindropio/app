@@ -22,7 +22,6 @@ export default ({ status })=>{
 
     return (
         <Header
-            data-fancy
             data-no-shadow>
             <Helmet><title>{title}</title></Helmet>
 

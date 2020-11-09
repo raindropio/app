@@ -35,13 +35,6 @@
     }
 }
 
-@supports (backdrop-filter: none) {
-    .outer[data-floating='true'] .body {
-		background: unquote('linear-gradient(to bottom, var(--background-color) 50%, hsla(var(--background-hsl), 0.5) 100%)')
-		backdrop-filter: blur(100px)
-	}
-}
-
 //Loading
 .outer[data-status='loading'] {
     .inner {
