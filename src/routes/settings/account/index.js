@@ -2,11 +2,12 @@ import React from 'react'
 import t from '~t'
 import { Helmet } from 'react-helmet'
 
-import { Layout, Separator } from '~co/common/form'
+import { Layout, Separator, Buttons } from '~co/common/form'
 import Profile from './profile'
 import Connect from './connect'
 import Usage from './usage'
 import LogoutAll from './logoutAll'
+import Reset from './reset'
 import Remove from './remove'
 
 export default (props)=>(
@@ -24,7 +25,11 @@ export default (props)=>(
 		<Usage {...props} />
 
 		<Separator />
-		<LogoutAll {...props} />
-		<Remove {...props} />
+
+		<Buttons variant='between'>
+			<LogoutAll {...props} />
+			<Reset {...props} />
+			<Remove {...props} />
+		</Buttons>
 	</Layout>
 )

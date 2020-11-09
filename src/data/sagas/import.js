@@ -2,8 +2,8 @@ import { call, put, select, takeLatest } from 'redux-saga/effects'
 import _ from 'lodash-es'
 import Api from '../modules/api'
 import * as c from '../constants/import'
-import { loadCollections } from './collections/items'
-import { createCollection, removeCollection } from './collections/single'
+import { loadCollections, removeAllCollections } from './collections/items'
+import { createCollection } from './collections/single'
 
 export default function* () {
 	yield takeLatest(c.IMPORT_FILE_UPLOAD_REQ, fileUpload)
@@ -55,17 +55,10 @@ function* parcelSave({ ignore=false, onSuccess, onFail }) {
 
 //remove all my collections if mode is from_scratch
 function* from_scratch() {
-	const { import: { mode }, collections: { items } } = yield select()
+	const { import: { mode } } = yield select()
 	if (mode !== 'from_scratch') return
 
-	const root = _.filter(
-		items,
-		({ _id, parentId, access: { level } })=>
-			_id == -1 || (_id > 0 && level >= 3 && !parentId)
-	)
-
-	for(const { _id } of root)
-		yield removeCollection({ _id })
+	yield removeAllCollections({})
 }
 
 function* process(items, parentId) {
