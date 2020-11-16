@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import t from '~t'
+import { eventOrder } from '~modules/browser'
 import { Context } from '../'
 
 import Header from '~co/common/header'
@@ -15,6 +16,31 @@ class SplitViewReaderHeader extends React.Component {
     }
     
     static contextType = Context
+
+    backButton = React.createRef()
+
+    componentDidMount() {
+        eventOrder.add(this)
+        window.addEventListener('keydown', this.onWindowKeyDown)
+    }
+
+    componentWillUnmount() {
+        eventOrder.delete(this)
+        window.removeEventListener('keydown', this.onWindowKeyDown)
+    }
+
+    onWindowKeyDown = e=>{
+        switch(e.key) {
+            case 'Escape':
+                if (!eventOrder.isLast(this))
+                    return
+
+                e.preventDefault()
+                e.stopPropagation()
+                this.backButton.current.click()
+            break
+        }
+    }
 
     onBackClick = (e)=>{
         if (!e.currentTarget.href) {
@@ -36,6 +62,7 @@ class SplitViewReaderHeader extends React.Component {
                 data-mac-inset
                 className='svReaderHeader'>
                 <Button 
+                    ref={this.backButton}
                     as={Link}
                     to={this.props.backTo}
                     onClick={this.onBackClick}>

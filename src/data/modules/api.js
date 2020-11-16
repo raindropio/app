@@ -118,8 +118,10 @@ function* req(url, options={}) {
 
 			return winner.req;
 		}catch(e){
-			if (e && e.status && e.status == 408)
+			//stop if client error
+			if (e && e.status && e.status >= 400 && e.status < 500)
 				break;
+			//retry
 			else if(i < API_RETRIES-1) {
 				yield delay(100 + (API_RETRIES * 100) ); //stop 100ms and try again
 			}
@@ -135,7 +137,7 @@ const fetchWrap = (url, options)=>(
 			if (res.status >= 200 && res.status < 300)
 				return res
 			else
-				throw new ApiError({ errorMessage: 'fail_fetch_status' })
+				throw new ApiError({ status: res.status, errorMessage: 'fail_fetch_status' })
 		})
 )
 

@@ -20,12 +20,6 @@ export const status = ({bookmarks}, spaceId)=>
 
 export const makeStatus = () => status
 
-export const makeStatusMain = () => (state, spaceId)=>
-	makeStatus(state, spaceId).main
-
-export const makeStatusNextPage = () => (state, spaceId)=>
-	makeStatus(state, spaceId).nextPage
-
 export const makeBookmarksLastChange = () => createSelector(
 	[({bookmarks={}})=>bookmarks.elements],
 	()=>new Date().getTime()

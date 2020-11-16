@@ -17,7 +17,7 @@ export default class CollectionsTree extends React.Component {
     }
 
     componentDidUpdate(prev) {
-        //scroll to active on first paint
+        //scroll to active on first paint WHY ONLY FIRST PAINT???
         if (this.props.data.length && !this._scrolled){
             this._scrolled = true
 

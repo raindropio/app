@@ -1,6 +1,6 @@
 {
 	"name": "app",
-	"version": "5.1.39",
+	"version": "5.1.40",
 	"description": "",
 	"author": "",
 	"license": "ISC",
@@ -41,14 +41,12 @@
 		"~target": "src/target"
 	},
 	"dependencies": {
-		"@sentry/minimal": "^5.20.1",
 		"@sentry/react": "^5.20.1",
 		"autoprefixer": "10.0.x",
 		"date-fns": "2.16.x",
 		"dompurify": "^2.2.0",
 		"downshift": "6.0.x",
 		"form-request-submit-polyfill": "^2.0.0",
-		"localforage": "1.9.x",
 		"lodash-es": "4.17.x",
 		"masonic": "3.3.x",
 		"normalize-url": "4.x",
@@ -71,12 +69,14 @@
 		"webextension-polyfill": "^0.6.0"
 	},
 	"optionalDependencies": {
+		"@sentry/minimal": "^5.20.1",
 		"react-redux": "7.2.x",
 		"redux": "4.x",
 		"redux-persist": "6.0.x",
 		"redux-saga": "1.1.x",
 		"reselect": "4.x",
-		"seamless-immutable": "7.x"
+		"seamless-immutable": "7.x",
+		"localforage": "1.9.x"
 	},
 	"devDependencies": {
 		"@babel/core": "7.x",
