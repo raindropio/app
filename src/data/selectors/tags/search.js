@@ -1,4 +1,5 @@
 import { createSelector } from 'reselect'
+import _ from 'lodash'
 import { getTags } from './items'
 
 //(state, spaceId, filter) -> []
@@ -8,11 +9,17 @@ export const makeTagsSearch = ()=>createSelector(
         (state, spaceId, filter)=>filter,
     ],
     (tags, _filter, _search)=>{
-        const filter = String(_filter||'').trimStart().toLowerCase()
+        const filter = String(_filter||'').trimStart().toLowerCase().replace(/^#/,'')
 
-        return filter ? tags.filter(({ query, _id }) => 
-            query.toLowerCase().startsWith(filter) ||
-            _id.toLowerCase().startsWith(filter)
+        //filter and order by score
+        return filter ? _.orderBy(
+            tags.filter(({ query, _id }) => 
+                (query||_id).toLowerCase().includes(filter)
+            ),
+            ({ query, _id }) => (
+                (query||_id).toLowerCase().indexOf(filter)+_id
+            ),
+            'asc'
         ) : tags
 	}
 )

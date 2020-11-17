@@ -72,7 +72,7 @@ class TagsMenu extends React.PureComponent {
         const {
             tags,
             inputRef,
-            downshift: { isOpen, getMenuProps, highlightedIndex }
+            downshift: { isOpen, getMenuProps, highlightedIndex, inputValue }
         } = this.props
         const virtualized = tags.length > 50
 
@@ -94,7 +94,7 @@ class TagsMenu extends React.PureComponent {
                         itemHeight={itemHeight}
                         overscan={1000}
                         
-                        dataKey={highlightedIndex}/>
+                        dataKey={highlightedIndex+'-'+inputValue}/>
                 }</ItemHeightCallback>
             </Popover>
         )
