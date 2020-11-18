@@ -8,7 +8,7 @@ export const makeTagsSearch = ()=>createSelector(
         getTags,
         (state, spaceId, filter)=>filter,
     ],
-    (tags, _filter, _search)=>{
+    (tags, _filter)=>{
         const filter = String(_filter||'').trimStart().toLowerCase().replace(/^#/,'')
 
         //filter and order by score
@@ -17,7 +17,7 @@ export const makeTagsSearch = ()=>createSelector(
                 (query||_id).toLowerCase().includes(filter)
             ),
             ({ query, _id }) => (
-                (query||_id).toLowerCase().indexOf(filter)+_id
+                (query||_id).toLowerCase().indexOf(filter)+_id.toLowerCase()
             ),
             'asc'
         ) : tags

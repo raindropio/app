@@ -30,7 +30,7 @@ function filterByQuery(tags=[], query='') {
 			),
 			'_id'
 		),
-		({ _id }) => _id.toLowerCase().indexOf(query)+_id,
+		({ _id }) => _id.toLowerCase().indexOf(query)+_id.toLowerCase(),
 		'asc'
 	)
 }
