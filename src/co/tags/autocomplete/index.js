@@ -38,7 +38,7 @@ class TagsMenu extends React.PureComponent {
     }
 
     computeItemKey = index=>
-        this.props.tags[index]._id
+        this.props.tags[index] && this.props.tags[index]._id
 
     renderItem = index=>{
         const {
@@ -47,6 +47,9 @@ class TagsMenu extends React.PureComponent {
         } = this.props
 
         const item = tags[index]
+
+        if (!item)
+            return null
 
         if (item.type == 'section')
             return (

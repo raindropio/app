@@ -222,10 +222,6 @@ function* addBlank({ siblingId, asChild, ignore=false }) {
 
 	const state = yield select()
 
-	//prevent creating nested collection if non pro
-	if (asChild && !state.user.current.pro)
-		asChild = false
-
 	//new item
 	const item = {
 		_id: -101,
@@ -251,15 +247,18 @@ function* addBlank({ siblingId, asChild, ignore=false }) {
 		after = parseInt(siblingId)
 
 		//should be in specific parent
-		const collection = state.collections.getIn(['items', after])
-		if (collection){
-			if (asChild){
-				item.parentId = collection._id
-				item.sort = -1
-			}
-			else if (collection.parentId){
-				item.parentId = collection.parentId
-				item.sort = collection.sort + 0.5
+		//prevent creating nested collection if non pro
+		if (state.user.current.pro){
+			const collection = state.collections.getIn(['items', after])
+			if (collection){
+				if (asChild){
+					item.parentId = collection._id
+					item.sort = -1
+				}
+				else if (collection.parentId){
+					item.parentId = collection.parentId
+					item.sort = collection.sort + 0.5
+				}
 			}
 		}
 

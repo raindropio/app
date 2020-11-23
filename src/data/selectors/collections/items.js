@@ -62,7 +62,8 @@ export const makeTree = ()=> createSelector(
 		//Options
 		const {
 			hideIds=[],
-			showGroups
+			showGroups,
+			showCreateNew=true
 		} = options
 		const search = options.search ? (options.search||'').trim().toLowerCase() : ''
 
@@ -101,10 +102,11 @@ export const makeTree = ()=> createSelector(
 				_id>0 && title.toLowerCase().includes(search)
 			)
 
-			filtered.unshift(normalizeCollection({
-				_id: -100,
-				title: options.search
-			}))
+			if (showCreateNew)
+				filtered.unshift(normalizeCollection({
+					_id: -100,
+					title: options.search
+				}))
 
 			sections = [{
 				_id: 'g-999',

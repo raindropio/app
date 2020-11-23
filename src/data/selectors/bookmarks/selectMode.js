@@ -19,7 +19,8 @@ export const makeSelectMode = ()=>createSelector(
 	(selectMode)=>selectMode
 )
 
-export const selectModeEnabled = ({bookmarks}, _id) => bookmarks.selectMode.spaceId == _id && bookmarks.selectMode.enabled
+export const selectModeEnabled = ({bookmarks}, _id) => 
+	!!(bookmarks.selectMode.spaceId == _id && bookmarks.selectMode.enabled)
 
 export const makeSelectModeEnabled = ()=>selectModeEnabled
 
