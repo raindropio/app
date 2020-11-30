@@ -13,6 +13,10 @@
     position: sticky
     top: 0
 
+    > * {
+        -webkit-app-region: no-drag;
+    }
+
     > *:not(:last-child):not(.space) {
         margin-right: var(--padding-small)
     }

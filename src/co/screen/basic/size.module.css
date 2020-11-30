@@ -22,7 +22,7 @@
     --header-height: 1.2rem; /*48px*/
 
     /* target specific */
-    --target-electron-mac-header-inset: 23px;
+    --target-electron-mac-header-inset: 28px;
 }
 
 [data-app-size='large'],
