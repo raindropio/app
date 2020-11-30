@@ -85,6 +85,7 @@ export const normalizeBookmark = (item={}, options)=>{
 		tags: 			(item.tags||[]).join(', '),
 		reparse:		item.reparse || (item.pleaseParse ? true : false),
 		cache:			item.cache ? item.cache.status : '',
+		fileType:		item.fileType || (item.file ? item.file.type : null),
 	}
 
 	if (!options.flat)

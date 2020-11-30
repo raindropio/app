@@ -5,7 +5,7 @@ import isURL from 'validator/es/lib/isURL'
 
 import { Redirect, withRouter } from 'react-router-dom'
 
-function Auth({ status: { authorized }, location: { search } }) {
+function Auth({ authorized, location: { search } }) {
     //save redirect link when is specified
     if (search) {
         const { redirect } = Object.fromEntries(new URLSearchParams(search))||{}
@@ -20,8 +20,11 @@ function Auth({ status: { authorized }, location: { search } }) {
     //redirect when authorized
     if (authorized == 'yes'){
         //use redirect link saved previously
-        if (sessionStorage && sessionStorage.getItem('redirect'))
-            return location.href = sessionStorage.getItem('redirect')
+        const redirect = sessionStorage && sessionStorage.getItem('redirect')
+        if (redirect){
+            sessionStorage.removeItem('redirect')
+            return location.href = redirect
+        }
             
         return <Redirect to='/' />
     }
@@ -32,7 +35,7 @@ function Auth({ status: { authorized }, location: { search } }) {
 export default withRouter(
     connect(
         (state)=>({
-            status: userStatus(state)
+            authorized: userStatus(state).authorized
         })
     )(Auth)
 )

@@ -39,9 +39,12 @@ export default function(state, action) {switch (action.type) {
 			return state
 		}
 
+		let item = state.getIn(['items', action._id]) || undefined
+		let status = item ? 'loaded' : 'loading'
+
 		return state
-			.setIn(['drafts', action._id, 'status'], 'loading')
-			.setIn(['drafts', action._id, 'item'], undefined)
+			.setIn(['drafts', action._id, 'status'], status)
+			.setIn(['drafts', action._id, 'item'], item)
 			.setIn(['drafts', action._id, 'changedFields'], [])
 	}
 
@@ -49,7 +52,7 @@ export default function(state, action) {switch (action.type) {
 		const item = normalizeCollection(action.item)
 
 		return state
-			.setIn(['drafts', action._id, 'status'], (item.collectionId!=-99 ? 'loaded' : 'removed'))
+			.setIn(['drafts', action._id, 'status'], 'loaded')
 			.setIn(['drafts', action._id, 'item'], item)
 			.setIn(['drafts', action._id, 'changedFields'], [])
 	}

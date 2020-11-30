@@ -9,7 +9,7 @@ import {
 	BOOKMARK_UPLOAD_REQ,
 	BOOKMARK_REORDER,
 
-	BOOKMARK_RECOVER, BOOKMARK_IMPORTANT, BOOKMARK_SCREENSHOT, BOOKMARK_REPARSE, BOOKMARK_MOVE, BOOKMARK_PRELOAD
+	BOOKMARK_RECOVER, BOOKMARK_IMPORTANT, BOOKMARK_SCREENSHOT, BOOKMARK_REPARSE, BOOKMARK_MOVE
 } from '../../constants/bookmarks'
 
 import {
@@ -26,7 +26,6 @@ export default function* () {
 	yield takeEvery(BOOKMARK_SCREENSHOT, screenshot)
 	yield takeEvery(BOOKMARK_REPARSE, reparse)
 	yield takeEvery(BOOKMARK_MOVE, move)
-	yield takeEvery(BOOKMARK_PRELOAD, preload)
 	yield takeEvery(BOOKMARK_REORDER, reorder)
 
 	//single
@@ -313,12 +312,6 @@ function* move({_id, collectionId, ignore=false, onSuccess, onFail}) {
 			onFail
 		})
 	}
-}
-
-function* preload({link}) {
-	try{
-		yield call(Api.get, 'parse?url='+encodeURIComponent(link))
-	} catch(error){}
 }
 
 function* reorder({ _id, ignore, order, collectionId }) {
