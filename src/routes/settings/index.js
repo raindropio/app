@@ -20,15 +20,14 @@ import Backups from './backups'
 import Integrations from './integrations'
 
 export default (props)=>{
-    const search = Object.fromEntries(new URLSearchParams(props.location.search||''))||{}
-    const { frame=false } = search
+    const hideFrame = navigator.userAgent.includes('RaindropMobile')
 
     return (
         <Protected redirect>
             <Screen className={s.settings}>
                 <Helmet><title>{t.s('settings')}</title></Helmet>
     
-                {!frame && (
+                {!hideFrame && (
                     <>
                         <Header {...props} />
                         <Tabs {...props} />
@@ -52,7 +51,7 @@ export default (props)=>{
                     </div>
                 </div>
     
-                {!frame && <Footer />}
+                {!hideFrame && <Footer />}
             </Screen>
         </Protected>
     )
