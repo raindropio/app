@@ -11,20 +11,21 @@ const getRootReducer = (additional={})=>
 	persistReducer(persistConfig, combineReducers({...require('./reducers').default, ...additional}))
 
 const composeEnhancers = process.env.NODE_ENV!='production' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose : compose
-const sagaMiddleware = createSagaMiddleware({
-	onError: e => {
-		if (process.env.NODE_ENV!='production')
-			console.error(e)
-		
-		if (typeof e != 'object' ||
-			e instanceof ApiError == false)
-			throw e
-	}
-})
 
 //Configure store
-var store, persistor;
+var store, persistor, sagaMiddleware;
 const withLocalReducer = (additional)=>{
+	sagaMiddleware = createSagaMiddleware({
+		onError: e => {
+			if (process.env.NODE_ENV!='production')
+				console.error(e)
+			
+			if (typeof e != 'object' ||
+				e instanceof ApiError == false)
+				throw e
+		}
+	})
+
 	store = createStore(
 		getRootReducer(additional),
 		composeEnhancers(
@@ -42,15 +43,3 @@ const withLocalReducer = (additional)=>{
 }
 
 export {store, persistor, withLocalReducer}
-
-//HMR
-/*if (module.hot && process.env.NODE_ENV!='production') {
-	module.hot.accept('./reducers', () => {
-		store.replaceReducer(getRootReducer())
-	})
-
-	module.hot.accept('./sagas', () => {
-		sagaMiddleware.cancelSaga(store)
-		getRootSaga().startSaga(sagaMiddleware) 
-    })
-}*/

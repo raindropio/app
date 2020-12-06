@@ -14,7 +14,15 @@ let storage
 if (RAINDROP_ENVIRONMENT == 'browser')
 	storage = require('localforage')
 else
-	storage = require('@react-native-community/async-storage').default
+	storage = require('react-native').Platform.select({
+		//user default storage on ios, so storage is shared between app and extension(s)
+		ios: {
+			getItem: require('rn-user-defaults').default.get,
+			setItem: require('rn-user-defaults').default.set,
+			removeItem: require('rn-user-defaults').default.clear,
+		},
+		android: require('@react-native-community/async-storage').default
+	})
 
 const version = 20
 

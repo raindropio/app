@@ -21,13 +21,13 @@
   "fileUploadUnable": "File cannot be uploaded!",
   "fileUploadError": "Upload error.  try again!",
   "profile": "Profile",
-  "signIn": "Log in",
+  "signIn": "Sign in",
   "myCollections": "My Collections",
   "save": "Save",
   "remove": "Remove",
   "about": "About",
   "blog": "Blog",
-  "signInSocial": "Log in with",
+  "signInSocial": "Sign in with",
   "signUp": "Sign up",
   "register": "Sign up",
   "recoverPassword": "Reset password",
@@ -333,5 +333,7 @@
   "omniboxD": "Search bookmarks right from address bar",
   "highlightSavedPagesD": "Show [✔] indicator when you visit already saved page",
   "changeLaterInSettings": "You can change this options later in settings",
-  "fullTextSearch": "Full-text search"
+  "fullTextSearch": "Full-text search",
+  "selected": "selected",
+  "actions": "Actions"
 }

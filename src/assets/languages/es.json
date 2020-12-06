@@ -326,5 +326,14 @@
   "logOutOfAllDevices": "Cerrar sesión de todos los dispositivos",
   "tabs": "Pestañas",
   "permissions": "Permisos",
-  "raindropTagline": "Gestor de marcadores todo en uno"
+  "raindropTagline": "Gestor de marcadores todo en uno",
+  "buttons": "Botones",
+  "highlightSavedPages": "Resaltar las páginas guardadas",
+  "appearance": "Apariencia",
+  "omniboxD": "Buscar marcadores directamente desde la barra de direcciones",
+  "highlightSavedPagesD": "Muestra el indicador [✔] cuando visitas una página ya guardada",
+  "changeLaterInSettings": "Puede cambiar estas opciones más adelante en la configuración",
+  "fullTextSearch": "Búsqueda de texto completo",
+  "selected": "seleccionados",
+  "actions": "Comportamiento"
 }

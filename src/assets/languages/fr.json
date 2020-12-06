@@ -333,5 +333,7 @@
   "omniboxD": "Rechercher les favoris directement depuis la barre d'adresse",
   "highlightSavedPagesD": "Montrer [✔] un indicateur quand vous avez déjà visité une page enregistrée",
   "changeLaterInSettings": "Vous pouvez changer ces options plus tard dans les paramètres",
-  "fullTextSearch": "Recherche plein texte"
+  "fullTextSearch": "Recherche plein texte",
+  "selected": "sélectionné",
+  "actions": "Actions"
 }
