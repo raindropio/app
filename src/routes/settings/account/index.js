@@ -26,10 +26,11 @@ export default (props)=>(
 
 		<Separator />
 
-		<Buttons variant='between'>
+		<div />
+		<div>
 			<LogoutAll {...props} />
 			<Reset {...props} />
 			<Remove {...props} />
-		</Buttons>
+		</div>
 	</Layout>
 )
