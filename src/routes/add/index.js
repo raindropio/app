@@ -49,14 +49,18 @@ export default connect(
 		return (state, { location: { search } })=>{
             const item = Object.fromEntries(new URLSearchParams(search))||{}
             const { config: { add_default_collection, last_collection } } = state
+
+            //tags
+            if (item.tags)
+                item.tags = item.tags.split(',')
     
             return {
                 status: getDraftStatus(state, item.link),
                 unsaved: getDraftUnsaved(state, item.link),
 
                 item: {
+                    collectionId: add_default_collection || last_collection,
                     ...item,
-                    collectionId: add_default_collection || last_collection
                 }
             }
         }
