@@ -1,5 +1,6 @@
 import s from './listing.module.styl'
 import React from 'react'
+import { SPACE_PER_PAGE } from '~data/constants/bookmarks'
 import List from '~co/virtual/list'
 import Grid from '~co/virtual/grid'
 import Masonry from '~co/virtual/masonry'
@@ -14,7 +15,12 @@ import AccentColor from '~co/collections/item/accentColor'
 
 export default class BookmarksItemsListing extends React.Component {
     state = {
-        itemsCheckpoint: 0
+        itemsCheckpoint: 0,
+        topItemsVisible: true
+    }
+
+    componentDidMount() {
+        window.addEventListener('focus', this.onWindowFocus)
     }
 
     componentDidUpdate(prev) {
@@ -22,8 +28,23 @@ export default class BookmarksItemsListing extends React.Component {
             this.setState({ itemsCheckpoint: this.state.itemsCheckpoint+1 })
     }
 
+    componentWillUnmount() {
+        window.removeEventListener('focus', this.onWindowFocus)
+    }
+
+    onWindowFocus = ()=>{
+        if (this.state.topItemsVisible)
+            this.props.actions.refresh(this.props.spaceId)
+    }
+
     computeItemKey = (index)=>
         this.props.items[index]
+
+    rangeChanged = ({ endIndex })=>{
+        const topItemsVisible = endIndex < SPACE_PER_PAGE
+        if (topItemsVisible != this.state.topItemsVisible)
+            this.setState({ topItemsVisible })
+    }
 
     endReached = ()=>
         this.props.actions.nextPage(this.props.spaceId)
@@ -142,6 +163,7 @@ export default class BookmarksItemsListing extends React.Component {
                             scrollToIndex={activeId && items.length ? items.indexOf(activeId) : -1}
                             
                             endReached={this.endReached}
+                            rangeChanged={this.rangeChanged}
 
                             //sortable
                             sortGroup={_id}

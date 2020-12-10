@@ -32,6 +32,8 @@ class CollectionsItems extends React.Component {
         })
         
         this.reload()
+
+        window.addEventListener('focus', this.reload)
     }
 
     componentDidUpdate({ activeId, status }) {
@@ -48,6 +50,8 @@ class CollectionsItems extends React.Component {
 
     componentWillUnmount() {
         this.props.actions.unselectAll()
+
+        window.removeEventListener('focus', this.reload)
     }
 
     reload = ()=>{

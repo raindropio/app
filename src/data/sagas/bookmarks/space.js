@@ -18,11 +18,13 @@ import { USER_UPDATE_REQ } from '../../constants/user'
 //Requests
 export default function* () {
 	//space
-	yield takeEvery(SPACE_LOAD_PRE, preLoadSpace)
+	yield takeEvery([
+		SPACE_LOAD_PRE,
+		SPACE_REFRESH_REQ
+	], preLoadSpace)
 
 	yield takeEvery([
 		SPACE_LOAD_REQ,
-		SPACE_REFRESH_REQ,
 		SPACE_NEXTPAGE_REQ,
 		SPACE_CHANGE_SORT
 	], loadSpace)

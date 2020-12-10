@@ -44,6 +44,14 @@ class VirtualGrid extends React.Component {
     onForceRerender = ()=>
         this.setState({innerDataKey: new Date().getTime()})
 
+    rangeChanged = ({ startIndex, endIndex })=>{
+        if (this.props.rangeChanged)
+            this.props.rangeChanged({
+                startIndex: startIndex*this.state.perRow, 
+                endIndex: endIndex*this.state.perRow, 
+            })
+    }
+
     renderRow = row => 
         <VirtualGridRow 
             key={row} 
@@ -72,6 +80,7 @@ class VirtualGrid extends React.Component {
 
                 scrollToIndex={scrollToIndex}
 
+                rangeChanged={this.rangeChanged}
                 onSort={this.onSort}
             />
         )

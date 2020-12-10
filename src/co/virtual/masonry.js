@@ -16,6 +16,7 @@ class VirtualMasonry extends React.Component {
         scrollToIndex: undefined,
         computeItemKey: undefined,
         disableVirtualization: false,
+        rangeChanged: false,
 
         scrollTop: 0,
         isScrolling: false
@@ -47,6 +48,9 @@ class VirtualMasonry extends React.Component {
     onRender = (startIndex, endIndex)=>{
         if (endIndex >= this.props.totalCount - (endIndex - startIndex)*2)
             this.props.endReached()
+
+        if (this.props.rangeChanged)
+            this.props.rangeChanged({ startIndex, endIndex })
     }
 
     renderItem = ({ index }, provider={}, snapshot={})=>

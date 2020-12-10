@@ -31,6 +31,10 @@ export default function(state = initialState, action){switch (action.type) {
 		if (!current)
 			return state
 
+		//do not restore state for unlogged user
+		if (!status || status.authorized == 'no')
+			return state
+
 		if (subscription && !subscription.loading)
 			state = state.set('subscription', subscription)
 			
