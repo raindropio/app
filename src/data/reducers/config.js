@@ -72,7 +72,9 @@ const initialState = Immutable({
 	add_default_collection: 0, //last_used
 	add_auto_save:			false,
 	
-	browser_extension_mode: 'mini_app'
+	browser_extension_mode: 'mini_app',
+
+	acknowledge:			[]
 })
 
 //this keys can be kept untouched on reset

@@ -19,7 +19,7 @@ export default Component => {
         }
 
         shouldComponentUpdate(next) {
-            if (next.pause != next.pauseId)
+            if (next.pause !== next.pauseId)
                 return false
             return true
         }

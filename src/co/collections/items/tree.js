@@ -157,6 +157,8 @@ export default class CollectionsTree extends React.Component {
         const origin = this.props.data[from]
         const target = this.props.data[to]
 
+        if (!origin || !target) return
+
         switch (origin.type) {
             case 'collection':{
                 if (action=='move')

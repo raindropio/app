@@ -31,9 +31,9 @@ class CollectionsItems extends React.Component {
 			groupTitle: t.s('myCollections')
         })
         
-        this.reload()
+        this.props.actions.load()
 
-        window.addEventListener('focus', this.reload)
+        window.addEventListener('focus', this.refresh)
     }
 
     componentDidUpdate({ activeId, status }) {
@@ -51,12 +51,11 @@ class CollectionsItems extends React.Component {
     componentWillUnmount() {
         this.props.actions.unselectAll()
 
-        window.removeEventListener('focus', this.reload)
+        window.removeEventListener('focus', this.refresh)
     }
 
-    reload = ()=>{
+    refresh = ()=>
         this.props.actions.refresh()
-    }
 
     createNewCollection = (e)=>{
         let asChild = false

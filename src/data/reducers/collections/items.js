@@ -27,7 +27,7 @@ export default function(state, action) {switch (action.type) {
 			if (groups.length>0)
 				state = state.set('groups', groups)
 
-		return state
+		return state.set('fromCache', true)
 	}
 
 	//Load
@@ -47,6 +47,7 @@ export default function(state, action) {switch (action.type) {
 
 		state = updateCollections(state, normalizeCollections(action.items, action.groups))
 		state = state.set('status', 'loaded')
+		state = state.set('fromCache', false)
 
 		return actualizeStatus(state)
 	}
