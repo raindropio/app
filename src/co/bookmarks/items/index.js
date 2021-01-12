@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as bookmarksActions from '~data/actions/bookmarks'
-import { bookmarksIds, makeSelectModeEnabled, makeSort, makeViewHide, getGridSize } from '~data/selectors/bookmarks'
+import { bookmarksIds, makeSelectModeEnabled, makeViewHide, getGridSize } from '~data/selectors/bookmarks'
 import { makeCollection } from '~data/selectors/collections'
 
 import Listing from './listing'
@@ -37,7 +37,7 @@ class BookmarksItems extends React.Component {
 
         actions.load(spaceId, {
             search,
-            sort: search ? 'score' : sort,
+            sort,
             ignore
         })
     }
@@ -59,7 +59,6 @@ export default connect(
 	() => {
         const getCollection = makeCollection()
         const getSelectModeEnabled = makeSelectModeEnabled()
-        const getSort = makeSort()
         const getViewHide = makeViewHide()
     
         return (state, { spaceId })=>{
@@ -76,7 +75,7 @@ export default connect(
                 buttons: state.config.raindrops_buttons,
 
                 access,
-                sort: getSort(state, spaceId),
+                sort: state.config.raindrops_sort,
 
                 selectModeEnabled: getSelectModeEnabled(state, spaceId)
             }
