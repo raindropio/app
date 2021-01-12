@@ -128,6 +128,9 @@ export const getChildrens = (items, item, level=0, overrideExpanded=false)=>{
 export const isGroupId = (_id)=>/^g\d+$/.test((_id||'').toString())
 
 export const shouldLoadItems = (state)=>{
+	if (state.fromCache)
+		return true
+
 	switch(state.status){
 		case 'idle':
 		case 'error':

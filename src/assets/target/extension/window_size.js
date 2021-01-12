@@ -6,10 +6,17 @@ if (location.search.includes('browser_action')){
     var _lastSavedWidth
 
     function updateSize({ width='420px', height='auto' }) {
+        //browser type
+        var browserType = 'unknown'
+        if (/chrom(e|ium)/.test(navigator.userAgent.toLowerCase()))
+            browserType = 'chrome'
+        else if (/safari/i.test(navigator.userAgent.toLowerCase()))
+            browserType = 'safari'
+
         if (location.hash.startsWith('#/my') ||
             location.hash.startsWith('#/settings')){
             width = '750px'
-            height = '600px' //safari have bug with height >440px
+            height = `${browserType=='safari' ? 530 : 600}px` //safari have bug with height >530px
         }
 
         document.body.style.width = width
@@ -17,7 +24,7 @@ if (location.search.includes('browser_action')){
 
         //when browser have global zoom setting, actual max width of popover can be alot smaller, 
         //it's bug of chrome browsers. this is the fix:
-        if (/chrom(e|ium)/.test(navigator.userAgent.toLowerCase()))
+        if (browserType=='chrome')
             if (document.documentElement.offsetWidth < parseInt(width) ||
                 document.documentElement.offsetHeight < parseInt(height)){
                 width = document.documentElement.offsetWidth+'px'

@@ -2,7 +2,6 @@ import { applyMiddleware, combineReducers, compose, createStore } from 'redux'
 import createSagaMiddleware from 'redux-saga'
 import { persistStore, persistReducer } from 'redux-persist'
 import persistConfig from './modules/persistConfig'
-import ApiError from './modules/error'
 
 //Roots
 const getRootSaga = ()=>
@@ -15,16 +14,7 @@ const composeEnhancers = process.env.NODE_ENV!='production' && window.__REDUX_DE
 //Configure store
 var store, persistor, sagaMiddleware;
 const withLocalReducer = (additional)=>{
-	sagaMiddleware = createSagaMiddleware({
-		onError: e => {
-			if (process.env.NODE_ENV!='production')
-				console.error(e)
-			
-			if (typeof e != 'object' ||
-				e instanceof ApiError == false)
-				throw e
-		}
-	})
+	sagaMiddleware = createSagaMiddleware()
 
 	store = createStore(
 		getRootReducer(additional),

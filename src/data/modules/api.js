@@ -63,7 +63,7 @@ function* post(url, data={}, options={}) {
 		file: {uri, name, type:'image/jpeg'}
 	}
 */
-function* upload(url, _body) {
+function* upload(url, _body, options={}) {
 	const body = new FormData()
 
 	for (const key in _body ) {
@@ -72,6 +72,7 @@ function* upload(url, _body) {
 	}
 
 	const res = yield req(url, {
+		...options,
 		method: 'PUT',
 		body
 	})

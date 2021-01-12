@@ -32,7 +32,7 @@ class BookmarkItem extends React.Component {
 
             const { selectModeEnabled, item } = this.props
 
-            if (e.metaKey || e.ctrlKey){
+            if (e.metaKey || e.ctrlKey || e.nativeEvent.which==3){
                 e.preventDefault()
                 return window.open(item.link)
             }

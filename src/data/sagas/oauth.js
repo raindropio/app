@@ -123,7 +123,7 @@ function* clientRemove({ _id }) {
 
 function* clientIconUpload({ _id, icon, onSuccess, onFail }) {
     try {
-		const { item } = yield call(Api.upload, `oauth/client/${_id}/icon`, { icon })
+		const { item } = yield call(Api.upload, `oauth/client/${_id}/icon`, { icon }, { timeout: 0 })
 
 		yield put({
 			type: c.OAUTH_CLIENT_ICON_UPLOAD_SUCCESS,

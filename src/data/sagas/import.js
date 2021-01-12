@@ -14,7 +14,7 @@ function* fileUpload({ file, ignore=false, onSuccess, onFail }) {
     if (ignore) return
 
 	try{
-		const { items=[], count } = yield call(Api.upload, 'import/file', { import: file })
+		const { items=[], count } = yield call(Api.upload, 'import/file', { import: file }, { timeout: 0 })
 
 		yield put({
 			type: c.IMPORT_FILE_UPLOAD_SUCCESS,

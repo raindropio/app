@@ -125,7 +125,7 @@ function* draftCoverUpload({ _id, cover, ignore=false, onSuccess, onFail }) {
 		const draft = state.bookmarks.getIn(['drafts', _id])
 		if (!draft || !draft.item._id) throw new Error('draft is new, so it should be saved first to upload cover')
 
-		const { item={} } = yield call(Api.upload, `raindrop/${draft.item._id}/cover`, { cover })
+		const { item={} } = yield call(Api.upload, `raindrop/${draft.item._id}/cover`, { cover }, { timeout: 0 })
 
 		yield put({
 			type: BOOKMARK_UPDATE_REQ,

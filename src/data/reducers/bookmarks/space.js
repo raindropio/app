@@ -49,6 +49,14 @@ export default function(state, action) {switch (action.type) {
 			return state
 		}
 
+		//set loading status right away, because space is never loaded yet
+		if (!space){
+			let space = blankSpace
+				.setIn(['status', 'main'], 'loading')
+
+			return state.setIn(['spaces', spaceId], space)
+		}
+
 		//reset bookmarks list when query changed
 		if (space && !queryIsEqual(space.query, query)){
 			space = space
@@ -56,6 +64,7 @@ export default function(state, action) {switch (action.type) {
 				.set('highlight', {})
 				.set('lastAction', '')
 				.set('version', '')
+
 			return state.setIn(['spaces', spaceId], space)
 		}
 

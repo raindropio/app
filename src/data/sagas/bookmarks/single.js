@@ -109,7 +109,7 @@ function* uploadBookmark({obj={}, ignore=false, onSuccess, onFail}) {
 	try{
 		//Todo: Check collectionId before creating bookmark!
 
-		const { item={} } = yield call(Api.upload, 'raindrop/file', obj)
+		const { item={} } = yield call(Api.upload, 'raindrop/file', obj, { timeout: 0 })
 
 		yield put({
 			type: BOOKMARK_CREATE_SUCCESS,

@@ -10,10 +10,10 @@ export function openAdd(props) {
     let path = 'index.html#'
 
     // /add route loaded from actual site because of bug of safari extension (local files doesn't have access)
-    // try{
-    //     if (browser.runtime.getURL('').includes('safari-web-extension'))
-    //         path = config.links.app.index
-    // }catch(e) {}
+    try{
+        if (browser.runtime.getURL('').includes('safari-web-extension'))
+            path = config.links.app.index
+    }catch(e) {}
 
     browser.windows.create({
         type: 'popup',
