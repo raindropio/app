@@ -73,6 +73,7 @@ export default function(state, action) {switch (action.type) {
 		switch(action.method) {
 			case 'title':
 				items = _.sortBy(state.items, ({title})=>title.toLowerCase())
+				state = state.set('groups', _.sortBy(state.groups, ({title})=>title.toLowerCase()))
 			break;
 
 			case 'count':

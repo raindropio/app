@@ -85,22 +85,23 @@ export default function(state, action) {
 
 		//Reorder group
 		case GROUP_REORDER:{
-			const fromIndex = _.findIndex(state.groups, ({_id})=>_id==action._id)
-			const toIndex = _.findIndex(state.groups, ({_id})=>_id==(action.before||action.after))
+			//indexes
+			var fromIndex = _.findIndex(state.groups, ['_id', action._id])
+			var toIndex = _.findIndex(state.groups, ['_id', action.before||action.after])
+
+			if (action.after && toIndex<state.groups.length)
+				toIndex++
 
 			//Swap
-			state = state
-				.set('groups', swapArrayElements(
-					state.groups, 
-					action.before ? fromIndex : toIndex, 
-					action.before ? toIndex : fromIndex
-				))
+			var groups = state.groups
 
-			//Reapply sort index
-			state = state
-				.set('groups', _.map(state.groups, (group,index)=>group.set('sort',index)))
+			for(const i in groups)
+				if (i>=toIndex)
+					groups = groups.setIn([i, 'sort'], groups[i].sort+1)
 
-			return state
+			groups = groups.setIn([fromIndex, 'sort'], toIndex)
+			
+			return state.set('groups', _.sortBy(groups, 'sort'))
 		}
 
 		//Remove group
