@@ -75,8 +75,11 @@ export default class DropModule extends React.Component {
                         }
                     }
                 //link
-                else if (record.type == 'text/uri-list')
-                    links.push(e.dataTransfer.getData(record.type))
+                else if (record.type == 'text/uri-list'){
+                    const link = e.dataTransfer.getData(record.type)
+                    if (new URL(link).host != location.host)
+                        links.push(link)
+                }
             }
 
             if (files.length)

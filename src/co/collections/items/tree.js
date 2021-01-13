@@ -9,21 +9,17 @@ import { ItemHeightCallback } from '~co/common/list'
 import ProCheck from '~co/user/pro/check'
 
 export default class CollectionsTree extends React.Component {
-    _scrolled = false
-
     state = {
         dataCheckpoint: 0,
         scrollToIndex: -1
     }
 
     componentDidUpdate(prev) {
-        //scroll to active on first paint WHY ONLY FIRST PAINT???
-        if (this.props.data.length && !this._scrolled){
-            this._scrolled = true
-
-            if (this.props.activeId && typeof this.props.activeId != 'object')
-                this.scrollToId(this.props.activeId)
-        }
+        //scroll to active
+        if (prev.activeId != this.props.activeId && 
+            typeof this.props.activeId != 'object' &&
+            this.props.data.length)
+            this.scrollToId(this.props.activeId)
 
         if (prev.data != this.props.data ||
             prev.customRows != this.props.customRows)
@@ -35,9 +31,11 @@ export default class CollectionsTree extends React.Component {
     }
 
     scrollToId = (id)=>
-        this.setState({
-            scrollToIndex: this.props.data
-                .findIndex(({item})=>item && item._id == id)
+        setTimeout(()=>{
+            this.setState({
+                scrollToIndex: this.props.data
+                    .findIndex(({item})=>item && item._id == id)
+            })  
         })
     
     //rendering rows
