@@ -1,8 +1,6 @@
 import _ from 'lodash-es'
 import Immutable from 'seamless-immutable'
 
-const emptyObject = {}
-
 export const findGroupByCollection = (groups, collectionId)=>{
 	return _.find(groups, ({collections=[]})=>(collections.indexOf(parseInt(collectionId))!=-1))
 }
@@ -151,7 +149,7 @@ export const normalizeCollection = (item={})=>{
 		view: 		item.view||'list',
 		sort: 		parseFloat(item.sort||0),
 		author: 	item.author||parseInt(item._id||0)<=0||false,
-		access:		item.access||emptyObject,
+		access:		item.access||{},
 		created:	item.created,
 
 		cover: 		item.cover,

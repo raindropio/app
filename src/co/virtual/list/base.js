@@ -1,7 +1,6 @@
 import s from './base.module.styl'
 import React from 'react'
 import { Virtuoso } from 'react-virtuoso'
-import superScrollToIndex from '../helpers/superScrollToIndex'
 
 const emptyObject = {}
 
@@ -32,17 +31,12 @@ export default class VirtualListBase extends React.PureComponent {
     }
 
     _scrollToIndex() {
-        const { scrollToIndex, totalCount } = this.props
+        const { scrollToIndex } = this.props
 
-        if (scrollToIndex >= 0 &&
-            scrollToIndex <= totalCount &&
-            this._list.current)
-            superScrollToIndex(
-                this._list.current.scrollToIndex,
-                this._visible.startIndex,
-                this._visible.endIndex,
-                scrollToIndex
-            )
+        if (this._list.current)
+            if (scrollToIndex > this._visible.endIndex ||
+                scrollToIndex < this._visible.startIndex)
+                this._list.current.scrollToIndex({ index: scrollToIndex, align: 'center' })
     }
 
     rangeChanged = (range)=>{
