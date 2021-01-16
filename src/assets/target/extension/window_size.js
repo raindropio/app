@@ -16,7 +16,7 @@ if (location.search.includes('browser_action')){
         if (location.hash.startsWith('#/my') ||
             location.hash.startsWith('#/settings')){
             width = '750px'
-            height = `${browserType=='safari' ? 530 : 600}px` //safari have bug with height >530px
+            height = '600px'
         }
 
         document.body.style.width = width

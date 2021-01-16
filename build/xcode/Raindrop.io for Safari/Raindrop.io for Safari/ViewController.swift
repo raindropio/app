@@ -10,7 +10,7 @@ import SafariServices.SFSafariApplication
 import SafariServices.SFSafariExtensionManager
 
 let appName = "Raindrop.io for Safari"
-let extensionBundleIdentifier = "io.raindrop.mac-extension"
+let extensionBundleIdentifier = "io.raindrop.safari-extension"
 
 class ViewController: NSViewController {
 

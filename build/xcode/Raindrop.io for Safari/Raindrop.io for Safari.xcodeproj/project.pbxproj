@@ -411,6 +411,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = "Raindrop.io for Safari Extension/Raindrop_io_for_Safari_Extension.entitlements";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 7459JWM5TY;
 				INFOPLIST_FILE = "Raindrop.io for Safari Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -419,7 +420,8 @@
 					"@executable_path/../../../../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
-				PRODUCT_BUNDLE_IDENTIFIER = "io.raindrop.mac-extension";
+				MARKETING_VERSION = 5.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "io.raindrop.safari-extension";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
@@ -431,6 +433,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = "Raindrop.io for Safari Extension/Raindrop_io_for_Safari_Extension.entitlements";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 7459JWM5TY;
 				INFOPLIST_FILE = "Raindrop.io for Safari Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -439,7 +442,8 @@
 					"@executable_path/../../../../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
-				PRODUCT_BUNDLE_IDENTIFIER = "io.raindrop.mac-extension";
+				MARKETING_VERSION = 5.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "io.raindrop.safari-extension";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
@@ -455,6 +459,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Raindrop.io for Safari/Raindrop_io_for_Safari.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 7459JWM5TY;
 				INFOPLIST_FILE = "Raindrop.io for Safari/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -462,7 +467,8 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
-				PRODUCT_BUNDLE_IDENTIFIER = io.raindrop.mac;
+				MARKETING_VERSION = 5.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = io.raindrop.safari;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 			};
@@ -477,6 +483,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Raindrop.io for Safari/Raindrop_io_for_Safari.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 7459JWM5TY;
 				INFOPLIST_FILE = "Raindrop.io for Safari/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -484,7 +491,8 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
-				PRODUCT_BUNDLE_IDENTIFIER = io.raindrop.mac;
+				MARKETING_VERSION = 5.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = io.raindrop.safari;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 			};

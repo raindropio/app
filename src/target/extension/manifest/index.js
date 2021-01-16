@@ -46,7 +46,13 @@ module.exports = ({ vendor, production=false }, l) => {
 		},
 
 		browser_action: {
-			default_popup: 'index.html?browser_action',
+			default_popup: vendor=='safari' ? 
+				[
+					file(l, '../../../assets/target/extension/safari_browser_action.html'),
+					file(l, '../../../assets/target/extension/safari_browser_action.js'),
+					file(l, '../../../assets/target/extension/safari_browser_action.css')
+				][0] : 
+				'index.html?browser_action',
 			default_icon: {
 				//chrome based icon
 				...(vendor == 'chrome' || vendor == 'opera' ? {
