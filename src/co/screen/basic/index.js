@@ -26,7 +26,7 @@ class ScreenBasic extends React.Component {
     }
 
     render() {
-        const { className='', children, theme, appSize, setTheme, ...etc } = this.props
+        const { className='', children, theme, appSize, ...etc } = this.props
         
         return (
             <>
