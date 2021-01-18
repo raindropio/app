@@ -41,7 +41,7 @@ export default function CollectionSharingCollaboratorsView({ users={}, onUnshare
                 )
             })}
 
-            {etc.collection.access.level >= 3 && (<Layout>
+            {etc.collection.access && etc.collection.access.level >= 3 && (<Layout>
                 <Button onClick={onUnshare} variant='outline' data-block>
                     <Icon name='collapse_all' />
                     {t.s('unshareCollection')}

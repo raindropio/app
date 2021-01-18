@@ -28,7 +28,7 @@ export default class CollectionsItemContextmenu extends React.Component {
                         {t.s('open') + ' ' + t.s('allBookmarks').toLowerCase()}
                     </MenuItem> : null}
 
-                    { _id>0 && access.level>=3 && onCreateNewChildClick ? (
+                    { _id>0 && access && access.level>=3 && onCreateNewChildClick ? (
                         <>
                             <MenuSeparator />
                             
@@ -49,7 +49,7 @@ export default class CollectionsItemContextmenu extends React.Component {
                     ) : null}
 
                     {/* Have write access */}
-                    { _id>0 ? (access.level>=3 ? (
+                    { _id>0 ? (access && access.level>=3 ? (
                         <>
                             {onRenameClick ? (
                                 <MenuItem onClick={onRenameClick}>

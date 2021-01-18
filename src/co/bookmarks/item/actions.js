@@ -62,7 +62,7 @@ export default class BookmarkItemView extends React.Component {
                     <Icon name='duplicates' />
                 </Button>
 
-                {access.level >= 3 ? (<>
+                {access && access.level >= 3 ? (<>
                     {/* important */}
                     <Button 
                         data-button='important'

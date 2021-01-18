@@ -43,7 +43,7 @@ export default class CollectionSharingCollaboratorsUser extends React.PureCompon
                     {email}
                 </ItemInfo>
 
-                {role!='owner' && collection.access.level>=3 ? (
+                {role!='owner' && collection.access && collection.access.level>=3 ? (
                     <ItemActions>
                         <Select 
                             variant='link'

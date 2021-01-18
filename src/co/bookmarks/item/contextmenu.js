@@ -28,14 +28,14 @@ export default function BookmarksItemContextmenu({
                     {t.s('preview')}
                 </MenuItem>
 
-                {access.level >= 2 && cache ? (
+                {access && access.level >= 2 && cache ? (
                     <MenuItem to={getLink({ bookmark: _id, tab:'cache' })}>
                         <Icon name={cache == 'ready' ? 'cache_ready' : 'cache_failed'} />
                         {cache != 'ready' ? '⚠️ ' : ''}{t.s('permanentCopy')}
                     </MenuItem>
                 ) : null}
 
-                {access.level >= 3 ? (
+                {access && access.level >= 3 ? (
                     <>
                         <MenuSeparator />
 

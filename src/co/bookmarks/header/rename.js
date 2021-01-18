@@ -24,7 +24,7 @@ class BookmarksHeaderRename extends React.Component {
 
     render() {
         const { className, isSearching, collection: { _id, access } } = this.props
-        if (isSearching || _id <=0 || access.level < 3) return null
+        if (isSearching || _id <=0 || !access || access.level < 3) return null
 
         return (
             <Button 

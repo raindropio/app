@@ -35,6 +35,10 @@ class ViewController: NSViewController {
         }
     }
     
+    override func viewDidDisappear() {
+        exit(0)
+    }
+    
     @IBAction func openSafariExtensionPreferences(_ sender: AnyObject?) {
         SFSafariApplication.showPreferencesForExtension(withIdentifier: extensionBundleIdentifier) { error in
             guard error == nil else {

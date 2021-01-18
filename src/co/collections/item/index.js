@@ -78,6 +78,7 @@ export default class CollectionsItem extends React.PureComponent {
         onRenameClick: ()=>{
             if (!this.props.multiselect && 
                 this.props.item._id > 0 &&
+                this.props.item.access &&
                 this.props.item.access.level>=3)
                 this.setState({ rename: true })
         },

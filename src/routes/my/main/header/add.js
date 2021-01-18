@@ -16,7 +16,7 @@ export default class HeaderAdd extends React.Component {
     render() {
         const { _id, access } = this.props
 
-        if (_id == -99 || access.level < 3)
+        if (_id == -99 || !access || access.level < 3)
             return null
 
         return (

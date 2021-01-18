@@ -28,7 +28,7 @@ export default class CollectionSharingPublic extends React.Component {
                 <div>
                     <Checkbox 
                         checked={etc.public}
-                        disabled={access.level < 3}
+                        disabled={!access || access.level < 3}
                         onChange={onPublicClick}>
                         {t.s('access')} {t.s('accessViaLink').toLowerCase()} / RSS
                     </Checkbox>

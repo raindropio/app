@@ -51,7 +51,7 @@ export default class CollectionSharingInviteView extends React.PureComponent {
 
         const loading = status == 'loading'
 
-        if (access.level < 3)
+        if (!access || access.level < 3)
             return null
 
         if (!show)

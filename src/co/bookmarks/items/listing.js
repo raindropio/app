@@ -53,6 +53,7 @@ export default class BookmarksItemsListing extends React.Component {
     sortEnabled = ()=>
         this.props.sort=='sort' && 
         !this.props.selectModeEnabled &&
+        this.props.access &&
         this.props.access.level >= 3
 
     onSort = (from, to)=>

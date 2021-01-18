@@ -50,7 +50,7 @@ class BookmarksHeaderMore extends React.Component {
         const { menu, icon } = this.state
         const { collection: { _id, access }, isSearching } = this.props
 
-        if (isSearching || _id <=0 || access.level < 3) return null
+        if (isSearching || _id <=0 || !access || access.level < 3) return null
 
         return (
             <>

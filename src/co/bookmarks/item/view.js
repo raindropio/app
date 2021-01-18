@@ -62,7 +62,7 @@ export default function BookmarkItemView(props) {
                     {...props}
                     className={s.actions} />
 
-                {access.level >= 3 ? (
+                {access && access.level >= 3 ? (
                     <label
                         className={`${s.select} ${selected ? s.active : s.default}`}
                         title={t.s('select')}>
