@@ -14,7 +14,7 @@ process.env.SENTRY_RELEASE = String(new Date().getTime())
 module.exports = ({ production, filename='[name].[contenthash]' }) => ({
 	mode:		production ? 'production' : 'development',
 	context:	path.resolve(__dirname, '../src'),
-	devtool:	production ? 'source-map' : 'cheap-module-eval-source-map',
+	devtool:	production ? 'source-map' : 'eval-cheap-module-source-map',
 	
 	entry: {
 		app: './index.js'

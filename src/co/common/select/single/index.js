@@ -1,4 +1,3 @@
-import s from './index.module.styl'
 import React from 'react'
 import Button from '~co/common/button'
 import Icon from '~co/common/icon'
@@ -73,7 +72,7 @@ export default class Select extends React.Component {
     }
 
     render() {
-        const { children=[], value, className='', ...etc } = this.props
+        const { children=[], value, ...etc } = this.props
         const { show } = this.state
 
         return (
@@ -81,7 +80,6 @@ export default class Select extends React.Component {
                 <Button 
                     ref={this.pin}
                     data-value={value} 
-                    className={s.select+' '+className}
                     {...etc}
                     onClick={this.onButtonClick}>
                     {(Array.isArray(children) ? children : [children]).map(this.renderChildren)}

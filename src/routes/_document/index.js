@@ -1,4 +1,4 @@
-import 'normalize.css/normalize.css'
+import './normalize.css'
 
 import React from 'react'
 import { Helmet } from 'react-helmet'
