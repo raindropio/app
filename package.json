@@ -48,7 +48,7 @@
 		"downshift": "6.0.x",
 		"form-request-submit-polyfill": "^2.0.0",
 		"lodash-es": "4.17.x",
-		"masonic": "3.3.x",
+		"masonic": "3.4.x",
 		"normalize-url": "4.x",
 		"normalize.css": "^8.0.1",
 		"postcss": "^8.1.1",
@@ -66,7 +66,7 @@
 		"react-window": "^1.8.5",
 		"sortablejs": "^1.12.0",
 		"validator": "13.1.x",
-		"webextension-polyfill": "^0.6.0"
+		"webextension-polyfill": "0.7.x"
 	},
 	"optionalDependencies": {
 		"@sentry/minimal": "^5.20.1",

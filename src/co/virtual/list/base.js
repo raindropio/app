@@ -33,10 +33,11 @@ export default class VirtualListBase extends React.PureComponent {
     _scrollToIndex() {
         const { scrollToIndex } = this.props
 
-        if (this._list.current)
-            if (scrollToIndex > this._visible.endIndex ||
-                scrollToIndex < this._visible.startIndex)
-                this._list.current.scrollToIndex({ index: scrollToIndex, align: 'center' })
+        if (scrollToIndex !=-1)
+            if (this._list.current && this._list.current.scrollToIndex)
+                if (scrollToIndex > this._visible.endIndex ||
+                    scrollToIndex < this._visible.startIndex)
+                    this._list.current.scrollToIndex({ index: scrollToIndex, align: 'center' })
     }
 
     rangeChanged = (range)=>{
