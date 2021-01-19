@@ -46,11 +46,11 @@ module.exports = ({ vendor, production=false }, l) => {
 		},
 
 		browser_action: {
-			default_popup: vendor=='safari' ? 
+			default_popup: vendor=='safari' || vendor=='firefox' ? 
 				[
-					file(l, '../../../assets/target/extension/safari_browser_action.html'),
-					file(l, '../../../assets/target/extension/safari_browser_action.js'),
-					file(l, '../../../assets/target/extension/safari_browser_action.css')
+					file(l, '../../../assets/target/extension/browser_action_in_iframe.html'),
+					file(l, '../../../assets/target/extension/browser_action_in_iframe.js'),
+					file(l, '../../../assets/target/extension/browser_action_in_iframe.css')
 				][0] : 
 				'index.html?browser_action',
 			default_icon: {

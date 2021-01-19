@@ -10,8 +10,8 @@ const onFrameResize = ([{ contentRect: { width, height } }])=>{
     document.body.style.width = width
     document.body.style.height = height
 
-    localStorage.setItem('safari-browser-action-window-width', width)
-    localStorage.setItem('safari-browser-action-window-height', height)
+    localStorage.setItem('browser-action-in-iframe-window-width', width)
+    localStorage.setItem('browser-action-in-iframe-window-height', height)
 }
 
 const frameResize = new ResizeObserver(onFrameResize)
@@ -24,6 +24,6 @@ frame.addEventListener('load', () => {
 
 //restore cached w/h
 onFrameResize([{ contentRect: {
-    width: localStorage.getItem('safari-browser-action-window-width'), 
-    height: localStorage.getItem('safari-browser-action-window-height') 
+    width: localStorage.getItem('browser-action-in-iframe-window-width'), 
+    height: localStorage.getItem('browser-action-in-iframe-window-height') 
 }}])
