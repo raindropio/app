@@ -1,13 +1,13 @@
 {
   "images" : [
     {
-      "filename" : "safari_16.png",
+      "filename" : "icon_16.png",
       "idiom" : "mac",
       "scale" : "1x",
       "size" : "16x16"
     },
     {
-      "filename" : "safari_32.png",
+      "filename" : "icon_32.png",
       "idiom" : "mac",
       "scale" : "2x",
       "size" : "16x16"
