@@ -170,7 +170,7 @@
   "next": "다음",
   "startCollecting": "스크랩을 시작하세요!",
   "showAll": "모두 보기",
-  "noTags": "태그 없음",
+  "noTags": "태그없이",
   "to": "에게",
   "mailNotifications": "이메일 알림",
   "trashEmpty": "빈 휴지통",
@@ -333,5 +333,12 @@
   "omniboxD": "주소창에서 바로 북마크를 검색하세요",
   "highlightSavedPagesD": "이미 저장된 페이지를 방문하면 [✔] 표시가 나타납니다",
   "changeLaterInSettings": "나중에 설정에서 이 옵션을 변경할 수 있습니다",
-  "fullTextSearch": "전체 텍스트 검색"
+  "fullTextSearch": "전체 텍스트 검색",
+  "selected": "선택됨",
+  "actions": "실행",
+  "ask": "항상 묻기",
+  "data": "데이터",
+  "searchD": "레인드랍은 북마크 세부 항목, 주소, 태그, 유형으로 검색할 수 있고 또한 웹페이지와 PDF 전체 텍스트를 검색할 수 있습니다. 16가지 언어를 지원합니다.",
+  "selectNone": "없음 선택",
+  "dragToReorderMobileD": "항목을 길게 눌러 드래그하여 재배치"
 }

@@ -167,7 +167,7 @@
   "next": "次",
   "startCollecting": "収集を始める！",
   "showAll": "全て表示",
-  "noTags": "タグはありません",
+  "noTags": "タグなし",
   "to": "宛先",
   "mailNotifications": "メール通知",
   "trashEmpty": "ゴミ箱は空です",
@@ -245,6 +245,7 @@
   "broken": "壊れた",
   "found": "見つけた",
   "merge": "マージ",
+  "collapseAll": "全て閉じる",
   "document": "ドキュメント",
   "documents": "ドキュメント",
   "audio": "音声",
@@ -320,5 +321,7 @@
   "omniboxD": "ブラウザのアドレスバーから直接ブックマークを検索します",
   "highlightSavedPagesD": "すでに保存済みのページを訪れた際に [✔] マークを表示します",
   "changeLaterInSettings": "この設定は後からでも変更できます",
-  "fullTextSearch": "全文検索"
+  "fullTextSearch": "全文検索",
+  "actions": "アクション",
+  "data": "データ"
 }

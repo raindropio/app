@@ -333,5 +333,12 @@
   "omniboxD": "Cerca segnalibri direttamente dalla barra degli indirizzi",
   "highlightSavedPagesD": "Mostra il simbolo [✔] quando visiti una pagina già salvata",
   "changeLaterInSettings": "Puoi cambiare queste opzioni più tardi nelle Impostazioni",
-  "fullTextSearch": "Ricerca in tutto il testo"
+  "fullTextSearch": "Ricerca in tutto il testo",
+  "selected": "selezionato",
+  "actions": "Azioni",
+  "ask": "Richiedi sempre",
+  "data": "Dati",
+  "searchD": "Raindrop può cercare contenuti per dettagli del segnalibro, URL, tag, tipologia, intero contenuto della pagina web o del PDF. Assistenza disponibile in 16 lingue.",
+  "selectNone": "Nessuna selezione",
+  "dragToReorderMobileD": "Tieni premuto sull'articolo e poi trascinalo sul reorder"
 }

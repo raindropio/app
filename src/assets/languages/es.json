@@ -170,7 +170,7 @@
   "next": "Siguiente",
   "startCollecting": "Finalizado!",
   "showAll": "Mostrar todo",
-  "noTags": "No hay etiquetas",
+  "noTags": "Sin etiquetas",
   "to": "Para",
   "mailNotifications": "Notificaciones por correo electrónico",
   "trashEmpty": "Papelera vacía",
@@ -317,7 +317,7 @@
   "collaboratorsLead": "Comparte tus colecciones y trabaja de forma colaborativa con colegas, amigos y familia",
   "emptyTrash": "Vaciar papelera",
   "mini": "Mini",
-  "miniAppD": "Mini app.",
+  "miniAppD": "La Mini app ofrece la misma experiencia que la web en una apariencia compacta. Explore, busque, añada y organice marcadores.",
   "clipperD": "Clipper es la manera más rápida de guardar tus marcadores.",
   "automatically": "Automáticamente",
   "lastUsed": "Último uso",
@@ -335,5 +335,10 @@
   "changeLaterInSettings": "Puede cambiar estas opciones más adelante en la configuración",
   "fullTextSearch": "Búsqueda de texto completo",
   "selected": "seleccionados",
-  "actions": "Comportamiento"
+  "actions": "Comportamiento",
+  "ask": "Preguntar siempre",
+  "data": "Datos",
+  "searchD": "Raindrop busca por detalles de marcador, URL, etiqueta, tipo de archivo o todo el contenido de una página web o PDF. Excelente soporte para 16 idiomas.",
+  "selectNone": "Seleccionar ninguno",
+  "dragToReorderMobileD": "Mantenga presionado un marcador y arrastre para reorganizar"
 }

@@ -170,7 +170,7 @@
   "next": "Next",
   "startCollecting": "Start collecting!",
   "showAll": "Show all",
-  "noTags": "No tags",
+  "noTags": "Without tags",
   "to": "to",
   "mailNotifications": "Email notifications",
   "trashEmpty": "Trash empty",
@@ -335,5 +335,10 @@
   "changeLaterInSettings": "You can change this options later in settings",
   "fullTextSearch": "Full-text search",
   "selected": "selected",
-  "actions": "Actions"
+  "actions": "Actions",
+  "ask": "Always ask",
+  "data": "Data",
+  "searchD": "Raindrop can search by bookmark details, URL, tag, type or entire content of web-page or PDF. Best in class support for 16 languages.",
+  "selectNone": "Select none",
+  "dragToReorderMobileD": "Long press on a item then drag to reorder"
 }

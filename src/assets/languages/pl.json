@@ -170,7 +170,7 @@
   "next": "Dalej",
   "startCollecting": "Koniec!",
   "showAll": "Pokaż wszystkie",
-  "noTags": "Brak tagów",
+  "noTags": "Bez tagów",
   "to": "do",
   "mailNotifications": "Powiadomienia e-mail",
   "trashEmpty": "Kosz pusty",
@@ -334,6 +334,11 @@
   "highlightSavedPagesD": "Pokazuj znak [✔] podczas odwiedzania zapisanych stron",
   "changeLaterInSettings": "Możesz później zmienić tę opcję w ustawieniach",
   "fullTextSearch": "Wyszukiwanie pełnotekstowe",
-  "selected": "wybranych",
-  "actions": "Czynności"
+  "selected": "wybrane",
+  "actions": "Czynności",
+  "ask": "Zawsze pytaj",
+  "data": "Dane",
+  "searchD": "Raindrop może wyszukiwać na podstawie szczegółów zakładek, adresów URL, znaczników, typu lub całkowitej treści witryny lub pliku PDF. Najlepsze w swojej klasie wsparcie dla 16 języków.",
+  "selectNone": "Odznacz wszystko",
+  "dragToReorderMobileD": "Przytrzymaj element i przeciągnij, aby zmienić kolejność"
 }

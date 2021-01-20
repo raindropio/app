@@ -326,5 +326,19 @@
   "logOutOfAllDevices": "Tüm cihazlardan çıkış yap",
   "tabs": "Sekmeler",
   "permissions": "İzinler",
-  "raindropTagline": "Hepsi bir arada yer imi düzenleyicisi"
+  "raindropTagline": "Hepsi bir arada yer imi düzenleyicisi",
+  "buttons": "Butonlar",
+  "highlightSavedPages": "Kaydedilen sayfaları vurgula",
+  "appearance": "Görünüm",
+  "omniboxD": "Yer imlerinizi doğrudan adres çubuğundan arayın",
+  "highlightSavedPagesD": "Daha önce kaydettiğiniz sayfayı ziyaret ettiğinizde [✔] göster",
+  "changeLaterInSettings": "Bu seçeneği ayarlardan daha sonra değiştirebilirsiniz",
+  "fullTextSearch": "Tam arama",
+  "selected": "seçili",
+  "actions": "Aksiyonlar",
+  "ask": "Her zaman zor",
+  "data": "Veri",
+  "searchD": "Raindrop, yer imi ayrıntılarını, URL'ye, etikete, türe veya web sayfasının veya PDF'nin tüm içeriğine göre arama yapabilir. 16 dil için sınıfının en iyi desteği.",
+  "selectNone": "Hiçbirini seçme",
+  "dragToReorderMobileD": "Sıralamak için uzun basın"
 }

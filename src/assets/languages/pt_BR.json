@@ -335,5 +335,10 @@
   "changeLaterInSettings": "Você pode alterar essas opções depois nas configurações",
   "fullTextSearch": "Pesquisa completa de texto",
   "selected": "selecionados",
-  "actions": "Ações"
+  "actions": "Ações",
+  "ask": "Perguntar sempre",
+  "data": "Dado",
+  "searchD": "Raindrop pode pesquisar sobre os detalhes dos marcadores, urls, tags, tipos e conteúdos referentes a páginas e arquivos. pdf. Em até 16 idiomas com a melhor classe de suporte.",
+  "selectNone": "Selecionar nenhum",
+  "dragToReorderMobileD": "Pressione por um tempo longo um item quando for arrastar para reordenar"
 }

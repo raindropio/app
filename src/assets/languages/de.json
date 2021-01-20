@@ -170,7 +170,7 @@
   "next": "Weiter",
   "startCollecting": "Fertig!",
   "showAll": "Alle anzeigen",
-  "noTags": "Keine Tags",
+  "noTags": "Ohne Tags",
   "to": "an",
   "mailNotifications": "E-Mail Benachrichtigungen",
   "trashEmpty": "Papierkorb ist leer",
@@ -335,5 +335,9 @@
   "changeLaterInSettings": "Du kannst diese Option nachträglich in den Einstellungen ändern",
   "fullTextSearch": "Ganztext-Suche",
   "selected": "ausgewählt",
-  "actions": "Aktionen"
+  "actions": "Aktionen",
+  "ask": "Immer fragen",
+  "data": "Daten",
+  "searchD": "Die Raindrop. io Suche funktioniert über Schlagworte, Typ, URL, Detail Informationen, komplette Webseiten oder PDF Inhalte - in über 16 Sprachen.",
+  "selectNone": "Kein Auswahl"
 }

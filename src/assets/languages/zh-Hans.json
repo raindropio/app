@@ -335,5 +335,10 @@
   "changeLaterInSettings": "您可以稍后在设置中修改这些选项",
   "fullTextSearch": "全文搜索",
   "selected": "已选中",
-  "actions": "动作"
+  "actions": "动作",
+  "ask": "每次询问",
+  "data": "数据",
+  "searchD": "Raindrop可以按书签的详细内容、连结网址、标签、类型、网页内容或PDF内容进行搜寻。 完美支持16种语言文字。",
+  "selectNone": "取消全选",
+  "dragToReorderMobileD": "长按项目进行重新排序"
 }
