@@ -6,8 +6,9 @@ export default function AddContent({ item }) {
         <Bookmark 
             _id={item.link}
             
-            new={{ item, autoCreate: true }}
+            new={{ item, autoCreate: false }}
 
-            autoFocus='title' />
+            autoFocus='title'
+            autoWindowClose />
     )
 }

@@ -12,7 +12,8 @@ class EditBookmarkContainer extends React.Component {
 	static defaultProps = {
 		_id:				undefined, //_id or link
 		new:				{}, //optional, { item: {}, autoCreate: true, preventDuplicate: true }
-		autoFocus:			''
+		autoFocus:			'',
+		autoWindowClose: 		false
 	}
 
 	componentDidMount() {
@@ -98,7 +99,10 @@ class EditBookmarkContainer extends React.Component {
 		onRemove: ()=>{
 			const { oneRemove, item: { _id } } = this.props
 			if (_id)
-				oneRemove(_id, undefined, Error)
+				oneRemove(_id, ()=>{
+					if (this.props.autoWindowClose)
+						window.close()
+				}, Error)
 		},
     
         onRecover: ()=>{

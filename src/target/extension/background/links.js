@@ -30,7 +30,8 @@ export async function reload() {
         text = await Api._get('raindrops/links', {
             headers: {
                 'Content-Type': 'text/plain'
-            }
+            },
+            timeout: 0
         })
     } catch(e) {
         console.error(e)

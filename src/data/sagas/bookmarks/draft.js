@@ -85,7 +85,8 @@ function* draftLoad({ newOne, ignore=false, ...draft }) {
 		else
 			yield enrichCreated({
 				draft: draft._id,
-				item
+				item,
+				overrideEmpty: true
 			})
 	} catch (error) {
 		yield put({
@@ -147,7 +148,7 @@ function* draftCoverUpload({ _id, cover, ignore=false, onSuccess, onFail }) {
 	This method parse esential details and replace them (if empty) on draft
 	It should be called exactly after 'new' draft saved (locally) or after actual create of bookmark
 */
-function* enrichCreated({ draft, item }) {
+function* enrichCreated({ draft, item, overrideEmpty }) {
 	if (!draft) return
 
 	try{
@@ -157,7 +158,7 @@ function* enrichCreated({ draft, item }) {
 		let changed = {}
 
 		//set excerpt
-		if (parse.item.excerpt)
+		if (parse.item.excerpt && !item.excerpt && overrideEmpty)
 			changed.excerpt = parse.item.excerpt
 
 		//set cover/media
