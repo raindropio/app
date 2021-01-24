@@ -1,5 +1,6 @@
 import browser from 'webextension-polyfill'
 import { openAdd } from './utils'
+import { environment } from '../environment'
 
 async function onClicked({ menuItemId, pageUrl, srcUrl, linkUrl, linkText, selectionText }) {
     switch(menuItemId) {
@@ -31,26 +32,28 @@ export default async function() {
         await browser.contextMenus.removeAll()
     } catch (e) {}
 
+    const suffix = (environment.includes('safari')?` ${browser.i18n.getMessage('in')} Raindrop.io`:'')
+
     //create
     await Promise.all([
         browser.contextMenus.create({
             id: 'save_page',
-            title: browser.i18n.getMessage('savePage'),
+            title: browser.i18n.getMessage('savePage')+suffix,
             contexts: ['page']
         }),
         browser.contextMenus.create({
             id: 'save_link',
-            title: browser.i18n.getMessage('saveLink'),
+            title: browser.i18n.getMessage('saveLink')+suffix,
             contexts: ['link']
         }),
         browser.contextMenus.create({
             id: 'save_video',
-            title: browser.i18n.getMessage('saveVideo'),
+            title: browser.i18n.getMessage('saveVideo')+suffix,
             contexts: ['video']
         }),
         browser.contextMenus.create({
             id: 'save_image',
-            title: browser.i18n.getMessage('saveImage'),
+            title: browser.i18n.getMessage('saveImage')+suffix,
             contexts: ['image']
         })
     ])

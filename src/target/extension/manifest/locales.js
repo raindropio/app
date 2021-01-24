@@ -56,6 +56,10 @@ module.exports = ({ emitFile })=>{
                 openSidebar: {
                     message: s(lang, 'open') + ' ' + s(lang, 'sidebar').toLowerCase(),
                     description: ''
+                },
+                in: {
+                    message: s(lang, 'in'),
+                    description: ''
                 }
             },
             null,
