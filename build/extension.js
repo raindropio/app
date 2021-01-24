@@ -39,7 +39,8 @@ module.exports = (env={}) =>
                 ...(env.production ? [
                     new ZipPlugin({
                         path: '../../',
-                        filename: `${env.vendor}-${env.production?'prod':'dev'}.zip`
+                        filename: `${env.vendor}-${env.production?'prod':'dev'}.zip`,
+                        exclude: []
                     })
                 ] : [])
             ],
