@@ -19,7 +19,8 @@ class BookmarkOpenAll extends React.Component {
     }
 
     componentDidMount() {
-        if (!this.props.selected)
+        if (!this.props.selected && 
+            this.props.status.main != 'loaded')
             this.props.refresh(this.props.spaceId)
         else
             this.open()
