@@ -8,49 +8,35 @@ import Button from '~co/common/button'
 import Header, { Title } from '~co/common/header'
 import Icon from '~co/common/icon'
 
-export default class AccountElectron extends React.Component {
-    componentDidMount() {
-        window.addEventListener('focus', this.onWindowFocus)
-    }
+export default function AccountElectron() {
+    return (
+        <>
+            <Header data-no-shadow style={{minHeight: 0}}>
+                <Title>{t.s('welcome')} Raindrop.io</Title>
+            </Header>
 
-    componentWillUnmount() {
-        window.removeEventListener('focus', this.onWindowFocus)
-    }
+            <Layout>
+                <Label>{t.s('raindropTagline')}</Label>
+                <div />
 
-    onWindowFocus = ()=>{
-        this.props.history.replace('/')
-    }
+                <Buttons>
+                    <Button
+                        href={config.links.home}
+                        variant='outline'
+                        data-block>
+                        {t.s('about')}…
+                    </Button>
 
-    render() {
-        return (
-            <>
-                <Header data-no-shadow style={{minHeight: 0}}>
-                    <Title>{t.s('welcome')} Raindrop.io</Title>
-                </Header>
-
-                <Layout>
-                    <Label>{t.s('raindropTagline')}</Label>
-                    <div />
-
-                    <Buttons>
-                        <Button
-                            href={config.links.home}
-                            variant='outline'
-                            data-block>
-                            {t.s('about')}…
-                        </Button>
-
-                        <Button
-                            href={`${API_ENDPOINT_URL}auth/jwt?done_uri=rnio://account/jwt`}
-                            target='_blank'
-                            variant='primary'
-                            data-block>
-                            <Icon name='open' size='micro' />
-                            {t.s('signIn')}
-                        </Button>
-                    </Buttons>
-                </Layout>
-            </>
-        )
-    }
+                    <Button
+                        href={`${API_ENDPOINT_URL}auth/jwt?done_uri=rnio://account/jwt`}
+                        target='_blank'
+                        variant='primary'
+                        data-block>
+                        <Icon name='open' size='micro' />
+                        {t.s('signIn')}
+                    </Button>
+                </Buttons>
+            </Layout>
+        </>
+    )
 }
