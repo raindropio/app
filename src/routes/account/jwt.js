@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import t from '~t'
 import { Redirect, withRouter } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
@@ -12,6 +12,7 @@ import Button from '~co/common/button'
 function JWT({ location: { search } }) {
     const dispatch = useDispatch()
     const error = useSelector(state=>errorReason(state).jwt)
+    const [redirectHome, setRedirectHome] = useState(false)
 
     useEffect(()=>{
         const { token } = Object.fromEntries(new URLSearchParams(search))||{}
@@ -21,9 +22,10 @@ function JWT({ location: { search } }) {
     useEffect(()=>{
         if (error)
             Error(error)
+                .then(()=>setRedirectHome(true))
     }, [error])
 
-    if (error)
+    if (redirectHome)
         return <Redirect to='/' />
 
     return (
