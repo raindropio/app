@@ -10,6 +10,7 @@ import {
 	USER_LOGIN_PASSWORD,
 	USER_REGISTER_PASSWORD,
 	USER_LOGIN_NATIVE,
+	USER_LOGIN_JWT,
 	USER_LOST_PASSWORD, USER_LOST_PASSWORD_SUCCESS,
 	USER_RECOVER_PASSWORD,
 	USER_SUBSCRIPTION_LOAD_REQ, USER_SUBSCRIPTION_LOAD_SUCCESS, USER_SUBSCRIPTION_LOAD_ERROR,
@@ -28,6 +29,7 @@ export default function* () {
 	yield takeLatest(USER_LOGIN_PASSWORD, loginWithPassword)
 	yield takeLatest(USER_REGISTER_PASSWORD, registerWithPassword)
 	yield takeLatest(USER_LOGIN_NATIVE, loginNative)
+	yield takeLatest(USER_LOGIN_JWT, loginJWT)
 
 	yield takeLatest(USER_LOST_PASSWORD, lostPassword)
 	yield takeLatest(USER_RECOVER_PASSWORD, recoverPassword)
@@ -98,6 +100,18 @@ function* loginNative({params, onSuccess, onFail}) {
 		yield put({type: USER_REFRESH_REQ, way: 'native', onSuccess});
 	} catch (error) {
 		yield put({type: USER_LOAD_ERROR, error, way: 'native', onFail});
+	}
+}
+
+function* loginJWT({token, onSuccess, onFail}) {
+	try {
+		const {result, ...etc} = yield call(Api.post, 'auth/jwt', { token });
+		if (!result)
+			throw new ApiError(etc)
+
+		yield put({type: USER_REFRESH_REQ, way: 'jwt', onSuccess});
+	} catch (error) {
+		yield put({type: USER_LOAD_ERROR, error, way: 'jwt', onFail});
 	}
 }
 

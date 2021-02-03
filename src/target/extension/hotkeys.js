@@ -2,7 +2,7 @@ import browser from './browser'
 
 export const hotkeys = {
     async getAll() {
-        return browser.commands.getAll() //[{ description, shortcut }]
+        return await browser.commands.getAll() || [] //[{ description, shortcut }]
     },
 
     link() {

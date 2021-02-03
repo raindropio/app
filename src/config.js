@@ -27,6 +27,7 @@ module.exports = {
         twitter: 'https://twitter.com/raindrop_io',
         translation: 'https://crowdin.com/project/raindrop',
         about: 'https://raindrop.io/about',
+        home: 'https://raindrop.io',
 
         help: {
             index: 'https://help.raindrop.io',

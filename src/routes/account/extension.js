@@ -5,7 +5,7 @@ import config from '~config'
 import { Layout, Label } from '~co/common/form'
 import Button from '~co/common/button'
 
-export default class AccountEmbedded extends React.Component {
+export default class AccountExtension extends React.Component {
     componentDidMount() {
         window.addEventListener('focus', this.onWindowFocus)
     }

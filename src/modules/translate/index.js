@@ -78,8 +78,6 @@ const Translate = {
 				Translate.strings = await import(/* webpackPreload: true */ '~assets/languages/pt_BR.json');
 				Translate.currentLang = 'pt_BR'
 				break;
-			case 'kk':
-			case 'uk':
 			case 'ru':
 				Translate.strings = await import(/* webpackPreload: true */ '~assets/languages/ru.json');
 				break;

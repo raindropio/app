@@ -8,10 +8,12 @@ import config from '~config'
 import Logo from '~assets/brand/icon_raw.svg?component'
 
 import Auth from './auth'
+import JWT from './jwt'
 import Login from './login'
 import Signup from './signup'
 import Lost from './lost'
 import Recover from './recover'
+import Electron from './electron'
 import Extension from './extension'
 
 export default ({ match })=>(
@@ -25,7 +27,12 @@ export default ({ match })=>(
 			<Auth />
 
 			<Switch>
+				<Route path={`${match.path}/jwt`} component={JWT} />
+
+				{/* Override all routes for specific targets */}
+				{target == 'electron' && <Route component={Electron} />}
 				{target == 'extension' && <Route component={Extension} />}
+				{/* ------ */}
 
 				<Route path={`${match.path}/login`} component={Login} />
 				<Route path={`${match.path}/signup`} component={Signup} />

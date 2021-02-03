@@ -8,6 +8,7 @@ import {
 	USER_LOST_PASSWORD, USER_LOST_PASSWORD_SUCCESS,
 	USER_RECOVER_PASSWORD,
 	USER_LOGIN_NATIVE,
+	USER_LOGIN_JWT,
 	USER_SUBSCRIPTION_LOAD_REQ, USER_SUBSCRIPTION_LOAD_SUCCESS, USER_SUBSCRIPTION_LOAD_ERROR
 } from '../constants/user'
 import { REHYDRATE } from 'redux-persist/src/constants'
@@ -72,6 +73,11 @@ export default function(state = initialState, action){switch (action.type) {
 	//Native
 	case USER_LOGIN_NATIVE:{
 		return setSpecificStatus(state, 'native', 'loading')
+	}
+
+	//JWT
+	case USER_LOGIN_JWT:{
+		return setSpecificStatus(state, 'jwt', 'loading')
 	}
 
 	//Lost
@@ -161,6 +167,7 @@ const setSpecificStatus = (state, way='', val='idle')=>{
 		.setIn(['status', 'login'], 	way == 'login' ? val : 'idle')
 		.setIn(['status', 'register'], 	way == 'register' ? val : 'idle')
 		.setIn(['status', 'native'], 	way == 'native' ? val : 'idle')
+		.setIn(['status', 'jwt'],		way == 'jwt' ? val : 'idle')
 		.setIn(['status', 'lost'],		way == 'lost' ? val : 'idle')
 		.setIn(['status', 'recover'], 	way == 'recover' ? val : 'idle')
 		.setIn(['status', 'save'], 		way == 'save' ? val : 'idle')
@@ -176,11 +183,13 @@ const initialState = Immutable({
 		lost:		'idle', //idle, loading, error, success
 		recover:	'idle',
 		save:		'idle', //idle, loading, error
+		jwt:		'idle',
 	},
 	errorReason: {
 		login:'',
 		register:'',
 		native:'',
+		jwt:'',
 		save:''
 	},
 	current: blankCurrent,
