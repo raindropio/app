@@ -41,7 +41,7 @@
 		"~target": "src/target"
 	},
 	"dependencies": {
-		"@sentry/react": "6.0.x",
+		"@sentry/react": "6.1.x",
 		"date-fns": "2.16.x",
 		"dompurify": "^2.2.0",
 		"downshift": "6.1.x",
@@ -66,7 +66,7 @@
 		"webextension-polyfill": "0.7.x"
 	},
 	"optionalDependencies": {
-		"@sentry/minimal": "6.0.x",
+		"@sentry/minimal": "6.1.x",
 		"localforage": "1.9.x",
 		"react-redux": "7.2.x",
 		"redux": "4.x",
@@ -108,13 +108,13 @@
 		"serve": "^11.3.0",
 		"style-loader": "2.0.x",
 		"stylus": "0.54.x",
-		"stylus-loader": "4.3.x",
+		"stylus-loader": "5.0.x",
 		"svg-sprite-loader": "5.2.x",
 		"terser-webpack-plugin": "5.1.x",
 		"val-loader": "3.0.x",
-		"webpack": "5.16.x",
+		"webpack": "5.21.x",
 		"webpack-bundle-analyzer": "4.4.x",
-		"webpack-cli": "4.4.x",
+		"webpack-cli": "4.5.x",
 		"webpack-dev-server": "^3.11.2",
 		"webpack-merge": "5.7.x",
 		"webpack-pwa-manifest": "4.x",

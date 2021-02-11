@@ -15,6 +15,10 @@ export default function(state = initialState, action={}){
 	const caseSingle = single(state,action);
 	if (caseSingle) state = caseSingle;
 
+	//Sort
+	const caseSort = sort(state,action)
+	if (caseSort) state = caseSort
+
 	//Space
 	const caseSpace = space(state,action);
 	if (caseSpace) state = caseSpace;
@@ -26,10 +30,6 @@ export default function(state = initialState, action={}){
 	//Select Mode
 	const caseSelectMode = selectMode(state,action);
 	if (caseSelectMode) state = caseSelectMode;
-
-	//Sort
-	const caseSort = sort(state,action)
-	if (caseSort) state = caseSort
 
 	//Html
 	const caseHtml = html(state,action)

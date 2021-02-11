@@ -1,7 +1,8 @@
-import { SPACE_LOAD_REQ, SPACE_REFRESH_REQ, SPACE_CHANGE_SORT } from '../../constants/bookmarks'
+import { SPACE_LOAD_PRE, SPACE_LOAD_REQ, SPACE_REFRESH_REQ, SPACE_CHANGE_SORT } from '../../constants/bookmarks'
 import { blankSpace } from '../../helpers/bookmarks'
 
 export default function(state, action) {switch (action.type) {
+    case SPACE_LOAD_PRE:
     case SPACE_LOAD_REQ:
     case SPACE_REFRESH_REQ:
     case SPACE_CHANGE_SORT:{

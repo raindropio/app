@@ -170,7 +170,6 @@ export default function(state, action) {switch (action.type) {
 		}
 
 		space = space
-			.setIn(['status', 'nextPage'], 	'noMore')
 			.setIn(['query', 'page'], 		0)
 
 		//send query in action

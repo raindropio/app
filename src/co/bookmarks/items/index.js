@@ -31,8 +31,6 @@ class BookmarksItems extends React.Component {
     }
 
     load = ()=>{
-        if (document.visibilityState !== 'visible') return
-
         const { actions, spaceId, search, sort, ignore } = this.props
 
         actions.load(spaceId, {
