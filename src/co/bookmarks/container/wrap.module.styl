@@ -1,0 +1,17 @@
+.wrap {
+    width: 100%
+    height: 100%
+    position: relative
+    display: flex
+    flex-direction: column
+}
+
+.isDropping:before {
+    background: unquote('hsla(var(--accent-hsl), .1)')
+    left:0;top:0;right:0;bottom:0;
+    content: ""
+    position: absolute
+    z-index:11
+    pointer-events: none
+    box-shadow: inset 0px 0px 0px 2px var(--accent-color)
+}

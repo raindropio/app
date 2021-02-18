@@ -5,8 +5,6 @@ import { load } from '~data/actions/filters'
 import { makeTagsAutocomplete } from '~data/selectors/tags'
 
 import Popover from '~co/overlay/popover'
-import VirtualList from '~co/virtual/list'
-import { ItemHeightCallback } from '~co/common/list'
 import TagItemView from '~co/tags/item/view'
 import SectionView from '~co/tags/section/view'
 
@@ -27,9 +25,6 @@ class TagsMenu extends React.PureComponent {
     componentDidUpdate(prev) {
         if (prev.spaceId != this.props.spaceId)
             this.loadSpace()
-
-        if (prev.tags.length != this.props.tags.length)
-            this.props.downshift.setItemCount(this.props.tags.length)
     }
 
     loadSpace = ()=>{
@@ -37,68 +32,49 @@ class TagsMenu extends React.PureComponent {
             this.props.load(this.props.spaceId)
     }
 
-    computeItemKey = index=>
-        this.props.tags[index] && this.props.tags[index]._id
-
-    renderItem = index=>{
-        const {
-            tags,
-            downshift: { getItemProps, highlightedIndex }
-        } = this.props
-
-        const item = tags[index]
-
-        if (!item)
-            return null
-
-        if (item.type == 'section')
-            return (
-                <SectionView 
-                    key={item.type+item._id}
-                    {...item} />
-            )
-        
-        return (
-            <TagItemView
-                {...getItemProps({
-                    key: item._id,
-                    index,
-                    item,
-                    ...item,
-                    showIcon: false,
-                    active: highlightedIndex === index
-                })} />
-        )
-    }
+    keyExtractor = ({_id})=>_id
 
     render() {
         const {
             tags,
             inputRef,
-            downshift: { isOpen, getMenuProps, highlightedIndex, inputValue }
+            downshift: { isOpen, getMenuProps, getItemProps, highlightedIndex }
         } = this.props
-        const virtualized = tags.length > 50
 
         if (!isOpen || !tags.length) return null
+
+        let index = -1
 
         return (
             <Popover 
                 pin={inputRef}
                 stretch={true}
-                className={virtualized ? s.virtualized : undefined}
+                className={s.tags}
                 {...getMenuProps({ refKey: 'innerRef' })}>
-                <ItemHeightCallback>{itemHeight=>
-                    <VirtualList 
-                        disableVirtualization={!virtualized}
+                {tags.map(item=>{
+                    if (!item) return null
+            
+                    if (item.type == 'section')
+                        return (
+                            <SectionView 
+                                key={item.type+item._id}
+                                {...item} />
+                        )
 
-                        computeItemKey={this.computeItemKey}
-                        item={this.renderItem}
-                        totalCount={tags.length}
-                        itemHeight={itemHeight}
-                        overscan={1000}
-                        
-                        dataKey={highlightedIndex+'-'+inputValue}/>
-                }</ItemHeightCallback>
+                    index++
+                    
+                    return (
+                        <TagItemView
+                            {...getItemProps({
+                                key: item._id,
+                                index,
+                                item,
+                                ...item,
+                                showIcon: false,
+                                active: highlightedIndex === index
+                            })} />
+                    )
+                })}
             </Popover>
         )
     }

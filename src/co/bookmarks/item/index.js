@@ -1,6 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { bookmark, tags, makeIsSelected, makeHighlight, makeCreatorRef, selectModeWorking, getGridSize } from '~data/selectors/bookmarks'
+import { bindActionCreators } from 'redux'
+import { bookmark, tags, makeIsSelected, makeHighlight, makeCreatorRef, makeSelectModeEnabled, selectModeWorking, getGridSize } from '~data/selectors/bookmarks'
+import * as bookmarksActions from '~data/actions/bookmarks'
 import { copyText } from '~modules/browser'
 
 import View from './view'
@@ -15,11 +17,12 @@ class BookmarkItem extends React.Component {
         spaceId:            0,
         view:               '', //list, grid, etc...
         access:             {}, //{ level }...
-        selectModeEnabled:  false,
         //funcs
         getLink:            undefined, //same as ...items/index
         events:             {}, //same as ...items/index
-        actions:            {}  //redux collections
+        actions:            {}, //redux collections
+        //special
+        innerRef:           undefined
     }
 
     state = {
@@ -120,19 +123,25 @@ export default connect(
         const getIsSelected = makeIsSelected()
         const getHighlight = makeHighlight()
         const getCreatorRef = makeCreatorRef()
+        const getSelectModeEnabled = makeSelectModeEnabled()
     
-        return (state, { _id, spaceId, selectModeEnabled })=>{
+        return (state, { _id, spaceId })=>{
             const item = bookmark(state, _id)
+            const selectModeEnabled = getSelectModeEnabled(state, spaceId)
     
             return {
                 item,
                 tags: tags(state, _id),
                 selected: selectModeEnabled ? getIsSelected(state, spaceId, _id) : false,
+                selectModeEnabled,
                 selectDisabled: selectModeWorking(state) ? true : false,
                 highlight: getHighlight(state, spaceId, _id),
                 creatorRef: getCreatorRef(state, _id),
                 gridSize: getGridSize(state, spaceId)
             }
         }
-    }
+    },
+    (dispatch)=>({
+		actions: bindActionCreators(bookmarksActions, dispatch)
+    })
 )(BookmarkItem)

@@ -1,0 +1,16 @@
+.item {}
+
+/* height mode */
+.height {
+    content-visibility: auto;
+    contain-intrinsic-size: 0 var(--lazy-item-height, 0);
+}
+
+.height:empty {
+    height: var(--lazy-item-height, 0);
+}
+
+/* grid mode */
+.row-end-span {
+    grid-row-end: span 1
+}

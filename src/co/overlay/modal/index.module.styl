@@ -1,4 +1,5 @@
 .modal {
+    contain: strict
     position: fixed
     z-index: 888
     left: 0
@@ -28,16 +29,13 @@
 }
 
 .wrap {
+    contain: content
     z-index: 1
     max-width: 90%  
     max-height: 90%
     border-radius: var(--border-radius)
-    box-shadow: 
-        0px 0px 0px var(--shadow-height) var(--shadow-color),
-		0 4.5px 10.2px rgba(0, 0, 0, 0.057),
-        0 11.3px 25.7px rgba(0, 0, 0, 0.074),
-        0 23px 52.5px rgba(0, 0, 0, 0.087),
-        0 47.5px 108px rgba(0, 0, 0, 0.106);
+    box-shadow: 0 10px 30px rgba(0,0,0,.15)
+	border: 1px solid var(--shadow-color)
     display: flex
     flex-direction: column
     overflow: hidden
@@ -45,6 +43,7 @@
     backface-visibility: hidden
 
     &[data-stretch='true'] {
+        contain: strict
         width: max(50%, 500px)
         height: 90%
     }

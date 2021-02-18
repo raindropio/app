@@ -1,3 +1,7 @@
+.wrap {
+    --lazy-item-height: 200px;
+}
+
 .template {
     margin-top: var(--padding-medium)
 }
@@ -10,21 +14,24 @@
 
 .icons {
     display: grid
-    grid-template-columns: repeat(10, 1fr)
+    grid-template-columns: repeat(9, 1fr)
     grid-column-gap: var(--padding-mini)
     grid-row-gap: var(--padding-mini)
-    padding: var(--padding-medium)
+    padding: var(--padding-small) var(--padding-medium)
 
     .icon {
-        content-visibility: auto
         text-align: center
-        padding: var(--padding-mini)
+        padding: var(--padding-small)
         border-radius: var(--border-radius)
         transition: opacity .1s ease-in-out, background .1s ease-in-out;
 
         img {
+            display: block
+            margin: auto
             pointer-events: none
             object-fit: contain
+            width: var(--button-height)
+            height: var(--button-height)
         }
 
         &:hover {

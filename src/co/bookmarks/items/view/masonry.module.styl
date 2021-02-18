@@ -1,0 +1,14 @@
+.masonry {
+    main {
+        display: grid;
+        grid-template-columns: unquote('repeat(auto-fill, minmax(min(calc(50% - var(--padding-medium) * 2), var(--grid-item-width)), 1fr))')
+        grid-auto-rows: 15px //this value + grid-gap should be send to Lazy component in `gridCellSize`, also smaller than 20 value works unpredictable :(
+        grid-gap: var(--padding-medium)
+        padding: var(--padding-medium)
+        padding-bottom: 0
+    }
+
+    [data-lazy-item] {
+        grid-row-end: span 5 //default height (calculated as =(grid-auto-rows+grid-gap)*N )
+    }
+}
