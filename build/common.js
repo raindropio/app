@@ -117,7 +117,10 @@ module.exports = ({ production, filename='[name].[contenthash]' }) => ({
 					}
 				},
 				{
-					loader: 'babel-loader'
+					loader: 'babel-loader',
+					options: {
+						envName: production ? 'production' : 'development'
+					}
 				}
 			]
 		},
