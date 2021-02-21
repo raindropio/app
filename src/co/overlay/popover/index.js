@@ -34,10 +34,12 @@ export default class Popover extends React.Component {
     componentDidMount() {
         eventOrder.add(this)
 
+        this.updatePosition()
         if (typeof ResizeObserver != 'undefined'){
             this._resizeObserver = new ResizeObserver(this.updatePosition)
-            this._resizeObserver.observe(this._container.current)
-            this._resizeObserver.observe(document.body)
+
+            if (this.props.pin && this.props.pin.current)
+                this._resizeObserver.observe(this.props.pin.current)
         }
 
         window.addEventListener('keydown', this.onWindowKeyDown)
@@ -47,22 +49,14 @@ export default class Popover extends React.Component {
     componentWillUnmount() {
         eventOrder.delete(this)
 
-        if (this._container.current && this._resizeObserver)
-            this._resizeObserver.unobserve(this._container.current)
-
-        if (this._resizeObserver)
-            this._resizeObserver.unobserve(document.body)
+        if (this.props.pin && this.props.pin.current && this._resizeObserver)
+            this._resizeObserver.unobserve(this.props.pin.current)
 
         if (this._resizeObserver)
             this._resizeObserver.disconnect()
 
         window.removeEventListener('keydown', this.onWindowKeyDown)
         document.body.removeEventListener('mousedown', this.onBodyMouseDown)
-    }
-
-    componentDidUpdate(prev) {
-        if (prev.children != this.props.children)
-            this.updatePosition()
     }
 
     //click outside
@@ -109,9 +103,11 @@ export default class Popover extends React.Component {
 
         //pin to active element
         try{
-            const { left, top, height } = this.props.pin.current.getBoundingClientRect()
-            this.initPos.y = top + height
-            this.initPos.x = left
+            if (this.props.pin.current){
+                const { left, top, height } = this.props.pin.current.getBoundingClientRect()
+                this.initPos.y = top + height
+                this.initPos.x = left
+            }
         }catch(e){}
 
         let { y, x } = this.initPos
