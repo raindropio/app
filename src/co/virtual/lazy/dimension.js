@@ -38,12 +38,15 @@ export default class LazyDimension extends React.Component {
     }
 
     componentDidMount() {
-        if (!this.props.disabled)
-            DimensionInstance.add(findDOMNode(this), this.props.onChange)
+        if (this.props.disabled) return
+
+        this._div = findDOMNode(this)
+        DimensionInstance.add(this._div, this.props.onChange)
     }
 
     componentWillUnmount() {
-        DimensionInstance.remove(findDOMNode(this))
+        if (this._div)
+            DimensionInstance.remove(this._div)
     }
 
     render() {

@@ -6,7 +6,8 @@
     "node": true
   },
   "plugins": [
-    "react"
+    "react",
+    "react-hooks"
   ],
   "rules": {
     "no-inner-declarations": "off",

@@ -104,6 +104,7 @@ export default class BookmarkItemCover extends React.PureComponent {
                     width={width}
                     height={height}
                     alt=' '
+                    decoding='async'
                     {...etc}
                     src={uri && `${uri}?mode=${mode}&fill=solid&width=${width||''}&ar=${ar||''}&dpr=${dpr[view]||dpr.default}`}
                     //type='image/jpeg'
