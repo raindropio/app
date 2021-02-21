@@ -68,8 +68,15 @@ export default class LazyItem extends React.PureComponent {
     }
 
     scrollToMe = ()=>{
-        if (!this._ref || !this.props.scrollIntoView) return
-        this._ref.scrollIntoView()
+        cancelAnimationFrame(this._scrollReq)
+
+        this._scrollReq = requestAnimationFrame(() => {
+            if (!this._ref || !this.props.scrollIntoView) return
+
+            const { y } = this._ref.getBoundingClientRect()
+            if (y < 0 || y > window.innerHeight)
+                this._ref.scrollIntoView()
+        })
     }
 
     componentDidMount() {
@@ -77,8 +84,7 @@ export default class LazyItem extends React.PureComponent {
     }
 
     componentDidUpdate(prevProps) {
-        if (prevProps.scrollIntoView != this.props.scrollIntoView &&
-            !this.state.visible)
+        if (prevProps.scrollIntoView != this.props.scrollIntoView)
             this.scrollToMe()
     }
 
