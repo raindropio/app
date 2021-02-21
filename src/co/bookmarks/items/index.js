@@ -41,6 +41,9 @@ export default function BookmarksItems(props) {
                     data={items}
                     keyExtractor={keyExtractor}
                     initialNumToRender={initialNumToRender}
+
+                    scrollToItem={activeId}
+
                     mode={view == 'masonry' ? 'row-end-span' : 'height'}
                     gridCellSize={31} //grid-gap + grid-auto-rows
                     >

@@ -11,7 +11,7 @@ export default function BookmarksItemContextmenu({
     return (
         <Popover onClose={onContextMenuClose}>
             <Menu>
-                <MenuItem href={link} target='_blank'>
+                <MenuItem href={link} rel='noopener' target='_blank'>
                     <Icon name='open' />
                     {t.s('open')} {t.s('inNewTab')}
                 </MenuItem>

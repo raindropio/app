@@ -11,6 +11,8 @@ export default class LazyItem extends React.PureComponent {
         item: PropTypes.any.isRequired,
         index: PropTypes.number.isRequired,
         alwayVisible: PropTypes.bool,
+        scrollIntoView: PropTypes.bool,
+
         mode: PropTypes.oneOf(['height', 'row-end-span']),
         gridCellSize: PropTypes.number,
 
@@ -21,7 +23,8 @@ export default class LazyItem extends React.PureComponent {
     static defaultProps = {
         mode: 'height',
         alwayVisible: false,
-        gridCellSize: 1
+        gridCellSize: 1,
+        scrollIntoView: false
     }
 
     state = {
@@ -62,6 +65,21 @@ export default class LazyItem extends React.PureComponent {
         if (!this.state.style ||
             !this.state.style.gridRowEnd != gridRowEnd)
             this.setState({ style: { gridRowEnd } })
+    }
+
+    scrollToMe = ()=>{
+        if (!this._ref || !this.props.scrollIntoView) return
+        this._ref.scrollIntoView()
+    }
+
+    componentDidMount() {
+        this.scrollToMe()
+    }
+
+    componentDidUpdate(prevProps) {
+        if (prevProps.scrollIntoView != this.props.scrollIntoView &&
+            !this.state.visible)
+            this.scrollToMe()
     }
 
     componentWillUnmount() {

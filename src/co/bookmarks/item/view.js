@@ -72,6 +72,7 @@ export default function BookmarkItemView(props) {
 
                 <SuperLink
                     href={link}
+                    rel='noopener'
 
                     className={s.permalink}
 

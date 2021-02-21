@@ -47,7 +47,7 @@ class ReaderHTML extends React.Component {
                         {loading}
 
                         <div className={s.domain}><b>{domain}</b> &nbsp;&middot;&nbsp; <ShortDate date={created}/></div>
-                        <h1 className={s.title}><a href={(this.props.item||{}).link} target='_blank'>{title}</a></h1>
+                        <h1 className={s.title}><a href={(this.props.item||{}).link} rel='noopener' target='_blank'>{title}</a></h1>
 
                         <div {...this.getHtml()} />
                     </article>

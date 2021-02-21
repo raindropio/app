@@ -75,6 +75,7 @@ class ReaderCache extends React.Component {
                     <>
                         <Button 
                             href={url}
+                            rel='noopener'
                             target='_blank'>
                             <Icon name='open' size='micro' />
                             {t.s('open')}

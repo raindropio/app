@@ -28,7 +28,11 @@ export default function(state, action) {switch (action.type) {
 			const clean = space
 				.set('ids', _.uniq(space.ids).slice(0, SPACE_PER_PAGE))
 				.setIn(['query', 'page'], 0)
-				.setIn(['status', 'nextPage'], blankSpace.status.nextPage)
+				.setIn(['status', 'nextPage'],
+					space.status.nextPage == 'noMore' && (space.ids||[]).length < SPACE_PER_PAGE ?
+						'noMore' :
+						blankSpace.status.nextPage
+				)
 
 			state = state.setIn(['spaces', _id], clean)
 		})
@@ -56,6 +60,11 @@ export default function(state, action) {switch (action.type) {
 
 			return state.setIn(['spaces', spaceId], space)
 		}
+
+		//fix sort in query
+		if (space && query && query.sort)
+			if (!space.sorts[query.sort] || !space.sorts[query.sort].enabled)
+				query.sort = '-created'
 
 		//reset bookmarks list when query changed
 		if (space && !queryIsEqual(space.query, query)){

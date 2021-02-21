@@ -6,13 +6,14 @@ import Item from './item'
 
 const visibility = new Visibility()
 
-function Lazy({ data, initialNumToRender, keyExtractor, ...props }) {
+function Lazy({ data, initialNumToRender, keyExtractor, scrollToItem, ...props }) {
     return data.map((item, index)=>(
         <Item 
             key={keyExtractor(item, index)}
             {...props}
             visibility={visibility}
-            alwayVisible={index <= initialNumToRender}
+            alwayVisible={index < initialNumToRender}
+            scrollIntoView={scrollToItem == item}
             index={index}
             item={item} />
     ))
@@ -23,12 +24,13 @@ Lazy.propTypes = {
     data: PropTypes.arrayOf(PropTypes.any).isRequired,
     keyExtractor: PropTypes.func.isRequired,
     initialNumToRender: PropTypes.number,
+    scrollToItem: PropTypes.number,
 
     //+ .../item
 }
 
 Lazy.defaultProps = {
-    initialNumToRender: 10
+    initialNumToRender: 10,
 }
 
 export default memo(Lazy)

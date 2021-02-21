@@ -2,12 +2,13 @@
 
 /* height mode */
 .height {
-    content-visibility: auto;
-    contain-intrinsic-size: 0 var(--lazy-item-height, 0);
+    /* content-visibility: auto is buggy when height is very different between items!!! */
+    /* content-visibility: auto;
+    contain-intrinsic-size: 0 var(--lazy-item-height, 0); */
 }
 
 .height:empty {
-    height: var(--lazy-item-height, 0);
+    height: var(--lazy-item-height, 0px);
 }
 
 /* grid mode */

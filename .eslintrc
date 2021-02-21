@@ -33,6 +33,7 @@
     "__TARGET__": true,
     "RAINDROP_ENVIRONMENT": true,
     "Set": true,
+    "Map": true,
     "browser": true
   }
 }

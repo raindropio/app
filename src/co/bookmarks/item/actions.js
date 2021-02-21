@@ -17,6 +17,7 @@ export default function BookmarkItemActions(props) {
             <Button 
                 data-button='current_tab'
                 href={link}
+                rel='noopener'
                 variant='outline'
                 title={t.s('open')}>
                 <Icon name='click' />
@@ -27,6 +28,7 @@ export default function BookmarkItemActions(props) {
                 data-button='new_tab'
                 href={link}
                 target='_blank'
+                rel='noopener'
                 variant='outline'
                 title={t.s('open')+' '+t.s('inNewTab')}>
                 <Icon name='open' />
