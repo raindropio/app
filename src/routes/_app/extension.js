@@ -44,6 +44,7 @@ class App extends React.Component {
         e.preventDefault()
         e.stopPropagation()
         browser.tabs.update({ url: href })
+        
         window.close()
     }
 
