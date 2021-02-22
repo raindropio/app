@@ -12,7 +12,7 @@
 
 	<!-- security -->
 	<%if (process.env.APP_TARGET != 'extension') { %>
-		<meta http-equiv="Content-Security-Policy" content="default-src *; script-src 'self' <%= require('./config.js').csp.hosts %> <%= process.env.NODE_ENV === 'development' ? '\'unsafe-inline\' \'unsafe-eval\'' : '' %>; style-src 'self' 'unsafe-inline'; img-src * blob:; object-src 'none';">
+		<meta http-equiv="Content-Security-Policy" content="default-src *; script-src 'self' <%= require('./config.js').csp.hosts %> <%= process.env.NODE_ENV === 'development' ? '\'unsafe-inline\' \'unsafe-eval\'' : '' %>; style-src 'self' 'unsafe-inline'; img-src * blob:; object-src 'self' up.raindrop.io;">
 	<% } %>
 	<meta name="referrer" content="origin">
 
