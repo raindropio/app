@@ -89,7 +89,6 @@ module.exports = ({ production, filename='[name].[contenthash]' }) => ({
 		new HtmlWebpackPlugin({
 			title: 'Raindrop.io',
 			template: './index.ejs',
-			favicon: './assets/brand/favicon.ico',
 			hash: true,
 			scriptLoading: 'defer',
 			inject: 'head', //head better for extension
