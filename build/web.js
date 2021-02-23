@@ -65,11 +65,13 @@ module.exports = (env={}) =>
                     icons: [
                         {
                             src: path.resolve('src/assets/brand/macos_512.png'),
+                            destination: 'assets',
                             size: '512x512',
                             purpose: 'any'
                         },
                         {
                             src: path.resolve('src/assets/brand/maskable_512.png'),
+                            destination: 'assets',
                             size: '512x512',
                             purpose: 'maskable'
                         }

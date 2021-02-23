@@ -97,7 +97,7 @@ module.exports = ({ production, filename='[name].[contenthash]' }) => ({
 
 		//CSS
 		new MiniCssExtractPlugin({
-			filename: `${filename}.css`,
+			filename: `assets/${filename}.css`,
 			chunkFilename: `assets/${filename}.css`
 		})
 	],
