@@ -85,7 +85,7 @@ function* actualizeCollectionCount({ ignore, spaceId, movedFromSpaceId }) {
 	}
 
 	//system collections
-	const { items={}, result=false } = yield call(Api.get, 'stat')
+	const { items={}, result=false } = yield call(Api.get, 'user/stats')
 	if (result)
 		operations.push(
 			...items.map(({_id, count})=>

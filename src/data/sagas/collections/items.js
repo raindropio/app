@@ -34,10 +34,9 @@ export function* loadCollections({ dontLoadCollections=false, onSuccess, onFail 
 
 	try {
 		//Load Get
-		const [root, child, stat={}, user={}] = yield all([
-			call(Api.get, 'collections'),
-			call(Api.get, 'collections/childrens'),
-			call(Api.get, 'stat'),
+		const [collections, stat={}, user={}] = yield all([
+			call(Api.get, 'collections/all'),
+			call(Api.get, 'user/stats'),
 			call(Api.get, 'user')
 		])
 
@@ -58,8 +57,7 @@ export function* loadCollections({ dontLoadCollections=false, onSuccess, onFail 
 			type: COLLECTIONS_LOAD_SUCCESS, 
 			items: [
 				...defColls,
-				...root.items||[],
-				...child.items||[]
+				...collections.items||[],
 			],
 			groups: user.user.groups,
 			user: user.user,
