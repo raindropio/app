@@ -31,11 +31,11 @@ function* saveGroups({ignore=false, onSuccess, onFail}) {
 		const state = yield select()
 		const groups = state.collections.groups||[]
 
-		const { item = {} } = yield call(Api.put, 'userConfig', {groups: groups})
+		const { user = {} } = yield call(Api.put, 'user', {groups: groups})
 
 		yield put({
 			type: GROUPS_SAVE_SUCCESS,
-			groups: item.groups||[],
+			groups: user.groups||[],
 			onSuccess, onFail
 		})
 	}catch(error){

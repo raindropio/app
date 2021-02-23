@@ -15,6 +15,8 @@ export default class Modal extends React.Component {
         onClose: undefined      //func, required
     }
 
+    body = React.createRef()
+
     componentDidMount() {
         eventOrder.add(this)
 
@@ -43,14 +45,16 @@ export default class Modal extends React.Component {
     }
 
     onWindowMouseDown = e => {
-        if (this.props.important){
+        //prevent clicking outside when important true
+        if (this.props.important &&
+            !this.body.current.contains(e.target)){
             e.preventDefault()
             e.stopPropagation()
         }
     }
 
     render() {
-        const { as='div', children, onClose, closable, important, stretch, className='', pin, ...etc } = this.props
+        const { as='div', children, onClose, closable, important, stretch, className='', ...etc } = this.props
         const Component = as
 
         return (
@@ -68,7 +72,10 @@ export default class Modal extends React.Component {
                             className={s.wrap+' '+className}
                             data-stretch={stretch}
                             {...etc}>
-                            <div className={s.body} role='dialog'>
+                            <div 
+                                ref={this.body}
+                                className={s.body} 
+                                role='dialog'>
                                 {children}
                             </div>
                         </Component>

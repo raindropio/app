@@ -61,18 +61,10 @@ export default class Popover extends React.Component {
 
     //click outside
     onBodyMouseDown = (e)=>{
-        if (!eventOrder.isLast(this))
-            return
+        if (!eventOrder.isLast(this)) return
+        if (!this.props.closable) return
 
-        if (!this.props.closable)
-            return
-        
-        const { clientX, clientY } = e
-        const { offsetWidth, offsetHeight } = this._container.current
-        const { left, top } = this._container.current.getBoundingClientRect()
-        const mouseOver = ((clientX > left) && (clientX < (left+offsetWidth)) && (clientY > top) && (clientY < (top+offsetHeight)))
-
-        if (!mouseOver)
+        if (!this._container.current.contains(e.target))
             this.store.close()
     }
 
@@ -88,9 +80,7 @@ export default class Popover extends React.Component {
         }
     }
 
-    onContextMenu = (e)=>{
-        e.preventDefault()
-    }
+    onContextMenu = (e) => e.preventDefault()
 
     updatePosition = _.debounce(()=>{
         if (!this._container.current) return
