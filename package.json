@@ -107,6 +107,7 @@
 		"optimize-css-assets-webpack-plugin": "5.0.x",
 		"patch-package": "^6.2.2",
 		"postcss-loader": "4.2.x",
+		"prop-types": "^15.7.2",
 		"serve": "^11.3.0",
 		"style-loader": "2.0.x",
 		"stylus": "0.54.x",

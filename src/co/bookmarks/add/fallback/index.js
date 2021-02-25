@@ -18,7 +18,7 @@ export default class BookmarksAdd extends React.Component {
 
     onAddClick = (e)=>{
         e.preventDefault()
-        this.setState({ show: true })
+        this.setState({ show: !this.state.show })
     }
 
     onAddClose = ()=>
@@ -35,7 +35,7 @@ export default class BookmarksAdd extends React.Component {
                     variant='primary'
                     title={t.s('add')}
                     autoFocus={autoFocus}
-                    onClick={this.onAddClick}>
+                    onMouseDown={this.onAddClick}>
                     <Icon name='new_bookmark' />
                     {t.s('add')}
                 </Button>

@@ -25,7 +25,7 @@ class BookmarksHeaderMore extends React.Component {
 
     onContextMenuClick = (e)=>{
         e.preventDefault()
-        this.setState({ menu: true })
+        this.setState({ menu: !this.state.menu })
     }
 
     onContextMenuClose = ()=>
@@ -57,7 +57,7 @@ class BookmarksHeaderMore extends React.Component {
                 <Button 
                     ref={this.pin}
                     title={t.s('more')}
-                    onClick={this.onContextMenuClick}>
+                    onMouseDown={this.onContextMenuClick}>
                     <Icon name='more_horizontal' />
                 </Button>
 

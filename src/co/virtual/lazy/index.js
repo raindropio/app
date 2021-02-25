@@ -24,7 +24,7 @@ Lazy.propTypes = {
     data: PropTypes.arrayOf(PropTypes.any).isRequired,
     keyExtractor: PropTypes.func.isRequired,
     initialNumToRender: PropTypes.number,
-    scrollToItem: PropTypes.number,
+    scrollToItem: PropTypes.any,
 
     //+ .../item
 }

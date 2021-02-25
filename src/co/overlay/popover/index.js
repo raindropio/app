@@ -1,9 +1,11 @@
 import s from './index.module.styl'
-import React from 'react'
-import _ from 'lodash'
+import React, { useState, useRef, useMemo, useEffect, useCallback } from 'react'
+import { PropTypes } from 'prop-types'
 import { Portal } from 'react-portal'
 import { Helmet } from 'react-helmet'
+import _ from 'lodash-es'
 import { eventOrder } from '~modules/browser'
+
 import Context from './context'
 
 //save mouse position
@@ -12,144 +14,148 @@ document.documentElement.addEventListener('mousedown', function(e){
     _mousePos = { x: e.pageX, y: e.pageY }
 })
 
-export default class Popover extends React.Component {
-    static defaultProps = {
-        pin: undefined,         //react ref
-        closable: true,
-        hidden: false,
-        stretch: false,         //should stretch in extension, on web show max content as possible
-        onClose: undefined      //func, required
-    }
+function Popover({ pin, innerRef, className='', children, dataKey, closable=true, stretch=false, onClose, ...etc }) {
+    const _container = useRef(null)
 
-    _container = React.createRef()
+    const context = useMemo(()=>({
+        close: ()=>{onClose && onClose()}
+    }), [onClose])
 
-    initPos = { x:-1, y:-1 }
+    useEffect(()=>{
+        if (!_container.current) return
+        const a = _container.current
+        eventOrder.add(a)
+        return ()=>eventOrder.delete(a)
+    }, [_container])
 
-    store = {
-        close: ()=>{
-            this.props.onClose && this.props.onClose()
-        }
-    }
-    
-    componentDidMount() {
-        eventOrder.add(this)
+    //position
+    const [style, setStyle] = useState({ opacity: 0 })
 
-        this.updatePosition()
-        if (typeof ResizeObserver != 'undefined'){
-            this._resizeObserver = new ResizeObserver(this.updatePosition)
+    const place = useCallback(
+        _.debounce(()=>{
+            if (!_container.current) return
 
-            if (this.props.pin && this.props.pin.current)
-                this._resizeObserver.observe(this.props.pin.current)
-        }
+            let y, x
 
-        window.addEventListener('keydown', this.onWindowKeyDown)
-        document.body.addEventListener('mousedown', this.onBodyMouseDown)
-    }
+            //use current mouse position
+            y = _mousePos.y
+            x = _mousePos.x
 
-    componentWillUnmount() {
-        eventOrder.delete(this)
+            //pin to active element
+            if (pin && pin.current)
+            try{
+                const { left, top, height } = pin.current.getBoundingClientRect()
+                y = top + height
+                x = left
+            }catch(e){}
 
-        if (this.props.pin && this.props.pin.current && this._resizeObserver)
-            this._resizeObserver.unobserve(this.props.pin.current)
+            //prevent showing outside of viewport
+            const { innerWidth, innerHeight } = window
+            const { offsetWidth, offsetHeight } = _container.current
 
-        if (this._resizeObserver)
-            this._resizeObserver.disconnect()
+            if (x + offsetWidth > innerWidth)
+                x = innerWidth - offsetWidth - 16
+            if (x < 0)
+                x = 16
 
-        window.removeEventListener('keydown', this.onWindowKeyDown)
-        document.body.removeEventListener('mousedown', this.onBodyMouseDown)
-    }
+            if (!stretch && y + offsetHeight > innerHeight)
+                y = innerHeight - offsetHeight - 16
+
+            if (y < 0)
+                y = 16
+
+            setStyle({
+                opacity: 1,
+                '--top': parseInt(y)+'px',
+                '--left': parseInt(x)+'px'
+            })
+        }, 100, { leading: true }),
+        [_container, pin, stretch, setStyle]
+    )
+
+    //update position on some events
+    useEffect(()=>{
+        place()
+    }, [place, dataKey])
 
     //click outside
-    onBodyMouseDown = (e)=>{
-        if (!eventOrder.isLast(this)) return
-        if (!this.props.closable) return
+    useEffect(()=>{
+        const onBodyMouseDown = e=>{
+            if (!eventOrder.isLast(_container.current)) return
+            if (!closable) return
 
-        if (!this._container.current.contains(e.target))
-            this.store.close()
-    }
-
-    onWindowKeyDown = (e)=>{
-        switch(e.key) {
-            case 'Escape':
-                if (!eventOrder.isLast(this))
-                    return
-
-                e.preventDefault()
-                e.stopPropagation()
-                return this.store.close()
+            if (!_container.current.contains(e.target))
+                context.close()
         }
-    }
 
-    onContextMenu = (e) => e.preventDefault()
+        window.addEventListener('mousedown', onBodyMouseDown)
+        return ()=>window.removeEventListener('mousedown', onBodyMouseDown)
+    }, [_container, context, closable])
 
-    updatePosition = _.debounce(()=>{
-        if (!this._container.current) return
-
-        this.initPos = {}
-
-        //use current mouse position
-        this.initPos.y = _mousePos.y
-        this.initPos.x = _mousePos.x
-
-        //pin to active element
-        try{
-            if (this.props.pin.current){
-                const { left, top, height } = this.props.pin.current.getBoundingClientRect()
-                this.initPos.y = top + height
-                this.initPos.x = left
+    //global hotkeys
+    useEffect(()=>{
+        const onWindowKeyDown = e=>{
+            switch(e.key) {
+                case 'Escape':
+                    if (!eventOrder.isLast(_container.current))
+                        return
+    
+                    e.preventDefault()
+                    e.stopPropagation()
+                    return context.close()
             }
-        }catch(e){}
+        }
 
-        let { y, x } = this.initPos
+        window.addEventListener('keydown', onWindowKeyDown)
+        return ()=>window.removeEventListener('keydown', onWindowKeyDown)
+    }, [_container, context])
 
-        //prevent showing outside of viewport
-        const { innerWidth, innerHeight } = window
-        const { offsetWidth, offsetHeight } = this._container.current
+    if (innerRef)
+        innerRef(_container)
 
-        if (x + offsetWidth > innerWidth)
-            x = innerWidth - offsetWidth - 16
-        if (x < 0)
-            x = 16
+    return (
+        <Portal>
+            <Context.Provider value={context}>
+                {stretch ? (
+                    <Helmet>
+                        <html data-popover-showing />
+                    </Helmet>
+                ) : null}
 
-        if (!this.props.stretch && y + offsetHeight > innerHeight)
-            y = innerHeight - offsetHeight - 16
-
-        if (y < 0)
-            y = 16
-
-        this._container.current.setAttribute('style', `--top: ${parseInt(y)}px; --left: ${parseInt(x)}px;`)
-    }, 100, { leading: true })
-
-    render() {
-        const { className='', children, closable, stretch, pin, innerRef, ...etc } = this.props
-
-        if (innerRef)
-            innerRef(this._container)
-
-        return (
-            <Portal>
-                <Context.Provider value={this.store}>
-                    {stretch ? (
-                        <Helmet>
-                            <html data-popover-showing />
-                        </Helmet>
-                    ) : null}
-
-                    <div 
-                        {...etc}
-                        ref={this._container}
-                        className={className+' '+s.wrap}
-                        data-closable={closable}
-                        data-stretch={stretch}
-                        onContextMenu={this.onContextMenu}>
-                        <div className={s.body}>
-                            {children}
-                        </div>
+                <div 
+                    {...etc}
+                    ref={_container}
+                    className={className+' '+s.wrap}
+                    style={style}
+                    data-closable={closable}
+                    data-stretch={stretch}>
+                    <div className={s.body}>
+                        {children}
                     </div>
-                </Context.Provider>
-            </Portal>
-        )
-    }
+                </div>
+            </Context.Provider>
+        </Portal>
+    )
 }
+
+Popover.propTypes = {
+    pin: PropTypes.oneOfType([
+        PropTypes.func, 
+        PropTypes.shape({ current: PropTypes.instanceOf(Element) })
+    ]),
+    innerRef: PropTypes.oneOfType([
+        PropTypes.func, 
+        PropTypes.shape({ current: PropTypes.instanceOf(Element) })
+    ]),
+
+    className: PropTypes.string,
+    dataKey: PropTypes.any,
+
+    closable: PropTypes.bool,
+    stretch: PropTypes.bool,
+    onClose: PropTypes.func
+}
+
+export default Popover
 
 export * from './menu'

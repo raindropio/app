@@ -23,7 +23,7 @@ class BookmarksHeaderView extends React.Component {
 
     onMenuClick = (e)=>{
         e.preventDefault()
-        this.setState({ menu: true })
+        this.setState({ menu: !this.state.menu })
     }
 
     onMenuClose = ()=>
@@ -38,7 +38,7 @@ class BookmarksHeaderView extends React.Component {
                 <Button 
                     ref={this.pin}
                     title={t.s('view')}
-                    onClick={this.onMenuClick}>
+                    onMouseDown={this.onMenuClick}>
                     <Icon name={'view_'+view} />
                     <span className='hide-on-small-body'>{t.s(`view_${view}`)}</span>
                 </Button>

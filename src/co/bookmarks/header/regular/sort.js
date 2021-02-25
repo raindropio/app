@@ -33,7 +33,7 @@ class BookmarksHeaderSort extends React.Component {
 
     onContextMenuClick = (e)=>{
         e.preventDefault()
-        this.setState({ menu: true })
+        this.setState({ menu: !this.state.menu })
     }
 
     onContextMenuClose = ()=>
@@ -52,7 +52,7 @@ class BookmarksHeaderSort extends React.Component {
                     ref={this.pin}
                     title={t.s('sortBy')}
                     variant={sort!='sort'?'link':''}
-                    onClick={this.onContextMenuClick}>
+                    onMouseDown={this.onContextMenuClick}>
                     <Icon name={'sort_'+sort} />
         
                     <span className='hide-on-small-body'>
