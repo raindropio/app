@@ -69,7 +69,7 @@ function Popover({ pin, innerRef, className='', children, dataKey, closable=true
                 '--top': parseInt(y)+'px',
                 '--left': parseInt(x)+'px'
             })
-        }, 100, { leading: true }),
+        }, 100, { leading: true, maxWait: 1000 }),
         [_container, pin, stretch, setStyle]
     )
 
