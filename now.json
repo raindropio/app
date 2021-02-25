@@ -12,8 +12,7 @@
     }
   ],
   "headers": [
-    { "source": "/assets/(.*)", "headers": [{ "key": "cache-control", "value": "public, must-revalidate, max-age=31536000" }] },
-    { "source": "/favicon.ico", "headers": [{ "key": "cache-control", "value": "public, max-age=31536000" }] }
+    { "source": "/assets/(.*)", "headers": [{ "key": "cache-control", "value": "public, must-revalidate, max-age=31536000" }] }
   ],
   "redirects": [
     { "source": "/legacy/4",  "destination": "https://extension.raindrop.io", "permanent": true }

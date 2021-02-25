@@ -50,10 +50,6 @@ html {
     scrollbar-color: var(--scrollbar-color) transparent;
 }
 
-* {
-    scrollbar-width: thin
-}
-
 html:global(.scrollbar-obtrusive) ::-webkit-scrollbar {
     width: 14px;
     height: 14px;
