@@ -14,9 +14,7 @@
 		76E78B4B2514A30300D331A8 /* Save to Raindrop.io Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 76E78B4A2514A30300D331A8 /* Save to Raindrop.io Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		76E78B502514A30300D331A8 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76E78B4F2514A30300D331A8 /* Cocoa.framework */; };
 		76E78B532514A30300D331A8 /* SafariWebExtensionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E78B522514A30300D331A8 /* SafariWebExtensionHandler.swift */; };
-		76E78B662514A30300D331A8 /* favicon.ico in Resources */ = {isa = PBXBuildFile; fileRef = 76E78B602514A30300D331A8 /* favicon.ico */; };
 		76E78B672514A30300D331A8 /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = 76E78B612514A30300D331A8 /* index.html */; };
-		76E78B682514A30300D331A8 /* app.css in Resources */ = {isa = PBXBuildFile; fileRef = 76E78B622514A30300D331A8 /* app.css */; };
 		76E78B692514A30300D331A8 /* manifest.json in Resources */ = {isa = PBXBuildFile; fileRef = 76E78B632514A30300D331A8 /* manifest.json */; };
 		76E78B6A2514A30300D331A8 /* _locales in Resources */ = {isa = PBXBuildFile; fileRef = 76E78B642514A30300D331A8 /* _locales */; };
 		76E78B6B2514A30300D331A8 /* assets in Resources */ = {isa = PBXBuildFile; fileRef = 76E78B652514A30300D331A8 /* assets */; };
@@ -59,9 +57,7 @@
 		76E78B522514A30300D331A8 /* SafariWebExtensionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariWebExtensionHandler.swift; sourceTree = "<group>"; };
 		76E78B542514A30300D331A8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		76E78B552514A30300D331A8 /* Save_to_Raindrop.io_Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Save_to_Raindrop.io_Extension.entitlements; sourceTree = "<group>"; };
-		76E78B602514A30300D331A8 /* favicon.ico */ = {isa = PBXFileReference; lastKnownFileType = image.ico; name = favicon.ico; path = ../../../../dist/safari/prod/favicon.ico; sourceTree = "<group>"; };
 		76E78B612514A30300D331A8 /* index.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = index.html; path = ../../../../dist/safari/prod/index.html; sourceTree = "<group>"; };
-		76E78B622514A30300D331A8 /* app.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; name = app.css; path = ../../../../dist/safari/prod/app.css; sourceTree = "<group>"; };
 		76E78B632514A30300D331A8 /* manifest.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = manifest.json; path = ../../../../dist/safari/prod/manifest.json; sourceTree = "<group>"; };
 		76E78B642514A30300D331A8 /* _locales */ = {isa = PBXFileReference; lastKnownFileType = folder; name = _locales; path = ../../../../dist/safari/prod/_locales; sourceTree = "<group>"; };
 		76E78B652514A30300D331A8 /* assets */ = {isa = PBXFileReference; lastKnownFileType = folder; name = assets; path = ../../../../dist/safari/prod/assets; sourceTree = "<group>"; };
@@ -140,9 +136,7 @@
 		76E78B5F2514A30300D331A8 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				76E78B602514A30300D331A8 /* favicon.ico */,
 				76E78B612514A30300D331A8 /* index.html */,
-				76E78B622514A30300D331A8 /* app.css */,
 				76E78B632514A30300D331A8 /* manifest.json */,
 				76E78B642514A30300D331A8 /* _locales */,
 				76E78B652514A30300D331A8 /* assets */,
@@ -241,8 +235,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				76E78B692514A30300D331A8 /* manifest.json in Resources */,
-				76E78B682514A30300D331A8 /* app.css in Resources */,
-				76E78B662514A30300D331A8 /* favicon.ico in Resources */,
 				76E78B6B2514A30300D331A8 /* assets in Resources */,
 				76E78B6A2514A30300D331A8 /* _locales in Resources */,
 				76E78B672514A30300D331A8 /* index.html in Resources */,
@@ -412,7 +404,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Save to Raindrop.io Extension/Save_to_Raindrop.io_Extension.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 9;
 				DEVELOPMENT_TEAM = 7459JWM5TY;
 				INFOPLIST_FILE = "Save to Raindrop.io Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -421,7 +413,7 @@
 					"@executable_path/../../../../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
-				MARKETING_VERSION = 5.0.1;
+				MARKETING_VERSION = 5.2.73;
 				PRODUCT_BUNDLE_IDENTIFIER = io.raindrop.safari.extension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -436,7 +428,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Save to Raindrop.io Extension/Save_to_Raindrop.io_Extension.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 9;
 				DEVELOPMENT_TEAM = 7459JWM5TY;
 				INFOPLIST_FILE = "Save to Raindrop.io Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -445,7 +437,7 @@
 					"@executable_path/../../../../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
-				MARKETING_VERSION = 5.0.1;
+				MARKETING_VERSION = 5.2.73;
 				PRODUCT_BUNDLE_IDENTIFIER = io.raindrop.safari.extension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -464,7 +456,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 9;
 				DEVELOPMENT_TEAM = 7459JWM5TY;
 				INFOPLIST_FILE = "Save to Raindrop.io/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -472,7 +464,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
-				MARKETING_VERSION = 5.0.1;
+				MARKETING_VERSION = 5.2.73;
 				PRODUCT_BUNDLE_IDENTIFIER = io.raindrop.safari;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -489,7 +481,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 9;
 				DEVELOPMENT_TEAM = 7459JWM5TY;
 				INFOPLIST_FILE = "Save to Raindrop.io/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -497,7 +489,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
-				MARKETING_VERSION = 5.0.1;
+				MARKETING_VERSION = 5.2.73;
 				PRODUCT_BUNDLE_IDENTIFIER = io.raindrop.safari;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;

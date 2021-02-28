@@ -81,7 +81,6 @@ module.exports = ({ vendor, production=false }, l) => {
 			'contextMenus',
 			'notifications',
 			vendor=='safari' ? '<all_urls>' : 'activeTab', //otherwise safari shows confirmation dialog on each and every site
-			'https://api.raindrop.io/'
 		],
 
 		optional_permissions: [

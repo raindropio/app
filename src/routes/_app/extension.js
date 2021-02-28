@@ -2,16 +2,11 @@ import React from 'react'
 import browser from '~target/extension/browser'
 import { connect } from 'react-redux'
 import { makeBookmarksLastChange } from '~data/selectors/bookmarks'
-import { environment } from '~target'
 
 class App extends React.Component {
     componentDidMount() {
         //very important to bind to window insted of document, to be sure that it happen after all other event listeners
         window.addEventListener('click', this.onClickExternalLink)
-
-        //fix close behaviour in iframe
-        if (window.parent && environment.includes('browser_action'))
-            window.close = window.parent.close
     }
 
     componentWillUnmount() {

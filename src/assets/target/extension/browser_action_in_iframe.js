@@ -20,6 +20,18 @@ const frame = document.getElementById('frame')
 
 frame.addEventListener('load', () => {
     frameResize.observe(frame.contentWindow.document.body)
+
+    //override close in frame
+    frame.contentWindow.close = ()=>{
+        try{
+            //safari doesn't close window for some reason, so focus current tab
+            browser.windows.getCurrent().then(w=>
+                browser.windows.update(w.id, { focused: true })
+            )
+            
+            window.close()
+        }catch(e){}
+    }
 })
 
 //restore cached w/h

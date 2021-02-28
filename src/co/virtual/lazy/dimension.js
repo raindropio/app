@@ -39,6 +39,7 @@ export default class LazyDimension extends React.Component {
 
     componentDidMount() {
         if (this.props.disabled) return
+        if (typeof ResizeObserver == 'undefined') return
 
         this._div = findDOMNode(this)
         DimensionInstance.add(this._div, this.props.onChange)
