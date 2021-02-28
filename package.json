@@ -20,7 +20,7 @@
 		"build:extension:chrome": "webpack --config build/extension.js --env production --env vendor=chrome",
 		"build:extension:firefox": "webpack --config build/extension.js --env production --env vendor=firefox",
 		"build:extension:opera": "webpack --config build/extension.js --env production --env vendor=opera",
-		"build:extension:safari": "webpack --config build/extension.js --env production --env vendor=safari",
+		"build:extension:safari": "webpack --config build/extension.js --env production --env vendor=safari && cd 'build/xcode/Save to Raindrop.io' && ./version.sh",
 		"build:electron": "webpack --config build/electron.js --env production",
 		"size": "webpack --config build/web.js --env production --profile --json > dist/stats.json && webpack-bundle-analyzer dist/stats.json dist/web",
 		"deploy:prod": "git branch -f release/production master && git push --force origin release/production",
