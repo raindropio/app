@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import { put, takeLatest } from 'redux-saga/effects'
+import { put, takeLatest, select } from 'redux-saga/effects'
 import { CONFIG_SET_LASTCOLLECTION } from '../constants/config'
 import { USER_UPDATE_REQ } from '../constants/user'
 import { COLLECTION_CHANGE_VIEW } from '../constants/collections'
@@ -26,13 +26,17 @@ const userUpdate = function(from, to, filter) {
             !filter(val))
             return
 
-        yield put({
-            type: USER_UPDATE_REQ, 
-            user: {
-                config:{
-                    [to]: val
+        const state = yield select()
+
+        if (!state.config || 
+            state.config[to] != val)
+            yield put({
+                type: USER_UPDATE_REQ, 
+                user: {
+                    config:{
+                        [to]: val
+                    }
                 }
-            }
-        })
+            })
     }
 }
