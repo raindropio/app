@@ -107,6 +107,8 @@ function* req(url, options={}) {
 	else if (url.indexOf('http') == 0)
 		finalURL = url
 
+	let errorMessage = 'failed to load'
+
 	for(let i = 0; i < API_RETRIES; i++){
 		try{
 			const winner = yield race({
@@ -119,6 +121,8 @@ function* req(url, options={}) {
 
 			return winner.req;
 		}catch(e){
+			errorMessage = e.message || ''
+
 			//stop if client error
 			if (e && e.status && e.status >= 400 && e.status < 500)
 				break;
@@ -129,7 +133,7 @@ function* req(url, options={}) {
 		}
 	}
 
-	throw new ApiError({ errorMessage: 'failed to load '+finalURL })
+	throw new ApiError({ errorMessage: `${errorMessage} ${finalURL}` })
 }
 
 const fetchWrap = (url, options)=>(

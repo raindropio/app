@@ -138,7 +138,7 @@ function* processBookmarks(mode, bookmarks, collectionId) {
 		if (mode === 'new'){
 			const { duplicates=[] } = yield call(Api.post, 'import/url/exists', {
 				urls: items.map(({ link })=>link)
-			})
+			}, { timeout: 0 })
 
 			if (duplicates.length)
 				items = items.filter(({ link })=>
@@ -150,7 +150,7 @@ function* processBookmarks(mode, bookmarks, collectionId) {
 
 		//create bookmarks
 		if (items.length)
-			yield call(Api.post, 'raindrops', { items })
+			yield call(Api.post, 'raindrops', { items }, { timeout: 0 })
 
 		//update progress
 		yield put({
