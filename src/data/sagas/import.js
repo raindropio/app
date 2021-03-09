@@ -131,7 +131,11 @@ function* processBookmarks(mode, bookmarks, collectionId) {
 	for(const chunk of chunks){
 		let items = chunk.map(item=>({
 			...item,
-			collectionId
+			collectionId,
+			pleaseParse: {
+				weight: bookmarks.length,
+				disableNotification: false
+			}
 		}))
 
 		//prevent duplicates

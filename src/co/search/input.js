@@ -81,6 +81,15 @@ export default class SearchInput extends React.Component {
     onInputChange = e=>
         this.props.onChange(e.target.value)
 
+    onInputKeyDown = e=>{
+        switch(e.key) {
+            case 'Home':
+            case 'End':
+                e.nativeEvent.preventDownshiftDefault = true
+                break
+        }
+    }
+
     forceOpen = ()=>{
         if (this.props.autoFocus && !this._first)
             this._first=true
@@ -115,6 +124,7 @@ export default class SearchInput extends React.Component {
                                 value,
                                 clearOnEscape: !downshift.isOpen || value,
                                 onChange: this.onInputChange,
+                                onKeyDown: this.onInputKeyDown,
                                 onFocus: this.forceOpen,
                                 onBlur: this.forceClose,
                                 onReset: this.forceClose,
