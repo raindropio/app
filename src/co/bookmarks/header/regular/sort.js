@@ -72,6 +72,7 @@ class BookmarksHeaderSort extends React.Component {
                                             autoFocus={item==sort}
                                             data-sort={item}
                                             checked={item==sort}
+                                            readOnly
                                             onClick={this.onSortClick}>
                                             <Icon name={'sort_'+item} />
                                             {this.options[item]}{item=='sort' ? ' (Drag\'n\'drop)' : ''}

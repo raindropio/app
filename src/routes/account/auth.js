@@ -23,9 +23,10 @@ function Auth({ authorized, location: { search } }) {
         const redirect = sessionStorage && sessionStorage.getItem('redirect')
         if (redirect){
             sessionStorage.removeItem('redirect')
-            return location.href = redirect
+            location.href = redirect
+            return null
         }
-            
+
         return <Redirect to='/' />
     }
 

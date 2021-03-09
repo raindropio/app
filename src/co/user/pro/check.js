@@ -7,6 +7,7 @@ import { target, environment } from '~target'
 export default async function Check(type='') {
     if (isPro()) return true
 
+    const safariEx = (target == 'extension' && environment.includes('safari'))
     let go = false
 
     switch(type) {
@@ -15,13 +16,13 @@ export default async function Check(type='') {
                 t.s('nestedCollections'),
                 {
                     description: t.s('onlyInPro'),
-                    ok: t.s('upgradeToPro')
+                    ok: !safariEx ? t.s('upgradeToPro') : 'OK'
                 }
             )
         break
     }
 
-    if (target == 'extension' && environment.includes('safari'))
+    if (safariEx)
         return false
 
     if (go)

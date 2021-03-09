@@ -4,7 +4,9 @@ import { PropTypes } from 'prop-types'
 
 class Dimension {
     constructor() {
-        this._io = new ResizeObserver(this.onChange)
+        if (typeof ResizeObserver != 'undefined')
+            this._io = new ResizeObserver(this.onChange)
+            
         this._targets = new Map()
     }
 

@@ -5,7 +5,7 @@ import links from './links'
 import omnibox from './omnibox'
 import runtime from './runtime'
 
-Promise.all([
+Promise.allSettled([
     action(),
     commands(),
     contextMenus(),

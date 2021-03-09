@@ -35,6 +35,7 @@ class TagsMenu extends React.PureComponent {
             prev.downshift.inputValue != this.props.downshift.inputValue)
             if (this.props.downshift.highlightedIndex !== null &&
                 this.props.tags.length &&
+                this.props.tags[this.props.downshift.highlightedIndex] &&
                 this.props.tags[this.props.downshift.highlightedIndex].type == 'section'){
                 this.props.downshift.setHighlightedIndex(this.props.downshift.highlightedIndex + 1)
                 }

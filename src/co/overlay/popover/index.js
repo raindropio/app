@@ -81,14 +81,14 @@ function Popover({ pin, innerRef, className='', children, dataKey, closable=true
     //click outside
     useEffect(()=>{
         const onBodyMouseDown = e=>{
-            if (!eventOrder.isLast(_container.current)) return
+            if (!_container.current) return
             if (!closable) return
 
             if (!_container.current.contains(e.target))
                 context.close()
         }
 
-        window.addEventListener('mousedown', onBodyMouseDown)
+        setTimeout(()=>window.addEventListener('mousedown', onBodyMouseDown))
         return ()=>window.removeEventListener('mousedown', onBodyMouseDown)
     }, [_container, context, closable])
 
