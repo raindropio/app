@@ -15,6 +15,7 @@ export default class DialogPromptView extends React.PureComponent {
 
     onSubmit = e => {
         e.preventDefault()
+        e.stopPropagation()
         this.props.sendResult(this.props.id, this.state.value)
     }
 

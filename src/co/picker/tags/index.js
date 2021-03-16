@@ -15,6 +15,7 @@ export default class PicketTagsModal extends React.Component {
 
     onSubmit = e => {
         e.preventDefault()
+        e.stopPropagation()
         this.props.onSubmit && this.props.onSubmit()
     }
 

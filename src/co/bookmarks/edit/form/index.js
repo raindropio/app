@@ -14,6 +14,8 @@ import More from './more'
 export default class BookmarkEditForm extends React.Component {
     onSubmitForm = e=>{
         e.preventDefault()
+        e.stopPropagation()
+        
         this.props.onSave().then(()=>{
             if (this.props.autoWindowClose)
                 window.close()

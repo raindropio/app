@@ -25,6 +25,7 @@ export default class FiltersTagRename extends React.PureComponent {
 
     onSubmit = (e)=>{
         e.preventDefault()
+        e.stopPropagation()
         this.save()
     }
 

@@ -26,6 +26,7 @@ class CollectionsItemBlank extends React.PureComponent {
 
     onSubmit = (e)=>{
         e.preventDefault()
+        e.stopPropagation()
         this.create()
     }
 

@@ -40,6 +40,7 @@ export default class PickerSourceLink extends React.Component {
 
     onSubmit = async(e)=>{
         e.preventDefault()
+        e.stopPropagation()
         
         this.setState({ status: 'loading' })
 

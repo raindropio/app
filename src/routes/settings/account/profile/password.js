@@ -10,6 +10,7 @@ import Button from '~co/common/button'
 class SettingsAccountProfilePassword extends React.Component {
     onSubmit = e => {
         e.preventDefault()
+        e.stopPropagation()
         
         this.props.onSubmit(this.props.onClose)
     }
