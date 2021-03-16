@@ -54,12 +54,17 @@ export default function(state, action) {switch (action.type) {
 				.set('item', {...state.elements[_id], ...state.meta[_id]})
 		//not loaded yet
 		else{
-			draft = draft
-				.set('status', 'loading')
+			draft = draft.set('status', 'loading')
 
-			//clean up new collectionId
-			if (newOne && newOne.item && newOne.item.collectionId == -99)
-				newOne.item.collectionId = -1
+			//is it new?
+			if (newOne && newOne.item){
+				//clean up new collectionId
+				if (!newOne.item.collectionId ||
+					newOne.item.collectionId == -99)
+					newOne.item.collectionId = -1
+
+				draft = draft.set('item', normalizeBookmark(newOne.item, {flat: false}))
+			}
 		}
 
 		return state.setIn(['drafts', _id], draft)

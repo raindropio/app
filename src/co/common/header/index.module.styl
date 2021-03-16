@@ -37,6 +37,10 @@ html:global(.electron.mac) {
     }
 }
 
+//fix for firefox popover
+html:global(.extension.browser_action.firefox) .header {
+    position: static
+}
 
 //very heavy for performance!
 @supports (backdrop-filter: none) {

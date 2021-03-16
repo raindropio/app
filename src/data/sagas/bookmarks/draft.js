@@ -37,7 +37,7 @@ function* draftLoad({ newOne, ignore=false, ...draft }) {
 		//Need to find out by link only
 		else {
 			if (preventDuplicate && draft._id){
-				const { ids=[] } = yield call(Api.post, 'check/url', { url: draft._id })
+				const { ids=[] } = yield call(Api.get, `import/url/exists?url=${encodeURIComponent(draft._id)}`)
 
 				//existing
 				if (ids.length)
@@ -152,7 +152,7 @@ function* enrichCreated({ draft, item, overrideEmpty }) {
 	if (!draft) return
 
 	try{
-		const parse = yield call(Api.get, 'parse?url='+encodeURIComponent(draft))
+		const parse = yield call(Api.get, 'import/url/parse?url='+encodeURIComponent(draft))
 		if (parse.error) return
 
 		let changed = {}

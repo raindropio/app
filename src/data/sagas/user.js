@@ -72,7 +72,7 @@ function* updateUser({ ignore=false, onSuccess, onFail,  ...action }) {
 
 function* loginWithPassword({email, password, onSuccess, onFail}) {
 	try {
-		yield call(Api.post, 'auth/login', {email, password});
+		yield call(Api.post, 'auth/email/login', {email, password});
 
 		yield put({type: USER_REFRESH_REQ, way: 'login', onSuccess});
 	} catch (error) {
@@ -82,8 +82,8 @@ function* loginWithPassword({email, password, onSuccess, onFail}) {
 
 function* registerWithPassword({fullName, email, password, onSuccess, onFail}) {
 	try {
-		yield call(Api.post, 'user', {fullName, email:email||'0', password});
-		yield call(Api.post, 'auth/login', {email, password});
+		yield call(Api.post, 'auth/email/signup', {fullName, email:email||'0', password});
+		yield call(Api.post, 'auth/email/login', {email, password});
 
 		yield put({type: USER_REFRESH_REQ, way: 'register', onSuccess});
 	} catch (error) {
@@ -132,7 +132,7 @@ function* recoverPassword({token, password, onSuccess, onFail}) {
 			throw new ApiError(etc)
 
 		//login with new password
-		yield call(Api.post, 'auth/login', {email, password})
+		yield call(Api.post, 'auth/email/login', {email, password})
 
 		yield put({type: USER_REFRESH_REQ, way: 'recover', onSuccess})
 	} catch (error) {

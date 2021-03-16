@@ -69,7 +69,7 @@ function* createBookmark({obj={}, ignore=false, draft, onSuccess, onFail}) {
 			item.pleaseParse = { weight: 1 }
 		//parse bookmark otherwise
 		else {
-			const parsed = yield call(Api.get, 'parse?url='+encodeURIComponent(item.link))
+			const parsed = yield call(Api.get, 'import/url/parse?url='+encodeURIComponent(item.link))
 
 			item = { ...item, ...parsed.item }
 		}

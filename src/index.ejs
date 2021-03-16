@@ -21,6 +21,7 @@
 		<link rel="preconnect" href="https://rdl.ink">
 		<link rel="preconnect" href="https://api.raindrop.io" >
 	<% } %>
+	<%= process.env.APP_TARGET == 'extension' ? `<script src='${require('./assets/target/extension/preload.js?asis').default}'></script>` : '' %>
 
 	<!-- native apps -->
 	<meta name='apple-itunes-app' content='app-id=1021913807' />
