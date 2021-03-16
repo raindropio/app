@@ -162,11 +162,11 @@ export default function(state, action) {switch (action.type) {
 	}
 
 	case BOOKMARK_CREATE_ERROR:{
-		const { draft } = action
-		if (!draft) return state
+		const { draft, error } = action
 
 		return state
-			.setIn(['drafts', draft, 'status'], 'new')
+			.setIn(['drafts', draft, 'status'], 'error')
+			.setIn(['drafts', draft, 'error'], error)
 	}
 
 	//Updating/Removing

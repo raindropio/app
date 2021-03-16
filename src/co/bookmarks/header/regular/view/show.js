@@ -28,7 +28,7 @@ class BookmarksHeaderViewShow extends React.Component {
         const options = [
             ['cover', t.s(view == 'simple' ? 'icon' : 'cover')],
             ['title', t.s('title')],
-            ...(view != 'simple' ? [['excerpt', t.s('description')]] : []),
+            ['excerpt', t.s('description')],
             ['tags', t.s('tags')],
             ['info', _.capitalize(t.s('bookmarks')) + ' ' + t.s('info').toLowerCase()]
         ]

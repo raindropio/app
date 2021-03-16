@@ -157,6 +157,10 @@ function* enrichCreated({ draft, item, overrideEmpty }) {
 
 		let changed = {}
 
+		//set title
+		if (parse.item.title && !item.title && overrideEmpty)
+			changed.title = parse.item.title
+
 		//set excerpt
 		if (parse.item.excerpt && !item.excerpt && overrideEmpty)
 			changed.excerpt = parse.item.excerpt
