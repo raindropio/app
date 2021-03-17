@@ -1,6 +1,6 @@
 import s from './index.module.styl'
 import React from 'react'
-import _ from 'lodash'
+import debounce from '~modules/format/callback/debounce'
 import Basic from '../basic'
 
 export const Context = React.createContext({})
@@ -41,7 +41,7 @@ export default class ScreenSplitView extends React.Component {
         }
     }
 
-    update = _.debounce((space, obj)=>{
+    update = debounce((space, obj)=>{
         let changed = false
 
         for(const key in obj)

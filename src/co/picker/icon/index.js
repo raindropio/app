@@ -1,6 +1,6 @@
 import React from 'react'
 import t from '~t'
-import _ from 'lodash'
+import debounce from '~modules/format/callback/debounce'
 import { connect } from 'react-redux'
 import * as actions from '~data/actions/covers'
 
@@ -34,7 +34,7 @@ class PickerIcon extends React.Component {
     onSearchChange = e =>
         this.setState({ search: e.target.value }, this.load)
 
-    load = _.debounce(()=>{
+    load = debounce(()=>{
         if (!this.state.search.length || this.state.search.length>1)
             this.props.load(this.state.search)
     }, 250, { maxWait: 1000 })

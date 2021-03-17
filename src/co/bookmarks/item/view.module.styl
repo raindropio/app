@@ -2,6 +2,7 @@
     background: var(--background-color)
     position: relative
     overflow: hidden
+    overflow: clip
     
     &.broken {
         .title, p {
@@ -61,6 +62,7 @@
     left: -100vw
     transform: scale(0.5)
     overflow: hidden
+    overflow: clip
     zoom: 0.5
     max-width: 300px
     max-height: 300px
@@ -90,6 +92,7 @@
         flex-direction: column
         font-size: var(--primary-font-size)
         overflow: hidden
+        overflow: clip
         color: var(--primary-text-color)
 
         &:empty {
@@ -107,13 +110,14 @@
     }
 
     .title, .excerpt {
-        display: -webkit-box;
-        line-clamp: 5;
-        -webkit-line-clamp: 5;
-        -webkit-box-orient: vertical;  
-        overflow: hidden;
-        white-space: pre;
-        white-space: pre-wrap;
+        display: -webkit-box
+        line-clamp: 5
+        -webkit-line-clamp: 5
+        -webkit-box-orient: vertical
+        overflow: hidden
+        overflow: clip
+        white-space: pre
+        white-space: pre-wrap
     }
 }
 

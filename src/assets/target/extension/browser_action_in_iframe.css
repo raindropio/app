@@ -6,6 +6,7 @@
 html, body {
     margin: 0;
     overflow: hidden;
+    overflow: clip;
 }
 iframe {
     margin: 0;

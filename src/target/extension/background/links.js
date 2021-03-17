@@ -1,7 +1,7 @@
 import browser from 'webextension-polyfill'
 import { normalizeURL } from '~modules/format/url'
 import Api from '~data/modules/api'
-import _ from 'lodash'
+import debounce from '~modules/format/callback/debounce'
 
 const options = {
     divider: '</-rl-/>',
@@ -56,7 +56,7 @@ export async function reload() {
 }
 
 //messaging
-const onMessage = _.debounce(
+const onMessage = debounce(
     async function({ type }) {
         switch(type) {
             case 'BOOKMARKS_CHANGED':

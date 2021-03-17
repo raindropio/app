@@ -1,6 +1,6 @@
 import './html.module.styl'
 import React from 'react'
-import _ from 'lodash'
+import debounce from '~modules/format/callback/debounce'
 import { Helmet } from 'react-helmet'
 import { connect } from 'react-redux'
 
@@ -24,7 +24,7 @@ class DocumentHtml extends React.PureComponent {
         window.removeEventListener('resize', this.onWindowResize)
     }
 
-    onWindowResize = _.debounce(() => {
+    onWindowResize = debounce(() => {
         if (screen.width === window.innerWidth &&
             screen.height === window.innerHeight)
             this.addClass('fullscreen')

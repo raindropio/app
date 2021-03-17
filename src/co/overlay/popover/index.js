@@ -3,7 +3,7 @@ import React, { useState, useRef, useMemo, useEffect, useCallback } from 'react'
 import { PropTypes } from 'prop-types'
 import { Portal } from 'react-portal'
 import { Helmet } from 'react-helmet'
-import _ from 'lodash-es'
+import debounce from '~modules/format/callback/debounce'
 import { eventOrder } from '~modules/browser'
 
 import Context from './context'
@@ -32,7 +32,7 @@ function Popover({ pin, innerRef, className='', children, dataKey, closable=true
     const [style, setStyle] = useState({ opacity: 0 })
 
     const place = useCallback(
-        _.debounce(()=>{
+        ()=>{
             if (!_container.current) return
 
             let y, x
@@ -69,13 +69,17 @@ function Popover({ pin, innerRef, className='', children, dataKey, closable=true
                 '--top': parseInt(y)+'px',
                 '--left': parseInt(x)+'px'
             })
-        }, 100, { leading: true, maxWait: 1000 }),
+        },
         [_container, pin, stretch, setStyle]
+    )
+    const placeDebounced = useMemo(()=>
+        debounce(place, 100, { leading: true, maxWait: 1000 }),
+        [place]
     )
 
     //update position on some events
     useEffect(()=>{
-        place()
+        placeDebounced()
     }, [place, dataKey])
 
     //click outside
