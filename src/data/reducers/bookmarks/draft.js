@@ -180,7 +180,7 @@ export default function(state, action) {switch (action.type) {
 		const { _id } = action
 		
 		for(const key in state.drafts)
-			if (state.drafts[key].item._id == _id)
+			if (state.drafts[key].item && state.drafts[key].item._id == _id)
 				return state
 					.setIn(['drafts', key, 'status'], 'saving')
 
@@ -193,7 +193,7 @@ export default function(state, action) {switch (action.type) {
 		const { _id } = action
 	
 		for(const key in state.drafts)
-			if (state.drafts[key].item._id == _id)
+			if (state.drafts[key].item && state.drafts[key].item._id == _id)
 				return state
 					.setIn(['drafts', key, 'status'], 'errorSaving')
 

@@ -1,8 +1,10 @@
 export default class Visibility {
     constructor() {
-        this._io = new IntersectionObserver(this.onChange, {
-            rootMargin: '150% 0px'
-        })
+        if (typeof IntersectionObserver != 'undefined')
+            this._io = new IntersectionObserver(this.onChange, {
+                rootMargin: '150% 0px'
+            })
+
         this._targets = new Map()
     }
 
@@ -18,12 +20,16 @@ export default class Visibility {
         if (this._targets.has(target)) return
 
         this._targets.set(target, callback)
-        this._io.observe(target)
+
+        if (this._io)
+            this._io.observe(target)
     }
 
     remove = (target)=>{
         if (!target) return
         this._targets.delete(target)
-        this._io.unobserve(target)
+
+        if (this._io)
+            this._io.unobserve(target)
     }
 }

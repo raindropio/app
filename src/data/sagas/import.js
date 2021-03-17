@@ -82,6 +82,9 @@ function* process(items, parentId) {
 			existingCollections
 		)
 
+		if (!collection)
+			throw new Error(`can't create collection ${JSON.stringify({ mode, title, parentId })}`)
+
 		//increment progress for 1 collection
 		yield put({
 			type: c.IMPORT_PARCEL_SAVE_PROGRESS,
