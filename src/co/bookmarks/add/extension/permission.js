@@ -2,6 +2,7 @@ import React from 'react'
 import t from '~t'
 import Button from '~co/common/button'
 import browser from '~target/extension/browser'
+import { environment } from '~target'
 import { Alert } from '~co/overlay/dialog'
 
 export default class BookmarksAddPermission extends React.Component {
@@ -12,7 +13,10 @@ export default class BookmarksAddPermission extends React.Component {
     onRequestClick = ()=>{
         browser.permissions
             .request({
-                permissions: ['tabs']
+                permissions: ['tabs'],
+                ...(environment.includes('safari') ? {
+                    origins: ['<all_urls>']
+                } : {})
             })
             .then(this.props.onChange)
             .catch(e=>{
