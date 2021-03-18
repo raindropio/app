@@ -12,9 +12,12 @@ if (location.search.includes('browser_action')){
 
     (window.browser || window.chrome).tabs.query({ active: true, currentWindow: true }, (tabs=[])=>{
         if (!tabs.length) return
-        const { url } = tabs[0]
+        const tab = tabs[0]
+        const { url } = tab
 
         preloadLink(`https://api.raindrop.io/v1/import/url/exists?url=${encodeURIComponent(url)}`)
         preloadLink(`https://api.raindrop.io/v1/import/url/parse?url=${encodeURIComponent(url)}`)
+
+        window._preloadedTab = tab
     })
 }

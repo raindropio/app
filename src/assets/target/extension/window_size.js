@@ -59,6 +59,9 @@ if (location.search.includes('browser_action')){
     window.onhashchange = function() {
         updateSize({})
     }
+    window.onbeforeunload = function() {
+        saveSize()
+    }
 
     //restore old size
     restoreSize()

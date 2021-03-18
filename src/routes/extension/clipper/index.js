@@ -1,5 +1,5 @@
 import React from 'react'
-import { currentTab } from '~target'
+import { currentTab, getMeta } from '~target'
 
 import Protected from '~co/screen/protected'
 import Screen from '~co/screen/basic'
@@ -7,29 +7,34 @@ import Header from './header'
 import Content from './content'
 
 //faster load of current tab
-let _item = {}
+let item = {}
 async function getItem() {
-    if (!currentTab) return
+    const tab = await currentTab()
+    const { url, title } = tab
+    const meta = await getMeta(tab)
 
-    const { url, title } = await currentTab()
-    _item = {
+    item = {
         link: url,
-        title
+        title,
+        ...meta
     }
-    return _item
+    
+    return item
 }
-getItem()
+getItem().catch(()=>{})
 //-----
 
 export default class Clipper extends React.Component {
-    state = {
-        item: _item
+    constructor(props) {
+        super(props)
+        this.state = { item }
     }
 
     async componentDidMount() {
-        this.setState({
-            item: await getItem()
-        })
+        if (!this.state.item.link)
+            this.setState({
+                item: await getItem()
+            })
     }
 
     render() {

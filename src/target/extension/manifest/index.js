@@ -45,6 +45,13 @@ module.exports = ({ vendor, production=false }, l) => {
 			persistent: true
 		},
 
+		content_scripts: [
+			{
+				matches: ['<all_urls>'],
+				js: ['assets/inject.js']
+			}
+		],
+
 		browser_action: {
 			default_popup: vendor=='safari' || vendor=='firefox' ? 
 				[

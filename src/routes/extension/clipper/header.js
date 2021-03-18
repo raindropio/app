@@ -25,7 +25,7 @@ function ClipperHeader({ status }) {
         <Header>
             <ProfileButton />
 
-            <Title>{title}</Title>
+            <Title className={s.title}>{title}</Title>
 
             <Space />
             

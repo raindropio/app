@@ -1,5 +1,5 @@
 import React from 'react'
-import { currentTab } from '~target'
+import { currentTab, getMeta } from '~target'
 import browser from '~target/extension/browser'
 
 import Button from './button'
@@ -35,19 +35,23 @@ export default class BookmarksAdd extends React.Component {
     reload = async()=>{
         this.setState({ loading: true })
 
-        const { url, title } = await currentTab()
+        const tab = await currentTab()
+        const { url, title } = tab
+        const meta = await getMeta(tab)
 
         this.setState({
             loading: false,
             current: {
-                url, title
+                link: url,
+                title,
+                ...meta
             }
         })
     }
 
     render() {
         if (!this.state.loading &&
-            !this.state.current.url)
+            !this.state.current.link)
             return <Permission onChange={this.reload} />
 
         return (

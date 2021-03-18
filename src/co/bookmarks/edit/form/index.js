@@ -2,7 +2,6 @@ import s from './index.module.styl'
 import React from 'react'
 
 import { Layout, Separator } from '~co/common/form'
-import Preloader from '~co/common/preloader'
 import Cover from './cover'
 import Collection from './collection'
 import Tags from './tags'
@@ -42,9 +41,7 @@ export default class BookmarkEditForm extends React.Component {
                     <Buttons {...this.props} />
                 </Layout>
 
-                <div className={s.loading}>
-                    <Preloader enlarge='1.5' />
-                </div>
+                <div className={s.loading} />
             </form>
         )
     }

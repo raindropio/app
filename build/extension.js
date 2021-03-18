@@ -12,7 +12,8 @@ module.exports = (env={}) =>
         {
             entry: {
                 manifest: './target/extension/manifest/index.js',
-                background: './target/extension/background/index.js'
+                background: './target/extension/background/index.js',
+                inject: './target/extension/inject/index.js'
             },
 
             output: {

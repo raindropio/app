@@ -10,7 +10,7 @@ import Preloader from '~co/common/preloader'
 
 class BookmarksAddButton extends React.Component {
     static defaultProps = {
-        current: {}, //{ url, title }
+        current: {}, //{ link, title }
         //...same as ../index
     }
 
@@ -31,7 +31,7 @@ class BookmarksAddButton extends React.Component {
     load = (details={})=>{
         const { draftLoad, current, spaceId } = this.props
 
-        draftLoad(current.url, {
+        draftLoad(current.link, {
             item: {
                 ...current,
                 collectionId: parseInt(spaceId)
@@ -93,8 +93,8 @@ class BookmarksAddButton extends React.Component {
 
 export default connect(
 	(state, { current })=>({
-        status: getDraftStatus(state, current.url),
-        item: getDraftItem(state, current.url)
+        status: getDraftStatus(state, current.link),
+        item: getDraftItem(state, current.link)
     }),
 	{ draftLoad }
 )(BookmarksAddButton)
