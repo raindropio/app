@@ -80,7 +80,7 @@ module.exports = ({ vendor, production=false }, l) => {
 		permissions: [
 			'contextMenus',
 			'notifications',
-			vendor=='safari' ? '<all_urls>' : 'activeTab', //otherwise safari shows confirmation dialog on each and every site
+			'activeTab'
 		],
 
 		optional_permissions: [
@@ -155,10 +155,6 @@ module.exports = ({ vendor, production=false }, l) => {
 		...(vendor != 'firefox' ? {
 			content_security_policy: `script-src 'self' ${config.csp.hosts} ${!production?'\'unsafe-eval\'':''}; object-src 'none';`
 		} : {}),
-
-		// web_accessible_resources: [
-		// 	'index.html'
-		// ]
 	}
 
 	return { code: JSON.stringify(json, null, 2) };

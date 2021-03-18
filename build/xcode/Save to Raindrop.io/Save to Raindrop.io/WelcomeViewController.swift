@@ -12,7 +12,7 @@ import SafariServices.SFSafariExtensionManager
 let appName = "Save to Raindrop.io"
 let extensionBundleIdentifier = "io.raindrop.safari.extension"
 
-class ViewController: NSViewController {
+class WelcomeViewController: NSViewController {
 
     @IBOutlet var appNameLabel: NSTextField!
     
@@ -33,10 +33,6 @@ class ViewController: NSViewController {
                 }
             }
         }
-    }
-    
-    override func viewDidDisappear() {
-        exit(0)
     }
     
     @IBAction func openSafariExtensionPreferences(_ sender: AnyObject?) {

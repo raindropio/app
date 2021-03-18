@@ -3,13 +3,19 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		76D94F2A2602348E003A3801 /* SubscribeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76D94F292602348E003A3801 /* SubscribeViewController.swift */; };
+		76D94F2F260234D4003A3801 /* SwiftyStoreKit in Frameworks */ = {isa = PBXBuildFile; productRef = 76D94F2E260234D4003A3801 /* SwiftyStoreKit */; };
+		76D94F34260234E5003A3801 /* Just in Frameworks */ = {isa = PBXBuildFile; productRef = 76D94F33260234E5003A3801 /* Just */; };
+		76D94F382602354B003A3801 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76D94F372602354B003A3801 /* StoreKit.framework */; };
+		76D94F3A260235C8003A3801 /* WindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76D94F39260235C8003A3801 /* WindowController.swift */; };
+		76D94F4226024630003A3801 /* readme.md in Resources */ = {isa = PBXBuildFile; fileRef = 76D94F4126024630003A3801 /* readme.md */; };
 		76E78B3D2514A30200D331A8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E78B3C2514A30200D331A8 /* AppDelegate.swift */; };
 		76E78B402514A30200D331A8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 76E78B3E2514A30200D331A8 /* Main.storyboard */; };
-		76E78B422514A30200D331A8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E78B412514A30200D331A8 /* ViewController.swift */; };
+		76E78B422514A30200D331A8 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E78B412514A30200D331A8 /* WelcomeViewController.swift */; };
 		76E78B442514A30200D331A8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 76E78B432514A30200D331A8 /* Assets.xcassets */; };
 		76E78B4B2514A30300D331A8 /* Save to Raindrop.io Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 76E78B4A2514A30300D331A8 /* Save to Raindrop.io Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		76E78B502514A30300D331A8 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76E78B4F2514A30300D331A8 /* Cocoa.framework */; };
@@ -45,11 +51,15 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		76D94F292602348E003A3801 /* SubscribeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubscribeViewController.swift; sourceTree = "<group>"; };
+		76D94F372602354B003A3801 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		76D94F39260235C8003A3801 /* WindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WindowController.swift; sourceTree = "<group>"; };
+		76D94F4126024630003A3801 /* readme.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = readme.md; sourceTree = "<group>"; };
 		76E78B382514A30200D331A8 /* Save to Raindrop.io.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Save to Raindrop.io.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		76E78B3B2514A30200D331A8 /* Save_to_Raindrop.io.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Save_to_Raindrop.io.entitlements; sourceTree = "<group>"; };
 		76E78B3C2514A30200D331A8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		76E78B3F2514A30200D331A8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		76E78B412514A30200D331A8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		76E78B412514A30200D331A8 /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		76E78B432514A30200D331A8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		76E78B452514A30200D331A8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		76E78B4A2514A30300D331A8 /* Save to Raindrop.io Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Save to Raindrop.io Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -68,6 +78,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				76D94F382602354B003A3801 /* StoreKit.framework in Frameworks */,
+				76D94F34260234E5003A3801 /* Just in Frameworks */,
+				76D94F2F260234D4003A3801 /* SwiftyStoreKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -107,9 +120,12 @@
 				76E78B3B2514A30200D331A8 /* Save_to_Raindrop.io.entitlements */,
 				76E78B3C2514A30200D331A8 /* AppDelegate.swift */,
 				76E78B3E2514A30200D331A8 /* Main.storyboard */,
-				76E78B412514A30200D331A8 /* ViewController.swift */,
+				76D94F39260235C8003A3801 /* WindowController.swift */,
+				76E78B412514A30200D331A8 /* WelcomeViewController.swift */,
+				76D94F292602348E003A3801 /* SubscribeViewController.swift */,
 				76E78B432514A30200D331A8 /* Assets.xcassets */,
 				76E78B452514A30200D331A8 /* Info.plist */,
+				76D94F4126024630003A3801 /* readme.md */,
 			);
 			path = "Save to Raindrop.io";
 			sourceTree = "<group>";
@@ -117,6 +133,7 @@
 		76E78B4E2514A30300D331A8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				76D94F372602354B003A3801 /* StoreKit.framework */,
 				76E78B4F2514A30300D331A8 /* Cocoa.framework */,
 			);
 			name = Frameworks;
@@ -163,6 +180,10 @@
 				76E78B4D2514A30300D331A8 /* PBXTargetDependency */,
 			);
 			name = "Save to Raindrop.io";
+			packageProductDependencies = (
+				76D94F2E260234D4003A3801 /* SwiftyStoreKit */,
+				76D94F33260234E5003A3801 /* Just */,
+			);
 			productName = "Save to Raindrop.io";
 			productReference = 76E78B382514A30200D331A8 /* Save to Raindrop.io.app */;
 			productType = "com.apple.product-type.application";
@@ -210,6 +231,10 @@
 				Base,
 			);
 			mainGroup = 76E78B2F2514A30200D331A8;
+			packageReferences = (
+				76D94F2D260234D4003A3801 /* XCRemoteSwiftPackageReference "SwiftyStoreKit" */,
+				76D94F32260234E5003A3801 /* XCRemoteSwiftPackageReference "Just" */,
+			);
 			productRefGroup = 76E78B392514A30200D331A8 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -226,6 +251,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				76E78B442514A30200D331A8 /* Assets.xcassets in Resources */,
+				76D94F4226024630003A3801 /* readme.md in Resources */,
 				76E78B402514A30200D331A8 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -248,8 +274,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				76E78B422514A30200D331A8 /* ViewController.swift in Sources */,
+				76E78B422514A30200D331A8 /* WelcomeViewController.swift in Sources */,
+				76D94F3A260235C8003A3801 /* WindowController.swift in Sources */,
 				76E78B3D2514A30200D331A8 /* AppDelegate.swift in Sources */,
+				76D94F2A2602348E003A3801 /* SubscribeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -404,7 +432,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Save to Raindrop.io Extension/Save_to_Raindrop.io_Extension.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 18;
+				CURRENT_PROJECT_VERSION = 21;
 				DEVELOPMENT_TEAM = 7459JWM5TY;
 				INFOPLIST_FILE = "Save to Raindrop.io Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -428,7 +456,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Save to Raindrop.io Extension/Save_to_Raindrop.io_Extension.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 18;
+				CURRENT_PROJECT_VERSION = 21;
 				DEVELOPMENT_TEAM = 7459JWM5TY;
 				INFOPLIST_FILE = "Save to Raindrop.io Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -456,7 +484,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 18;
+				CURRENT_PROJECT_VERSION = 21;
 				DEVELOPMENT_TEAM = 7459JWM5TY;
 				INFOPLIST_FILE = "Save to Raindrop.io/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -481,7 +509,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 18;
+				CURRENT_PROJECT_VERSION = 21;
 				DEVELOPMENT_TEAM = 7459JWM5TY;
 				INFOPLIST_FILE = "Save to Raindrop.io/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -527,6 +555,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		76D94F2D260234D4003A3801 /* XCRemoteSwiftPackageReference "SwiftyStoreKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/bizz84/SwiftyStoreKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.16.3;
+			};
+		};
+		76D94F32260234E5003A3801 /* XCRemoteSwiftPackageReference "Just" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/dduan/Just.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.8.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		76D94F2E260234D4003A3801 /* SwiftyStoreKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 76D94F2D260234D4003A3801 /* XCRemoteSwiftPackageReference "SwiftyStoreKit" */;
+			productName = SwiftyStoreKit;
+		};
+		76D94F33260234E5003A3801 /* Just */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 76D94F32260234E5003A3801 /* XCRemoteSwiftPackageReference "Just" */;
+			productName = Just;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 76E78B302514A30200D331A8 /* Project object */;
 }

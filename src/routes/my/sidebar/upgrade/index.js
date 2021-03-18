@@ -3,7 +3,6 @@ import React from 'react'
 import t from '~t'
 import _ from 'lodash'
 import config from '~config'
-import { target, environment } from '~target'
 import { connect } from 'react-redux'
 import { isPro } from '~data/selectors/user'
 
@@ -11,7 +10,6 @@ import Pic from './pic.svg?component'
 
 function Upgrade({ isPro }) {
     if (isPro) return null
-    if (target == 'extension' && environment.includes('safari')) return null
 
     let message = t.s('proGreeting')
     if (_.random(0,1)==1)

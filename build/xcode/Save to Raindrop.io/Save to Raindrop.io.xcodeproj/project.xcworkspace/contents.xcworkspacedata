@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:/Users/exentrich/Documents/Source/Repos/webapp/app/build/xcode/Save to Raindrop.io/Save to Raindrop.io.xcodeproj">
+      location = "self:">
    </FileRef>
 </Workspace>
