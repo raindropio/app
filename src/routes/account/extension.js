@@ -4,6 +4,7 @@ import config from '~config'
 
 import { Layout, Label } from '~co/common/form'
 import Button from '~co/common/button'
+import Icon from '~co/common/icon'
 
 export default class AccountExtension extends React.Component {
     componentDidMount() {
@@ -39,6 +40,14 @@ export default class AccountExtension extends React.Component {
                         variant='outline'
                         data-block>
                         {t.s('signIn')}
+                    </Button>
+
+                    <Button
+                        href={config.links.help['login-problems']}
+                        target='_blank'
+                        data-block>
+                        <Icon name='broken' size='micro' />
+                        {t.s('troubleshooting')}
                     </Button>
                 </Layout>
             </>

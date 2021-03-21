@@ -35,7 +35,8 @@ module.exports = {
             'broken-links': 'https://help.raindrop.io/article/41-broken-links-finder',
             zapier: 'https://help.raindrop.io/article/50-zapier',
             import: 'https://help.raindrop.io/article/17-importing-bookmarks',
-            omnibox: 'https://help.raindrop.io/article/55-omnibox'
+            omnibox: 'https://help.raindrop.io/article/55-omnibox',
+            'login-problems': 'https://help.raindrop.io/article/10-login-problems'
         },
 
         pro: {

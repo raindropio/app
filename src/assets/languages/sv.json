@@ -335,5 +335,10 @@
   "changeLaterInSettings": "Du kan ändra dessa alternativ senare i inställningarna",
   "fullTextSearch": "Fullständig Textsökning",
   "selected": "valda",
-  "actions": "Handlingar"
+  "actions": "Handlingar",
+  "ask": "Fråga alltid",
+  "data": "Data",
+  "searchD": "Raindrop kan söka efter bokmärkens detaljer, URL, taggar, typ eller innehållet av hemsidor eller PDF:er. Stödjer 16 språk.",
+  "selectNone": "Välj ingen",
+  "dragToReorderMobileD": "Håll nere på ett bokmärke/samling och dra för att sortera"
 }
