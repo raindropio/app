@@ -14,6 +14,9 @@
     --secondary-font-size: .325rem; /*13px*/
     --tertiary-font-size: .3rem; /*12px*/
 
+    /* line-height */
+    --primary-line-height: 1.3;
+
     /* size */
     --icon-size: .5rem; /*20px*/
     --shadow-height: 1px;

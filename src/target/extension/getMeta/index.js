@@ -1,20 +1,23 @@
-import browser from './browser'
-import { currentTab } from './currentTab'
+import browser from '../browser'
+import { currentTab } from '../currentTab'
+import parse from './parse?raw'
 
 //arguments optional, by default get for current tab
 export async function getMeta(options={}) {
-    let { url, id } = options
+    let { url, id=null } = options
 
     try{
-        if (!id){
+        if (!id && url){
             const tab = await currentTab()
             id = tab.id
 
-            if (url && tab.url != url)
+            if (tab.url != url)
                 return {}
         }
 
-        const meta = await browser.tabs.sendMessage(id, { type: 'GET_META' })
+        const [meta] = await browser.tabs.executeScript(id, {
+            code: parse
+        })
         return meta || {}
     } catch (e) {
         console.log(e)

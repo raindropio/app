@@ -15,7 +15,7 @@
     min-width: 0
     flex: 1
     font-size: var(--primary-font-size)
-    line-height: 1.3
+    line-height: var(--primary-line-height)
     outline: none
     appearance: none
     border: 0
@@ -25,6 +25,12 @@
 
     &[disabled] {
         color: var(--disable-text-color)
+    }
+
+    &[data-max-rows='true'] {
+        overflow: hidden
+        overflow: clip
+        max-height: calc( var(--primary-font-size) * var(--primary-line-height) * var(--max-rows) )
     }
 }
 

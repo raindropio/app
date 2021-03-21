@@ -22,10 +22,11 @@ function similarURL(url) {
 }
 
 function getItem() {
-    if (window.history.length>1 && (
-        window.history.state ||
-        !similarURL(getMeta('twitter:url', 'og:url'))
-    ))
+    let canonical = getMeta('twitter:url', 'og:url')
+
+    if (window.history.length>1 && 
+        (canonical && !similarURL(canonical)) &&
+        window.history.state)
         throw new Error('probably this page is SPA, so data can be out of date')
 
     const item = {
@@ -58,17 +59,17 @@ function getItem() {
     return item
 }
 
-export default function() {
+function parse() {
     try{
         return getItem()
     } 
-    //fallback
     catch(e) {
         console.log(e)
-        
         return {
             link: location.href,
             title: document.title
         }
     }
 }
+
+parse();

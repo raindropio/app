@@ -39,8 +39,8 @@ module.exports = {
         },
 
         pro: {
-            'buy': `https://raindrop.io/pro/buy?target=${process.env.APP_TARGET}&vendor=${process.env.EXTENSION_VENDOR||''}`,
-            'compare': `https://raindrop.io/pro?target=${process.env.APP_TARGET}&vendor=${process.env.EXTENSION_VENDOR||''}`,
+            'buy': `https://raindrop.io/pro/buy?target=${typeof process != 'undefined' && process.env.APP_TARGET}&vendor=${typeof process != 'undefined' && process.env.EXTENSION_VENDOR||''}`,
+            'compare': `https://raindrop.io/pro?target=${typeof process != 'undefined' && process.env.APP_TARGET}&vendor=${typeof process != 'undefined' && process.env.EXTENSION_VENDOR||''}`,
             'faq': 'https://help.raindrop.io/category/11-pro-account',
             'help-legacy-subscription': 'https://help.raindrop.io/article/52-legacy-subscription',
             'help-change-billing-cycle': 'https://help.raindrop.io/article/51-change-billing-cycle'
