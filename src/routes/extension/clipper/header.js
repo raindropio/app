@@ -23,20 +23,22 @@ function ClipperHeader({ status }) {
 
     return (
         <Header>
-            <ProfileButton />
+            <Button
+                as='a'
+                href={config.links.app.index}
+                target='_blank'
+                title='Raindrop.io'>
+                <LogoIcon className={s.logo} />
+            </Button>
 
             <Title className={s.title}>{title}</Title>
 
             <Space />
+
             
             <FirstAction>
-                <Button
-                    as='a'
-                    href={config.links.app.index}
-                    target='_blank'
-                    title='Raindrop.io'>
-                    <LogoIcon className={s.logo} />
-                </Button>
+            <ProfileButton />
+
             </FirstAction>
         </Header>
     )

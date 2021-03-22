@@ -12,6 +12,8 @@
 
 	&[data-status='loading'],
 	&[data-status='idle'] {
+		pointer-events: none
+
 		.loading {
 			opacity: .6
 			transition-duration: 0
@@ -19,11 +21,8 @@
 	}
 }
 
-.invisible {
-	visibility: hidden
-}
-
 .loading {
+	contain: strict
 	pointer-events: none
 	position: absolute
 	left: 0
@@ -32,9 +31,7 @@
 	top: 0
 	background: var(--background-color)
 	z-index: 2
-	display: flex
-	align-items: center
-	justify-content: center
 	opacity: 0
 	transition: opacity .1s linear
+	will-change: opacity
 }

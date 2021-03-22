@@ -13,8 +13,6 @@ import Login from './login'
 import Signup from './signup'
 import Lost from './lost'
 import Recover from './recover'
-import Electron from './electron'
-import Extension from './extension'
 
 export default ({ match })=>(
 	<Screen className={s.page} appSize='large'>
@@ -30,15 +28,15 @@ export default ({ match })=>(
 				<Route path={`${match.path}/jwt`} component={JWT} />
 
 				{/* Override all routes for specific targets */}
-				{target == 'electron' && <Route component={Electron} />}
-				{target == 'extension' && <Route component={Extension} />}
+				{target == 'electron' && <Route component={require('./electron').default} />}
+				{target == 'extension' && <Route component={require('./extension').default} />}
 				{/* ------ */}
 
 				<Route path={`${match.path}/login`} component={Login} />
 				<Route path={`${match.path}/signup`} component={Signup} />
 				<Route path={`${match.path}/lost`} component={Lost} />
 				<Route path={`${match.path}/recover/:token`} component={Recover} />
-
+				
 				{/* Default route */}
 				<Route><Redirect to={`${match.path}/login`} /></Route>
 			</Switch>

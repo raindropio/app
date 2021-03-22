@@ -1,5 +1,6 @@
 import React from 'react'
 import t from '~t'
+import _ from 'lodash-es'
 import { connect } from 'react-redux'
 import { makeCollectionPath } from '~data/selectors/collections'
 import { refresh } from '~data/actions/collections'
@@ -55,7 +56,7 @@ class BookmarkEditFormCollection extends React.Component {
                         variant='outline'
                         onClick={this.onPickerClick}>
                         <CollectionIcon 
-                            {...path[path.length-1]} />
+                            {...(_.last(path)||{})} />
                         <span>{pathText || t.s('selectCollection')+'…'}</span>
                         <Icon name='arrow' />
                     </Button>

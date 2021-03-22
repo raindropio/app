@@ -8,7 +8,7 @@ import Downshift from 'downshift'
 
 function lastPart(str) {
     const parts = (str||'').split(/\s+/)
-    return ((parts[parts.length-1])||'').trim()
+    return (_.last(parts)||'').trim()
 }
 
 function setLastPart(str, val) {

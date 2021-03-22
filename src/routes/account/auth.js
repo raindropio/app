@@ -1,11 +1,20 @@
-import React from 'react'
-import { connect } from 'react-redux'
+import React, { useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 import { userStatus } from '~data/selectors/user'
+import { refresh } from '~data/actions/user'
 import isURL from 'validator/es/lib/isURL'
 
 import { Redirect, withRouter } from 'react-router-dom'
 
-function Auth({ authorized, location: { search } }) {
+function Auth({ location: { search } }) {
+    const dispatch = useDispatch()
+    const { authorized } = useSelector(state=>userStatus(state))
+
+    //refresh user state
+    useEffect(()=>{
+        dispatch(refresh())
+    }, [])
+
     //save redirect link when is specified
     if (search) {
         const { redirect } = Object.fromEntries(new URLSearchParams(search))||{}
@@ -33,10 +42,4 @@ function Auth({ authorized, location: { search } }) {
     return null
 }
 
-export default withRouter(
-    connect(
-        (state)=>({
-            authorized: userStatus(state).authorized
-        })
-    )(Auth)
-)
+export default withRouter(Auth)
