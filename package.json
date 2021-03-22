@@ -29,7 +29,7 @@
 	},
 	"_moduleAliases": {
 		"~network": "src/modules/network.js",
-		"~config": "src/config.js",
+		"~config": "src/config",
 		"~icon": "src/co/common/icon.js",
 		"~t": "src/modules/translate",
 		"~assets": "src/assets",
