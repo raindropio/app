@@ -9,6 +9,7 @@
 import Cocoa
 import SwiftyStoreKit
 import Just
+import WebKit
 
 class SubscribeViewController: NSViewController {
     
@@ -19,6 +20,8 @@ class SubscribeViewController: NSViewController {
     @IBOutlet var purchase1: NSButton!
     @IBOutlet var purchase12: NSButton!
     @IBOutlet var troubleshooting: NSButton!
+    @IBOutlet var webView: WKWebView!
+
     var purchaseButtons: [Int: NSButton] { return [1: purchase1, 12: purchase12] }
     
     var userId = 0
@@ -26,6 +29,8 @@ class SubscribeViewController: NSViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        webView.load(URLRequest(url: URL(string: "https://raindrop.io/pro?frame=1&pro=1")!))
     }
     
     override func viewDidAppear() {

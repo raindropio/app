@@ -1,3 +1,8 @@
+//safari extension in-app purchase
+let overrideProLink = ''
+if (process.env.EXTENSION_VENDOR == 'safari')
+    overrideProLink = 'https://api.raindrop.io/v1/auth/jwt?done_uri=rniomacsafari://subscribe'
+
 //commonjs, because used in extension manifest and index.ejs
 module.exports = {
     webPreview: 'https://p.rdl.ink/',
@@ -40,8 +45,9 @@ module.exports = {
         },
 
         pro: {
-            'buy': `https://raindrop.io/pro/buy?target=${typeof process != 'undefined' && process.env.APP_TARGET}&vendor=${typeof process != 'undefined' && process.env.EXTENSION_VENDOR||''}`,
-            'compare': `https://raindrop.io/pro?target=${typeof process != 'undefined' && process.env.APP_TARGET}&vendor=${typeof process != 'undefined' && process.env.EXTENSION_VENDOR||''}`,
+            'buy': overrideProLink || 'https://raindrop.io/pro/buy',
+            'frame': overrideProLink || 'https://raindrop.io/pro?frame=1',
+            'compare': overrideProLink || 'https://raindrop.io/pro',
             'faq': 'https://help.raindrop.io/category/11-pro-account',
             'help-legacy-subscription': 'https://help.raindrop.io/article/52-legacy-subscription',
             'help-change-billing-cycle': 'https://help.raindrop.io/article/51-change-billing-cycle'
