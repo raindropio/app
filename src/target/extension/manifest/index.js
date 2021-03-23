@@ -1,5 +1,5 @@
 const fs = require('fs')
-const config = require('~config')
+const csp = require('~config/csp')
 const locales = require('./locales')
 
 function file({ emitFile }, filename) {
@@ -154,7 +154,7 @@ module.exports = ({ vendor, production=false }, l) => {
 
 		//firefox review not pass if csp have custom domains in script-src
 		...(vendor != 'firefox' ? {
-			content_security_policy: `script-src 'self' ${config.csp.hosts} ${!production?'\'unsafe-eval\'':''}; object-src 'none';`
+			content_security_policy: `script-src 'self' ${csp.hosts} ${!production?'\'unsafe-eval\'':''}; object-src 'none';`
 		} : {}),
 	}
 

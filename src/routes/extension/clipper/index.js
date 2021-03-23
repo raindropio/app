@@ -1,3 +1,4 @@
+import s from './index.module.styl'
 import React from 'react'
 import { currentTab, getMeta } from '~target'
 
@@ -42,7 +43,7 @@ export default class Clipper extends React.Component {
 
         return (
             <Protected redirect>
-                <Screen>
+                <Screen className={s.page}>
                     <Header {...this.props} item={item} />
                     <Content {...this.props} item={item} />
                 </Screen>

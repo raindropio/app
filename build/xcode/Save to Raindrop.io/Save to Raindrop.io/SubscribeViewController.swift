@@ -110,15 +110,25 @@ class SubscribeViewController: NSViewController {
     
     func loadingStart() {
         DispatchQueue.main.async{
-            self.loading.startAnimation(self)
-            self.mainStack.isHidden = true
+            NSAnimationContext.runAnimationGroup({ (context) in
+                context.duration = 0.3
+                self.loading.startAnimation(self)
+                self.mainStack.animator().alphaValue = 0
+            }, completionHandler: {
+                self.mainStack.isHidden = true
+            })
         }
     }
     
     func loadingStop() {
         DispatchQueue.main.async{
-            self.loading.stopAnimation(self)
-            self.mainStack.isHidden = false
+            NSAnimationContext.runAnimationGroup({ (context) in
+                context.duration = 0.3
+                self.loading.stopAnimation(self)
+                self.mainStack.animator().alphaValue = 1
+            }, completionHandler: {
+                self.mainStack.isHidden = false
+            })
         }
     }
     
@@ -240,5 +250,13 @@ class SubscribeViewController: NSViewController {
     
     @IBAction func helpClick(_ sender: Any) {
         NSWorkspace.shared.open(URL(string: "https://help.raindrop.io")!)
+    }
+    
+    @IBAction func privacyClick(_ sender: Any) {
+        NSWorkspace.shared.open(URL(string: "https://help.raindrop.io/privacy")!)
+    }
+    
+    @IBAction func termsClick(_ sender: Any) {
+        NSWorkspace.shared.open(URL(string: "https://help.raindrop.io/terms")!)
     }
 }

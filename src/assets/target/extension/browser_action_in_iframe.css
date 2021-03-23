@@ -1,8 +1,8 @@
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
     body {
         background: hsl(0,0%,19%)
     }
-}
+} */
 html, body {
     margin: 0;
     overflow: hidden;

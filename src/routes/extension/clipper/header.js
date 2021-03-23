@@ -3,14 +3,15 @@ import React from 'react'
 import t from '~t'
 import config from '~config'
 import { connect } from 'react-redux'
-import { getDraftStatus } from '~data/selectors/bookmarks'
+import { getDraftStatus, getDraftItem } from '~data/selectors/bookmarks'
 
 import LogoIcon from '~assets/brand/icon_raw.svg?component'
-import Header, { FirstAction, Space, Title } from '~co/common/header'
+import Header, { Space, Title } from '~co/common/header'
 import Button from '~co/common/button'
+import Icon from '~co/common/icon'
 import { Button as ProfileButton } from '~co/user/profile'
 
-function ClipperHeader({ status }) {
+function ClipperHeader({ status, item }) {
     let title = ''
 
     switch(status) {
@@ -35,11 +36,13 @@ function ClipperHeader({ status }) {
 
             <Space />
 
-            
-            <FirstAction>
-            <ProfileButton />
+            <Button
+                as='a'
+                href={`#/my/${item.collectionId}`}>
+                <Icon name='fullscreen' />
+            </Button>
 
-            </FirstAction>
+            <ProfileButton />
         </Header>
     )
 }
@@ -48,6 +51,7 @@ export default connect(
     (state, { item })=>{
         return {
             status: getDraftStatus(state, item.link),
+            item: getDraftItem(state, item.link),
         }
     }
 )(ClipperHeader)

@@ -19,7 +19,7 @@
 	<key>CFBundleShortVersionString</key>
 	<string>5.3.1</string>
 	<key>CFBundleVersion</key>
-	<string>33</string>
+	<string>39</string>
 	<key>LSMinimumSystemVersion</key>
 	<string>$(MACOSX_DEPLOYMENT_TARGET)</string>
 	<key>NSExtension</key>
