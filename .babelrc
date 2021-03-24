@@ -7,7 +7,7 @@
                 "targets": {
                     "browsers": [
                         "Chrome >= 67",
-                        "Safari >= 11",
+                        "Safari >= 10",
                         "Firefox >= 57",
                         "Edge >= 80"
                     ]

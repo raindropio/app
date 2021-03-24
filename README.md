@@ -17,3 +17,8 @@ Be sure to run `yarn` before calling any commands below
 |----------|---------|-------|
 | web      | `yarn local` |
 | chrome   | `yarn local:extension:chrome` | Turn off `same-site-by-default-cookies` in Chrome browser flags
+
+## Supported browsers
+- Chrome >= 67 - older versions not support SameSite cookie
+- Firefox >= 57 - older version not support WebExtensions
+- Edge >= 80 - earlies Blink version
