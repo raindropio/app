@@ -1,6 +1,6 @@
 {
 	"name": "app",
-	"version": "5.3.21",
+	"version": "5.3.22",
 	"description": "",
 	"author": "",
 	"license": "ISC",
@@ -22,7 +22,8 @@
 		"build:extension:opera": "webpack --config build/extension.js --env production --env vendor=opera",
 		"build:extension:safari": "webpack --config build/extension.js --env production --env vendor=safari && cd 'build/xcode/Save to Raindrop.io' && ./version.sh",
 		"build:electron": "webpack --config build/electron.js --env production",
-		"size": "webpack --config build/web.js --env production --profile --json > dist/stats.json && webpack-bundle-analyzer dist/stats.json dist/web",
+		"size": "webpack --config build/web.js --env production --profile --json > dist/web-stats.json && webpack-bundle-analyzer dist/web-stats.json dist/web",
+		"size:extension:chrome": "webpack --config build/extension.js --env production --env vendor=chrome --profile --json > dist/extension-chrome-stats.json && webpack-bundle-analyzer dist/extension-chrome-stats.json dist/chrome/prod",
 		"deploy:prod": "git branch -f release/production master && git push --force origin release/production",
 		"preinstall": "npm list link-module-alias && link-module-alias clean || (exit 0)",
 		"postinstall": "link-module-alias && patch-package"

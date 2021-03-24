@@ -1,6 +1,7 @@
 @media (prefers-color-scheme: dark) {
     html[data-theme='night']:global(.extension):global(.browser_action) {
-        &:global(.safari), &:global(.mac):global(.opera) {
+        //opera mac has a glitch
+        &:global(.safari) {
             .page {
                 background: unquote('linear-gradient(to bottom, hsla(var(--background-hsl), 0) 0, hsla(var(--background-hsl), .8) 30%)')
             }
@@ -9,7 +10,7 @@
 }
 @media (prefers-color-scheme: light) {
     html[data-theme='day']:global(.extension):global(.browser_action) {
-        &:global(.safari), &:global(.mac):global(.opera) {
+        &:global(.safari) {
             .page {
                 background: unquote('linear-gradient(to bottom, hsla(var(--background-hsl), 0) 0, hsla(var(--background-hsl), .8) 30%)')
             }
