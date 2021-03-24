@@ -3,7 +3,10 @@ import './wdyr'
 import React from 'react'
 import { render } from 'react-dom'
 import Sentry from '~modules/vendors/sentry'
+
+//polyfills
 import 'form-request-submit-polyfill'
+import 'intersection-observer'
 
 //redux
 import { Provider } from 'react-redux'

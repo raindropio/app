@@ -7,9 +7,8 @@
                 "targets": {
                     "browsers": [
                         "Chrome >= 67",
-                        "Safari >= 10.1",
-                        "iOS >= 12",
-                        "Firefox >= 54",
+                        "Safari >= 11",
+                        "Firefox >= 57",
                         "Edge >= 80"
                     ]
                 },

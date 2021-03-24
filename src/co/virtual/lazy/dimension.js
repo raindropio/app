@@ -1,11 +1,11 @@
 import React from 'react'
+import { ResizeObserver } from '~modules/browser'
 import { findDOMNode } from 'react-dom'
 import { PropTypes } from 'prop-types'
 
 class Dimension {
     constructor() {
-        if (typeof ResizeObserver != 'undefined')
-            this._io = new ResizeObserver(this.onChange)
+        this._io = new ResizeObserver(this.onChange)
             
         this._targets = new Map()
     }
@@ -41,7 +41,6 @@ export default class LazyDimension extends React.Component {
 
     componentDidMount() {
         if (this.props.disabled) return
-        if (typeof ResizeObserver == 'undefined') return
 
         this._div = findDOMNode(this)
         DimensionInstance.add(this._div, this.props.onChange)

@@ -14,12 +14,13 @@ const onFrameResize = ([{ contentRect: { width, height } }])=>{
     localStorage.setItem('browser-action-in-iframe-window-height', height)
 }
 
-const frameResize = new ResizeObserver(onFrameResize)
+const frameResize = ('ResizeObserver' in window) ? new ResizeObserver(onFrameResize) : null
 
 const frame = document.getElementById('frame')
 
 frame.addEventListener('load', () => {
-    frameResize.observe(frame.contentWindow.document.body)
+    if (frameResize)
+        frameResize.observe(frame.contentWindow.document.body)
 
     //override close in frame
     frame.contentWindow.close = ()=>{

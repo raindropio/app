@@ -1,5 +1,6 @@
 import s from './small.module.styl'
 import React from 'react'
+import { ResizeObserver } from '~modules/browser'
 
 export default class SmallDetector extends React.Component {
     static defaultProps = {
@@ -14,10 +15,8 @@ export default class SmallDetector extends React.Component {
         if (!r || r == this._r) return
 
         this._r = r
-        if (typeof ResizeObserver != 'undefined'){
-            this._resizeObserver = new ResizeObserver(this.onResize)
-            this._resizeObserver.observe(this._r)
-        }
+        this._resizeObserver = new ResizeObserver(this.onResize)
+        this._resizeObserver.observe(this._r)
     }
 
     componentWillUnmount() {

@@ -1,9 +1,8 @@
 export default class Visibility {
     constructor() {
-        if (typeof IntersectionObserver != 'undefined')
-            this._io = new IntersectionObserver(this.onChange, {
-                rootMargin: '150% 0px'
-            })
+        this._io = new IntersectionObserver(this.onChange, {
+            rootMargin: '150% 0px'
+        })
 
         this._targets = new Map()
     }

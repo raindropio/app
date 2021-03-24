@@ -1,4 +1,5 @@
 import React from 'react'
+import { ResizeObserver } from '~modules/browser'
 
 const mainStyle = { width: '100%', height: '100%', flex: 1, minHeight: 0 }
 const cache = {}
@@ -11,10 +12,8 @@ export default (Component, cacheId='')=>{
             if (!ref || this._div == ref) return
 
             this._div = ref
-            if (typeof ResizeObserver != 'undefined'){
-                this._resizeObserver = new ResizeObserver(this.onResize)
-                this._resizeObserver.observe(this._div)
-            }
+            this._resizeObserver = new ResizeObserver(this.onResize)
+            this._resizeObserver.observe(this._div)
         }
 
         componentWillUnmount() {
