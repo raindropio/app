@@ -6,15 +6,17 @@
             {
                 "targets": {
                     "browsers": [
-                        "Chrome >= 60",
+                        "Chrome >= 67",
                         "Safari >= 10.1",
                         "iOS >= 12",
                         "Firefox >= 54",
-                        "Edge >= 79"
+                        "Edge >= 80"
                     ]
                 },
                 "modules": false,
-                "bugfixes": true
+                "bugfixes": true,
+                "useBuiltIns": "usage",
+                "corejs": 3
             }
         ]
     ],
