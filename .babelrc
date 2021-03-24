@@ -8,7 +8,7 @@
                     "browsers": [
                         "Chrome >= 67",
                         "Safari >= 10",
-                        "Firefox >= 57",
+                        "Firefox >= 55",
                         "Edge >= 80"
                     ]
                 },
@@ -21,7 +21,7 @@
     ],
     "plugins": [
         ["@babel/plugin-proposal-class-properties",{"useBuiltIns": false}],
-        ["@babel/plugin-proposal-object-rest-spread",{"useBuiltIns": false}],
+        ["@babel/plugin-proposal-object-rest-spread",{"useBuiltIns": "usage"}],
         "@babel/plugin-syntax-dynamic-import"
     ],
     "env": {
