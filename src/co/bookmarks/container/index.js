@@ -16,7 +16,7 @@ function BookmarksContainer(props) {
     useEffect(()=>{
         dispatch(load(spaceId, {
             search,
-            sort,
+            sort: search ? 'score' : sort,
             ignore
         }))
     }, [spaceId, search])
