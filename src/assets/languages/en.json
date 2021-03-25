@@ -342,5 +342,7 @@
   "selectNone": "Select none",
   "dragToReorderMobileD": "Long press on a item then drag to reorder",
   "shareExtension": "Share extension",
-  "troubleshooting": "Troubleshooting"
+  "troubleshooting": "Troubleshooting",
+  "unsavedWarning": "You have unsaved changes that will be lost",
+  "extensionD": "When you find something interesting on the web just click cloud icon in browser toolbar to save it to Raindrop.io"
 }

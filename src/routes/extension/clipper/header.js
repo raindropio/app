@@ -22,11 +22,13 @@ function ClipperHeader({ status, item }) {
         default:        title = t.s('bookmark')+' '+t.s('saved').toLowerCase(); break
     }
 
+    const collectionPath = `/my/${item.collectionId}`
+
     return (
         <Header>
             <Button
                 as='a'
-                href={config.links.app.index}
+                href={config.links.app.index+collectionPath}
                 target='_blank'
                 title='Raindrop.io'>
                 <LogoIcon className={s.logo} />
@@ -38,7 +40,7 @@ function ClipperHeader({ status, item }) {
 
             <Button
                 as='a'
-                href={`#/my/${item.collectionId}`}>
+                href={`#${collectionPath}`}>
                 <Icon name='fullscreen' />
             </Button>
 

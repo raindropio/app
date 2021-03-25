@@ -27,7 +27,7 @@ export default class AccountExtension extends React.Component {
                     <div />
     
                     <Button
-                        href={new URL('/account/signup?redirect=/extension/welcome/activate', config.links.app.index).toString()}
+                        href={new URL('/account/signup', config.links.app.index).toString()}
                         target='_blank'
                         variant='primary'
                         data-block>
@@ -35,7 +35,7 @@ export default class AccountExtension extends React.Component {
                     </Button>
 
                     <Button
-                        href={new URL('/account/login?redirect=/extension/welcome/activate', config.links.app.index).toString()}
+                        href={new URL('/account/login', config.links.app.index).toString()}
                         target='_blank'
                         variant='outline'
                         data-block>

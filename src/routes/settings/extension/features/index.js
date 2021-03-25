@@ -26,6 +26,9 @@ export default class SettingsExtensionFeatures extends React.Component {
     }
 
     async reload() {
+        if ('permissions' in browser === false)
+            return
+            
         const permissions = [...this.state.permissions]
 
         for(const index in permissions)

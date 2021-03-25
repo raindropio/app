@@ -20,6 +20,6 @@ Be sure to run `yarn` before calling any commands below
 
 ## Supported browsers
 - Chrome >= 67 - older versions not support SameSite cookie
-- Safari >= 11 - older versions not support JS Rest in objects
+- Safari >= 11 (OS X 10.11) - older version not support JS Rest in objects
 - Firefox >= 55 - older version not support JS Rest in objects
 - Edge >= 80 - earlies Blink version

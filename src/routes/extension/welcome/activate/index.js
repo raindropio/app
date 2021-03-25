@@ -10,9 +10,7 @@ export default function ExtensionWelcomeActivate() {
 
             <div className={s.done}>
                 <h2>{t.s('done')}</h2>
-                <p>
-                    When you find something interesting on the web just click cloud icon to save it to Raindrop.io
-                </p>
+                <p>{t.s('extensionD')}</p>
             </div>
         </div>
     )
