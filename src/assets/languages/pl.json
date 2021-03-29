@@ -340,5 +340,9 @@
   "data": "Dane",
   "searchD": "Raindrop może wyszukiwać na podstawie szczegółów zakładek, adresów URL, znaczników, typu lub całkowitej treści witryny lub pliku PDF. Najlepsze w swojej klasie wsparcie dla 16 języków.",
   "selectNone": "Odznacz wszystko",
-  "dragToReorderMobileD": "Przytrzymaj element i przeciągnij, aby zmienić kolejność"
+  "dragToReorderMobileD": "Przytrzymaj element i przeciągnij, aby zmienić kolejność",
+  "shareExtension": "Udostępnij rozszerzenie",
+  "troubleshooting": "Rozwiązywanie problemów",
+  "unsavedWarning": "Masz niezapisane zmiany, które zostaną utracone",
+  "extensionD": "Gdy znajdziesz coś interesującego w Internecie, po prostu kliknij ikonę chmury na pasku narzędzi przeglądarki, aby zapisać treść do Raindrop.io"
 }

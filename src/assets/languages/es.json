@@ -340,5 +340,9 @@
   "data": "Datos",
   "searchD": "Raindrop busca por detalles de marcador, URL, etiqueta, tipo de archivo o todo el contenido de una página web o PDF. Excelente soporte para 16 idiomas.",
   "selectNone": "Seleccionar ninguno",
-  "dragToReorderMobileD": "Mantenga presionado un marcador y arrastre para reorganizar"
+  "dragToReorderMobileD": "Mantenga presionado un marcador y arrastre para reorganizar",
+  "shareExtension": "Compartir Extensión",
+  "troubleshooting": "Solucionar Problemas",
+  "unsavedWarning": "Tienes cambios sin guardar que se perderan",
+  "extensionD": "Cando encuentres algo interesante, solo haz click en la nube de tu barra de navegación para guardarlo en Raindrop.io"
 }
