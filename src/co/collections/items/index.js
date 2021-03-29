@@ -1,6 +1,7 @@
 import s from './index.module.styl'
 import React from 'react'
 import t from '~t'
+import _ from 'lodash-es'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as collectionsActions from '~data/actions/collections'
@@ -28,7 +29,7 @@ class CollectionsItems extends React.Component {
 				{_id: -1, title: t.s('defaultCollection--1')},
 				{_id: -99, title: t.s('defaultCollection--99')}
 			],
-			groupTitle: t.s('myCollections')
+			groupTitle: _.capitalize(t.s('collectionsCount'))
         })
         
         this.props.actions.load()
