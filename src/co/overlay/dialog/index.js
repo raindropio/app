@@ -12,11 +12,13 @@ export async function Alert(message, custom={}) {
 }
 
 //Special Alert
-export async function Error(error) {
+//{ id }
+export async function Error(error, custom={}) {
     return DialogsContainer.openDialog('alert', {
         message: t.s('error'),
         description: error.error && t.has('server'+error.error) ? t.s('server'+error.error) : error.message,
-        variant: 'error'
+        variant: 'error',
+        ...custom
     })
 }
 
@@ -58,14 +60,17 @@ export default class DialogsContainer extends React.Component {
         window.removeEventListener('overlay-dialog', this.addDialog)
     }
 
-    addDialog = ({ detail }) => {
+    addDialog = ({ detail={} }) => {
+        const dialog = {
+            ...detail,
+            id: detail.id || new Date().getTime()
+        }
+
         this.setState({
             dialogs: [
-                ...this.state.dialogs,
-                {
-                    ...detail,
-                    id: new Date().getTime()
-                }
+                ...this.state.dialogs
+                    .filter(({id})=>id != dialog.id),
+                dialog
             ]
         })
     }
