@@ -134,10 +134,6 @@ export default function(state, action) {switch (action.type) {
 		//attach current item/changedFields to action
 		action.item = draft.item
 		action.changedFields = draft.changedFields
-
-		//clean current changedFields
-		draft = draft
-			.set('changedFields', [])
 		
 		return state.setIn(['drafts', _id], draft)
 	}
@@ -163,6 +159,7 @@ export default function(state, action) {switch (action.type) {
 				blankDraft
 					.set('status', 'loaded')
 					.set('item', newItem)
+					.set('changedFields', [])
 			)
 	}
 
@@ -215,6 +212,7 @@ export default function(state, action) {switch (action.type) {
 					.set('item', draft.item.merge(
 						_.omit(normalizeBookmark(item, {flat: false}), draft.changedFields)
 					))
+					.set('changedFields', [])
 
 				draft = draft.set('status', parseInt(draft.item.collectionId)!=-99 ? 'loaded' : 'removed')
 
@@ -234,7 +232,9 @@ export default function(state, action) {switch (action.type) {
 				if (!draft || !draft.item ||
 					draft.item._id != _id) continue
 
-				draft = draft.set('status', 'removed')
+				draft = draft
+					.set('status', 'removed')
+					.set('changedFields', [])
 
 				state = state.setIn(['drafts', key], draft)
 			}

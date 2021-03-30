@@ -79,7 +79,6 @@ module.exports = ({ vendor, production=false }, l) => {
 
 		permissions: [
 			'contextMenus',
-			'notifications',
 			'activeTab'
 		],
 

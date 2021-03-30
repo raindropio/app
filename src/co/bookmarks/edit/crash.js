@@ -11,7 +11,7 @@ function EditBookmarkCrash({ error, onLoad }) {
     return (
         <Layout data-stretch>
             <Alert variant='danger'>
-                {error.error ? t.s('server'+error.error) : error.message}
+                {error.error && t.has('server'+error.error) ? t.s('server'+error.error) : error.message}
             </Alert>
 
             <Buttons>
