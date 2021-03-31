@@ -22,21 +22,22 @@ export default {
 
     help: {
         index: 'https://help.raindrop.io',
-        'open-multiple-links': 'https://help.raindrop.io/open-multiple-links',
-        'broken-links': 'https://help.raindrop.io/article/41-broken-links-finder',
-        zapier: 'https://help.raindrop.io/article/50-zapier',
-        import: 'https://help.raindrop.io/article/17-importing-bookmarks',
-        omnibox: 'https://help.raindrop.io/article/55-omnibox',
-        'login-problems': 'https://help.raindrop.io/article/10-login-problems'
+        'open-multiple-links': 'https://help.raindrop.io/bookmarks#open-multiple-links-at-once',
+        'broken-links': 'https://help.raindrop.io/tags-filters#broken-links',
+        zapier: 'https://help.raindrop.io/automation#zapier',
+        import: 'https://help.raindrop.io/import',
+        omnibox: 'https://help.raindrop.io/browser-extension#search-in-address-bar',
+        'login-problems': 'https://help.raindrop.io/login-problems',
+        changelog: 'https://help.raindrop.io/changelog'
     },
 
     pro: {
         'buy': overrideProLink || 'https://raindrop.io/pro/buy',
         'frame': overrideProLink || 'https://raindrop.io/pro?frame=1',
         'compare': overrideProLink || 'https://raindrop.io/pro',
-        'faq': 'https://help.raindrop.io/category/11-pro-account',
+        'faq': 'https://help.raindrop.io/billing-faq',
         'help-legacy-subscription': 'https://help.raindrop.io/article/52-legacy-subscription',
-        'help-change-billing-cycle': 'https://help.raindrop.io/article/51-change-billing-cycle'
+        'help-change-billing-cycle': 'https://help.raindrop.io/change-billing-cycle'
     },
 
     dev: {

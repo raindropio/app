@@ -69,7 +69,7 @@ class BookmarksAddButton extends React.Component {
                 return (
                     <Button 
                         variant='active'
-                        title={t.s('add')}
+                        title={t.s('save')}
                         onClick={this.onEditClick}>
                         <Icon name='check_active' />
                         {t.s('saved')}
@@ -81,10 +81,10 @@ class BookmarksAddButton extends React.Component {
                     <Button 
                         disabled={status == 'loading' || status == 'idle'}
                         variant='primary'
-                        title={t.s('add')}
+                        title={t.s('save')}
                         onClick={this.onAddClick}>
                         <Icon name='new_bookmark' />
-                        {t.s('add')}
+                        {t.s('save')}
                     </Button>
                 )
         }
