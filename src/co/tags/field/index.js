@@ -7,26 +7,27 @@ import Autocomplete from '~co/tags/autocomplete'
 
 export default function TagsPicker({ value=[], onChange, spaceId, ...etc }) {
     const inputRef = useRef(null)
+    const downshiftRef = useRef(null)
 
     const stateReducer = useCallback((state, changes) => {
         switch (changes.type) {
             case 'focus':
                 return {
                     ...changes,
-                    highlightedIndex: state.highlightedIndex || 0
+                    highlightedIndex: state.highlightedIndex || -1
                 }
 
             case Downshift.stateChangeTypes.changeInput:
                 return {
                     ...changes,
-                    highlightedIndex: 0
+                    highlightedIndex: changes.inputValue ? 0 : -1
                 }
 
             case Downshift.stateChangeTypes.keyDownEnter:
             case Downshift.stateChangeTypes.clickItem:
                 return {
                     ...changes,
-                    highlightedIndex: state.highlightedIndex,
+                    highlightedIndex: -1,
                     isOpen: true,
                     inputValue: ''
                 }
@@ -49,6 +50,16 @@ export default function TagsPicker({ value=[], onChange, spaceId, ...etc }) {
 
     const onInputKeyDown = useCallback(e => {
         switch(e.key) {
+            case 'Enter':
+                if (!e.currentTarget.value){
+                    e.preventDefault()
+                    e.currentTarget.closest('form').requestSubmit()
+
+                    if (downshiftRef.current)
+                        downshiftRef.current.closeMenu()
+                }
+            break
+
             case 'Escape':
                 if (e.target.value){
                     e.preventDefault()
@@ -73,6 +84,7 @@ export default function TagsPicker({ value=[], onChange, spaceId, ...etc }) {
 
     return (
         <Downshift
+            ref={downshiftRef}
             onChange={onSelect}
             itemToString={itemToString}
             stateReducer={stateReducer}
