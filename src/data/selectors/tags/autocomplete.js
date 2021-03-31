@@ -25,12 +25,19 @@ function filterByQuery(tags=[], query='') {
 	//filter and order by score
 	return _.orderBy(
 		_.uniqBy(
-			tags.filter(item => 
-				item._id.toLowerCase().includes(query)
-			),
+			[
+				...tags.filter(item => 
+					item._id.toLowerCase().includes(query)
+				),
+				{
+					_id: query,
+					query: `#${query}`,
+					isNew: true
+				}
+			],
 			'_id'
 		),
-		({ _id }) => _id.toLowerCase().indexOf(query)+_id.toLowerCase(),
+		({ _id, isNew }) => isNew || _id.toLowerCase().indexOf(query)+_id.toLowerCase(),
 		'asc'
 	)
 }
