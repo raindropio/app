@@ -49,13 +49,16 @@ class EditBookmarkContainer extends React.Component {
 	}
 
 	onWindowClose = (e)=>{
+		const { status, unsaved } = this.props
+
 		//save unsaved changes if user try to close window
 		this.handlers.onCommit()
 		
-		if (e && e.preventDefault){
-			e.preventDefault()
-			e.returnValue = ''
-		}
+		if (unsaved && status != 'new')
+			if (e && e.preventDefault){
+				e.preventDefault()
+				e.returnValue = ''
+			}
 
 		return t.s('unsavedWarning')
 	}

@@ -48,4 +48,7 @@ class WelcomeViewController: NSViewController {
         }
     }
 
+    @IBAction func troubleshootingClick(_ sender: Any) {
+        NSWorkspace.shared.open(URL(string: "https://help.raindrop.io/safari-mac-problems")!)
+    }
 }
