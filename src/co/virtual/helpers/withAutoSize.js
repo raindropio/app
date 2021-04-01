@@ -20,7 +20,7 @@ export default (Component, cacheId='')=>{
             if (this._div && this._resizeObserver)
                 this._resizeObserver.unobserve(this._div)
 
-            if (this._resizeObserver)
+            if (this._resizeObserver && this._resizeObserver.disconnect)
                 this._resizeObserver.disconnect()
         }
 

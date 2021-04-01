@@ -1,5 +1,5 @@
 export const normalizeTag = (tag={})=>{
-    const _id = tag._id || tag.name
+    const _id = String(tag._id || tag.name)
 
     return ({
         _id,

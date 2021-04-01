@@ -23,7 +23,7 @@ export default class SmallDetector extends React.Component {
         if (this._r && this._resizeObserver)
             this._resizeObserver.unobserve(this._r)
             
-        if (this._resizeObserver)
+        if (this._resizeObserver && this._resizeObserver.disconnect)
             this._resizeObserver.disconnect()
     }
 

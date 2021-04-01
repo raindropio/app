@@ -38,6 +38,8 @@ if (location.search.includes('browser_action')){
     }
 
     function saveSize(width) {
+        if ('localStorage' in window == false) return
+        
         if (width == _lastSavedWidth) return
         _lastSavedWidth = width
 
@@ -48,6 +50,8 @@ if (location.search.includes('browser_action')){
     }
 
     function restoreSize() {
+        if ('localStorage' in window == false) return
+
         const width = parseInt(localStorage.getItem('window-width'))||0
         const height = parseInt(localStorage.getItem('window-height'))||0
 

@@ -19,19 +19,22 @@ function Auth({ location: { search } }) {
     if (search) {
         const { redirect } = Object.fromEntries(new URLSearchParams(search))||{}
 
-        if (redirect && isURL(redirect, {
-            require_host: false, 
-            host_whitelist: ['raindrop.io', /\.raindrop\.io$/]
-        }))
-            sessionStorage.setItem('redirect', new URL(redirect, location.href).toString())
+        if (redirect && 
+            isURL(redirect, {
+                require_host: false, 
+                host_whitelist: ['raindrop.io', /\.raindrop\.io$/]
+            }) &&
+            window.sessionStorage
+        )
+            window.sessionStorage.setItem('redirect', new URL(redirect, location.href).toString())
     }
 
     //redirect when authorized
     if (authorized == 'yes'){
         //use redirect link saved previously
-        const redirect = sessionStorage && sessionStorage.getItem('redirect')
+        const redirect = window.sessionStorage && window.sessionStorage.getItem('redirect')
         if (redirect){
-            sessionStorage.removeItem('redirect')
+            window.sessionStorage.removeItem('redirect')
             location.href = redirect
             return null
         }
