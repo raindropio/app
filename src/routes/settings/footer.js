@@ -14,7 +14,7 @@ export default class SettingsFooter extends React.Component {
                     ·
                     <a href={config.links.help.index} target='_blank'>{t.s('help')}</a>
                     ·
-                    <a href={config.links.about} target='_blank'>{t.s('about')}</a>
+                    <a href={config.links.help.about} target='_blank'>{t.s('about')}</a>
                 </span>
             </footer>
         )

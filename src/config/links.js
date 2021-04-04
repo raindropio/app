@@ -17,11 +17,11 @@ export default {
     better: 'https://better.raindrop.io',
     twitter: 'https://twitter.com/raindrop_io',
     translation: 'https://crowdin.com/project/raindrop',
-    about: 'https://raindrop.io/about',
     home: 'https://raindrop.io',
 
     help: {
         index: 'https://help.raindrop.io',
+        about: 'https://help.raindrop.io/about',
         'open-multiple-links': 'https://help.raindrop.io/bookmarks#open-multiple-links-at-once',
         'broken-links': 'https://help.raindrop.io/tags-filters#broken-links',
         zapier: 'https://help.raindrop.io/automation#zapier',
