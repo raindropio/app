@@ -27,7 +27,7 @@ function getItem() {
     if (window.history.length>1 &&
         location.pathname != '/' && 
         window.history.state &&
-        (canonical && !similarURL(canonical)))
+        !similarURL(canonical))
         throw new Error('probably this page is SPA, so data can be out of date')
 
     const item = {
