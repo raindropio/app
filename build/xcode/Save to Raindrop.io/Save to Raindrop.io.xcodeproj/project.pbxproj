@@ -56,7 +56,7 @@
 		76D94F39260235C8003A3801 /* WindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WindowController.swift; sourceTree = "<group>"; };
 		76D94F4126024630003A3801 /* readme.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = readme.md; sourceTree = "<group>"; };
 		76E78B382514A30200D331A8 /* Save to Raindrop.io.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Save to Raindrop.io.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		76E78B3B2514A30200D331A8 /* Save_to_Raindrop.io.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Save_to_Raindrop.io.entitlements; sourceTree = "<group>"; };
+		76E78B3B2514A30200D331A8 /* App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = App.entitlements; sourceTree = "<group>"; };
 		76E78B3C2514A30200D331A8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		76E78B3F2514A30200D331A8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		76E78B412514A30200D331A8 /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
@@ -66,7 +66,7 @@
 		76E78B4F2514A30300D331A8 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		76E78B522514A30300D331A8 /* SafariWebExtensionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariWebExtensionHandler.swift; sourceTree = "<group>"; };
 		76E78B542514A30300D331A8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		76E78B552514A30300D331A8 /* Save_to_Raindrop.io_Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Save_to_Raindrop.io_Extension.entitlements; sourceTree = "<group>"; };
+		76E78B552514A30300D331A8 /* Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Extension.entitlements; sourceTree = "<group>"; };
 		76E78B612514A30300D331A8 /* index.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = index.html; path = ../../../../dist/safari/prod/index.html; sourceTree = "<group>"; };
 		76E78B632514A30300D331A8 /* manifest.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = manifest.json; path = ../../../../dist/safari/prod/manifest.json; sourceTree = "<group>"; };
 		76E78B642514A30300D331A8 /* _locales */ = {isa = PBXFileReference; lastKnownFileType = folder; name = _locales; path = ../../../../dist/safari/prod/_locales; sourceTree = "<group>"; };
@@ -98,8 +98,8 @@
 		76E78B2F2514A30200D331A8 = {
 			isa = PBXGroup;
 			children = (
-				76E78B3A2514A30200D331A8 /* Save to Raindrop.io */,
-				76E78B512514A30300D331A8 /* Save to Raindrop.io Extension */,
+				76E78B3A2514A30200D331A8 /* App */,
+				76E78B512514A30300D331A8 /* Extension */,
 				76E78B4E2514A30300D331A8 /* Frameworks */,
 				76E78B392514A30200D331A8 /* Products */,
 			);
@@ -114,10 +114,10 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		76E78B3A2514A30200D331A8 /* Save to Raindrop.io */ = {
+		76E78B3A2514A30200D331A8 /* App */ = {
 			isa = PBXGroup;
 			children = (
-				76E78B3B2514A30200D331A8 /* Save_to_Raindrop.io.entitlements */,
+				76E78B3B2514A30200D331A8 /* App.entitlements */,
 				76E78B3C2514A30200D331A8 /* AppDelegate.swift */,
 				76E78B3E2514A30200D331A8 /* Main.storyboard */,
 				76D94F39260235C8003A3801 /* WindowController.swift */,
@@ -127,7 +127,7 @@
 				76E78B452514A30200D331A8 /* Info.plist */,
 				76D94F4126024630003A3801 /* readme.md */,
 			);
-			path = "Save to Raindrop.io";
+			path = App;
 			sourceTree = "<group>";
 		};
 		76E78B4E2514A30300D331A8 /* Frameworks */ = {
@@ -139,15 +139,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		76E78B512514A30300D331A8 /* Save to Raindrop.io Extension */ = {
+		76E78B512514A30300D331A8 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
 				76E78B5F2514A30300D331A8 /* Resources */,
 				76E78B522514A30300D331A8 /* SafariWebExtensionHandler.swift */,
 				76E78B542514A30300D331A8 /* Info.plist */,
-				76E78B552514A30300D331A8 /* Save_to_Raindrop.io_Extension.entitlements */,
+				76E78B552514A30300D331A8 /* Extension.entitlements */,
 			);
-			path = "Save to Raindrop.io Extension";
+			path = Extension;
 			sourceTree = "<group>";
 		};
 		76E78B5F2514A30300D331A8 /* Resources */ = {
@@ -212,7 +212,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1200;
-				LastUpgradeCheck = 1230;
+				LastUpgradeCheck = 1240;
 				TargetAttributes = {
 					76E78B372514A30200D331A8 = {
 						CreatedOnToolsVersion = 12.0;
@@ -429,12 +429,13 @@
 		76E78B592514A30300D331A8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = "Save to Raindrop.io Extension/Save_to_Raindrop.io_Extension.entitlements";
+				CODE_SIGN_ENTITLEMENTS = Extension/Extension.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 44;
+				CURRENT_PROJECT_VERSION = 45;
 				DEVELOPMENT_TEAM = 7459JWM5TY;
-				INFOPLIST_FILE = "Save to Raindrop.io Extension/Info.plist";
+				ENABLE_HARDENED_RUNTIME = YES;
+				INFOPLIST_FILE = Extension/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -453,12 +454,13 @@
 		76E78B5A2514A30300D331A8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = "Save to Raindrop.io Extension/Save_to_Raindrop.io_Extension.entitlements";
+				CODE_SIGN_ENTITLEMENTS = Extension/Extension.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 44;
+				CURRENT_PROJECT_VERSION = 45;
 				DEVELOPMENT_TEAM = 7459JWM5TY;
-				INFOPLIST_FILE = "Save to Raindrop.io Extension/Info.plist";
+				ENABLE_HARDENED_RUNTIME = YES;
+				INFOPLIST_FILE = Extension/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -480,13 +482,14 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = "Save to Raindrop.io/Save_to_Raindrop.io.entitlements";
+				CODE_SIGN_ENTITLEMENTS = App/App.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 44;
+				CURRENT_PROJECT_VERSION = 45;
 				DEVELOPMENT_TEAM = 7459JWM5TY;
-				INFOPLIST_FILE = "Save to Raindrop.io/Info.plist";
+				ENABLE_HARDENED_RUNTIME = YES;
+				INFOPLIST_FILE = App/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -505,13 +508,14 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = "Save to Raindrop.io/Save_to_Raindrop.io.entitlements";
+				CODE_SIGN_ENTITLEMENTS = App/App.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 44;
+				CURRENT_PROJECT_VERSION = 45;
 				DEVELOPMENT_TEAM = 7459JWM5TY;
-				INFOPLIST_FILE = "Save to Raindrop.io/Info.plist";
+				ENABLE_HARDENED_RUNTIME = YES;
+				INFOPLIST_FILE = App/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
