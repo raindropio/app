@@ -39,13 +39,14 @@ class AccountLogin extends React.Component {
                 <Helmet><title>{t.s('signIn')}</title></Helmet>
 
                 <Layout>
-                    <Label>Email</Label>
+                    <Label>Email {t.s('or')} {t.s('username').toLowerCase()}</Label>
                     <Text
-                        type='email'
+                        type='text'
                         name='email'
                         disabled={status=='loading'}
                         autoFocus
                         required
+                        inputmode='email'
                         value={this.state.email}
                         onChange={this.onChangeValue} />
 

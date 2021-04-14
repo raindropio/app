@@ -5,6 +5,7 @@ import withEdit from '~co/user/withEdit'
 import { Label, Text, Buttons } from '~co/common/form'
 import Button from '~co/common/button'
 import Icon from '~co/common/icon'
+import Avatar from './avatar'
 import Password from './password'
 
 class SettingsAccountProfile extends React.Component {
@@ -21,17 +22,17 @@ class SettingsAccountProfile extends React.Component {
         this.setState({ changePassword: false })
 
     render() {
-        const { fullName, email, password, newpassword='', unsaved, status, onChange, onSubmit } = this.props
+        const { name, email, password, newpassword='', unsaved, status, onChange, onSubmit } = this.props
 
         return (
             <>
-                <Label>{t.s('yourName')}</Label>
+                <Label>{t.s('username')}</Label>
                 <Text 
                     autoFocus
                     required
                     disabled={status=='loading'}
-                    name='fullName'
-                    value={fullName}
+                    name='name'
+                    value={name}
                     onChange={onChange} />
     
                 <Label>Email</Label>
@@ -61,6 +62,8 @@ class SettingsAccountProfile extends React.Component {
                         {t.s('changePassword')}
                     </Button>
                 )}
+
+                <Avatar />
     
                 {unsaved && (
                     <Buttons>
@@ -83,4 +86,4 @@ class SettingsAccountProfile extends React.Component {
     }
 }
 
-export default withEdit(SettingsAccountProfile, ['fullName', 'email', 'newpassword'])
+export default withEdit(SettingsAccountProfile, ['name', 'email', 'newpassword'])

@@ -1,6 +1,7 @@
 import { 
 	USER_LOAD_REQ, USER_LOAD_SUCCESS, USER_LOAD_ERROR,
 	USER_UPDATE_REQ, USER_UPDATE_SUCCESS, USER_UPDATE_ERROR,
+	USER_AVATAR_UPLOAD_REQ,
 	USER_NOT_AUTHORIZED,
 	USER_REFRESH_REQ,
 	USER_LOGIN_PASSWORD,
@@ -94,7 +95,8 @@ export default function(state = initialState, action){switch (action.type) {
 		return setSpecificStatus(state, 'recover', 'loading')
 	}
 
-	case USER_UPDATE_REQ:{
+	case USER_UPDATE_REQ:
+	case USER_AVATAR_UPLOAD_REQ:{
 		if (state.status.authorized!='yes'){
 			action.ignore = true
 			return state;

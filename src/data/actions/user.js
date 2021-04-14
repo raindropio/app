@@ -7,6 +7,7 @@ import {
 	USER_LOST_PASSWORD, USER_RECOVER_PASSWORD,
 	USER_SUBSCRIPTION_LOAD_REQ,
 	USER_UPDATE_REQ,
+	USER_AVATAR_UPLOAD_REQ,
 	USER_EXPORT_TO_EMAIL
 } from '../constants/user'
 
@@ -26,6 +27,13 @@ export const save = (user, onSuccess, onFail)=>({
 	onFail: wrapFunc(onFail)
 })
 
+export const avatarUpload = (avatar, onSuccess, onFail)=>({
+	type: USER_AVATAR_UPLOAD_REQ,
+	avatar,
+	onSuccess: wrapFunc(onSuccess),
+	onFail: wrapFunc(onFail)
+})
+
 export const exportToEmail = (onSuccess, onFail)=>({
 	type: USER_EXPORT_TO_EMAIL,
 	onSuccess: wrapFunc(onSuccess),
@@ -37,9 +45,9 @@ export const loginWithPassword = ({email, password})=>({
 	email, password
 })
 
-export const registerWithPassword = ({fullName, email, password})=>({
+export const registerWithPassword = ({name, email, password})=>({
 	type: USER_REGISTER_PASSWORD,
-	fullName, email, password
+	name, email, password
 })
 
 export const loginNative = (params, onSuccess, onFail)=>({

@@ -4,6 +4,7 @@ import ApiError from '../modules/error'
 import {
 	USER_LOAD_REQ, USER_LOAD_SUCCESS, USER_LOAD_ERROR,
 	USER_UPDATE_REQ, USER_UPDATE_SUCCESS, USER_UPDATE_ERROR,
+	USER_AVATAR_UPLOAD_REQ,
 	USER_REFRESH_REQ,
 	USER_LOGOUT_REQ,
 	USER_NOT_AUTHORIZED,
@@ -25,6 +26,7 @@ export default function* () {
 	], loadUser)
 
 	yield takeLatest(USER_UPDATE_REQ, updateUser)
+	yield takeLatest(USER_AVATAR_UPLOAD_REQ, uploadAvatar)
 
 	yield takeLatest(USER_LOGIN_PASSWORD, loginWithPassword)
 	yield takeLatest(USER_REGISTER_PASSWORD, registerWithPassword)
@@ -70,6 +72,18 @@ function* updateUser({ ignore=false, onSuccess, onFail,  ...action }) {
 	}
 }
 
+function* uploadAvatar({ avatar, ignore=false, onSuccess, onFail }) {
+	if (ignore) return
+
+	try{
+		const { user } = yield call(Api.upload, 'user/avatar', { avatar })
+
+		yield put({type: USER_UPDATE_SUCCESS, user, onSuccess})
+	} catch (error) {
+		yield put({type: USER_UPDATE_ERROR, error, onFail})
+	}
+}
+
 function* loginWithPassword({email, password, onSuccess, onFail}) {
 	try {
 		yield call(Api.post, 'auth/email/login', {email, password});
@@ -80,9 +94,9 @@ function* loginWithPassword({email, password, onSuccess, onFail}) {
 	}
 }
 
-function* registerWithPassword({fullName, email, password, onSuccess, onFail}) {
+function* registerWithPassword({name, email, password, onSuccess, onFail}) {
 	try {
-		yield call(Api.post, 'auth/email/signup', {fullName, email:email||'0', password});
+		yield call(Api.post, 'auth/email/signup', {name, email:email||'0', password});
 		yield call(Api.post, 'auth/email/login', {email, password});
 
 		yield put({type: USER_REFRESH_REQ, way: 'register', onSuccess});

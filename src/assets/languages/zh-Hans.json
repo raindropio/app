@@ -340,5 +340,9 @@
   "data": "数据",
   "searchD": "Raindrop可以按书签的详细内容、连结网址、标签、类型、网页内容或PDF内容进行搜寻。 完美支持16种语言文字。",
   "selectNone": "取消全选",
-  "dragToReorderMobileD": "长按项目进行重新排序"
+  "dragToReorderMobileD": "长按项目进行重新排序",
+  "shareExtension": "分享此扩展",
+  "troubleshooting": "疑难解答",
+  "unsavedWarning": "你有未保存的更改，并且将会丢失",
+  "extensionD": "当你发现了有趣的事物，可以点击浏览器工具栏上的云朵图标将其保存至 Raindrop.io"
 }

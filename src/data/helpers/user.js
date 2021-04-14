@@ -3,10 +3,10 @@ import Immutable from 'seamless-immutable'
 export const normalizeUser = (user={})=>{
 	const clean = {
 		_id: 				user._id,
+		name:				user.name||'',
 		email: 				user.email||'',
-		email_MD5: 			user.email_MD5||'',
-		fullName: 			user.fullName||'',
 		password: 			Boolean(user.password)||false,
+		avatar:				user.avatar,
 		pro: 				Boolean(user.pro)||false,
 		proExpire: 			user.proExpire||null,
 		files:				user.files||{ size: 0, used: 0 },

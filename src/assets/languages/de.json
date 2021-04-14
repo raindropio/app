@@ -340,5 +340,9 @@
   "data": "Daten",
   "searchD": "Die Raindrop. io Suche funktioniert über Schlagworte, Typ, URL, Detail Informationen, komplette Webseiten oder PDF Inhalte - in über 16 Sprachen.",
   "selectNone": "Kein Auswahl",
-  "dragToReorderMobileD": "Element lange gedrückt halten, dann durch ziehen neu anordnen"
+  "dragToReorderMobileD": "Element lange gedrückt halten, dann durch ziehen neu anordnen",
+  "shareExtension": "Erweiterung für die Teilen-Funktion",
+  "troubleshooting": "Problembehandlung",
+  "unsavedWarning": "Es sind Änderungen vorhanden, die nicht gespeichert sind und verlieren gehen können",
+  "extensionD": "Wenn Du etwas Interessantes im Internet findest, klicke einfach auf das Cloud-Icon in der Browser-Werkzeugleiste, um es in Raindrop.io anzulegen"
 }

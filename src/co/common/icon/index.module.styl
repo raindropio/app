@@ -1,19 +1,19 @@
 .icon {
-	display: inline-block;
+	contain: strict
+	content-visibility: auto
+	display: inline-block
 
 	svg {
 		contain: strict
     	content-visibility: auto
-		display:block;
-		fill: currentColor;
-		width: var(--icon-size);
-		height: var(--icon-size);
+		display:block
+		fill: currentColor
 	}
-	
-	&[data-size="micro"] svg, &[data-size="micro"] {
-		width: 0.25rem //10px
-		height: 0.25rem //10px
-	}
+}
+
+.icon svg, .icon {
+	width: var(--icon-size);
+	height: var(--icon-size);
 }
 
 .icon[data-enlarge='1'] svg, .icon[data-enlarge='1'] {
@@ -34,4 +34,32 @@
 .icon[data-enlarge='3'] svg, .icon[data-enlarge='3'] {
 	width: calc(var(--icon-size) * 3);
 	height: calc(var(--icon-size) * 3);
+}
+
+.icon[data-size="micro"] svg, .icon[data-size="micro"] {
+	width: 0.25rem //10px
+	height: 0.25rem //10px
+}
+
+.avatar {
+	border-radius: 50%
+	overflow: hidden
+	position: relative
+
+	img {
+        width: 100%
+        height: 100%
+        display: block
+    }
+
+	&:before {
+        content: ''
+        position: absolute
+        left: 0
+        right: 0
+        bottom: 0
+        top: 0
+        box-shadow: inset 0 0 0 var(--shadow-height) var(--shadow-color)
+        border-radius: 50%
+    }
 }

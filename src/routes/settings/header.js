@@ -7,13 +7,12 @@ import { logout } from '~data/actions/user'
 import { Link } from 'react-router-dom'
 import { Header } from '~co/screen/basic'
 import { Title, FirstAction, Space } from '~co/common/header'
-import Icon from '~co/common/icon'
+import Icon, { Avatar } from '~co/common/icon'
 import Button from '~co/common/button'
-import Avatar from '~co/common/avatar'
 
 class SettingsHeader extends React.Component {
     render() {
-        const { user: { fullName, email_MD5 }, logout } = this.props
+        const { user: { name, avatar }, logout } = this.props
 
         return (
             <Header 
@@ -30,7 +29,7 @@ class SettingsHeader extends React.Component {
                 <Space />
 
                 <Title>
-                    {t.s('settings')} &nbsp;·&nbsp; <Avatar src={email_MD5} size='60' /> {fullName}
+                    {t.s('settings')} &nbsp;·&nbsp; <Avatar src={avatar} /> {name}
                 </Title>
                 
                 <Space />

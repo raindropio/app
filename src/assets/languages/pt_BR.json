@@ -340,5 +340,9 @@
   "data": "Dado",
   "searchD": "Raindrop pode pesquisar sobre os detalhes dos marcadores, urls, tags, tipos e conteúdos referentes a páginas e arquivos. pdf. Em até 16 idiomas com a melhor classe de suporte.",
   "selectNone": "Selecionar nenhum",
-  "dragToReorderMobileD": "Pressione por um tempo longo um item quando for arrastar para reordenar"
+  "dragToReorderMobileD": "Pressione por um tempo longo um item quando for arrastar para reordenar",
+  "shareExtension": "Compartilhar extensão",
+  "troubleshooting": "Solução de problemas",
+  "unsavedWarning": "Você tem alterações não salvas que serão perdidas",
+  "extensionD": "Quando você encontrar alguma coisa interessante na web, apenas clique no ícone de nuvem na barra de ferramentas do seu navegador para salvá-la no Raindrop.io"
 }

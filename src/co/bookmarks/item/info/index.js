@@ -4,7 +4,7 @@ import t from '~t'
 
 import { ShortDate } from '~modules/format/date'
 import { Link } from 'react-router-dom'
-import Icon from '~co/common/icon'
+import Icon, { Avatar } from '~co/common/icon'
 import Path from './path'
 
 export default function BookmarkItemInfo(props) {
@@ -14,8 +14,8 @@ export default function BookmarkItemInfo(props) {
         <div className={s.info+' '+className}>
             {creatorRef && creatorRef._id ? (
                 <>
-                    <section data-inline><Icon name='user' size='micro' /></section>
-                    <section>{creatorRef.fullName}</section>
+                    <section data-inline><Avatar src={creatorRef.avatar} size='micro' /></section>
+                    <section>{creatorRef.name}</section>
                 </>
             ) : null}
 

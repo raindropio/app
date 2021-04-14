@@ -3,9 +3,8 @@ import { connect } from 'react-redux'
 import { user } from '~data/selectors/user'
 
 import Button from '~co/common/button'
-import Avatar from '~co/common/avatar'
 import Contextmenu from './menu'
-import Icon from '~co/common/icon'
+import Icon, { Avatar } from '~co/common/icon'
 
 class UserProfileButton extends React.PureComponent {
     static defaultProps = {
@@ -36,7 +35,7 @@ class UserProfileButton extends React.PureComponent {
                     {...etc}
                     ref={this.pin}
                     onMouseDown={this.onProfileClick}>
-                    <Avatar src={user.email_MD5} size='60' />
+                    <Avatar src={user.avatar} />
                     {children && children(user)}
                     <Icon name='arrow' size='micro' />
                 </Button>

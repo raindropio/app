@@ -8,7 +8,7 @@ import { save } from '~data/actions/user'
 import { Error, Alert } from '~co/overlay/dialog'
 
 /*
-    Component, [ 'fullName', ...etc ]
+    Component, [ 'name', ...etc ]
         ->
             unsaved: Bool
             status: 'loading', ...etc

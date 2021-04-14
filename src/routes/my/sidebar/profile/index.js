@@ -9,7 +9,7 @@ export default function SidebarProfile() {
         <FirstAction className={s.action}>
             <Button id={s.button}>
                 {user=>(
-                    <span>{user.fullName}</span>
+                    <span>{user.name}</span>
                 )}
             </Button>
         </FirstAction>

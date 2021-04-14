@@ -82,7 +82,7 @@
   "byDate": "Data",
   "findOrCreateCollection": "Trova o crea una nuova Raccolta",
   "createGroup": "Crea un gruppo",
-  "clickToMakeScreenshot": "Clicca per screenshot",
+  "clickToMakeScreenshot": "Crea screenshot della pagina",
   "screenshot": "Schermata",
   "defaultCollection-0": "Cerca",
   "defaultCollection--1": "In arrivo",
@@ -125,7 +125,7 @@
   "nestedCollections": "Raccolte annidate",
   "addBookmark": "aggiungi preferito",
   "addAdvice": "Altri modi per aggiungere un bookmark",
-  "browserExtension": "estensione del motore di ricerca",
+  "browserExtension": "Estensioni per browser",
   "refresh": "Aggiorna",
   "copyLinkToClipboard": "Copiare il link negli Appunti",
   "sharing": "Condivisione",
@@ -344,5 +344,7 @@
   "shareExtension": "Estensione \"Condividi\"",
   "troubleshooting": "Risoluzione dei problemi",
   "unsavedWarning": "Hai modifiche non salvate che andranno perse",
-  "extensionD": "Quando trovi qualcosa di interessante sul web, per salvarlo ti basta cliccare l'icona di Raindrop.io nella barra del browser"
+  "extensionD": "Quando trovi qualcosa di interessante sul web, per salvarlo ti basta cliccare l'icona di Raindrop.io nella barra del browser",
+  "username": "Nome utente",
+  "avatar": "Avatar"
 }

@@ -16,7 +16,7 @@ import { Error } from '~co/overlay/dialog'
 
 class AccountSignup extends React.Component {
     state = {
-        fullName: '',
+        name: '',
         email: '',
         password: ''
     }
@@ -45,14 +45,16 @@ class AccountSignup extends React.Component {
                 </Header>
                    
                 <Layout>
-                    <Label>{t.s('yourName')}</Label>               
+                    <Label>{t.s('username')}</Label>
                     <Text
                         type='text'
-                        name='fullName'
+                        name='name'
                         disabled={status=='loading'}
                         autoFocus
                         required
-                        value={this.state.fullName}
+                        pattern='[a-zA-Z0-9][a-zA-Z0-9\-_]*'
+                        title={t.s('regexAz09_-')}
+                        value={this.state.name}
                         onChange={this.onChangeValue} />
 
                     <Label>Email</Label>

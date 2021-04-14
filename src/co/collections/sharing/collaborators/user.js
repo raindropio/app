@@ -5,8 +5,7 @@ import { Confirm } from '~co/overlay/dialog'
 import { Item, ItemIcon, ItemTitle, ItemInfo, ItemActions } from '~co/common/list'
 import Button from '~co/common/button'
 import Select from '~co/common/select'
-import Icon from '~co/common/icon'
-import Avatar from '~co/common/avatar'
+import Icon, { Avatar } from '~co/common/icon'
 
 export default class CollectionSharingCollaboratorsUser extends React.PureComponent {
     onChangeRole = (e)=>{
@@ -27,16 +26,16 @@ export default class CollectionSharingCollaboratorsUser extends React.PureCompon
     }
 
     render() {
-        const { _id, email_MD5, email, fullName, role, collection } = this.props
+        const { _id, avatar, email, name, role, collection } = this.props
 
         return (
             <Item>
                 <ItemIcon>
-                    <Avatar src={email_MD5} size='60' />
+                    <Avatar src={avatar} />
                 </ItemIcon>
 
                 <ItemTitle>
-                    {fullName}
+                    {name}
                 </ItemTitle>
 
                 <ItemInfo>

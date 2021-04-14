@@ -344,5 +344,8 @@
   "shareExtension": "Share extension",
   "troubleshooting": "Troubleshooting",
   "unsavedWarning": "You have unsaved changes that will be lost",
-  "extensionD": "When you find something interesting on the web just click cloud icon in browser toolbar to save it to Raindrop.io"
+  "extensionD": "When you find something interesting on the web just click cloud icon in browser toolbar to save it to Raindrop.io",
+  "username": "Username",
+  "avatar": "Avatar",
+  "regexAz09_-": "May contain letters (a-z), numbers (0-9), underscores (_), and dashes (-)"
 }
