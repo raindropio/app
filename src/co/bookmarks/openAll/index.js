@@ -56,7 +56,8 @@ class BookmarkOpenAll extends React.Component {
         if (links.length <= 1 || !showWarning)
             onClose()
         else {
-            localStorage.setItem(_warningKey, 1)
+            if (window.localStorage)
+                window.localStorage.setItem(_warningKey, 1)
             showWarning = false
         }
     }

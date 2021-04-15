@@ -38,22 +38,22 @@ if (location.search.includes('browser_action')){
     }
 
     function saveSize(width) {
-        if ('localStorage' in window == false) return
+        if (!window.localStorage) return
         
         if (width == _lastSavedWidth) return
         _lastSavedWidth = width
 
         setTimeout(() => {
-            localStorage.setItem('window-width', window.innerWidth)
-            localStorage.setItem('window-height', window.innerHeight)
+            window.localStorage.setItem('window-width', window.innerWidth)
+            window.localStorage.setItem('window-height', window.innerHeight)
         }, 100)
     }
 
     function restoreSize() {
-        if ('localStorage' in window == false) return
+        if (!window.localStorage) return
 
-        const width = parseInt(localStorage.getItem('window-width'))||0
-        const height = parseInt(localStorage.getItem('window-height'))||0
+        const width = parseInt(window.localStorage.getItem('window-width'))||0
+        const height = parseInt(window.localStorage.getItem('window-height'))||0
 
         _lastSavedWidth = width
 

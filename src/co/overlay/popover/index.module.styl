@@ -1,18 +1,19 @@
 .wrap {
 	contain: content
-	z-index: 999;
+	z-index: 999
 	box-shadow: 0 10px 30px rgba(0,0,0,.15)
 	border: 1px solid var(--shadow-color)
 
-	border-radius: var(--border-radius);
-	position: fixed;
+	border-radius: var(--border-radius)
+	position: fixed
+	overflow-x: clip
 	overflow-y: auto
 	max-width: 90vw
 	max-height: 90vh
 
 	top: 0
 	left: 0
-	transform: translate3d(var(--left, var(--padding-medium)), var(--top, var(--padding-medium)), 0px);
+	transform: translate3d(var(--left, var(--padding-medium)), var(--top, var(--padding-medium)), 0px)
 
 	&[data-stretch='true'] {
 		max-height: calc( 100vh - var(--top) - var(--padding-medium) )

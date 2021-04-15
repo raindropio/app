@@ -10,8 +10,10 @@ const onFrameResize = ([{ contentRect: { width, height } }])=>{
     document.body.style.width = width
     document.body.style.height = height
 
-    localStorage.setItem('browser-action-in-iframe-window-width', width)
-    localStorage.setItem('browser-action-in-iframe-window-height', height)
+    if (window.localStorage) {
+        window.localStorage.setItem('browser-action-in-iframe-window-width', width)
+        window.localStorage.setItem('browser-action-in-iframe-window-height', height)
+    }
 }
 
 const frameResize = ('ResizeObserver' in window) ? new ResizeObserver(onFrameResize) : null
@@ -36,10 +38,11 @@ frame.addEventListener('load', () => {
 })
 
 //restore cached w/h
-onFrameResize([{ contentRect: {
-    width: localStorage.getItem('browser-action-in-iframe-window-width'), 
-    height: localStorage.getItem('browser-action-in-iframe-window-height') 
-}}])
+if (window.localStorage)
+    onFrameResize([{ contentRect: {
+        width: window.localStorage.getItem('browser-action-in-iframe-window-width'), 
+        height: window.localStorage.getItem('browser-action-in-iframe-window-height') 
+    }}])
 
 //prevent background flicker in firefox
 if (window.browser && window.browser.theme)

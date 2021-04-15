@@ -11,17 +11,17 @@ const _hidekey = 'settings-integrations-ready-hide'
 
 export default class SettingsIntegrationsReady extends React.Component {
     state = {
-        hide: (localStorage && localStorage.getItem(_hidekey)) ? true : false
+        hide: (window.localStorage && window.localStorage.getItem(_hidekey)) ? true : false
     }
 
     onToggleClick = ()=>{
         const hide = !this.state.hide
 
-        if (localStorage) {
+        if (window.localStorage) {
             if (hide)
-                localStorage.setItem(_hidekey, '1')
+                window.localStorage.setItem(_hidekey, '1')
             else
-                localStorage.removeItem(_hidekey)
+                window.localStorage.removeItem(_hidekey)
         }
 
         this.setState({ hide })
