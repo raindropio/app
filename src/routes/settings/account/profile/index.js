@@ -28,7 +28,6 @@ class SettingsAccountProfile extends React.Component {
             <>
                 <Label>{t.s('username')}</Label>
                 <Text 
-                    autoFocus
                     required
                     disabled={status=='loading'}
                     name='name'

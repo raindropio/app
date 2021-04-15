@@ -12,11 +12,12 @@ function BookmarksContainer(props) {
     const { spaceId, search, ignore } = props
     const dispatch = useDispatch()
     const sort = useSelector(state=>state.config.raindrops_sort)
+    const searchByScore = useSelector(state=>state.config.raindrops_search_by_score)
 
     useEffect(()=>{
         dispatch(load(spaceId, {
             search,
-            sort: search ? 'score' : sort,
+            sort: search && searchByScore ? 'score' : sort,
             ignore
         }))
     }, [spaceId, search])
