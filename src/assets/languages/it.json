@@ -346,5 +346,6 @@
   "unsavedWarning": "Hai modifiche non salvate che andranno perse",
   "extensionD": "Quando trovi qualcosa di interessante sul web, per salvarlo ti basta cliccare l'icona di Raindrop.io nella barra del browser",
   "username": "Nome utente",
-  "avatar": "Avatar"
+  "avatar": "Avatar",
+  "publicPage": "Pagina pubblica"
 }

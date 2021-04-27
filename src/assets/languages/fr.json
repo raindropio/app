@@ -340,5 +340,13 @@
   "data": "Données",
   "searchD": "Raindrop peut rechercher dans les détails des marque-pages, dans une URL, selon un tag, selon un type ou dans le contenu d'une page internet ou d'un PDF. Le meilleur support dans sa catégorie dans 16 langues.",
   "selectNone": "Tout déselectionner",
-  "dragToReorderMobileD": "Appuyez longuement sur un élément puis faites-le glisser pour réorganiser"
+  "dragToReorderMobileD": "Appuyez longuement sur un élément puis faites-le glisser pour réorganiser",
+  "shareExtension": "Partager l'extension",
+  "troubleshooting": "Résolution des problèmes",
+  "unsavedWarning": "Vous avez des modifications non enregistrées celle-ci seront perdues",
+  "extensionD": "Lorsque vous trouvez quelque chose d'intéressant sur le Web, cliquez simplement sur l'icône représentant un nuage dans la barre d'outils du navigateur pour l'enregistrer dans Raindrop.io",
+  "username": "Nom d'utilisateur",
+  "avatar": "Avatar",
+  "regexAz09_-": "Ne peut contenir que des lettres (a-z), des chiffres (1-9), le tiret bas ( _ ) et le tiret (-)",
+  "publicPage": "Page publique"
 }

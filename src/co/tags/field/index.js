@@ -51,7 +51,8 @@ export default function TagsPicker({ value=[], onChange, spaceId, ...etc }) {
     const onInputKeyDown = useCallback(e => {
         switch(e.key) {
             case 'Enter':
-                if (!e.currentTarget.value){
+                if (!downshiftRef.current ||
+                    downshiftRef.current?.state?.highlightedIndex == -1){
                     e.preventDefault()
                     e.currentTarget.closest('form').requestSubmit()
 

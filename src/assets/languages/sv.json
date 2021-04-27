@@ -340,5 +340,6 @@
   "data": "Data",
   "searchD": "Raindrop kan söka efter bokmärkens detaljer, URL, taggar, typ eller innehållet av hemsidor eller PDF:er. Stödjer 16 språk.",
   "selectNone": "Välj ingen",
-  "dragToReorderMobileD": "Håll nere på ett bokmärke/samling och dra för att sortera"
+  "dragToReorderMobileD": "Håll nere på ett bokmärke/samling och dra för att sortera",
+  "publicPage": "Offentlig sida"
 }

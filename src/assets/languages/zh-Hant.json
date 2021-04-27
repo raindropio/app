@@ -340,5 +340,6 @@
   "data": "數據",
   "searchD": "Raindrop可以按書簽的詳細內容、連結網址、標籤、類型、網頁內容或PDF內容進行搜尋。 完美支持16種語言文字。",
   "selectNone": "取消全選",
-  "dragToReorderMobileD": "長按項目可進行拖放排序"
+  "dragToReorderMobileD": "長按項目可進行拖放排序",
+  "publicPage": "公開頁面"
 }

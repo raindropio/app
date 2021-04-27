@@ -344,5 +344,9 @@
   "shareExtension": "Compartir Extensión",
   "troubleshooting": "Solucionar Problemas",
   "unsavedWarning": "Tienes cambios sin guardar que se perderan",
-  "extensionD": "Cando encuentres algo interesante, solo haz click en la nube de tu barra de navegación para guardarlo en Raindrop.io"
+  "extensionD": "Cando encuentres algo interesante, solo haz click en la nube de tu barra de navegación para guardarlo en Raindrop.io",
+  "username": "Nombre de usuario",
+  "avatar": "Avatar",
+  "regexAz09_-": "Puede contener letras (a-z), numeros (0-9), guion bajo (_), y guiones (-)",
+  "publicPage": "Pagina publica"
 }

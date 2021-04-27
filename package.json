@@ -1,6 +1,6 @@
 {
 	"name": "app",
-	"version": "5.3.31",
+	"version": "5.3.32",
 	"description": "",
 	"author": "",
 	"license": "ISC",
@@ -43,7 +43,7 @@
 	},
 	"dependencies": {
 		"@juggle/resize-observer": "^3.3.0",
-		"@sentry/react": "6.2.x",
+		"@sentry/react": "6.3.x",
 		"date-fns": "2.21.x",
 		"dompurify": "^2.2.0",
 		"downshift": "6.1.x",
@@ -65,10 +65,10 @@
 		"react-window": "^1.8.5",
 		"sortablejs": "^1.12.0",
 		"validator": "13.5.x",
-		"webextension-polyfill": "0.7.x"
+		"webextension-polyfill": "0.8.x"
 	},
 	"optionalDependencies": {
-		"@sentry/minimal": "6.2.x",
+		"@sentry/minimal": "6.3.x",
 		"localforage": "1.9.x",
 		"react-redux": "7.2.x",
 		"redux": "4.x",
@@ -106,7 +106,7 @@
 		"image-webpack-loader": "7.0.x",
 		"link-module-alias": "^1.2.0",
 		"lodash-webpack-plugin": "0.11.x",
-		"mini-css-extract-plugin": "1.4.x",
+		"mini-css-extract-plugin": "1.5.x",
 		"optimize-css-assets-webpack-plugin": "5.0.x",
 		"patch-package": "^6.2.2",
 		"postcss-loader": "5.2.x",
@@ -119,7 +119,7 @@
 		"svg-sprite-loader": "6.0.x",
 		"terser-webpack-plugin": "5.1.x",
 		"val-loader": "3.1.x",
-		"webpack": "5.33.x",
+		"webpack": "5.35.x",
 		"webpack-bundle-analyzer": "4.4.x",
 		"webpack-cli": "4.6.x",
 		"webpack-dev-server": "^3.11.2",

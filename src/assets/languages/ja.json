@@ -323,5 +323,6 @@
   "changeLaterInSettings": "この設定は後からでも変更できます",
   "fullTextSearch": "全文検索",
   "actions": "アクション",
-  "data": "データ"
+  "data": "データ",
+  "publicPage": "公開ページ"
 }

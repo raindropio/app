@@ -143,6 +143,7 @@ export const normalizeCollection = (item={})=>{
 	return Immutable({
 		_id: 		parseInt(item._id||0),
 		title: 		item.title,
+		slug: 		item.slug,
 		count: 		parseInt(item.count||0),
 		public: 	item.public||false,
 		expanded: 	item.expanded||false,

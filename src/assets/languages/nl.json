@@ -333,5 +333,6 @@
   "omniboxD": "Zoek bladwijzers vanuit de adresbalk",
   "highlightSavedPagesD": "Laat een [✔] indicator zien wanneer je een eerder opgeslagen pagina bezoekt",
   "changeLaterInSettings": "Je kunt deze opties later wijzigen in instellingen",
-  "fullTextSearch": "Volledige tekst zoeken"
+  "fullTextSearch": "Volledige tekst zoeken",
+  "publicPage": "Openbare pagina"
 }

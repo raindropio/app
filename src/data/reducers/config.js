@@ -72,6 +72,7 @@ const initialState = Immutable({
 
 	add_default_collection: 0, //last_used
 	add_auto_save:			false,
+	mobile_add_auto_save:	false,
 	
 	browser_extension_mode: 'mini_app',
 

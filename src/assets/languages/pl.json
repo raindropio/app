@@ -344,5 +344,9 @@
   "shareExtension": "Udostępnij rozszerzenie",
   "troubleshooting": "Rozwiązywanie problemów",
   "unsavedWarning": "Masz niezapisane zmiany, które zostaną utracone",
-  "extensionD": "Gdy znajdziesz coś interesującego w Internecie, po prostu kliknij ikonę chmury na pasku narzędzi przeglądarki, aby zapisać treść do Raindrop.io"
+  "extensionD": "Gdy znajdziesz coś interesującego w Internecie, po prostu kliknij ikonę chmury na pasku narzędzi przeglądarki, aby zapisać treść do Raindrop.io",
+  "username": "Nazwa użytkownika",
+  "avatar": "Obraz",
+  "regexAz09_-": "Może zawierać litery (a-z), cyfry (0-9), podkreślenia (_) oraz myślniki (-)",
+  "publicPage": "Strona publiczna"
 }
