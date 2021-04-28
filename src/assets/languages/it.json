@@ -101,7 +101,6 @@
   "private": "Privato",
   "privateD": "Solo tu puoi vedere",
   "public": "Pubblico",
-  "publicD": "Chiunque può vedere",
   "move": "sposta",
   "selectAll": "Seleziona tutto",
   "supportOnlyUrls": "È possibile salvare links solo con protocollo http e https!",
@@ -128,14 +127,12 @@
   "browserExtension": "Estensioni per browser",
   "refresh": "Aggiorna",
   "copyLinkToClipboard": "Copiare il link negli Appunti",
-  "sharing": "Condivisione",
   "members": "Membri",
   "enterEmails": "Inserisci e-mail o email separati da virgola...",
   "role_member": "Può modificare",
   "role_members": "Può modificare",
   "role_viewer": "Possibile visualizzare",
   "role_owner": "Proprietario",
-  "inviteMorePeople": "Invitare più persone",
   "sendInvites": "Inviare inviti",
   "unshareCollection": "non condividere la tua collezione",
   "withAccessLevel": "Con livello di accesso",
@@ -347,5 +344,6 @@
   "extensionD": "Quando trovi qualcosa di interessante sul web, per salvarlo ti basta cliccare l'icona di Raindrop.io nella barra del browser",
   "username": "Nome utente",
   "avatar": "Avatar",
-  "publicPage": "Pagina pubblica"
+  "publicPage": "Pagina pubblica",
+  "invite": "Invitare"
 }

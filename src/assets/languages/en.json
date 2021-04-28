@@ -101,7 +101,7 @@
   "private": "Private",
   "privateD": "Only you",
   "public": "Public",
-  "publicD": "Anyone can view",
+  "publicD": "Anybody with the link can access the page (Sign-up is not required)",
   "move": "Move",
   "selectAll": "Select all",
   "supportOnlyUrls": "Unfortunately, we can't save this page!",
@@ -128,14 +128,13 @@
   "browserExtension": "Browser extension",
   "refresh": "Refresh",
   "copyLinkToClipboard": "Copy link to clipboard",
-  "sharing": "Sharing",
+  "sharing": "Collaboration",
   "members": "Members",
   "enterEmails": "Enter emails separated by comma...",
   "role_member": "Can edit",
   "role_members": "Can edit",
   "role_viewer": "Can view",
   "role_owner": "Owner",
-  "inviteMorePeople": "Invite more people",
   "sendInvites": "Send invites",
   "unshareCollection": "Unshare collection",
   "withAccessLevel": "With access level",
@@ -348,5 +347,6 @@
   "username": "Username",
   "avatar": "Avatar",
   "regexAz09_-": "May contain letters (a-z), numbers (0-9), underscores (_), and dashes (-)",
-  "publicPage": "Public page"
+  "publicPage": "Public page",
+  "invite": "Invite"
 }

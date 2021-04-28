@@ -101,7 +101,6 @@
   "private": "Privé",
   "privateD": "Alleen u kunt weergeven",
   "public": "Publiek",
-  "publicD": "Iedereen kan bekijken",
   "move": "verplaats",
   "selectAll": "Selecteer alle",
   "supportOnlyUrls": "U kunt alleen koppelingen opslaan met http en https protocol!",
@@ -128,14 +127,12 @@
   "browserExtension": "Browser extensie",
   "refresh": "Vernieuwen",
   "copyLinkToClipboard": "Koppeling kopiëren naar klembord",
-  "sharing": "Delen",
   "members": "Leden",
   "enterEmails": "Voer één of meerdere e-mailadressen gescheiden door komma in...",
   "role_member": "Kan bewerken",
   "role_members": "Kan bewerken",
   "role_viewer": "Kan bekijken",
   "role_owner": "Eigenaar",
-  "inviteMorePeople": "Meer mensen uitnodigen",
   "sendInvites": "Verstuur uitnodigingen",
   "unshareCollection": "Delen van verzameling ongedaan maken",
   "withAccessLevel": "Met toegangsniveau",
@@ -334,5 +331,6 @@
   "highlightSavedPagesD": "Laat een [✔] indicator zien wanneer je een eerder opgeslagen pagina bezoekt",
   "changeLaterInSettings": "Je kunt deze opties later wijzigen in instellingen",
   "fullTextSearch": "Volledige tekst zoeken",
-  "publicPage": "Openbare pagina"
+  "publicPage": "Openbare pagina",
+  "invite": "Nodig uit"
 }

@@ -99,7 +99,6 @@
   "private": "プライベート",
   "privateD": "あなただけ",
   "public": "公開",
-  "publicD": "誰でも閲覧可能",
   "move": "移動",
   "selectAll": "全て選択",
   "supportOnlyUrls": "残念ながら、このページを保存することはできません！",
@@ -125,14 +124,12 @@
   "browserExtension": "ブラウザ拡張機能",
   "refresh": "更新",
   "copyLinkToClipboard": "クリップボードにリンクをコピー",
-  "sharing": "共有",
   "members": "メンバー",
   "enterEmails": "メールアドレスをコンマ区切りで入力",
   "role_member": "編集可能",
   "role_members": "編集可能",
   "role_viewer": "閲覧可能",
   "role_owner": "オーナー",
-  "inviteMorePeople": "他の人を招待",
   "sendInvites": "招待を送る",
   "unshareCollection": "コレクションを共有解除",
   "withAccessLevel": "アクセスレベル付き",
@@ -301,6 +298,7 @@
   "sync": "同期",
   "shareCollaborate": "共有と連携",
   "update": "アップデート",
+  "everywhere": "全方位",
   "this_week": "今週の初め",
   "done": "完了",
   "darkTheme": "ダークテーマ",
@@ -324,5 +322,6 @@
   "fullTextSearch": "全文検索",
   "actions": "アクション",
   "data": "データ",
-  "publicPage": "公開ページ"
+  "publicPage": "公開ページ",
+  "invite": "招待する"
 }

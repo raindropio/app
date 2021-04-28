@@ -101,7 +101,6 @@
   "private": "Privado",
   "privateD": "Sólo puede ver",
   "public": "Público",
-  "publicD": "Cualquiera puede ver",
   "move": "mover",
   "selectAll": "Seleccionar todo",
   "supportOnlyUrls": "Puede guardar enlaces sólo con protocolo http y https.",
@@ -128,14 +127,12 @@
   "browserExtension": "Extensión de navegador",
   "refresh": "Actualizar",
   "copyLinkToClipboard": "Copiar el enlace al portapapeles",
-  "sharing": "Compartir",
   "members": "Miembros",
   "enterEmails": "Introduzca el correo electrónico o emails separados por comas...",
   "role_member": "Puede editar",
   "role_members": "Puede editar",
   "role_viewer": "Puede ver",
   "role_owner": "Propietario",
-  "inviteMorePeople": "Invitar a más gente",
   "sendInvites": "Enviar invitaciones",
   "unshareCollection": "No compartir colección",
   "withAccessLevel": "Con nivel de acceso",
@@ -348,5 +345,6 @@
   "username": "Nombre de usuario",
   "avatar": "Avatar",
   "regexAz09_-": "Puede contener letras (a-z), numeros (0-9), guion bajo (_), y guiones (-)",
-  "publicPage": "Pagina publica"
+  "publicPage": "Pagina publica",
+  "invite": "Invitar"
 }

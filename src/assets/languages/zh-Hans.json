@@ -101,7 +101,6 @@
   "private": "私人",
   "privateD": "只有你可以查看",
   "public": "公开",
-  "publicD": "任何人都允许查看",
   "move": "移动",
   "selectAll": "选择所有",
   "supportOnlyUrls": "抱歉，该网页储存不成功。",
@@ -128,14 +127,12 @@
   "browserExtension": "浏览器扩展",
   "refresh": "刷新",
   "copyLinkToClipboard": "将链接复制到剪贴板",
-  "sharing": "共享",
   "members": "成员",
   "enterEmails": "输入电子邮件或由逗号分隔的电子邮件...",
   "role_member": "可以编辑",
   "role_members": "可以编辑",
   "role_viewer": "可以查看",
   "role_owner": "所有者",
-  "inviteMorePeople": "邀请更多的人",
   "sendInvites": "发送邀请",
   "unshareCollection": "取消共享收藏集",
   "withAccessLevel": "访问级别",
@@ -345,5 +342,6 @@
   "troubleshooting": "疑难解答",
   "unsavedWarning": "你有未保存的更改，并且将会丢失",
   "extensionD": "当你发现了有趣的事物，可以点击浏览器工具栏上的云朵图标将其保存至 Raindrop.io",
-  "publicPage": "公开页面"
+  "publicPage": "公开页面",
+  "invite": "邀请"
 }

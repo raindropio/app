@@ -101,7 +101,6 @@
   "private": "비공개",
   "privateD": "오직 당신",
   "public": "공개",
-  "publicD": "누구든지 볼 수 있습니다",
   "move": "이동",
   "selectAll": "모두 선택",
   "supportOnlyUrls": "죄송합니다, 이 페이지는 저장할 수 없습니다.",
@@ -128,14 +127,12 @@
   "browserExtension": "브라우저 확장 프로그램",
   "refresh": "새로고침",
   "copyLinkToClipboard": "링크를 클립보드에 복사",
-  "sharing": "공유",
   "members": "멤버",
   "enterEmails": "이메일 입력 또는 쉼표로 구분하여 추가 이메일 입력...",
   "role_member": "수정 가능",
   "role_members": "편집 가능",
   "role_viewer": "보기 가능",
   "role_owner": "소유자",
-  "inviteMorePeople": "더 많은 사람 초대하기",
   "sendInvites": "초대장 보내기",
   "unshareCollection": "컬렉션 공유 해제",
   "withAccessLevel": "액세스 수준",
@@ -341,5 +338,6 @@
   "searchD": "레인드랍은 북마크 세부 항목, 주소, 태그, 유형으로 검색할 수 있고 또한 웹페이지와 PDF 전체 텍스트를 검색할 수 있습니다. 16가지 언어를 지원합니다.",
   "selectNone": "없음 선택",
   "dragToReorderMobileD": "항목을 길게 눌러 드래그하여 재배치",
-  "publicPage": "공개 페이지"
+  "publicPage": "공개 페이지",
+  "invite": "초대"
 }

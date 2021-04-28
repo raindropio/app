@@ -1,14 +1,14 @@
 import React from 'react'
 import t from '~t'
+import links from '~config/links'
 
 import { Alert } from '~co/overlay/dialog'
-import { Layout, Label, Text, Radio, Buttons } from '~co/common/form'
+import { Layout, Title, Label, Text, Radio, Buttons } from '~co/common/form'
 import Button from '~co/common/button'
 import Icon from '~co/common/icon'
 
 export default class CollectionSharingInviteView extends React.PureComponent {
     state = {
-        show: false,
         emails: '',
         role: 'member'
     }
@@ -26,9 +26,6 @@ export default class CollectionSharingInviteView extends React.PureComponent {
 				break
 			}
     }
-    
-    onShowClick = ()=>
-        this.setState({ show: true })
 
     handleEmailsChange = (e)=>
         this.setState({ emails: e.target.value })
@@ -46,7 +43,7 @@ export default class CollectionSharingInviteView extends React.PureComponent {
     }
 
     render() {
-        const { emails, role, show } = this.state
+        const { emails, role } = this.state
         const { status, access } = this.props
 
         const loading = status == 'loading'
@@ -54,21 +51,12 @@ export default class CollectionSharingInviteView extends React.PureComponent {
         if (!access || access.level < 3)
             return null
 
-        if (!show)
-            return (
-                <Layout>
-                    <Button variant='outline' data-block onClick={this.onShowClick}>
-                        <Icon name='add' />
-                        {t.s('inviteMorePeople')}
-                    </Button>
-                </Layout>
-            )
-
         return (
             <form onSubmit={this.onSubmit}>
-                <Layout>
-                    <Label>{t.s('inviteMorePeople')}</Label>
+                <Layout type='grid'>
+                    <Title>{t.s('invite')}</Title>
         
+                    <Label>Email</Label>
                     <Text
                         type='email'
                         multiple={true}
@@ -80,14 +68,13 @@ export default class CollectionSharingInviteView extends React.PureComponent {
                         onChange={this.handleEmailsChange} />
 
                     <Label>{t.s('withAccessLevel')}</Label>
-
                     <div>
                         <Radio 
                             checked={role=='member'}
                             value='member'
                             disabled={loading}
                             onChange={this.handleChangeRole}>
-                            {t.s('role_members')+' '+t.s('und')+' '+t.s('inviteMorePeople').toLowerCase()}
+                            {t.s('role_members')+' '+t.s('und')+' '+t.s('invite').toLowerCase()}
                         </Radio>
 
                         <Radio 
@@ -99,7 +86,7 @@ export default class CollectionSharingInviteView extends React.PureComponent {
                         </Radio>
                     </div>
 
-                    <Buttons>
+                    <Buttons variant='between'>
                         <Button 
                             as='input'
                             type='submit'
@@ -107,6 +94,14 @@ export default class CollectionSharingInviteView extends React.PureComponent {
                             disabled={loading}
                             data-block
                             value={t.s('sendInvites')+(loading ? '…' : '')} />
+
+                        <Button
+                            data-block
+                            href={links.help.collaboration}
+                            target='_blank'>
+                            <Icon name='help' />
+                            {t.s('howToUse')}
+                        </Button>
                     </Buttons>
                 </Layout>
             </form>

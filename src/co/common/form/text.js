@@ -71,6 +71,7 @@ class TextInner extends React.Component {
                 data-select-all={selectAll}
                 data-font={font}
                 data-disabled={etc.disabled}
+                data-readonly={etc.readOnly}
                 hidden={hidden}
                 onClick={this.onContainerClick}>
                 {icon ? <div className={s.icon}>{icon}</div> : null}

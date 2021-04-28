@@ -142,7 +142,8 @@ export const shouldLoadItems = (state)=>{
 export const normalizeCollection = (item={})=>{
 	return Immutable({
 		_id: 		parseInt(item._id||0),
-		title: 		item.title,
+		title: 		item.title||'',
+		description:item.description||'',
 		slug: 		item.slug,
 		count: 		parseInt(item.count||0),
 		public: 	item.public||false,

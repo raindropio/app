@@ -28,7 +28,10 @@ export default {
         import: 'https://help.raindrop.io/import',
         omnibox: 'https://help.raindrop.io/browser-extension#search-in-address-bar',
         'login-problems': 'https://help.raindrop.io/login-problems',
-        changelog: 'https://help.raindrop.io/changelog'
+        changelog: 'https://help.raindrop.io/changelog',
+        embed: 'https://help.raindrop.io/embed',
+        publicPage: 'https://help.raindrop.io/public-page',
+        collaboration: 'https://help.raindrop.io/collaboration',
     },
 
     pro: {

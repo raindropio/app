@@ -101,7 +101,6 @@
   "private": "Özel",
   "privateD": "Sadece sen görebilirsin",
   "public": "Genel",
-  "publicD": "Herkes görebilir",
   "move": "taşı",
   "selectAll": "Tümünü seç",
   "supportOnlyUrls": "Sadece http ve https protokollü bağlantıları kaydedebilirsin!",
@@ -128,14 +127,12 @@
   "browserExtension": "Tarayıcı uzantısı",
   "refresh": "Yenile",
   "copyLinkToClipboard": "Panoya kopyala",
-  "sharing": "Paylaşım",
   "members": "Üyeler",
   "enterEmails": "E-posta adresi girin veya virgülle e-posta adreslerini ayırın...",
   "role_member": "Düzenlenebilir",
   "role_members": "Düzenleyebilir",
   "role_viewer": "Görüntülenebilir",
   "role_owner": "Sahip",
-  "inviteMorePeople": "Daha fazla kişi davet et",
   "sendInvites": "Davet Gönder",
   "unshareCollection": "Paylaşılmayan koleksiyon",
   "withAccessLevel": "Erişim düzeyi ile",
@@ -341,5 +338,6 @@
   "searchD": "Raindrop, yer imi ayrıntılarını, URL'ye, etikete, türe veya web sayfasının veya PDF'nin tüm içeriğine göre arama yapabilir. 16 dil için sınıfının en iyi desteği.",
   "selectNone": "Hiçbirini seçme",
   "dragToReorderMobileD": "Sıralamak için uzun basın",
-  "publicPage": "Genel sayfa"
+  "publicPage": "Genel sayfa",
+  "invite": "Davet et"
 }

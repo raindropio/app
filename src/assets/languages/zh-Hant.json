@@ -101,7 +101,6 @@
   "private": "私人",
   "privateD": "只有你可以查看",
   "public": "公開",
-  "publicD": "任何人都允許查看",
   "move": "移動",
   "selectAll": "選取全部",
   "supportOnlyUrls": "很抱歉，我們無法儲存這個網頁",
@@ -128,14 +127,12 @@
   "browserExtension": "瀏覽器擴展",
   "refresh": "刷新",
   "copyLinkToClipboard": "將連結複製到剪貼板",
-  "sharing": "共享",
   "members": "成員",
   "enterEmails": "輸入電郵地址並以逗號分隔不同的電郵地址...",
   "role_member": "可以編輯",
   "role_members": "可以編輯",
   "role_viewer": "可以查看",
   "role_owner": "擁有者",
-  "inviteMorePeople": "邀請更多的人",
   "sendInvites": "發送邀請",
   "unshareCollection": "取消共享收藏夾",
   "withAccessLevel": "訪問級別",
@@ -341,5 +338,6 @@
   "searchD": "Raindrop可以按書簽的詳細內容、連結網址、標籤、類型、網頁內容或PDF內容進行搜尋。 完美支持16種語言文字。",
   "selectNone": "取消全選",
   "dragToReorderMobileD": "長按項目可進行拖放排序",
-  "publicPage": "公開頁面"
+  "publicPage": "公開頁面",
+  "invite": "邀请"
 }

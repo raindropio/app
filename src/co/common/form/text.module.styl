@@ -62,8 +62,12 @@
         box-shadow: inset 0 0 0 1px var(--accent-color), 0 0 0 var(--shadow-height) var(--accent-color)
     }
 
-    &[data-disabled="true"] {
+    &[data-disabled="true"], &[data-readonly='true'] {
         background: var(--disable-background-color)
+    }
+
+    &[data-readonly='true'] {
+        box-shadow: 0 0 0 var(--shadow-height) var(--shadow-color)
     }
 }
 

@@ -101,7 +101,6 @@
   "private": "निजी",
   "privateD": "केवल आप",
   "public": "सार्वजनिक",
-  "publicD": "कोई भी देख सकता है",
   "move": "हटाए",
   "selectAll": "सभी का चयन करे",
   "supportOnlyUrls": "दुर्भाग्य से, हम इस पृष्ठ को नहीं सहेज सकते हैं!",
@@ -128,14 +127,12 @@
   "browserExtension": "ब्राउज़र एक्सटेंशन",
   "refresh": "पुनश्चर्या",
   "copyLinkToClipboard": "क्लिपबोर्ड पर लिंक अनुकरण करे",
-  "sharing": "सहवास",
   "members": "सदस्य",
   "enterEmails": "कॉमा द्वारा अलग किए गए ईमेल दर्ज करें...",
   "role_member": "संपादित कर सकते हैं",
   "role_members": "संपादित कर सकते हैं",
   "role_viewer": "देख सकते हैं",
   "role_owner": "मालिक",
-  "inviteMorePeople": "और लोगों को आमंत्रित करें",
   "sendInvites": "आमंत्रण भेजें",
   "unshareCollection": "संग्रह को साझा करना बंद करे",
   "withAccessLevel": "पहुंच के स्तर के साथ",
@@ -328,5 +325,6 @@
   "permissions": "अनुमतियां",
   "raindropTagline": "ऑल-इन-वन बुकमार्क प्रबंधक",
   "buttons": "बटन",
-  "publicPage": "सार्वजनिक पृष्ठ"
+  "publicPage": "सार्वजनिक पृष्ठ",
+  "invite": "आमंत्रण"
 }

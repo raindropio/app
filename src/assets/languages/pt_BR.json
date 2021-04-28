@@ -101,7 +101,6 @@
   "private": "Privado",
   "privateD": "Só você pode ver",
   "public": "Público",
-  "publicD": "Qualquer um pode ver",
   "move": "mover",
   "selectAll": "Selecionar tudo",
   "supportOnlyUrls": "Você só pode salvar links com protocolo http ou https!",
@@ -128,14 +127,12 @@
   "browserExtension": "Extensão para navegador",
   "refresh": "Atualizar",
   "copyLinkToClipboard": "Copie o link para área de transferência",
-  "sharing": "Compartilhando",
   "members": "Membros",
   "enterEmails": "Digite o e-mail ou e-mails separados por vírgula...",
   "role_member": "Pode editar",
   "role_members": "Pode editar",
   "role_viewer": "Pode visualizar",
   "role_owner": "Proprietário",
-  "inviteMorePeople": "Convidar mais pessoas",
   "sendInvites": "Enviar convites",
   "unshareCollection": "Descompartilhar coleção",
   "withAccessLevel": "Com nível de acesso",
@@ -347,5 +344,6 @@
   "extensionD": "Quando você encontrar alguma coisa interessante na web, apenas clique no ícone de nuvem na barra de ferramentas do seu navegador para salvá-la no Raindrop.io",
   "username": "Nome de usuário",
   "avatar": "Avatar",
-  "regexAz09_-": "O login deve conter apenas letras (a-z), números (0-9), sublinhados (_) e hífens (-)"
+  "regexAz09_-": "O login deve conter apenas letras (a-z), números (0-9), sublinhados (_) e hífens (-)",
+  "invite": "Convidar"
 }

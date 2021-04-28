@@ -101,7 +101,6 @@
   "private": "Privat",
   "privateD": "Nur sichtbar für dich",
   "public": "Öffentlich",
-  "publicD": "Sichtbar für jeden",
   "move": "verschieben",
   "selectAll": "Alle auswählen",
   "supportOnlyUrls": "Du kannst nur Links mit http und https Protokoll speichern!",
@@ -128,14 +127,12 @@
   "browserExtension": "Browser Erweiterungen",
   "refresh": "Aktualisieren",
   "copyLinkToClipboard": "Link in Zwischenablage kopieren",
-  "sharing": "Teilen",
   "members": "Mitglieder",
   "enterEmails": "E-Mail oder E-Mail's mit Komma getrennt eingeben...",
   "role_member": "Kann bearbeiten",
   "role_members": "Kann bearbeiten",
   "role_viewer": "Kann ansehen",
   "role_owner": "Eigentümer",
-  "inviteMorePeople": "Weitere Personen einladen",
   "sendInvites": "Einladungen senden",
   "unshareCollection": "Freigabe der Sammlung aufheben",
   "withAccessLevel": "Mit Zugriffsebene",
@@ -345,5 +342,6 @@
   "troubleshooting": "Problembehandlung",
   "unsavedWarning": "Es sind Änderungen vorhanden, die nicht gespeichert sind und verlieren gehen können",
   "extensionD": "Wenn Du etwas Interessantes im Internet findest, klicke einfach auf das Cloud-Icon in der Browser-Werkzeugleiste, um es in Raindrop.io anzulegen",
-  "publicPage": "Öffentliche Seite"
+  "publicPage": "Öffentliche Seite",
+  "invite": "Einladen"
 }
