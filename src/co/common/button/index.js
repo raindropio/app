@@ -1,7 +1,7 @@
 import s from './index.module.styl'
 import React from 'react'
 
-class ButtonInner extends React.Component {
+class ButtonInner extends React.PureComponent {
     static defaultProps = {
         variant:    'default',  //link, primary, active, outline, flat
         accent:     'default',  //danger
