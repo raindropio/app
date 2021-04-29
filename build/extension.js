@@ -6,9 +6,18 @@ const common = require('./common')
 const WriteFilePlugin = require('write-file-webpack-plugin')
 const ZipPlugin = require('zip-webpack-plugin')
 
-module.exports = (env={}) =>
-    merge(
-        common({ ...env, filename: '[name]' }),
+module.exports = (env={}) => {
+    env.filename = '[name]'
+    
+    switch(env.vendor) {
+        case 'chrome': env.sentry = { urlPrefix: 'chrome-extension://ldgfbffkinooeloadekpmfoklnobpien/' }; break
+        case 'firefox': env.sentry = { urlPrefix: 'moz-extension://0e06d960-f461-414f-83d6-5d5b16938448/' }; break
+        case 'opera': env.sentry = { urlPrefix: 'chrome-extension://omkjjddnkfagilfgmbmeeffkljlpaglj/' }; break
+        case 'safari': env.sentry = { urlPrefix: 'safari-web-extension://F54B64D3-0D2D-4C9C-BDF5-8671C44683E7/' }; break
+    }
+
+    return merge(
+        common(env),
         {
             entry: {
                 manifest: './target/extension/manifest/index.js',
@@ -64,3 +73,4 @@ module.exports = (env={}) =>
             }
         }
     )
+}

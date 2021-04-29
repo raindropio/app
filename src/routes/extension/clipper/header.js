@@ -25,7 +25,7 @@ function ClipperHeader({ status, item }) {
     const collectionPath = `/my/${item.collectionId}`
 
     return (
-        <Header>
+        <Header data-no-shadow>
             <Button
                 as='a'
                 href={config.links.app.index+collectionPath}

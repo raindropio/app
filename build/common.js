@@ -11,7 +11,7 @@ const SentryCliPlugin = require('@sentry/webpack-plugin')
 //defaults
 process.env.SENTRY_RELEASE = String(new Date().getTime())
 
-module.exports = ({ production, filename='[name].[contenthash]' }) => ({
+module.exports = ({ production, filename='[name].[contenthash]', sentry={} }) => ({
 	mode:		production ? 'production' : 'development',
 	context:	path.resolve(__dirname, '../src'),
 	devtool:	production ? 'source-map' : 'eval-cheap-module-source-map',
@@ -69,13 +69,13 @@ module.exports = ({ production, filename='[name].[contenthash]' }) => ({
 		] : []),
 
 		//Sentry
-		...(typeof process.env.SENTRY_UPLOAD_SOURCEMAPS != 'undefined' ? [
+		...(production ? [
 			new SentryCliPlugin({
 				release: process.env.SENTRY_RELEASE,
-				dryRun: !production,
 				include: './src',
 				ignore: [ 'node_modules', 'build', 'dist' ],
 				configFile: path.resolve(__dirname, 'sentry.properties'),
+				...sentry
 			})
 		]: []),
 
