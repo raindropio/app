@@ -60,15 +60,14 @@ export const getPath = (allCollections, allGroups, objectId, options={})=>{
 		title: 	parent.title,
 		cover: 	parent.cover
 	})
-	const findParents = (findId)=>{
+	const findParents = (findId, deep=0)=>{
 		const parent = allCollections[findId]
 		
 		if (parent){
 			parents.push(makeParentItem(parent))
 
-			if (parent.parentId){
-				findParents(parent.parentId)
-			}
+			if (parent.parentId && deep<100)
+				findParents(parent.parentId, deep+1)
 		}
 	}
 
