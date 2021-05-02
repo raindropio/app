@@ -64,7 +64,7 @@
 		"react-sortablejs": "6.0.x",
 		"react-window": "^1.8.5",
 		"sortablejs": "^1.12.0",
-		"validator": "13.5.x",
+		"validator": "13.6.x",
 		"webextension-polyfill": "0.8.x"
 	},
 	"optionalDependencies": {
@@ -105,7 +105,7 @@
 		"image-webpack-loader": "7.0.x",
 		"link-module-alias": "^1.2.0",
 		"lodash-webpack-plugin": "0.11.x",
-		"mini-css-extract-plugin": "1.5.x",
+		"mini-css-extract-plugin": "1.6.x",
 		"optimize-css-assets-webpack-plugin": "5.0.x",
 		"patch-package": "^6.2.2",
 		"postcss-loader": "5.2.x",
@@ -118,7 +118,7 @@
 		"svg-sprite-loader": "6.0.x",
 		"terser-webpack-plugin": "5.1.x",
 		"val-loader": "3.1.x",
-		"webpack": "5.35.x",
+		"webpack": "5.36.x",
 		"webpack-bundle-analyzer": "4.4.x",
 		"webpack-cli": "4.6.x",
 		"webpack-dev-server": "^3.11.2",

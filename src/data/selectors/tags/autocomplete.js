@@ -22,12 +22,14 @@ function filterOther(tags=[], other=[]) {
 function filterByQuery(tags=[], query='') {
 	if (!query) return tags
 
+	const filter = query.toLowerCase()
+
 	//filter and order by score
 	return _.orderBy(
 		_.uniqBy(
 			[
 				...tags.filter(item => 
-					item._id.toLowerCase().includes(query)
+					item._id.toLowerCase().includes(filter)
 				),
 				{
 					_id: query,
@@ -37,7 +39,7 @@ function filterByQuery(tags=[], query='') {
 			],
 			'_id'
 		),
-		({ _id, isNew }) => isNew || _id.toLowerCase().indexOf(query)+_id.toLowerCase(),
+		({ _id, isNew }) => isNew || _id.toLowerCase().indexOf(filter)+_id.toLowerCase(),
 		'asc'
 	)
 }
@@ -52,7 +54,7 @@ export const makeTagsAutocomplete = ()=>createSelector(
 		(state, spaceId, filter, selected)=>selected||emptyArray
 	],
 	(_other, _collection, _recent, _filter, selected)=>{
-		const filter = String(_filter||'').trimStart().toLowerCase().replace(/^#/,'')
+		const filter = String(_filter||'').trimStart().replace(/^#/,'')
 
 		//filter
 		if (filter)
