@@ -16,7 +16,8 @@ if (process.env.NODE_ENV !== 'development' &&
             'The string did not match the expected pattern', //weird safari error
             'call screen.orientation.lock', //weird android chrome error
             'Actions may not have an undefined "type" property. Have you misspelled a constant?', //if redux action have undefined field in it, can be safely ignored
-            'Refused to evaluate a string as JavaScript because \'unsafe-eval\''
+            'Refused to evaluate a string as JavaScript because \'unsafe-eval\'',
+            'Cannot read property \'Sortable', //https://sentry.io/organizations/oblako-corp/issues/2170103500 
         ],
         environment: `${target}-${process.env.NODE_ENV}`
     })

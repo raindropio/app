@@ -1,7 +1,6 @@
 const path = require('path')
 
 const webpack = require('webpack')
-const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const TerserJSPlugin = require('terser-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
@@ -21,7 +20,8 @@ module.exports = ({ production, filename='[name].[contenthash]', sentry={} }) =>
 	},
 	
 	output: {
-		filename:	`assets/${filename}.js`
+		filename:	`assets/${filename}.js`,
+		clean:		true
 	},
 
 	devServer: {
@@ -64,9 +64,8 @@ module.exports = ({ production, filename='[name].[contenthash]', sentry={} }) =>
 	plugins: [
 		//pre plugins
 		...(production ? [
-			//Clean dist folder
-			new CleanWebpackPlugin(),
-		] : []),
+		] : [
+		]),
 
 		//Sentry
 		...(production ? [
