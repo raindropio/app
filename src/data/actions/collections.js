@@ -13,7 +13,8 @@ import {
 	GROUP_CREATE, GROUP_TOGGLE, GROUP_REORDER, GROUP_REMOVE, GROUP_RENAME,
 	COLLECTIONS_SELECT_ONE, COLLECTIONS_UNSELECT_ONE, COLLECTIONS_SELECT_ALL, COLLECTIONS_UNSELECT_ALL,
 	COLLECTIONS_SELECTED_MERGE, COLLECTIONS_SELECTED_REMOVE,
-	COLLECTIONS_REMOVE_ALL
+	COLLECTIONS_REMOVE_ALL,
+	COLLECTIONS_CLEAN_REQ
 } from '../constants/collections'
 
 //All
@@ -226,6 +227,12 @@ export const removeSelected = ()=>({
 
 export const removeAll = (onSuccess, onFail)=>({
 	type: COLLECTIONS_REMOVE_ALL,
+	onSuccess: wrapFunc(onSuccess),
+	onFail: wrapFunc(onFail)
+})
+
+export const clean = (onSuccess, onFail)=>({
+	type: COLLECTIONS_CLEAN_REQ,
 	onSuccess: wrapFunc(onSuccess),
 	onFail: wrapFunc(onFail)
 })

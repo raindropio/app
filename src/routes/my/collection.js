@@ -13,7 +13,7 @@ export default class MyRoute extends React.PureComponent {
 
         //clean up
         _id = parseInt(_id)
-        try{ search = (search && decodeURIComponent(search))||'' } catch(e) {}
+        try{ search = (search ? decodeURIComponent(search||'') : '').replace('_percent_', '%') } catch(e) {}
 
         return {
             _id: _id+(search ? 's' : ''),
@@ -42,7 +42,7 @@ export default class MyRoute extends React.PureComponent {
     
             //search
             if (refine){
-                const refineEncoded = encodeURIComponent(refine.trim())
+                const refineEncoded = refine.trim()
     
                 if (!$searchRaw.includes(refineEncoded+' ') &&
                     !$searchRaw.endsWith(refineEncoded))
@@ -51,7 +51,7 @@ export default class MyRoute extends React.PureComponent {
                         refineEncoded + ' '
             }
             else if (search !== null)
-                $searchRaw = encodeURIComponent(search)
+                $searchRaw = search
             
             //when search started make collection compact
             if (!match.params.search && 
@@ -74,7 +74,7 @@ export default class MyRoute extends React.PureComponent {
                 $query = params.toString()
             }
     
-            return `/my/${$_id}${$searchRaw ? '/' + $searchRaw : ''}${$query ? '?' + $query : ''}`
+            return `/my/${$_id}${$searchRaw ? '/' + encodeURIComponent($searchRaw.replace('%', '_percent_')) : ''}${$query ? '?' + $query : ''}`
         }
     }
 

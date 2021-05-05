@@ -5,7 +5,7 @@ import Icon from '~co/common/icon'
 
 export default function CollectionsItemContextmenu({
     system, hidden,
-    onContextMenuClose, onCreateNewGroupClick, onRenameClick, onToggleClick, onRemoveClick, onCollapseAllClick, onSortAllByTitleClick, onSelectAll, onCreateNewCollectionClick
+    onContextMenuClose, onCreateNewGroupClick, onRenameClick, onToggleClick, onRemoveClick, onCollapseAllClick, onSortAllByTitleClick, onSelectAll, onCreateNewCollectionClick, onCleanClick
 }) {
     return (
         <Popover onClose={onContextMenuClose}>
@@ -30,6 +30,11 @@ export default function CollectionsItemContextmenu({
                 <MenuItem onClick={onSortAllByTitleClick}>
                     <Icon name='sort_title' />
                     {t.s('sortMin')} {t.s('all').toLowerCase()} {t.s('collectionsCount')} {t.s('byName').toLowerCase()}
+                </MenuItem>
+
+                <MenuItem onClick={onCleanClick}>
+                    <Icon name='clear_circle' />
+                    {t.s('remove')} {t.s('all').toLowerCase()} {t.s('collectionEmpty').toLowerCase()}
                 </MenuItem>
 
                 <MenuSeparator />

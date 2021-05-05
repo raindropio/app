@@ -2,7 +2,7 @@ import React from 'react'
 import t from '~t'
 import View from './view'
 import Contextmenu from './contextmenu'
-import { Alert, Confirm, Prompt } from '~co/overlay/dialog'
+import { Alert, Confirm, Prompt, Error } from '~co/overlay/dialog'
 
 export default class CollectionsGroup extends React.PureComponent {
     static defaultProps = {
@@ -64,6 +64,15 @@ export default class CollectionsGroup extends React.PureComponent {
         onSortAllByTitleClick: async()=>{
             if (await Confirm(t.s('areYouSure'), { variant: 'warning' }))
                 this.props.actions.reorder('title')
+        },
+
+        onCleanClick: async()=>{
+            if (await Confirm(t.s('areYouSure'), { variant: 'warning' }))
+                this.props.actions.clean(
+                    count=>
+                        Alert(`${count} ${t.s('removeCollectionSuccess').toLowerCase()}`),
+                    Error
+                )
         },
     
         onContextMenu: (e)=>{
