@@ -21,6 +21,15 @@ export async function reload() {
     if (loading)
         return
 
+    //do not load when no 'tabs' permission
+    try{
+        const havePermission = await browser.permissions.contains({
+            permissions: ['tabs']
+        })
+        if (!havePermission)
+            return
+    }catch(e){}
+
     loading = true
     items = new Set()
 
