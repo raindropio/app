@@ -1,6 +1,6 @@
 {
 	"name": "app",
-	"version": "5.3.34",
+	"version": "5.3.35",
 	"description": "",
 	"author": "",
 	"license": "ISC",
@@ -124,7 +124,6 @@
 		"webpack-dev-server": "^3.11.2",
 		"webpack-merge": "5.7.x",
 		"webpack-pwa-manifest": "4.x",
-		"write-file-webpack-plugin": "4.5.x",
 		"zip-webpack-plugin": "4.0.x"
 	}
 }

@@ -1,12 +1,13 @@
 import browser from 'webextension-polyfill'
 import { has } from './links'
+import { currentTab } from '~target'
 
 let icon = '✓' //glitchy on safari
 if (process.env.EXTENSION_VENDOR == 'safari')
     icon = ' '
 
 async function updateBadge() {
-    const [ { url, id: tabId } ] = await browser.tabs.query({ active: true, currentWindow: true })
+    const { url, id: tabId } = await currentTab()
     if (!url) return
     
     await Promise.all([

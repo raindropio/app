@@ -3,7 +3,6 @@ const webpack = require('webpack')
 const { merge } = require('webpack-merge')
 const common = require('./common')
 
-const WriteFilePlugin = require('write-file-webpack-plugin')
 const ZipPlugin = require('zip-webpack-plugin')
 
 module.exports = (env={}) => {
@@ -37,13 +36,15 @@ module.exports = (env={}) => {
                 runtimeChunk: false
             },
 
+            devServer: {
+                writeToDisk: true,
+            },
+
             plugins: [
                 new webpack.DefinePlugin({
                     'process.env.APP_TARGET': JSON.stringify('extension'),
                     'process.env.EXTENSION_VENDOR': JSON.stringify(env.vendor)
                 }),
-
-                new WriteFilePlugin(),
 
                 ...(env.production ? [
                     new ZipPlugin({

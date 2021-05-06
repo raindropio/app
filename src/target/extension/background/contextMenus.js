@@ -5,14 +5,7 @@ import { environment } from '../environment'
 async function onClicked({ menuItemId, pageUrl, srcUrl, linkUrl, linkText, selectionText }) {
     switch(menuItemId) {
         case 'save_page':{
-            let title
-
-            try{
-                const [ tab ] = await browser.tabs.query({ active: true, currentWindow: true })
-                title = tab.title
-            } catch(e) {}
-            
-            return openAdd({ link: pageUrl, title: title||'' })
+            return openAdd({ link: pageUrl })
         }
 
         case 'save_link':

@@ -1,12 +1,13 @@
 import browser from 'webextension-polyfill'
 import config from '~config'
+import { currentTab } from '~target'
 import { openAdd } from './utils'
 
 async function onCommand(command) {
     switch(command) {
         case 'save_page':{
-            const [ { url='', title='' } ] = await browser.tabs.query({ active: true, currentWindow: true })
-            return openAdd({ link: url, title })
+            const { url='' } = await currentTab()
+            return openAdd({ link: url })
         }
 
         case 'open_raindrop':{

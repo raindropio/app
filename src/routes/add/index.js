@@ -48,6 +48,9 @@ export default connect(
 	
 		return (state, { location: { search } })=>{
             const item = Object.fromEntries(new URLSearchParams(search))||{}
+            for(const i in item)
+                try{item[i]=JSON.parse(item[i])}catch(e){}
+
             const { config: { add_default_collection, last_collection } } = state
 
             //tags
