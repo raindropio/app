@@ -63,7 +63,7 @@ export default class PickerSourceLink extends React.Component {
 
                     <Text
                         type='url'
-                        inputmode='url'
+                        inputMode='url'
                         ref={this.textRef}
                         required
                         className='field'
