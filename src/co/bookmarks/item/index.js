@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { bookmark, tags, makeIsSelected, makeHighlight, makeCreatorRef, makeSelectModeEnabled, selectModeWorking, getGridSize } from '~data/selectors/bookmarks'
+import { bookmark, tags, makeIsSelected, makeHighlight, makeCreatorRef, makeSelectModeEnabled, selectModeWorking, getCoverSize } from '~data/selectors/bookmarks'
 import * as bookmarksActions from '~data/actions/bookmarks'
 import { copyText } from '~modules/browser'
 
@@ -125,7 +125,7 @@ export default connect(
         const getCreatorRef = makeCreatorRef()
         const getSelectModeEnabled = makeSelectModeEnabled()
     
-        return (state, { _id, spaceId })=>{
+        return (state, { _id, spaceId, view })=>{
             const item = bookmark(state, _id)
             const selectModeEnabled = getSelectModeEnabled(state, spaceId)
     
@@ -137,7 +137,7 @@ export default connect(
                 selectDisabled: selectModeWorking(state) ? true : false,
                 highlight: getHighlight(state, spaceId, _id),
                 creatorRef: getCreatorRef(state, _id),
-                gridSize: getGridSize(state, spaceId)
+                coverSize: getCoverSize(state, view)
             }
         }
     },

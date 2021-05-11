@@ -7,7 +7,7 @@ import Button from '~co/common/button'
 import Icon from '~co/common/icon'
 import Menu from './menu'
 import Show from './show'
-import GridSize from './gridSize'
+import CoverSize from './coverSize'
 
 class BookmarksHeaderView extends React.Component {
     static defaultProps = {
@@ -48,7 +48,7 @@ class BookmarksHeaderView extends React.Component {
                         <Layout>
                             <Menu {...this.props} />
                             <Show {...this.props} />
-                            <GridSize {...this.props} />
+                            <CoverSize {...this.props} />
                         </Layout>
                     </Popover>
                 ) : null}

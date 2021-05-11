@@ -60,8 +60,8 @@ export default class BookmarkItemCover extends React.PureComponent {
     }
 
     renderImage = ()=>{
-        const { cover, view, link, domain, gridSize, indicator, ...etc } = this.props
-        let { width, height, ar } = size(view, gridSize) //use height only for img element
+        const { cover, view, link, domain, coverSize, indicator, ...etc } = this.props
+        let { width, height, ar } = size(view, coverSize) //use height only for img element
         let uri
 
         switch(view){

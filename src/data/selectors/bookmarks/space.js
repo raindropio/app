@@ -55,8 +55,16 @@ export const makeSearchWord = ()=> createSelector(
 
 
 //View specific
-export const getGridSize = (state)=>
-	state.config.raindrops_grid_size
+export const getCoverSize = (state, view)=>{
+	switch(view) {
+		case 'grid':
+		case 'masonry':
+			return state.config.raindrops_grid_cover_size
+
+		default:
+			return state.config.raindrops_list_cover_size
+	}
+}
 
 export const makeViewHide = ()=> createSelector(
 	[state=>state.config.raindrops_hide, makeCollection()],

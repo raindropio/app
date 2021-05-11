@@ -13,7 +13,7 @@ import Actions from './actions'
 export default function BookmarkItemView(props) {
     const { innerRef, isDragging } = props
     const { _id, link, title, excerpt, highlight, cover, domain, tags, view, access } = props
-    const { active, selected, selectModeEnabled, selectDisabled, important, broken, gridSize } = props
+    const { active, selected, selectModeEnabled, selectDisabled, important, broken, coverSize } = props
     const { getLink, onClick, onDoubleClick, onSelectClick, onContextMenu, onKeyUp } = props
 
     return (
@@ -40,7 +40,7 @@ export default function BookmarkItemView(props) {
                     domain={domain}
                     link={link}
                     view={view}
-                    gridSize={gridSize} />
+                    coverSize={coverSize} />
 
                 <div className={s.about}>
                     {/* Text */}

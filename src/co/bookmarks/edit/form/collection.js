@@ -54,7 +54,8 @@ class BookmarkEditFormCollection extends React.Component {
                         ref={this.linkRef}
                         href=''
                         variant='outline'
-                        onClick={this.onPickerClick}>
+                        onClick={this.onPickerClick}
+                        title={pathText}>
                         <CollectionIcon 
                             {...(_.last(path)||{})} />
                         <span>{pathText || t.s('selectCollection')+'…'}</span>

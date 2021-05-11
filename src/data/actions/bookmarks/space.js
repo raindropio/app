@@ -36,11 +36,24 @@ export const viewToggle = (spaceId, field)=>({
 	field
 })
 
-export const changeGridSize = (spaceId, raindrops_grid_size)=>({
-	type: SPACE_VIEW_CONFIG,
-	spaceId: String(spaceId),
-	raindrops_grid_size
-})
+export const changeCoverSize = (spaceId, view, value)=>{
+	switch(view) {
+		case 'grid':
+		case 'masonry':
+			return {
+				type: SPACE_VIEW_CONFIG,
+				spaceId: String(spaceId),
+				raindrops_grid_cover_size: parseInt(value)
+			}
+
+		default:
+			return {
+				type: SPACE_VIEW_CONFIG,
+				spaceId: String(spaceId),
+				raindrops_list_cover_size: parseInt(value)
+			}
+	}
+}
 
 export const setListCoverRight = (spaceId, raindrops_list_cover_right)=>({
 	type: SPACE_VIEW_CONFIG,
