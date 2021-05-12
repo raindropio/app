@@ -70,7 +70,7 @@ export default class SettingsIntegrationsReady extends React.Component {
                             href='https://ifttt.com/applets/DJyFrvNd-save-liked-youtube-video-to-raindrop-io'
                             target='_blank'>
                             <Icon name='youtube' />
-                            Save favorite Youtube videos
+                            Save favorite YouTube videos
                         </Button>
         
                         <Button
