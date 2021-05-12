@@ -12,7 +12,7 @@ export default function DevHelp() {
                 href={config.links.dev.github}
                 target='_blank'>
                 <Icon name='github' />
-                Github
+                GitHub
             </Button>
 
             <Button

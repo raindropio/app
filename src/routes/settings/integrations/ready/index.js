@@ -98,7 +98,7 @@ export default class SettingsIntegrationsReady extends React.Component {
                             href='https://zapier.com/apps/github/integrations/raindropio/231017/create-new-global-events-in-github-as-raindropio-items'
                             target='_blank'>
                             <Icon name='github' />
-                            Save favorite Github repos
+                            Save favorite GitHub repos
                         </Button>
         
                         <Button
