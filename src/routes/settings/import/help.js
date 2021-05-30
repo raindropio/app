@@ -14,7 +14,7 @@ export default function ImportHelp() {
                 href={config.links.help.import}
                 target='_blank'>
                 <Icon name='help' />
-                {t.s('help')}
+                {t.s('howToUse')}
             </Button>
         </Buttons>
     )

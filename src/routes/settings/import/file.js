@@ -3,6 +3,7 @@ import React from 'react'
 import t from '~t'
 import { connect } from 'react-redux'
 import { upload, cancel } from '~data/actions/import'
+import config from '~config'
 
 import { Error } from '~co/overlay/dialog'
 import { Label } from '~co/common/form'
@@ -66,7 +67,11 @@ class ImportFile extends React.Component {
                 return (
                     <div>
                         <Alert>
-                            <b>{t.s('uploadBookmarksFile')}</b>. {t.s('importInfo2')}
+                            <b>{t.s('uploadBookmarksFile')} (html, csv {t.s('or')} txt)</b>. {t.s('importInfo2')}<br /><br />
+                            <a href={config.links.help.import+'#supported-formats'} target='_blank'>
+                                {t.s('help')}
+                                <Icon name='open' size='micro' style={{marginLeft: 6}} />
+                            </a>
                         </Alert>
                         <br />
         
@@ -74,7 +79,7 @@ class ImportFile extends React.Component {
                             as='label'
                             variant='primary'>
                             <Icon name='upload' />
-                            {t.s('select')} {t.s('file').toLowerCase()}…
+                            {t.s('upload')} {t.s('file').toLowerCase()}…
         
                             <input 
                                 ref={this.input}
