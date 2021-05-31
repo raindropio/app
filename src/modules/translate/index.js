@@ -53,9 +53,9 @@ const Translate = {
 			case 'es':
 				Translate.strings = await import(/* webpackPreload: true */ '~assets/languages/es.json');
 				break;
-			case 'fi':
-				Translate.strings = await import(/* webpackPreload: true */ '~assets/languages/fi.json');
-				break;
+			// case 'fi':
+			// 	Translate.strings = await import(/* webpackPreload: true */ '~assets/languages/fi.json');
+			// 	break;
 			case 'fr':
 				Translate.strings = await import(/* webpackPreload: true */ '~assets/languages/fr.json');
 				break;

@@ -1,7 +1,7 @@
 {
   "noInternetError": "Tal vez no tienes conexión a internet.",
   "server": "Error desconocido. ¡Vuelve a intentarlo!",
-  "server0": "Ingrese su contraseña anterior!",
+  "server0": "Introduzca su contraseña anterior",
   "server1": "Correo electrónico inválido!",
   "server2": "Ingrese su nombre!",
   "server3": "Contraseña anterior inválida!",
@@ -148,7 +148,7 @@
   "staffPicks": "Elección del editor",
   "uploadBookmarksFile": "Cargar archivo de marcadores",
   "dropFilesHere": "O soltar archivo aquí",
-  "importInfo2": "Toma este archivo,  puedes desde tu navegador o servicio en la sección \"Exportar favoritos\"",
+  "importInfo2": "Puedes generar el archivo desde tu navegador usando la función \"Exportar favoritos\"",
   "loading": "Cargando",
   "folders": "Carpetas",
   "startImport": "Iniciar importación",
