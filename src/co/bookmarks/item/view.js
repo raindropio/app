@@ -66,7 +66,7 @@ export default function BookmarkItemView(props) {
                     <label
                         className={`${s.select} ${selected ? s.active : s.default}`}
                         title={t.s('select')}>
-                        <input type='checkbox' checked={selected} disabled={selectDisabled} onChange={onSelectClick} />
+                        <input type='checkbox' readOnly checked={selected} disabled={selectDisabled} onClick={onSelectClick} />
                     </label>
                 ) : null}
 
