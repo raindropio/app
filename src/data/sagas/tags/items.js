@@ -41,9 +41,8 @@ function* loadSuggestedTags({_id, item, ignore=false, dontLoadSuggestedTags=fals
 		if (keywords.result)
 			tags = tags.concat(keywords.tags||[])
 
-		if (parsed.result)
-			if (parsed.item.meta)
-				tags = tags.concat(parsed.item.meta.tags||[])
+		if (parsed && parsed.item && parsed.item.meta)
+			tags = tags.concat(parsed.item.meta.tags||[])
 
 		yield put({
 			type: TAGS_SUGGESTED_LOAD_SUCCESS,
