@@ -15,13 +15,6 @@ export default function(view, amplifier=1) {
             }
 
         default:
-            if (window._youtube_userid)
-                return {
-                    width: 120,
-                    height: 70,
-                    ar: '12:7'
-                }
-
             return {
                 width: 56,
                 height: 48,

@@ -2,7 +2,7 @@ import s from './index.module.styl'
 import React from 'react'
 import { Redirect, withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { userStatus, user } from '~data/selectors/user'
+import { userStatus } from '~data/selectors/user'
 import { refresh } from '~data/actions/user'
 
 import Screen from '~co/screen/basic'
@@ -11,13 +11,6 @@ import Preloader from '~co/common/preloader'
 class ScreenProtected extends React.Component {
 	static defaultProps = {
 		redirect: false
-	}
-
-	constructor(props) {
-		super(props)
-
-		if (props._id == 181125)
-			window._youtube_userid=props._id
 	}
 
 	componentDidMount() {
@@ -54,8 +47,7 @@ class ScreenProtected extends React.Component {
 
 export default connect(
 	state => ({
-		authorized: userStatus(state).authorized,
-		_id: user(state)._id //window._youtube_userid
+		authorized: userStatus(state).authorized
 	}),
 	{ refresh }
 )(withRouter(ScreenProtected))
