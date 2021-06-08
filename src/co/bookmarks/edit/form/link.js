@@ -7,7 +7,10 @@ export default class BookmarkEditFormLink extends React.Component {
         this.props.onChange({ [e.target.getAttribute('name')]: e.target.value })
 
     render() {
-        const { autoFocus, item: { link }, onCommit } = this.props
+        const { autoFocus, item: { link, fileType }, onCommit } = this.props
+
+        if (fileType)
+            return null
 
         return (
             <>
