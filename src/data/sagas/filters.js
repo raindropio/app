@@ -62,6 +62,9 @@ function* preLoad({ spaceId, ignore, query }) {
 		})
 	} catch (error) {
 		yield put({
+			type: FILTERS_LOAD_ERROR,
+			spaceId,
+			query,
 			error
 		})
 	}
