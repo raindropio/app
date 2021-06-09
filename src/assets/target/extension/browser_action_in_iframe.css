@@ -2,6 +2,7 @@ html, body {
     margin: 0;
     overflow: hidden;
     overflow: clip;
+    background: transparent;
 }
 iframe {
     margin: 0;

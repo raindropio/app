@@ -78,6 +78,7 @@ class TextInner extends React.Component {
 
                 <Component 
                     type='text'
+                    tabIndex='0'
                     {...etc}
                     ref={forwardedRef}
                     className={s.text}

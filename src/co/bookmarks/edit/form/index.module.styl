@@ -9,29 +9,14 @@
 .form {
 	flex: 1
 	position: relative
+	transition: opacity .1s linear
+	will-change: opacity
 
 	&[data-status='loading'],
 	&[data-status='idle'] {
 		pointer-events: none
-
-		.loading {
-			opacity: .6
-			transition-duration: 0
-		}
+		user-select: none
+		opacity: .6
+		transition-duration: 0
 	}
-}
-
-.loading {
-	contain: strict
-	pointer-events: none
-	position: absolute
-	left: 0
-	bottom: 0
-	right: 0
-	top: 0
-	background: var(--background-color)
-	z-index: 2
-	opacity: 0
-	transition: opacity .1s linear
-	will-change: opacity
 }

@@ -26,7 +26,7 @@ class ScreenBasic extends React.Component {
     }
 
     render() {
-        const { className='', children, theme, appSize, setTheme, ...etc } = this.props
+        const { className='', children, theme, appSize, safariExtensionBackdrop=false, setTheme, ...etc } = this.props
         
         return (
             <>
@@ -40,6 +40,7 @@ class ScreenBasic extends React.Component {
                 <div 
                     {...etc}
                     data-is-page
+                    data-safari-extension-backdrop={safariExtensionBackdrop}
                     className={s.page + ' ' + className}>
                     {children}
 

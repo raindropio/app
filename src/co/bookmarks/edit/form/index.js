@@ -40,8 +40,6 @@ export default class BookmarkEditForm extends React.Component {
 
                     <Buttons {...this.props} />
                 </Layout>
-
-                <div className={s.loading} />
             </form>
         )
     }

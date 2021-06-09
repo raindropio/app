@@ -99,6 +99,7 @@ class FormSearch extends React.PureComponent {
                     autoCorrect='off'
                     inputMode='search'
                     className={s.input+' '+(original.value?s.filled:'')}
+                    tabIndex='0'
                     {...original}
                     icon={loading ? <Preloader /> : <Icon name='search' />}
                     onFocus={this.onInputFocus}

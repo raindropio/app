@@ -15,7 +15,7 @@ import Lost from './lost'
 import Recover from './recover'
 
 export default ({ match })=>(
-	<Screen className={s.page} appSize='large'>
+	<Screen className={s.page} appSize='large' safariExtensionBackdrop>
 		<div className={s.content}>
 			<a href='https://raindrop.io' target='_blank'>
 				<Logo className={s.logo} />
@@ -43,7 +43,7 @@ export default ({ match })=>(
 		</div>
 
 		<footer className={s.footer}>
-			&copy; 2020 Raindrop.io
+			&copy; 2013-{new Date().getFullYear()} Raindrop.io
 			<a href={config.links.help.index} target='_blank'>{t.s('support')}</a>
 		</footer>
 	</Screen>

@@ -2,6 +2,7 @@
 <head>
     <meta name="color-scheme" content="dark light">
     <link rel="stylesheet" href="browser_action_in_iframe.css" />
+    <link rel="preload" href="../index.html?browser_action" as="document" type="text/html">
 </head>
 <body>
     <iframe 
@@ -9,6 +10,7 @@
         src="../index.html?browser_action"
         loading="eager"
         allowtransparency="true"
+        frameborder="0"
         tabIndex="-1"
         plugins="true">
     </iframe>
