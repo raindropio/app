@@ -1,5 +1,4 @@
-import { call, put, takeEvery, takeLatest, all } from 'redux-saga/effects'
-import _ from 'lodash-es'
+import { call, put, takeEvery, takeLatest } from 'redux-saga/effects'
 import Api from '../../modules/api'
 import ApiError from '../../modules/error'
 
@@ -30,19 +29,15 @@ function* loadSuggestedTags({_id, item, ignore=false, dontLoadSuggestedTags=fals
 		return;
 
 	try {
-		const titleDescription = _.truncate((item.title||'')+' '+(item.excerpt||''), {length: 700}).trim()
-		const [keywords, parsed] = yield all([
-			call(Api.get, `tags/suggest?text=${encodeURIComponent(titleDescription)}&domain=${encodeURIComponent(item.domain||'')}`),
-			call(Api.get, 'import/url/parse?url='+encodeURIComponent(item.link))
-		])
+		const parsed = yield call(Api.get, 'import/url/parse?url='+encodeURIComponent(item.link))
 
 		var tags = []
 
-		if (keywords.result)
-			tags = tags.concat(keywords.tags||[])
-
 		if (parsed && parsed.item && parsed.item.meta)
 			tags = tags.concat(parsed.item.meta.tags||[])
+
+		if (tags.length == 1)
+			tags = []
 
 		yield put({
 			type: TAGS_SUGGESTED_LOAD_SUCCESS,
