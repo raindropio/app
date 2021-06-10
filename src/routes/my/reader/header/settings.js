@@ -5,9 +5,6 @@ import _ from 'lodash'
 import { connect } from 'react-redux'
 import { set } from '~data/actions/config'
 
-import RaindropsClick from '~routes/settings/app/raindrops_click'
-import RaindropsButtons from '~routes/settings/app/raindrops_buttons'
-
 import Button from '~co/common/button'
 import Icon from '~co/common/icon'
 import Popover from '~co/overlay/popover'
@@ -49,7 +46,7 @@ class ReaderHeaderSettings extends React.Component {
     )
 
     render() {
-        const { tab, font_color, font_size, item: { type } } = this.props
+        const { font_color, font_size } = this.props
 
         return (
             <>
@@ -60,27 +57,20 @@ class ReaderHeaderSettings extends React.Component {
                 {this.state.show && (
                     <Popover pin={this.pin} onClose={this.onSettingsClose}>
                         <Layout>
-                            <RaindropsClick />
-                            <RaindropsButtons />
+                            <Label>{t.s('interfaceStyle')}</Label>
+                            <div className={s.switch}>
+                                <a className={s.auto+' '+(font_color==''?s.active:'')} data-key='font_color' data-val='' onClick={this.onSettingChange}></a>
+                                <a className={s.day+' '+(font_color=='day'?s.active:'')} data-key='font_color' data-val='day' onClick={this.onSettingChange}></a>
+                                <a className={s.sunset+' '+(font_color=='sunset'?s.active:'')} data-key='font_color' data-val='sunset' onClick={this.onSettingChange}></a>
+                                <a className={s.dark+' '+(font_color=='night'?s.active:'')} data-key='font_color' data-val='night' onClick={this.onSettingChange}></a>
+                            </div>
+
+                            <Label>{t.s('fontFamily')}</Label>
+                            <div>{fonts.map(this.renderFont)}</div>
+
+                            <Label>{t.s('fontSize')}</Label>
+                            <Range min='1' max='9' value={font_size} onChange={this.onFontSizeChange} />
                         </Layout>
-
-                        {tab == 'preview' && type=='article' ? (
-                            <Layout>
-                                <Label>{t.s('interfaceStyle')}</Label>
-                                <div className={s.switch}>
-                                    <a className={s.auto+' '+(font_color==''?s.active:'')} data-key='font_color' data-val='' onClick={this.onSettingChange}></a>
-                                    <a className={s.day+' '+(font_color=='day'?s.active:'')} data-key='font_color' data-val='day' onClick={this.onSettingChange}></a>
-                                    <a className={s.sunset+' '+(font_color=='sunset'?s.active:'')} data-key='font_color' data-val='sunset' onClick={this.onSettingChange}></a>
-                                    <a className={s.dark+' '+(font_color=='night'?s.active:'')} data-key='font_color' data-val='night' onClick={this.onSettingChange}></a>
-                                </div>
-
-                                <Label>{t.s('fontFamily')}</Label>
-                                <div>{fonts.map(this.renderFont)}</div>
-
-                                <Label>{t.s('fontSize')}</Label>
-                                <Range min='1' max='9' value={font_size} onChange={this.onFontSizeChange} />
-                            </Layout>
-                        ) : null}
                     </Popover>
                 )}
             </>

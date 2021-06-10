@@ -19,7 +19,7 @@ async function onClicked({ menuItemId, pageUrl, srcUrl, linkUrl, linkText, selec
     }
 }
 
-export default async function() {
+async function init() {
     //remove all to be sure
     try{
         await browser.contextMenus.removeAll()
@@ -50,6 +50,12 @@ export default async function() {
             contexts: ['image']
         })
     ])
+}
+
+export default function() {
+    if (!browser.contextMenus) return
+
+    init()
 
     //event
     browser.contextMenus.onClicked.removeListener(onClicked)

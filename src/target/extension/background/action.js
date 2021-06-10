@@ -25,7 +25,7 @@ async function onTabsUpdated(id,{ status }) {
         await updateBadge()
 }
 
-export default async function() {
+export default function() {
     browser.tabs.onUpdated.removeListener(onTabsUpdated)
     browser.tabs.onUpdated.addListener(onTabsUpdated)
 

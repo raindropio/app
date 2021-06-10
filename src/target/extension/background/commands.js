@@ -19,7 +19,7 @@ async function onCommand(command) {
     }
 }
 
-export default async function (){
+export default function (){
     browser.commands.onCommand.removeListener(onCommand)
     browser.commands.onCommand.addListener(onCommand)
 }

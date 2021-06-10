@@ -78,10 +78,10 @@ const onMessage = debounce(
 )
 
 //init
-export default async function () {
-    await reload()
-
+export default function () {
     //message
     browser.runtime.onMessage.removeListener(onMessage)
     browser.runtime.onMessage.addListener(onMessage)
+    
+    reload()
 }

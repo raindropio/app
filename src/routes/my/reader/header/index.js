@@ -63,9 +63,11 @@ export default class ReaderHeader extends React.PureComponent {
                     <Icon name='open' />
                 </Button>
 
-                <Settings
-                    tab={tab}
-                    item={item} />
+                {tab == 'preview' && item.type == 'article' ? (
+                    <Settings
+                        tab={tab}
+                        item={item} />
+                ) : null}
             </Header>
         )
     }

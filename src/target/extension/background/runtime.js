@@ -11,6 +11,6 @@ async function onInstalled({ reason }) {
     }
 }
 
-export default async function() {
+export default function() {
     browser.runtime.onInstalled.addListener(onInstalled)
 }

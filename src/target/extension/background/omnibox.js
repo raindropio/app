@@ -50,7 +50,7 @@ function onInputEntered(text, disposition) {
     }
 }
 
-export default async function() {
+export default function() {
     if (!browser.omnibox)
         return
 
