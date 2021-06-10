@@ -1,20 +1,40 @@
 import React from 'react'
+import t from '~t'
 import { connect } from 'react-redux'
 import { oneCreate, oneUpload, oneMove, moveSelected } from '~data/actions/bookmarks'
 import PickerSourceDrop from '~co/picker/source/drop'
+import { Confirm } from '~co/overlay/dialog'
+import links from '~config/links'
 
 class BookmarksDropArea extends React.Component {
     static defaultProps = {
         spaceId: 0
     }
 
-    onUploadFile = (file)=>
-        new Promise((res, rej)=>{
+    onUploadFile = async(file)=>{
+        if (/\.(html|csv|json|txt)$/i.test(file.name)){
+            const openImport = await Confirm(
+                'Hmmm... wait a minute',
+                {
+                    description: 'Look\'s like you trying to import bookmarks file? Please read a help section to learn more about import',
+                    ok: t.s('import')+' '+t.s('bookmarks').toLowerCase()+'…',
+                    cancel: t.s('continue')
+                }
+            )
+            
+            if (openImport){
+                window.open(links.help.import)
+                return
+            }
+        }
+
+        return new Promise((res, rej)=>{
             this.props.oneUpload({
                 collectionId: parseInt(this.props.spaceId),
                 file
             }, res, rej)
         })
+    }
 
     onDropLink = (link)=>
         new Promise((res, rej)=>{
