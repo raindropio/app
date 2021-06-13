@@ -1,6 +1,6 @@
 import React from 'react'
 import t from '~t'
-import PickerSource from '~co/picker/source/popover'
+import PickerFile from '~co/picker/file/popover'
 
 import Button from '~co/common/button'
 import Icon from '~co/common/icon'
@@ -32,7 +32,7 @@ export default class PickerIconAdd extends React.Component {
                 </Button>
 
                 {this.state.add ? (
-                    <PickerSource 
+                    <PickerFile 
                         {...this.props}
                         pin={this.pin}
                         onClose={this.onAddClose} />

@@ -12,6 +12,7 @@ export default Component =>
 
         state = {
             files: [],
+            filesDone: false,
             links: [],
             custom: []
         }
@@ -21,7 +22,10 @@ export default Component =>
             file.name
 
         onDropFiles = (files)=>
-            this.setState({ files })
+            this.setState({ files, filesDone: false })
+
+        onDoneFiles = ()=>
+            this.setState({ filesDone: true })
 
         onCancelFiles = ()=>
             this.setState({ files:[] })
@@ -52,6 +56,7 @@ export default Component =>
                     <Component 
                         {...this.props}
                         files={this.state.files}
+                        filesDone={this.state.filesDone}
                         onDropFiles={this.onDropFiles}
                         onDropLinks={this.onDropLinks}
                         onDropCustom={this.onDropCustom} />
@@ -60,6 +65,7 @@ export default Component =>
                         items={this.state.files}
                         getName={this.getFileName}
                         process={this.props.onFile}
+                        onDone={this.onDoneFiles}
                         onCancel={this.onCancelFiles} />
 
                     <Progress

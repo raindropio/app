@@ -41,3 +41,14 @@ class ButtonInner extends React.PureComponent {
 export default React.forwardRef((props, ref) => {
     return <ButtonInner {...props} forwardedRef={ref} />
 })
+
+export const ButtonsGroup = React.forwardRef(
+    function({ className='', ...etc }, ref) {
+        return (
+            <div 
+                {...etc}
+                className={s.group+' '+className}
+                ref={ref} />
+        )
+    }
+)

@@ -197,3 +197,25 @@
     line-height: var(--icon-size)
     --button-height: var(--icon-size)
 }
+
+.group {
+    display: flex
+    
+    .button:not(:last-child) {
+        margin-right: 1px
+    }
+    
+    .button:not(:first-child):not(:last-child) {
+        border-radius: 0
+    }
+
+    .button:first-child {
+        border-top-right-radius: 0
+        border-bottom-right-radius: 0
+    }
+
+    .button:last-child {
+        border-top-left-radius: 0
+        border-bottom-left-radius: 0
+    }
+}

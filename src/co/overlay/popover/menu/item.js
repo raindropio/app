@@ -24,6 +24,7 @@ export class MenuItem extends React.Component {
         return (
             <Item
                 as={Tag} 
+                tabIndex='0'
                 {...etc}
                 className={s.item+' '+className}
                 onClick={this.onClick}>

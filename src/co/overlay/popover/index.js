@@ -14,7 +14,7 @@ document.documentElement.addEventListener('mousedown', function(e){
     _mousePos = { x: e.pageX, y: e.pageY }
 })
 
-function Popover({ pin, innerRef, className='', children, dataKey, closable=true, stretch=false, onClose, ...etc }) {
+function Popover({ pin, innerRef, className='', children, dataKey, closable=true, stretch=false, mouseLeave=false, onClose, ...etc }) {
     const _container = useRef(null)
 
     const context = useMemo(()=>({
@@ -113,6 +113,48 @@ function Popover({ pin, innerRef, className='', children, dataKey, closable=true
         window.addEventListener('keydown', onWindowKeyDown)
         return ()=>window.removeEventListener('keydown', onWindowKeyDown)
     }, [_container, context])
+
+    //mouse leave
+    useEffect(()=>{
+        if (!mouseLeave) return
+
+        let timeout = null
+
+        function onMouseOver() {
+            clearTimeout(timeout)
+        }
+
+        function onMouseLeave({ target }) {
+            if (target == pin.current) {
+                clearTimeout(timeout)
+                timeout = setTimeout(() => {
+                    context.close()
+                }, 200)
+                return
+            }
+
+            context.close()
+        }
+
+        if (pin && pin.current)
+            pin.current.addEventListener('mouseleave', onMouseLeave)
+
+        if (_container && _container.current){
+            _container.current.addEventListener('mouseover', onMouseOver)
+            _container.current.addEventListener('mouseleave', onMouseLeave)
+        }
+
+        return ()=>{
+            clearTimeout(timeout)
+
+            pin && pin.current && pin.current.removeEventListener('mouseleave', onMouseLeave)
+            
+            if (_container && _container.current){
+                _container.current.removeEventListener('mouseover', onMouseOver)
+                _container.current.removeEventListener('mouseleave', onMouseLeave)
+            }
+        }
+    }, [mouseLeave, _container, pin, context])
 
     if (innerRef)
         innerRef(_container)

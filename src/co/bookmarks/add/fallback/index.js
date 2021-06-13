@@ -1,52 +1,72 @@
-import React from 'react'
+import React, { useState, useRef } from 'react'
+import { PropTypes } from 'prop-types'
 import t from '~t'
 
-import Button from '~co/common/button'
+import Button, { ButtonsGroup } from '~co/common/button'
 import Icon from '~co/common/icon'
-import Popover from './popover'
+import Link from './link'
+import File from './file'
+import More from './more'
 
-export default class BookmarksAdd extends React.Component {
-    static defaultProps = {
-        //...same as ../index
-    }
+const propTypes = {
+    spaceId:    PropTypes.any,
+    autoFocus:  PropTypes.bool,
+    onEdit:     PropTypes.func
+}
 
-    state = {
-        show: false
-    }
+function BookmarksAddFallback({ autoFocus, ...etc }) {
+    const [show, setShow] = useState('')
+    const buttonLink = useRef(null)
+    const buttonMore = useRef(null)
+    const buttonsGroup = useRef(null)
 
-    pin = React.createRef()
-
-    onAddClick = (e)=>{
-        e.preventDefault()
-        this.setState({ show: !this.state.show })
-    }
-
-    onAddClose = ()=>
-        this.setState({ show: false })
-    
-    render() {
-        const { show } = this.state
-        const { autoFocus } = this.props
-
-        return (
-            <>
+    return (
+        <>
+            <ButtonsGroup ref={buttonsGroup}>
                 <Button 
-                    ref={this.pin}
+                    ref={buttonLink}
                     variant='primary'
                     title={t.s('add')}
                     autoFocus={autoFocus}
-                    onMouseDown={this.onAddClick}>
+                    onClick={()=>setShow('link')}>
                     <Icon name='new_bookmark' />
                     {t.s('add')}
                 </Button>
 
-                {show ? (
-                    <Popover 
-                        pin={this.pin}
-                        {...this.props}
-                        onClose={this.onAddClose} />
-                ) : null}
-            </>
-        )
-    }
+                <Button
+                    ref={buttonMore}
+                    variant='primary'
+                    onClick={()=>setShow('more')}
+                    onMouseEnter={()=>setShow('more')}>
+                    <Icon name='arrow' size='micro' />
+                </Button>
+            </ButtonsGroup>
+
+            {show=='link' && (
+                <Link
+                    {...etc}
+                    pin={buttonLink}
+                    onClose={()=>setShow('')} />
+            )}
+
+            {show=='file' && (
+                <File
+                    {...etc}
+                    pin={buttonsGroup}
+                    onClose={()=>setShow('')} />
+            )}
+
+            {show=='more' && (
+                <More
+                    {...etc}
+                    pin={buttonsGroup}
+                    onFile={()=>setShow('file')}
+                    onClose={()=>setShow('')} />
+            )}
+        </>
+    )
 }
+
+BookmarksAddFallback.propTypes = propTypes
+
+export default BookmarksAddFallback

@@ -5,7 +5,9 @@ import getThumbUri from '~data/modules/format/thumb'
 
 import Icon from '~co/common/icon'
 import Modal, { Header, Content } from '~co/overlay/modal'
-import PickerSource from '~co/picker/source/popover'
+import Button from '~co/common/button'
+import PickerFile from '~co/picker/file/popover'
+import PickerLink from '~co/picker/link'
 import Preloader from '~co/common/preloader'
 
 export default class PickerImage extends React.Component {
@@ -18,30 +20,36 @@ export default class PickerImage extends React.Component {
         onClose: undefined
     }
 
-    pinAdd = React.createRef()
+    pinAddLink = React.createRef()
+    pinAddFile = React.createRef()
 
     state = {
-        add: false,
+        addLink: false,
+        addFile: false,
         screenshot_loading: false
     }
 
-    handlers = {
-        onLink: async(link)=>{
-            await this.props.onLink(link)
-            this.props.onClose()
-        },
+    onAddLinkClick = ()=>
+        this.setState({ addLink: true })
 
-        onFile: async(file)=>{
-            await this.props.onFile(file)
-            this.props.onClose()
-        }
+    onAddLinkClose = ()=>
+        this.setState({ addLink: false })
+
+    onLink = async(link)=>{
+        await this.props.onLink(link)
+        this.props.onClose()
     }
 
-    onAddClick = ()=>
-        this.setState({ add: true })
+    onAddFileClick = ()=>
+        this.setState({ addFile: true })
 
-    onAddClose = ()=>
-        this.setState({ add: false })
+    onAddFileClose = ()=>
+        this.setState({ addFile: false })
+
+    onFile = async(file)=>{
+        await this.props.onFile(file)
+        this.props.onClose()
+    }
 
     onScreenshotClick = async()=>{
         if (this.state.screenshot_loading)
@@ -59,7 +67,7 @@ export default class PickerImage extends React.Component {
             key={link}
             className={s.item}
             autoFocus={this.props.selected == index}
-            onClick={()=>this.handlers.onLink(link)}>
+            onClick={()=>this.onLink(link)}>
             <img 
                 src={`${getThumbUri(link)}?mode=crop&width=128&height=96&dpr=${window.devicePixelRatio||1}`}
                 loading='lazy' />
@@ -87,19 +95,34 @@ export default class PickerImage extends React.Component {
                             </button>
                         ) : null}
 
-                        <button 
-                            ref={this.pinAdd}
+                        <Button 
+                            ref={this.pinAddLink}
                             className={s.item}
                             title={t.s('coverUpload')}
-                            onClick={this.onAddClick}>
-                            <Icon name='add' />
-                        </button>
+                            onClick={this.onAddLinkClick}>
+                            <Icon name='add' /> URL
+                        </Button>
 
-                        {this.state.add ? (
-                            <PickerSource 
-                                {...this.handlers}
-                                pin={this.pinAdd}
-                                onClose={this.onAddClose} />
+                        <Button 
+                            ref={this.pinAddFile}
+                            className={s.item}
+                            title={t.s('coverUpload')}
+                            onClick={this.onAddFileClick}>
+                            <Icon name='upload' /> {t.s('file')}
+                        </Button>
+
+                        {this.state.addLink ? (
+                            <PickerLink 
+                                pin={this.pinAddLink}
+                                onClose={this.onAddLinkClose}
+                                onLink={this.onLink} />
+                        ) : null}
+
+                        {this.state.addFile ? (
+                            <PickerFile 
+                                pin={this.pinAddFile}
+                                onClose={this.onAddFileClose}
+                                onFile={this.onFile} />
                         ) : null}
                     </div>
                 </Content>

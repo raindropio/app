@@ -16,6 +16,7 @@ export default class PickerSourceBaseProgress extends React.Component {
         items: [],
         getName: undefined,
         process: undefined, //async
+        onDone: undefined,
         onCancel: undefined
     }
 
@@ -39,8 +40,12 @@ export default class PickerSourceBaseProgress extends React.Component {
         for(const i in this.props.items)
             await this.uploadSingle(this.props.items[i])
 
-        if (!this.state.failed.length)
+        if (!this.state.failed.length){
+            if (typeof this.props.onDone == 'function')
+                this.props.onDone()
+                
             this.cancel()
+        }
         else
             this.setState({ uploading: false })
     }

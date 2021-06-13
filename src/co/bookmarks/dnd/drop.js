@@ -2,7 +2,7 @@ import React from 'react'
 import t from '~t'
 import { connect } from 'react-redux'
 import { oneCreate, oneUpload, oneMove, moveSelected } from '~data/actions/bookmarks'
-import PickerSourceDrop from '~co/picker/source/drop'
+import PickerFileDrop from '~co/picker/file/drop'
 import { Confirm } from '~co/overlay/dialog'
 import links from '~config/links'
 
@@ -66,13 +66,13 @@ class BookmarksDropArea extends React.Component {
 
     render() {
         return (
-            <PickerSourceDrop 
+            <PickerFileDrop 
                 onFile={this.onUploadFile}
                 onLink={this.onDropLink}
                 onCustom={this.onDropCustom}
                 validateCustom={this.onDragCustom}>
                 {this.props.children}
-            </PickerSourceDrop>
+            </PickerFileDrop>
         )
     }
 }
