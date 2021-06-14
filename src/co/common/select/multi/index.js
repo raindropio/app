@@ -81,7 +81,7 @@ class MultiSelectInner extends React.PureComponent {
                 className={s.multi}
                 data-disabled={etc.disabled}
                 onClick={this.onContainerClick}>
-                {selected.map(item=>
+                {(selected||[]).map(item=>
                     <div 
                         key={item}
                         className={s.token}

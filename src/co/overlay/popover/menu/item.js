@@ -26,6 +26,7 @@ export class MenuItem extends React.Component {
                 as={Tag} 
                 tabIndex='0'
                 {...etc}
+                data-menu-item
                 className={s.item+' '+className}
                 onClick={this.onClick}>
                 {children}

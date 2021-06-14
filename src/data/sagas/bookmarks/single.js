@@ -4,6 +4,7 @@ import Api from '../../modules/api'
 import {
 	BOOKMARK_LOAD_REQ, BOOKMARK_LOAD_SUCCESS, BOOKMARK_LOAD_ERROR,
 	BOOKMARK_CREATE_REQ, BOOKMARK_CREATE_SUCCESS, BOOKMARK_CREATE_ERROR,
+	BOOKMARKS_CREATE_REQ,
 	BOOKMARK_UPDATE_REQ, BOOKMARK_UPDATE_SUCCESS, BOOKMARK_UPDATE_ERROR,
 	BOOKMARK_REMOVE_REQ, BOOKMARK_REMOVE_SUCCESS, BOOKMARK_REMOVE_ERROR,
 	BOOKMARK_UPLOAD_REQ,
@@ -34,6 +35,9 @@ export default function* () {
 	yield takeEvery(BOOKMARK_UPDATE_REQ, updateBookmark)
 	yield takeEvery(BOOKMARK_REMOVE_REQ, removeBookmark)
 	yield takeEvery(BOOKMARK_UPLOAD_REQ, uploadBookmark)
+
+	//many
+	yield takeEvery(BOOKMARKS_CREATE_REQ, createBookmarks)
 }
 
 function* loadBookmark({ ignore=false, _id }) {
@@ -58,8 +62,7 @@ function* loadBookmark({ ignore=false, _id }) {
 }
 
 function* createBookmark({obj={}, ignore=false, draft, onSuccess, onFail}) {
-	if (ignore)
-		return;
+	if (ignore) return;
 
 	try{
 		let item = { ...obj }
@@ -96,6 +99,34 @@ function* createBookmark({obj={}, ignore=false, draft, onSuccess, onFail}) {
 			type: BOOKMARK_CREATE_ERROR,
 			obj,
 			draft,
+			error,
+			onSuccess, onFail
+		});
+	}
+}
+
+function* createBookmarks({items=[], ignore=false, onSuccess, onFail}) {
+	if (ignore) return;
+
+	try{
+		const res = yield call(Api.post, 'raindrops', {
+			items: items.map(item=>({
+				...item,
+				pleaseParse: {
+					weight: items.length
+				}
+			}))
+		}, { timeout: 0 })
+
+		yield put({
+			type: BOOKMARK_CREATE_SUCCESS,
+			_id: res.items.map(({_id})=>_id),
+			item: res.items,
+			onSuccess, onFail
+		});
+	} catch (error) {
+		yield put({
+			type: BOOKMARK_CREATE_ERROR,
 			error,
 			onSuccess, onFail
 		});

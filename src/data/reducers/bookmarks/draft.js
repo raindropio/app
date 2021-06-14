@@ -48,7 +48,7 @@ export default function(state, action) {switch (action.type) {
 		let draft = state.drafts[_id] || blankDraft
 
 		//get data from already loaded bookmarks
-		if (state.elements[_id])
+		if (state.elements[_id] && state.meta[_id])
 			draft = draft
 				.set('status', state.elements[_id].collectionId!=-99 ? 'loaded' : 'removed')
 				.set('item', {...state.elements[_id], ...state.meta[_id]})

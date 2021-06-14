@@ -7,17 +7,28 @@ import { SPACE_CHANGE_SORT, BOOKMARK_CREATE_SUCCESS, BOOKMARK_UPDATE_SUCCESS } f
 
 export default function* () {
     //last_collection
-    yield takeLatest(CONFIG_SET_LASTCOLLECTION, userUpdate('spaceId', 'last_collection', (val)=>parseInt(val)!=-99))
-    yield takeLatest([BOOKMARK_CREATE_SUCCESS, BOOKMARK_UPDATE_SUCCESS], userUpdate('item.collectionId', 'last_collection', (val)=>parseInt(val)!=-99))
+    yield takeLatest(CONFIG_SET_LASTCOLLECTION, userUpdate(({spaceId})=>spaceId, 'last_collection', (val)=>parseInt(val)!=-99))
+    yield takeLatest(
+        [BOOKMARK_CREATE_SUCCESS, BOOKMARK_UPDATE_SUCCESS],
+        userUpdate(
+            ({item})=>{
+                const items = Array.isArray(item)?item:[item]
+                if (!items.length) return
+                return items[0].collectionId
+            },
+            'last_collection',
+            (val)=>parseInt(val)!=-99
+        )
+    )
 
-    yield takeLatest(COLLECTION_CHANGE_VIEW, userUpdate('view', 'raindrops_view'))
+    yield takeLatest(COLLECTION_CHANGE_VIEW, userUpdate(({view})=>view, 'raindrops_view'))
 
-    yield takeLatest(SPACE_CHANGE_SORT, userUpdate('sort', 'raindrops_sort'))
+    yield takeLatest(SPACE_CHANGE_SORT, userUpdate(({sort})=>sort, 'raindrops_sort'))
 }
 
-const userUpdate = function(from, to, filter) {
+const userUpdate = function(getVal, to, filter) {
     return function* (action) {
-        const val = _.at(action, from)[0]
+        const val = getVal(action)
 
         if (typeof val == 'undefined')
             return

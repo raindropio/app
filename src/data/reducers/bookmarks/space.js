@@ -279,10 +279,16 @@ export default function(state, action) {switch (action.type) {
 	}
 
 	//Update Space Status when Bookmark Changed
-	case BOOKMARK_CREATE_SUCCESS:{
-		state = actualizeSpaceStatus(state, action.spaceId)
-		state = actualizeSpaceStatus(state, '0')
+	case BOOKMARK_CREATE_SUCCESS:
+	case BOOKMARK_REMOVE_SUCCESS:{
+		if (action.spaceId)
+			(Array.isArray(action.spaceId) ? action.spaceId : [action.spaceId]).forEach(spaceId=>{
+				state = actualizeSpaceStatus(state, spaceId)
+			})
 		
+		state = actualizeSpaceStatus(state, '0')
+		state = actualizeSpaceStatus(state, '-99')
+
 		return state
 	}
 
@@ -300,17 +306,6 @@ export default function(state, action) {switch (action.type) {
 			
 			state = actualizeSpaceStatus(state, '0')
 		}
-
-		return state
-	}
-
-	case BOOKMARK_REMOVE_SUCCESS:{
-		if (action.spaceId)
-			(Array.isArray(action.spaceId) ? action.spaceId : [action.spaceId]).forEach(spaceId=>{
-				state = actualizeSpaceStatus(state, spaceId)
-			})
-		
-		state = actualizeSpaceStatus(state, '-99')
 
 		return state
 	}

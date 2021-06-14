@@ -77,7 +77,7 @@ export default class PickerImage extends React.Component {
                     <More 
                         ref={this.addMore}
                         variant='link'
-                        content={<Icon name='add' />}>
+                        content={<><Icon name='add' /><Icon name='arrow' size='micro' /></>}>
                         <Menu>
                             <MenuItem onClick={this.onAddLinkClick}>
                                 {t.s('add')} URL…
