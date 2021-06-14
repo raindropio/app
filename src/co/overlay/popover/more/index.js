@@ -4,8 +4,10 @@ import Button from '~co/common/button'
 import Icon from '~co/common/icon'
 import Popover from '../'
 
-export function More({ children, ...etc }) {
+function MoreInner({ children, forwardedRef, content, ...etc }) {
     const button = useRef(null)
+
+    //show/hide
     const [mouseOver, setMouseOver] = useState(false)
 
     const timeout = useRef(null)
@@ -29,14 +31,17 @@ export function More({ children, ...etc }) {
         <>
             <Button
                 {...etc}
-                ref={button}
+                ref={forwardedRef || button}
+                onMouseUp={onMouseEnter}
+                onFocus={onMouseEnter}
+                onBlur={onButtonMouseLeave}
                 onMouseEnter={onMouseEnter}
                 onMouseLeave={onButtonMouseLeave}>
-                <Icon name='arrow' size='micro' />
+                {content ? content : <Icon name='arrow' size='micro' />}
             </Button>
 
             <Popover 
-                pin={button}
+                pin={forwardedRef || button}
                 hidden={!mouseOver}
                 onClose={onMouseLeave}
                 onMouseEnter={onMouseEnter}
@@ -46,3 +51,7 @@ export function More({ children, ...etc }) {
         </>
     )
 }
+
+export const More = React.forwardRef((props, ref) => (
+    <MoreInner {...props} forwardedRef={ref} />
+))

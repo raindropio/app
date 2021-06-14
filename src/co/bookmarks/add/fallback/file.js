@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux'
 import { oneUpload } from '~data/actions/bookmarks'
 
 import { MenuItem } from '~co/overlay/popover'
+import Icon from '~co/common/icon'
 import PickerFile from '~co/picker/file/element'
 
 export default function BookmarksAddFallbackFile({ spaceId, onEdit }) {
@@ -26,6 +27,7 @@ export default function BookmarksAddFallbackFile({ spaceId, onEdit }) {
     return (
         <MenuItem as='label'>
             <PickerFile onFile={onFile}>
+                <Icon name='upload' />
                 {t.s('upload')} {t.s('file').toLowerCase()}…
             </PickerFile>
         </MenuItem>

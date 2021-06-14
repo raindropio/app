@@ -3,9 +3,10 @@ import React from 'react'
 import t from '~t'
 import getThumbUri from '~data/modules/format/thumb'
 
-import Icon from '~co/common/icon'
 import Modal, { Header, Content } from '~co/overlay/modal'
+import { More, Menu, MenuItem } from '~co/overlay/popover'
 import Button from '~co/common/button'
+import Icon from '~co/common/icon'
 import PickerFile from '~co/picker/file/element'
 import PickerLink from '~co/picker/link'
 import Preloader from '~co/common/preloader'
@@ -20,7 +21,7 @@ export default class PickerImage extends React.Component {
         onClose: undefined
     }
 
-    pinAddLink = React.createRef()
+    addMore = React.createRef()
 
     state = {
         addLink: false,
@@ -72,41 +73,41 @@ export default class PickerImage extends React.Component {
 
         return (
             <Modal onClose={onClose}>
-                <Header title={t.s('cover')} />
+                <Header title={t.s('cover')} data-no-shadow>
+                    <More 
+                        ref={this.addMore}
+                        variant='link'
+                        content={<Icon name='add' />}>
+                        <Menu>
+                            <MenuItem onClick={this.onAddLinkClick}>
+                                {t.s('add')} URL…
+                            </MenuItem>
+
+                            <MenuItem as='label'>
+                                <PickerFile onFile={this.onFile}>
+                                    {t.s('upload')} {t.s('file').toLowerCase()}…
+                                </PickerFile>
+                            </MenuItem>
+                        </Menu>
+                    </More>
+                </Header>
 
                 <Content>
                     <div className={s.items}>
                         {items.map(this.renderItem)}
 
                         {!screenshotExists ? (
-                            <button 
+                            <Button 
                                 className={s.item}
                                 title={t.s('clickToMakeScreenshot')}
                                 onClick={this.onScreenshotClick}>
                                 {screenshot_loading ? <Preloader /> : t.s('screenshot')}
-                            </button>
+                            </Button>
                         ) : null}
-
-                        <Button 
-                            ref={this.pinAddLink}
-                            className={s.item}
-                            title={t.s('coverUpload')}
-                            onClick={this.onAddLinkClick}>
-                            <Icon name='add' /> URL
-                        </Button>
-
-                        <Button 
-                            as='label'
-                            className={s.item}
-                            title={t.s('coverUpload')}>
-                            <PickerFile onFile={this.onFile}>
-                                <Icon name='upload' /> {t.s('file')}
-                            </PickerFile>
-                        </Button>
 
                         {this.state.addLink ? (
                             <PickerLink 
-                                pin={this.pinAddLink}
+                                pin={this.addMore}
                                 onClose={this.onAddLinkClose}
                                 onLink={this.onLink} />
                         ) : null}

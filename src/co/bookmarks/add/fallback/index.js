@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React from 'react'
 import { PropTypes } from 'prop-types'
 
 import { ButtonsGroup } from '~co/common/button'
@@ -7,10 +7,8 @@ import Link from './link'
 import File from './file'
 
 function BookmarksAdd(props) {
-    const group = useRef(null)
-
     return (
-        <ButtonsGroup ref={group}>
+        <ButtonsGroup>
             <Link {...props} />
             
             <More variant='primary'>

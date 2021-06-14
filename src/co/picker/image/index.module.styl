@@ -2,13 +2,15 @@
     width: 500px
     max-width: 100%
     display: grid
-    grid-template-columns: repeat(auto-fit, 128px)
+    grid-template-columns: repeat(auto-fill, minmax(min(calc(50% - var(--padding-medium) * 2), 128px), 1fr))
     grid-auto-rows: 1fr
     grid-gap: var(--padding-medium)
     padding: var(--padding-medium)
+    padding-top: 0
 }
 
 .item {
+    cursor: pointer
     appearance: none
     border: 0
     padding: 0
@@ -19,11 +21,19 @@
     overflow: hidden
     overflow: clip
     background: rgba(125, 128, 128, .12)
-    width: 128px
+    width: 100%
     height: 96px
+    white-space: pre-wrap
 
     img {
         display: block
         max-width: 100%
+    }
+}
+
+@supports (aspect-ratio: 4 / 3) {
+    .item {
+        height: auto
+        aspect-ratio: 4 / 3
     }
 }

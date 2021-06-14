@@ -32,7 +32,7 @@ export default function BookmarksAddFallbackLink({ spaceId, autoFocus, onEdit })
             <Button 
                 ref={button}
                 variant='primary'
-                title={t.s('add')}
+                title={t.s('addBookmark')}
                 autoFocus={autoFocus}
                 onClick={()=>setShow(true)}>
                 <Icon name='new_bookmark' />
