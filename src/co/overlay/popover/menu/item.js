@@ -18,8 +18,8 @@ export class MenuItem extends React.Component {
     }
 
     render() {
-        const { children, className='', ...etc } = this.props
-        const Tag = etc.to ? Link : 'a'
+        const { children, className='', as='a', ...etc } = this.props
+        const Tag = etc.to ? Link : as
         
         return (
             <Item

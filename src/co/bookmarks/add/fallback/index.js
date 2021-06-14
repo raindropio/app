@@ -1,72 +1,30 @@
-import React, { useState, useRef } from 'react'
+import React, { useRef } from 'react'
 import { PropTypes } from 'prop-types'
-import t from '~t'
 
-import Button, { ButtonsGroup } from '~co/common/button'
-import Icon from '~co/common/icon'
+import { ButtonsGroup } from '~co/common/button'
+import { More, Menu } from '~co/overlay/popover'
 import Link from './link'
 import File from './file'
-import More from './more'
 
-const propTypes = {
-    spaceId:    PropTypes.any,
-    autoFocus:  PropTypes.bool,
-    onEdit:     PropTypes.func
-}
-
-function BookmarksAddFallback({ autoFocus, ...etc }) {
-    const [show, setShow] = useState('')
-    const buttonLink = useRef(null)
-    const buttonMore = useRef(null)
-    const buttonsGroup = useRef(null)
+function BookmarksAdd(props) {
+    const group = useRef(null)
 
     return (
-        <>
-            <ButtonsGroup ref={buttonsGroup}>
-                <Button 
-                    ref={buttonLink}
-                    variant='primary'
-                    title={t.s('add')}
-                    autoFocus={autoFocus}
-                    onClick={()=>setShow('link')}>
-                    <Icon name='new_bookmark' />
-                    {t.s('add')}
-                </Button>
-
-                <Button
-                    ref={buttonMore}
-                    variant='primary'
-                    onClick={()=>setShow('more')}
-                    onMouseEnter={()=>setShow('more')}>
-                    <Icon name='arrow' size='micro' />
-                </Button>
-            </ButtonsGroup>
-
-            {show=='link' && (
-                <Link
-                    {...etc}
-                    pin={buttonLink}
-                    onClose={()=>setShow('')} />
-            )}
-
-            {show=='file' && (
-                <File
-                    {...etc}
-                    pin={buttonsGroup}
-                    onClose={()=>setShow('')} />
-            )}
-
-            {show=='more' && (
-                <More
-                    {...etc}
-                    pin={buttonsGroup}
-                    onFile={()=>setShow('file')}
-                    onClose={()=>setShow('')} />
-            )}
-        </>
+        <ButtonsGroup ref={group}>
+            <Link {...props} />
+            
+            <More variant='primary'>
+                <Menu>
+                    <File {...props} />
+                </Menu>
+            </More>
+        </ButtonsGroup>
     )
 }
 
-BookmarksAddFallback.propTypes = propTypes
+BookmarksAdd.propTypes = {
+    spaceId:    PropTypes.any,
+    onEdit:     PropTypes.func
+}
 
-export default BookmarksAddFallback
+export default BookmarksAdd

@@ -18,6 +18,11 @@
 	&[data-stretch='true'] {
 		max-height: calc( 100vh - var(--top) - var(--padding-medium) )
 	}
+
+	&[data-hidden='true'] {
+		visibility: hidden
+		pointer-events: none
+	}
 }
 
 .body {

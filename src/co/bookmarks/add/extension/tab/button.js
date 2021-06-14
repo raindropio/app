@@ -8,9 +8,9 @@ import Button from '~co/common/button'
 import Icon from '~co/common/icon'
 import Preloader from '~co/common/preloader'
 
-class BookmarksAddButton extends React.Component {
+class BookmarksAddSave extends React.Component {
     static defaultProps = {
-        current: {}, //{ link, title }
+        tab: {}, //{ link, title }
         //...same as ../index
     }
 
@@ -19,7 +19,7 @@ class BookmarksAddButton extends React.Component {
     }
 
     componentDidUpdate(prev) {
-        if (prev.current != this.props.current)
+        if (prev.tab != this.props.tab)
             this.load({})
 
         //after successfull save
@@ -29,11 +29,11 @@ class BookmarksAddButton extends React.Component {
     }
 
     load = (details={})=>{
-        const { draftLoad, current, spaceId } = this.props
+        const { draftLoad, tab, spaceId } = this.props
 
-        draftLoad(current.link, {
+        draftLoad(tab.link, {
             item: {
-                ...current,
+                ...tab,
                 collectionId: parseInt(spaceId)
             },
             autoCreate: false,
@@ -82,7 +82,7 @@ class BookmarksAddButton extends React.Component {
                         disabled={status == 'loading' || status == 'idle'}
                         variant='primary'
                         title={t.s('save')}
-                        onClick={this.onAddClick}>
+                        onMouseDown={this.onAddClick}>
                         <Icon name='new_bookmark' />
                         {t.s('save')}
                     </Button>
@@ -92,9 +92,9 @@ class BookmarksAddButton extends React.Component {
 }
 
 export default connect(
-	(state, { current })=>({
-        status: getDraftStatus(state, current.link),
-        item: getDraftItem(state, current.link)
+	(state, { tab })=>({
+        status: getDraftStatus(state, tab.link),
+        item: getDraftItem(state, tab.link)
     }),
 	{ draftLoad }
-)(BookmarksAddButton)
+)(BookmarksAddSave)

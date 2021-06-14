@@ -14,7 +14,7 @@ document.documentElement.addEventListener('mousedown', function(e){
     _mousePos = { x: e.pageX, y: e.pageY }
 })
 
-function Popover({ pin, innerRef, className='', children, dataKey, closable=true, stretch=false, mouseLeave=false, onClose, ...etc }) {
+function Popover({ pin, innerRef, className='', children, dataKey, hidden=false, closable=true, stretch=false, onClose, ...etc }) {
     const _container = useRef(null)
 
     const context = useMemo(()=>({
@@ -80,7 +80,7 @@ function Popover({ pin, innerRef, className='', children, dataKey, closable=true
     //update position on some events
     useEffect(()=>{
         placeDebounced()
-    }, [place, dataKey])
+    }, [place, dataKey, hidden])
 
     //click outside
     useEffect(()=>{
@@ -114,55 +114,13 @@ function Popover({ pin, innerRef, className='', children, dataKey, closable=true
         return ()=>window.removeEventListener('keydown', onWindowKeyDown)
     }, [_container, context])
 
-    //mouse leave
-    useEffect(()=>{
-        if (!mouseLeave) return
-
-        let timeout = null
-
-        function onMouseOver() {
-            clearTimeout(timeout)
-        }
-
-        function onMouseLeave({ target }) {
-            if (target == pin.current) {
-                clearTimeout(timeout)
-                timeout = setTimeout(() => {
-                    context.close()
-                }, 200)
-                return
-            }
-
-            context.close()
-        }
-
-        if (pin && pin.current)
-            pin.current.addEventListener('mouseleave', onMouseLeave)
-
-        if (_container && _container.current){
-            _container.current.addEventListener('mouseover', onMouseOver)
-            _container.current.addEventListener('mouseleave', onMouseLeave)
-        }
-
-        return ()=>{
-            clearTimeout(timeout)
-
-            pin && pin.current && pin.current.removeEventListener('mouseleave', onMouseLeave)
-            
-            if (_container && _container.current){
-                _container.current.removeEventListener('mouseover', onMouseOver)
-                _container.current.removeEventListener('mouseleave', onMouseLeave)
-            }
-        }
-    }, [mouseLeave, _container, pin, context])
-
     if (innerRef)
         innerRef(_container)
 
     return (
         <Portal>
             <Context.Provider value={context}>
-                {stretch ? (
+                {stretch && !hidden ? (
                     <Helmet>
                         <html data-popover-showing />
                     </Helmet>
@@ -174,6 +132,7 @@ function Popover({ pin, innerRef, className='', children, dataKey, closable=true
                     className={className+' '+s.wrap}
                     style={style}
                     data-closable={closable}
+                    data-hidden={hidden}
                     data-stretch={stretch}>
                     <div className={s.body}>
                         {children}
@@ -205,3 +164,4 @@ Popover.propTypes = {
 export default Popover
 
 export * from './menu'
+export * from './more'

@@ -1,61 +1,30 @@
-import React from 'react'
-import { currentTab, getMeta } from '~target'
-import browser from '~target/extension/browser'
+import React, { useRef } from 'react'
+import { PropTypes } from 'prop-types'
 
-import Button from './button'
-import Permission from './permission'
+import { ButtonsGroup } from '~co/common/button'
+import { More, Menu } from '~co/overlay/popover'
+import Tab from './tab'
+import File from '../fallback/file'
 
-export default class BookmarksAdd extends React.Component {
-    static defaultProps = {
-        //...same as ../index
-    }
+function BookmarksAdd(props) {
+    const group = useRef(null)
 
-    state = {
-        loading: true,
-        current: {}
-    }
-
-    componentDidMount() {
-        this.reload()
-
-        browser.tabs.onUpdated.addListener(this.onTabUpdated)
-        browser.tabs.onActivated.addListener(this.reload)
-    }
-
-    componentWillUnmount() {
-        browser.tabs.onUpdated.removeListener(this.onTabUpdated)
-        browser.tabs.onActivated.removeListener(this.reload)
-    }
-
-    onTabUpdated = (id, { status })=>{
-        if (status == 'complete')
-            this.reload()
-    }
-
-    reload = async()=>{
-        this.setState({ loading: true })
-
-        const tab = await currentTab()
-        const { url, title } = tab
-        const meta = await getMeta(tab)
-
-        this.setState({
-            loading: false,
-            current: {
-                link: url,
-                title,
-                ...meta
-            }
-        })
-    }
-
-    render() {
-        if (!this.state.loading &&
-            !this.state.current.link)
-            return <Permission onChange={this.reload} />
-
-        return (
-            <Button {...this.props} {...this.state} />
-        )
-    }
+    return (
+        <ButtonsGroup ref={group}>
+            <Tab {...props} />
+            
+            <More variant='primary'>
+                <Menu>
+                    <File {...props} />
+                </Menu>
+            </More>
+        </ButtonsGroup>
+    )
 }
+
+BookmarksAdd.propTypes = {
+    spaceId:    PropTypes.any,
+    onEdit:     PropTypes.func
+}
+
+export default BookmarksAdd

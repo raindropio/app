@@ -6,7 +6,7 @@ import getThumbUri from '~data/modules/format/thumb'
 import Icon from '~co/common/icon'
 import Modal, { Header, Content } from '~co/overlay/modal'
 import Button from '~co/common/button'
-import PickerFile from '~co/picker/file/popover'
+import PickerFile from '~co/picker/file/element'
 import PickerLink from '~co/picker/link'
 import Preloader from '~co/common/preloader'
 
@@ -21,11 +21,9 @@ export default class PickerImage extends React.Component {
     }
 
     pinAddLink = React.createRef()
-    pinAddFile = React.createRef()
 
     state = {
         addLink: false,
-        addFile: false,
         screenshot_loading: false
     }
 
@@ -39,12 +37,6 @@ export default class PickerImage extends React.Component {
         await this.props.onLink(link)
         this.props.onClose()
     }
-
-    onAddFileClick = ()=>
-        this.setState({ addFile: true })
-
-    onAddFileClose = ()=>
-        this.setState({ addFile: false })
 
     onFile = async(file)=>{
         await this.props.onFile(file)
@@ -104,11 +96,12 @@ export default class PickerImage extends React.Component {
                         </Button>
 
                         <Button 
-                            ref={this.pinAddFile}
+                            as='label'
                             className={s.item}
-                            title={t.s('coverUpload')}
-                            onClick={this.onAddFileClick}>
-                            <Icon name='upload' /> {t.s('file')}
+                            title={t.s('coverUpload')}>
+                            <PickerFile onFile={this.onFile}>
+                                <Icon name='upload' /> {t.s('file')}
+                            </PickerFile>
                         </Button>
 
                         {this.state.addLink ? (
@@ -116,13 +109,6 @@ export default class PickerImage extends React.Component {
                                 pin={this.pinAddLink}
                                 onClose={this.onAddLinkClose}
                                 onLink={this.onLink} />
-                        ) : null}
-
-                        {this.state.addFile ? (
-                            <PickerFile 
-                                pin={this.pinAddFile}
-                                onClose={this.onAddFileClose}
-                                onFile={this.onFile} />
                         ) : null}
                     </div>
                 </Content>

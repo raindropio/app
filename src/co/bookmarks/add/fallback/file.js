@@ -1,10 +1,12 @@
 import React, { useCallback } from 'react'
+import t from '~t'
 import { useDispatch } from 'react-redux'
 import { oneUpload } from '~data/actions/bookmarks'
 
-import PickerFile from '~co/picker/file/popover'
+import { MenuItem } from '~co/overlay/popover'
+import PickerFile from '~co/picker/file/element'
 
-export default function BookmarksAddFallbackFile({ spaceId, onEdit, pin, onClose }) {
+export default function BookmarksAddFallbackFile({ spaceId, onEdit }) {
     const dispatch = useDispatch()
 
     const onFile = useCallback(file=>(
@@ -22,9 +24,10 @@ export default function BookmarksAddFallbackFile({ spaceId, onEdit, pin, onClose
     ), [spaceId, onEdit])
 
     return (
-        <PickerFile
-            pin={pin}
-            onClose={onClose}
-            onFile={onFile} />
+        <MenuItem as='label'>
+            <PickerFile onFile={onFile}>
+                {t.s('upload')} {t.s('file').toLowerCase()}…
+            </PickerFile>
+        </MenuItem>
     )
 }
