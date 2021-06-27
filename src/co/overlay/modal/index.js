@@ -60,11 +60,9 @@ export default class Modal extends React.Component {
         return (
             <Portal>
                 <Context.Provider value={{ onClose, closable }}>
-                    {stretch ? (
-                        <Helmet>
-                            <html data-modal-showing />
-                        </Helmet>
-                    ) : null}
+                    <Helmet>
+                        <html data-modal-showing data-modal-stretch={stretch} />
+                    </Helmet>
 
                     <div 
                         className={s.modal+' '+(important ? s.important : '')}>
