@@ -200,6 +200,10 @@
 
 .group {
     display: flex
+
+    .button {
+        width: auto
+    }
     
     .button:not(:last-child) {
         margin-right: 1px
@@ -209,12 +213,12 @@
         border-radius: 0
     }
 
-    .button:first-child {
+    .button:first-child:not(:last-child) {
         border-top-right-radius: 0
         border-bottom-right-radius: 0
     }
 
-    .button:last-child {
+    .button:last-child:not(:first-child) {
         border-top-left-radius: 0
         border-bottom-left-radius: 0
     }

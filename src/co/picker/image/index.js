@@ -4,7 +4,6 @@ import t from '~t'
 import getThumbUri from '~data/modules/format/thumb'
 
 import Modal, { Header, Content } from '~co/overlay/modal'
-import { More, Menu, MenuItem } from '~co/overlay/popover'
 import Button from '~co/common/button'
 import Icon from '~co/common/icon'
 import PickerFile from '~co/picker/file/element'
@@ -21,7 +20,7 @@ export default class PickerImage extends React.Component {
         onClose: undefined
     }
 
-    addMore = React.createRef()
+    addLink = React.createRef()
 
     state = {
         addLink: false,
@@ -74,22 +73,22 @@ export default class PickerImage extends React.Component {
         return (
             <Modal onClose={onClose}>
                 <Header title={t.s('cover')} data-no-shadow>
-                    <More 
-                        ref={this.addMore}
+                    <Button 
+                        ref={this.addLink}
                         variant='link'
-                        content={<><Icon name='add' /><Icon name='arrow' size='micro' /></>}>
-                        <Menu>
-                            <MenuItem onClick={this.onAddLinkClick}>
-                                {t.s('add')} URL…
-                            </MenuItem>
+                        title={t.s('add')+' URL…'}
+                        onClick={this.onAddLinkClick}>
+                        <Icon name='add' />
+                    </Button>
 
-                            <MenuItem as='label'>
-                                <PickerFile onFile={this.onFile}>
-                                    {t.s('upload')} {t.s('file').toLowerCase()}…
-                                </PickerFile>
-                            </MenuItem>
-                        </Menu>
-                    </More>
+                    <Button
+                        as='label'
+                        variant='link'
+                        title={`${t.s('upload')} ${t.s('file').toLowerCase()}…`}>
+                        <PickerFile onFile={this.onFile}>
+                            <Icon name='upload' />
+                        </PickerFile>
+                    </Button>
                 </Header>
 
                 <Content>
@@ -107,7 +106,7 @@ export default class PickerImage extends React.Component {
 
                         {this.state.addLink ? (
                             <PickerLink 
-                                pin={this.addMore}
+                                pin={this.addLink}
                                 onClose={this.onAddLinkClose}
                                 onLink={this.onLink} />
                         ) : null}
