@@ -28,22 +28,24 @@ export default function ExtensionTabsScreen({ match: { params } }) {
                             tabs={tabs}
                             setTabs={setTabs} />
 
-                        <Collection
-                            loading={loading}
-                            collectionId={collectionId}
-                            setCollectionId={setCollectionId} />
+                        {tabs.length>0 && (<>
+                            <Collection
+                                loading={loading}
+                                collectionId={collectionId}
+                                setCollectionId={setCollectionId} />
 
-                        <Tags
-                            loading={loading}
-                            collectionId={collectionId}
-                            tags={tags}
-                            setTags={setTags} />
+                            <Tags
+                                loading={loading}
+                                collectionId={collectionId}
+                                tags={tags}
+                                setTags={setTags} />
 
-                        <Separator variant='transparent' />
+                            <Separator variant='transparent' />
 
-                        <Action 
-                            tabs={tabs}
-                            loading={loading} />
+                            <Action 
+                                tabs={tabs}
+                                loading={loading} />
+                        </>)}
                     </Layout>
                 </form>
             </Screen>

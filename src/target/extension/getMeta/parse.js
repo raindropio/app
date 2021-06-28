@@ -32,7 +32,7 @@ function getItem() {
 
     const item = {
         link: location.href,
-        title: getMeta('twitter:title', 'og:key') || getMeta('title') || document.title,
+        title: getMeta('twitter:title', 'og:title') || getMeta('title') || document.title,
         excerpt: getMeta('twitter:description', 'og:description') || getMeta('description'),
         cover: getMeta('twitter:image', 'twitter:image:src', 'og:image', 'og:image:src'),
         coverId: 0

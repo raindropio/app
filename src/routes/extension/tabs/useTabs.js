@@ -8,7 +8,9 @@ export default function useTabs() {
     useEffect(()=>{
         async function get() {
             await browser.permissions.request({ permissions: ['tabs'] })
-            return browser.tabs.query({ currentWindow: true })
+            const tabs = await browser.tabs.query({ currentWindow: true })
+
+            return tabs.filter(({url})=>/^https?/i.test(url))
         }
 
         get().then(setTabs).catch(Error)

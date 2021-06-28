@@ -4,6 +4,16 @@
 */
 if (location.search.includes('browser_action')){
     var _lastSavedWidth
+    var _bodyStyle
+
+    function setBodyStyle(cssText) {
+        if (!_bodyStyle){
+            _bodyStyle = document.createElement('style')
+            document.head.appendChild(_bodyStyle)
+        }
+
+        _bodyStyle.innerHTML=`body {${cssText}}`
+    }
 
     function updateSize({ width='420px', height='auto' }) {
         //browser type
@@ -19,8 +29,7 @@ if (location.search.includes('browser_action')){
             height = '600px'
         }
 
-        document.body.style.width = width
-        document.body.style.height = height
+        setBodyStyle(`width: ${width} !important; height: ${height}  !important`)
 
         //when browser have global zoom setting, actual max width of popover can be alot smaller, 
         //it's bug of chrome browsers. this is the fix:
@@ -30,8 +39,7 @@ if (location.search.includes('browser_action')){
                 width = document.documentElement.offsetWidth+'px'
                 height = document.documentElement.offsetHeight+'px'
 
-                document.body.style.width = width
-                document.body.style.height = height
+                setBodyStyle(`width: ${width} !important; height: ${height} !important`)
             }
 
         saveSize(width)
