@@ -30,15 +30,15 @@ window.onload = ()=>{
 		<Sentry>
 			<ServiceWorker>
 				<Provider store={store}>
-					<Document>
-						<App>
-							<PersistGate loading={<Splash />} persistor={persistor}>
-								<Translate loading={<Splash />}>
+					<PersistGate loading={<Splash />} persistor={persistor}>
+						<Translate loading={<Splash />}>
+							<Document>
+								<App>
 									<Routes />
-								</Translate>
-							</PersistGate>
-						</App>
-					</Document>
+								</App>
+							</Document>
+						</Translate>
+					</PersistGate>
 				</Provider>
 			</ServiceWorker>
 		</Sentry>,

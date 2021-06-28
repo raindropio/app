@@ -41,7 +41,7 @@ function ClipperHeader({ status, item }) {
             <Button
                 as='a'
                 href={`#${collectionPath}`}>
-                <Icon name='fullscreen' />
+                <Icon name='search' />
             </Button>
 
             <ProfileButton />

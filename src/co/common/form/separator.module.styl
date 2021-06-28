@@ -1,7 +1,13 @@
 .separator {
-    box-shadow: inset 0 var(--shadow-height) 0 var(--shadow-color)
     grid-column: 1 / -1
     height: 1px
+
+    &[data-variant='default'] {
+        box-shadow: inset 0 var(--shadow-height) 0 var(--shadow-color)
+    }
+
+    &[data-variant='transparent'] {
+    }
 }
 
 .separator + .separator {

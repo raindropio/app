@@ -8,6 +8,7 @@
     font-size: var(--primary-font-size)
     line-height: 2
     white-space: nowrap
+    cursor: default
 
     &[disabled] {
         color: var(--disable-text-color)
@@ -31,6 +32,10 @@
     >:not(:last-child), >:first-child {
         margin-right: var(--padding-small)
     }
+}
+
+a.item {
+    cursor: pointer
 }
 
 [data-theme="day"] .item.focusable.active:focus-within {

@@ -15,7 +15,8 @@ class EditBookmarkContainer extends React.Component {
 		_id:				undefined, //_id or link
 		new:				{}, //optional, { item: {}, autoCreate: true, preventDuplicate: true }
 		autoFocus:			'',
-		autoWindowClose: 		false
+		autoWindowClose:	false,
+		buttons:			undefined //component
 	}
 
 	componentDidMount() {

@@ -5,7 +5,7 @@ import { Layout, Separator } from '~co/common/form'
 import Cover from './cover'
 import Collection from './collection'
 import Tags from './tags'
-import Buttons from './buttons'
+import Action from './action'
 import Title from './title'
 import Link from './link'
 import More from './more'
@@ -36,9 +36,9 @@ export default class BookmarkEditForm extends React.Component {
                     <Link {...this.props} />
                     <More {...this.props} />
 
-                    <Separator />
-
-                    <Buttons {...this.props} />
+                    <Separator variant='transparent' />
+                    
+                    <Action {...this.props} />
                 </Layout>
             </form>
         )

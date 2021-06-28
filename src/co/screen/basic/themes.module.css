@@ -94,7 +94,7 @@
 (min-resolution: 192dpi) {
     :root, [data-app-size] {
         --shadow-height: .5px;
-        --shadow-alpha: .17;
+        --shadow-alpha: .2;
         --shadow-light-alpha: .12;
     }
 }
