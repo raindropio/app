@@ -20,7 +20,7 @@ export default function AddTabsList({ tabs, setTabs }) {
 
     return (
         <>
-            <Label>{tabs.length} {t.s('tabs').toLowerCase()}</Label>
+            <Label>{t.s('tabs')}</Label>
 
             {tabs.length ? (
                 <Wrap className={s.list}>
@@ -35,7 +35,7 @@ export default function AddTabsList({ tabs, setTabs }) {
                                 exit={{ opacity: 0 }}
                                 transition={{ duration: 0.2 }}
 
-                                title={url}>
+                                title={title}>
                                 <ItemIcon>{favIconUrl ? 
                                     <img src={favIconUrl} /> :
                                     <Cover 
