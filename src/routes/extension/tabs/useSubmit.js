@@ -34,7 +34,7 @@ export default function ExtensionTabsSubmit({ tabs, collectionId, tags, close })
                 }
             )
         )
-    }, [tabs, collectionId, tags])
+    }, [tabs, collectionId, tags, close])
 
     return {
         onSubmit,
