@@ -16,7 +16,7 @@ import Action from './action'
 export default function ExtensionTabsScreen({ match: { params } }) {
     const [tabs, setTabs] = useTabs()
     const [collectionId, setCollectionId] = useState(params.collectionId)
-    const [tags, setTags] = useState(()=>[longDate(new Date())])
+    const [tags, setTags] = useState(()=>[longDate(new Date()).replace(/,/g, ' ')])
     const [close, setClose] = useState(true)
     const {onSubmit, loading} = useSubmit({ tabs, collectionId, tags, close })
 
