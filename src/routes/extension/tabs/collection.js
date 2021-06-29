@@ -29,7 +29,7 @@ export default function AddTabsCollection({ collectionId, setCollectionId, loadi
 
     return (
         <>
-            <Label>{_.capitalize(t.s('to'))} {t.s('collection').toLowerCase()}</Label>
+            <Label>{t.s('collection')}</Label>
 
             <div>
                 <Button 
