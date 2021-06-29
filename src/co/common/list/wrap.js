@@ -1,9 +1,11 @@
 import s from './wrap.module.styl'
 import React from 'react'
 
-export function Wrap({ className='', ...etc }) {
+export function Wrap({ as='div', className='', ...etc }) {
+    const Component = as
+
     return (
-        <div 
+        <Component 
             {...etc}
             className={`${s.wrap} ${className}`} />
     )
