@@ -5,7 +5,6 @@ import Analytics from '~modules/analytics'
 
 import Account from './account'
 import Add from './add'
-import Extension from './extension'
 import My from './my'
 import Settings from './settings'
 
@@ -21,7 +20,7 @@ export default ()=>(
             <Switch>
                 <Route path='/account' component={Account} />
                 <Route path='/add' component={Add} />
-                <Route path='/extension' component={Extension} />
+                {target == 'extension' && <Route path='/extension' component={require('./extension').default} />}
                 <Route path='/my' component={My} />
                 <Route path='/settings' component={Settings} />
 

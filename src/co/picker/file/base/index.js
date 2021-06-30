@@ -18,10 +18,10 @@ export default Component =>
         }
 
         //files
-        getFileName = (file)=>
-            file.name
+        getFileName = (file={})=>
+            file.name||''
 
-        onDropFiles = (files)=>
+        onDropFiles = (files=[])=>
             this.setState({ files, filesDone: false })
 
         onDoneFiles = ()=>

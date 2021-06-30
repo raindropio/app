@@ -1,6 +1,7 @@
 import React from 'react'
+import { target } from '~target'
 
-let Component = process.env.APP_TARGET == 'extension' ? 
+let Component = target == 'extension' ? 
 	require('./extension').default :
 	require('./fallback').default
 
