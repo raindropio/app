@@ -27,7 +27,7 @@ export default class SuperFrame extends React.Component {
 		const { status } = this.state
 
 		const Component = isNative ? WebView : 'iframe'
-		const sandbox = !isNative && !src.includes('raindrop.io')
+		const sandbox = !isNative && !src.includes('raindrop.io') && !src.includes('localhost')
 
 		return (
 			<div {...etc} className={s.frame+' '+className} data-status={status} data-theme='day'>
