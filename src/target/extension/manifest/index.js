@@ -63,8 +63,9 @@ module.exports = ({ vendor, production=false }, l) => {
 				//safari icon
 				...(vendor == 'safari' ? {
 					16: file(l, '../../../assets/target/extension/action_safari_16.png'),
-					24: file(l, '../../../assets/target/extension/action_safari_24.png'),
-					32: file(l, '../../../assets/target/extension/action_safari_32.png')
+					19: file(l, '../../../assets/target/extension/action_safari_19.png'),
+					32: file(l, '../../../assets/target/extension/action_safari_32.png'),
+					38: file(l, '../../../assets/target/extension/action_safari_38.png')
 				} : {})
 			},
 			//firefox
