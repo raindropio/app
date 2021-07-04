@@ -43,13 +43,13 @@
       "size" : "256x256"
     },
     {
-      "filename" : "safari_512.png",
+      "filename" : "safari_512-1.png",
       "idiom" : "mac",
       "scale" : "2x",
       "size" : "256x256"
     },
     {
-      "filename" : "safari_512-1.png",
+      "filename" : "safari_512.png",
       "idiom" : "mac",
       "scale" : "1x",
       "size" : "512x512"

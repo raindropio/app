@@ -3,6 +3,6 @@ import Screen from '~co/screen/basic'
 
 export default function Splash() {
     return (
-        <Screen />
+        <Screen safariExtensionBackdrop />
     )
 }
