@@ -7,7 +7,6 @@ import Header, { Title, Space } from '~co/common/header'
 import Button from '~co/common/button'
 import Icon from '~co/common/icon'
 import SuperFrame from '~co/common/superFrame'
-import Popover from '~co/overlay/popover'
 
 const invalidStatus = {
     'invalid-origin': 'Origin is unreachable.',
@@ -17,8 +16,7 @@ const invalidStatus = {
 
 class ReaderCache extends React.Component {
     state = {
-        url: '',
-        download: false
+        url: ''
     }
 
     async componentDidMount(){
@@ -34,17 +32,9 @@ class ReaderCache extends React.Component {
         this.setState({ url: await getCacheURL(this.props.item._id) })
     }
 
-    onDownloadClick = (e)=>{
-        e.preventDefault()
-        this.setState({ download: true })
-    }
-
-    onDownloadClose = ()=>
-        this.setState({ download: false })
-
     renderStatus() {
         const { url } = this.state
-        const { item: { cache, domain } } = this.props
+        const { item: { cache } } = this.props
 
         let icon = '', title = ''
 
@@ -81,11 +71,7 @@ class ReaderCache extends React.Component {
                             {t.s('open')}
                         </Button>
 
-                        <Button 
-                            href={url}
-                            target='_blank'
-                            download={domain+'.html'}
-                            onClick={this.onDownloadClick}>
+                        <Button href={url+'?download'}>
                             <Icon name='document' size='micro' />
                             {t.s('download')}
                         </Button>
@@ -97,7 +83,7 @@ class ReaderCache extends React.Component {
 
 	render() {
         const { item: { cache } } = this.props
-        const { url, download } = this.state
+        const { url } = this.state
 
         switch(cache) {
             case 'ready':
@@ -105,8 +91,6 @@ class ReaderCache extends React.Component {
                     <div className={s.cache}>
                         {this.renderStatus()}
                         <SuperFrame className={s.frame} src={url} />
-
-                        {download && <Popover onClose={this.onDownloadClose}>Right click on this button and select "Save link as..."</Popover>}
                     </div>
                 )
             
