@@ -84,8 +84,7 @@ module.exports = ({ vendor, production=false }, l) => {
 		],
 
 		optional_permissions: [
-			'tabs',
-			...(vendor=='safari' ? ['<all_urls>'] : [])
+			'tabs'
 		],
 
 		omnibox: {

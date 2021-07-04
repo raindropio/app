@@ -2,7 +2,6 @@ import React from 'react'
 import t from '~t'
 import browser from '~target/extension/browser'
 import config from '~config'
-import { environment } from '~target'
 
 import { Title, Checkbox, SubLabel } from '~co/common/form'
 import Icon from '~co/common/icon'
@@ -13,7 +12,6 @@ export default class SettingsExtensionFeatures extends React.Component {
         permissions: [
             {
                 id: 'tabs',
-                origins: environment.includes('safari') ? ['<all_urls>'] : [],
                 enabled: false,
                 title: t.s('highlightSavedPages'),
                 excerpt: t.s('highlightSavedPagesD')
@@ -41,11 +39,10 @@ export default class SettingsExtensionFeatures extends React.Component {
 
     onChangePermission = (e)=>{
         const index = parseInt(e.target.getAttribute('data-index'))
-        const { id, enabled, origins=[] } = this.state.permissions[index]
+        const { id, enabled } = this.state.permissions[index]
 
         browser.permissions[enabled?'remove':'request']({
-            permissions: [id],
-            ...(origins.length ? { origins } : {})
+            permissions: [id]
         })
             .then(()=>this.reload())
             .catch(Error)

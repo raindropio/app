@@ -2,17 +2,13 @@ import React, { useCallback } from 'react'
 import t from '~t'
 import Button from '~co/common/button'
 import browser from '~target/extension/browser'
-import { environment } from '~target'
 import { Alert } from '~co/overlay/dialog'
 
 export default function BookmarksAddPermission({ reload }) {
     const onRequestClick = useCallback(()=>{
         browser.permissions
             .request({
-                permissions: ['tabs'],
-                ...(environment.includes('safari') ? {
-                    origins: ['<all_urls>']
-                } : {})
+                permissions: ['tabs']
             })
             .then(reload)
             .catch(()=>{
