@@ -67,7 +67,7 @@ class ImportFile extends React.Component {
                 return (
                     <div>
                         <Alert>
-                            <b>{t.s('uploadBookmarksFile')} (html, csv {t.s('or')} txt)</b>. {t.s('importInfo2')}<br /><br />
+                            <b>{t.s('uploadBookmarksFile')} (html, csv, enex {t.s('or')} txt)</b>. {t.s('importInfo2')}<br /><br />
                             <a href={config.links.help.import+'#supported-formats'} target='_blank'>
                                 {t.s('help')}
                                 <Icon name='open' size='micro' style={{marginLeft: 6}} />
