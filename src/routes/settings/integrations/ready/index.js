@@ -70,7 +70,7 @@ export default class SettingsIntegrationsReady extends React.Component {
                             href='https://ifttt.com/applets/DJyFrvNd-save-liked-youtube-video-to-raindrop-io'
                             target='_blank'>
                             <Icon name='youtube' />
-                            Save favorite Youtube videos
+                            Save favorite YouTube videos
                         </Button>
         
                         <Button
@@ -98,7 +98,7 @@ export default class SettingsIntegrationsReady extends React.Component {
                             href='https://zapier.com/apps/github/integrations/raindropio/231017/create-new-global-events-in-github-as-raindropio-items'
                             target='_blank'>
                             <Icon name='github' />
-                            Save favorite Github repos
+                            Save favorite GitHub repos
                         </Button>
         
                         <Button
