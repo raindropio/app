@@ -1,14 +1,15 @@
 import s from './item.module.styl'
-import React from 'react'
+import React, { forwardRef } from 'react'
 import { Item, ItemIcon, ItemTitle, ItemInfo } from '~co/common/list'
 import Icon from '~co/common/icon'
 import useItemInfo from './useItemInfo'
 
-export default function SuggestionItem({ item, className='', ...etc}) {
+function SuggestionItem({ item, className='', forwardedRef, ...etc}) {
     const { icon, title, info, token } = useItemInfo(item)
 
     return (
         <Item 
+            ref={forwardedRef}
             className={s.item+' '+className}
             data-token={token}
             data-id={item._id}
@@ -31,3 +32,7 @@ export default function SuggestionItem({ item, className='', ...etc}) {
         </Item>
     )
 }
+
+export default forwardRef((props, ref) => {
+    return <SuggestionItem {...props} forwardedRef={ref} />
+})

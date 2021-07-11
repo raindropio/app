@@ -1,65 +1,73 @@
-import React, { useRef, useState, useEffect, useCallback, useMemo } from 'react'
-import { useHistory } from 'react-router-dom'
-import debounce from '~modules/format/callback/debounce'
+import React, { useRef, useState, useEffect, useMemo } from 'react'
+import PropTypes from 'prop-types'
 
-import Input from './input'
-import Suggestions from './suggestions'
+import useFilterValue from './useFilterValue'
+import useMenuItems from './useMenuItems'
+import useDownshift from './useDownshift'
+import useSubmit from './useSubmit'
 
-//events={onSubmit}
-export default function Search({ spaceId=0, autoFocus=false, events={}, ...etc }) {
-    const history = useHistory()
+import Form from './form'
+import Field from './field'
+import Menu from './menu'
 
-    //input
-    const inputRef = useRef(null)
-    const [value, setValue] = useState(()=>etc.value)
-    useEffect(()=>setValue(etc.value),[etc.value])
+function Search({ spaceId, autoFocus, value: parentValue, events: { onSubmit } }) {
+    const fieldRef = useRef(null)
 
-    //suggestions showing
-    const [haveSuggestions, setHaveSuggestions] = useState(false)
+    //value
+    const [ value, setValue ] = useState(()=>parentValue)
+    useEffect(()=>setValue(parentValue), [parentValue])
+
+    //filter
+    const [ filter, applyFilter ] = useFilterValue(value, setValue)
+
+    //menu items
+    const { options, suggestions } = useMenuItems({ spaceId, value, filter })
+    const menuItemsCount = useMemo(()=>
+        options.length + suggestions.length,
+        [options.length, suggestions.length]
+    )
+
+    //downshift
+    const downshift = useDownshift({ filter, applyFilter, options, suggestions })
 
     //submit
-    const onSubmit = useCallback(e=>{
-        if (e && e.preventDefault)
-            e.preventDefault()
-
-        events.onSubmit(value)
-    }, [value, events.onSubmit])
-
-    const submitBounced = useMemo(()=>
-        debounce(events.onSubmit, 350, { maxWait: 1000 }),
-        [events.onSubmit]
-    )
-
-    //auto submit on value change
-    useEffect(()=>{
-        if (value && value.includes('collection:')){
-            setValue('')
-            return history.push(`/my/${value.match(/collection:(-?\d+)/)[1]}`)
-        }
-        //submit immediately
-        if (!value || value.endsWith(' '))
-            events.onSubmit(value)
-        //suggestions
-        else if (haveSuggestions)
-            return
-        submitBounced(value)
-    }, [value, haveSuggestions, events.onSubmit, submitBounced])
+    const submit = useSubmit({ value, options, suggestions, onSubmit })
 
     return (
-        <Input
-            spaceId={spaceId}
-            value={value}
-            autoFocus={autoFocus}
-            inputRef={inputRef}
-            onChange={setValue}
-            onSubmit={onSubmit}>
-            {downshift => (
-                <Suggestions 
-                    spaceId={spaceId}
-                    inputRef={inputRef}
+        <>
+            <Form
+                downshift={downshift}
+                submit={submit}>
+                <Field
+                    ref={fieldRef}
                     downshift={downshift}
-                    setHaveSuggestions={setHaveSuggestions} />
-            )}
-        </Input>
+                    autoFocus={autoFocus}
+                    value={value}
+                    setValue={setValue}
+                    menuItemsCount={menuItemsCount} />
+            </Form>
+
+            <Menu
+                downshift={downshift}
+                fieldRef={fieldRef}
+                menuItemsCount={menuItemsCount}
+                options={options}
+                suggestions={suggestions} />
+        </>
     )
 }
+
+Search.defaultProps = {
+    events: {}
+}
+
+Search.propTypes = {
+    value: PropTypes.string,
+    autoFocus: PropTypes.bool,
+    spaceId: PropTypes.any,
+    events: PropTypes.shape({
+        onSubmit: PropTypes.func //(value)
+    })
+}
+
+export default Search

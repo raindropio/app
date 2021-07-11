@@ -11,9 +11,10 @@ import Share from './share'
 class MyMainHeader extends React.Component {
     searchEvents = {
         onSubmit: search=>{
-            this.props.history.push(
-                this.props.getLink({ search })
-            )
+            if (this.props.search != search)
+                this.props.history.push(
+                    this.props.getLink({ search })
+                )
         }
     }
 

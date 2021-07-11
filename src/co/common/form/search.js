@@ -18,11 +18,20 @@ class FormSearch extends React.PureComponent {
         focus: false
     }
 
-    _input = React.createRef()
+    bindRef = (ref)=>{
+        this._input = ref
+
+        if (this.props.forwardedRef){
+            if (typeof this.props.forwardedRef == 'function')
+                this.props.forwardedRef(ref)
+            else
+                this.props.forwardedRef = {current: ref}
+        }
+    }
 
     componentDidMount() {
         if (this.props.autoFocus)
-            this._input.current && this._input.current.value && this._input.current.select()
+            this._input && this._input.value && this._input.select()
 
         window.addEventListener('keydown', this.onWindowKeyDown)
     }
@@ -33,7 +42,7 @@ class FormSearch extends React.PureComponent {
 
     onCancelClick = ()=>{
         this.onReset()
-        this._input.current.focus()
+        this._input.focus()
     }
 
     onInputFocus = (e)=>{
@@ -47,8 +56,8 @@ class FormSearch extends React.PureComponent {
     }
     
     onReset = ()=>{
-        this._input.current.value = ''
-        this.props.onChange({ target: this._input.current })
+        this._input.value = ''
+        this.props.onChange({ target: this._input })
         this.props.onReset && this.props.onReset()
     }
 
@@ -73,9 +82,9 @@ class FormSearch extends React.PureComponent {
         if (e.key == 'f' && (e.ctrlKey || e.metaKey)){
             e.stopPropagation()
 
-            if (document.activeElement != this._input.current){
+            if (document.activeElement != this._input){
                 e.preventDefault()
-                this._input.current.focus()
+                this._input.focus()
             }
         }
     }
@@ -83,15 +92,12 @@ class FormSearch extends React.PureComponent {
     render() {
         const { loading, forwardedRef, clearOnEscape, children, ...original } = this.props
 
-        if (forwardedRef)
-            this._input = forwardedRef
-
         return (
             <div 
                 data-active={this.state.focus}
                 data-clear-on-escape={clearOnEscape}>
                 <Text
-                    ref={this._input}
+                    ref={this.bindRef}
                     role='searchbox'
                     type='text'
                     spellCheck='false'
