@@ -11,7 +11,7 @@ export const makeFiltersSearch = ()=>createSelector(
         const filter = String(_filter||'').trimStart().toLowerCase()
 
         return filter ? filters.filter(({ query }) => 
-            query.toLowerCase().includes(filter)
+            query.toLowerCase().startsWith(filter) && !query.endsWith(':')
         ) : filters
 	}
 )

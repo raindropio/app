@@ -88,7 +88,7 @@ function* load({ spaceId, ignore, query }) {
 			put({
 				type: FILTERS_LOAD_SUCCESS,
 				spaceId,
-				items,
+				items: { ...items, tags },
 				query
 			}),
 			put({

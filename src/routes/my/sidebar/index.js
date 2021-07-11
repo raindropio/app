@@ -5,7 +5,7 @@ import Button from '~co/common/button'
 import Icon from '~co/common/icon'
 import Sidebar, { Header, Content } from '~co/screen/splitview/sidebar'
 import Collections from '~co/collections/items'
-import FiltersTags from './filters_tags'
+import Tags from './tags'
 import Profile from './profile'
 import Upgrade from './upgrade'
 
@@ -37,7 +37,7 @@ export default class MySidebar extends React.Component {
                 </Header>
 
                 <Content>
-                    <FiltersTags
+                    <Tags
                         activeId={search}
                         getLink={getLink}>
                         {(customRows, customRowRenderer)=>
@@ -49,7 +49,7 @@ export default class MySidebar extends React.Component {
                                 customRows={customRows}
                                 customRowRenderer={customRowRenderer} />
                         }
-                    </FiltersTags>
+                    </Tags>
                 </Content>
 
                 <Upgrade />

@@ -81,7 +81,7 @@ class FormSearch extends React.PureComponent {
     }
 
     render() {
-        const { loading, forwardedRef, clearOnEscape, ...original } = this.props
+        const { loading, forwardedRef, clearOnEscape, children, ...original } = this.props
 
         if (forwardedRef)
             this._input = forwardedRef
@@ -105,8 +105,10 @@ class FormSearch extends React.PureComponent {
                     onFocus={this.onInputFocus}
                     onBlur={this.onInputBlur}
                     onKeyDown={this.onInputKeyDown}>
+                    {children}
                     {this.props.value && (
                         <Button 
+                            size='small'
                             onClick={this.onCancelClick}>
                             <Icon name='close' size='micro' />
                         </Button>

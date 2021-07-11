@@ -1,75 +1,65 @@
-import React from 'react'
+import React, { useRef, useState, useEffect, useCallback, useMemo } from 'react'
+import { useHistory } from 'react-router-dom'
 import debounce from '~modules/format/callback/debounce'
+
 import Input from './input'
 import Suggestions from './suggestions'
 
-export default class Search extends React.PureComponent {
-    static defaultProps = {
-        spaceId: 0,
-        value: '',
-        outerRef: undefined, //where to put suggestions
-        autoFocus: false,
-        events: {} //onSubmit
-    }
+//events={onSubmit}
+export default function Search({ spaceId=0, autoFocus=false, events={}, ...etc }) {
+    const history = useHistory()
 
-    state = {
-        floating: !this.props.value,
-        value: this.props.value||''
-    }
+    //input
+    const inputRef = useRef(null)
+    const [value, setValue] = useState(()=>etc.value)
+    useEffect(()=>setValue(etc.value),[etc.value])
 
-    componentDidMount() {
-        this.onSubmitBounced = debounce(this.handlers.onSubmit, 350, { maxWait: 1000 })
-    }
+    //suggestions showing
+    const [haveSuggestions, setHaveSuggestions] = useState(false)
 
-    componentDidUpdate(prev) {
-        if (prev.value != this.props.value)
-            this.setState({
-                floating: !this.props.value,
-                value: this.props.value||''
-            })
-    }
+    //submit
+    const onSubmit = useCallback(e=>{
+        if (e && e.preventDefault)
+            e.preventDefault()
 
-    handlers = {
-        onChange: (value, autoSubmit=false)=>{
-            this.setState(
-                { value },
-                ()=>{
-                    if (!this.state.value || autoSubmit)
-                        return this.handlers.onSubmit()
+        events.onSubmit(value)
+    }, [value, events.onSubmit])
 
-                    //suggestions are showing right now, no autoSubmit
-                    if (!this.state.value.endsWith(' ') &&
-                        this.props.outerRef.current &&
-                        this.props.outerRef.current.firstChild)
-                        return
+    const submitBounced = useMemo(()=>
+        debounce(events.onSubmit, 350, { maxWait: 1000 }),
+        [events.onSubmit]
+    )
 
-                    this.onSubmitBounced()
-                }
-            )
-        },
-
-        onSubmit: e=>{
-            if (e && e.preventDefault)
-                e.preventDefault()
-            this.props.events.onSubmit(this.state.value)
+    //auto submit on value change
+    useEffect(()=>{
+        if (value && value.includes('collection:')){
+            setValue('')
+            return history.push(`/my/${value.match(/collection:(-?\d+)/)[1]}`)
         }
-    }
+        //submit immediately
+        if (!value || value.endsWith(' '))
+            events.onSubmit(value)
+        //suggestions
+        else if (haveSuggestions)
+            return
+        submitBounced(value)
+    }, [value, haveSuggestions, events.onSubmit, submitBounced])
 
-    render() {
-        return (
-            <Input
-                {...this.props}
-                {...this.state}
-                {...this.handlers}>
-                {downshift => (
-                    <Suggestions 
-                        downshift={downshift}
-
-                        outerRef={this.props.outerRef}
-                        floating={this.state.floating}
-                        spaceId={this.props.spaceId} />
-                )}
-            </Input>
-        )
-    }
+    return (
+        <Input
+            spaceId={spaceId}
+            value={value}
+            autoFocus={autoFocus}
+            inputRef={inputRef}
+            onChange={setValue}
+            onSubmit={onSubmit}>
+            {downshift => (
+                <Suggestions 
+                    spaceId={spaceId}
+                    inputRef={inputRef}
+                    downshift={downshift}
+                    setHaveSuggestions={setHaveSuggestions} />
+            )}
+        </Input>
+    )
 }

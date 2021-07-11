@@ -9,7 +9,7 @@ import Items from '../items'
 import Footer from '../footer'
 
 function BookmarksContainer(props) {
-    const { spaceId, search, ignore } = props
+    const { spaceId, search } = props
     const dispatch = useDispatch()
     const sort = useSelector(state=>state.config.raindrops_sort)
     const searchByScore = useSelector(state=>state.config.raindrops_search_by_score)
@@ -18,7 +18,6 @@ function BookmarksContainer(props) {
         dispatch(load(spaceId, {
             search,
             sort: search && searchByScore ? 'score' : sort,
-            ignore
         }))
     }, [spaceId, search])
 
@@ -40,7 +39,6 @@ BookmarksContainer.defaultProps = {
     index:          0,
     compact:        false,
     compactLimit:   7,
-    ignore:         0,  //ignore some collectionId when showing all bookmarks
     getLink:        undefined,
     events:         {}  //onBookmarkClick
 }

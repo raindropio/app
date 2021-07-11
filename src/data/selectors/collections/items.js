@@ -11,25 +11,6 @@ const
 	_collectionsGroups = ({collections={}})=>collections.groups,
 	_collectionsStatus = ({collections={}})=>collections.status
 
-//Items
-export const makeFiltered = ()=> createSelector(
-	[_collectionsItems, (state, _search)=>_search, (state, _search, ignore)=>ignore],
-	(items, _search, ignore)=>{
-		const search = (_search||'').toLowerCase().trim()
-		if (!search) return emptyArray
-
-		const found = []
-
-		_.forEach(items, item=>{
-			if ((item.title||'').toLowerCase().includes(search) &&
-				item._id != ignore)
-				found.push(item)
-		})
-
-		return found.length ? found : emptyArray
-	}
-)
-
 //Tree
 const makeGroupTree = (groupIds, items=[], sortedItems)=>{
 	var results = []

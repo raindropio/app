@@ -62,7 +62,6 @@ const initialState = Immutable({
 	
 	tags_sort:				'_id',
 	tags_hide:				false,
-	filters_hide:			false,
 	nested_view_legacy:		false,
 
 	font_size: 				0,

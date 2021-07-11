@@ -15,14 +15,13 @@ class Bookmarks extends React.Component {
     }
 
     renderSpace = spaceId=>{
-        const { ids, ignore, ...etc } = this.props
+        const { ids, ...etc } = this.props
 
         return (
             <Container 
                 {...etc}
                 spaceId={spaceId}
-                compact={ids.length>1}
-                ignore={!parseInt(spaceId) && ignore} />
+                compact={ids.length>1} />
         )
     }
 
@@ -51,17 +50,12 @@ export default connect(
 	() => {
         const getBranchIds = makeBranchIds()
     
-        return (state, { spaceId, search, full })=>{
+        return (state, { spaceId, full })=>{
             const { nested_view_legacy } = state.config
 
             if (full || nested_view_legacy)
                 return {
                     ids: [ spaceId ],
-                }
-            else if (search && parseInt(spaceId))
-                return {
-                    ids: [ spaceId, '0s' ],
-                    ignore: spaceId,
                 }
             else{
                 const ids = getBranchIds(state, spaceId)

@@ -8,19 +8,12 @@ export const getUrl = (__id, query)=>{
 	const entities = _.compact(_.map(query||blankSpace.query, (val,key)=>{
 		if (val)
 			switch(key){
-				case 'ignore':
-					if (!id) {
-						id = parseInt(val)
-						return key+'='+1
-					} else
-						return undefined
-
 				case 'page':
 				case 'sort':
 					return key+'='+encodeURIComponent(val);
 
 				case 'search':
-					return key+'='+encodeURIComponent(`${val} fulltext:true`);
+					return key+'='+encodeURIComponent(val);
 			}
 	}))
 	entities.push('perpage='+SPACE_PER_PAGE)
