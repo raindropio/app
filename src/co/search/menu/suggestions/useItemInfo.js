@@ -7,7 +7,7 @@ import CollectionIcon from '~co/collections/item/icon'
 
 const r = /^-?([\w.]+):|(#)/
 
-export default function useItemInfo({ _id, query, count, top, ...other }) {
+export default function useItemInfo({ _id, query='', count, top, ...other }) {
     const [_q, key, tag] = query.match(r)||[]
     const token = key || tag
 

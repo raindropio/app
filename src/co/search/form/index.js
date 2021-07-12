@@ -3,6 +3,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import _ from 'lodash-es'
 
+const isCollectionToken = /collection:(-?\d+)/
+
 export default class SearchForm extends React.Component {
     static propTypes = {
         spaceId: PropTypes.any,
@@ -19,6 +21,13 @@ export default class SearchForm extends React.Component {
 
         const { value, spaceId, onSubmit } = this.props
 
+        //collection
+        if (isCollectionToken.test(value))
+            return onSubmit({
+                _id: value.match(isCollectionToken)[1],
+                search: ''
+            })
+
         onSubmit({
             _id: spaceId,
             search: value
@@ -31,13 +40,14 @@ export default class SearchForm extends React.Component {
         const { value, parentValue, suggestions } = this.props
 
         if (prevProps.value == value || 
-            (parentValue.trim()||'') == (value||'').trim()) return
+            (parentValue.trim()||'') == (value||'').trim())
+            return
 
         this.submitBounced.cancel()
 
         //submit immediately
         if (!value || value.endsWith(' '))
-            this.submit()
+            return this.submit()
         //suggestions
         else if (suggestions.length)
             return

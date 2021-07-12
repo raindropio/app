@@ -17,8 +17,8 @@ function Search({ autoFocus, spaceId: parentSpaceId, value: parentValue, events:
     const spaceId = useSpaceId(parentSpaceId)
 
     //value
-    const [ value, setValue ] = useState(()=>parentValue)
-    useEffect(()=>setValue(parentValue), [parentValue])
+    const [ value, setValue ] = useState(parentValue)
+    useEffect(()=>setValue(parentValue), [parentValue, parentSpaceId])
 
     //filter
     const [ filter, applyFilter ] = useFilterValue(value, setValue)
