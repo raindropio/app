@@ -1,40 +1,70 @@
 import { useMemo, useCallback } from 'react'
 import { useCombobox } from 'downshift'
+import { useDispatch } from 'react-redux'
+import { set as setConfig } from '~data/actions/config'
 
 const itemToString = item => item && item.query
 
-export default function useDownshift({ filter, applyFilter, options, suggestions }) {
-    const items = useMemo(()=>[...options, ...suggestions], [options, suggestions])
+const stateReducer = (state, { type, changes }) => {
+    const incompleteToken = (changes.inputValue||'').endsWith('#') || (changes.inputValue||'').endsWith(':')
 
-    const stateReducer = useCallback((state, { type, changes }) => {
-        const incompleteToken = (changes.inputValue||'').endsWith('#') || (changes.inputValue||'').endsWith(':')
-    
-        switch (type) {
-            case useCombobox.stateChangeTypes.InputChange:
+    switch (type) {
+        case useCombobox.stateChangeTypes.InputChange:
+            return {
+                ...changes,
+                highlightedIndex: incompleteToken ? 0 : null
+            }
+
+        //select item
+        case useCombobox.stateChangeTypes.InputKeyDownEnter:
+        case useCombobox.stateChangeTypes.ItemClick:
+            //config click, prevent autoclose
+            if (changes.selectedItem &&
+                changes.selectedItem.config)
                 return {
-                    ...changes,
-                    highlightedIndex: incompleteToken ? 0 : null
+                    ...state,
+                    selectedItem: changes.selectedItem
                 }
-    
+
+            return {
+                ...changes,
+                isOpen: incompleteToken,
+                highlightedIndex: incompleteToken ? 0 : state.highlightedIndex,
+                inputValue: '',
+            }
+
+        default:
+            return changes
+    }
+}
+
+export default function useDownshift({ filter, applyFilter, configs, suggestions }) {
+    const dispatch = useDispatch()
+
+    const items = useMemo(()=>[...configs, ...suggestions], [configs, suggestions])
+
+    const onStateChange = useCallback(({type, selectedItem})=>{
+        switch(type) {
             //select item
             case useCombobox.stateChangeTypes.InputKeyDownEnter:
             case useCombobox.stateChangeTypes.ItemClick:{
-                const token = itemToString(changes.selectedItem)
+                if (!selectedItem) return
+
+                //config item
+                if (selectedItem.config){
+                    dispatch(setConfig(selectedItem.config, !selectedItem.checked))
+                    return
+                }
+
+                //usual token
+                const token = itemToString(selectedItem)
                 if (token)
                     applyFilter(token)
 
-                return {
-                    ...changes,
-                    isOpen: incompleteToken,
-                    highlightedIndex: incompleteToken ? 0 : state.highlightedIndex,
-                    inputValue: '',
-                }
+                break
             }
-    
-            default:
-                return changes
         }
-    }, [applyFilter])
+    })
 
     return useCombobox({
         items,
@@ -42,6 +72,7 @@ export default function useDownshift({ filter, applyFilter, options, suggestions
         inputValue: filter,
         circularNavigation: false,
         selectedItem: null,
-        stateReducer
+        stateReducer,
+        onStateChange
     })
 }

@@ -1,11 +1,8 @@
 import { useMemo, useCallback } from 'react'
-import { useDispatch } from 'react-redux'
-import { set as setConfig } from '~data/actions/config'
+
 import _ from 'lodash'
 
 export default function useFilter(value, setValue) {
-    const dispatch = useDispatch()
-
     const lastPart = useCallback((str)=>{
         const parts = (str||'').split(/\s+/)
         return (_.last(parts)||'').trim()

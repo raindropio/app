@@ -5,7 +5,7 @@ import { Section } from '~co/common/list'
 import Lazy from '~co/virtual/lazy'
 import Item from './item'
 
-export default function SearchMenuSuggestions({ downshift: { getItemProps, highlightedIndex }, options, suggestions }) {
+export default function SearchMenuSuggestions({ downshift: { getItemProps, highlightedIndex }, configs, suggestions }) {
     const keyExtractor = useCallback(({query})=>query, [])
 
     if (!suggestions.length) return null
@@ -16,16 +16,16 @@ export default function SearchMenuSuggestions({ downshift: { getItemProps, highl
 
             <Lazy
                 data={suggestions}
-                scrollToItem={highlightedIndex >= 0 ? suggestions[options.length + highlightedIndex] : undefined}
+                scrollToItem={highlightedIndex >= 0 ? suggestions[configs.length + highlightedIndex] : undefined}
                 keyExtractor={keyExtractor}>
                 {(item, index)=>(
                     <Item 
                         item={item}
                         {...getItemProps({
                             key: keyExtractor(item),
-                            index: options.length + index,
+                            index: configs.length + index,
                             item,
-                            active: highlightedIndex === (options.length + index)
+                            active: highlightedIndex === (configs.length + index)
                         })} />
                 )}
             </Lazy>

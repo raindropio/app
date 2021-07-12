@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react'
 
 import Popover from '~co/overlay/popover'
-import Options from './options'
+import Configs from './configs'
 import Suggestions from './suggestions'
 
 export default function SearchMenu(props) {
@@ -19,16 +19,16 @@ export default function SearchMenu(props) {
     }, [])
 
     //prevent blur of input on click
-    const onMouseDown = useCallback(e=>e.preventDefault(), [])
+    const preventDefault = useCallback(e=>e.preventDefault(), [])
 
     return (
         <Popover 
             pin={fieldRef}
             stretch={true}
             hidden={!isOpen || !menuItemsCount}>
-            <div {...getMenuProps({ onKeyDown, onMouseDown })}>
+            <div {...getMenuProps({ onKeyDown, onMouseDown: preventDefault, onClick:preventDefault })}>
                 {isOpen && (<>
-                    <Options {...props} />
+                    <Configs {...props} />
                     <Suggestions {...props} />
                 </>)}
             </div>

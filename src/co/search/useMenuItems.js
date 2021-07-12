@@ -1,13 +1,13 @@
 import { useMemo, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { makeOptions, makeSuggestions } from '~data/selectors/search'
+import { makeConfigs, makeSuggestions } from '~data/selectors/search'
 import { autoLoad } from '~data/actions/filters'
 
-export default function useMenuItems({ spaceId, filter, value }) {
+export default function useMenuItems({ spaceId, parentSpaceId, filter, value }) {
     const dispatch = useDispatch()
 
-    const getOptions = useMemo(makeOptions, [])
-    const options = useSelector(state=>getOptions(state, spaceId, filter, value))
+    const getConfigs = useMemo(makeConfigs, [])
+    const configs = useSelector(state=>getConfigs(state, parentSpaceId, filter, value))
 
     const getSuggestions = useMemo(makeSuggestions, [])
     const suggestions = useSelector(state=>getSuggestions(state, spaceId, filter, value))
@@ -18,5 +18,5 @@ export default function useMenuItems({ spaceId, filter, value }) {
         return ()=>dispatch(autoLoad(spaceId, false))
     }, [spaceId])
 
-    return { options, suggestions }
+    return { configs, suggestions }
 }

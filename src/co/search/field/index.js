@@ -31,11 +31,13 @@ function SearchField({ downshift: { getInputProps, isOpen, openMenu, toggleMenu 
             {/* toggle button */}
             {!!menuItemsCount && (
                 <Button 
+                    title={t.s('defaultCollection-0')+' '+t.s('settings').toLowerCase()}
                     variant={isOpen ? 'active' : 'default'}
                     size='small'
                     onMouseDown={onToggleMouseDown}
                     onMouseUp={toggleMenu}>
-                    <Icon name={isOpen ? 'colapse' : 'expand'} size='micro' />
+                    <Icon name='tune' size='micro' />
+                    <Icon name='arrow' size='micro' />
                 </Button>
             )}
         </Field>
