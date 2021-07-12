@@ -12,7 +12,7 @@ export default function SearchMenuSuggestions({ downshift: { getItemProps, highl
 
     return (
         <>
-            {!!configs.length && (<Section>{t.s('suggested')} {t.s('fastFilter')}</Section>)}
+            {suggestions.length && suggestions[0]._id != 'current' && (<Section>{t.s('narrowSearch')}</Section>)}
 
             <Lazy
                 data={suggestions}

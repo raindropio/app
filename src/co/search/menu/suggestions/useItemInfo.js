@@ -13,7 +13,7 @@ export default function useItemInfo({ _id, query, count, top, ...other }) {
 
     let icon = token
     let title = _id
-    let info = top ? query : count
+    let info = count || (top?'→':'')
 
     //special
     switch(token) {
@@ -23,10 +23,10 @@ export default function useItemInfo({ _id, query, count, top, ...other }) {
             icon = 'calendar'
             if (top) 
                 switch(token){
-                    case 'created': title = t.s('byDate'); break
+                    case 'created': title = t.s('createdDate'); break
                     case 'before': title = t.s('before'); break
                     case 'after': title = t.s('after'); break
-                }    
+                }
             else
                 title = monthDate(_id)
         break

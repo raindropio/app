@@ -3,6 +3,7 @@ import React, { useCallback } from 'react'
 import Popover from '~co/overlay/popover'
 import Configs from './configs'
 import Suggestions from './suggestions'
+import Help from './help'
 
 export default function SearchMenu(props) {
     const { downshift: { getMenuProps, isOpen }, fieldRef, menuItemsCount=0 } = props
@@ -19,7 +20,10 @@ export default function SearchMenu(props) {
     }, [])
 
     //prevent blur of input on click
-    const preventDefault = useCallback(e=>e.preventDefault(), [])
+    const preventDefault = useCallback(e=>{
+        if (!e.target.href)
+            e.preventDefault()
+    }, [])
 
     return (
         <Popover 
@@ -30,6 +34,7 @@ export default function SearchMenu(props) {
                 {isOpen && (<>
                     <Configs {...props} />
                     <Suggestions {...props} />
+                    <Help {...props} />
                 </>)}
             </div>
         </Popover>

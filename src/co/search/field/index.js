@@ -31,7 +31,7 @@ function SearchField({ downshift: { getInputProps, isOpen, openMenu, toggleMenu 
             {/* toggle button */}
             {!!menuItemsCount && (
                 <Button 
-                    title={t.s('defaultCollection-0')+' '+t.s('settings').toLowerCase()}
+                    title={t.s('defaultCollection-0')+' '+t.s('settings').toLowerCase() + ' / ' + t.s('fastFilter').toLowerCase()}
                     variant={isOpen ? 'active' : 'default'}
                     size='small'
                     onMouseDown={onToggleMouseDown}

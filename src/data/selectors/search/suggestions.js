@@ -12,6 +12,8 @@ export const makeSuggestions = ()=>createSelector(
         (state, spaceId, filter)=>filter,
     ],
     (filters, tags, collections, filter)=>{
+        if (filter=='-') return []
+
         let suggestions = [...collections, ...tags, ...filters]
 
         //keep only top level tokens

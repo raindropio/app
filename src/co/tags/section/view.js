@@ -23,7 +23,7 @@ export default function TagsSectionView({className='', _id, count, hidden, ...pr
         <Section 
             {...props}
             className={s.section+' '+className}>
-            <SectionTitle>{count} {getTitles()[_id] || t.s('tags').toLowerCase()}</SectionTitle>
+            <SectionTitle>{getTitles()[_id] || t.s('tags')} ({count})</SectionTitle>
             
             {props.onContextMenu && (
                 <SectionActions>

@@ -348,5 +348,10 @@
   "regexAz09_-": "May contain letters (a-z), numbers (0-9), underscores (_), and dashes (-)",
   "publicPage": "Public page",
   "invite": "Invite",
-  "searchMatchAnyCondition": "Match any condition"
+  "searchMatchAnyCondition": "Match any condition",
+  "before": "Before",
+  "after": "After",
+  "putDashToExclude": "Put - (dash) in front of a condition you want exclude from search",
+  "narrowSearch": "Narrow your search",
+  "createdDate": "Date of creation"
 }

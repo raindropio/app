@@ -32,7 +32,8 @@ export default {
         embed: 'https://help.raindrop.io/embed',
         publicPage: 'https://help.raindrop.io/public-page',
         collaboration: 'https://help.raindrop.io/collaboration',
-        'add-bookmark': 'https://help.raindrop.io/bookmarks#add-new-bookmark'
+        'add-bookmark': 'https://help.raindrop.io/bookmarks#add-new-bookmark',
+        search: 'https://help.raindrop.io/using-search',
     },
 
     pro: {
