@@ -48,8 +48,11 @@ export default class SearchForm extends React.Component {
         //submit immediately
         if (!value || value.endsWith(' '))
             return this.submit()
-        //suggestions
+        //ignore when suggestions showed
         else if (suggestions.length)
+            return
+        //ignore when token is incomplete
+        else if (value.includes(':'))
             return
 
         this.submitBounced()

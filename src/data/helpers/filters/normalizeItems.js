@@ -29,6 +29,10 @@ export const normalizeItems = ({ tags, broken, duplicate, important, notag, type
             ])
     }
 
+    items.push({ _id: 'title', query:'title:', top: true })
+    items.push({ _id: 'excerpt', query:'excerpt:', top: true })
+    items.push({ _id: 'url', query:'link:', top: true })
+
     if (lang && lang.length){
         items.push({ _id: 'lang', query: 'lang:', top: true })
 

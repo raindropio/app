@@ -22,7 +22,7 @@ function SearchField({ downshift: { getInputProps, isOpen, openMenu, toggleMenu 
                 className: s.field,
                 autoFocus,
                 value,
-                clearOnEscape: isOpen || value,
+                clearOnEscape: !isOpen && value,
                 placeholder: t.s('defaultCollection-0'),
 
                 onChange,

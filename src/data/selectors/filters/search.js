@@ -10,8 +10,19 @@ export const makeFiltersSearch = ()=>createSelector(
     (filters, _filter)=>{
         const filter = String(_filter||'').trimStart().toLowerCase()
 
-        return filter ? filters.filter(({ query }) => 
-            query.toLowerCase().includes(filter) && !query.endsWith(':')
-        ) : filters
+        if (filter){
+            let limit = filters.filter(({ query }) => 
+                query.toLowerCase().includes(filter)
+            )
+
+            //keep incomplete token when it only one
+            if (limit.length == 1)
+                return limit
+
+            //hide incomplete tokens
+            return limit.filter(({ query })=>!query.endsWith(':'))
+        }
+
+        return filters
 	}
 )

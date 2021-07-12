@@ -13,7 +13,7 @@ export default function useItemInfo({ _id, query='', count, top, ...other }) {
 
     let icon = token
     let title = _id
-    let info = count || (top?'→':'')
+    let info = top ? query : count
 
     //special
     switch(token) {
@@ -78,6 +78,20 @@ export default function useItemInfo({ _id, query='', count, top, ...other }) {
             title = other.title
             info = other.path
             icon = <CollectionIcon _id={_id} cover={other.cover} />
+        break
+
+        case 'title':
+            title = _.capitalize(t.s('in')) + ' ' + t.s('title').toLowerCase()
+            icon = 'list'
+        break
+
+        case 'excerpt':
+            title = _.capitalize(t.s('in')) + ' ' + t.s('description').toLowerCase()
+            icon = 'edit'
+        break
+
+        case 'link':
+            title = _.capitalize(t.s('in')) + ' URL'
         break
 
         default:
