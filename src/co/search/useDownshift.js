@@ -5,43 +5,45 @@ import { set as setConfig } from '~data/actions/config'
 
 const itemToString = item => item && item.query
 
-const stateReducer = (state, { type, changes }) => {
-    const incompleteToken = (changes.inputValue||'').endsWith('#') || (changes.inputValue||'').endsWith(':')
-
-    switch (type) {
-        case useCombobox.stateChangeTypes.InputChange:
-            return {
-                ...changes,
-                highlightedIndex: incompleteToken ? 0 : null
-            }
-
-        //select item
-        case useCombobox.stateChangeTypes.InputKeyDownEnter:
-        case useCombobox.stateChangeTypes.ItemClick:
-            //config click, prevent autoclose
-            if (changes.selectedItem &&
-                changes.selectedItem.config)
-                return {
-                    ...state,
-                    selectedItem: changes.selectedItem
-                }
-
-            return {
-                ...changes,
-                isOpen: incompleteToken,
-                highlightedIndex: incompleteToken ? 0 : state.highlightedIndex,
-                inputValue: '',
-            }
-
-        default:
-            return changes
-    }
-}
-
 export default function useDownshift({ filter, applyFilter, configs, suggestions }) {
     const dispatch = useDispatch()
 
     const items = useMemo(()=>[...configs, ...suggestions], [configs, suggestions])
+    const haveItems = (items.length ? true : false)
+
+    const stateReducer = useCallback((state, { type, changes }) => {
+        const incompleteToken = (changes.inputValue||'').endsWith('#') || (changes.inputValue||'').endsWith(':')
+    
+        switch (type) {
+            case useCombobox.stateChangeTypes.InputChange:
+                return {
+                    ...changes,
+                    isOpen: changes.inputValue && haveItems,
+                    highlightedIndex: 0
+                }
+    
+            //select item
+            case useCombobox.stateChangeTypes.InputKeyDownEnter:
+            case useCombobox.stateChangeTypes.ItemClick:
+                //config click, prevent autoclose
+                if (changes.selectedItem &&
+                    changes.selectedItem.config)
+                    return {
+                        ...state,
+                        selectedItem: changes.selectedItem
+                    }
+    
+                return {
+                    ...changes,
+                    isOpen: changes.inputValue && incompleteToken,
+                    highlightedIndex: incompleteToken ? 0 : state.highlightedIndex,
+                    inputValue: '',
+                }
+    
+            default:
+                return changes
+        }
+    }, [haveItems])
 
     const onStateChange = useCallback(({type, selectedItem})=>{
         switch(type) {
@@ -70,7 +72,6 @@ export default function useDownshift({ filter, applyFilter, configs, suggestions
         items,
         itemToString,
         inputValue: filter,
-        circularNavigation: false,
         selectedItem: null,
         stateReducer,
         onStateChange

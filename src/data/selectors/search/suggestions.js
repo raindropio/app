@@ -19,6 +19,13 @@ export const makeSuggestions = ()=>createSelector(
         if (!filter)
             return suggestions.filter(({top})=>top)
 
+        if (filter && !filter.includes('#') && !filter.includes(':') &&
+            suggestions.length)
+            return [
+                { _id: 'current', query: filter+' ' },
+                ...suggestions
+            ]
+
         return suggestions
 	}
 )

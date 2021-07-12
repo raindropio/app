@@ -61,7 +61,7 @@ export default function useItemInfo({ _id, query, count, top, ...other }) {
             if (top)
                 title = t.s('language')
             else
-                title = codeToLanguage(_id)
+                title = _.capitalize(codeToLanguage(_id))+' '+t.s('language').toLowerCase()
         break
 
         case 'broken':
@@ -78,6 +78,11 @@ export default function useItemInfo({ _id, query, count, top, ...other }) {
             title = other.title
             info = other.path
             icon = <CollectionIcon _id={_id} cover={other.cover} />
+        break
+
+        default:
+            title = query
+            icon = 'search'
         break
     }
 

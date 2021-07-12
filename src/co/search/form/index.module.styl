@@ -1,5 +1,5 @@
 .form {
     width: 100%
     min-width: 0
-    max-width: calc(9rem + var(--value-ch)) //360
+    max-width: unquote('max(9rem, calc(var(--value-ch) + 2rem))') //360
 }

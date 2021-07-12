@@ -8,13 +8,16 @@ import { Checkbox } from '~co/common/form'
 function CollectionLabel({ parentSpaceId }) {
     const getCollection = useMemo(makeCollection, [])
     const { title } = useSelector(state=>getCollection(state, parentSpaceId))
-    return t.s('defaultCollection-0')+' '+t.s('only').toLowerCase()+' '+t.s('in')+' '+title
+    return t.s('only')+' '+t.s('in')+' '+title
 }
 
 function Label({ item: {_id}, ...etc }) {
     switch (_id) {
         case 'fulltext':
             return t.s('fullTextSearch')
+        
+        case 'matchor':
+            return t.s('searchMatchAnyCondition')
 
         case 'incollection':
             return <CollectionLabel {...etc} />

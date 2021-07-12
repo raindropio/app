@@ -2,7 +2,6 @@
   "noInternetError": "Vous n'avez peut-être pas de connexion internet.",
   "server": "Erreur inconnue. Réessayez !",
   "server0": "Entrez l'ancien mot de passe !",
-  "server1": "L'adresse email n'est pas valide !",
   "server2": "Entrez votre nom !",
   "server3": "L'ancien mot de passe n'est pas valide !",
   "server4": "Le mot de passe n'est pas valide !",

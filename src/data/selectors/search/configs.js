@@ -24,11 +24,11 @@ export const makeConfigs = ()=>createSelector(
                 }
             ] : []),
 
-            ...(tokens > 1 ? [
+            ...(tokens > 1 && !fullquery.includes('match:OR') ? [
                 {
-                    _id: 'operator',
-                    query: 'operator:or ',
-                    checked: fullquery.includes('operator:or')
+                    _id: 'matchor',
+                    query: 'match:OR ',
+                    checked: fullquery.includes('match:OR')
                 }
             ] : [])
         ]

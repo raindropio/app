@@ -5,6 +5,7 @@ import _ from 'lodash-es'
 
 export default class SearchForm extends React.Component {
     static propTypes = {
+        spaceId: PropTypes.any,
         value: PropTypes.string,
         parentValue: PropTypes.string,
         downshift: PropTypes.shape({
@@ -29,7 +30,7 @@ export default class SearchForm extends React.Component {
     componentDidUpdate(prevProps) {
         const { value, parentValue, suggestions } = this.props
 
-        if ((prevProps.value||'').trim() == (value||'').trim() || 
+        if (prevProps.value == value || 
             (parentValue.trim()||'') == (value||'').trim()) return
 
         this.submitBounced.cancel()
