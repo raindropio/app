@@ -34,6 +34,11 @@ export default class SearchForm extends React.Component {
         })
     }
 
+    blur = (e)=>{
+        if (this.props.value)
+            return this.submit(e)
+    }
+
     submitBounced = _.debounce(this.submit, 350, { maxWait: 1000 })
 
     componentDidUpdate(prevProps) {
@@ -67,7 +72,7 @@ export default class SearchForm extends React.Component {
                     className: s.form,
                     style: { '--value-ch': value.length+'ch' },
                     onSubmit: this.submit,
-                    onBlur: this.submitBounced
+                    onBlur: this.blur
                 })}>
                 {children}
             </form>

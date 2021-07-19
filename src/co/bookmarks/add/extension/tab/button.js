@@ -55,7 +55,7 @@ class BookmarksAddSave extends React.Component {
     }
 
     render() {
-        const { status } = this.props
+        const { status, search } = this.props
 
         switch(status) {
             case 'saving':
@@ -72,7 +72,7 @@ class BookmarksAddSave extends React.Component {
                         title={t.s('save')}
                         onClick={this.onEditClick}>
                         <Icon name='check_active' />
-                        {t.s('saved')}
+                        {!search && t.s('saved')}
                     </Button>
                 )
 
@@ -84,7 +84,7 @@ class BookmarksAddSave extends React.Component {
                         title={t.s('save')}
                         onMouseDown={this.onAddClick}>
                         <Icon name='new_bookmark' />
-                        {t.s('save')}
+                        {!search && t.s('save')}
                     </Button>
                 )
         }

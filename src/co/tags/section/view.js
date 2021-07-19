@@ -12,7 +12,7 @@ function getTitles() {
     if (!_titles)
         _titles = {
             recent: t.s('recent'),
-            collection: t.s('collection'),
+            collection: _.capitalize(t.s('in')) + ' ' + t.s('collection').toLowerCase(),
             other: _.capitalize(t.s('other'))
         }
     return _titles
@@ -23,7 +23,7 @@ export default function TagsSectionView({className='', _id, count, hidden, ...pr
         <Section 
             {...props}
             className={s.section+' '+className}>
-            <SectionTitle>{getTitles()[_id] || t.s('tags')} ({count})</SectionTitle>
+            <SectionTitle>{getTitles()[_id] || t.s('tags')} {count ? `(${count})` : ''}</SectionTitle>
             
             {props.onContextMenu && (
                 <SectionActions>

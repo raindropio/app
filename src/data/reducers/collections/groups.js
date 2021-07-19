@@ -4,7 +4,7 @@ import {
 	GROUP_CREATE, GROUP_TOGGLE, GROUP_REORDER, GROUP_REMOVE, GROUP_RENAME,
 	GROUPS_SAVE_SUCCESS, GROUPS_SAVE_ERROR,
 	GROUP_APPEND_COLLECTION, GROUP_REMOVE_COLLECTION,
-	COLLECTIONS_EXPAND_TO
+	COLLECTIONS_EXPAND_TO, COLLECTIONS_SELECT_ALL
 } from '../../constants/collections'
 
 import {
@@ -160,6 +160,16 @@ export default function(state, action) {
 
 		case GROUP_REMOVE_COLLECTION:{
 			return removeCollectionFromGroups(state, action.collectionId)
+		}
+
+		case COLLECTIONS_SELECT_ALL:{
+			const { groupId } = action
+			const index = _.findIndex(state.groups, ({_id})=>_id == groupId)
+
+			if (state.groups[index])
+				return state.setIn(['groups', index, 'hidden'], false)
+
+			return state
 		}
 
 		//Apply changes after collections change

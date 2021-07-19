@@ -40,7 +40,8 @@ function ClipperHeader({ status, item }) {
 
             <Button
                 as='a'
-                href={`#${collectionPath}`}>
+                href={`#${collectionPath}`}
+                title={t.s('defaultCollection-0')}>
                 <Icon name='search' />
             </Button>
 

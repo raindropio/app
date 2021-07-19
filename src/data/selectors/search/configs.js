@@ -13,7 +13,7 @@ export const makeConfigs = ()=>createSelector(
     (spaceId, filter, fullquery='', { raindrops_search_incollection })=>{
         if (filter) return emptyArray
 
-        const tokens = (fullquery.match(/\s/g) || []).length
+        const tokens = (fullquery.match(/\s/g) || []).filter(t=>t).length
 
         return [
             ...(parseInt(spaceId) ? [

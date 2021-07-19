@@ -36,7 +36,7 @@ export default function BookmarksAddFallbackLink({ spaceId, autoFocus, onEdit })
                 autoFocus={autoFocus}
                 onClick={()=>setShow(true)}>
                 <Icon name='new_bookmark' />
-                {t.s('add')}
+                <span className='hide-on-small-body'>{t.s('add')}</span>
             </Button>
 
             {show && (

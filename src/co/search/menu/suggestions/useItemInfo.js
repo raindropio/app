@@ -60,7 +60,7 @@ export default function useItemInfo({ _id, query='', count, top, ...other }) {
 
         case 'broken':
             icon = token
-            title = t.s(token)
+            title = t.s(token)+' '+t.s('links').toLowerCase()
         break
 
         case 'duplicate':
@@ -86,6 +86,7 @@ export default function useItemInfo({ _id, query='', count, top, ...other }) {
         default:
             title = query
             icon = 'search'
+            info = '⏎'
         break
     }
 

@@ -14,7 +14,7 @@ export default class HeaderAdd extends React.Component {
         )
     
     render() {
-        const { _id, access } = this.props
+        const { _id, access, search } = this.props
 
         if (_id == -99 || !access || access.level < 3)
             return null
@@ -23,6 +23,7 @@ export default class HeaderAdd extends React.Component {
             <Add 
                 autoFocus={true}
                 spaceId={_id}
+                search={search}
                 onEdit={this.onEdit} />
         )
     }
