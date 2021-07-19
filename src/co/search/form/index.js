@@ -66,7 +66,8 @@ export default class SearchForm extends React.Component {
                 {...getComboboxProps({
                     className: s.form,
                     style: { '--value-ch': value.length+'ch' },
-                    onSubmit: this.submit
+                    onSubmit: this.submit,
+                    onBlur: this.submitBounced
                 })}>
                 {children}
             </form>

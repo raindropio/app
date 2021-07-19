@@ -9,35 +9,26 @@ export const normalizeItems = ({ tags, broken, duplicate, important, notag, type
 
     if (types && types.length){
         items.push({ _id: 'type', query: 'type:', top: true })
-
-        for(const type of types)
-            items.push({ ...type, query: `type:${type._id} ` })
+        items.push(
+            ...types.map(type=>({ ...type, query: `type:${type._id} ` }))
+        )
     }
 
     if (created && created.length){
-        items.push(...[
-            { _id: 'created', query: 'created:', top: true },
-            { _id: 'before', query: 'before:', top: true },
-            { _id: 'after', query: 'after:', top: true }
-        ])
-
-        for(const date of created)
-            items.push(...[
-                { ...date, query: `created:${date._id} ` },
-                { ...date, query: `before:${date._id} ` },
-                { ...date, query: `after:${date._id} ` }
-            ])
+        items.push({ _id: 'created', query: 'created:', top: true })
+        items.push(
+            ...created.map(date=>({ ...date, query: `created:${date._id} ` }))
+        )
     }
 
-    items.push({ _id: 'title', query:'title:', top: true })
-    items.push({ _id: 'excerpt', query:'excerpt:', top: true })
+    items.push({ _id: 'info', query:'info:', top: true })
     items.push({ _id: 'url', query:'link:', top: true })
 
     if (lang && lang.length){
         items.push({ _id: 'lang', query: 'lang:', top: true })
-
-        for(const l of lang)
-            items.push({ ...l, query: `lang:${l._id} ` })
+        items.push(
+            ...lang.map(l=>({ ...l, query: `lang:${l._id} ` }))
+        )
     }
 
     if (broken && broken.count)

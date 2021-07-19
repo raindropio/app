@@ -18,15 +18,9 @@ export default function useItemInfo({ _id, query='', count, top, ...other }) {
     //special
     switch(token) {
         case 'created':
-        case 'before':
-        case 'after':
             icon = 'calendar'
             if (top) 
-                switch(token){
-                    case 'created': title = t.s('createdDate'); break
-                    case 'before': title = t.s('before'); break
-                    case 'after': title = t.s('after'); break
-                }
+                title = t.s('createdDate')
             else
                 title = monthDate(_id)
         break
@@ -80,13 +74,8 @@ export default function useItemInfo({ _id, query='', count, top, ...other }) {
             icon = <CollectionIcon _id={_id} cover={other.cover} />
         break
 
-        case 'title':
-            title = _.capitalize(t.s('in')) + ' ' + t.s('title').toLowerCase()
-            icon = 'list'
-        break
-
-        case 'excerpt':
-            title = _.capitalize(t.s('in')) + ' ' + t.s('description').toLowerCase()
+        case 'info':
+            title = `${_.capitalize(t.s('in'))} ${t.s('title').toLowerCase()}/${t.s('description').toLowerCase()}`
             icon = 'edit'
         break
 

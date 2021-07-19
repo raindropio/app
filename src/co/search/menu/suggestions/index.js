@@ -1,9 +1,7 @@
 import React, { useCallback } from 'react'
-import t from '~t'
-
-import { Section } from '~co/common/list'
 import Lazy from '~co/virtual/lazy'
 import Item from './item'
+import Tip from './tip'
 
 export default function SearchMenuSuggestions({ downshift: { getItemProps, highlightedIndex }, configs, suggestions }) {
     const keyExtractor = useCallback(({query})=>query, [])
@@ -12,7 +10,7 @@ export default function SearchMenuSuggestions({ downshift: { getItemProps, highl
 
     return (
         <>
-            {suggestions.length && suggestions[0]._id != 'current' && (<Section>{t.s('narrowSearch')}</Section>)}
+            <Tip suggestions={suggestions} />
 
             <Lazy
                 data={suggestions}

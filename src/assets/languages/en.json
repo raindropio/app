@@ -353,5 +353,6 @@
   "after": "After",
   "putDashToExclude": "Put - (dash) in front of a condition you want exclude from search",
   "narrowSearch": "Narrow your search",
-  "createdDate": "Date of creation"
+  "createdDate": "Date of creation",
+  "dateSearchD": "Search for specific date in format YYYY-MM-DD or specific month (YYYY-MM) or a year (YYYY). Put < or > in front of a date to find before or after specific date respectively."
 }

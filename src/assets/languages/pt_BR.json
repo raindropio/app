@@ -347,5 +347,11 @@
   "avatar": "Avatar",
   "regexAz09_-": "O login deve conter apenas letras (a-z), números (0-9), sublinhados (_) e hífens (-)",
   "publicPage": "Página pública",
-  "invite": "Convidar"
+  "invite": "Convidar",
+  "searchMatchAnyCondition": "Atender a qualquer das condições",
+  "before": "Antes de",
+  "after": "Após",
+  "putDashToExclude": "Ponha um - (traço) em frente a cada condição que você queira excluir da pesquisa",
+  "narrowSearch": "Restrinja sua busca",
+  "createdDate": "Data de criação"
 }
