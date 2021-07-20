@@ -2,13 +2,14 @@ import { call, put, debounce, takeEvery, select, all } from 'redux-saga/effects'
 import Api from '../modules/api'
 import { getUrl } from '../helpers/bookmarks'
 
-import { FILTERS_LOAD_PRE, FILTERS_LOAD_REQ, FILTERS_LOAD_SUCCESS, FILTERS_LOAD_ERROR } from '../constants/filters'
+import { FILTERS_AUTOLOAD, FILTERS_LOAD_PRE, FILTERS_LOAD_REQ, FILTERS_LOAD_SUCCESS, FILTERS_LOAD_ERROR } from '../constants/filters'
 import { TAGS_LOAD_SUCCESS, TAGS_LOAD_ERROR } from '../constants/tags'
 import { BOOKMARK_CREATE_SUCCESS, BOOKMARK_UPDATE_SUCCESS, BOOKMARK_REMOVE_SUCCESS, SPACE_LOAD_PRE, SPACE_REFRESH_REQ } from '../constants/bookmarks'
 import { COLLECTION_REMOVE_SUCCESS } from '../constants/collections'
 
 //Requests
 export default function* () {
+	yield takeEvery(FILTERS_AUTOLOAD, autoLoad)
 	yield takeEvery(FILTERS_LOAD_PRE, preLoad)
 	yield takeEvery(FILTERS_LOAD_REQ, load)
 	yield takeEvery([SPACE_LOAD_PRE, SPACE_REFRESH_REQ], onSpaceReload)
@@ -19,6 +20,17 @@ export default function* () {
 		[BOOKMARK_CREATE_SUCCESS, BOOKMARK_UPDATE_SUCCESS, BOOKMARK_REMOVE_SUCCESS, COLLECTION_REMOVE_SUCCESS],
 		onDataChange
 	)
+}
+
+//When autoload is enabled try to load filters
+function* autoLoad({ spaceId, enabled }) {
+	if (!enabled) return
+	
+	const { bookmarks: { spaces } } = yield select()
+	const space = spaces[spaceId]
+	if (!space) return
+
+	yield preLoad({ spaceId, query: space.query })
 }
 
 //Reload space that marked as *autoLoad*
