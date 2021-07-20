@@ -17,14 +17,6 @@ export default function useItemInfo({ _id, query='', count, top, ...other }) {
 
     //special
     switch(token) {
-        case 'local':
-            if (query.includes('collection')) {
-                icon = <CollectionIcon _id={_id} cover={other.cover} />
-                title = `${t.s('only')} ${t.s('in')} "${other.title}"`
-                info = '⏎'
-            }
-        break
-
         case 'created':
             icon = 'calendar'
             if (top) 

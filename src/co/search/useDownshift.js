@@ -20,14 +20,6 @@ export default function useDownshift({ filter, applyFilter, suggestions }) {
             //select item
             case useCombobox.stateChangeTypes.InputKeyDownEnter:
             case useCombobox.stateChangeTypes.ItemClick:
-                //local option click, prevent autoclose
-                if (changes.selectedItem &&
-                    changes.selectedItem.query.startsWith('local:'))
-                    return {
-                        ...state,
-                        selectedItem: changes.selectedItem
-                    }
-
                 return {
                     ...changes,
                     isOpen: changes.inputValue && incompleteToken,

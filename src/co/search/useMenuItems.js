@@ -3,18 +3,13 @@ import { useDispatch, useSelector } from 'react-redux'
 import { makeSuggestions } from '~data/selectors/search'
 import { autoLoad } from '~data/actions/filters'
 
-const isLocalCollectionToken = /local:collection\s?/
-
-export default function useMenuItems({ spaceId: parentSpaceId, filter, value }) {
+export default function useMenuItems({ spaceId: parentId, filter, value, all }) {
     const dispatch = useDispatch()
 
-    const spaceId = useMemo(()=>
-        isLocalCollectionToken.test(value) ? parentSpaceId : 'global'
-        , [parentSpaceId, value]
-    )
+    const spaceId = useMemo(()=>all?0:parentId, [parentId, all])
 
     const getSuggestions = useMemo(makeSuggestions, [])
-    const suggestions = useSelector(state=>getSuggestions(state, spaceId, filter, value, parentSpaceId))
+    const suggestions = useSelector(state=>getSuggestions(state, spaceId, filter, value))
 
     //refresh suggestions
     useEffect(()=>{

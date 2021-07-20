@@ -14,13 +14,17 @@ function Search({ autoFocus, spaceId, value: parentValue, events: { onSubmit } }
 
     //value
     const [ value, setValue ] = useState(parentValue)
-    useEffect(()=>setValue(parentValue), [parentValue])
+    useEffect(()=>setValue(parentValue), [parentValue, spaceId])
+
+    //search all
+    const [ all, setAll ] = useState(true)
+    useEffect(()=>{ if (!parseInt(spaceId)) setAll(true) }, [spaceId])
 
     //filter
     const [ filter, applyFilter ] = useFilterValue(value, setValue)
 
     //menu items
-    const suggestions= useMenuItems({ spaceId, value, filter })
+    const suggestions= useMenuItems({ spaceId, value, filter, all })
 
     //downshift
     const downshift = useDownshift({ filter, applyFilter, suggestions })
@@ -33,20 +37,23 @@ function Search({ autoFocus, spaceId, value: parentValue, events: { onSubmit } }
                 value={value}
                 parentValue={parentValue}
                 suggestions={suggestions}
+                all={all}
                 onSubmit={onSubmit}>
                 <Field
                     ref={fieldRef}
                     downshift={downshift}
                     autoFocus={autoFocus}
                     value={value}
-                    setValue={setValue}
-                    suggestions={suggestions} />
+                    setValue={setValue} />
             </Form>
 
             <Menu
                 downshift={downshift}
                 fieldRef={fieldRef}
-                suggestions={suggestions} />
+                suggestions={suggestions}
+                spaceId={spaceId}
+                all={all}
+                setAll={setAll} />
         </>
     )
 }

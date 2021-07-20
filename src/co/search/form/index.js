@@ -3,7 +3,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import _ from 'lodash-es'
 
-const isLocalCollectionToken = /local:collection\s?/
 const isCollectionToken = /collection:(-?\d+)/
 
 export default class SearchForm extends React.Component {
@@ -11,6 +10,7 @@ export default class SearchForm extends React.Component {
         spaceId: PropTypes.any,
         value: PropTypes.string,
         parentValue: PropTypes.string,
+        all: PropTypes.bool,
         downshift: PropTypes.shape({
             getComboboxProps: PropTypes.func
         }),
@@ -20,7 +20,7 @@ export default class SearchForm extends React.Component {
     submit = e=>{
         e && e.preventDefault && e.preventDefault()
 
-        let { value, spaceId, onSubmit } = this.props
+        let { value, spaceId, all, onSubmit } = this.props
 
         //collection
         if (isCollectionToken.test(value))
@@ -29,16 +29,8 @@ export default class SearchForm extends React.Component {
                 search: ''
             })
 
-        let isLocalSearch = isLocalCollectionToken.test(value)
-
-        //prevent submit when only 'local:collection' is present
-        if (isLocalSearch &&
-            !value.replace(isLocalCollectionToken, ''))
-            return
-
         onSubmit({
-            //depending on `local:collection` token present change spaceId
-            _id: isLocalSearch || !value ? spaceId : 0,
+            _id: all ? 0 : spaceId,
             search: value
         })
     }

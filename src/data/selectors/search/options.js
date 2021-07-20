@@ -2,30 +2,6 @@ import { createSelector } from 'reselect'
 
 const emptyArray = []
 
-const getInCollection = createSelector(
-    [
-        (state, spaceId)=>spaceId,
-        (state, spaceId, filter, fullquery)=>fullquery,
-        (state, spaceId, filter, fullquery, originalSpaceId)=>originalSpaceId,
-        ({collections={}})=>collections.items,
-    ],
-    (spaceId, fullquery, originalSpaceId, collections)=>{
-        const _id = parseInt(originalSpaceId||spaceId)
-        if (!_id) return emptyArray
-        if (fullquery.includes('local:collection')) return emptyArray
-
-        const collection = collections[parseInt(originalSpaceId||spaceId)]
-        if (!collection) return emptyArray
-
-        return [{
-            ...collection,
-            _id: 'localcollection',
-            query: 'local:collection ',
-            top: true
-        }]
-    }
-)
-
 const getMatchOr = createSelector(
     [
         (state, spaceId)=>spaceId,
@@ -48,17 +24,16 @@ const getMatchOr = createSelector(
 	}
 )
 
-//(state, spaceId, filter, fullquery*, originalSpaceId*) -> []
+//(state, spaceId, filter, fullquery*) -> []
 export const makeOptions = ()=>createSelector(
     [
         (state, spaceId, filter)=>filter,
-        getInCollection,
         getMatchOr
     ],
-    (filter, inCollection, matchOr)=>{
+    (filter, matchOr)=>{
         if (filter) return emptyArray
         
-        const options = [...inCollection, ...matchOr]
+        const options = [...matchOr]
         if (!options.length) return emptyArray
 
         return options
