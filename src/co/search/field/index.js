@@ -6,7 +6,7 @@ import { Search as Field } from '~co/common/form'
 import Button from '~co/common/button'
 import Icon from '~co/common/icon'
 
-function SearchField({ downshift: { getInputProps, isOpen, openMenu, toggleMenu }, autoFocus, value, setValue, menuItemsCount, forwardedRef }) {
+function SearchField({ downshift: { getInputProps, isOpen, openMenu, toggleMenu }, autoFocus, value, setValue, suggestions, forwardedRef }) {
     const onChange = useCallback(e=> setValue(e.target.value) , [setValue])
     
     const onFocus = useCallback(e=>{
@@ -29,7 +29,7 @@ function SearchField({ downshift: { getInputProps, isOpen, openMenu, toggleMenu 
                 onFocus
             })}>
             {/* toggle button */}
-            {!!menuItemsCount && (
+            {!!suggestions.length && (
                 <Button 
                     title={t.s('defaultCollection-0')+' '+t.s('settings').toLowerCase() + ' / ' + t.s('fastFilter').toLowerCase()}
                     variant={isOpen ? 'active' : 'default'}

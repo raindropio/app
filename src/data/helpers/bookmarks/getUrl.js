@@ -13,7 +13,10 @@ export const getUrl = (__id, query)=>{
 					return key+'='+encodeURIComponent(val);
 
 				case 'search':
-					return key+'='+encodeURIComponent(val);
+					return key+'='+encodeURIComponent(
+						(val||'')
+							.replace(/local:([^\s]+)\s?/, '') //remove all `local:` tokens, they used only client machine
+					);
 			}
 	}))
 	entities.push('perpage='+SPACE_PER_PAGE)

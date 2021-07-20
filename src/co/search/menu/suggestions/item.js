@@ -33,7 +33,7 @@ function SuggestionItem({ item, className='', forwardedRef, ...etc}) {
                 </ItemInfo>
             </Item>
 
-            {item._id == 'current' && <Separator />}
+            {(item._id == 'current' || token == 'local') && <Separator />}
         </>
     )
 }

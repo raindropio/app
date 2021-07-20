@@ -1,16 +1,20 @@
 import { useMemo, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { makeConfigs, makeSuggestions } from '~data/selectors/search'
+import { makeSuggestions } from '~data/selectors/search'
 import { autoLoad } from '~data/actions/filters'
 
-export default function useMenuItems({ spaceId, parentSpaceId, filter, value }) {
+const isLocalCollectionToken = /local:collection\s?/
+
+export default function useMenuItems({ spaceId: parentSpaceId, filter, value }) {
     const dispatch = useDispatch()
 
-    const getConfigs = useMemo(makeConfigs, [])
-    const configs = useSelector(state=>getConfigs(state, parentSpaceId, filter, value))
+    const spaceId = useMemo(()=>
+        isLocalCollectionToken.test(value) ? parentSpaceId : 'global'
+        , [parentSpaceId, value]
+    )
 
     const getSuggestions = useMemo(makeSuggestions, [])
-    const suggestions = useSelector(state=>getSuggestions(state, spaceId, filter, value))
+    const suggestions = useSelector(state=>getSuggestions(state, spaceId, filter, value, parentSpaceId))
 
     //refresh suggestions
     useEffect(()=>{
@@ -18,5 +22,5 @@ export default function useMenuItems({ spaceId, parentSpaceId, filter, value }) 
         return ()=>dispatch(autoLoad(spaceId, false))
     }, [spaceId])
 
-    return { configs, suggestions }
+    return suggestions
 }

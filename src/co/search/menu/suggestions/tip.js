@@ -7,7 +7,7 @@ export default function SearchMenuSuggestionsTip({ suggestions }) {
     if (!suggestions.length)
         return null
 
-    if (suggestions[0].query.startsWith('created'))
+    if (suggestions[0].query?.startsWith('created'))
         return (<Section className={s.tip}>{t.s('dateSearchD')}</Section>)
 
     if (suggestions[0]._id != 'current')

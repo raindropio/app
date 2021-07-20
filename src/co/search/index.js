@@ -1,7 +1,6 @@
-import React, { useRef, useState, useEffect, useMemo } from 'react'
+import React, { useRef, useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 
-import useSpaceId from './useSpaceId'
 import useFilterValue from './useFilterValue'
 import useMenuItems from './useMenuItems'
 import useDownshift from './useDownshift'
@@ -10,28 +9,21 @@ import Form from './form'
 import Field from './field'
 import Menu from './menu'
 
-function Search({ autoFocus, spaceId: parentSpaceId, value: parentValue, events: { onSubmit } }) {
+function Search({ autoFocus, spaceId, value: parentValue, events: { onSubmit } }) {
     const fieldRef = useRef(null)
-
-    //spaceId
-    const spaceId = useSpaceId(parentSpaceId)
 
     //value
     const [ value, setValue ] = useState(parentValue)
-    useEffect(()=>setValue(parentValue), [parentValue, parentSpaceId])
+    useEffect(()=>setValue(parentValue), [parentValue])
 
     //filter
     const [ filter, applyFilter ] = useFilterValue(value, setValue)
 
     //menu items
-    const { configs, suggestions } = useMenuItems({ spaceId, parentSpaceId, value, filter })
-    const menuItemsCount = useMemo(()=>
-        configs.length + suggestions.length,
-        [configs.length, suggestions.length]
-    )
+    const suggestions= useMenuItems({ spaceId, value, filter })
 
     //downshift
-    const downshift = useDownshift({ filter, applyFilter, configs, suggestions })
+    const downshift = useDownshift({ filter, applyFilter, suggestions })
 
     return (
         <>
@@ -48,15 +40,12 @@ function Search({ autoFocus, spaceId: parentSpaceId, value: parentValue, events:
                     autoFocus={autoFocus}
                     value={value}
                     setValue={setValue}
-                    menuItemsCount={menuItemsCount} />
+                    suggestions={suggestions} />
             </Form>
 
             <Menu
-                parentSpaceId={parentSpaceId}
                 downshift={downshift}
                 fieldRef={fieldRef}
-                menuItemsCount={menuItemsCount}
-                configs={configs}
                 suggestions={suggestions} />
         </>
     )

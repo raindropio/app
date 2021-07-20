@@ -1,15 +1,10 @@
-import { useMemo, useCallback } from 'react'
+import { useCallback } from 'react'
 import { useCombobox } from 'downshift'
-import { useDispatch } from 'react-redux'
-import { set as setConfig } from '~data/actions/config'
 
 const itemToString = item => item && item.query
 
-export default function useDownshift({ filter, applyFilter, configs, suggestions }) {
-    const dispatch = useDispatch()
-
-    const items = useMemo(()=>[...configs, ...suggestions], [configs, suggestions])
-    const haveItems = (items.length ? true : false)
+export default function useDownshift({ filter, applyFilter, suggestions }) {
+    const haveItems = (suggestions.length ? true : false)
 
     const stateReducer = useCallback((state, { type, changes }) => {
         const incompleteToken = (changes.inputValue||'').endsWith('#') || (changes.inputValue||'').endsWith(':')
@@ -25,14 +20,14 @@ export default function useDownshift({ filter, applyFilter, configs, suggestions
             //select item
             case useCombobox.stateChangeTypes.InputKeyDownEnter:
             case useCombobox.stateChangeTypes.ItemClick:
-                //config click, prevent autoclose
+                //local option click, prevent autoclose
                 if (changes.selectedItem &&
-                    changes.selectedItem.config)
+                    changes.selectedItem.query.startsWith('local:'))
                     return {
                         ...state,
                         selectedItem: changes.selectedItem
                     }
-    
+
                 return {
                     ...changes,
                     isOpen: changes.inputValue && incompleteToken,
@@ -52,12 +47,6 @@ export default function useDownshift({ filter, applyFilter, configs, suggestions
             case useCombobox.stateChangeTypes.ItemClick:{
                 if (!selectedItem) return
 
-                //config item
-                if (selectedItem.config){
-                    dispatch(setConfig(selectedItem.config, !selectedItem.checked))
-                    return
-                }
-
                 //usual token
                 const token = itemToString(selectedItem)
                 if (token)
@@ -69,7 +58,7 @@ export default function useDownshift({ filter, applyFilter, configs, suggestions
     })
 
     return useCombobox({
-        items,
+        items: suggestions,
         itemToString,
         inputValue: filter,
         selectedItem: null,

@@ -5,7 +5,7 @@ import { monthDate } from '~modules/format/date'
 import { codeToLanguage } from '~modules/format/string'
 import CollectionIcon from '~co/collections/item/icon'
 
-const r = /^-?([\w.]+):|(#)/
+const r = /^-?([\w.]+):|(#|i\s$)/
 
 export default function useItemInfo({ _id, query='', count, top, ...other }) {
     const [_q, key, tag] = query.match(r)||[]
@@ -17,6 +17,14 @@ export default function useItemInfo({ _id, query='', count, top, ...other }) {
 
     //special
     switch(token) {
+        case 'local':
+            if (query.includes('collection')) {
+                icon = <CollectionIcon _id={_id} cover={other.cover} />
+                title = `${t.s('only')} ${t.s('in')} "${other.title}"`
+                info = '⏎'
+            }
+        break
+
         case 'created':
             icon = 'calendar'
             if (top) 

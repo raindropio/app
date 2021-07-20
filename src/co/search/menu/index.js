@@ -1,12 +1,11 @@
 import React, { useCallback } from 'react'
 
 import Popover from '~co/overlay/popover'
-import Configs from './configs'
 import Suggestions from './suggestions'
 import Help from './help'
 
 export default function SearchMenu(props) {
-    const { downshift: { getMenuProps, isOpen }, fieldRef, menuItemsCount=0 } = props
+    const { downshift: { getMenuProps, isOpen }, fieldRef, suggestions } = props
 
     //prevent the default handler behavior of downshift for some keypresses
     const onKeyDown = useCallback(e=>{
@@ -29,10 +28,9 @@ export default function SearchMenu(props) {
         <Popover 
             pin={fieldRef}
             stretch={true}
-            hidden={!isOpen || !menuItemsCount}>
+            hidden={!isOpen || !suggestions.length}>
             <div {...getMenuProps({ onKeyDown, onMouseDown: preventDefault, onClick:preventDefault })}>
                 {isOpen && (<>
-                    <Configs {...props} />
                     <Suggestions {...props} />
                     <Help {...props} />
                 </>)}
