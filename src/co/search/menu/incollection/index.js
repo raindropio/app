@@ -1,6 +1,6 @@
-import React, { useMemo, useCallback } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { makeCollection } from '~data/selectors/collections'
+import React, { useCallback } from 'react'
+import _ from 'lodash-es'
+import { useDispatch } from 'react-redux'
 import { set } from '~data/actions/config'
 import t from '~t'
 
@@ -8,9 +8,6 @@ import { Layout, Checkbox } from '~co/common/form'
 
 export default function SearchMenuInCollection({ spaceId, originalSpaceId, value }) {
     const dispatch = useDispatch()
-
-    const getCollection = useMemo(()=>makeCollection(), [])
-    const collection = useSelector(state=>getCollection(state, originalSpaceId))
 
     const onChange = useCallback(e=>{
         e.preventDefault()
@@ -26,7 +23,7 @@ export default function SearchMenuInCollection({ spaceId, originalSpaceId, value
                 key={spaceId == originalSpaceId}
                 checked={spaceId == originalSpaceId}
                 onChange={onChange}>
-                {t.s('only')} {t.s('in')} "{collection.title}"
+                {_.capitalize(t.s('in'))} {t.s('currentCollection').toLowerCase()}
             </Checkbox>
         </Layout>
     )

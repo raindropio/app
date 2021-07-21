@@ -1,4 +1,4 @@
-import { call, put, debounce, takeEvery, select, all } from 'redux-saga/effects'
+import { call, put, debounce, takeEvery, select, all, delay } from 'redux-saga/effects'
 import Api from '../modules/api'
 import { getUrl } from '../helpers/bookmarks'
 
@@ -9,10 +9,10 @@ import { COLLECTION_REMOVE_SUCCESS } from '../constants/collections'
 
 //Requests
 export default function* () {
-	yield takeEvery(FILTERS_AUTOLOAD, autoLoad)
 	yield takeEvery(FILTERS_LOAD_PRE, preLoad)
 	yield takeEvery(FILTERS_LOAD_REQ, load)
 	yield takeEvery([SPACE_LOAD_PRE, SPACE_REFRESH_REQ], onSpaceReload)
+	yield takeEvery(FILTERS_AUTOLOAD, autoLoad)
 
 	//update filters on bookmarks/collections change
 	yield debounce(
@@ -26,6 +26,8 @@ export default function* () {
 function* autoLoad({ spaceId, enabled }) {
 	if (!enabled) return
 	
+	yield delay(1)
+
 	const { bookmarks: { spaces } } = yield select()
 	const space = spaces[spaceId]
 	if (!space) return

@@ -86,6 +86,11 @@ export default function useItemInfo({ _id, query='', count, top, ...other }) {
             title = _.capitalize(t.s('in')) + ' URL'
         break
 
+        case 'match':
+            title = t.s('searchMatchAnyCondition')
+            icon = 'duplicate'
+        break
+
         default:
             title= `${t.s('defaultCollection-0')} "${query.trim()}"`
             info = '⏎'

@@ -1,5 +1,6 @@
 import s from './index.module.styl'
 import React, { useMemo, useCallback } from 'react'
+import _ from 'lodash-es'
 import t from '~t'
 import { useHistory } from 'react-router-dom'
 import { useSelector } from 'react-redux'
@@ -22,7 +23,7 @@ export default function MyMainSearchIn({ search, _id, query: { fromId }, getLink
     //tabs
     const tabs = useMemo(()=>[
         {key: 0, title: `${t.s('defaultCollection-0')} ${t.s('everywhere').toLowerCase()}`},
-        {key: collection._id, title: `${t.s('only')} ${t.s('in')} "${collection.title}"`}
+        {key: collection._id, title: `${_.capitalize(t.s('in'))} "${collection.title}"`}
     ], [collection])
 
     const onChange = useCallback(_id=>{

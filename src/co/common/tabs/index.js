@@ -34,7 +34,7 @@ export default class Tabs extends React.PureComponent {
 				variant={active ? 'active' : 'outline'} 
 				title={title}>
 				{icon ? <Icon name={active ? icon+'_active' : icon} /> : null}
-				<span className={!!this.props.selectOnSmallScreen && 'hide-on-small-body'}>{title}</span>
+				<span className={this.props.selectOnSmallScreen ? 'hide-on-small-body' : ''}>{title}</span>
 			</Button>
 		)
 	}
@@ -54,7 +54,7 @@ export default class Tabs extends React.PureComponent {
 
 		return (
 			<>
-				<div className={s.tabs+' '+className+(!!selectOnSmallScreen && ' hide-on-small-body')}>
+				<div className={s.tabs+' '+className+(selectOnSmallScreen ? ' hide-on-small-body' : '')}>
 					{items.map(this.renderItem)}
 				</div>
 
