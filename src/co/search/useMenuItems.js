@@ -3,10 +3,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { makeSuggestions } from '~data/selectors/search'
 import { autoLoad } from '~data/actions/filters'
 
-export default function useMenuItems({ spaceId: parentId, filter, value, all }) {
+export default function useMenuItems({ spaceId, filter, value }) {
     const dispatch = useDispatch()
-
-    const spaceId = useMemo(()=>all?0:parentId, [parentId, all])
 
     const getSuggestions = useMemo(makeSuggestions, [])
     const suggestions = useSelector(state=>getSuggestions(state, spaceId, filter, value))

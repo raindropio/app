@@ -4,27 +4,27 @@ import PropTypes from 'prop-types'
 import useFilterValue from './useFilterValue'
 import useMenuItems from './useMenuItems'
 import useDownshift from './useDownshift'
+import useSpaceId from './useSpaceId'
 
 import Form from './form'
 import Field from './field'
 import Menu from './menu'
 
-function Search({ autoFocus, spaceId, value: parentValue, events: { onSubmit } }) {
+function Search({ autoFocus, spaceId: originalSpaceId, value: originalValue, events: { onSubmit } }) {
     const fieldRef = useRef(null)
 
-    //value
-    const [ value, setValue ] = useState(parentValue)
-    useEffect(()=>setValue(parentValue), [parentValue, spaceId])
+    //space id
+    const spaceId = useSpaceId({ originalSpaceId, originalValue })
 
-    //search all
-    const [ all, setAll ] = useState(true)
-    useEffect(()=>{ if (!parseInt(spaceId)) setAll(true) }, [spaceId])
+    //value
+    const [ value, setValue ] = useState(originalValue)
+    useEffect(()=>setValue(originalValue), [originalValue, originalSpaceId])
 
     //filter
     const [ filter, applyFilter ] = useFilterValue(value, setValue)
 
     //menu items
-    const suggestions= useMenuItems({ spaceId, value, filter, all })
+    const suggestions = useMenuItems({ spaceId, value, filter })
 
     //downshift
     const downshift = useDownshift({ filter, applyFilter, suggestions })
@@ -34,10 +34,10 @@ function Search({ autoFocus, spaceId, value: parentValue, events: { onSubmit } }
             <Form
                 downshift={downshift}
                 spaceId={spaceId}
+                originalSpaceId={originalSpaceId}
                 value={value}
-                parentValue={parentValue}
+                originalValue={originalValue}
                 suggestions={suggestions}
-                all={all}
                 onSubmit={onSubmit}>
                 <Field
                     ref={fieldRef}
@@ -51,9 +51,9 @@ function Search({ autoFocus, spaceId, value: parentValue, events: { onSubmit } }
                 downshift={downshift}
                 fieldRef={fieldRef}
                 suggestions={suggestions}
+                value={value}
                 spaceId={spaceId}
-                all={all}
-                setAll={setAll} />
+                originalSpaceId={originalSpaceId} />
         </>
     )
 }

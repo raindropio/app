@@ -14,7 +14,11 @@ class MyMainHeader extends React.Component {
             if (this.props.search != search ||
                 this.props._id != _id)
                 this.props.history.push(
-                    this.props.getLink({ search, _id })
+                    this.props.getLink({
+                        search,
+                        _id,
+                        fromId: parseInt(this.props._id) ? parseInt(this.props._id) : this.props.query.fromId
+                    })
                 )
         }
     }

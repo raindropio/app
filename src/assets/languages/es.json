@@ -353,5 +353,6 @@
   "after": "Después de",
   "putDashToExclude": "Pon un guion (-) delante de la condición que quieras excluir de la búsqueda",
   "narrowSearch": "Afina tu búsqueda",
-  "createdDate": "Fecha de creación"
+  "createdDate": "Fecha de creación",
+  "dateSearchD": "Busca por una fecha específica con el formato AAAA-MM-DD, por un mes concreto (AAAA-MM) o por año (AAAA). Escribe < o > delante de una fecha para buscar antes o después de la misma."
 }

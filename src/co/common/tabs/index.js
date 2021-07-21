@@ -30,7 +30,7 @@ export default class Tabs extends React.PureComponent {
 				data-key={key}
 				onClick={this.onItemClick} 
 				className={s.item}
-				variant={active && 'active'} 
+				variant={active ? 'active' : 'outline'} 
 				title={title}>
 				{icon ? <Icon name={active ? icon+'_active' : icon} /> : null}
 				<span className='hide-on-small-body'>{title}</span>

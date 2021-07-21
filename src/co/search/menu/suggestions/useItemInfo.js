@@ -84,8 +84,7 @@ export default function useItemInfo({ _id, query='', count, top, ...other }) {
         break
 
         default:
-            title = query
-            icon = 'search'
+            title= `${t.s('defaultCollection-0')} "${query.trim()}"`
             info = '⏎'
         break
     }

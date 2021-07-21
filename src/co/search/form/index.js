@@ -9,8 +9,7 @@ export default class SearchForm extends React.Component {
     static propTypes = {
         spaceId: PropTypes.any,
         value: PropTypes.string,
-        parentValue: PropTypes.string,
-        all: PropTypes.bool,
+        originalValue: PropTypes.string,
         downshift: PropTypes.shape({
             getComboboxProps: PropTypes.func
         }),
@@ -20,7 +19,7 @@ export default class SearchForm extends React.Component {
     submit = e=>{
         e && e.preventDefault && e.preventDefault()
 
-        let { value, spaceId, all, onSubmit } = this.props
+        let { value, spaceId, onSubmit } = this.props
 
         //collection
         if (isCollectionToken.test(value))
@@ -29,8 +28,10 @@ export default class SearchForm extends React.Component {
                 search: ''
             })
 
+        if (value == '#') return
+
         onSubmit({
-            _id: all ? 0 : spaceId,
+            _id: spaceId,
             search: value
         })
     }
@@ -43,10 +44,10 @@ export default class SearchForm extends React.Component {
     submitBounced = _.debounce(this.submit, 350, { maxWait: 1000 })
 
     componentDidUpdate(prevProps) {
-        const { value, parentValue, suggestions } = this.props
+        const { value, originalValue, suggestions } = this.props
 
         if (prevProps.value == value || 
-            (parentValue.trim()||'') == (value||'').trim())
+            (originalValue.trim()||'') == (value||'').trim())
             return
 
         this.submitBounced.cancel()

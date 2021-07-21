@@ -13,7 +13,7 @@ function SearchField({ downshift: { getInputProps, isOpen, openMenu, toggleMenu 
         if (!autoFocus && !e.target.value) openMenu()
     }, [openMenu])
 
-    const onToggleMouseDown = useCallback(e=>e.preventDefault(), [])
+    const preventDefault = useCallback(e=>e.preventDefault(), [])
 
     return (
         <Field
@@ -33,7 +33,7 @@ function SearchField({ downshift: { getInputProps, isOpen, openMenu, toggleMenu 
                 title={t.s('defaultCollection-0')+' '+t.s('settings').toLowerCase() + ' / ' + t.s('fastFilter').toLowerCase()}
                 variant={isOpen ? 'active' : 'default'}
                 size='small'
-                onMouseDown={onToggleMouseDown}
+                onMouseDown={preventDefault}
                 onMouseUp={toggleMenu}>
                 <Icon name='tune' size='micro' />
                 <Icon name='arrow' size='micro' />
