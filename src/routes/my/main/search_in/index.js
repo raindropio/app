@@ -41,6 +41,7 @@ export default function MyMainSearchIn({ search, _id, query: { fromId }, getLink
     return (
         <div className={s.tabs}>
             <Tabs
+                selectOnSmallScreen={false}
                 items={tabs}
                 active={parseInt(_id)}
                 onChange={onChange} />

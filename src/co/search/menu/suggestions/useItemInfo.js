@@ -5,7 +5,7 @@ import { monthDate } from '~modules/format/date'
 import { codeToLanguage } from '~modules/format/string'
 import CollectionIcon from '~co/collections/item/icon'
 
-const r = /^-?([\w.]+):|(#|i\s$)/
+const r = /^-?([\w.]+):|(#|❤️)/
 
 export default function useItemInfo({ _id, query='', count, top, ...other }) {
     const [_q, key, tag] = query.match(r)||[]
@@ -46,8 +46,11 @@ export default function useItemInfo({ _id, query='', count, top, ...other }) {
             }
         break
 
+        case '❤️':
         case 'important':
             title = t.s('favorites')
+            icon = 'important'
+            info = count
         break
 
         case 'lang':

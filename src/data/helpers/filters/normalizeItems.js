@@ -2,7 +2,7 @@ export const normalizeItems = ({ tags, broken, duplicate, important, notag, type
     let items = []
 
     if (important && important.count)
-        items.push({ _id: 'important', count: important.count, query: 'important:true ', top: true })
+        items.push({ _id: 'important', count: important.count, query: '❤️ ', top: true })
 
     if (tags && tags.length)
         items.push({ _id: 'tags', count: tags.length, query: '#', top: true })

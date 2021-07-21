@@ -8,7 +8,8 @@ import Icon from '~co/common/icon'
 export default class Tabs extends React.PureComponent {
 	static defaultProps = {
 		items: [],		//{ hidden:false, key:'', title:'', icon:'' }
-		active: null
+		active: null,
+		selectOnSmallScreen: true
 	}
 
 	onItemClick = e => {
@@ -33,7 +34,7 @@ export default class Tabs extends React.PureComponent {
 				variant={active ? 'active' : 'outline'} 
 				title={title}>
 				{icon ? <Icon name={active ? icon+'_active' : icon} /> : null}
-				<span className='hide-on-small-body'>{title}</span>
+				<span className={!!this.props.selectOnSmallScreen && 'hide-on-small-body'}>{title}</span>
 			</Button>
 		)
 	}
@@ -49,21 +50,23 @@ export default class Tabs extends React.PureComponent {
 	}
 
 	render() {
-		const { items=[], className='', active } = this.props
+		const { items=[], className='', active, selectOnSmallScreen } = this.props
 
 		return (
 			<>
-				<div className={s.tabs+' '+className+' hide-on-small-body'}>
+				<div className={s.tabs+' '+className+(!!selectOnSmallScreen && ' hide-on-small-body')}>
 					{items.map(this.renderItem)}
 				</div>
 
-				<Select
-					variant='outline'
-					className={className+' show-on-small-body'}
-					value={active}
-					onChange={this.onSelectChange}>
-					{items.map(this.renderOption)}
-				</Select>
+				{!!selectOnSmallScreen && (
+					<Select
+						variant='outline'
+						className={className+' show-on-small-body'}
+						value={active}
+						onChange={this.onSelectChange}>
+						{items.map(this.renderOption)}
+					</Select>
+				)}
 			</>
 		)
 	}
