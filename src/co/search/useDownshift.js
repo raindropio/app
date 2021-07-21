@@ -26,6 +26,12 @@ export default function useDownshift({ filter, applyFilter, suggestions }) {
                     highlightedIndex: incompleteToken ? 0 : state.highlightedIndex,
                     inputValue: '',
                 }
+
+            case useCombobox.stateChangeTypes.ControlledPropUpdatedSelectedItem:
+                return {
+                    ...changes,
+                    isOpen: !haveItems ? false : changes.isOpen
+                }
     
             default:
                 return changes

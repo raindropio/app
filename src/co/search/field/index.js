@@ -13,6 +13,15 @@ function SearchField({ downshift: { getInputProps, isOpen, openMenu, toggleMenu 
         if (!autoFocus && !e.target.value) openMenu()
     }, [openMenu])
 
+    const onToggleButton = useCallback(e=>{
+        e.preventDefault()
+
+        if (value && !value.endsWith(' '))
+            setValue(value=>value+' ')
+            
+        toggleMenu()
+    })
+
     const preventDefault = useCallback(e=>e.preventDefault(), [])
 
     return (
@@ -34,7 +43,7 @@ function SearchField({ downshift: { getInputProps, isOpen, openMenu, toggleMenu 
                 variant={isOpen ? 'active' : 'default'}
                 size='small'
                 onMouseDown={preventDefault}
-                onMouseUp={toggleMenu}>
+                onMouseUp={onToggleButton}>
                 <Icon name='tune' size='micro' />
                 <Icon name='arrow' size='micro' />
             </Button>
