@@ -3,14 +3,16 @@ import Lazy from '~co/virtual/lazy'
 import Item from './item'
 import Tip from './tip'
 
-export default function SearchMenuSuggestions({ downshift: { getItemProps, highlightedIndex }, suggestions }) {
+export default function SearchMenuSuggestions({ downshift: { getItemProps, highlightedIndex }, value, suggestions }) {
     const keyExtractor = useCallback(({query})=>query, [])
 
     if (!suggestions.length) return null
 
     return (
         <>
-            <Tip suggestions={suggestions} />
+            <Tip 
+                value={value}
+                suggestions={suggestions} />
 
             <Lazy
                 data={suggestions}

@@ -41,7 +41,6 @@ function SearchField({ downshift: { getInputProps, isOpen, openMenu, toggleMenu 
             <Button 
                 title={t.s('defaultCollection-0')+' '+t.s('settings').toLowerCase() + ' / ' + t.s('fastFilter').toLowerCase()}
                 variant={isOpen ? 'active' : 'default'}
-                size='small'
                 onMouseDown={preventDefault}
                 onMouseUp={onToggleButton}>
                 <Icon name='tune' size='micro' />

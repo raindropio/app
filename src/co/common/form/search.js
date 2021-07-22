@@ -2,7 +2,7 @@ import s from './search.module.styl'
 import React from 'react'
 
 import { Text } from '~co/common/form'
-import Button from '~co/common/button'
+import Button, { ButtonsGroup } from '~co/common/button'
 import Icon from '~co/common/icon'
 import Preloader from '~co/common/preloader'
 
@@ -90,7 +90,7 @@ class FormSearch extends React.PureComponent {
     }
 
     render() {
-        const { loading, forwardedRef, clearOnEscape, children, ...original } = this.props
+        const { loading, forwardedRef, clearOnEscape, children, className='', ...original } = this.props
 
         return (
             <div 
@@ -104,21 +104,22 @@ class FormSearch extends React.PureComponent {
                     autoComplete='hidden'
                     autoCorrect='off'
                     inputMode='search'
-                    className={s.input+' '+(original.value?s.filled:'')}
+                    className={s.input+' '+className}
                     tabIndex='0'
                     {...original}
                     icon={loading ? <Preloader /> : <Icon name='search' />}
                     onFocus={this.onInputFocus}
                     onBlur={this.onInputBlur}
                     onKeyDown={this.onInputKeyDown}>
-                    {children}
-                    {this.props.value && (
-                        <Button 
-                            size='small'
-                            onClick={this.onCancelClick}>
-                            <Icon name='close' size='micro' />
-                        </Button>
-                    )}
+                    <ButtonsGroup>
+                        {children}
+                        {this.props.value && (
+                            <Button 
+                                onClick={this.onCancelClick}>
+                                <Icon name='close' size='micro' />
+                            </Button>
+                        )}
+                    </ButtonsGroup>
                 </Text>
             </div>
         )

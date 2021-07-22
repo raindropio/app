@@ -49,7 +49,7 @@ export default function useItemInfo({ _id, query='', count, top, ...other }) {
         case '❤️':
         case 'important':
             title = t.s('favorites')
-            icon = 'important'
+            icon = 'like'
             info = count
         break
 
@@ -67,7 +67,7 @@ export default function useItemInfo({ _id, query='', count, top, ...other }) {
         break
 
         case 'duplicate':
-            icon = token
+            icon = 'duplicates'
             title = t.s(token+'s')
         break
 
@@ -79,7 +79,7 @@ export default function useItemInfo({ _id, query='', count, top, ...other }) {
 
         case 'info':
             title = `${_.capitalize(t.s('in'))} ${t.s('title').toLowerCase()}/${t.s('description').toLowerCase()}`
-            icon = 'edit'
+            icon = 'new_note'
         break
 
         case 'link':
@@ -88,7 +88,7 @@ export default function useItemInfo({ _id, query='', count, top, ...other }) {
 
         case 'match':
             title = t.s('searchMatchAnyCondition')
-            icon = 'duplicate'
+            icon = 'duplicates'
         break
 
         default:

@@ -19,8 +19,7 @@ function SuggestionItem({ item, className='', forwardedRef, ...etc}) {
                 {typeof icon == 'string' && (
                     <ItemIcon className={s.icon}>
                         <Icon 
-                            name={icon}
-                            size='micro' />
+                            name={icon} />
                     </ItemIcon>
                 )}
 
