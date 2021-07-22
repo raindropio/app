@@ -2,6 +2,7 @@ import browser from 'webextension-polyfill'
 import { normalizeURL } from '~modules/format/url'
 import Api from '~data/modules/api'
 import debounce from '~modules/format/callback/debounce'
+import { permissions } from '~target'
 
 const options = {
     divider: '</-rl-/>',
@@ -23,9 +24,7 @@ export async function reload() {
 
     //do not load when no 'tabs' permission
     try{
-        const havePermission = await browser.permissions.contains({
-            permissions: ['tabs']
-        })
+        const havePermission = await permissions.contains('tabs')
         if (!havePermission)
             return
     }catch(e){}

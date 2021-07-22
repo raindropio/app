@@ -85,7 +85,8 @@ module.exports = ({ vendor, production=false }, l) => {
 		],
 
 		optional_permissions: [
-			'tabs'
+			'tabs',
+			...(vendor=='safari' ? ['<all_urls>'] : []) //tabs permission is not enought for safari, otherwise it will ask all the time a permission for each site
 		],
 
 		omnibox: {

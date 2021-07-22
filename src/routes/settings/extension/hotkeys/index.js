@@ -23,6 +23,9 @@ class SettingsExtensionHotkeys extends React.Component {
     )
 
     render() {
+        if (!this.state.all.length)
+            return null
+
         return (
             <>
                 <Title>

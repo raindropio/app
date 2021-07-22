@@ -1,15 +1,12 @@
 import React, { useCallback } from 'react'
 import t from '~t'
 import Button from '~co/common/button'
-import browser from '~target/extension/browser'
+import { permissions } from '~target'
 import { Alert } from '~co/overlay/dialog'
 
 export default function BookmarksAddPermission({ reload }) {
     const onRequestClick = useCallback(()=>{
-        browser.permissions
-            .request({
-                permissions: ['tabs']
-            })
+        permissions.request('tabs')
             .then(reload)
             .catch(()=>{
                 Alert('Can`t set required permissions', {

@@ -2,6 +2,7 @@ import React from 'react'
 import t from '~t'
 import browser from '~target/extension/browser'
 import config from '~config'
+import { permissions } from '~target'
 
 import { Title, Checkbox, SubLabel } from '~co/common/form'
 import Icon from '~co/common/icon'
@@ -27,23 +28,19 @@ export default class SettingsExtensionFeatures extends React.Component {
         if (!browser || 'permissions' in browser === false)
             return
             
-        const permissions = [...this.state.permissions]
+        const p = [...this.state.permissions]
 
-        for(const index in permissions)
-            permissions[index].enabled = await browser.permissions.contains({
-                permissions: [permissions[index].id]
-            })
+        for(const index in p)
+            p[index].enabled = await permissions.contains(p[index].id)
 
-        this.setState({ permissions })
+        this.setState({ permissions: p })
     }
 
     onChangePermission = (e)=>{
         const index = parseInt(e.target.getAttribute('data-index'))
         const { id, enabled } = this.state.permissions[index]
 
-        browser.permissions[enabled?'remove':'request']({
-            permissions: [id]
-        })
+        permissions[enabled?'remove':'request'](id)
             .then(()=>this.reload())
             .catch(Error)
     }
