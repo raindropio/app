@@ -1,44 +1,64 @@
 import browser from './browser'
 import { environment } from './environment'
 
-function getDetails(permission) {
-    return {
-        permissions: [permission],
-
-        //in case of 'tabs' safari needs <all_urls> permission to fully enable it
-        //otherwise permission requests will still be asked
-        ...(permission == 'tabs' && environment.includes('safari') ? {
-            origins: ['<all_urls>']
-        } : {})
-    }
-}
-
 const permissions = {
-    async contains(permission) {
-        let detail = getDetails(permission)
+    async contains(permission, strict=false) {
+        return browser.permissions.contains({
+            permissions: [permission],
 
-        //in check instead of <all_urls> you need to check exact urls!
-        if (detail.origins && detail.origins.length)
-            detail.origins = detail.origins.map(origin=>origin == '<all_urls>' ? 'http://a.com/' : origin)
+            //in case of 'tabs' safari needs <all_urls> permission to fully enable it
+            //otherwise permission requests will still be asked
+            //but instead of <all_urls> be sure to check fully qualified url!
 
-        return browser.permissions.contains(detail)
+            //also be sure that this request return TRUE only if user gives a full access to all websites, and reload the app/background page, etc...
+            ...(strict && permission == 'tabs' && environment.includes('safari') ? {
+                origins: ['http://a.com/']
+            } : {})
+        })
     },
 
     async request(permission) {
-        return browser.permissions.request(getDetails(permission))
+        //in case of 'tabs' safari needs <all_urls> permission to fully enable it
+        //otherwise permission requests will still be asked
+        if (permission == 'tabs' && environment.includes('safari')) {
+            await browser.permissions.request({
+                permissions: [permission],
+                origins: ['<all_urls>']
+            })
+
+            //force to show permission request dialog in safari
+            await browser.tabs.query({currentWindow: true})
+
+            //at this point we can't say exactly gived a user an <all_urls> access :(
+            return true
+        }
+
+        return browser.permissions.request({
+            permissions: [permission]
+        })
     },
 
     async remove(permission) {
-        return browser.permissions.remove(getDetails(permission))
+        return browser.permissions.remove({
+            permissions: [permission],
+
+            //in case of 'tabs' safari needs <all_urls> permission to fully enable it
+            //otherwise permission requests will still be asked
+            ...(permission == 'tabs' && environment.includes('safari') ? {
+                origins: ['<all_urls>']
+            } : {})
+        })
     }
 }
 
-//fix for Safari, to prevent permissions requests all the time (if user originally disallowed access)
-permissions.contains('tabs')
-    .then(have=>{
-        if (!have)
-            return permissions.remove('tabs')
-    })
-    .catch(()=>{})
+//clean up if user doesn't give a full access tabs
+//otherwise user will be asked for permission each time he click on browser_action button
+if (environment.includes('safari'))
+    permissions.contains('tabs', true)
+        .then(have=>{
+            if (!have)
+                return permissions.remove('tabs')
+        })
+        .catch(console.log)
 
 export { permissions }

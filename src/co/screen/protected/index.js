@@ -35,7 +35,7 @@ class ScreenProtected extends React.Component {
 
 			default:
 				return (
-					<Screen>
+					<Screen safariExtensionBackdrop>
 						<div className={s.loading}>
 							<Preloader enlarge='1.5' />
 						</div>
