@@ -54,8 +54,10 @@
     border-radius: var(--border-radius)
 
     &[data-multiline], &[data-auto-size] {
-        padding-top: var(--padding-mini)
-        padding-bottom: var(--padding-mini)
+        .text {
+            padding-top: var(--padding-mini)
+            padding-bottom: var(--padding-mini)
+        }
     }
 
     &:focus-within {

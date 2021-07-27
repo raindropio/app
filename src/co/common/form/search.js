@@ -100,6 +100,7 @@ class FormSearch extends React.PureComponent {
                     ref={this.bindRef}
                     role='searchbox'
                     type='text'
+                    autoSize
                     spellCheck='false'
                     autoComplete='hidden'
                     autoCorrect='off'
