@@ -6,7 +6,9 @@ import { normalizeRecentSearch } from '../../helpers/bookmarks'
 export default function(state, action={}){switch (action.type) {
 	case REHYDRATE:{
         const { recent={} } = action.payload && action.payload.bookmarks||{}
-		return state.set('recent', recent)
+        const { search=[] } = recent
+
+		return state.set('recent', { search })
     }
 
     case RECENT_SEARCH_LOAD_SUCCESS:
@@ -16,6 +18,6 @@ export default function(state, action={}){switch (action.type) {
         if (_.isEqual(state.recent.search, search))
             return state
 
-        return state.setIn(['recent', 'search'], search)
+        return state.setIn(['recent', 'search'], search||[])
     }
 }}
