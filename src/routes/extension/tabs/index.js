@@ -4,7 +4,7 @@ import Screen from '~co/screen/basic'
 import { Layout, Separator } from '~co/common/form'
 import { longDate } from '~modules/format/date'
 
-import useTabs from './useTabs'
+import useTabs, { preload } from './useTabs'
 import useSubmit from './useSubmit'
 import Header from './header'
 import List from './list'
@@ -12,6 +12,8 @@ import Collection from './collection'
 import Tags from './tags'
 import Close from './close'
 import Action from './action'
+
+export { preload }
 
 export default function ExtensionTabsScreen({ match: { params } }) {
     const [tabs, setTabs] = useTabs()

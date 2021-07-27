@@ -3,23 +3,21 @@ import browser from '~target/extension/browser'
 import { Error } from '~co/overlay/dialog'
 import { permissions } from '~target/extension'
 
-//faster load of current tab
 let cache = []
-async function get() {
+async function preload() {
     if (!await permissions.contains('tabs')) return []
     const tabs = await browser.tabs.query({ currentWindow: true })
     return cache = tabs.filter(({url})=>/^https?/i.test(url))
 }
 
-get()
-//-----
+export { preload }
 
 export default function useTabs() {
     const [tabs, setTabs] = useState(cache)
 
     useEffect(()=>{
         permissions.request('tabs')
-            .then(get)
+            .then(preload)
             .then(setTabs).catch(Error)
     }, [])
 
