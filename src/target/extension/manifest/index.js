@@ -81,6 +81,7 @@ module.exports = ({ vendor, production=false }, l) => {
 		permissions: [
 			'contextMenus',
 			'activeTab',
+			'storage',
 			...(production ? [] : ['http://localhost:3000/*'])
 		],
 

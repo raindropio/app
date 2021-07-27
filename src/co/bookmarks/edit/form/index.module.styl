@@ -9,14 +9,10 @@
 .form {
 	flex: 1
 	position: relative
-	transition: opacity .15s ease-in-out
-	will-change: opacity
 
 	&[data-status='loading'],
 	&[data-status='idle'] {
 		pointer-events: none
 		user-select: none
-		opacity: .6
-		transition-duration: 0
 	}
 }

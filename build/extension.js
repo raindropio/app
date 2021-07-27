@@ -16,7 +16,7 @@ module.exports = (env={}) => {
     }
 
     return merge(
-        common(env),
+        common({...env, RAINDROP_ENVIRONMENT: 'browser-extension'}),
         {
             entry: {
                 manifest: './target/extension/manifest/index.js',
