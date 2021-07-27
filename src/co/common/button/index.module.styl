@@ -171,7 +171,7 @@
     }
 
     &:focus-visible {
-        box-shadow: inset 0 0 0 1px var(--accent-color), 0 0 0 var(--shadow-height) var(--accent-color), inset 0 0 0 2px currentColor
+        box-shadow: 0 0 0 2px currentColor, 0 0 0 calc(var(--shadow-height) + 3px) var(--accent-color)
     }
 }
 
@@ -194,6 +194,7 @@
 
 //small
 .button[data-size='small'] {
+    font-size: var(--secondary-font-size)
     line-height: var(--icon-size)
     --button-height: var(--icon-size)
 }
@@ -205,7 +206,7 @@
         width: auto
     }
     
-    .button:not(:last-child) {
+    .button:not(:last-child):not(:focus-visible) {
         margin-right: 1px
         box-shadow: var(--shadow-height) 0 0 var(--shadow-color)
     }

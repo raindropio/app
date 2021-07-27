@@ -115,6 +115,7 @@ class FormSearch extends React.PureComponent {
                         {children}
                         {this.props.value && (
                             <Button 
+                                tabIndex='-1'
                                 onClick={this.onCancelClick}>
                                 <Icon name='close' size='micro' />
                             </Button>

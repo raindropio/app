@@ -17,7 +17,7 @@ import Recover from './recover'
 export default ({ match })=>(
 	<Screen className={s.page} appSize='large' safariExtensionBackdrop>
 		<div className={s.content}>
-			<a href='https://raindrop.io' target='_blank'>
+			<a href='https://raindrop.io' target='_blank' tabIndex='-1'>
 				<Logo className={s.logo} />
 			</a>
 

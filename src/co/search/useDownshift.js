@@ -28,11 +28,13 @@ export default function useDownshift({ filter, applyFilter, suggestions, recent 
                 }
 
             case useCombobox.stateChangeTypes.ControlledPropUpdatedSelectedItem:
+            case useCombobox.stateChangeTypes.InputKeyDownArrowDown:
+            case useCombobox.stateChangeTypes.InputKeyDownArrowUp:
                 return {
                     ...changes,
                     isOpen: !haveItems ? false : changes.isOpen
                 }
-    
+
             default:
                 return changes
         }

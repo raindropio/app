@@ -52,11 +52,14 @@ class AccountLogin extends React.Component {
 
                     <Label>
                         {t.s('password')}
-                        <Link 
+                        <Button 
+                            as={Link}
+                            size='small'
+                            variant='link'
                             to='/account/lost'
                             tabIndex='1'>
                             {t.s('recoverPassword')}
-                        </Link>
+                        </Button>
                     </Label>
                     <Text
                         type='password'

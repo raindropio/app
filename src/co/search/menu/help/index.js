@@ -3,22 +3,24 @@ import React from 'react'
 import t from '~t'
 import links from '~config/links'
 
-import { Section } from '~co/common/list'
+import { Section, SectionTitle, SectionActions } from '~co/common/list'
 import Button from '~co/common/button'
 import Icon from '~co/common/icon'
 
 export default function SearchMenuHelp() {
     return (
         <Section className={s.help}>
-            <div className={s.tip}>
+            <SectionTitle className={s.tip}>
                 {t.s('putDashToExclude')}
-            </div>
+            </SectionTitle>
 
-            <Button
-                href={links.help.search}
-                target='_blank'>
-                <Icon name='help' />
-            </Button>
+            <SectionActions className={s.actions}>
+                <Button
+                    href={links.help.search}
+                    target='_blank'>
+                    <Icon name='help' />
+                </Button>
+            </SectionActions>
         </Section>
     )
 }
