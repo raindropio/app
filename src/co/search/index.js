@@ -24,10 +24,10 @@ function Search({ autoFocus, spaceId: originalSpaceId, value: originalValue, eve
     const [ filter, applyFilter ] = useFilterValue(value, setValue)
 
     //menu items
-    const suggestions = useMenuItems({ spaceId, value, filter })
+    const { suggestions, recent } = useMenuItems({ spaceId, value, filter })
 
     //downshift
-    const downshift = useDownshift({ filter, applyFilter, suggestions })
+    const downshift = useDownshift({ filter, applyFilter, suggestions, recent })
 
     return (
         <>
@@ -51,6 +51,7 @@ function Search({ autoFocus, spaceId: originalSpaceId, value: originalValue, eve
                 downshift={downshift}
                 fieldRef={fieldRef}
                 suggestions={suggestions}
+                recent={recent}
                 value={value}
                 spaceId={spaceId}
                 originalSpaceId={originalSpaceId} />

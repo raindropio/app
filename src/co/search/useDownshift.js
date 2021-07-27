@@ -1,9 +1,9 @@
-import { useCallback } from 'react'
+import { useCallback, useMemo } from 'react'
 import { useCombobox } from 'downshift'
 
 const itemToString = item => item && item.query
 
-export default function useDownshift({ filter, applyFilter, suggestions }) {
+export default function useDownshift({ filter, applyFilter, suggestions, recent }) {
     const haveItems = (suggestions.length ? true : false)
 
     const stateReducer = useCallback((state, { type, changes }) => {
@@ -14,7 +14,7 @@ export default function useDownshift({ filter, applyFilter, suggestions }) {
                 return {
                     ...changes,
                     isOpen: changes.inputValue && haveItems,
-                    highlightedIndex: 0
+                    highlightedIndex: incompleteToken ? 0 : -1
                 }
     
             //select item
@@ -55,8 +55,10 @@ export default function useDownshift({ filter, applyFilter, suggestions }) {
         }
     })
 
+    const items = useMemo(()=>[...suggestions, ...recent], [suggestions, recent])
+
     return useCombobox({
-        items: suggestions,
+        items,
         itemToString,
         inputValue: filter,
         selectedItem: null,

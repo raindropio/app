@@ -4,6 +4,7 @@ import single from './single'
 import space from './space'
 import selectMode from './selectMode'
 import html from './html'
+import recent from './recent'
 
 export default function* () {
 	yield all([
@@ -11,6 +12,7 @@ export default function* () {
 		single(),
 		draft(),
 		selectMode(),
-		html()
+		html(),
+		recent()
 	])
 }

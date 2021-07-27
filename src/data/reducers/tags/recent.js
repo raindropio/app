@@ -1,10 +1,7 @@
-import _ from 'lodash'
+import _ from 'lodash-es'
 import { normalizeTag } from '../../helpers/tags'
 import { REHYDRATE } from 'redux-persist/src/constants'
-import { BOOKMARK_DRAFT_LOAD_SUCCESS, BOOKMARK_DRAFT_CHANGE, BOOKMARK_DRAFT_COMMIT } from '../../constants/bookmarks'
-
-const before = {}
-const after = {}
+import { TAGS_RECENT_LOAD_SUCCESS } from '../../constants/tags'
 
 export default function(state, action={}){switch (action.type) {
 	case REHYDRATE:{
@@ -13,40 +10,12 @@ export default function(state, action={}){switch (action.type) {
 		return state.set('recent', recent)
     }
 
-    case BOOKMARK_DRAFT_LOAD_SUCCESS:{
-        const { _id, item } = action
+    case TAGS_RECENT_LOAD_SUCCESS:{
+        const recent = action.tags.map(normalizeTag)
 
-        if (item && item.tags){
-            before[_id] = item.tags
-            after[_id] = {}
-        }
-    }break
-    
-    case BOOKMARK_DRAFT_CHANGE:{
-        const { changed={}, _id } = action
-        const { tags=[] } = changed
-
-        if (_id)
-            after[_id] = tags
-    }break
-
-    case BOOKMARK_DRAFT_COMMIT:{
-        const { _id } = action
-
-        if (!after[_id] || !before[_id] || !after[_id].length)
+        if (_.isEqual(state.recent, recent))
             return state
 
-        return state.set(
-            'recent', 
-            _.uniqBy(
-                [
-                    ..._.difference(after[_id], before[_id])
-                        .reverse()
-                        .map(_id=>normalizeTag({ _id })),
-                    ...state.recent
-                ],
-                ({ _id })=>_id.toLowerCase()
-            ).slice(0, 5)
-        )
+        return state.set('recent', recent)
     }
 }}

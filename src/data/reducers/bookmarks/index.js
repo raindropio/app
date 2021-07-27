@@ -5,6 +5,7 @@ import draft from './draft'
 import selectMode from './selectMode'
 import sort from './sort'
 import html from './html'
+import recent from './recent'
 
 import {
 	blankSelectMode
@@ -35,6 +36,10 @@ export default function(state = initialState, action={}){
 	const caseHtml = html(state,action)
 	if (caseHtml) state = caseHtml
 
+	//Html
+	const caseRecent = recent(state,action)
+	if (caseRecent) state = caseRecent
+
 	switch (action.type) {
 		case 'RESET':{
 			return initialState
@@ -47,6 +52,9 @@ export default function(state = initialState, action={}){
 
 const initialState = Immutable({
 	spaces: {},
+	recent: {
+		search: [] //{_id, collectionRef}
+	},
 
 	drafts: {}, //{ number|string: {} }
 

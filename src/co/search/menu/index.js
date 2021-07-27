@@ -3,6 +3,7 @@ import React, { useCallback } from 'react'
 import Popover from '~co/overlay/popover'
 import InCollection from './incollection'
 import Suggestions from './suggestions'
+import Recent from './recent'
 import Help from './help'
 
 export default function SearchMenu(props) {
@@ -34,6 +35,7 @@ export default function SearchMenu(props) {
             <div {...getMenuProps({ onKeyDown, onMouseDown: preventDefault, onClick:preventDefault })}>
                 <InCollection {...props} />
                 <Suggestions {...props} />
+                <Recent {...props} />
                 <Help {...props} />
             </div>
         </Popover>
