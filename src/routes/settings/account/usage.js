@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { user } from '~data/selectors/user'
 import { collection } from '~data/selectors/collections'
 import { refresh as userRefresh } from '~data/actions/user'
-import { refresh as collectionsRefresh } from '~data/actions/collections'
+import { load as collectionsLoad } from '~data/actions/collections'
 
 import { Link } from 'react-router-dom'
 import { Label, Progress } from '~co/common/form'
@@ -13,7 +13,7 @@ import { LongDate } from '~modules/format/date'
 class SettingsAccountUsage extends React.Component {
     componentDidMount() {
         this.props.userRefresh()
-        this.props.collectionsRefresh()
+        this.props.collectionsLoad()
     }
 
     render() {
@@ -63,5 +63,5 @@ export default connect(
         user: user(state),
         allBookmarksCollection: collection(state, 0)
     }),
-    { userRefresh, collectionsRefresh }
+    { userRefresh, collectionsLoad }
 )(SettingsAccountUsage)

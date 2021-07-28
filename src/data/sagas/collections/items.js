@@ -4,7 +4,7 @@ import { removeCollection } from './single'
 import _ from 'lodash-es'
 
 import {
-	COLLECTIONS_LOAD_REQ, COLLECTIONS_LOAD_SUCCESS, COLLECTIONS_LOAD_ERROR,
+	COLLECTIONS_LOAD_PRE, COLLECTIONS_LOAD_REQ, COLLECTIONS_LOAD_SUCCESS, COLLECTIONS_LOAD_ERROR,
 	COLLECTIONS_REFRESH_REQ,
 	COLLECTIONS_COLLAPSE_ALL,
 	COLLECTIONS_REORDER,
@@ -19,11 +19,8 @@ import {
 //Requests
 export default function* () {
 	//items, takeEvery is important here!
-	yield takeEvery([
-		COLLECTIONS_LOAD_REQ,
-		COLLECTIONS_REFRESH_REQ, 
-		COLLECTION_DRAFT_LOAD_REQ
-	], loadCollections)
+	yield takeEvery([ COLLECTIONS_LOAD_PRE, COLLECTIONS_REFRESH_REQ ], preLoadCollections)
+	yield takeEvery([ COLLECTIONS_LOAD_REQ, COLLECTION_DRAFT_LOAD_REQ ], loadCollections)
 
 	yield takeEvery(COLLECTIONS_COLLAPSE_ALL, collapseAll)
 	yield takeEvery(COLLECTIONS_REORDER, reorderAll)
@@ -32,9 +29,27 @@ export default function* () {
 	yield takeEvery(COLLECTIONS_CLEAN_REQ, clean)
 }
 
-export function* loadCollections({ dontLoadCollections=false, onSuccess, onFail }) {
-	if (dontLoadCollections)
-		return;
+function* preLoadCollections({ ignore=false }) {
+	if (ignore) return
+
+	try{
+		const { lastAction, version } = yield call(Api.get, 'user/lastAction')
+
+		yield put({
+			type: COLLECTIONS_LOAD_REQ,
+			lastAction,
+			version
+		})
+	} catch (error) {
+		yield put({
+			type: COLLECTIONS_LOAD_ERROR,
+			error
+		})
+	}
+}
+
+export function* loadCollections({ ignore=false, onSuccess, onFail }) {
+	if (ignore) return
 
 	try {
 		//Load Get

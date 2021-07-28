@@ -1,9 +1,6 @@
 import _ from 'lodash-es'
 import Immutable from 'seamless-immutable'
-import {
-	normalizeCollection,
-	shouldLoadItems
-} from '../../helpers/collections'
+import { normalizeCollection } from '../../helpers/collections'
 import {
 	COLLECTION_UPDATE_REQ, COLLECTION_UPDATE_SUCCESS, COLLECTION_UPDATE_ERROR,
 	COLLECTION_REMOVE_REQ, COLLECTION_REMOVE_SUCCESS, COLLECTION_REMOVE_ERROR,
@@ -31,9 +28,6 @@ export default function(state, action) {switch (action.type) {
 
 	//Load
 	case COLLECTION_DRAFT_LOAD_REQ:{
-		if (!shouldLoadItems(state))
-			action.dontLoadCollections = true
-
 		if (action._id<=0 || !Number.isInteger(action._id)) {
 			action.ignore = true;
 			return state

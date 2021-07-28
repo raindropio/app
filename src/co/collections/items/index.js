@@ -56,7 +56,7 @@ class CollectionsItems extends React.Component {
     }
 
     refresh = ()=>
-        this.props.actions.refresh()
+        this.props.actions.load()
 
     createNewCollection = (e)=>{
         let asChild = false

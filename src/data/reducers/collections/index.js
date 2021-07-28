@@ -55,7 +55,9 @@ export default function(state = initialState, action={}){
 
 const initialState = Immutable({
 	status: 'idle', /* idle, loading, loaded, error, empty */
-	fromCache: false,
+	lastAction: '',
+	version: '',
+	
 	items: {},
 	groups: [],
 	blankChildInParent: 0, //parentId where show blank child
