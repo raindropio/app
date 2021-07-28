@@ -1,16 +1,31 @@
 import browser from './browser'
 
 export const hotkeys = {
-    async getAll() {
-        let commands = [] //[{ description, shortcut }]
-        
+    async getAll() {        
         try{
-            commands = await browser.commands.getAll()
+            const commands = await browser.commands.getAll()
+            if (Array.isArray(commands) && commands.length)
+                return commands
         } catch(e){
             console.log(e)
         }
+
+        //fallback, get commands from manifest file
+        //useful for safari, for some reason browser.commands.getAll doesn't work
+        try{
+            const { commands={} } = await browser.runtime.getManifest()
+            const { os } = await browser.runtime.getPlatformInfo()
+
+            return Object.entries(commands)
+                .map(([name, { suggested_key, description }])=>({
+                    name,
+                    description,
+                    shortcut: suggested_key && suggested_key[os] ? suggested_key[os] : ''
+                }))
+                .filter(({ shortcut })=>shortcut)
+        } catch(e) {}
         
-        return Array.isArray(commands) ? commands : [] 
+        return [] 
     },
 
     link() {
