@@ -28,19 +28,19 @@ window.onload = ()=>{
 	render(
 		//!add other global components in co/screen/basic
 		<Sentry>
-			<ServiceWorker>
-				<Provider store={store}>
-					<PersistGate loading={<Splash />} persistor={persistor}>
-						<Translate loading={<Splash />}>
-							<Document>
+			<Document>
+				<ServiceWorker>
+					<Provider store={store}>
+						<PersistGate loading={<Splash />} persistor={persistor}>
+							<Translate loading={<Splash />}>
 								<App>
 									<Routes />
 								</App>
-							</Document>
-						</Translate>
-					</PersistGate>
-				</Provider>
-			</ServiceWorker>
+							</Translate>
+						</PersistGate>
+					</Provider>
+				</ServiceWorker>
+			</Document>
 		</Sentry>,
 		
 		document.getElementById('react')

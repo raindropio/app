@@ -1,5 +1,5 @@
 import React from 'react'
-import { currentTab, getMeta } from '~target'
+import { getMeta } from '~target'
 
 import Protected from '~co/screen/protected'
 import Screen from '~co/screen/basic'
@@ -9,16 +9,7 @@ import Content from './content'
 //faster load of current tab
 let item = {}
 async function getItem() {
-    const tab = await currentTab()
-    const { url, title } = tab
-    const meta = await getMeta(tab)
-
-    item = {
-        link: url,
-        title,
-        ...meta
-    }
-    
+    item = await getMeta()
     return item
 }
 getItem().catch(()=>{})

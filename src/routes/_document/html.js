@@ -2,7 +2,6 @@ import './html.module.styl'
 import React from 'react'
 import debounce from '~modules/format/callback/debounce'
 import { Helmet } from 'react-helmet'
-import { connect } from 'react-redux'
 
 import { scrollbarIsObtrusive } from '~modules/browser'
 import { target, environment } from '~target'
@@ -54,16 +53,10 @@ class DocumentHtml extends React.PureComponent {
     render() {
         return (
             <Helmet>
-                <html 
-                    lang={this.props.lang}
-                    className={this.state.className.join(' ')} />
+                <html className={this.state.className.join(' ')} />
             </Helmet>
         )
     }
 }
 
-export default connect(
-    state=>({
-        lang: state.config.lang
-    })
-)(DocumentHtml)
+export default DocumentHtml
