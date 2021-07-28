@@ -10,6 +10,14 @@ function getMeta() {
     return String(value).trim().substr(0, 10000)
 }
 
+function getJsonLd() {
+    try{
+        return JSON.parse(document.querySelector('script[type="application/ld+json"]').innerText) || {}
+    } catch(e) {
+        return {}
+    }
+}
+
 function similarURL(url) {
     if (!url)
         return false
@@ -22,21 +30,37 @@ function similarURL(url) {
 }
 
 function getItem() {
-    let canonical = getMeta('twitter:url', 'og:url')
-
-    if (window.history.length>1 &&
-        location.pathname != '/' && 
-        window.history.state &&
-        !similarURL(canonical))
-        throw new Error('probably this page is SPA, so data can be out of date')
-
-    const item = {
+    let item = {
         link: location.href,
-        title: getMeta('twitter:title', 'og:title') || getMeta('title') || document.title,
-        excerpt: getMeta('twitter:description', 'og:description') || getMeta('description'),
-        cover: getMeta('twitter:image', 'twitter:image:src', 'og:image', 'og:image:src'),
         coverId: 0
     }
+
+    const canonical = getMeta('twitter:url', 'og:url')
+    const ld = getJsonLd()
+
+    //use json ld schema
+    if (ld['@context'] == 'https://schema.org')
+        item = {
+            ...item,
+            title: ld.name,
+            excerpt: ld.description,
+            cover: Array.isArray(ld.thumbnailUrl) && ld.thumbnailUrl[0]
+        }
+    //use open-graph or twitter cards (if page is not in state of spa)
+    else if (
+        location.pathname == '/' ||
+        similarURL(canonical) ||
+        (!window.history.length &&
+        !window.history.state)
+    )
+        item = {
+            ...item,
+            title: ld.name || getMeta('twitter:title', 'og:title') || getMeta('title') || document.title,
+            excerpt: ld.description || getMeta('twitter:description', 'og:description') || getMeta('description'),
+            cover: getMeta('twitter:image', 'twitter:image:src', 'og:image', 'og:image:src'),
+        }
+    else
+        throw new Error('probably this page is SPA, so data can be out of date')
 
     if (item.cover)
         item.media = [{
