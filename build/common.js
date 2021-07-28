@@ -10,7 +10,7 @@ const SentryCliPlugin = require('@sentry/webpack-plugin')
 //defaults
 process.env.SENTRY_RELEASE = String(new Date().getTime())
 
-module.exports = ({ production, filename='[name].[contenthash]', sentry={}, RAINDROP_ENVIRONMENT='browser' }) => ({
+module.exports = ({ production, filename='[name].[contenthash]', sentry={}, RAINDROP_ENVIRONMENT='browser' }, { profile }) => ({
 	mode:		production ? 'production' : 'development',
 	context:	path.resolve(__dirname, '../src'),
 	devtool:	production ? 'source-map' : 'eval-cheap-module-source-map',
@@ -69,17 +69,19 @@ module.exports = ({ production, filename='[name].[contenthash]', sentry={}, RAIN
 
 		//Sentry
 		...(production ? [
-			new SentryCliPlugin({
-				org: 'oblako-corp',
-				project: 'app',
-				authToken: process.env.SENTRY_AUTH_TOKEN, //required in CI environment
-				release: process.env.SENTRY_RELEASE,
-
-				include: './src',
-				ignore: [ 'node_modules', 'build', 'dist' ],
-				configFile: path.resolve(__dirname, 'sentry.properties'),
-				...sentry
-			})
+			...(!profile ? [
+				new SentryCliPlugin({
+					org: 'oblako-corp',
+					project: 'app',
+					authToken: process.env.SENTRY_AUTH_TOKEN, //required in CI environment
+					release: process.env.SENTRY_RELEASE,
+	
+					include: './src',
+					ignore: [ 'node_modules', 'build', 'dist' ],
+					configFile: path.resolve(__dirname, 'sentry.properties'),
+					...sentry
+				})
+			] : [])
 		]: []),
 
 		new webpack.DefinePlugin({

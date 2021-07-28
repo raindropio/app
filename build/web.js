@@ -6,9 +6,9 @@ const common = require('./common')
 const WebpackPwaManifest = require('webpack-pwa-manifest')
 const CopyPlugin = require('copy-webpack-plugin')
 
-module.exports = (env={}) =>
+module.exports = (env={}, args={}) =>
     merge(
-        common(env),
+        common(env, args),
         {
             output: {
                 path: path.resolve(__dirname, '..', 'dist', 'web', env.production?'prod':'dev'),

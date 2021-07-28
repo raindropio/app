@@ -48,7 +48,6 @@
 		"dompurify": "^2.2.0",
 		"downshift": "6.1.x",
 		"form-request-submit-polyfill": "^2.0.0",
-		"framer-motion": "^4.1.17",
 		"intersection-observer": "^0.12.0",
 		"lodash-es": "4.17.x",
 		"normalize-url": "4.x",
@@ -82,7 +81,6 @@
 	"devDependencies": {
 		"@babel/core": "7.x",
 		"@babel/plugin-proposal-class-properties": "7.x",
-		"@babel/plugin-proposal-object-rest-spread": "7.x",
 		"@babel/plugin-syntax-dynamic-import": "7.x",
 		"@babel/plugin-transform-react-constant-elements": "^7.12.13",
 		"@babel/preset-env": "7.x",

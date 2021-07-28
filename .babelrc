@@ -15,13 +15,13 @@
                 "modules": false,
                 "bugfixes": true,
                 "useBuiltIns": "usage",
-                "corejs": 3
+                "corejs": 3,
+                "exclude": ["transform-typeof-symbol"]
             }
         ]
     ],
     "plugins": [
-        ["@babel/plugin-proposal-class-properties",{"useBuiltIns": false}],
-        ["@babel/plugin-proposal-object-rest-spread",{"useBuiltIns": false}],
+        ["@babel/plugin-proposal-class-properties",{"useBuiltIns": "usage"}],
         "@babel/plugin-syntax-dynamic-import"
     ],
     "env": {

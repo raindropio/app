@@ -5,7 +5,7 @@ const common = require('./common')
 
 const ZipPlugin = require('zip-webpack-plugin')
 
-module.exports = (env={}) => {
+module.exports = (env={}, args={}) => {
     env.filename = '[name]'
     
     switch(env.vendor) {
@@ -16,7 +16,7 @@ module.exports = (env={}) => {
     }
 
     return merge(
-        common({...env, RAINDROP_ENVIRONMENT: 'browser-extension'}),
+        common({...env, RAINDROP_ENVIRONMENT: 'browser-extension'}, args),
         {
             entry: {
                 manifest: './target/extension/manifest/index.js',
