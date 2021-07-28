@@ -347,5 +347,13 @@
   "avatar": "Obraz",
   "regexAz09_-": "Może zawierać litery (a-z), cyfry (0-9), podkreślenia (_) oraz myślniki (-)",
   "publicPage": "Strona publiczna",
-  "invite": "Zapraszam"
+  "invite": "Zapraszam",
+  "searchMatchAnyCondition": "Pasujące do któregokolwiek wyrazu",
+  "before": "Przed",
+  "after": "Po",
+  "putDashToExclude": "Umieść - (myślnik) przed każdym wyrazem, który chcesz wykluczyć z wyszukiwania",
+  "narrowSearch": "Sprecyzuj wyszukiwanie",
+  "createdDate": "Data utworzenia",
+  "dateSearchD": "Wyszukiwanie określonej daty w formacie RRRR-MM-DD lub określonego miesiąca (RRRR-MM) lub roku (RRRR). Umieść < lub > przed datą, aby wyszukać przed lub po określonej dacie.",
+  "currentCollection": "Bieżąca kolekcja"
 }

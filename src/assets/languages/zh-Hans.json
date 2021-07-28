@@ -347,5 +347,13 @@
   "avatar": "头像",
   "regexAz09_-": "可能含有字母 (a-z)，数字 (0-9)，下划线 (_)，和破折号 (-)",
   "publicPage": "公开页面",
-  "invite": "邀请"
+  "invite": "邀请",
+  "searchMatchAnyCondition": "匹配任意条件",
+  "before": "早于",
+  "after": "晚于",
+  "putDashToExclude": "在条件前添加短横(-) 将其排除在搜索范围之外",
+  "narrowSearch": "缩小搜索范围",
+  "createdDate": "创建日期",
+  "dateSearchD": "搜索格式为YYYY-MM-DD的特定日期，或特定的月份(YYYY-MM) 或年份(YYYY)。在日期前面加上<或>，可以分别找到特定日期之前或之后的收藏。",
+  "currentCollection": "当前合集"
 }

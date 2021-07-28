@@ -76,11 +76,6 @@
     100% { transform: scale(1); opacity: 1 }
 }
 
-@keyframes wrap-appear-translate {
-    0% { transform: translateY(100%); }
-    100% { transform: translateY(0); }
-}
-
 //extension specific
 html:global(.extension)[data-modal-stretch='true'][data-modal-showing='true'] [data-is-page] {
 	min-height: 600px
@@ -95,6 +90,6 @@ html:global(.extension)[data-modal-stretch='true'][data-modal-showing='true'] [d
         border-radius: 0
         width: 100%
         height: 100%
-        animation: wrap-appear-translate .3s ease-in-out
+        animation: none
     }
 }

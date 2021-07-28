@@ -347,5 +347,6 @@
   "avatar": "Profilbild",
   "regexAz09_-": "Darf nur Buchstaben und Zahlen sowie Tief- & Bindestriche enthalten ([a-z0-9_-])",
   "publicPage": "Öffentliche Seite",
-  "invite": "Einladen"
+  "invite": "Einladen",
+  "after": "Nach"
 }
