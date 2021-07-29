@@ -10,7 +10,8 @@ class SettingsAppTheme extends React.PureComponent {
 	themes = [
 		['day', {app: 'day', sidebar: 'day'}],
 		['night', {app: 'night', sidebar: 'night'}],
-		['midnight', {app: 'day', sidebar: 'night'}]
+		['midnight', {app: 'day', sidebar: 'night'}],
+		['sunset', {app: 'sunset', sidebar: 'sunset'}]
 	]
 
 	onThemeClick = e=>{

@@ -1,5 +1,7 @@
 /* Default theme + common parameters */
 :root, [data-theme] {
+    color-scheme: light;
+
     /*background*/
     --background-hsl: 0,0%,100%;
     --background-color: hsl(var(--background-hsl));
@@ -80,11 +82,13 @@
 }
 
 [data-theme='sunset'] {
+    color-scheme: light;
+
     /* background */
-    --background-hsl: 43,60%,97%;
-    --sidebar-background-color: hsl(43,60%,95%);
-    --active-background-color: hsl(43,50%,90%);
-    --disable-background-color: hsl(43,60%,85%);
+    --background-hsl: 43,60%,94%;
+    --sidebar-background-color: hsl(43,60%,91%);
+    --active-background-color: hsl(43,50%,86%);
+    --disable-background-color: hsl(43,60%,77%);
 
     /* text colors */
     color: hsl(43,10%,10%);
