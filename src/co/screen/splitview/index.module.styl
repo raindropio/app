@@ -122,6 +122,12 @@ invisible() {
         }
     }
 
+    .s[data-variant='splash'] {
+        :global(.svSidebar), :global(.svSidebarBackdrop) {
+            display: none
+        }
+    }
+
     :global(.svSidebarCloseButton) {
         display: block
     }

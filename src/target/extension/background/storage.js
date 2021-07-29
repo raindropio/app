@@ -1,7 +1,7 @@
 import browser from 'webextension-polyfill'
 
 async function cleanWhenNoSpaceLeft() {
-    const used = await browser.storage.local.getBytesInUse()
+    const used = browser.storage.local.getBytesInUse ? await browser.storage.local.getBytesInUse() : 0
     const max = browser.storage.local.QUOTA_BYTES
 
     if (max < (used + 1000000)){

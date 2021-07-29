@@ -43,9 +43,3 @@ if (window.localStorage)
         width: window.localStorage.getItem('browser-action-in-iframe-window-width'), 
         height: window.localStorage.getItem('browser-action-in-iframe-window-height') 
     }}])
-
-//prevent background flicker in firefox
-if (window.browser && window.browser.theme)
-    browser.theme.getCurrent().then(({colors})=>{
-        document.body.style.background = colors.popup
-    })

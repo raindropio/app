@@ -12,3 +12,12 @@ iframe {
     height: 100%;
     background: transparent;
 }
+
+/* Firefox background blink fix for dark theme */
+@media (prefers-color-scheme: dark) {
+    @supports (-moz-appearance:meterbar) {
+        html, body {
+            background: #303030;
+        }
+    }
+}
