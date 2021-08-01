@@ -348,5 +348,10 @@
   "regexAz09_-": "Darf nur Buchstaben und Zahlen sowie Tief- & Bindestriche enthalten ([a-z0-9_-])",
   "publicPage": "Öffentliche Seite",
   "invite": "Einladen",
-  "after": "Nach"
+  "before": "Vor",
+  "after": "Nach",
+  "putDashToExclude": "Wenn du einen Suchbegriff ausschließen möchtest, setze einfach ein - (Minuszeichen) vor das entsprechende Wort",
+  "narrowSearch": "Suche einschränken",
+  "createdDate": "Erstellungsdatum",
+  "currentCollection": "Aktuelle Sammlung"
 }

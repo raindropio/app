@@ -347,5 +347,13 @@
   "avatar": "頭像",
   "regexAz09_-": "可包含字母 (a-z)、數字 (0-9)、下劃線 (_) 和破折號 (-)",
   "publicPage": "公開頁面",
-  "invite": "邀请"
+  "invite": "邀请",
+  "searchMatchAnyCondition": "符合任何一個條件",
+  "before": "之前",
+  "after": "之後",
+  "putDashToExclude": "將 - (破折號) 放在要從搜尋中排除的條件前面",
+  "narrowSearch": "收窄你的搜尋範圍",
+  "createdDate": "創建日期",
+  "dateSearchD": "以格式 YYYY-MM-DD 搜尋特定年月日 或 以格式 (YYYY-MM) 搜尋特定年月 或 以格式 (YYYY) 搜尋特定年份。將 < or > 放在日期前面以查找特定日期之前或之後。",
+  "currentCollection": "現有收藏"
 }

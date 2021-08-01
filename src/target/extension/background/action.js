@@ -2,9 +2,7 @@ import browser from 'webextension-polyfill'
 import { has } from './links'
 import { currentTab } from '~target'
 
-let icon = '✓' //glitchy on safari
-if (process.env.EXTENSION_VENDOR == 'safari')
-    icon = ' '
+let icon = unescape('%u2713') //✓, glitchy without escape in safari
 
 async function updateBadge() {
     const { url, id: tabId } = await currentTab()
