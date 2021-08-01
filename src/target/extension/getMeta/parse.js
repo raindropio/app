@@ -79,12 +79,11 @@ function getItem() {
             excerpt: ld.description,
             cover: ld.image && ld.image.url
         }
-    //use open-graph or twitter cards (if page is not in state of spa)
+    //use open-graph or twitter cards (if page is not js rendered)
     else if (
         location.pathname == '/' ||
         similarURL(canonical) ||
-        (!window.history.length &&
-        !window.history.state)
+        !window.history.state
     )
         item = {
             ...item,
@@ -92,8 +91,10 @@ function getItem() {
             excerpt: ld.description || getMeta('twitter:description', 'og:description') || getMeta('description'),
             cover: getMeta('twitter:image', 'twitter:image:src', 'og:image', 'og:image:src'),
         }
+    //fallback. do not set any data from meta tags here!!
     else
         item = {
+            ...item,
             title: document.title
         }
 
