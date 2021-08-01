@@ -23,17 +23,15 @@ export default class BookmarkEditFormCover extends React.Component {
 
         onLink: async(link)=>{
             let media = [...this.props.item.media]
-            let coverId = media.findIndex(item=>item.link == link)
 
-            if (coverId == -1){
+            if (!media.some(item=>item.link == link))
                 media = [ ...media, { link } ]
-                coverId = media.length - 1
-            }
 
             this.props.onChange({
-                coverId,
+                cover: link,
                 media
             })
+
             this.props.onCommit()
         },
 
@@ -52,7 +50,7 @@ export default class BookmarkEditFormCover extends React.Component {
     }
 
     render() {
-        const { item: { cover, coverId, link, media } } = this.props
+        const { item: { cover, link, media } } = this.props
 
         return (
             <div className={styles.wrap}>
@@ -75,7 +73,7 @@ export default class BookmarkEditFormCover extends React.Component {
                 {this.state.modal && (
                     <ImagePicker
                         items={media}
-                        selected={coverId}
+                        selected={cover}
                         {...this.handlers} />
                 )}
             </div>

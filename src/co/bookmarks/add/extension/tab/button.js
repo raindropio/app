@@ -62,6 +62,7 @@ class BookmarksAddSave extends React.Component {
                 return (
                     <Button>
                         <Preloader />
+                        {t.s('save')}…
                     </Button>
                 )
 

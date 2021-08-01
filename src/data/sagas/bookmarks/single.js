@@ -268,13 +268,13 @@ function* screenshot({_id, ignore=false, onSuccess, onFail}) {
 		var setReq = {}
 		if (screenshotIndex!=-1){
 			setReq = {
-				coverId: screenshotIndex
+				cover: '<screenshot>'
 			}
 		}else{
 			const newMedia = meta.media.concat([{link: '<screenshot>'}])
 			setReq = {
 				media: newMedia,
-				coverId: newMedia.length-1
+				cover: '<screenshot>'
 			}
 		}
 

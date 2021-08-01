@@ -3,7 +3,7 @@ import React from 'react'
 import t from '~t'
 import Context from './context'
 
-import Header, { Title, Space, FirstAction, LastAction } from '~co/common/header'
+import Header, { Title, Space, LastAction } from '~co/common/header'
 import Button from '~co/common/button'
 import Icon from '~co/common/icon'
 
@@ -16,13 +16,11 @@ class ModalHeader extends React.Component {
         return (
             <Header {...etc}>
                 {this.context.closable ? (
-                    <FirstAction className={s.back}>
-                        <Button 
-                            title={t.s('close')}
-                            onClick={this.context.onClose}>
-                            <Icon name='back' />
-                        </Button>
-                    </FirstAction>
+                    <Button 
+                        title={t.s('close')}
+                        onClick={this.context.onClose}>
+                        <Icon name='back' />
+                    </Button>
                 ) : null}
 
                 {title && <Title>

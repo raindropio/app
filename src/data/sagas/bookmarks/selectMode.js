@@ -42,8 +42,7 @@ export default function* () {
 			mutate: (action, item)=>({
 				...item,
 				media: [{link: item.link, screenshot: true}, ...item.media||[]],
-				cover: item.link,
-				coverId: 0
+				cover: item.link
 			})
 		})
 	)

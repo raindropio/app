@@ -11,11 +11,45 @@ function getMeta() {
 }
 
 function getJsonLd() {
+    let item = {}
+
     try{
-        return JSON.parse(document.querySelector('script[type="application/ld+json"]').innerText) || {}
-    } catch(e) {
-        return {}
-    }
+        const json = JSON.parse(document.querySelector('script[type="application/ld+json"]').innerText) || {}
+        if (json['@context'] == 'https://schema.org'){
+            if (json.name)
+                item = json
+            else if (json['@graph'])
+                item = json['@graph'].find(graph=>similarURL(graph.url))
+        }
+    } catch(e) {console.log(e)}
+
+    if (!item.image || !item.image.url)
+        if (Array.isArray(item.thumbnailUrl) && item.thumbnailUrl.length)
+            item.image = { url: item.thumbnailUrl[0] }
+
+    return item
+}
+
+function grabImages() {
+    let images = []
+
+    try{
+        for(const img of document.querySelectorAll('img')){
+            if (images.length >= 9) break
+            if (!img.complete || !img.src || img.src.includes('.svg')) continue
+    
+            const width = Math.min(img.naturalWidth, img.width)
+            const height = Math.min(img.naturalHeight, img.height)
+    
+            if (width > 100 && height > 100){
+                let url
+                try{ url = new URL(img.currentSrc || img.src, location.href).href } catch(e){}
+                if (url) images.push(url)
+            }
+        }
+    } catch(e) {console.log(e)}
+
+    return images
 }
 
 function similarURL(url) {
@@ -31,20 +65,19 @@ function similarURL(url) {
 
 function getItem() {
     let item = {
-        link: location.href,
-        coverId: 0
+        link: location.href
     }
 
     const canonical = getMeta('twitter:url', 'og:url')
     const ld = getJsonLd()
 
     //use json ld schema
-    if (ld['@context'] == 'https://schema.org')
+    if (ld.name)
         item = {
             ...item,
             title: ld.name,
             excerpt: ld.description,
-            cover: Array.isArray(ld.thumbnailUrl) && ld.thumbnailUrl[0]
+            cover: ld.image && ld.image.url
         }
     //use open-graph or twitter cards (if page is not in state of spa)
     else if (
@@ -60,18 +93,9 @@ function getItem() {
             cover: getMeta('twitter:image', 'twitter:image:src', 'og:image', 'og:image:src'),
         }
     else
-        throw new Error('probably this page is SPA, so data can be out of date')
-
-    if (item.cover)
-        item.media = [{
-            type: 'image',
-            link: item.cover
-        }]
-
-    //remove empty keys
-    for(const i in item)
-        if(!item[i])
-            delete item[i]
+        item = {
+            title: document.title
+        }
 
     //validate cover url
     if (item.cover)
@@ -80,6 +104,23 @@ function getItem() {
         } catch(e) {
             delete item.cover
         }
+
+    //grab images
+    let images = [
+        ...(item.cover ? [item.cover] : []),
+        ...grabImages()
+    ].filter((value, index, self)=>self.indexOf(value) === index)
+
+    if (images.length)
+        item.media = images.map(link=>({
+            type: 'image',
+            link
+        }))
+
+    //remove empty keys
+    for(const i in item)
+        if(!item[i])
+            delete item[i]
 
     return item
 }
