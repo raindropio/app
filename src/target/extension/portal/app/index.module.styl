@@ -1,0 +1,33 @@
+.app {
+    display: flex
+    width: 100%
+    height: 100%
+    position: relative
+}
+
+.backdrop {
+    position: absolute
+    left: 0
+    right: 0
+    top: 0
+    bottom: 0
+    width: 100%
+    height: 100%
+}
+
+.app[data-mode='modal'] {
+    align-items: center
+    justify-content: center
+
+    .backdrop {
+        background: rgba(0,0,0,.3)
+        opacity: 1
+        transition: opacity .2s ease-in-out
+    }
+    
+    &[data-status='init'], &[data-status='closing'] {
+        .backdrop {
+            opacity: 0
+        }
+    }
+}

@@ -1,21 +1,21 @@
 import browser from 'webextension-polyfill'
-import { openAdd } from './utils'
+import { open } from './portal'
 import { environment } from '../environment'
 
-async function onClicked({ menuItemId, pageUrl, srcUrl, linkUrl, linkText, selectionText }) {
+async function onClicked({ menuItemId, pageUrl, srcUrl, linkUrl }) {
     switch(menuItemId) {
         case 'save_page':{
-            return openAdd({ link: pageUrl })
+            return open(`/add?link=${encodeURIComponent(pageUrl)}`)
         }
 
         case 'save_link':
-            return openAdd({ link: linkUrl, title: linkText||selectionText||'' })
+            return open(`/add?link=${encodeURIComponent(linkUrl)}`)
 
         case 'save_video':
-            return openAdd({ link: srcUrl })
+            return open(`/add?link=${encodeURIComponent(srcUrl)}`)
 
         case 'save_image':
-            return openAdd({ link: srcUrl })
+            return open(`/add?link=${encodeURIComponent(srcUrl)}`)
     }
 }
 

@@ -151,6 +151,11 @@ module.exports = ({ vendor, production=false }, l) => {
 		...(vendor != 'firefox' ? {
 			content_security_policy: `script-src 'self' ${csp.hosts} ${!production?'\'unsafe-eval\'':''}; object-src 'none';`
 		} : {}),
+
+		web_accessible_resources: [
+			'index.html',
+			'portal.html'
+		]
 	}
 
 	return { code: JSON.stringify(json, null, 2) };

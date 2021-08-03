@@ -1,0 +1,39 @@
+.iframe {
+    border: 0
+    background: transparent
+    display: block
+}
+
+.wrap {
+    position: relative
+    z-index: 100
+    opacity: 0
+    transform: translateY(-10px)
+    transition: opacity .2s ease-in-out, transform .2s ease-in-out
+
+    border-radius: 7px
+    box-shadow: 0 30px 60px rgba(0,0,0,.1), 0 30px 60px -10px rgba(0,0,0,.2)
+    border: 1px solid rgba(0,0,0,.2)
+    overflow: hidden
+
+    &[data-status='ready'] {
+        opacity: 1
+        transform: translateY(0)
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    .wrap {
+        border-color: rgba(0,0,0,.6)
+
+        &:before {
+            content: ''
+            position: absolute
+            top: 0; left: 0; right: 0; bottom: 0;
+            z-index: 1
+            pointer-events: none
+            border-radius: 6.5px
+            box-shadow: inset 0 0 0 0.5px rgba(255,255,255,.2)
+        }
+    }
+}

@@ -97,7 +97,7 @@ module.exports = ({ production, filename='[name].[contenthash]', sentry={}, RAIN
 			hash: true,
 			scriptLoading: 'defer',
 			inject: 'head', //head better for extension
-			excludeChunks: ['manifest', 'background']
+			excludeChunks: ['manifest', 'background', 'portal']
 		}),
 
 		//CSS

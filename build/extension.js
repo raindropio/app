@@ -3,6 +3,7 @@ const webpack = require('webpack')
 const { merge } = require('webpack-merge')
 const common = require('./common')
 
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ZipPlugin = require('zip-webpack-plugin')
 
 module.exports = (env={}, args={}) => {
@@ -20,7 +21,8 @@ module.exports = (env={}, args={}) => {
         {
             entry: {
                 manifest: './target/extension/manifest/index.js',
-                background: './target/extension/background/index.js'
+                background: './target/extension/background/index.js',
+                portal: './target/extension/portal/index.js'
             },
 
             output: {
@@ -52,7 +54,15 @@ module.exports = (env={}, args={}) => {
                         filename: `${env.vendor}-${env.production?'prod':'dev'}.zip`,
                         exclude: []
                     })
-                ] : [])
+                ] : []),
+
+                new HtmlWebpackPlugin({
+                    filename: 'portal.html',
+                    template: './target/extension/portal/index.ejs',
+                    scriptLoading: 'defer',
+                    inject: 'head',
+                    chunks: ['portal']
+                })
             ],
 
             module: {

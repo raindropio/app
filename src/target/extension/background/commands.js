@@ -1,13 +1,13 @@
 import browser from 'webextension-polyfill'
 import config from '~config'
 import { currentTab } from '~target'
-import { openAdd } from './utils'
+import { open } from './portal'
 
 async function onCommand(command) {
     switch(command) {
         case 'save_page':{
             const { url='' } = await currentTab()
-            return openAdd({ link: url })
+            return open(`/add?link=${encodeURIComponent(url)}`)
         }
 
         case 'open_raindrop':{
