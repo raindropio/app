@@ -21,6 +21,8 @@ function Iframe({ mode, status, forwardedRef, onLoad, onClose }) {
                 ref={forwardedRef}
                 className={s.iframe}
                 style={style}
+                loading='eager'
+                plugins='true'
                 allowtransparency='true'
                 src={`index.html?${mode}${path}`}
                 onLoad={onFrameLoad} />

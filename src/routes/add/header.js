@@ -41,7 +41,9 @@ export default ({ item })=>{
                 </Button>
             </FirstAction>
     
-            <Title>{title}</Title>
+            <Title className={s.title}>
+                {title}
+            </Title>
     
             <Space />
 

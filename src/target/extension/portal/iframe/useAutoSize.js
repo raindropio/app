@@ -5,7 +5,7 @@ export default function useAutoSize(ref) {
 
     useEffect(()=>{
         const onResize = function([{ contentRect: { width, height } }]) {
-            if (!ref || ref.current) return
+            if (!ref || !ref.current) return
 
             setStyle({
                 width: width+'px', 

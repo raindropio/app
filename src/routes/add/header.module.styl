@@ -2,3 +2,12 @@
     width: var(--icon-size)
     height: var(--icon-size)
 }
+
+.title {
+    transition: opacity .2s ease-in-out;
+
+    &:empty {
+        opacity: 0;
+        transition-duration: 0;
+    }
+}

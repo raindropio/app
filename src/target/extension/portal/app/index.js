@@ -13,8 +13,14 @@ export default function App() {
     const frame = useRef(null)
 
     //events
+    const onLoad = useCallback(()=>
+        window.requestAnimationFrame(()=>
+            setStatus('ready')
+        ),
+        []
+    )
+
     const safeToClose = useSafeClose(frame)
-    const onLoad = useCallback(()=>setStatus('ready'), [])
     const onClose = useCallback(()=>{
         if (status == 'closing') return
 
@@ -22,7 +28,9 @@ export default function App() {
             setStatus('closing')
 
             setTimeout(() => (
-                window.parent.postMessage({ action: 'close' }, '*')
+                window.requestAnimationFrame(()=>
+                    window.parent.postMessage({ action: 'close' }, '*')
+                )
             ), 300)
         }
     }, [status, safeToClose])

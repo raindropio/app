@@ -7,8 +7,10 @@ async function init() {
     })
     if (ready) return
     
-    await browser.tabs.executeScript(null, { code: js })
-    await browser.tabs.executeScript(null, { code: `window.rdportal.page = '${await browser.runtime.getURL('portal.html')}'` })
+    await browser.tabs.executeScript(null, { code: `
+        ${js}
+        window.rdportal.page = '${await browser.runtime.getURL('portal.html')}'
+    ` })
 }
 
 /*

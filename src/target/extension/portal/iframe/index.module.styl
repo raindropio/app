@@ -7,7 +7,7 @@
 .wrap {
     position: relative
     z-index: 100
-    opacity: 0
+    opacity: 0.001
     transform: translateY(-15px)
     transition: opacity .3s ease-out, transform .3s ease-out
     will-change: opacity, transform
@@ -20,7 +20,6 @@
     &[data-status='ready'] {
         transition-timing-function: ease-in
         transition-duration: .125s
-        transition-delay: .1s
         opacity: 1
         transform: translateY(0)
     }

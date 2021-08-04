@@ -21,14 +21,15 @@
 
     .backdrop {
         background: rgba(0,0,0,.5)
-        opacity: 0
+        opacity: 0.001
         will-change: opacity
         transition: opacity .3s ease-out
     }
 
-    &[data-status='loading'], &[data-status='ready'] {
+    &[data-status='ready'] {
         .backdrop {
             transition-timing-function: ease-in
+            transition-duration: .125s
             opacity: 1
         }
     }
