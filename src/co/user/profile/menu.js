@@ -1,6 +1,7 @@
 import React from 'react'
 import t from '~t'
 import config from '~config'
+import { useLocation } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { logout } from '~data/actions/user'
 import { user } from '~data/selectors/user'
@@ -15,10 +16,12 @@ function UserProfileMenu({
 
     logout
 }) {
+    const location = useLocation()
+
     return (
         <Popover pin={pin} onClose={onClose}>
             <Menu>
-                <MenuItem to='/settings'>
+                <MenuItem to={`/settings?back=${encodeURIComponent(location.pathname + location.search)}`}>
                     <Icon name='settings' />
                     {t.s('settings')}
                 </MenuItem>

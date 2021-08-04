@@ -17,7 +17,16 @@ export default function useAutoSize(ref) {
 
         const onLoad = function(e) {
             if (!ro) return
-            ro.observe(e.target.contentWindow.document.body)
+            const body = e.target.contentWindow.document.body
+            ro.observe(body)
+
+            //firefox fix for initial load
+            setTimeout(()=>{
+                onResize([{ contentRect: {
+                    width: body.offsetWidth,
+                    height: body.offsetHeight
+                } }])
+            }, 1)
         }
 
         if (ref && ref.current)

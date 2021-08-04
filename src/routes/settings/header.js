@@ -1,7 +1,7 @@
-import React from 'react'
+import React, { useCallback, useMemo } from 'react'
 import t from '~t'
-import { connect } from 'react-redux'
-import { user } from '~data/selectors/user'
+import { useSelector, useDispatch } from 'react-redux'
+import { user as getUser } from '~data/selectors/user'
 import { logout } from '~data/actions/user'
 
 import { Link } from 'react-router-dom'
@@ -10,43 +10,44 @@ import { Title, FirstAction, Space } from '~co/common/header'
 import Icon, { Avatar } from '~co/common/icon'
 import Button from '~co/common/button'
 
-class SettingsHeader extends React.Component {
-    render() {
-        const { user: { name, avatar }, logout } = this.props
+export default function SettingsHeader({ location: { search } }) {
+    const dispatch = useDispatch()
+    const user = useSelector(state=>getUser(state))
 
-        return (
-            <Header 
-                data-solid>
-                <FirstAction>
-                    <Button 
-                        as={Link} 
-                        to='/'
-                        title={t.s('back')}>
-                        <Icon name='back' />
-                    </Button>
-                </FirstAction>
+    const backTo = useMemo(()=>{
+        const { back='' } = Object.fromEntries(new URLSearchParams(search) || {})
+        if (back.startsWith('/'))
+            return back
+        return '/'
+    }, [])
 
-                <Space />
+    const onLogoutClick = useCallback(()=>dispatch(logout()),[])
 
-                <Title>
-                    {t.s('settings')} &nbsp;·&nbsp; <Avatar src={avatar} /> {name}
-                </Title>
-                
-                <Space />
-
+    return (
+        <Header 
+            data-solid>
+            <FirstAction>
                 <Button 
-                    title={t.s('logOut')}
-                    onClick={logout}>
-                    <Icon name='exit' />
+                    as={Link} 
+                    to={backTo}
+                    title={t.s('back')}>
+                    <Icon name='back' />
                 </Button>
-            </Header>
-        )
-    }
-}
+            </FirstAction>
 
-export default connect(
-	(state)=>({
-        user: user(state)
-    }),
-    { logout }
-)(SettingsHeader)
+            <Space />
+
+            <Title>
+                {t.s('settings')} &nbsp;·&nbsp; <Avatar src={user.avatar} /> {user.name}
+            </Title>
+            
+            <Space />
+
+            <Button 
+                title={t.s('logOut')}
+                onClick={onLogoutClick}>
+                <Icon name='exit' />
+            </Button>
+        </Header>
+    )
+}
