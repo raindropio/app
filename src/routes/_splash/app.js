@@ -8,9 +8,7 @@ import { Avatar } from '~co/common/icon'
 
 export default function SplashApp() {
     return (
-        <SplitView 
-            safariExtensionBackdrop
-            variant='splash'>
+        <SplitView>
             <Sidebar.default>
                 <Sidebar.Header data-no-shadow>
                     <FirstAction>
