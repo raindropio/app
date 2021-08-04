@@ -23,7 +23,7 @@ export default function App() {
 
             setTimeout(() => (
                 window.parent.postMessage({ action: 'close' }, '*')
-            ), 200)
+            ), 300)
         }
     }, [status, safeToClose])
 

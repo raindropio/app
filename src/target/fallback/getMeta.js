@@ -1,3 +1,3 @@
-export async function getMeta({url}) {
+export async function getMeta() {
     return {}
 }

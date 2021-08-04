@@ -8,8 +8,9 @@
     position: relative
     z-index: 100
     opacity: 0
-    transform: translateY(-10px)
-    transition: opacity .2s ease-in-out, transform .2s ease-in-out
+    transform: translateY(-15px)
+    transition: opacity .3s ease-out, transform .3s ease-out
+    will-change: opacity, transform
 
     border-radius: 7px
     box-shadow: 0 30px 60px rgba(0,0,0,.1), 0 30px 60px -10px rgba(0,0,0,.2)
@@ -17,6 +18,9 @@
     overflow: hidden
 
     &[data-status='ready'] {
+        transition-timing-function: ease-in
+        transition-duration: .125s
+        transition-delay: .1s
         opacity: 1
         transform: translateY(0)
     }

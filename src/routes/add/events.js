@@ -1,17 +1,20 @@
-import React from 'react'
+import { useMemo } from 'react'
 
-//React to draft change events
-export default class AddEvents extends React.Component {
-    componentDidUpdate(prev) {
-        const { status } = this.props
+export default function AddRouteEvents() {
+    //close window on Esc press (when possible) 
+    useMemo(()=>{
+        function onWindowKeyDown({ key }) {
+            switch(key) {
+                case 'Escape':
+                    if (window.dispatchEvent(new Event('beforeunload', { cancelable: true })))
+                        window.close()
+                break
+            }
+        }
 
-        //close window when bookmark is removed
-        if (prev.status != status &&
-            status == 'removed')
-            window.close()
-    }
+        window.addEventListener('keydown', onWindowKeyDown)
+        return ()=>window.removeEventListener('keydown', onWindowKeyDown)
+    }, [])
 
-    render() {
-        return null
-    }
+    return null    
 }

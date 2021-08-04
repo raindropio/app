@@ -20,14 +20,16 @@
     justify-content: center
 
     .backdrop {
-        background: rgba(0,0,0,.3)
-        opacity: 1
-        transition: opacity .2s ease-in-out
+        background: rgba(0,0,0,.5)
+        opacity: 0
+        will-change: opacity
+        transition: opacity .3s ease-out
     }
-    
-    &[data-status='init'], &[data-status='closing'] {
+
+    &[data-status='loading'], &[data-status='ready'] {
         .backdrop {
-            opacity: 0
+            transition-timing-function: ease-in
+            opacity: 1
         }
     }
 }
