@@ -9,8 +9,12 @@ export async function captureTab(link) {
 
     if (normalizeURL(url) == normalizeURL(link))
         try{
+            await browser.runtime.sendMessage(null, { type: 'CAPTURE_TAB_START' })
+
             //doesn't work in firefox, because it requires <all_urls> permissions
             const dataURI = await browser.tabs.captureVisibleTab(null, { format: 'jpeg', quality: 100 })
+
+            await browser.runtime.sendMessage(null, { type: 'CAPTURE_TAB_END' })
 
             return resize(
                 parseDataURI(dataURI), 

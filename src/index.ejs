@@ -46,8 +46,5 @@
 </head>
 <body>
 	<div id="react"></div>
-
-	<!-- extension popover size, script should be right after #react tag -->
-	<%= process.env.APP_TARGET == 'extension' ? `<script src='${require('./assets/target/extension/window_size.js?asis').default}'></script>` : '' %>
 </body>
 </html>

@@ -18,6 +18,9 @@ export default function(state = initialState, action){switch (action.type) {
 			}
 		)
 
+		if (action.type == REHYDRATE)
+			state = state.set('_rehydrated', true)
+
 		return state
 	}
 
@@ -47,6 +50,8 @@ const mutate = (state, key='', val='')=>{
 }
 
 const initialState = Immutable({
+	_rehydrated:			false,
+
 	lang:					'', //should be empty!!
 	last_collection:		0,
 

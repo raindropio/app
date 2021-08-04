@@ -72,5 +72,17 @@ window.rdportal = {
         
         this.iframe.remove()
         this.iframe = null
+    },
+
+    show: function() {
+        if (!this.iframe) return
+
+        this.iframe.style.display = 'block'
+    },
+
+    hide: function() {
+        if (!this.iframe) return
+
+        this.iframe.style.display = 'none'
     }
 }

@@ -23,8 +23,9 @@
 
 /* Do not set background color for page! otherwise glitch in firefox */
 
-html:global(.extension):global(.browser_action) .page {
-    max-height: 600px;
+html:global(.extension) .page {
+    min-width: 420px;
+    height: auto;
 }
 
 /* Global */
