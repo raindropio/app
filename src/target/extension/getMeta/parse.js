@@ -15,15 +15,18 @@ function getJsonLd() {
 
     try{
         const json = JSON.parse(document.querySelector('script[type="application/ld+json"]').innerText) || {}
-        if (json['@context'] == 'https://schema.org'){
-            if (json.name)
+        if (typeof json['@context'] == 'string' && 
+            json['@context'].includes('schema.org')){
+            if (json.name || json.headline)
                 item = json
             else if (json['@graph'])
                 item = json['@graph'].find(graph=>similarURL(graph.url))
         }
     } catch(e) {console.log(e)}
 
-    if (!item.image || !item.image.url)
+    if (Array.isArray(item.image) && item.image.length)
+        item.image = { url: item.image[0] }
+    else if (!item.image || !item.image.url)
         if (Array.isArray(item.thumbnailUrl) && item.thumbnailUrl.length)
             item.image = { url: item.thumbnailUrl[0] }
 
@@ -72,10 +75,10 @@ function getItem() {
     const ld = getJsonLd()
 
     //use json ld schema
-    if (ld.name)
+    if (ld.name || ld.headline)
         item = {
             ...item,
-            title: ld.name,
+            title: ld.name || ld.headline,
             excerpt: ld.description,
             cover: ld.image && ld.image.url
         }
@@ -87,8 +90,8 @@ function getItem() {
     )
         item = {
             ...item,
-            title: ld.name || getMeta('twitter:title', 'og:title') || getMeta('title') || document.title,
-            excerpt: ld.description || getMeta('twitter:description', 'og:description') || getMeta('description'),
+            title: getMeta('twitter:title', 'og:title') || getMeta('title') || document.title,
+            excerpt: getMeta('twitter:description', 'og:description') || getMeta('description'),
             cover: getMeta('twitter:image', 'twitter:image:src', 'og:image', 'og:image:src'),
         }
     //fallback. do not set any data from meta tags here!!
