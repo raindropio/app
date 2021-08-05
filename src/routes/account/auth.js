@@ -33,12 +33,19 @@ function Auth({ location: { search } }) {
     if (authorized == 'yes'){
         //use redirect link saved previously
         const redirect = window.sessionStorage && window.sessionStorage.getItem('redirect')
-        if (redirect){
+        if (typeof redirect == 'string'){
             window.sessionStorage.removeItem('redirect')
+
+            //redirect inside of an app
+            if (redirect.startsWith(window.location.origin))
+                return <Redirect to={redirect.replace(window.location.origin, '')} />
+
+            //redirect outside
             location.href = redirect
             return null
         }
 
+        //default redirect to homepage
         return <Redirect to='/' />
     }
 

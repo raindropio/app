@@ -38,7 +38,8 @@ export default class AccountExtension extends React.Component {
                         href={new URL('/account/login', config.links.app.index).toString()}
                         target='_blank'
                         variant='outline'
-                        data-block>
+                        data-block
+                        autoFocus>
                         {t.s('signIn')}
                     </Button>
 

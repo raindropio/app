@@ -24,14 +24,14 @@ class ScreenProtected extends React.Component {
 	}
 
 	render() {
-		const { redirect, authorized, children, location: { pathname } } = this.props
+		const { redirect, authorized, children, location: { pathname, search } } = this.props
 
 		switch (authorized) {
 			case 'yes':
 				return children||null
 
 			case 'no':
-				return <Redirect to={`/account/login${redirect?`?redirect=${pathname}`:''}`} />
+				return <Redirect to={`/account/login${redirect?`?redirect=${encodeURIComponent(pathname+search)}`:''}`} />
 
 			default:
 				return (
