@@ -11,9 +11,7 @@ import Close from './close'
 
 export default (props)=>{
     return (
-        <Header
-            data-no-shadow
-            data-fancy>
+        <Header data-no-shadow data-static>
             <FirstAction>
                 <Button
                     as='a'

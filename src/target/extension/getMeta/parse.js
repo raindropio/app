@@ -14,13 +14,19 @@ function getJsonLd() {
     let item = {}
 
     try{
-        const json = JSON.parse(document.querySelector('script[type="application/ld+json"]').innerText) || {}
-        if (typeof json['@context'] == 'string' && 
-            json['@context'].includes('schema.org')){
-            if (json.name || json.headline)
+        for(const elem of [...document.querySelectorAll('script[type="application/ld+json"]')]){
+            const json = JSON.parse(elem.innerText) || {}
+            if (typeof json['@context'] != 'string' || !json['@context'].includes('schema.org')) continue
+            if (json.url && !similarURL(json.url)) continue
+
+            if (json.name || json.headline){
                 item = json
-            else if (json['@graph'])
+                break
+            }
+            else if (json['@graph']){
                 item = json['@graph'].find(graph=>similarURL(graph.url))
+                if (Object.keys(item).length) break
+            }
         }
     } catch(e) {console.log(e)}
 
@@ -74,16 +80,8 @@ function getItem() {
     const canonical = getMeta('twitter:url', 'og:url')
     const ld = getJsonLd()
 
-    //use json ld schema
-    if (ld.name || ld.headline)
-        item = {
-            ...item,
-            title: ld.name || ld.headline,
-            excerpt: ld.description,
-            cover: ld.image && ld.image.url
-        }
-    //use open-graph or twitter cards (if page is not js rendered)
-    else if (
+    //use open-graph or twitter cards (if page is not spa)
+    if (
         location.pathname == '/' ||
         similarURL(canonical) ||
         !window.history.state
@@ -93,6 +91,14 @@ function getItem() {
             title: getMeta('twitter:title', 'og:title') || getMeta('title') || document.title,
             excerpt: getMeta('twitter:description', 'og:description') || getMeta('description'),
             cover: getMeta('twitter:image', 'twitter:image:src', 'og:image', 'og:image:src'),
+        }
+    //use json ld schema
+    else if (ld.name || ld.headline)
+        item = {
+            ...item,
+            title: ld.name || ld.headline,
+            excerpt: ld.description,
+            cover: ld.image && ld.image.url
         }
     //fallback. do not set any data from meta tags here!!
     else
