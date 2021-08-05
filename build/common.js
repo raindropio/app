@@ -149,7 +149,14 @@ module.exports = ({ production, filename='[name].[contenthash]', sentry={}, RAIN
 						}
 					}
 				},
-				'postcss-loader',
+				'postcss-loader'
+			]
+		},
+
+		{
+			test: /\.(styl)$/,
+			sideEffects: true,
+			use: [
 				'stylus-loader',
 			]
 		},

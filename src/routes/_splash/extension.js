@@ -6,10 +6,12 @@ import Screen from '~co/screen/basic'
 let _cachedMode = window.localStorage && window.localStorage.getItem('_extension_mode_cached')
 let _cachedHeight = window.localStorage && window.localStorage.getItem('_extension_height_cached')
 
-window.onhashchange = function() {
+function _saveCachedHeight() {
     if (!window.localStorage) return
     window.localStorage.setItem('_extension_height_cached', window.innerHeight)
 }
+window.onhashchange = _saveCachedHeight
+window.onbeforeunload = _saveCachedHeight
 
 export default function SplashExtension() {
     const isBrowserAction = location.search.includes('browser_action')

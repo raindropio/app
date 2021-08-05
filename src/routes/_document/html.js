@@ -1,4 +1,4 @@
-import './html.module.styl'
+import './html.module.css'
 import React from 'react'
 import debounce from '~modules/format/callback/debounce'
 import { Helmet } from 'react-helmet'

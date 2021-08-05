@@ -4,8 +4,21 @@
 /* Page itself */
 .page {
     background: var(--background-color);
+    width: 100%;
     height: 100%;
     overflow: auto;
+}
+
+/* extension */
+@media (max-width: 800px) {
+    html:global(.extension) .page {
+        width: fit-content;
+        min-width: 420px;
+        max-width: var(--screen-max-width);
+        height: fit-content;
+        min-height: 100px;
+        max-height: var(--screen-max-height);
+    }
 }
 
 /* Semi-transparent page in safari extension */
@@ -22,11 +35,6 @@
 }
 
 /* Do not set background color for page! otherwise glitch in firefox */
-
-html:global(.extension) .page {
-    min-width: 420px;
-    height: auto;
-}
 
 /* Global */
 * {
