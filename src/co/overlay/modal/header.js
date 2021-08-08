@@ -17,6 +17,7 @@ class ModalHeader extends React.Component {
             <Header {...etc}>
                 {this.context.closable ? (
                     <Button 
+                        className={s.back}
                         title={t.s('close')}
                         onClick={this.context.onClose}>
                         <Icon name='back' />

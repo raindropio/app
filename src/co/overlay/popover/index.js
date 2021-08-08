@@ -35,7 +35,7 @@ function Popover({ pin, innerRef, className='', children, dataKey, hidden=false,
         ()=>{
             if (!_container.current) return
 
-            let y, x, pinHeight=0
+            let y, x, pinHeight=0, minWidth = 0
 
             //use current mouse position
             y = _mousePos.y
@@ -44,10 +44,13 @@ function Popover({ pin, innerRef, className='', children, dataKey, hidden=false,
             //pin to active element
             if (pin && pin.current)
                 try{
-                    const { left, top, height } = pin.current.getBoundingClientRect()
+                    const { left, top, height, width } = pin.current.getBoundingClientRect()
                     y = top + height
                     x = left
                     pinHeight = height
+
+                    if (stretch)
+                        minWidth = width
                 }catch(e){}
 
             //prevent showing outside of viewport
@@ -68,7 +71,8 @@ function Popover({ pin, innerRef, className='', children, dataKey, hidden=false,
             setStyle({
                 opacity: 1,
                 '--top': parseInt(y)+'px',
-                '--left': parseInt(x)+'px'
+                '--left': parseInt(x)+'px',
+                minWidth
             })
         },
         [_container, pin, stretch, setStyle]

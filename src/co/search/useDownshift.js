@@ -14,7 +14,7 @@ export default function useDownshift({ filter, applyFilter, suggestions, recent 
                 return {
                     ...changes,
                     isOpen: changes.inputValue && haveItems,
-                    highlightedIndex: incompleteToken ? 0 : -1
+                    highlightedIndex: 0
                 }
     
             //select item
