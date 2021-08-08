@@ -3,7 +3,7 @@ import t from '~t'
 import Popover, { Menu, MenuItem, MenuSeparator } from '~co/overlay/popover'
 
 export default function CollectionsItemContextmenu({
-    hidden,
+    item: {hidden},
     onContextMenuClose, onClick, onSortTagsById, onSortTagsByCount
 }) {
     return (

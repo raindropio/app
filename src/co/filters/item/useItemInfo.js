@@ -13,7 +13,7 @@ export default function useItemInfo({ _id, query='', count, top, ...other }) {
 
     let icon = token
     let title = _id
-    let info = top ? query : count
+    let info = count
 
     //special
     switch(token) {
@@ -42,7 +42,7 @@ export default function useItemInfo({ _id, query='', count, top, ...other }) {
                 icon = 'document'
             } else {
                 icon = _id
-                title = t.s(_id)
+                title = t.s(_id+'s')
             }
         break
 
@@ -50,7 +50,6 @@ export default function useItemInfo({ _id, query='', count, top, ...other }) {
         case 'important':
             title = t.s('favorites')
             icon = 'like'
-            info = count
         break
 
         case 'lang':

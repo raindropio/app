@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react'
 import Lazy from '~co/virtual/lazy'
-import Item from './item'
+import Item from '~co/filters/item'
 import Tip from './tip'
 
 export default function SearchMenuSuggestions({ downshift: { getItemProps, highlightedIndex }, value, suggestions }) {

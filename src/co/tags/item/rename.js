@@ -9,7 +9,7 @@ import TagIcon from './icon'
 
 export default class FiltersTagRename extends React.PureComponent {
     state = {
-        name: this.props._id,
+        name: this.props.item._id,
         loading: false
     }
 
@@ -31,7 +31,7 @@ export default class FiltersTagRename extends React.PureComponent {
 
     save = ()=>{
         //cancel
-        if (!this.state.name.trim() || this.state.name == this.props._id)
+        if (!this.state.name.trim() || this.state.name == this.props.item._id)
             return this.props.onRenameCancel()
 
         //update collection

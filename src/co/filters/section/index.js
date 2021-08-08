@@ -1,12 +1,11 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { hideSection } from '~data/actions/config'
-import { reorder } from '~data/actions/tags'
 
 import View from './view'
 import Contextmenu from './contextmenu'
 
-class TagsSection extends React.PureComponent {
+class FiltersSection extends React.PureComponent {
     static defaultProps = {
         //item,
     }
@@ -17,14 +16,6 @@ class TagsSection extends React.PureComponent {
 
     onClick = ()=>{
         this.props.hideSection(this.props.item._id, !this.props.item.hidden)
-    }
-
-    onSortTagsById = ()=>{
-        this.props.reorder('_id')
-    }
-
-    onSortTagsByCount = ()=>{
-        this.props.reorder('-count')
     }
 
     onContextMenu = (e)=>{
@@ -48,10 +39,8 @@ class TagsSection extends React.PureComponent {
                 {this.state.menu ? (
                     <Contextmenu 
                         {...this.props}
-                        onContextMenuClose={this.onContextMenuClose}
                         onClick={this.onClick}
-                        onSortTagsById={this.onSortTagsById}
-                        onSortTagsByCount={this.onSortTagsByCount} />
+                        onContextMenuClose={this.onContextMenuClose} />
                 ) : null}
             </>
         )
@@ -60,5 +49,5 @@ class TagsSection extends React.PureComponent {
 
 export default connect(
 	undefined,
-	{ hideSection, reorder }
-)(TagsSection)
+	{ hideSection }
+)(FiltersSection)

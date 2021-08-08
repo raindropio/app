@@ -66,6 +66,7 @@ const initialState = Immutable({
 	raindrops_search_by_score:true,
 	raindrops_search_incollection:false,
 	
+	filters_hide:			false,
 	tags_sort:				'_id',
 	tags_hide:				false,
 	nested_view_legacy:		false,

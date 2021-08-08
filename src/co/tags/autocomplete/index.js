@@ -76,16 +76,16 @@ class TagsMenu extends React.PureComponent {
                             return (
                                 <SectionView 
                                     key={item.type+item._id}
-                                    {...item} />
+                                    item={item} />
                             )
                         
                         return (
                             <TagItemView
+                                item={item}
                                 {...getItemProps({
                                     key: item._id,
                                     index,
                                     item,
-                                    ...item,
                                     showIcon: false,
                                     active: highlightedIndex === index
                                 })} />

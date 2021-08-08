@@ -10,7 +10,7 @@ import Contextmenu from './contextmenu'
 
 class TagsItem extends React.PureComponent {
     static defaultProps = {
-        //...item,
+        //item,
         active:     false,
         getLink:    undefined
     }
@@ -29,11 +29,11 @@ class TagsItem extends React.PureComponent {
             this.setState({ rename: false }),
 
         onRename: (newName, success, fail)=>
-            this.props.oneRename(this.props._id, newName, success, fail),
+            this.props.oneRename(this.props.item._id, newName, success, fail),
     
         onRemoveClick: async()=>{
             if (await Confirm(t.s('areYouSure'), { variant: 'warning' }))
-                this.props.oneRemove(this.props._id)
+                this.props.oneRemove(this.props.item._id)
         },
     
         onContextMenu: (e)=>{
