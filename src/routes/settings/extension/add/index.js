@@ -17,39 +17,33 @@ function SettingsExtensionAdd({ add_default_collection, add_auto_save, browser_e
                 Clipper {t.s('settings').toLowerCase()}
             </Title>
 
-            <Layout type='columns'>
-                <div>
-                    <Label>
-                        {t.s('newBookmark')}
-                    </Label>
-                    <div>
-                        <Checkbox 
-                            checked={add_auto_save}
-                            onChange={()=>set('add_auto_save', !add_auto_save)}>
-                            {t.s('save')} {t.s('automatically').toLowerCase()}
-                        </Checkbox>
-                    </div>
-                </div>
+            <Layout type='grid'>
+                <Label>
+                    {t.s('newBookmark')}
+                </Label>
+                <Checkbox 
+                    checked={add_auto_save}
+                    onChange={()=>set('add_auto_save', !add_auto_save)}>
+                    {t.s('save')} {t.s('automatically').toLowerCase()}
+                </Checkbox>
 
+                <Label>
+                    {t.s('defaultCollection')}
+                </Label>
                 <div>
-                    <Label>
-                        {t.s('defaultCollection')}
-                    </Label>
-                    <div>
-                        {[
-                            [-1, t.s('defaultCollection--1'), <CollectionIcon _id={-1} />],
-                            [0, t.s('lastUsed'), <Icon name='sort_-created' />]
-                        ].map(([key, title, icon])=>
-                            <Radio 
-                                key={key}
-                                checked={add_default_collection==key}
-                                name='add_default_collection'
-                                onChange={e=>set('add_default_collection', key)}>
-                                {icon}
-                                {title}
-                            </Radio>
-                        )}
-                    </div>
+                    {[
+                        [-1, t.s('defaultCollection--1'), <CollectionIcon _id={-1} />],
+                        [0, t.s('lastUsed'), <Icon name='sort_-created' />]
+                    ].map(([key, title, icon])=>
+                        <Radio 
+                            key={key}
+                            checked={add_default_collection==key}
+                            name='add_default_collection'
+                            onChange={e=>set('add_default_collection', key)}>
+                            {icon}
+                            {title}
+                        </Radio>
+                    )}
                 </div>
             </Layout>
         </>

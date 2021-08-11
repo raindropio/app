@@ -1,0 +1,23 @@
+.about {
+    display: grid
+    grid-template-columns: auto 1fr
+    grid-column-gap: var(--padding-small)
+    grid-template-areas:    'avatar name'\
+                            'avatar email'
+}
+
+.avatar {
+    grid-area: avatar
+}
+
+.name {
+    grid-area: name
+    font-size: var(--title-font-size)
+    font-weight: 600
+}
+
+.email {
+    grid-area: email
+    font-size: var(--secondary-font-size)
+    color: var(--secondary-text-color)
+}

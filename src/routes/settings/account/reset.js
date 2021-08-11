@@ -3,7 +3,8 @@ import t from '~t'
 import { connect } from 'react-redux'
 import { removeAll } from '~data/actions/collections'
 
-import Button from '~co/common/button'
+import { Item, ItemTitle, ItemIcon, ItemLink } from '~co/common/list'
+import Icon from '~co/common/icon'
 import { Error, Alert, Confirm } from '~co/overlay/dialog'
 import Modal, { Header } from '~co/overlay/modal'
 import Preloader from '~co/common/preloader'
@@ -41,12 +42,11 @@ class SettingsProfileReset extends React.Component {
     render() {
         return (
             <>
-                <Button 
-                    onClick={this.onResetClick}
-                    variant='link'
-                    accent='danger'>
-                    {this.label}
-                </Button>
+                <Item>
+                    <ItemIcon><Icon name='trash' /></ItemIcon>
+                    <ItemTitle>{this.label}</ItemTitle>
+                    <ItemLink onClick={this.onResetClick} />
+                </Item>
 
                 {this.state.loading && (
                     <Modal 

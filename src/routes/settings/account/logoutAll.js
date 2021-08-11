@@ -3,16 +3,24 @@ import t from '~t'
 import { connect } from 'react-redux'
 import { logout } from '~data/actions/user'
 
-import Button from '~co/common/button'
+import { Item, ItemTitle, ItemIcon, ItemLink } from '~co/common/list'
+import Icon from '~co/common/icon'
 
 function SettingsProfileLogoutAll({ logout }) {
     return (
-        <Button 
-            onClick={()=>logout(true)}
-            variant='link'
-            accent='link'>
-            {t.s('logOutOfAllDevices')}
-        </Button>
+        <>
+            <Item>
+                <ItemIcon><Icon name='exit' /></ItemIcon>
+                <ItemTitle>{t.s('logOut')}</ItemTitle>
+                <ItemLink onClick={()=>logout()} />
+            </Item>
+
+            <Item>
+                <ItemIcon><Icon name='exit' /></ItemIcon>
+                <ItemTitle>{t.s('logOutOfAllDevices')}</ItemTitle>
+                <ItemLink onClick={()=>logout(true)} />
+            </Item>
+        </>
     )
 }
 

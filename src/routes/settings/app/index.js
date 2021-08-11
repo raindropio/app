@@ -2,6 +2,8 @@ import React from 'react'
 import t from '~t'
 import { Helmet } from 'react-helmet'
 import { Layout, Separator } from '~co/common/form'
+import { Header } from '~co/screen/splitview/main'
+import { Title } from '~co/common/header'
 
 //common
 import Theme from './theme'
@@ -16,22 +18,25 @@ import NestedViewLegacy from './nested_view_legacy'
 
 export default ()=>{
 	return (
-		<Layout type='grid'>
+		<>
 			<Helmet><title>{t.s('app')} {t.s('settings').toLowerCase()}</title></Helmet>
-		
-			<Lang />
-			<Theme />
-			<Size />
-			<Separator />
+			<Header data-fancy><Title>{t.s('app')}</Title></Header>
+			
+			<Layout type='grid'>
+				<Lang />
+				<Theme />
+				<Size />
+				<Separator />
 
-			<RaindropsClick />
-			<RaindropsButtons />
-			<RaindropsSearchByScore />
-			<Separator />
-					
-			<TagsSort />
-			<BrokenLevel />
-			<NestedViewLegacy />
-		</Layout>
+				<RaindropsClick />
+				<RaindropsButtons />
+				<RaindropsSearchByScore />
+				<Separator />
+						
+				<TagsSort />
+				<BrokenLevel />
+				<NestedViewLegacy />
+			</Layout>
+		</>
 	)
 }

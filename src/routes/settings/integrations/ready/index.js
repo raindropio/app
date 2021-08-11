@@ -33,7 +33,7 @@ export default class SettingsIntegrationsReady extends React.Component {
         return (
             <>
                 <Title>
-                    {t.s('integrations')} &nbsp;
+                    {t.s('staffPicks')} &nbsp;
     
                     <Button onClick={this.onToggleClick}>
                         <Icon name={hide ? 'expand' : 'colapse'} size='micro' />
@@ -42,7 +42,7 @@ export default class SettingsIntegrationsReady extends React.Component {
     
                 {!hide && (<>
                     <Label>
-                        {t.s('staffPicks')}
+                        {t.s('interest_technology_applications')}
                     </Label>
         
                     <div className={s.buttons}>

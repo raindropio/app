@@ -9,10 +9,13 @@ class SplitViewMainHeader extends React.Component {
     static contextType = Context
 
     render() {
+        const { children, ...etc } = this.props
+        
         return (
             <Header 
                 data-no-shadow
                 data-mac-inset
+                {...etc}
                 className='svMainHeader'>
                 <FirstAction className='svSidebarShowButton'>
                     <Button href='' onClick={this.context.sidebar.toggle}>
@@ -20,7 +23,7 @@ class SplitViewMainHeader extends React.Component {
                     </Button>
                 </FirstAction>
 
-                {this.props.children}
+                {children}
             </Header>
         )
     }

@@ -6,10 +6,9 @@ import { Route, Switch, Redirect } from 'react-router-dom'
 import { Helmet } from 'react-helmet'
 
 import Protected from '~co/screen/protected'
-import Screen from '~co/screen/basic'
-import Header from './header'
-import Tabs from './tabs'
-import Footer from './footer'
+import SplitView from '~co/screen/splitview'
+import Main from '~co/screen/splitview/main'
+import Sidebar from './_sidebar'
 
 import Extension from './extension'
 import App from './app'
@@ -24,18 +23,15 @@ export default (props)=>{
 
     return (
         <Protected redirect>
-            <Screen className={s.settings}>
+            <SplitView>
                 <Helmet><title>{t.s('settings')}</title></Helmet>
     
                 {!hideFrame && (
-                    <>
-                        <Header {...props} />
-                        <Tabs {...props} />
-                    </>
+                    <Sidebar {...props} />
                 )}
     
-                <div className={s.wrap}>
-                    <div className={s.body}>
+                <Main className={s.main}>
+                    <div className={s.content}>
                         <Switch>
                             <Route path={`${props.match.path}/extension`} component={Extension} />
                             <Route path={`${props.match.path}/app`} component={App} />
@@ -44,15 +40,13 @@ export default (props)=>{
                             <Route path={`${props.match.path}/import`} component={Import} />
                             <Route path={`${props.match.path}/backups`} component={Backups} />
                             <Route path={`${props.match.path}/integrations`} component={Integrations} />
-    
+
                             {/* Default route */}
                             <Route><Redirect to={`${props.match.path}/${target=='extension'?'extension':'app'}`} /></Route>
                         </Switch>
                     </div>
-                </div>
-    
-                {!hideFrame && <Footer />}
-            </Screen>
+                </Main>
+            </SplitView>
         </Protected>
     )
 }

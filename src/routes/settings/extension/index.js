@@ -1,5 +1,8 @@
 import React from 'react'
+import t from '~t'
 import { Layout, Separator } from '~co/common/form'
+import { Header } from '~co/screen/splitview/main'
+import { Title } from '~co/common/header'
 
 import Add from './add'
 import BrowserExtensionMode from './browser_extension_mode'
@@ -8,20 +11,24 @@ import Hotkeys from './hotkeys'
 
 export default ()=>{
 	return (
-		<Layout>
-            <BrowserExtensionMode />
-            
-            <Separator />
+		<>
+            <Header data-fancy><Title>{t.s('browserExtension')}</Title></Header>
 
-            <Add />
+            <Layout>
+                <BrowserExtensionMode />
+                
+                <Separator />
 
-            <Separator />
+                <Add />
 
-            <Features />
+                <Separator />
 
-            <Separator />
+                <Features />
 
-            <Hotkeys />
-        </Layout>
+                <Separator />
+
+                <Hotkeys />
+            </Layout>
+        </>
 	)
 }

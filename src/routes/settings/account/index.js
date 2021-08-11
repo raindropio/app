@@ -2,7 +2,11 @@ import React from 'react'
 import t from '~t'
 import { Helmet } from 'react-helmet'
 
-import { Layout, Separator, Buttons } from '~co/common/form'
+import { Layout, Separator } from '~co/common/form'
+import { Header } from '~co/screen/splitview/main'
+import { Title } from '~co/common/header'
+import { Wrap } from '~co/common/list'
+
 import Profile from './profile'
 import Connect from './connect'
 import Usage from './usage'
@@ -11,26 +15,33 @@ import Reset from './reset'
 import Remove from './remove'
 
 export default (props)=>(
-	<Layout type='grid'>
+	<>
 		<Helmet><title>{t.s('account')} {t.s('settings').toLowerCase()}</title></Helmet>
+		<Header data-fancy><Title>{t.s('account')}</Title></Header>
 
-		<Profile {...props} />
+		<Layout type='grid'>
+			<Profile {...props} />
 
-		<Separator />
+			<Separator />
 
-		<Connect {...props} />
+			<Connect {...props} />
 
-		<Separator />
+			<Separator />
 
-		<Usage {...props} />
+			<Usage {...props} />
 
-		<Separator />
+			<Separator />
 
-		<div />
-		<div>
-			<LogoutAll {...props} />
-			<Reset {...props} />
-			<Remove {...props} />
-		</div>
-	</Layout>
+			<div />
+			<Wrap>
+				<LogoutAll {...props} />
+			</Wrap>
+
+			<div />
+			<Wrap>
+				<Reset {...props} />
+				<Remove {...props} />
+			</Wrap>
+		</Layout>
+	</>
 )

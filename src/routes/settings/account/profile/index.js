@@ -54,12 +54,12 @@ class SettingsAccountProfile extends React.Component {
                         value={newpassword}
                         onChange={onChange} />
                 ) : (
-                    <Button 
+                    <div><Button 
                         variant='outline'
                         onClick={this.onChangePasswordClick}>
                         <Icon name='edit' size='micro' />
                         {t.s('changePassword')}
-                    </Button>
+                    </Button></div>
                 )}
 
                 <Avatar />

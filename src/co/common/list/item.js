@@ -41,6 +41,13 @@ export function ItemActions({ className='', ...etc }) {
     )
 }
 
+export function ItemLink({ as='a', className='', ...etc }) {
+    const Component = as
+    return (
+        <Component {...etc} className={s.link+' '+className} />
+    )
+}
+
 export class ItemHeightCallback extends React.Component {
     state = {
         height: 0
