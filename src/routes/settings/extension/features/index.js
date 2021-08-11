@@ -64,8 +64,10 @@ export default class SettingsExtensionFeatures extends React.Component {
                 <Title>
                     {t.s('features')}
                 </Title>
-                    {this.state.permissions.map(this.renderPermission)}
+                
+                {this.state.permissions.map(this.renderPermission)}
 
+                {!!('omnibox' in browser) && (
                     <div>
                         <Icon name='search' size='micro' />&nbsp;&nbsp;
                         {t.s('omniboxD')}
@@ -74,6 +76,7 @@ export default class SettingsExtensionFeatures extends React.Component {
                             <a href={config.links.help.omnibox} target='_blank'>{t.s('howToUse')}</a>
                         </SubLabel>
                     </div>
+                )}
             </>
         )
     }
