@@ -16,9 +16,9 @@ html, body, :global(#react) {
 
 /* extension */
 @media screen and (max-width: 800px) {
-    html:global(.extension),
-    html:global(.extension) body,
-    html:global(.extension) :global(#react) {
+    html:global(.extension:not(.sidebar)),
+    html:global(.extension:not(.sidebar)) body,
+    html:global(.extension:not(.sidebar)) :global(#react) {
         width: fit-content;
         height: fit-content;
     }

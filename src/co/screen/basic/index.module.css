@@ -11,7 +11,7 @@
 
 /* extension */
 @media (max-width: 800px) {
-    html:global(.extension) .page {
+    html:global(.extension:not(.sidebar)) .page {
         width: fit-content;
         min-width: 420px;
         max-width: var(--screen-max-width);
