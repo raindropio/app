@@ -54,7 +54,8 @@ export default function TagsPicker({ value=[], onChange, spaceId, ...etc }) {
                 if (!downshiftRef.current ||
                     downshiftRef.current?.state?.highlightedIndex == -1){
                     e.preventDefault()
-                    e.currentTarget.closest('form').requestSubmit()
+                    const form = e.currentTarget.closest('form')
+                    if (form) form.requestSubmit()
 
                     if (downshiftRef.current)
                         downshiftRef.current.closeMenu()

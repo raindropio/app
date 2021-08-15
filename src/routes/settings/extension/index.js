@@ -9,10 +9,10 @@ import BrowserExtensionMode from './browser_extension_mode'
 import Features from './features'
 import Hotkeys from './hotkeys'
 
-export default ()=>{
+export default ({ match })=>{
 	return (
 		<>
-            <Header data-fancy><Title>{t.s('browserExtension')}</Title></Header>
+            {!!match && <Header data-fancy><Title>{t.s('browserExtension')}</Title></Header>}
 
             <Layout>
                 <BrowserExtensionMode />

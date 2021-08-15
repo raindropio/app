@@ -16,9 +16,7 @@ function emToMatch(str='') {
 }
 
 async function onInputChanged(text, addSuggestions) {
-    const query = { key: 'word', val: text }
-
-    const { items=[] } = await Api._get(`raindrops/0?search=${encodeURIComponent(JSON.stringify([query]))}&perpage=10&sort=score`)
+    const { items=[] } = await Api._get(`raindrops/0?search=${encodeURIComponent(text)}&perpage=10&sort=score`)
 
     addSuggestions(
         items.map(({ link, title, highlight={} })=>({

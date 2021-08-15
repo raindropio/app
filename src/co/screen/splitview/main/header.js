@@ -18,7 +18,7 @@ class SplitViewMainHeader extends React.Component {
                 {...etc}
                 className='svMainHeader'>
                 <FirstAction className='svSidebarShowButton'>
-                    <Button href='' onClick={this.context.sidebar.toggle}>
+                    <Button href='' onClick={this.context?.sidebar?.toggle}>
                         <Icon name='menu' />
                     </Button>
                 </FirstAction>
