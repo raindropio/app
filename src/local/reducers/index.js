@@ -15,12 +15,21 @@ const reducer = (state = initialState, action)=>{
 	}
 }
 
+let initialTheme = {
+	app: 'day',
+	sidebar: 'day',
+	auto: true
+}
+
+//speed initial load by geting theme from localstorage
+try{
+	const theme = JSON.parse(localStorage.getItem('_theme'))
+	if (theme.app)
+		initialTheme = theme
+} catch(e){}
+
 const initialState = Immutable({
-	theme: {
-		app: 'day',
-		sidebar: 'day',
-		auto: true
-	},
+	theme: initialTheme,
 	appSize: 'default',
 	collectionsSearchResults: true,
 	pause: ''

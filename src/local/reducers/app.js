@@ -34,9 +34,15 @@ export default function(state, action) {switch (action.type) {
 }}
 
 const setTheme = (state, { app, sidebar, auto })=>{
-	return state.set('theme', {
+	const theme = {
 		app,
 		sidebar: sidebar||app,
 		auto: Boolean(auto)
-	})
+	}
+
+	try{
+		localStorage.setItem('_theme', JSON.stringify(theme))
+	} catch(e) {}
+
+	return state.set('theme', theme)
 }
