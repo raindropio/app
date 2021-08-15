@@ -16,9 +16,7 @@ export default class SearchForm extends React.Component {
         onSubmit: PropTypes.func
     }
 
-    submit = e=>{
-        e && e.preventDefault && e.preventDefault()
-
+    submit = ()=>{
         let { value, spaceId, onSubmit } = this.props
 
         //collection
@@ -36,12 +34,22 @@ export default class SearchForm extends React.Component {
         })
     }
 
-    blur = (e)=>{
-        if (this.props.value)
-            return this.submit(e)
+    submitBounced = _.debounce(this.submit, 350, { maxWait: 1000 })
+
+    onFormSubmit = (e)=>{
+        e.preventDefault()
+
+        const { suggestions } = this.props
+        if (suggestions.length)
+            return
+
+        this.submit()
     }
 
-    submitBounced = _.debounce(this.submit, 350, { maxWait: 1000 })
+    onFormBlur = ()=>{
+        if (this.props.value)
+            return this.submit()
+    }
 
     componentDidUpdate(prevProps) {
         const { value, originalValue, suggestions } = this.props
@@ -73,8 +81,8 @@ export default class SearchForm extends React.Component {
                 {...getComboboxProps({
                     className: s.form,
                     style: { '--value-ch': value.length+'ch' },
-                    onSubmit: this.submit,
-                    onBlur: this.blur
+                    onSubmit: this.onFormSubmit,
+                    onBlur: this.onFormBlur
                 })}>
                 {children}
             </form>
