@@ -7,7 +7,7 @@ import { Section, SectionTitle, SectionActions } from '~co/common/list'
 import Button from '~co/common/button'
 import Icon from '~co/common/icon'
 
-export default function FiltersSection({ className='', item: { hidden }, ...props}) {
+export default function FiltersSection({ className='', item: { hidden }, hideSection, getLink, ...props}) {
     return (
         <Section 
             {...props}

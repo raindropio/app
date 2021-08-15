@@ -18,7 +18,7 @@ function getTitles() {
     return _titles
 }
 
-export default function TagsSectionView({className='', item: { _id, count, hidden }, ...props}) {
+export default function TagsSectionView({className='', item: { _id, count, hidden }, hideSection, getLink, reorder, ...props}) {
     return (
         <Section 
             {...props}

@@ -21,12 +21,13 @@ class ScreenBasic extends React.Component {
     onPrefersColorSchemeChange = e => {
         const app = e.matches ? 'night' : 'day'
 
-        if (this.props.theme.auto || (this.props.theme.app == app && this.props.theme.sidebar == app))
-            this.props.setTheme({ app, sidebar: app, auto: true })
+        if (this.props.rehydrated)
+            if (this.props.theme.auto || (this.props.theme.app == app && this.props.theme.sidebar == app))
+                this.props.setTheme({ app, sidebar: app, auto: true })
     }
 
     render() {
-        const { className='', children, theme, appSize, safariExtensionBackdrop=false, setTheme, ...etc } = this.props
+        const { className='', children, theme, appSize, safariExtensionBackdrop=false, setTheme, rehydrated, ...etc } = this.props
         
         return (
             <>
@@ -53,6 +54,7 @@ class ScreenBasic extends React.Component {
 
 export default connect(
     (state, { appSize })=>({
+        rehydrated: state._persist.rehydrated,
         theme: state.local.theme,
         appSize: appSize || state.local.appSize,
     }),

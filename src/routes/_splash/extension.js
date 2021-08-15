@@ -15,7 +15,7 @@ window.onbeforeunload = _saveCachedHeight
 
 export default function SplashExtension() {
     const isBrowserAction = location.search.includes('browser_action')
-    const rehydrated = useSelector(state=>state.config._rehydrated)
+    const rehydrated = useSelector(state=>state._persist.rehydrated)
     const mode = useSelector(state=>rehydrated ? state.config.browser_extension_mode : _cachedMode)
 
     //persist

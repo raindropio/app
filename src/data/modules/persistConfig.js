@@ -48,6 +48,7 @@ export default {
 		'tags',
 		'user',
 		'local',
+		'rate',
 		...(process.env.NODE_ENV == 'development' ? ['import'] : []),
 
 		//app specifics

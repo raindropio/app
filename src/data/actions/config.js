@@ -1,4 +1,4 @@
-import { CONFIG_SET_LASTCOLLECTION } from '../constants/config'
+import { CONFIG_SET_LASTCOLLECTION, CONFIG_ACKNOWLEDGE } from '../constants/config'
 import { USER_UPDATE_REQ } from '../constants/user'
 
 //set('key', val) or set({ obj... })
@@ -23,4 +23,9 @@ export const hideSection = (section, value)=>({
 			[`${section}_hide`]: value
 		}
 	}
+})
+
+export const acknowledge = (key)=>({
+	type: CONFIG_ACKNOWLEDGE,
+	key
 })
