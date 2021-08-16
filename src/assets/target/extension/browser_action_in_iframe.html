@@ -1,8 +1,33 @@
 <html>
 <head>
     <meta name="color-scheme" content="dark light">
-    <link rel="stylesheet" href="browser_action_in_iframe.css" />
-    <link rel="preload" href="../index.html?browser_action" as="document" type="text/html">
+    <style>
+        html, body {
+            margin: 0;
+            overflow: hidden;
+            overflow: clip;
+            background: transparent;
+        }
+        iframe {
+            margin: 0;
+            padding: 0;
+            border: 0;
+            width: 100%;
+            height: 100%;
+            background: transparent;
+            opacity: 0;
+            transition: opacity .15s ease-in-out;
+        }
+
+        /* Firefox background blink fix for dark theme */
+        @media (prefers-color-scheme: dark) {
+            @supports (-moz-appearance:meterbar) {
+                html, body {
+                    background: #303030;
+                }
+            }
+        }
+    </style>
 </head>
 <body>
     <iframe 
@@ -14,6 +39,6 @@
         tabIndex="-1"
         plugins="true">
     </iframe>
-    <script src="browser_action_in_iframe.js"></script>
+    <script src="browser_action_in_iframe.js" async></script>
 </body>
 </html>

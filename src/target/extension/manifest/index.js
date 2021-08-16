@@ -50,7 +50,6 @@ module.exports = ({ vendor, production=false }, l) => {
 				[
 					file(l, '../../../assets/target/extension/browser_action_in_iframe.html'),
 					file(l, '../../../assets/target/extension/browser_action_in_iframe.js'),
-					file(l, '../../../assets/target/extension/browser_action_in_iframe.css')
 				][0] : 
 				'index.html?browser_action',
 			default_icon: {

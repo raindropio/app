@@ -21,6 +21,8 @@ const frameResize = ('ResizeObserver' in window) ? new ResizeObserver(onFrameRes
 const frame = document.getElementById('frame')
 
 frame.addEventListener('load', () => {
+    frame.style.opacity = 1
+
     if (frameResize)
         frameResize.observe(frame.contentWindow.document.body)
 
