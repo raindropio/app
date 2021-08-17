@@ -127,6 +127,13 @@ function getItem() {
             link
         }))
 
+    //limit length
+    if (item.title && item.title.length)
+        item.title = item.title.substr(0, 1000)
+
+    if (item.excerpt && item.excerpt.length)
+        item.excerpt = item.excerpt.substr(0, 10000)
+
     //remove empty keys
     for(const i in item)
         if(!item[i])
