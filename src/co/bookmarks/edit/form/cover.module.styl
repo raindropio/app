@@ -8,8 +8,9 @@
     position: relative
     overflow: hidden
     overflow: clip
-    color: white
+    color: unquote('hsla(var(--background-hsl), .8)')
     margin-top: 2px
+    border-radius: var(--border-radius)
 
     &:before {
         position: absolute
@@ -19,6 +20,11 @@
         border-radius: var(--border-radius)
         z-index: 1
     }
+
+    &:focus {
+        outline: none
+        box-shadow: 0 0 0 2px var(--background-color), 0 0 0 calc(var(--shadow-height) + 3px) var(--accent-color)
+    }
 }
 
 .more {
@@ -26,8 +32,15 @@
     bottom: 0
     right: 0
     background: var(--accent-color, colorTheme)
-    border-top-left-radius: var(--border-radius)
+    border-top-left-radius: calc(var(--border-radius) * 2)
     border-bottom-right-radius: var(--border-radius)
     width: var(--icon-size)
     height: var(--icon-size)
+}
+
+@supports (backdrop-filter: blur(20px)) {
+	.more {
+		background: unquote('hsla(var(--accent-hsl),.85)')
+		backdrop-filter: blur(10px)
+	}
 }

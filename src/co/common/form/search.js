@@ -66,6 +66,7 @@ class FormSearch extends React.PureComponent {
             case 'Escape':
                 if (this.props.clearOnEscape){
                     if (this.props.value){
+                        e.preventDefault()
                         e.stopPropagation()
                         this.onReset()
                     }

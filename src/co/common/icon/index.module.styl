@@ -50,6 +50,21 @@
         width: 100%
         height: 100%
         display: block
+
+		&:after {
+			content: ""
+			display: block
+			position: absolute
+			top: 0
+			left: 0
+			width: 100%
+			height: 100%
+			background: var(--active-background-color)
+		}
+
+		&:-moz-broken, &:-moz-loading, &:-moz-suppressed {
+			background: var(--active-background-color)
+		}
     }
 
 	&:before {

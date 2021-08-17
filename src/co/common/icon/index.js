@@ -51,8 +51,7 @@ export function Avatar({ src, className='', ...etc }) {
 			className={s.avatar + ' ' + className}>
 			<img 
 				src={src}
-				loading='lazy'
-				decoding='async' />
+				alt=' ' />
 		</IconWrap>
 	);
 }
