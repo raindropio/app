@@ -2,6 +2,7 @@ import s from './index.module.styl'
 import React from 'react'
 import t from '~t'
 import config from '~config'
+import localStorage from '~modules/localStorage'
 
 import { Label, Title } from '~co/common/form'
 import Button from '~co/common/button'
@@ -11,18 +12,16 @@ const _hidekey = 'settings-integrations-ready-hide'
 
 export default class SettingsIntegrationsReady extends React.Component {
     state = {
-        hide: (window.localStorage && window.localStorage.getItem(_hidekey)) ? true : false
+        hide: localStorage.getItem(_hidekey) ? true : false
     }
 
     onToggleClick = ()=>{
         const hide = !this.state.hide
 
-        if (window.localStorage) {
-            if (hide)
-                window.localStorage.setItem(_hidekey, '1')
-            else
-                window.localStorage.removeItem(_hidekey)
-        }
+        if (hide)
+            localStorage.setItem(_hidekey, '1')
+        else
+            localStorage.removeItem(_hidekey)
 
         this.setState({ hide })
     }

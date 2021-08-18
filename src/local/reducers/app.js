@@ -1,5 +1,6 @@
 import _ from 'lodash-es'
 import { REHYDRATE } from 'redux-persist/src/constants'
+import localStorage from '~modules/localStorage'
 
 import {
 	APP_SET_THEME,

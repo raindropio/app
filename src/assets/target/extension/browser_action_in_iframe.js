@@ -10,9 +10,11 @@ const onFrameResize = ([{ contentRect: { width, height } }])=>{
     document.body.style.width = width
     document.body.style.height = height
 
-    if (window.localStorage) {
-        window.localStorage.setItem('browser-action-in-iframe-window-width', width)
-        window.localStorage.setItem('browser-action-in-iframe-window-height', height)
+    try{
+        localStorage.setItem('browser-action-in-iframe-window-width', width)
+        localStorage.setItem('browser-action-in-iframe-window-height', height)
+    } catch(e) {
+        console.log(e)
     }
 }
 
@@ -40,8 +42,15 @@ frame.addEventListener('load', () => {
 })
 
 //restore cached w/h
-if (window.localStorage)
-    onFrameResize([{ contentRect: {
-        width: window.localStorage.getItem('browser-action-in-iframe-window-width'), 
-        height: window.localStorage.getItem('browser-action-in-iframe-window-height') 
-    }}])
+let restored
+try{
+    restored = {
+        width: localStorage.getItem('browser-action-in-iframe-window-width'), 
+        height: localStorage.getItem('browser-action-in-iframe-window-height') 
+    }
+} catch(e) {
+    console.log(e)
+}
+
+if (restored)
+    onFrameResize([{ contentRect: restored}])

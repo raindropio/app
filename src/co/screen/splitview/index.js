@@ -1,6 +1,7 @@
 import s from './index.module.styl'
 import React from 'react'
 import debounce from '~modules/format/callback/debounce'
+import localStorage from '~modules/localStorage'
 import Basic from '../basic'
 
 export const Context = React.createContext({})
@@ -8,8 +9,8 @@ export const Context = React.createContext({})
 export default class ScreenSplitView extends React.Component {
     state = {
         sidebar: {
-            width: window.localStorage ? parseInt(window.localStorage.getItem('splitview-sidebar-width')) : 0,
-            show: window.localStorage && window.localStorage.getItem('splitview-sidebar-show') !== null ? (window.localStorage.getItem('splitview-sidebar-show')=='true') : true,
+            width: parseInt(localStorage.getItem('splitview-sidebar-width')) || 0,
+            show: localStorage.getItem('splitview-sidebar-show') !== null ? (localStorage.getItem('splitview-sidebar-show')=='true') : true,
 
             toggle: (e)=>{
                 e && e.preventDefault && e.preventDefault()
@@ -59,12 +60,12 @@ export default class ScreenSplitView extends React.Component {
             }
         }, ()=>{
             //persist sidebar preferences
-            if (space=='sidebar' && window.localStorage){
+            if (space=='sidebar'){
                 if (typeof obj.width == 'number')
-                    window.localStorage.setItem('splitview-sidebar-width', obj.width)
+                    localStorage.setItem('splitview-sidebar-width', obj.width)
 
                 if (typeof obj.show != 'undefined')
-                    window.localStorage.setItem('splitview-sidebar-show', obj.show)
+                    localStorage.setItem('splitview-sidebar-show', obj.show)
             }
         })
     }, 300, { leading: true })

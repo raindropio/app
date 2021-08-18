@@ -1,4 +1,5 @@
 import Immutable from 'seamless-immutable'
+import localStorage from '~modules/localStorage'
 import app from './app'
 import pause from './pause'
 

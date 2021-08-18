@@ -5,16 +5,13 @@ import { refresh } from '~data/actions/bookmarks'
 import { makeSpaceElements, makeSelectMode, status } from '~data/selectors/bookmarks'
 import config from '~config'
 import { target, openTab } from '~target'
+import localStorage from '~modules/localStorage'
 
 import Modal, { Header, Content } from '~co/overlay/modal'
 import Preloader from '~co/common/preloader'
 
 const _warningKey = 'open-multiple-links-help-ignore'
-let showWarning = false
-
-try{
-    showWarning = target == 'web' && localStorage && !localStorage.getItem(_warningKey)
-} catch(e){}
+let showWarning = target == 'web' && !localStorage.getItem(_warningKey)
 
 class BookmarkOpenAll extends React.Component {
     static defaultProps = {
@@ -56,8 +53,7 @@ class BookmarkOpenAll extends React.Component {
         if (links.length <= 1 || !showWarning)
             onClose()
         else {
-            if (window.localStorage)
-                window.localStorage.setItem(_warningKey, 1)
+            localStorage.setItem(_warningKey, 1)
             showWarning = false
         }
     }

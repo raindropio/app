@@ -1,14 +1,14 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
+import localStorage from '~modules/localStorage'
 import Fallback from './app'
 import Screen from '~co/screen/basic'
 
-let _cachedMode = window.localStorage && window.localStorage.getItem('_extension_mode_cached')
-let _cachedHeight = window.localStorage && window.localStorage.getItem('_extension_height_cached')
+let _cachedMode = localStorage.getItem('_extension_mode_cached')
+let _cachedHeight = localStorage.getItem('_extension_height_cached')
 
 function _saveCachedHeight() {
-    if (!window.localStorage) return
-    window.localStorage.setItem('_extension_height_cached', window.innerHeight)
+    localStorage.setItem('_extension_height_cached', window.innerHeight)
 }
 window.onhashchange = _saveCachedHeight
 window.onbeforeunload = _saveCachedHeight
@@ -19,8 +19,8 @@ export default function SplashExtension() {
     const mode = useSelector(state=>rehydrated ? state.config.browser_extension_mode : _cachedMode)
 
     //persist
-    if (rehydrated && mode && window.localStorage)
-        window.localStorage.setItem('_extension_mode_cached', mode)
+    if (rehydrated && mode)
+        localStorage.setItem('_extension_mode_cached', mode)
 
     if (!isBrowserAction || mode=='clipper')
         return (
