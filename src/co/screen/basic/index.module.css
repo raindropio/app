@@ -24,13 +24,13 @@
 /* Semi-transparent page in safari extension */
 @media (prefers-color-scheme: dark) {
     html[data-theme='night']:global(.extension):global(.browser_action):global(.safari) .page[data-safari-extension-backdrop='true'] {
-        background: unquote('linear-gradient(to bottom, hsla(var(--background-hsl), 0) 0, hsla(var(--background-hsl), 1) 150px)')
+        background: linear-gradient(to bottom, hsla(var(--background-hsl), 0) 0, hsla(var(--background-hsl), 1) 150px)
     }
 }
 
 @media (prefers-color-scheme: light) {
     html[data-theme='day']:global(.extension):global(.browser_action):global(.safari) .page[data-safari-extension-backdrop='true'] {
-        background: unquote('linear-gradient(to bottom, hsla(var(--background-hsl), 0) 0, hsla(var(--background-hsl), 1) 150px)')
+        background: linear-gradient(to bottom, hsla(var(--background-hsl), 0) 0, hsla(var(--background-hsl), 1) 150px)
     }
 }
 
