@@ -19,6 +19,8 @@
     { "source": "/legacy/4",  "destination": "https://extension.raindrop.io", "permanent": true }
   ],
   "rewrites": [
-    { "source": "/(.*)",      "destination": "/index.html" }
+    { "source": "/pb/s.js",       "destination": "https://plausible.io/js/plausible.js" },
+    { "source": "/pb/api/event",  "destination": "https://plausible.io/api/event" },
+    { "source": "/(.*)",          "destination": "/index.html" }
   ]
 }

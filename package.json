@@ -60,7 +60,6 @@
 		"react-helmet": "6.1.x",
 		"react-portal": "^4.2.1",
 		"react-router-dom": "5.2.x",
-		"react-router-ga": "^1.2.3",
 		"react-sortablejs": "6.0.x",
 		"react-window": "^1.8.5",
 		"redux-persist-webextension-storage": "^1.0.2",

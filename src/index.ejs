@@ -26,7 +26,6 @@
 	<!-- native apps -->
 	<meta name='apple-itunes-app' content='app-id=1021913807' />
 	<meta name='google-play-app' content='app-id=io.raindrop.raindropio' />
-	<link rel="chrome-webstore-item" href="https://chrome.google.com/webstore/detail/ldgfbffkinooeloadekpmfoklnobpien">
 	
 	<!-- icons -->
 	<link rel='icon' href='<%= require("./assets/brand/favicon.ico").default %>' />
@@ -43,6 +42,8 @@
 	<meta property='og:description' content='For your inspiration, read later, media and stuff' />
 	<meta property='og:image' content='<%= require("./assets/brand/og.png").default %>' />
 
+	<!-- plausible -->
+	<script defer data-domain='app.raindrop.io' src='https://app.raindrop.io/pb/s.js' data-api='https://app.raindrop.io/pb/api/event'></script>
 </head>
 <body>
 	<div id="react"></div>
