@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { userStatus } from '~data/selectors/user'
 import { refresh } from '~data/actions/user'
 import isURL from 'validator/es/lib/isURL'
+import sessionStorage from '~modules/sessionStorage'
 
 import { Redirect, withRouter } from 'react-router-dom'
 
@@ -23,18 +24,17 @@ function Auth({ location: { search } }) {
             isURL(redirect, {
                 require_host: false, 
                 host_whitelist: ['raindrop.io', /\.raindrop\.io$/]
-            }) &&
-            window.sessionStorage
+            })
         )
-            window.sessionStorage.setItem('redirect', new URL(redirect, location.href).toString())
+            sessionStorage.setItem('redirect', new URL(redirect, location.href).toString())
     }
 
     //redirect when authorized
     if (authorized == 'yes'){
         //use redirect link saved previously
-        const redirect = window.sessionStorage && window.sessionStorage.getItem('redirect')
+        const redirect = sessionStorage.getItem('redirect')
         if (typeof redirect == 'string'){
-            window.sessionStorage.removeItem('redirect')
+            sessionStorage.removeItem('redirect')
 
             //redirect inside of an app
             if (redirect.startsWith(window.location.origin))

@@ -1,6 +1,7 @@
 import s from './index.module.styl'
 import React from 'react'
 import { API_ENDPOINT_URL } from '~data/constants/app'
+import sessionStorage from '~modules/sessionStorage'
 
 import Button from '~co/common/button'
 import Icon from '~co/common/icon'
@@ -15,7 +16,7 @@ export default class AccountSocialLogin extends React.Component {
 
     render() {
         const { all } = this.state
-        const redirect = (window.sessionStorage && window.sessionStorage.getItem('redirect')) || ''
+        const redirect = sessionStorage.getItem('redirect') || ''
 
         return (
             <div className={s.buttons}>
