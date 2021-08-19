@@ -41,11 +41,16 @@
 	<meta property='og:title' content='Raindrop.io &mdash; All in One Bookmark Manager' />
 	<meta property='og:description' content='For your inspiration, read later, media and stuff' />
 	<meta property='og:image' content='<%= require("./assets/brand/og.png").default %>' />
-
-	<!-- plausible -->
-	<script defer data-domain='app.raindrop.io' src='https://app.raindrop.io/pb/s.js' data-api='https://app.raindrop.io/pb/api/event'></script>
 </head>
 <body>
 	<div id="react"></div>
+
+	<!-- plausible -->
+	<script 
+		defer
+		data-domain='app.raindrop.io'
+		src="https://app.raindrop.io/pb/<%= process.env.APP_TARGET === 'extension' ? 'hash' : 'site' %>.js"
+		data-api='https://app.raindrop.io/pb/api/event'
+		data-exclude='/my, /my/*'></script>
 </body>
 </html>
