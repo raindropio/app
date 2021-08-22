@@ -50,6 +50,13 @@ export default function TagsPicker({ value=[], onChange, spaceId, ...etc }) {
 
     const onInputKeyDown = useCallback(e => {
         switch(e.key) {
+            case 'Tab':
+                //select highlighted item on tab press
+                if (downshiftRef.current &&
+                    downshiftRef.current?.state?.highlightedIndex != -1)
+                    downshiftRef.current.selectItemAtIndex(downshiftRef.current?.state?.highlightedIndex)
+            break
+
             case 'Enter':
                 if (!downshiftRef.current ||
                     downshiftRef.current?.state?.highlightedIndex == -1){

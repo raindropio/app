@@ -1,6 +1,5 @@
 import s from './index.module.styl'
 import React from 'react'
-export * from './autoClick'
 
 class ButtonInner extends React.PureComponent {
     static defaultProps = {
