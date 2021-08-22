@@ -11,7 +11,7 @@ import SwiftyStoreKit
 import Just
 import WebKit
 
-class SubscribeViewController: NSViewController {
+class SubscribeViewController: NSViewController, WKNavigationDelegate {
     
     @IBOutlet var userLabel: NSTextField!
     @IBOutlet var userEmail: NSTextField!
@@ -29,12 +29,25 @@ class SubscribeViewController: NSViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        webView.navigationDelegate = self
         
         webView.load(URLRequest(url: URL(string: "https://raindrop.io/pro?frame=1&pro=1")!))
     }
     
     override func viewDidAppear() {
         super.viewDidAppear()
+        self.view.window?.title = ""
+    }
+    
+    func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+        //click
+        if (navigationAction.navigationType == .linkActivated) {
+            NSWorkspace.shared.open(navigationAction.request.url!)
+            decisionHandler(.cancel)
+            return
+        }
+        
+        decisionHandler(.allow)
     }
     
     func login(token: String) {

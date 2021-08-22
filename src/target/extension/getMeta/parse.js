@@ -107,6 +107,10 @@ function getItem() {
             title: document.title
         }
 
+    //validate title
+    if (!item.title || /^home$/i.test(item.title))
+        item.title = document.title
+
     //validate cover url
     if (item.cover)
         try{
