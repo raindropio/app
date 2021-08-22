@@ -1,26 +1,29 @@
 import React, { useState, useMemo } from 'react'
-import browser from '~target/extension/browser'
 import { environment } from '~target'
 
 export default function DocumentMaxSizeExtension() {
-    const [width, setWidth] = useState(800)
-    const [height, setHeight] = useState(600)
+    const [zoom, setZoom] = useState(1)
 
-    //only in chrome max width of window different when zoom != 1
+    //only in chrome max width of window different when global zoom != 1
     useMemo(()=>{
+        if (zoom != 1) return
         if (!environment.includes('chrome')) return
-        browser.tabs.getZoom().then(zoom=>{
-            if (zoom == 1) return
 
-            setWidth(800/zoom)
-            setHeight(600/zoom)
-        }).catch(e=>{})
-    }, [])
+        function onResize() {
+            if (document.documentElement.offsetWidth > window.innerWidth)
+                setZoom(document.documentElement.offsetWidth / window.innerWidth)
+        }
+        
+        onResize()
+        
+        window.addEventListener('resize', onResize)
+        return ()=>window.removeEventListener('resize', onResize)
+    }, [zoom])
 
     return <style>{`
         :root {
-            --screen-max-width: ${width}px;
-            --screen-max-height: ${height}px;
+            --screen-max-width: ${parseInt(800/zoom)}px;
+            --screen-max-height: ${parseInt(600/zoom)}px;
         }
     `}</style>
 }
