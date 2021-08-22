@@ -1,3 +1,3 @@
 module.exports = {
-    hosts: 'https://*.sentry.io https://sentry.io'
+    hosts: 'https://app.raindrop.io https://*.sentry.io https://sentry.io'
 }

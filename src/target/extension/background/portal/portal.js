@@ -3,8 +3,8 @@ window.rdportal = {
     iframe: null,
 
     open: function(path, mode) {
-        //route loaded from actual site because of bug of safari extension (local files doesn't have access)
-        if (this.page.startsWith('safari')){
+        //route loaded from actual site because of bug of safari/brave extension (local files doesn't have access)
+        if (this.page.startsWith('safari') || 'brave' in navigator){
             const width = 420;
             const height = 600;
             const left = parseInt((screen.width/2)-(width/2));
