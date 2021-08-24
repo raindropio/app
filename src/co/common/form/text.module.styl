@@ -28,7 +28,7 @@
         color: var(--disable-text-color)
     }
 
-    &[data-max-rows='true'] {
+    &[data-max-rows] {
         overflow: hidden
         overflow: clip
         max-height: calc( var(--primary-font-size) * var(--primary-line-height) * var(--max-rows) )
@@ -54,7 +54,7 @@
     border-radius: var(--border-radius)
 
     &[data-multiline], &[data-auto-size] {
-        .text {
+        .text:not([data-max-rows='1']) {
             padding-top: var(--padding-mini)
             padding-bottom: var(--padding-mini)
         }

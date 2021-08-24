@@ -4,7 +4,7 @@ import _ from 'lodash-es'
 import TextareaAutosize from 'react-autosize-textarea'
 
 const getMaxRowsProps = _.memoize(rows=>({
-    'data-max-rows': true,
+    'data-max-rows': rows,
     style: {
         '--max-rows': rows
     }

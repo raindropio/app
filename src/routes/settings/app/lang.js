@@ -1,3 +1,4 @@
+import s from './lang.module.styl'
 import React from 'react'
 import t from '~t'
 import _ from 'lodash'
@@ -28,7 +29,7 @@ class SettingsAppLang extends React.Component {
         return (
             <>
                 <Label>{t.s('language')}</Label>
-                <div>
+                <div className={s.lang}>
                     <Select 
                         autoFocus
                         variant='outline'
@@ -38,8 +39,6 @@ class SettingsAppLang extends React.Component {
                             <option key={key} value={key}>{label}</option>
                         )}
                     </Select>
-                    
-                    &nbsp;&nbsp;
 
                     {showContribute && (
                         <Button 

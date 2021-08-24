@@ -11,6 +11,7 @@ export const normalizeUser = (user={})=>{
 		proExpire: 			user.proExpire||null,
 		files:				user.files||{ size: 0, used: 0 },
 		registered:			user.registered||null,
+		lastUpdate:			user.lastUpdate||null,
 
 		//connect
 		google:				user.google || {},

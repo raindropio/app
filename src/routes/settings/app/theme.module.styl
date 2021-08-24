@@ -1,12 +1,11 @@
 .selector {
-    display: inline-grid
-    grid-auto-flow: column
+    display: grid
+    grid-template-columns: repeat(auto-fill, 1.6rem) //64
+    grid-auto-rows: 1.2rem //48
     grid-gap: var(--padding-medium)
 }
 
 .theme {
-    width: 1.6rem //64
-    height: 1.2rem //48
     display: flex
     position: relative
     border-radius: var(--border-radius)
