@@ -213,7 +213,7 @@
   "view_list": "Elenco",
   "view_simple": "Titoli principali",
   "view_grid": "Tessere",
-  "view_masonry": "Tavola d'umori",
+  "view_masonry": "Moodboard",
   "applyToAll": "Applica a tutti",
   "original": "Originale",
   "path": "Percorso",
@@ -347,5 +347,13 @@
   "avatar": "Avatar",
   "regexAz09_-": "Può contenere lettere (a-z), numeri (0-9), trattini bassi (_) e trattini (-)",
   "publicPage": "Pagina pubblica",
-  "invite": "Invitare"
+  "invite": "Invitare",
+  "searchMatchAnyCondition": "Corrispondi con qualsiasi condizione",
+  "before": "Prima del",
+  "after": "Dopo il",
+  "putDashToExclude": "Metti - (trattino) davanti a una condizione che vuoi escludere dalla ricerca",
+  "narrowSearch": "Restringi la tua ricerca",
+  "createdDate": "Data di creazione",
+  "dateSearchD": "Cerca una data specifica nel formato AAAA-MM-GG o un mese specifico (AAAA-MM) o un anno (AAAA). Metti < o > davanti a una data per trovare rispettivamente prima o dopo una data specifica.",
+  "currentCollection": "Collezione corrente"
 }

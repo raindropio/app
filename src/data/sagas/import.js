@@ -129,7 +129,7 @@ function* ensureCollection(mode, obj, existingCollections) {
 
 //process bookmarks by chunks
 function* processBookmarks(mode, bookmarks, collectionId) {
-	const chunks = _.chunk(bookmarks, 1000)
+	const chunks = _.chunk(bookmarks, 500) //be sure that larger number - larger chance that all of them crash/timeout/etc
 
 	for(const chunk of chunks){
 		let items = chunk.map(item=>({
