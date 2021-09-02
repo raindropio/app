@@ -22,7 +22,12 @@ export default function OverlayLink({ onLink, buttons, ...etc }) {
 
         async function now() {
             setStatus('loading')
-            await onLink(normalizeURL(link, { defaultProtocol: 'https:' }))
+
+            let url = link
+            if (!isURL(url, { require_protocol: true }))
+                url = normalizeURL(url, { defaultProtocol: 'https:' })
+
+            await onLink(url)
             etc.onClose()
         }
 
