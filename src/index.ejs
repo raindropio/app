@@ -48,7 +48,7 @@
 		data-domain='app.raindrop.io'
 		src="https://app.raindrop.io/pb/<%= process.env.APP_TARGET === 'extension' ? 'hash' : 'site' %>.js"
 		data-api='https://app.raindrop.io/pb/api/event'
-		data-exclude='/my, /my/*, /index.html#/my, /index.html#/my/*'></script>
+		data-exclude='/my, /my/*'></script>
 </head>
 <body>
 	<div id="react"></div>

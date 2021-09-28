@@ -46,6 +46,7 @@ function grabImages() {
         for(const img of document.querySelectorAll('img')){
             if (images.length >= 9) break
             if (!img.complete || !img.src || img.src.includes('.svg')) continue
+            if (!img.offsetParent) continue //is hidden
     
             const width = Math.min(img.naturalWidth, img.width)
             const height = Math.min(img.naturalHeight, img.height)
@@ -104,12 +105,16 @@ function getItem() {
     else
         item = {
             ...item,
-            title: document.title
+            title: document.title.replace(new RegExp(`^${location.hostname.replace('www.','')}.`, 'i'), '').trim() //remove domain name from title (hi amazon!)
         }
 
     //validate title
     if (!item.title || /^home$/i.test(item.title))
         item.title = document.title
+
+    //validate excerpt
+    if (item.excerpt == item.title)
+        item.excerpt = ''
 
     //validate cover url
     if (item.cover)

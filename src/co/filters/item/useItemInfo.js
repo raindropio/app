@@ -3,6 +3,7 @@ import _ from 'lodash-es'
 import t from '~t'
 import { monthDate } from '~modules/format/date'
 import { codeToLanguage } from '~modules/format/string'
+import { compact } from '~modules/format/number'
 import CollectionIcon from '~co/collections/item/icon'
 
 const r = /^-?([\w.]+):|(#|❤️)/
@@ -13,7 +14,7 @@ export default function useItemInfo({ _id, query='', count, top, ...other }) {
 
     let icon = token
     let title = _id
-    let info = count
+    let info = compact(count)
 
     //special
     switch(token) {
