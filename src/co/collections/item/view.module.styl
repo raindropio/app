@@ -1,10 +1,12 @@
 .item {
     padding-left: calc(var(--padding-medium) + var(--level, 0) * var(--icon-size)) !important
 
-    &:hover {
-    	.count {
-    		display: none;
-    	}
+    @media (pointer: fine) {
+        &:hover {
+            .count {
+                display: none;
+            }
+        }
     }
 }
 
@@ -27,8 +29,10 @@
         pointer-events: none;
     }
 
-    &:hover {
-        opacity:1;
+    @media (pointer: fine) {
+        &:hover {
+            opacity:1;
+        }
     }
 
     &:active {

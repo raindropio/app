@@ -69,9 +69,11 @@ html:global(.extension.browser_action.firefox) .header {
         color: currentColor
         border-bottom: 1px dotted var(--secondary-text-color)
 
-        &:hover {
-            border-bottom-style: solid
-            border-bottom-color: currentColor
+        @media (pointer: fine) {
+            &:hover {
+                border-bottom-style: solid
+                border-bottom-color: currentColor
+            }
         }
     }
 }

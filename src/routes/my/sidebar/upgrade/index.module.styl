@@ -11,9 +11,11 @@
     position: relative
     z-index: 1
 
-    &:hover {
-        background: var(--accent-color)
-        color: var(--background-color)
+    @media (pointer: fine) {
+        &:hover {
+            background: var(--accent-color)
+            color: var(--background-color)
+        }
     }
 }
 

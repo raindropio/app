@@ -28,13 +28,19 @@
     --target-electron-mac-header-inset: 28px;
 }
 
-[data-app-size='large'],
-html:global(.mobile)[data-app-size='default'] {
+[data-app-size='large'] {
     font-size: 45px;
 }
 
-html:global(.mobile)[data-app-size='large'] {
-    font-size: 50px;
+/* Mobile */
+@media (pointer: coarse) {
+    [data-app-size='default'] {
+        font-size: 45px;
+    }
+
+    [data-app-size='large'] {
+        font-size: 50px;
+    }
 }
 
 @media 

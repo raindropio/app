@@ -14,7 +14,7 @@
 
 .icons {
     display: grid
-    grid-template-columns: repeat(9, 1fr)
+    grid-template-columns: unquote('repeat(auto-fill, minmax(min(calc(50% - var(--padding-medium) * 2), calc(var(--icon-size) * 2)), 1fr))')
     grid-column-gap: var(--padding-mini)
     grid-row-gap: var(--padding-mini)
     padding: var(--padding-small) var(--padding-medium)
@@ -34,9 +34,11 @@
             height: var(--button-height)
         }
 
-        &:hover {
-            opacity: .9
-            background: var(--hover-background-color)
+        @media (pointer: fine) {
+            &:hover {
+                opacity: .9
+                background: var(--hover-background-color)
+            }
         }
     }
 }

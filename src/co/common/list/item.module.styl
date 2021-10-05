@@ -15,18 +15,18 @@
         pointer-events: none
     }
 
-    &:hover {
-        background: var(--hover-background-color)
+    @media (pointer: fine) {
+        &:hover {
+            background: var(--hover-background-color)
+
+            .actions {
+                display: flex;
+            }
+        }
     }
 
     &.active {
         background: var(--active-background-color)
-    }
-
-	&:hover {
-    	.actions {
-    		display: flex;
-    	}
     }
 
     >:not(:last-child), >:first-child {

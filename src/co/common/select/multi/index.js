@@ -104,6 +104,7 @@ class MultiSelectInner extends React.PureComponent {
                     className={s.input+' '+className}
                     type='text'
                     autoComplete='off'
+                    autoCapitalize='none'
                     spellCheck='false'
                     {...etc}
                     value={etc.value||''}

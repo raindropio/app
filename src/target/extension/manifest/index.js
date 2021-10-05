@@ -46,7 +46,7 @@ module.exports = ({ vendor, production=false }, l) => {
 		},
 
 		browser_action: {
-			default_popup: vendor=='safari' || vendor=='firefox' ? 
+			default_popup: vendor=='safari' || vendor=='safari-ios' || vendor=='firefox' ? 
 				[
 					file(l, '../../../assets/target/extension/browser_action_in_iframe.html'),
 					file(l, '../../../assets/target/extension/browser_action_in_iframe.js'),
@@ -60,7 +60,7 @@ module.exports = ({ vendor, production=false }, l) => {
 					32: file(l, '../../../assets/target/extension/action_chrome_32.png')
 				} : {}),
 				//safari icon
-				...(vendor == 'safari' ? {
+				...(vendor == 'safari' || vendor == 'safari-ios' ? {
 					16: file(l, '../../../assets/target/extension/action_safari_16.png'),
 					19: file(l, '../../../assets/target/extension/action_safari_19.png'),
 					32: file(l, '../../../assets/target/extension/action_safari_32.png'),
@@ -86,7 +86,7 @@ module.exports = ({ vendor, production=false }, l) => {
 
 		optional_permissions: [
 			'tabs',
-			...(vendor=='safari' ? ['<all_urls>'] : []) //tabs permission is not enought for safari, otherwise it will ask all the time a permission for each site
+			...(vendor=='safari' || vendor=='safari-ios' ? ['<all_urls>'] : []) //tabs permission is not enought for safari, otherwise it will ask all the time a permission for each site
 		],
 
 		omnibox: {

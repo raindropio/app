@@ -63,8 +63,10 @@
         color: var(--disable-text-color)
     }
 
-    &:hover {
-        background: var(--hover-background-color)
+    @media (pointer: fine) {
+        &:hover {
+            background: var(--hover-background-color)
+        }
     }
 
     &:active {
@@ -89,8 +91,10 @@
         color: var(--disable-text-color)
     }
 
-    &:hover {
-        background: var(--hover-background-color)
+    @media (pointer: fine) {
+        &:hover {
+            background: var(--hover-background-color)
+        }
     }
 
     &:active {
@@ -114,8 +118,10 @@
         color: var(--disable-text-color)
     }
 
-    &:hover:not(:active) {
-        box-shadow: inset 0 0 0 var(--shadow-height) var(--disable-text-color), 0 var(--shadow-height) 0 rgba(0,0,0,.1)
+    @media (pointer: fine) {
+        &:hover:not(:active) {
+            box-shadow: inset 0 0 0 var(--shadow-height) var(--disable-text-color), 0 var(--shadow-height) 0 rgba(0,0,0,.1)
+        }
     }
 
     &:active {
@@ -137,8 +143,10 @@
         color: var(--disable-text-color)
     }
 
-    &:hover {
-        background: var(--hover-background-color)
+    @media (pointer: fine) {
+        &:hover {
+            background: var(--hover-background-color)
+        }
     }
 
     &:active {
@@ -162,8 +170,10 @@
         opacity: 0.5
     }
 
-    &:hover {
-        filter: brightness(1.1);
+    @media (pointer: fine) {
+        &:hover {
+            filter: brightness(1.1);
+        }
     }
 
     &:active {

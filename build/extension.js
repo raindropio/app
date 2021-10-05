@@ -14,6 +14,7 @@ module.exports = (env={}, args={}) => {
         case 'firefox': env.sentry = { urlPrefix: 'moz-extension://0e06d960-f461-414f-83d6-5d5b16938448/' }; break
         case 'opera': env.sentry = { urlPrefix: 'chrome-extension://omkjjddnkfagilfgmbmeeffkljlpaglj/' }; break
         case 'safari': env.sentry = { urlPrefix: 'safari-web-extension://F54B64D3-0D2D-4C9C-BDF5-8671C44683E7/' }; break
+        case 'safari-ios': env.sentry = { urlPrefix: 'safari-web-extension://F54B64D3-0D2D-4C9C-BDF5-8671C44683E7/' }; break
     }
 
     return merge(
