@@ -3,6 +3,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import t from '~t'
 import config from '~config'
+import { target } from '~target'
 
 import IllustrationNo from './no.svg?component'
 import IllustrationSearch from './search.svg?component'
@@ -59,16 +60,17 @@ export default class BookmarksEmptyView extends React.PureComponent {
                                         {t.s('noItemsTip')}
                                     </p>
 
-                                    <br />
-
-                                    <Button 
-                                        as='a'
-                                        href={config.links.download}
-                                        target='_blank'
-                                        variant='outline'>
-                                        <Icon name='open' size='micro' />
-                                        {t.s('install')} {t.s('browserExtension').toLowerCase()}
-                                    </Button>
+                                    {target != 'extension' && (<>
+                                        <br />
+                                        <Button 
+                                            as='a'
+                                            href={config.links.download}
+                                            target='_blank'
+                                            variant='outline'>
+                                            <Icon name='open' size='micro' />
+                                            {t.s('install')} {t.s('browserExtension').toLowerCase()}
+                                        </Button>
+                                    </>)}
 
                                     <br /><br />
 

@@ -4,7 +4,7 @@ export const normalizeRecentSearch = (search={})=>{
     return ({
         _id,
         collectionRef: parseInt(search.collectionRef),
-        query: _id,
+        query: _id+' ',
         date: search.date
     })
 }
