@@ -33,7 +33,7 @@ export default class Clipper extends React.Component {
 
         return (
             <Protected redirect>
-                <Screen safariExtensionBackdrop>
+                <Screen>
                     <Header {...this.props} item={item} />
                     <Content {...this.props} item={item} />
                 </Screen>

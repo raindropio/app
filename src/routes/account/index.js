@@ -15,7 +15,7 @@ import Lost from './lost'
 import Recover from './recover'
 
 export default ({ match })=>(
-	<Screen className={s.page} appSize='large' safariExtensionBackdrop>
+	<Screen className={s.page} appSize='large'>
 		<div className={s.content}>
 			<a href='https://raindrop.io' target='_blank' tabIndex='-1'>
 				<Logo className={s.logo} />

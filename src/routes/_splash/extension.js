@@ -28,9 +28,7 @@ export default function SplashExtension() {
     
     if (!isBrowserAction || mode=='clipper')
         return (
-            <Screen 
-                safariExtensionBackdrop
-                style={{height: `${_cachedHeight||0}px`}} />
+            <Screen style={{height: `${_cachedHeight||0}px`}} />
         )
 
     return <Fallback />

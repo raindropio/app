@@ -24,7 +24,7 @@ export default function ExtensionTabsScreen({ match: { params } }) {
 
     return (
         <Protected redirect>
-            <Screen safariExtensionBackdrop>
+            <Screen>
                 <Header />
                 
                 <form onSubmit={onSubmit}>

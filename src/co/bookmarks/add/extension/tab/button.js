@@ -1,3 +1,4 @@
+import s from './button.module.styl'
 import React from 'react'
 import t from '~t'
 import { connect } from 'react-redux'
@@ -62,7 +63,7 @@ class BookmarksAddSave extends React.Component {
                 return (
                     <Button>
                         <Preloader />
-                        {t.s('save')}…
+                        <span className={s.label}>{t.s('save')}…</span>
                     </Button>
                 )
 
@@ -73,7 +74,7 @@ class BookmarksAddSave extends React.Component {
                         title={t.s('save')}
                         onClick={this.onEditClick}>
                         <Icon name='check_active' />
-                        {!search && t.s('saved')}
+                        <span className={s.label}>{!search && t.s('saved')}</span>
                     </Button>
                 )
 
@@ -85,7 +86,7 @@ class BookmarksAddSave extends React.Component {
                         title={t.s('save')}
                         onMouseDown={this.onAddClick}>
                         <Icon name='new_bookmark' />
-                        {!search && t.s('save')}
+                        <span className={s.label}>{!search && t.s('save')}</span>
                     </Button>
                 )
         }
