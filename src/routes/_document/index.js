@@ -12,6 +12,7 @@ export default class Document extends React.Component {
         return (
             <>
                 <Helmet 
+                    defer={false}
                     titleTemplate='%s ― Raindrop.io'
                     defaultTitle='Raindrop.io'>
                 </Helmet>

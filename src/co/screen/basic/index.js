@@ -31,7 +31,7 @@ class ScreenBasic extends React.Component {
         
         return (
             <>
-                <Helmet>
+                <Helmet defer={false}>
                     <html
                         data-theme={theme.app}
                         data-app-size={appSize} />

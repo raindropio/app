@@ -7,8 +7,6 @@ progress::-webkit-progress-value {
 }
 
 html, body, :global(#react) {
-    overflow: hidden;
-    overflow: clip;
     margin:0;
     width: 100%;
     height: 100%;
@@ -16,9 +14,9 @@ html, body, :global(#react) {
 
 /* extension */
 @media screen and (max-width: 800px) {
-    html:global(.extension:not(.sidebar)),
-    html:global(.extension:not(.sidebar)) body,
-    html:global(.extension:not(.sidebar)) :global(#react) {
+    html:global(.extension:not(.sidebar):not(.mobile)),
+    html:global(.extension:not(.sidebar):not(.mobile)) body,
+    html:global(.extension:not(.sidebar):not(.mobile)) :global(#react) {
         width: fit-content;
         height: fit-content;
     }

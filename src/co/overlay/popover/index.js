@@ -126,7 +126,7 @@ function Popover({ pin, innerRef, className='', children, dataKey, hidden=false,
         <Portal>
             <Context.Provider value={context}>
                 {stretch && !hidden ? (
-                    <Helmet>
+                    <Helmet defer={false}>
                         <html data-popover-showing />
                     </Helmet>
                 ) : null}

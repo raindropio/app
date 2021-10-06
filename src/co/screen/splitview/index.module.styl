@@ -12,15 +12,21 @@ readerMinWidth = 300px
     overflow: clip
 }
 
-html:global(.extension:not(.sidebar)) .page {
-    width: var(--screen-max-width);    
+html:global(.extension:not(.sidebar):not(.mobile)) .page {
+    width: var(--screen-max-width);
     height: var(--screen-max-height);
+}
+
+@supports (-webkit-overflow-scrolling: touch) {
+    .splitview {
+        height: -webkit-fill-available
+    }
 }
 
 /* Wrapper */
 .splitview {
     width: 100%
-    height: 100%
+    height: 100vh
     display: flex
     flex-direction: row
     overflow: hidden

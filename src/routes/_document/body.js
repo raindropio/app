@@ -1,10 +1,5 @@
 import React from 'react'
-import { Helmet } from 'react-helmet'
 
-const DocumentBody = ()=>(
-    <Helmet>
-        <body />
-    </Helmet>
-)
+const DocumentBody = ()=>null
 
 export default DocumentBody

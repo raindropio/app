@@ -52,7 +52,7 @@ class DocumentHtml extends React.PureComponent {
 
     render() {
         return (
-            <Helmet>
+            <Helmet defer={false}>
                 <html className={this.state.className.join(' ')} />
             </Helmet>
         )

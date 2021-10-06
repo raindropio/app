@@ -42,7 +42,9 @@ const setTheme = (state, { app, sidebar, auto })=>{
 	}
 
 	try{
-		localStorage.setItem('_theme', JSON.stringify(theme))
+		window.requestAnimationFrame(()=>
+			localStorage.setItem('_theme', JSON.stringify(theme))
+		)
 	} catch(e) {}
 
 	return state.set('theme', theme)

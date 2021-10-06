@@ -46,7 +46,7 @@ module.exports = ({ vendor, production=false }, l) => {
 		},
 
 		browser_action: {
-			default_popup: vendor=='safari' || vendor=='safari-ios' || vendor=='firefox' ? 
+			default_popup: vendor=='safari' || vendor=='firefox' ? 
 				[
 					file(l, '../../../assets/target/extension/browser_action_in_iframe.html'),
 					file(l, '../../../assets/target/extension/browser_action_in_iframe.js'),
