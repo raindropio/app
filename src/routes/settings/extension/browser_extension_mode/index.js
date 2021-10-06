@@ -4,7 +4,7 @@ import t from '~t'
 import { connect } from 'react-redux'
 import { set } from '~data/actions/config'
 
-import { Title, Radio, SubLabel, Layout } from '~co/common/form'
+import { Title, Radio, SubLabel } from '~co/common/form'
 
 class SettingsBrowserExtensionMode extends React.Component {
     render() {
@@ -15,7 +15,7 @@ class SettingsBrowserExtensionMode extends React.Component {
                 <Title>
                     {t.s('appearance')}
                 </Title>
-                <Layout type='columns'>
+                <div className={s.items}>
                     {[
                         [
                             'mini_app', 
@@ -48,7 +48,7 @@ class SettingsBrowserExtensionMode extends React.Component {
                             <SubLabel>{desc}</SubLabel>
                         </div>
                     )}
-                </Layout>
+                </div>
             </>
         )
     }

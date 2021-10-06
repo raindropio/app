@@ -2,9 +2,11 @@ import { target, environment } from '~target'
 
 //safari extension in-app purchase
 let overrideProLink = ''
-if (target == 'extension' &&
-    environment.includes('safari'))
-    overrideProLink = 'https://api.raindrop.io/v1/auth/jwt?done_uri=rniomacsafari://subscribe'
+if (target == 'extension')
+    if (environment.includes('safari-ios'))
+        overrideProLink = 'https://api.raindrop.io/v1/auth/jwt?done_uri=rnio://pro'
+    else if (environment.includes('safari'))
+        overrideProLink = 'https://api.raindrop.io/v1/auth/jwt?done_uri=rniomacsafari://subscribe'
 
 export default {
     app: {

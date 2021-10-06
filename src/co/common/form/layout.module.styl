@@ -41,14 +41,16 @@
 }
 
 .buttons {
-    display: grid
-    grid-auto-flow: column
-    grid-gap: var(--padding-small)
+    display: flex
+    flex-direction: row
+    flex-wrap: wrap
+    gap: var(--padding-small)
     justify-content: flex-end
     align-items: center
     grid-column: 1 / -1
 
     [role='button'] {
+        width: auto
         min-width: 2.5rem //100px
     }
 

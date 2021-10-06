@@ -17,7 +17,7 @@ export default function ExtensionWelcome({ match: { path } }) {
                     target='_blank'
                     data-block>
                     <Icon name='help' />
-                    {t.s('help')} {t.s('und')} {t.s('support').toLowerCase()}
+                    <span>{t.s('help')} {t.s('und')} {t.s('support').toLowerCase()}</span>
                 </Button>
 
                 <Button
