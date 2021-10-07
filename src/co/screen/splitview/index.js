@@ -62,10 +62,14 @@ export default class ScreenSplitView extends React.Component {
             //persist sidebar preferences
             if (space=='sidebar'){
                 if (typeof obj.width == 'number')
-                    localStorage.setItem('splitview-sidebar-width', obj.width)
+                    window.requestAnimationFrame(()=>
+                        localStorage.setItem('splitview-sidebar-width', obj.width)
+                    )
 
                 if (typeof obj.show != 'undefined')
-                    localStorage.setItem('splitview-sidebar-show', obj.show)
+                    window.requestAnimationFrame(()=>
+                        localStorage.setItem('splitview-sidebar-show', obj.show)
+                    )
             }
         })
     }, 300, { leading: true })

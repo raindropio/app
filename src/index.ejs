@@ -2,45 +2,49 @@
 <html>
 <head>
 	<meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
-	<meta http-equiv="x-ua-compatible" content="ie=edge,chrome=1" />
 	<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
-	<meta name="google" value="notranslate" />
-	<meta http-equiv="cleartype" content="on" />
 	
 	<title>Raindrop.io</title>
-	<meta name="description" content="All-in-one bookmark manager">
-
-	<!-- security -->
+	
 	<%if (process.env.APP_TARGET != 'extension') { %>
+		<meta name="google" value="notranslate" />
+		<meta name="description" content="All-in-one bookmark manager">
+
+		<!-- security -->
 		<meta http-equiv="Content-Security-Policy" content="default-src *; script-src 'self' <%= require('./config/csp.js').hosts %> <%= process.env.NODE_ENV === 'development' ? '\'unsafe-inline\' \'unsafe-eval\'' : '' %>; style-src 'self' 'unsafe-inline'; img-src * blob:; object-src 'self' up.raindrop.io;">
+		
+		<!-- native apps -->
+		<meta name='apple-itunes-app' content='app-id=1021913807' />
+		<meta name='google-play-app' content='app-id=io.raindrop.raindropio' />
+		
+		<!-- icons -->
+		<link rel='icon' href='<%= require("./assets/brand/favicon.ico").default %>' />
+		<link rel='apple-touch-icon' href='<%= require("./assets/brand/icon_180.png").default %>' />
+		<link rel='icon' type='image/svg+xml' href='<%= require("./assets/brand/icon_raw.svg?asis").default %>' />
+
+		<!-- og/twitter cards -->
+		<meta name='twitter:card' content='app' />
+		<meta name='twitter:site' content='@raindrop_io' />
+		<meta name='twitter:description' content='All in One Bookmark Manager. For your inspiration, read later, media and stuff.' />
+		<meta name='twitter:image' content='<%= require("./assets/brand/og.png").default %>' />
+		<meta property='og:type' content='product' />
+		<meta property='og:title' content='Raindrop.io &mdash; All in One Bookmark Manager' />
+		<meta property='og:description' content='For your inspiration, read later, media and stuff' />
+		<meta property='og:image' content='<%= require("./assets/brand/og.png").default %>' />
 	<% } %>
+
 	<meta name="referrer" content="origin">
 
 	<!-- performance -->
 	<%if (process.env.NODE_ENV == 'production') { %>
-		<link rel="preconnect" href="https://rdl.ink">
 		<link rel="preconnect" href="https://api.raindrop.io" >
+		<link rel="preconnect" href="https://rdl.ink">
 	<% } %>
-	<%= process.env.APP_TARGET == 'extension' ? `<script src='${require('./assets/target/extension/preload.js?asis').default}'></script>` : '' %>
 
-	<!-- native apps -->
-	<meta name='apple-itunes-app' content='app-id=1021913807' />
-	<meta name='google-play-app' content='app-id=io.raindrop.raindropio' />
-	
-	<!-- icons -->
-	<link rel='icon' href='<%= require("./assets/brand/favicon.ico").default %>' />
-	<link rel='apple-touch-icon' href='<%= require("./assets/brand/icon_180.png").default %>' />
-	<link rel='icon' type='image/svg+xml' href='<%= require("./assets/brand/icon_raw.svg?asis").default %>' />
-
-	<!-- og/twitter cards -->
-	<meta name='twitter:card' content='app' />
-	<meta name='twitter:site' content='@raindrop_io' />
-	<meta name='twitter:description' content='All in One Bookmark Manager. For your inspiration, read later, media and stuff.' />
-	<meta name='twitter:image' content='<%= require("./assets/brand/og.png").default %>' />
-	<meta property='og:type' content='product' />
-	<meta property='og:title' content='Raindrop.io &mdash; All in One Bookmark Manager' />
-	<meta property='og:description' content='For your inspiration, read later, media and stuff' />
-	<meta property='og:image' content='<%= require("./assets/brand/og.png").default %>' />
+	<!-- extension speed up -->
+	<%if (process.env.APP_TARGET == 'extension') { %>
+		<script src='<%= require("./assets/target/extension/preload.js?asis").default %>'></script>
+	<% } %>
 
 	<!-- plausible -->
 	<script 

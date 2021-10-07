@@ -11,7 +11,7 @@ import Modal, { Header, Content } from '~co/overlay/modal'
 import Preloader from '~co/common/preloader'
 
 const _warningKey = 'open-multiple-links-help-ignore'
-let showWarning = target == 'web' && !localStorage.getItem(_warningKey)
+let showWarning
 
 class BookmarkOpenAll extends React.Component {
     static defaultProps = {
@@ -20,6 +20,8 @@ class BookmarkOpenAll extends React.Component {
     }
 
     componentDidMount() {
+        showWarning = target == 'web' && !localStorage.getItem(_warningKey)
+
         if (!this.props.selected && 
             this.props.status.main != 'loaded')
             this.props.refresh(this.props.spaceId)

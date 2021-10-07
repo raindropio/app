@@ -11,8 +11,10 @@ const onFrameResize = ([{ contentRect: { width, height } }])=>{
     document.body.style.height = height
 
     try{
-        localStorage.setItem('browser-action-in-iframe-window-width', width)
-        localStorage.setItem('browser-action-in-iframe-window-height', height)
+        window.requestAnimationFrame(()=>{
+            localStorage.setItem('browser-action-in-iframe-window-width', width)
+            localStorage.setItem('browser-action-in-iframe-window-height', height)
+        })
     } catch(e) {
         console.log(e)
     }
