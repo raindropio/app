@@ -73,14 +73,12 @@ class ImportParcel extends React.Component {
                             <Button
                                 as={Link}
                                 to='/'
-                                data-block
                                 variant='primary'>
                                 <Icon name='check_active' />
                                 {t.s('goHome')}
                             </Button>
 
                             <Button
-                                data-block
                                 variant='outline'
                                 onClick={cancel}>
                                 <Icon name='refresh' />
@@ -103,7 +101,6 @@ class ImportParcel extends React.Component {
 
                         <Buttons>
                             <Button
-                                data-block
                                 variant='outline'
                                 onClick={cancel}>
                                 <Icon name='refresh' />
@@ -117,7 +114,6 @@ class ImportParcel extends React.Component {
                 return (
                     <Buttons>
                         <Button
-                            data-block
                             variant='primary'
                             onClick={this.onStartClick}>
                             <Icon name='import_active' />
@@ -125,7 +121,6 @@ class ImportParcel extends React.Component {
                         </Button>
         
                         <Button
-                            data-block
                             variant='outline'
                             onClick={cancel}>
                             <Icon name='refresh' />

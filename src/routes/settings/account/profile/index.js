@@ -67,7 +67,6 @@ class SettingsAccountProfile extends React.Component {
                 {unsaved && (
                     <Buttons>
                         <Button 
-                            data-block
                             disabled={status=='loading'}
                             variant='primary'
                             onClick={onSubmit}>

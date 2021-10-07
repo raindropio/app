@@ -11,7 +11,7 @@ export default function BookmarkEditFormActionMain({ status, item: { created }, 
         case 'saving':
         case 'loading':
             return (
-                <Button data-block>
+                <Button>
                     <Preloader />
                 </Button>
             )
@@ -20,7 +20,6 @@ export default function BookmarkEditFormActionMain({ status, item: { created }, 
             return (
                 <ButtonsGroup>
                     <Button 
-                        data-block
                         variant='link'
                         accent='danger'
                         onClick={onRemove}>
@@ -28,8 +27,7 @@ export default function BookmarkEditFormActionMain({ status, item: { created }, 
                     </Button>
 
                     <Button
-                        disabled
-                        data-block>
+                        disabled>
                         <Icon name='check_active' />
                         <ShortDate date={created} />
                     </Button>
@@ -39,7 +37,6 @@ export default function BookmarkEditFormActionMain({ status, item: { created }, 
         case 'removed':
             return (
                 <Button 
-                    data-block
                     variant='link'
                     accent='danger'
                     onClick={onRemove}>
@@ -56,7 +53,6 @@ export default function BookmarkEditFormActionMain({ status, item: { created }, 
                     as='input'
                     type='submit'
                     variant='primary'
-                    data-block
                     value={t.s('save')} />
             )
     }

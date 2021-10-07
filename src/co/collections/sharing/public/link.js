@@ -40,7 +40,6 @@ export default function SharingLink({ collection: { slug, _id, public: pub } }) 
 
             <Buttons>
                 <Button 
-                    data-block
                     variant='primary'
                     onClick={copy}>
                     <Icon name='duplicates' />

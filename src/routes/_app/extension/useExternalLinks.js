@@ -26,8 +26,14 @@ export default function useExternalLinks() {
             //update current tab
             e.preventDefault()
             e.stopPropagation()
-            browser.tabs.update({ url: href })
-            
+
+            browser.tabs.update({
+                url: href,
+                active: true,
+                highlighted: true
+            })
+
+            //close popover
             window.close()
         }
 

@@ -62,6 +62,9 @@ class AccountLost extends React.Component {
                     <Label>Email</Label>
                     <Text
                         type='email'
+                        inputMode='email'
+                        autoCapitalize='none'
+                        spellCheck='false'
                         name='email'
                         disabled={status=='loading'}
                         autoFocus
@@ -71,7 +74,7 @@ class AccountLost extends React.Component {
 
                     <Buttons>
                         {status == 'loading' ? (
-                            <Button variant='flat' data-block>
+                            <Button variant='flat'>
                                 <Preloader />
                             </Button>
                         ) : (
@@ -79,14 +82,12 @@ class AccountLost extends React.Component {
                                 as='input' 
                                 type='submit'
                                 variant='primary'
-                                data-block
                                 value={t.s('recoverPassword')} />
                         )}
 
                         <Button
                             as={Link}
                             variant='outline'
-                            data-block
                             to='/account/login'>
                             {t.s('cancel')}
                         </Button>

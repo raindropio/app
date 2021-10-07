@@ -1,18 +1,28 @@
 import s from './index.module.styl'
-import React, { useEffect } from 'react'
+import React from 'react'
+import t from '~t'
 import config from '~config'
 import { target, environment } from '~target'
 
 import SuperFrame from '~co/common/superFrame'
+import { Layout } from '~co/common/form'
+import Button from '~co/common/button'
+import Icon from '~co/common/icon'
 
 export default ()=>{
-	useEffect(()=>{
-		if (target == 'extension' &&
-			environment.includes('safari')){
-			window.open(config.links.pro.buy)
-			window.close()
-		}
-	}, [])
+	if (target == 'extension' && environment.includes('safari'))
+		return (
+			<Layout>
+				<Button 
+					href={config.links.pro.frame}
+					target='_blank'
+					variant='primary'
+					data-block>
+					<Icon name='open' size='micro' />
+					{t.s('upgradeToPro')}
+				</Button>
+			</Layout>
+		)
 
 	return (
 		<SuperFrame

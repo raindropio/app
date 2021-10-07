@@ -22,16 +22,14 @@ export default function AccountElectron() {
                 <Buttons>
                     <Button
                         href={config.links.home}
-                        variant='outline'
-                        data-block>
+                        variant='outline'>
                         {t.s('about')}…
                     </Button>
 
                     <Button
                         href={`${API_ENDPOINT_URL}auth/jwt?done_uri=rnio://account/jwt`}
                         target='_blank'
-                        variant='primary'
-                        data-block>
+                        variant='primary'>
                         <Icon name='open' size='micro' />
                         {t.s('signIn')}
                     </Button>

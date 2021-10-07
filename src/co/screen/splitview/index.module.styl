@@ -17,8 +17,8 @@ html:global(.extension:not(.sidebar):not(.mobile)) .page {
     height: var(--screen-max-height);
 }
 
-@supports (-webkit-overflow-scrolling: touch) {
-    .splitview {
+html:global(.mobile) .splitview {
+    @supports (-webkit-overflow-scrolling: touch) {
         height: -webkit-fill-available
     }
 }

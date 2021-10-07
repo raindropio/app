@@ -18,7 +18,7 @@ function Upgrade({ isPro }) {
     return (
         <a href={config.links.pro.buy} target='_blank' className={s.upgrade}>
             <span className={s.title}>
-                <b>{message}</b><br/>
+                <span className={s.headline}>{message}</span>
                 {t.s('upgradeToPro')}
             </span>
 

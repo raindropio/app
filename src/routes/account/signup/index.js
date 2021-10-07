@@ -53,6 +53,8 @@ class AccountSignup extends React.Component {
                         autoFocus
                         required
                         pattern='[a-zA-Z0-9][a-zA-Z0-9\-_]*'
+                        autoCapitalize='none'
+                        spellCheck='false'
                         title={t.s('regexAz09_-')}
                         value={this.state.name}
                         onChange={this.onChangeValue} />
@@ -61,6 +63,9 @@ class AccountSignup extends React.Component {
                     <Text
                         type='email'
                         name='email'
+                        inputMode='email'
+                        autoCapitalize='none'
+                        spellCheck='false'
                         disabled={status=='loading'}
                         required
                         value={this.state.email}

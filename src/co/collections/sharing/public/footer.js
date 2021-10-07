@@ -19,7 +19,6 @@ export default function SharingFooter({ collection: { public: pub, _id, slug } }
             <Buttons variant='between'>
                 <Button
                     variant='outline' 
-                    data-block
                     href={pub ? link : links.help.embed}
                     target='_blank'>
                     <Icon name='dev' />
@@ -27,7 +26,6 @@ export default function SharingFooter({ collection: { public: pub, _id, slug } }
                 </Button>
 
                 <Button
-                    data-block
                     href={links.help.publicPage}
                     target='_blank'>
                     <Icon name='help' />

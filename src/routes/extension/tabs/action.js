@@ -8,7 +8,7 @@ export default function ExtensionTabsAction({ tabs, loading }) {
     if (loading)
         return (
             <Buttons>
-                <Button data-block>
+                <Button>
                     <Preloader />
                 </Button>
             </Buttons>
@@ -18,10 +18,8 @@ export default function ExtensionTabsAction({ tabs, loading }) {
         <Buttons>
             <Button 
                 autoFocus
-                data-block
                 as='input'
                 type='submit'
-                data-block
                 variant='primary'
                 value={`${t.s('save')} ${tabs.length} ${t.s('tabs').toLowerCase()}`} />
         </Buttons>

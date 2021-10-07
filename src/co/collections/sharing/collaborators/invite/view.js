@@ -92,11 +92,9 @@ export default class CollectionSharingInviteView extends React.PureComponent {
                             type='submit'
                             variant='primary'
                             disabled={loading}
-                            data-block
                             value={t.s('sendInvites')+(loading ? '…' : '')} />
 
                         <Button
-                            data-block
                             href={links.help.collaboration}
                             target='_blank'>
                             <Icon name='help' />

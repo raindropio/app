@@ -57,7 +57,7 @@ class AccountRecover extends React.Component {
 
                     <Buttons>
                         {status == 'loading' ? (
-                            <Button variant='flat' data-block>
+                            <Button variant='flat'>
                                 <Preloader />
                             </Button>
                         ) : (
@@ -65,14 +65,12 @@ class AccountRecover extends React.Component {
                                 as='input' 
                                 type='submit'
                                 variant='primary'
-                                data-block
                                 value={t.s('changePassword')} />
                             )}
 
                         <Button
                             as={Link}
                             variant='outline'
-                            data-block
                             to='/account/login'>
                             {t.s('cancel')}
                         </Button>

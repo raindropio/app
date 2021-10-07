@@ -16,7 +16,6 @@ function EditBookmarkCrash({ error, onLoad }) {
 
             <Buttons>
                 <Button
-                    data-block
                     variant='primary'
                     onClick={onLoad}>
                     {t.s('tryAgain')}

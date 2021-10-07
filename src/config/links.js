@@ -4,7 +4,7 @@ import { target, environment } from '~target'
 let overrideProLink = ''
 if (target == 'extension')
     if (environment.includes('safari-ios'))
-        overrideProLink = 'https://api.raindrop.io/v1/auth/jwt?done_uri=rnio://pro'
+        overrideProLink = 'https://api.raindrop.io/v1/auth/jwt?done_uri=rnio://settings/pro'
     else if (environment.includes('safari'))
         overrideProLink = 'https://api.raindrop.io/v1/auth/jwt?done_uri=rniomacsafari://subscribe'
 
@@ -40,7 +40,7 @@ export default {
 
     pro: {
         'buy': overrideProLink || 'https://raindrop.io/pro/buy',
-        'frame': overrideProLink || 'https://raindrop.io/pro?frame=1',
+        'frame': 'https://raindrop.io/pro?frame=1',
         'compare': overrideProLink || 'https://raindrop.io/pro',
         'faq': 'https://help.raindrop.io/billing-faq',
         'help-legacy-subscription': 'https://help.raindrop.io/article/52-legacy-subscription',

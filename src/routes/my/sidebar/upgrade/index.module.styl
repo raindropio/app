@@ -26,6 +26,16 @@
 }
 
 .title {
+    display: block
     flex: 1
     margin-right: 85px
+
+    .headline {
+        display: block
+        font-weight: 600
+    }
+}
+
+html:global(.mobile) .headline {
+    display: none
 }

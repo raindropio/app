@@ -3,7 +3,7 @@ import React from 'react'
 import t from '~t'
 import Modal, { Content } from '~co/overlay/modal'
 import Button from '~co/common/button'
-import { Buttons, Layout, Title } from '~co/common/form'
+import { Layout, Title } from '~co/common/form'
 
 export default function DialogConfirmView({ id, message, description, ok, cancel, variant, sendResult }) {
     return (
@@ -16,24 +16,22 @@ export default function DialogConfirmView({ id, message, description, ok, cancel
                     <Title>{variant=='warning'?'⚠':''} {message}</Title>
                     <div className={s.description}>{description}</div>
 
-                    <Buttons>
-                        <Button
-                            as='button'
-                            autoFocus
-                            variant='primary'
-                            data-block
-                            value='OK'
-                            onClick={()=>sendResult(id, true)}>
-                            {ok || 'OK'}
-                        </Button>
+                    <Button
+                        as='button'
+                        data-block
+                        autoFocus
+                        variant='primary'
+                        value='OK'
+                        onClick={()=>sendResult(id, true)}>
+                        {ok || 'OK'}
+                    </Button>
 
-                        <Button 
-                            variant='outline'
-                            data-block
-                            onClick={()=>sendResult(id, false)}>
-                            {cancel || t.s('cancel')}
-                        </Button>
-                    </Buttons>
+                    <Button 
+                        data-block
+                        variant='outline'
+                        onClick={()=>sendResult(id, false)}>
+                        {cancel || t.s('cancel')}
+                    </Button>
                 </Layout>
             </Content>
         </Modal>

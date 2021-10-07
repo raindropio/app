@@ -3,7 +3,7 @@ import React from 'react'
 import t from '~t'
 import Modal, { Header } from '~co/overlay/modal'
 import Button from '~co/common/button'
-import { Layout, Text, Buttons } from '~co/common/form'
+import { Layout, Text } from '~co/common/form'
 
 export default class DialogPromptView extends React.PureComponent {
     state = {
@@ -45,21 +45,19 @@ export default class DialogPromptView extends React.PureComponent {
                             value={value}
                             onChange={this.onFieldChange} />
 
-                        <Buttons>
-                            <Button 
-                                as='input'
-                                type='submit'
-                                variant='primary'
-                                data-block
-                                value='OK' />
+                        <Button 
+                            data-block
+                            as='input'
+                            type='submit'
+                            variant='primary'
+                            value='OK' />
 
-                            <Button 
-                                variant='outline'
-                                data-block
-                                onClick={this.onCancel}>
-                                {t.s('cancel')}
-                            </Button>
-                        </Buttons>
+                        <Button 
+                            data-block
+                            variant='outline'
+                            onClick={this.onCancel}>
+                            {t.s('cancel')}
+                        </Button>
                     </Layout>
                 </form>
             </Modal>

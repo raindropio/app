@@ -87,13 +87,11 @@ export default function OverlayLink({ onLink, buttons, ...etc }) {
                         {status == 'loading' ? (
                             <Button 
                                 disabled 
-                                data-block
                                 variant='flat'>
                                 <Preloader />
                             </Button>
                         ) : (
                             <Button
-                                data-block
                                 as='input'
                                 type='submit'
                                 variant='primary'

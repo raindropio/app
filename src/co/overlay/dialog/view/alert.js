@@ -2,7 +2,7 @@ import s from './alert.module.styl'
 import React from 'react'
 import Modal, { Content } from '~co/overlay/modal'
 import Button from '~co/common/button'
-import { Buttons, Layout, Title } from '~co/common/form'
+import { Layout, Title } from '~co/common/form'
 
 export default function DialogAlertView({ id, message, description, ok, variant, sendResult }) {
     return (
@@ -15,17 +15,15 @@ export default function DialogAlertView({ id, message, description, ok, variant,
                     <Title>{variant=='error'?'🥵':''} {message}</Title>
                     <div className={s.description}>{description}</div>
 
-                    <Buttons>
-                        <Button
-                            as='button'
-                            autoFocus
-                            variant='primary'
-                            data-block
-                            value='OK'
-                            onClick={()=>sendResult(id)}>
-                            {ok || 'OK'}
-                        </Button>
-                    </Buttons>
+                    <Button
+                        data-block
+                        as='button'
+                        autoFocus
+                        variant='primary'
+                        value='OK'
+                        onClick={()=>sendResult(id)}>
+                        {ok || 'OK'}
+                    </Button>
                 </Layout>
             </Content>
         </Modal>

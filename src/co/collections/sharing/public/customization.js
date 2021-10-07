@@ -56,8 +56,7 @@ export default function SharingCustomization({ collection }) {
                         as='input'
                         type='submit'
                         variant='primary'
-                        value={t.s('save')}
-                        data-block />
+                        value={t.s('save')} />
                 </Buttons>
             )}
         </Layout>

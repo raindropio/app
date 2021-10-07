@@ -50,12 +50,10 @@ class SettingsAccountProfilePassword extends React.Component {
                                 as='input'
                                 type='submit'
                                 value={t.s('changePassword')}
-                                data-block
                                 disabled={!oldpassword || !newpassword || status=='loading'}
                                 variant='primary' />
     
                             <Button 
-                                data-block
                                 variant='outline'
                                 onClick={onClose}>
                                 {t.s('cancel')}

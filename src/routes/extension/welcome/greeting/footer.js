@@ -14,8 +14,7 @@ export default function ExtensionWelcome({ match: { path } }) {
             <Buttons>
                 <Button 
                     href={config.links.help.index}
-                    target='_blank'
-                    data-block>
+                    target='_blank'>
                     <Icon name='help' />
                     <span>{t.s('help')} {t.s('und')} {t.s('support').toLowerCase()}</span>
                 </Button>
@@ -23,7 +22,6 @@ export default function ExtensionWelcome({ match: { path } }) {
                 <Button
                     as={Link}
                     to={`${path}/activate`}
-                    data-block
                     variant='primary'>
                     {t.s('continue')}
                     <Icon name='next' size='micro' />

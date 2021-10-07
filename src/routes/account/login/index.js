@@ -47,6 +47,8 @@ class AccountLogin extends React.Component {
                         autoFocus
                         required
                         inputMode='email'
+                        autoCapitalize='none'
+                        spellCheck='false'
                         value={this.state.email}
                         onChange={this.onChangeValue} />
 
