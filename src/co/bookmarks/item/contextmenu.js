@@ -1,6 +1,7 @@
 import React from 'react'
 import t from '~t'
 import Popover, { Menu, MenuItem, MenuSeparator } from '~co/overlay/popover'
+import { target } from '~target'
 
 export default function BookmarksItemContextmenu({
     _id, link, important, access, reparse, cache, getLink,
@@ -20,9 +21,11 @@ export default function BookmarksItemContextmenu({
 
                 <MenuSeparator />
 
-                <MenuItem to={getLink({ bookmark: _id, tab: '' })}>
-                    {t.s('preview')}
-                </MenuItem>
+                {target != 'extension' && (
+                    <MenuItem to={getLink({ bookmark: _id, tab: '' })}>
+                        {t.s('preview')}
+                    </MenuItem>
+                )}
 
                 {access && access.level >= 2 && cache ? (
                     <MenuItem to={getLink({ bookmark: _id, tab:'cache' })}>
