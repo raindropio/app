@@ -4,10 +4,11 @@
 }
 
 .title {
-    transition: opacity .2s ease-in-out;
+    will-change: opacity
+    transition: opacity .15s ease
 
     &:empty {
-        opacity: 0;
-        transition-duration: 0;
+        opacity: 0
+        transition-duration: 0
     }
 }
