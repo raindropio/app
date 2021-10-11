@@ -48,7 +48,10 @@ module.exports = ({ production, filename='[name].[contenthash]', sentry={}, RAIN
 			}),
 			new CssMinimizerPlugin({
 				minimizerOptions: {
-					preset: 'advanced' //includes autoprefix
+					preset: [
+						'advanced',
+						{ autoprefixer: { add: true } }
+					]
 				}
 			})
 		],
