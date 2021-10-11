@@ -4,6 +4,7 @@ const { merge } = require('webpack-merge')
 const common = require('./common')
 
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const HTMLInlineCSSWebpackPlugin = require("html-inline-css-webpack-plugin").default
 const ZipPlugin = require('zip-webpack-plugin')
 
 module.exports = (env={}, args={}) => {
@@ -65,7 +66,9 @@ module.exports = (env={}, args={}) => {
                     scriptLoading: 'defer',
                     inject: 'head',
                     chunks: ['portal']
-                })
+                }),
+
+                new HTMLInlineCSSWebpackPlugin()
             ],
 
             module: {

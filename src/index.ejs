@@ -35,26 +35,30 @@
 
 	<meta name="referrer" content="origin">
 
+	<%= htmlWebpackPlugin.tags.headTags %>
+
 	<!-- performance -->
 	<%if (process.env.NODE_ENV == 'production') { %>
 		<link rel="preconnect" href="https://api.raindrop.io" >
 		<link rel="preconnect" href="https://rdl.ink">
 	<% } %>
 
-	<!-- extension speed up -->
+	<!-- extension preload -->
 	<%if (process.env.APP_TARGET == 'extension') { %>
 		<script src='<%= require("./assets/target/extension/preload.js?asis").default %>'></script>
 	<% } %>
-
-	<!-- plausible -->
-	<script 
-		defer
-		data-domain='app.raindrop.io'
-		src="https://app.raindrop.io/pb/<%= process.env.APP_TARGET === 'extension' ? 'hash' : 'site' %>.js"
-		data-api='https://app.raindrop.io/pb/api/event'
-		data-exclude='/my, /my/*'></script>
 </head>
 <body>
 	<div id="react"></div>
+
+	<%= htmlWebpackPlugin.tags.bodyTags %>
+
+	<!-- plausible -->
+	<script 
+		class='lazy-script'
+		data-src="https://app.raindrop.io/pb/<%= process.env.APP_TARGET === 'extension' ? 'hash' : 'site' %>.js"
+		data-domain='app.raindrop.io'
+		data-api='https://app.raindrop.io/pb/api/event'
+		data-exclude='/my, /my/*'></script>
 </body>
 </html>

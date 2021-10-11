@@ -103,8 +103,8 @@ module.exports = ({ production, filename='[name].[contenthash]', sentry={}, RAIN
 			title: 'Raindrop.io',
 			template: './index.ejs',
 			hash: true,
-			scriptLoading: 'defer',
-			inject: 'head', //head better for extension
+			scriptLoading: 'blocking',
+			inject: false,
 			excludeChunks: ['manifest', 'background', 'portal']
 		}),
 

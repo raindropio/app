@@ -24,25 +24,33 @@ import Splash from './routes/_splash'
 //init redux
 const { store, persistor } = withLocalReducer(localReducers)
 
-window.onload = ()=>{
-	render(
-		//!add other global components in co/screen/basic
-		<Sentry>
-			<Document>
-				<ServiceWorker>
-					<Provider store={store}>
-						<PersistGate loading={<Splash />} persistor={persistor}>
-							<Translate loading={<Splash />}>
-								<App>
-									<Routes />
-								</App>
-							</Translate>
-						</PersistGate>
-					</Provider>
-				</ServiceWorker>
-			</Document>
-		</Sentry>,
-		
-		document.getElementById('react')
-	)
-}
+//render app
+render(
+	//!add other global components in co/screen/basic
+	<Sentry>
+		<Document>
+			<ServiceWorker>
+				<Provider store={store}>
+					<PersistGate loading={<Splash />} persistor={persistor}>
+						<Translate loading={<Splash />}>
+							<App>
+								<Routes />
+							</App>
+						</Translate>
+					</PersistGate>
+				</Provider>
+			</ServiceWorker>
+		</Document>
+	</Sentry>,
+	
+	document.getElementById('react')
+)
+
+//load lazy scripts
+window.onload = ()=>
+	window.requestAnimationFrame(()=>{
+		for(const script of document.querySelectorAll('.lazy-script')){
+			script.async = true
+			script.src = script.getAttribute('data-src')
+		}
+	})
