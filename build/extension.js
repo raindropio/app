@@ -20,6 +20,8 @@ module.exports = (env={}, args={}) => {
     return merge(
         common({...env, RAINDROP_ENVIRONMENT: 'browser-extension'}, args),
         {
+            devtool: false, //extensions just ignore .map files
+
             entry: {
                 manifest: './target/extension/manifest/index.js',
                 background: './target/extension/background/index.js',

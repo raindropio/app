@@ -43,10 +43,12 @@ function grabImages() {
     let images = []
 
     try{
-        for(const img of document.querySelectorAll('img')){
+        let i=0
+        for(const img of document.querySelectorAll('img[src]:not([src^="data"]):not([src*=".svg"])')){
             if (images.length >= 9) break
-            if (!img.complete || !img.src || img.src.includes('.svg')) continue
+            if (!img.complete) continue
             if (!img.offsetParent) continue //is hidden
+            if (i>1000) break; i++
     
             const width = Math.min(img.naturalWidth, img.width)
             const height = Math.min(img.naturalHeight, img.height)

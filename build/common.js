@@ -4,7 +4,7 @@ const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const TerserJSPlugin = require('terser-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
 const SentryCliPlugin = require('@sentry/webpack-plugin')
 
 //defaults
@@ -43,9 +43,14 @@ module.exports = ({ production, filename='[name].[contenthash]', sentry={}, RAIN
 		minimize: production,
 		minimizer: [
 			new TerserJSPlugin({
-				parallel: true
+				parallel: true,
+				extractComments: false
 			}),
-			new OptimizeCSSAssetsPlugin({})
+			new CssMinimizerPlugin({
+				minimizerOptions: {
+					preset: 'advanced' //includes autoprefix
+				}
+			})
 		],
 		runtimeChunk: false
 	},
@@ -148,8 +153,7 @@ module.exports = ({ production, filename='[name].[contenthash]', sentry={}, RAIN
 							localIdentName: '[local]-[hash:base64:4]'
 						}
 					}
-				},
-				'postcss-loader'
+				}
 			]
 		},
 
@@ -189,12 +193,12 @@ module.exports = ({ production, filename='[name].[contenthash]', sentry={}, RAIN
 							loader: 'image-webpack-loader',
 							options: {
 								svgo: {
+									multipass: true,
 									plugins: [
-										{ transformsWithOnePath: true },
-										{ removeTitle: true },
-										{ removeUselessStrokeAndFill: true },
-										{ removeAttrs: { attrs: '(stroke|fill)' } },
-										{ removeViewBox:false }
+										{ name: 'preset-default', params: { overrides: {
+											removeViewBox: false
+										} } },
+										{ name: 'removeAttrs', params: { attrs: '(stroke|fill)' } },
 									]
 								}
 							},
