@@ -26,10 +26,12 @@ module.exports = ({ production, filename='[name].[contenthash]', sentry={}, RAIN
 
 	devServer: {
 		compress: false,
-		disableHostCheck: true,
+		allowedHosts: 'all',
 		historyApiFallback: true,
 		//hot: true,inline: true,
-		overlay: true,
+		client: {
+			overlay: true,
+		},
 		port: 2000
 	},
 

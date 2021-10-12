@@ -4,7 +4,7 @@ const { merge } = require('webpack-merge')
 const common = require('./common')
 
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const HTMLInlineCSSWebpackPlugin = require("html-inline-css-webpack-plugin").default
+const HTMLInlineCSSWebpackPlugin = require('html-inline-css-webpack-plugin').default
 const ZipPlugin = require('zip-webpack-plugin')
 
 module.exports = (env={}, args={}) => {
@@ -31,6 +31,8 @@ module.exports = (env={}, args={}) => {
 
             output: {
                 path: path.resolve(__dirname, '..', 'dist', env.vendor, env.production?'prod':'dev'),
+                filename: ({ chunk: { name } }) => name=='background' ? 'background.js' : `assets/${env.filename}.js`,
+                chunkFilename: `assets/${env.filename}.js`,
                 publicPath: ''
             },
 
@@ -43,7 +45,9 @@ module.exports = (env={}, args={}) => {
             },
 
             devServer: {
-                writeToDisk: true,
+                devMiddleware: {
+                    writeToDisk: true
+                },
             },
 
             plugins: [
