@@ -117,6 +117,7 @@ class VirtuosoTree extends React.Component {
             ref={provided.innerRef}
             {...provided.draggableProps||{}}
             {...provided.dragHandleProps||{}}
+            tabIndex={-1}
             style={getStyle(provided, snapshot, source)}
             onClick={null}>
             {this.props.item(source.index, provided, snapshot)}

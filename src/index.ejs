@@ -35,8 +35,6 @@
 
 	<meta name="referrer" content="origin">
 
-	<%= htmlWebpackPlugin.tags.headTags %>
-
 	<!-- performance -->
 	<%if (process.env.NODE_ENV == 'production') { %>
 		<link rel="preconnect" href="https://api.raindrop.io" >
@@ -50,8 +48,6 @@
 </head>
 <body>
 	<div id="react"></div>
-
-	<%= htmlWebpackPlugin.tags.bodyTags %>
 
 	<!-- plausible -->
 	<script 

@@ -106,7 +106,7 @@ module.exports = ({ production, filename='[name].[contenthash]', sentry={}, RAIN
 			template: './index.ejs',
 			hash: true,
 			scriptLoading: 'blocking',
-			inject: false,
+			inject: 'body',
 			excludeChunks: ['manifest', 'background', 'portal']
 		}),
 

@@ -141,7 +141,11 @@ export default class CollectionsItem extends React.PureComponent {
     
                 case 13: //enter
                     e.preventDefault()
-                    return this.handlers.onRenameClick()
+
+                    if (this.props.active) 
+                        return this.handlers.onRenameClick()
+                    else
+                        return e.currentTarget.click()
             }
         }
     }

@@ -40,7 +40,7 @@ module.exports = ({ vendor, production=false }, l) => {
 
 		background: {
 			scripts: [
-				'assets/background.js'
+				'background.js'
 			],
 			persistent: false
 		},

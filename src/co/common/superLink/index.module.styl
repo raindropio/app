@@ -4,11 +4,15 @@
     right: 0
     bottom: 0
     top: 0
-    outline: none
+    
     color: transparent
     font-size: 0
 
     * {
         display: none
+    }
+
+    &:not(:focus-visible) {
+        outline: none
     }
 }

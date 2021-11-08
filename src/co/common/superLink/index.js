@@ -39,8 +39,8 @@ export default class SuperLink extends React.PureComponent {
 		return (
 			<Component
 				{...other}
+				tabIndex={tabIndex}
 				className={className+' '+s.superLink}
-				tabIndex={active ? tabIndex : '-1'}
 				data-tab-index={tabIndex}
 				onMouseDown={this.onMouseDown}
 				onKeyDown={this.onKeyDown} />
