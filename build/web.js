@@ -49,8 +49,8 @@ module.exports = (env={}, args={}) =>
                     patterns: [
                         { from: 'assets/sw.js', to: 'sw.js' },
                         { from: 'assets/robots.txt', to: 'robots.txt' },
-                        { from: 'assets/_headers', to: '_headers' },
-                        { from: 'assets/_redirects', to: '_redirects' }
+                        { from: 'assets/_headers', to: '_headers', toType: 'file' },
+                        { from: 'assets/_redirects', to: '_redirects', toType: 'file' }
                     ]
                 }),
 
