@@ -1,0 +1,5 @@
+/assets/(.*)
+    cache-control: public,max-age=31536000,immutable
+
+/*
+    X-Frame-Options: DENY

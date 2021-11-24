@@ -48,7 +48,9 @@ module.exports = (env={}, args={}) =>
                 new CopyPlugin({
                     patterns: [
                         { from: 'assets/sw.js', to: 'sw.js' },
-                        { from: 'assets/robots.txt', to: 'robots.txt' }
+                        { from: 'assets/robots.txt', to: 'robots.txt' },
+                        { from: 'assets/_headers', to: '_headers' },
+                        { from: 'assets/_redirects', to: '_redirects' }
                     ]
                 }),
 
