@@ -126,11 +126,17 @@ function getItem() {
             delete item.cover
         }
 
+    if (item.cover && !item.cover.startsWith('http'))
+        delete item.cover
+
     //grab images
     let images = [
         ...(item.cover ? [item.cover] : []),
         ...grabImages()
     ].filter((value, index, self)=>self.indexOf(value) === index)
+    
+    if (!item.cover && images.length)
+        item.cover = images[0]
 
     if (images.length)
         item.media = images.map(link=>({
