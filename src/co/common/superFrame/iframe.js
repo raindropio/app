@@ -8,7 +8,7 @@ export default function Iframe({ src, onError, ...etc }) {
         iframeable(src)
             .then(result=>{
                 if (result)
-                    setLoadSrc(src)
+                    setLoadSrc(src.replace(/^http:\/\//, 'https://'))
                 else
                     onError()
             })
