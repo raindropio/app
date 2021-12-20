@@ -3,8 +3,8 @@ export const
 
 export const
 	APP_BASE_URL 		= `https://${APP_DOMAIN}`,
-	WORKERS_BASE_URL	= 'https://rd-render-proxy.gumlet.io',
-	LEGACY_WORKERS_BASE_URL=`https://rdl.ink`
+	WORKERS_BASE_URL	= 'https://rdl.ink',
+	LEGACY_WORKERS_BASE_URL=`https://stella.${APP_DOMAIN}`
 
 export const
 	API_ENDPOINT_URL 	= `${process.env.NODE_ENV == 'production' || RAINDROP_ENVIRONMENT == 'react-native' ? 'https://api.raindrop.io' : 'http://localhost:3000' }/v1/`,
