@@ -52,7 +52,5 @@ export default {
         terms: 'https://developer.raindrop.io/terms',
         token: 'https://developer.raindrop.io/v1/authentication/token',
         github:'https://github.com/raindropio'
-    },
-
-    webPreview: 'https://p.rdl.ink/'
+    }
 }
