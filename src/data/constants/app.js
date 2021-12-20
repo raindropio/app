@@ -11,4 +11,4 @@ export const
 	API_RETRIES 		= 3,
 	API_TIMEOUT 		= 30000,
 	FAVICON_URL 		= `${WORKERS_BASE_URL}/favicon`,
-	RENDER_URL 			= `${WORKERS_BASE_URL}/fetch`
+	RENDER_URL 			= `${WORKERS_BASE_URL}/render`
