@@ -4,7 +4,7 @@ import Icon from '~co/common/icon'
 
 export default function AddHeaderClose() {
     return (
-        <Button onClick={window.close}>
+        <Button onClick={()=>window.close()}>
             <Icon name='close' />
         </Button>
     )

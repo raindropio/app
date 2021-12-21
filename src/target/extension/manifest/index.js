@@ -81,7 +81,7 @@ module.exports = ({ vendor, production=false }, l) => {
 			'contextMenus',
 			'activeTab',
 			'storage',
-			...(production ? ['https://api.raindrop.io/*'] : ['http://localhost:3000/*'])
+			...(production ? [] : ['http://localhost:3000/*'])
 		],
 
 		optional_permissions: [

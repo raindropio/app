@@ -54,7 +54,7 @@ export default class SuperFrame extends React.Component {
 						<Icon name='hide' enlarge='2' />
 						<h3>{t.s('preview')} {t.s('error').toLowerCase()}</h3>
 						<div>
-							<b>{getDomain(src)}</b> blocks site preview.
+							<b>{getDomain(src)}</b> probably blocks site preview.
 						</div>
 						<div>
 							To be able to preview any site, <a href={links.download} target='_blank'>install our desktop app</a>.
