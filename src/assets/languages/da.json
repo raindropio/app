@@ -347,5 +347,13 @@
   "avatar": "Profilbillede",
   "regexAz09_-": "Må indeholde bogstaver (a-z), tal (0-9), understreger (_) og bindestreger (-)",
   "publicPage": "Offentlig side",
-  "invite": "Invitere"
+  "invite": "Invitere",
+  "searchMatchAnyCondition": "Match enhver betingelse",
+  "before": "Før",
+  "after": "Efter",
+  "putDashToExclude": "Sæt - (bindestreg) foran en betingelse som du vil ekskludere fra søgningen",
+  "narrowSearch": "Indsnævre søgningen",
+  "createdDate": "Oprettelsesdato",
+  "dateSearchD": "Søg efter en specifik dato i formatet ÅÅÅÅ-MM-DD eller en specifik måned (ÅÅÅÅ-MM) eller et år (ÅÅÅÅ). Sæt < eller > foran datoen for at finde henholdsvis før eller efter en bestemt dato.",
+  "currentCollection": "Nuværende samling"
 }

@@ -14,6 +14,11 @@ export default class CollectionsTree extends React.Component {
         scrollToIndex: -1
     }
 
+    componentDidMount() {
+        if (typeof this.props.activeId != 'object')
+            this.scrollToId(this.props.activeId)
+    }
+
     componentDidUpdate(prev) {
         //scroll to active
         if (prev.activeId != this.props.activeId && 
