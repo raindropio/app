@@ -15,7 +15,7 @@ class SplitViewSidebarHeader extends React.Component {
             <Header 
                 {...etc}
                 data-no-shadow
-                data-mac-inset>
+                data-window-inset>
                 <FirstAction className='svSidebarCloseButton'>
                     <Button onClick={this.context.sidebar.toggle}>
                         <Icon name='close' />

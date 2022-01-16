@@ -59,7 +59,7 @@ class SplitViewReaderHeader extends React.Component {
             <Header 
                 data-no-shadow 
                 data-fancy
-                data-mac-inset
+                data-window-inset
                 className='svReaderHeader'>
                 <Button 
                     ref={this.backButton}

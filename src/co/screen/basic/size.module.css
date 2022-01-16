@@ -23,9 +23,6 @@
     --button-height: .7rem; /*28px*/
     --list-item-height: .8rem; /*32px*/
     --header-height: 1.2rem; /*48px*/
-
-    /* target specific */
-    --target-electron-mac-header-inset: 28px;
 }
 
 [data-app-size='large'] {

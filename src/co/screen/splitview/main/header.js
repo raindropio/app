@@ -14,7 +14,7 @@ class SplitViewMainHeader extends React.Component {
         return (
             <Header 
                 data-no-shadow
-                data-mac-inset
+                data-window-inset
                 {...etc}
                 className='svMainHeader'>
                 <FirstAction className='svSidebarShowButton'>

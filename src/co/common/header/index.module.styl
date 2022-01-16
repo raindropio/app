@@ -34,9 +34,9 @@
     }
 }
 
-html:global(.electron.mac) {
-    .header[data-mac-inset='true'] {
-        padding-top: var(--target-electron-mac-header-inset)
+html:global(.electron.mac), html:global(.electron.win) {
+    .header[data-window-inset='true'] {
+        padding-top: calc(env(titlebar-area-height) + 4px)
         padding-bottom: var(--padding-small)
     }
 }
