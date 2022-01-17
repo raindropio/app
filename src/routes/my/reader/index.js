@@ -79,7 +79,7 @@ export default connect(
                 ...target != 'extension' && item.type!='link' ? ['preview'] : [], 
                 ...target != 'extension' ? ['web'] : [], 
                 ...access && access.level>=3?['edit']:[], 
-                ...item.cache && access && access.level>=3?['cache']:[],
+                ...item.cache && !item.fileType && access && access.level>=3?['cache']:[],
             ]
 
             return {
