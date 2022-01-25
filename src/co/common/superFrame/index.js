@@ -8,7 +8,9 @@ import WebView from './webview'
 import { getDomain } from '~modules/format/url'
 import links from '~config/links'
 
-export let isNative = ('plugins' in document.createElement('webview'))
+export function isNative() {
+	return ('plugins' in document.createElement('webview'))
+}
 
 export default class SuperFrame extends React.Component {
 	state = {
@@ -30,8 +32,8 @@ export default class SuperFrame extends React.Component {
 		const { src, className='', ...etc } = this.props
 		const { status } = this.state
 
-		const Component = isNative ? WebView : Iframe
-		const sandbox = !isNative && !src.includes('raindrop.io') && !src.includes('localhost')
+		const Component = isNative() ? WebView : Iframe
+		const sandbox = !isNative() && !src.includes('raindrop.io') && !src.includes('localhost')
 
 		return (
 			<div {...etc} className={s.frame+' '+className} data-status={status} data-theme='day'>
