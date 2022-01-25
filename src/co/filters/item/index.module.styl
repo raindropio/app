@@ -3,6 +3,7 @@
     align-items: center
     justify-content: center
     position: relative
+    color: var(--filter-color)
 }
 
 .item {
@@ -10,16 +11,19 @@
     &[data-token='important'] .icon {
         color: var(--important-color)
     }
+
     &[data-token='#'] .icon {
         color: var(--tag-color)
     }
 
-    &[data-token='type'] .icon {
-        color: var(--document-color)
+    &[data-token='note'] .icon {
+        color: var(--note-color)
     }
-    &[data-token='type'][data-id='link'] .icon {
-        color: var(--link-color)
+
+    &[data-token='highlights'] .icon {
+        color: var(--highlights-color)
     }
+
     &[data-token='type'][data-id='article'] .icon {
         color: var(--article-color)
     }
@@ -36,11 +40,6 @@
         color: var(--video-color)
     }
 
-    &[data-token='created'] .icon,
-    &[data-token='before'] .icon,
-    &[data-token='after'] .icon {
-        color: var(--created-color)
-    }
     &[data-token='broken'] .icon {
         color: var(--broken-color)
     }
@@ -49,9 +48,6 @@
     }
     &[data-token='notag'] .icon {
         color: var(--tag-color)
-    }
-    &[data-token='lang'] .icon {
-        color: var(--lang-color)
     }
     &[data-token='title'] .icon {
         color: var(--tag-color)

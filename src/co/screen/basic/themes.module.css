@@ -22,7 +22,8 @@
     --danger-color: #E52E1B;
     --success-color: #0AB963;
     --important-color: #F44336;
-    --link-color: #8791A1;
+    --highlights-color: #975DA8;
+    --note-color: #DFA813;
     --article-color: #ec8122;
     --audio-color: #975DA8;
     --document-color: #A2845E;
@@ -31,8 +32,7 @@
     --broken-color: #E75D7B;
     --duplicate-color: #14A2A1;
     --tag-color: #8791A1;
-    --created-color: #975DA8;
-    --lang-color: #8791A1;
+    --filter-color: #8791A1;
 
     /* text colors */
     color: hsl(0,0%,10%);

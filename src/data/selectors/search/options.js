@@ -9,7 +9,7 @@ const getMatchOr = createSelector(
         (state, spaceId, filter, fullquery)=>fullquery
     ],
     (spaceId, filter, fullquery='')=>{
-        const tokens = (fullquery.match(/\s/g) || []).filter(t=>t).length
+        const tokens = (fullquery.match(/\s/g) || []).filter(t=>(t||'').trim()).length
 
         if (tokens <= 1) return emptyArray
         if (fullquery.includes('match:OR')) return emptyArray

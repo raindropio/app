@@ -30,7 +30,7 @@ else
 		android: require('@react-native-community/async-storage').default
 	})
 
-const version = 27
+const version = 28
 
 export default {
 	key: 'primary',

@@ -40,7 +40,7 @@ export default function useItemInfo({ _id, query='', count, top, ...other }) {
         case 'type':
             if (top){
                 title = t.s(token)
-                icon = 'document'
+                icon = 'type'
             } else {
                 icon = _id
                 title = t.s(_id+'s')
@@ -51,6 +51,16 @@ export default function useItemInfo({ _id, query='', count, top, ...other }) {
         case 'important':
             title = t.s('favorites')
             icon = 'like'
+        break
+
+        case 'note':
+            title = t.s('notes')
+            icon = 'note'
+        break
+
+        case 'highlights':
+            title = t.s('highlights')
+            icon = 'highlights'
         break
 
         case 'lang':
@@ -79,7 +89,7 @@ export default function useItemInfo({ _id, query='', count, top, ...other }) {
 
         case 'info':
             title = `${_.capitalize(t.s('in'))} ${t.s('title').toLowerCase()}/${t.s('description').toLowerCase()}`
-            icon = 'new_note'
+            icon = 'info'
         break
 
         case 'link':

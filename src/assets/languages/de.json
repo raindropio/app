@@ -39,7 +39,7 @@
   "link": "Link",
   "articles": "Artikel",
   "images": "Fotos",
-  "videos": "Inhalt",
+  "videos": "Videos",
   "links": "Links",
   "bookmarksRemoved": "Lesezeichen in den Papierkorb verschoben",
   "bookmarksRemovedPermament": "Lesezeichen entfernt",
@@ -355,5 +355,6 @@
   "narrowSearch": "Suche einschränken",
   "createdDate": "Erstellungsdatum",
   "dateSearchD": "Suche nach einem bestimmten Datum im Format JJJJ-MM-TT oder einem bestimmten Monat (JJJJ-MM) oder einem Jahr (JJJJ). Setze < oder > vor ein Datum, um nach einem Datum vor oder nach einem bestimmten Zeitpunkt zu suchen.",
-  "currentCollection": "Aktuelle Sammlung"
+  "currentCollection": "Aktuelle Sammlung",
+  "highlights": "Highlights"
 }

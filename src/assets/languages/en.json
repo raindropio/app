@@ -326,7 +326,7 @@
   "permissions": "Permissions",
   "raindropTagline": "All-in-one bookmark manager",
   "buttons": "Buttons",
-  "highlightSavedPages": "Highlight saved pages",
+  "highlightSavedPages": "Saved page indicator",
   "appearance": "Appearance",
   "omniboxD": "Search bookmarks right from address bar",
   "highlightSavedPagesD": "Show [✔] indicator when you visit already saved page",
@@ -355,5 +355,7 @@
   "narrowSearch": "Narrow your search",
   "createdDate": "Date of creation",
   "dateSearchD": "Search for specific date in format YYYY-MM-DD or specific month (YYYY-MM) or a year (YYYY). Put < or > in front of a date to find before or after specific date respectively.",
-  "currentCollection": "Current collection"
+  "currentCollection": "Current collection",
+  "highlights": "Highlights",
+  "notes": "Notes"
 }
