@@ -96,20 +96,12 @@ module.exports = ({ vendor, production=false }, l) => {
 		commands: {
 			_execute_browser_action: {
 				suggested_key: {
-					default: 'Ctrl+Shift+E',
-					windows: 'Ctrl+Shift+E',
-					mac: 'Command+Shift+E',
-					chromeos: 'Ctrl+Shift+E',
-					linux: 'Ctrl+Shift+E'
+					default: 'Ctrl+Shift+E'
 				}
 			},
 			save_page: {
 				suggested_key: {
-					default: 'Ctrl+Shift+S',
-					windows: 'Ctrl+Shift+S',
-					mac: 'Command+Shift+S',
-					chromeos: 'Ctrl+Shift+S',
-					linux: 'Ctrl+Shift+S'
+					default: 'Ctrl+Shift+S'
 				},
 				description: '__MSG_savePage__'
 			},
@@ -121,10 +113,7 @@ module.exports = ({ vendor, production=false }, l) => {
 				_execute_sidebar_action: {
 					suggested_key: {
 						default: 'Ctrl+E',
-						windows: 'Ctrl+E',
-						mac: 'MacCtrl+E',
-						chromeos: 'Ctrl+E',
-						linux: 'Ctrl+E'
+						mac: 'MacCtrl+E'
 					},
 					description: '__MSG_openSidebar__'
 				}

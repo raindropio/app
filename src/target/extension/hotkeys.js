@@ -1,7 +1,7 @@
 import browser from './browser'
 
 export const hotkeys = {
-    async getAll() {        
+    async getAll() {
         try{
             const commands = await browser.commands.getAll()
             if (Array.isArray(commands) && commands.length)
@@ -17,11 +17,18 @@ export const hotkeys = {
             const { os } = await browser.runtime.getPlatformInfo()
 
             return Object.entries(commands)
-                .map(([name, { suggested_key, description }])=>({
-                    name,
-                    description,
-                    shortcut: suggested_key && suggested_key[os] ? suggested_key[os] : ''
-                }))
+                .map(([name, { suggested_key, description }])=>{
+                    var shortcut = suggested_key ? (suggested_key[os] || suggested_key.default || '') : ''
+
+                    if (os == 'mac')
+                        shortcut = shortcut.replace(/^Ctrl/, '⌘')
+
+                    return {
+                        name,
+                        description,
+                        shortcut
+                    }
+                })
                 .filter(({ shortcut })=>shortcut)
         } catch(e) {}
         
