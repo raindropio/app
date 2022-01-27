@@ -1,25 +1,20 @@
-import React, { useState, useEffect } from 'react'
-import { API_ENDPOINT_URL } from '~data/constants/app'
-import iframeable from '~data/modules/format/iframeable_url'
+import React, { useEffect } from 'react'
+import { PREVIEW_URL } from '~data/constants/app'
 
 export default function Iframe({ src, onError, ...etc }) {
-    const [loadSrc, setLoadSrc] = useState('')
-
     useEffect(()=>{
-        //link to file? preview is allowed so no need to check iframeable
-        if (src.includes(API_ENDPOINT_URL)) {
-            setLoadSrc(src)
-            return
+        function onMessage(e) {
+            if (e.data == 'preview-error')
+                onError()
         }
+        window.addEventListener('message', onMessage)
+        return ()=>window.removeEventListener('message', onMessage)
+    }, [onError])
 
-        iframeable(src)
-            .then(result=>{
-                if (result)
-                    setLoadSrc(src.replace(/^http:\/\//, 'https://'))
-                else
-                    onError()
-            })
-    }, [src])
-
-    return <iframe {...etc} src={loadSrc} />
+    return (
+        <iframe 
+            {...etc}
+            src={`${PREVIEW_URL}/web/${btoa(src)}`}
+            onError={onError} />
+    )
 }

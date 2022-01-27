@@ -6,6 +6,7 @@ import Icon from '~co/common/icon'
 import Iframe from './iframe'
 import WebView from './webview'
 import { getDomain } from '~modules/format/url'
+import getScreenshotUri from '~data/modules/format/screenshot'
 import links from '~config/links'
 
 export function isNative() {
@@ -36,33 +37,38 @@ export default class SuperFrame extends React.Component {
 		const sandbox = !isNative() && !src.includes('raindrop.io') && !src.includes('localhost')
 
 		return (
-			<div {...etc} className={s.frame+' '+className} data-status={status} data-theme='day'>
-				{src ? (
-					<Component 
-						tabIndex='-1' 
-						allowtransparency='false'
-						plugins='true'
-						src={src} 
-						sandbox={sandbox ? 'allow-scripts allow-popups allow-same-origin' : undefined}
-						target='_self'
-						onLoad={this.onLoad}
-						onError={this.onError} />
-				) : null}
+			<div {...etc} className={s.frame+' '+className} data-status={status}>
+				<Component 
+					hidden={status=='error'}
+					data-theme='day'
+					tabIndex='-1' 
+					allowtransparency='false'
+					plugins='true'
+					src={src} 
+					sandbox={sandbox ? 'allow-scripts allow-popups allow-same-origin' : undefined}
+					target='_self'
+					onLoad={this.onLoad}
+					onError={this.onError} />
 
-				{status=='loading' || !src ? <div className={s.overlay+' '+s.nonclickable}><Preloader enlarge='1.5' /></div> : null}
+				<div className={s.overlay} hidden={status!='error'}>
+					<a 
+						href={src} 
+						target='_blank' 
+						className={s.screenshot}>
+						<img src={getScreenshotUri(src)+'?format=webp'} loading='eager' />
+					</a>
 
-				{status=='error' ? (
-					<div className={s.overlay}>
-						<Icon name='hide' enlarge='2' />
-						<h3>{t.s('preview')} {t.s('error').toLowerCase()}</h3>
-						<div>
-							<b>{getDomain(src)}</b> probably blocks site preview.
-						</div>
-						<div>
-							To be able to preview any site, <a href={links.download} target='_blank'>install our desktop app</a>.
-						</div>
+					<Icon name='hide' enlarge='2' />
+					<h3>{t.s('preview')} {t.s('error').toLowerCase()}</h3>
+					<div>
+						<b>{getDomain(src)}</b> probably blocks site preview.
 					</div>
-				) : null}
+					<div>
+						To be able to preview any site, <a href={links.download} target='_blank'>install our desktop app</a>.
+					</div>
+				</div>
+
+				{status=='loading' || !src ? <div className={s.overlay+' '+s.nonclickable} data-theme='day'><Preloader enlarge='1.5' /></div> : null}
 			</div>
 		)
 	}

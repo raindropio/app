@@ -25,9 +25,27 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
+        transition: opacity .3s ease-in-out;
 
         &.nonclickable {
             pointer-events: none;
+        }
+
+        &[hidden] {
+            opacity: 0
+            display: flex !important
+        }
+    }
+
+    .screenshot {
+        padding: var(--padding-large);
+
+        img {
+            border-radius: var(--border-radius);
+            display: block;
+            max-width: 100%;
+            height: auto;
+            aspect-ratio: 1280 / 900;
         }
     }
 }
