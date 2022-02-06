@@ -21,7 +21,7 @@ class ReaderHeaderSettings extends React.Component {
 
     onSettingsClick = (e)=>{
         e.preventDefault()
-        this.setState({ show: true })
+        this.setState({ show: !this.state.show })
     }
 
     onSettingsClose = ()=>
@@ -50,7 +50,7 @@ class ReaderHeaderSettings extends React.Component {
 
         return (
             <>
-                <Button ref={this.pin} title={t.s('settings')} onClick={this.onSettingsClick}>
+                <Button ref={this.pin} title={t.s('settings')} onMouseDown={this.onSettingsClick}>
                     <Icon name='settings' />
                 </Button>
 
@@ -70,6 +70,12 @@ class ReaderHeaderSettings extends React.Component {
 
                             <Label>{t.s('fontSize')}</Label>
                             <Range min='1' max='9' value={font_size} onChange={this.onFontSizeChange} />
+
+                            <Button 
+                                variant='primary'
+                                onClick={this.onSettingsClose}>
+                                {t.s('done')}
+                            </Button>
                         </Layout>
                     </Popover>
                 )}

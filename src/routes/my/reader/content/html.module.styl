@@ -1,177 +1,24 @@
-.loading {
+.article, .embed {
+    display: block
+    width: 100%
+    height: 100%
+    border: 0
+    box-shadow: none
+    background: transparent
+}
+
+.article {
+    color-scheme: normal
+}
+
+.preloader {
     position: absolute
     left: 0
-    top: 0
-    bottom: 0
     right: 0
+    bottom: 0
+    top: 0
     display: flex
     align-items: center
     justify-content: center
-    background: var(--background-color)
-}
-
-//articles
-.article {
-    box-sizing: content-box
-
-    padding: var(--padding-large) calc(var(--padding-large) * 2)
-    padding-top: var(--padding-small)
-
-    --content-width: calc( 512px + 64 * var(--html-font-size, 0) )
-    margin: auto
-    max-width: var(--content-width)
-
-    font-size: calc( var(--primary-font-size) + (var(--html-font-size, 0) * 2) )
-    line-height: 1.5
-
-    a {
-        color: var(--primary-text-color)
-        text-decoration: underline
-    }
-
-    .title {
-        font-size: 175%
-        font-weight: 600
-        margin-top: var(--padding-small)
-    }
-
-    .domain {
-        font-size: 90%
-        color: var(--secondary-text-color)
-
-        b {
-            font-weight: 600
-        }
-    }
-
-    img, svg, iframe, video {
-        max-width: 100%
-        vertical-align: middle
-        height: auto
-        border: 0
-        box-shadow: none
-        background:transparent
-    }
-
-    figcaption {
-        font-size: 75%
-        opacity: .5
-        margin: 0
-        padding: 0
-        margin-top: 1em
-    }
-
-    iframe, video {
-        width: 100%;
-        height: calc(var(--content-width) * 0.75)
-    }
-
-    video {
-        height: auto
-        max-height: calc(var(--content-width) * 0.75)
-    }
-
-    code, pre, tt {
-        font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace;
-    }
-
-    code {
-        background: var(--alternative-background-color)
-    }
-
-    pre {
-        background: hsl(225,5,13%)
-        color: white
-        padding: var(--padding-medium)
-        border-radius: var(--border-radius)
-        overflow: auto
-
-        code {
-            background: inherit
-        }
-    }
-
-    sup {
-        vertical-align: super
-    }
-
-    sub {
-        vertical-align: sub
-    }
-
-    hr {
-        display: block
-        border: 0
-        appearance: none
-        height: 1px
-        box-shadow: 0 var(--shadow-height) 0 var(--shadow-color)
-    }
-
-    table {
-        clear: both
-        width: 100%
-        margin: 1.5em 0
-        border: 0
-        border-radius: var(--border-radius)
-        box-shadow: 0 0 0 var(--shadow-height) var(--shadow-color)
-        max-width: 100%
-        empty-cells: show
-        border-spacing: 0
-
-        caption {
-            text-align: left
-            text-indent: 1em
-        }
-
-        td, th {
-            padding: .5em .8em
-            overflow: visible
-            -webkit-overflow-scrolling: touch
-            vertical-align: top
-
-            > p, > div, > div > p {
-                margin:0
-            }
-        }
-
-        th {
-            font-weight: 700
-            text-align: left
-        }
-
-        tr:nth-child(odd) > td {
-            background-color: var(--alternative-background-color)
-        }
-    }
-}
-
-//content
-.content {
-    position: relative
-    width: 100%
-    height: 100%
-    display: flex
-
-    .html {
-        margin: auto
-    }
-
-    audio, video, iframe {
-        position: absolute
-        left: 0
-        top: 0
-        bottom: 0
-        right: 0
-        width: 100%
-        height: 100%
-        object-fit: contain
-        object-position: center
-        background: white
-    }
-
-    img {
-        max-width: 100%
-        height: auto
-        vertical-align: middle
-    }
+    pointer-events: none
 }

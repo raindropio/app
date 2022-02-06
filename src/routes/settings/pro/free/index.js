@@ -14,7 +14,7 @@ export default ()=>{
 		return (
 			<Layout>
 				<Button 
-					href={config.links.pro.frame}
+					href={config.links.pro.buy}
 					target='_blank'
 					variant='primary'
 					data-block>
