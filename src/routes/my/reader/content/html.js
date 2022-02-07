@@ -19,6 +19,8 @@ export default function ReaderHTML({ item: { type, link } }) {
                 <iframe 
                     role='article'
                     className={s.article}
+                    loading='eager'
+                    referrerpolicy='no-referrer'
                     src={PREVIEW_URL+'/article/'+btoa(link)+`#solid-bg=false&theme=${font_color||theme.app}&font-family=${font_family}&font-size=${font_size}`}
                     onLoad={onLoad} />
             )
@@ -29,6 +31,8 @@ export default function ReaderHTML({ item: { type, link } }) {
                 <iframe 
                     role='article'
                     className={s.embed}
+                    allowFullScreen
+                    loading='eager'
                     src={PREVIEW_URL+'/embed/'+btoa(link)}
                     onLoad={onLoad} />
             )

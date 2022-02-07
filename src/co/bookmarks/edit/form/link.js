@@ -2,7 +2,7 @@ import React, { useState, useCallback } from 'react'
 
 import { Text, Label } from '~co/common/form'
 
-export default function BookmarkEditFormLink({ autoFocus, item: { link }, onCommit, onChange }) {
+export default function BookmarkEditFormLink({ autoFocus, item: { link, fileType }, onCommit, onChange }) {
     const [maxRows, setMaxRows] = useState(1)
     
     const onChangeField = useCallback(e=>
@@ -14,6 +14,9 @@ export default function BookmarkEditFormLink({ autoFocus, item: { link }, onComm
         setMaxRows(4),
         []
     )
+
+    if (fileType)
+        return null
 
     return (
         <>
