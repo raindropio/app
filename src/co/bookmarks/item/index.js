@@ -6,7 +6,6 @@ import * as bookmarksActions from '~data/actions/bookmarks'
 import { copyText } from '~modules/browser'
 
 import View from './view'
-import Preload from './preload'
 import Contextmenu from './contextmenu'
 
 class BookmarkItem extends React.Component {
@@ -106,10 +105,6 @@ class BookmarkItem extends React.Component {
                     {...item}
                     {...props}
                     {...this.handlers}
-                    />
-
-                <Preload 
-                    {...item}
                     />
 
                 {this.state.menu ? (
