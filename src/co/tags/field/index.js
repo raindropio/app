@@ -53,8 +53,12 @@ export default function TagsPicker({ value=[], onChange, spaceId, ...etc }) {
             case 'Tab':
                 //select highlighted item on tab press
                 if (downshiftRef.current &&
-                    downshiftRef.current?.state?.highlightedIndex != -1)
+                    downshiftRef.current?.state?.highlightedIndex != -1) {
+                    e.preventDefault()
                     downshiftRef.current.selectItemAtIndex(downshiftRef.current?.state?.highlightedIndex)
+                    downshiftRef.current.clearSelection()
+                    downshiftRef.current.setHighlightedIndex(-1)
+                }
             break
 
             case 'Enter':
