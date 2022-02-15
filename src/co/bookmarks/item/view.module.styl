@@ -98,18 +98,9 @@
         &:empty {
             display: none
         }
-
-        .body {
-            border-left: 2px solid var(--accent-color);
-            padding: 2px var(--padding-small);
-
-            &:after {
-                content: '…'
-            }
-        }
     }
 
-    .title, .excerpt {
+    .title, .excerpt, .note {
         display: -webkit-box
         line-clamp: 5
         -webkit-line-clamp: 5
@@ -118,6 +109,23 @@
         overflow: clip
         white-space: pre
         white-space: pre-wrap
+    }
+
+    .note {
+        margin: 0
+
+        h1, h2, h3, h4, h5, h6 {
+            font-size: 100%
+        }
+
+        * {
+            margin: 0
+        }
+
+        a {
+            z-index: 1
+            position: relative
+        }
     }
 }
 

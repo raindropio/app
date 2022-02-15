@@ -13,7 +13,7 @@ export default class ReaderHeader extends React.PureComponent {
     defaultTabs = [
         {
             key: 'edit',
-            title: t.s('edit'),
+            title: t.s('editMin'),
         },
         {
             key: 'web',

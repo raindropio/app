@@ -1,5 +1,6 @@
 import s from './view.module.styl'
 import React from 'react'
+import Markdown from 'markdown-to-jsx'
 import t from '~t'
 
 import DragItem from '~co/bookmarks/dnd/drag/item'
@@ -7,12 +8,13 @@ import SuperLink from '~co/common/superLink'
 import SafeHtml from '~co/common/safeHtml'
 import Cover from './cover'
 import Tags from './tags'
+import Highlights from './highlights'
 import Info from './info'
 import Actions from './actions'
 
 export default function BookmarkItemView(props) {
     const { innerRef, isDragging } = props
-    const { _id, link, title, excerpt, highlight, cover, domain, tags, view, access } = props
+    const { _id, link, title, excerpt, highlight, cover, domain, tags, note, highlights, view, access } = props
     const { active, selected, selectModeEnabled, selectDisabled, important, broken, coverSize } = props
     const { getLink, onClick, onDoubleClick, onSelectClick, onContextMenu, onKeyUp } = props
 
@@ -47,8 +49,13 @@ export default function BookmarkItemView(props) {
                     <SafeHtml className={s.title}>{highlight.title || title}</SafeHtml>
                     
                     <div className={s.description}>
-                        {excerpt ? <SafeHtml className={s.excerpt}>{highlight.excerpt || excerpt}</SafeHtml> : null}
-                        {highlight.body ? <SafeHtml className={s.body}>{highlight.body}</SafeHtml> : null}
+                        {note || highlights.length ? (<>
+                            {note ? <Markdown className={s.note}>{note}</Markdown> : null}
+
+                            <Highlights highlights={highlights} />
+                        </>) : (
+                            excerpt ? <SafeHtml className={s.excerpt}>{highlight.excerpt || excerpt}</SafeHtml> : null
+                        )}
                         <Tags tags={tags} getLink={getLink} />
                     </div>
 

@@ -28,6 +28,15 @@ export const makeHighlight = ()=>highlight
 
 export const tags = ({bookmarks}, _id)=>(bookmarks.meta[_id] ? bookmarks.meta[_id] : blankMeta).tags
 
+export const highlights = ({bookmarks}, _id, limit=0)=>{
+	const items = (bookmarks.meta[_id] ? bookmarks.meta[_id] : blankMeta).highlights
+	if (limit)
+		return items.slice(0, limit)
+	return items
+}
+
+export const makeHighlights = ()=>highlights
+
 export const makeCreatorRef = ()=>createSelector(
 	[({bookmarks}, _id)=>bookmarks.meta[_id], ({user})=>user.current._id],
 	(meta, currentUserId)=>{

@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { bookmark, tags, makeIsSelected, makeHighlight, makeCreatorRef, makeSelectModeEnabled, selectModeWorking, getCoverSize } from '~data/selectors/bookmarks'
+import { bookmark, tags, makeHighlights, makeIsSelected, makeHighlight, makeCreatorRef, makeSelectModeEnabled, selectModeWorking, getCoverSize } from '~data/selectors/bookmarks'
 import * as bookmarksActions from '~data/actions/bookmarks'
 import { copyText } from '~modules/browser'
 
@@ -122,6 +122,7 @@ export default connect(
 	() => {
         const getIsSelected = makeIsSelected()
         const getHighlight = makeHighlight()
+        const getHighlights = makeHighlights()
         const getCreatorRef = makeCreatorRef()
         const getSelectModeEnabled = makeSelectModeEnabled()
     
@@ -132,6 +133,7 @@ export default connect(
             return {
                 item,
                 tags: tags(state, _id),
+                highlights: getHighlights(state, _id, 3),
                 selected: selectModeEnabled ? getIsSelected(state, spaceId, _id) : false,
                 selectModeEnabled,
                 selectDisabled: selectModeWorking(state) ? true : false,

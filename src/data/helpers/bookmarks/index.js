@@ -72,6 +72,7 @@ export const normalizeBookmark = (item={}, options)=>{
 		_id: 			parseInt(item._id||0),
 		title: 			item.title||'',
 		excerpt: 		item.excerpt||'',
+		note:			item.note||'',
 		cover: 			item.cover,
 		domain: 		item.domain||'',
 		collectionId: 	parseInt(item.collectionId||(item.collection ? item.collection.$id : 0)||0),
@@ -122,7 +123,8 @@ export const normalizeMeta = (item={})=>{
 	return Immutable({
 		creatorRef: item.creatorRef||emptyObject,
 		tags: 		item.tags||emptyArray,//_.sortBy(item.tags||emptyArray, tag=>tag.toLowerCase()),
-		media: 		item.media||emptyArray
+		media: 		item.media||emptyArray,
+		highlights: item.highlights||emptyArray
 	})
 }
 
