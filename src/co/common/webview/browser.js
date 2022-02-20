@@ -1,7 +1,8 @@
+import s from './browser.module.styl'
 import React, { useEffect } from 'react'
 import { PREVIEW_URL } from '~data/constants/app'
 
-export default function Iframe({ src, onError, ...etc }) {
+export default function WebViewBrowser({ src, forwardedRef, className='', onError, ...etc }) {
     useEffect(()=>{
         function onMessage(e) {
             if (e.data == 'preview-error')
@@ -13,7 +14,13 @@ export default function Iframe({ src, onError, ...etc }) {
 
     return (
         <iframe 
+            sandbox='allow-scripts allow-popups'
+            plugins='true'
+            allowFullScreen
+            loading='eager'
             {...etc}
+            ref={forwardedRef}
+            className={s.iframe + ' ' + className}
             src={`${PREVIEW_URL}/web/${btoa(src)}`}
             onError={onError} />
     )

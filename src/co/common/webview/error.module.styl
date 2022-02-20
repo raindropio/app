@@ -1,0 +1,25 @@
+.wrap {
+    position: absolute
+    left: 0;right: 0;bottom: 0;top: 0;
+    display: flex
+    flex-direction: column
+    align-items: center
+    justify-content: center
+}
+
+.screenshot, .message {
+    padding: var(--padding-large)
+}
+
+.message {
+    text-align: center
+}
+
+.screenshot {
+    img {
+        border-radius: var(--border-radius);
+        display: block;
+        max-width: 100%;
+        height: auto;
+    }
+}

@@ -1,13 +1,14 @@
 import s from './web.module.styl'
-import React from 'react'
-import SuperFrame from '~co/common/superFrame'
+import React, { useRef } from 'react'
+import WebView from '~co/common/webview'
 
-class ReaderWeb extends React.Component {
-	render() {
-        const { item: { link } } = this.props
+export default function ReaderWeb({ item: { link } }) {
+	const webViewRef = useRef(null)
 
-        return <SuperFrame className={s.web} src={link} />
-	}
+    return (
+		<WebView 
+			ref={webViewRef}
+			className={s.web} 
+			src={link} />
+	)
 }
-
-export default ReaderWeb

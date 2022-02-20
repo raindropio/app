@@ -6,7 +6,6 @@ import { API_ENDPOINT_URL } from '~data/constants/app'
 import Header, { Title, Space } from '~co/common/header'
 import Button from '~co/common/button'
 import Icon from '~co/common/icon'
-import SuperFrame from '~co/common/superFrame'
 
 const invalidStatus = {
     'invalid-origin': 'Origin is unreachable.',
@@ -68,7 +67,11 @@ export default function ReaderCache({ item: { cache, _id } }) {
             return (
                 <div className={s.cache}>
                     <CacheStatus cache={cache} url={url} />
-                    <SuperFrame className={s.frame} src={url} />
+                    <iframe 
+                        className={s.frame} 
+                        sandbox='allow-scripts allow-popups'
+                        plugins='true'
+                        src={url} />
                 </div>
             )
         

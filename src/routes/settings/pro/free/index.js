@@ -4,7 +4,6 @@ import t from '~t'
 import config from '~config'
 import { target, environment } from '~target'
 
-import SuperFrame from '~co/common/superFrame'
 import { Layout } from '~co/common/form'
 import Button from '~co/common/button'
 import Icon from '~co/common/icon'
@@ -25,8 +24,10 @@ export default ()=>{
 		)
 
 	return (
-		<SuperFrame
+		<iframe
 			className={s.free}
+			sandbox='allow-scripts allow-popups'
+			plugins='true'
 			src={config.links.pro.frame} />
 	)
 }

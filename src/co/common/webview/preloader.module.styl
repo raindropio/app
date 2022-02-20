@@ -1,0 +1,27 @@
+.wrap {
+    position: absolute
+    left: 0;right: 0;top: 0;
+    height: 3px
+}
+
+.line {
+    background: var(--accent-color)
+    width: 100%
+    height: 100%
+    border-top-right-radius: 3px
+    border-bottom-right-radius: 3px
+    animation: lineDraw 5s ease-in-out
+    transform-origin: top left
+}
+
+@keyframes lineDraw {
+    0% {
+        transform: scaleX(0)
+    }
+    20% {
+        transform: scaleX(0.5)
+    }
+    100% {
+        transform: scaleX(1)
+    }
+}

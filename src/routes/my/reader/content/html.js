@@ -6,42 +6,33 @@ import { PREVIEW_URL } from '~data/constants/app'
 import Preloader from '~co/common/preloader'
 
 export default function ReaderHTML({ item: { type, link } }) {
+    //article style
     const { font_color, font_family, font_size } = useSelector(state=>state.config)
     const theme = useSelector(state=>state.local.theme)
 
+    //loading state
     const [loading, setLoading] = useState(true)
     const onLoad = useCallback(()=>{ setLoading(false) }, [setLoading])
 
-    let content = null
+    //src
+    let src = ''
     switch(type) {
-        case 'article':
-            content = (
-                <iframe 
-                    role='article'
-                    className={s.article}
-                    loading='eager'
-                    referrerpolicy='no-referrer'
-                    src={PREVIEW_URL+'/article/'+btoa(link)+`#solid-bg=false&theme=${font_color||theme.app}&font-family=${font_family}&font-size=${font_size}`}
-                    onLoad={onLoad} />
-            )
-            break
-
-        default:
-            content = (
-                <iframe 
-                    role='article'
-                    className={s.embed}
-                    allowFullScreen
-                    loading='eager'
-                    src={PREVIEW_URL+'/embed/'+btoa(link)}
-                    onLoad={onLoad} />
-            )
-            break
+        case 'article': src = PREVIEW_URL+'/article/'+btoa(link)+`#solid-bg=false&theme=${font_color||theme.app}&font-family=${font_family}&font-size=${font_size}`; break
+        default:        src = PREVIEW_URL+'/embed/'+btoa(link); break
     }
 
     return (
         <>
-            {content}
+            <iframe 
+                role='article'
+                className={s.embed}
+                allowFullScreen
+                loading='eager'
+                sandbox='allow-scripts allow-popups'
+                referrerPolicy='no-referrer'
+                src={src}
+                onLoad={onLoad} />
+
             {loading && (
                 <div className={s.preloader}>
                     <Preloader enlarge='1.5' />
