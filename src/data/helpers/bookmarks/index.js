@@ -124,8 +124,12 @@ export const normalizeMeta = (item={})=>{
 		creatorRef: item.creatorRef||emptyObject,
 		tags: 		item.tags||emptyArray,//_.sortBy(item.tags||emptyArray, tag=>tag.toLowerCase()),
 		media: 		item.media||emptyArray,
-		highlights: item.highlights||emptyArray
+		highlights: _.map(item.highlights||emptyArray, normalizeHighlight)
 	})
+}
+
+export const normalizeHighlight = (highlight)=>{
+	return _.pick(highlight||{}, ['_id', 'text', 'note', 'color'])
 }
 
 export const blankSelectMode = Immutable({

@@ -5,6 +5,7 @@ import space from './space'
 import selectMode from './selectMode'
 import html from './html'
 import recent from './recent'
+import highlights from './highlights'
 
 export default function* () {
 	yield all([
@@ -13,6 +14,7 @@ export default function* () {
 		draft(),
 		selectMode(),
 		html(),
-		recent()
+		recent(),
+		highlights()
 	])
 }

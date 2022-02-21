@@ -32,8 +32,8 @@ export default function WebViewElectron({ forwardedRef, className='', onLoad, on
 
     return (
         <webview 
-            allowpopups='yes'
-            plugins='yes'
+            allowpopups='true'
+            plugins='true'
             {...etc}
             className={s.webview + ' ' + className}
             data-started={started}

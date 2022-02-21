@@ -6,6 +6,7 @@ import selectMode from './selectMode'
 import sort from './sort'
 import html from './html'
 import recent from './recent'
+import highlights from './highlights'
 
 import {
 	blankSelectMode
@@ -36,9 +37,13 @@ export default function(state = initialState, action={}){
 	const caseHtml = html(state,action)
 	if (caseHtml) state = caseHtml
 
-	//Html
+	//Recent
 	const caseRecent = recent(state,action)
 	if (caseRecent) state = caseRecent
+
+	//Highlights
+	const caseHighlights = highlights(state,action)
+	if (caseHighlights) state = caseHighlights
 
 	switch (action.type) {
 		case 'RESET':{

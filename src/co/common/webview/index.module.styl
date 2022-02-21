@@ -1,5 +1,6 @@
 .container {
     position: relative
+    overflow: hidden
 
     .webView {
         width: 100%
@@ -18,6 +19,12 @@
 }
 
 .container {
+    &[data-status='loaded'] {
+        .webView {
+            background: white
+        }
+    }
+
     &[data-status='loading'] {
         .preloader {
             opacity: 1

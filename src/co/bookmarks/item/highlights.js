@@ -7,12 +7,11 @@ export default function BookmarksItemHighlights({ highlights }) {
 
     return highlights.map(({ _id, color, text, note })=>(
         <div 
-            key={_id} 
+            key={_id||'new'} 
             className={s.highlight}
             style={{'--highlight-color': color}}>
-            {text}
-
             {note ? <Icon name='comment' size='micro' className={s.note} /> : null}
+            {text}
         </div>
     ))
 }

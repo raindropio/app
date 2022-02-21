@@ -1,11 +1,16 @@
 import s from './html.module.styl'
-import React, { useState, useCallback } from 'react'
+import React, { useState, useCallback, useRef } from 'react'
 import { useSelector } from 'react-redux'
 import { PREVIEW_URL } from '~data/constants/app'
 
+import useWithWebView from '~co/bookmarks/highlights/useWithWebView'
 import Preloader from '~co/common/preloader'
 
-export default function ReaderHTML({ item: { type, link } }) {
+export default function ReaderHTML({ item: { _id, type, link } }) {
+    //highlights
+    const webViewRef = useRef(null)
+	useWithWebView(webViewRef, _id)
+
     //article style
     const { font_color, font_family, font_size } = useSelector(state=>state.config)
     const theme = useSelector(state=>state.local.theme)
@@ -24,11 +29,12 @@ export default function ReaderHTML({ item: { type, link } }) {
     return (
         <>
             <iframe 
+                ref={webViewRef}
                 role='article'
                 className={s.embed}
                 allowFullScreen
                 loading='eager'
-                sandbox='allow-scripts allow-popups'
+                sandbox='allow-scripts allow-popups allow-modals allow-same-origin'
                 referrerPolicy='no-referrer'
                 src={src}
                 onLoad={onLoad} />
