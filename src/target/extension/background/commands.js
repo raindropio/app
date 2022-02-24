@@ -2,6 +2,7 @@ import browser from 'webextension-polyfill'
 import config from '~config'
 import { currentTab } from '~target'
 import { open } from './portal'
+import { addCurrentTabSelection } from './highlights'
 
 async function onCommand(command) {
     switch(command) {
@@ -16,6 +17,9 @@ async function onCommand(command) {
                 active: true
             })
         }
+
+        case 'save_highlight':
+            return addCurrentTabSelection()
     }
 }
 

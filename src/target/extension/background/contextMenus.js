@@ -1,12 +1,12 @@
 import browser from 'webextension-polyfill'
 import { open } from './portal'
+import { addCurrentTabSelection } from './highlights'
 import { environment } from '../environment'
 
-async function onClicked({ menuItemId, pageUrl, srcUrl, linkUrl }) {
+async function onClicked({ menuItemId, pageUrl, srcUrl, linkUrl }, ) {
     switch(menuItemId) {
-        case 'save_page':{
+        case 'save_page':
             return open(`/add?link=${encodeURIComponent(pageUrl)}`)
-        }
 
         case 'save_link':
             return open(`/add?link=${encodeURIComponent(linkUrl)}`)
@@ -16,6 +16,9 @@ async function onClicked({ menuItemId, pageUrl, srcUrl, linkUrl }) {
 
         case 'save_image':
             return open(`/add?link=${encodeURIComponent(srcUrl)}`)
+
+        case 'save_highlight':
+            return addCurrentTabSelection()
     }
 }
 
@@ -48,6 +51,11 @@ async function init() {
             id: 'save_image',
             title: browser.i18n.getMessage('saveImage')+suffix,
             contexts: ['image']
+        }),
+        browser.contextMenus.create({
+            id: 'save_highlight',
+            title: browser.i18n.getMessage('saveHighlight')+suffix,
+            contexts: ['selection']
         })
     ])
 }

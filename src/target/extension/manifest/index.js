@@ -105,6 +105,12 @@ module.exports = ({ vendor, production=false }, l) => {
 				},
 				description: '__MSG_savePage__'
 			},
+			save_highlight: {
+				suggested_key: {
+					default: 'Shift+Alt+H'
+				},
+				description: '__MSG_saveHighlight__'
+			},
 			open_raindrop: {
 				description: '__MSG_openRaindrop__',
 			},
@@ -139,6 +145,14 @@ module.exports = ({ vendor, production=false }, l) => {
 		...(vendor != 'firefox' ? {
 			content_security_policy: `script-src 'self' ${csp.hosts} ${!production?'\'unsafe-eval\'':''}; object-src 'none';`
 		} : {}),
+
+		content_scripts: [
+			{
+				matches: ['https://*/*'],
+				js: [file(l, '../../../assets/target/extension/highlight.js')],
+				run_at: 'document_start'
+			}
+		],
 
 		web_accessible_resources: [
 			'index.html',

@@ -9,7 +9,7 @@ const options = {
     maxLinkLength: 500
 }
 
-var items = new Set()
+var items = new Map()
 var loading = false
 
 //has
@@ -17,9 +17,14 @@ export function has(url) {
     return items.has(normalizeURL(url))
 }
 
+//getId
+export function getId(url) {
+    return items.get(normalizeURL(url))
+}
+
 //reload
-export async function reload() {
-    if (loading)
+export async function reload(force=false) {
+    if (loading && !force)
         return
 
     //do not load when no 'tabs' permission
@@ -30,7 +35,7 @@ export async function reload() {
     }catch(e){}
 
     loading = true
-    items = new Set()
+    items = new Map()
 
     let text = ''
 
@@ -49,14 +54,15 @@ export async function reload() {
     if (!text) return;
 
     text.split('\n').forEach(line=>{
+        const [_id, href] = line.split(options.divider)
         const url = normalizeURL(
             decodeURIComponent(
-                line.split(options.divider)[1]||''
+                href||''
             )
         ).substr(0, options.maxLinkLength)
 
         if (url)
-            items.add(url)
+            items.set(url, _id)
     })
 
     //send event
