@@ -9,6 +9,7 @@ import { makeCollection } from '~data/selectors/collections'
 import Reader from '~co/screen/splitview/reader'
 import Header from './header'
 import Content from './content'
+import Highlights from './highlights'
 import AccentColor from '~co/collections/item/accentColor'
 
 class MyReader extends React.Component {
@@ -59,6 +60,7 @@ class MyReader extends React.Component {
                     style={style}>
                     <Header {...this.props} {...this.handlers} />
                     <Content {...this.props} />
+                    <Highlights {...this.props} />
                 </Reader>
             }</AccentColor>
         )

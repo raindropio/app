@@ -41,6 +41,7 @@ export default class ReaderHeader extends React.PureComponent {
 
         return (
             <Header
+                data-no-shadow={tab!='web'}
                 backTo={getLink({ bookmark: null, tab: null })}
                 onFullscreenClick={onFullscreenToggleClick}>
                 <Helmet>

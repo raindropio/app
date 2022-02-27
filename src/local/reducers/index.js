@@ -33,7 +33,8 @@ const initialState = Immutable({
 	theme: initialTheme,
 	appSize: 'default',
 	collectionsSearchResults: true,
-	pause: ''
+	pause: '',
+	highlightsExpanded: true
 })
 
 export default {

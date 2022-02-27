@@ -55,3 +55,16 @@ export function Avatar({ src, className='', ...etc }) {
 		</IconWrap>
 	);
 }
+
+export function Number({ className='', children, ...etc }) {
+	const val = parseInt(children) || 0
+	return (
+		<IconWrap 
+			{...etc}
+			className={s.number + ' ' + className}>
+			<span className={s.text}>
+				{val > 9 ? '9+' : val}
+			</span>
+		</IconWrap>
+	);
+}

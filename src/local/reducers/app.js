@@ -5,7 +5,8 @@ import localStorage from '~modules/localStorage'
 import {
 	APP_SET_THEME,
 	APP_SET_APP_SIZE,
-	APP_COLLECTIONS_SEARCH_RESULTS_HIDE
+	APP_COLLECTIONS_SEARCH_RESULTS_HIDE,
+	APP_TOGGLE_HIGHLIGHTS
 } from '../constants'
 
 export default function(state, action) {switch (action.type) {
@@ -20,6 +21,9 @@ export default function(state, action) {switch (action.type) {
 	case APP_COLLECTIONS_SEARCH_RESULTS_HIDE:
 		return state.set('collectionsSearchResults', !state.collectionsSearchResults)
 
+	case APP_TOGGLE_HIGHLIGHTS:
+		return state.set('highlightsExpanded', !state.highlightsExpanded)
+
 	case REHYDRATE:{
 		const incoming = action.payload && action.payload.local||{}
 
@@ -27,6 +31,7 @@ export default function(state, action) {switch (action.type) {
 			switch(key){
 				case 'theme': state = setTheme(state, val); break
 				case 'appSize': state = state.set('appSize', String(val)||'default'); break
+				case 'highlightsExpanded': state = state.set('highlightsExpanded', val ? true : false); break
 			}
 		})
 

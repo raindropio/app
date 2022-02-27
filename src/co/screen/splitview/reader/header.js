@@ -10,6 +10,7 @@ import Icon from '~co/common/icon'
 
 class SplitViewReaderHeader extends React.Component {
     static defaultProps = {
+        'data-no-shadow': true,
         backTo: '',
         onBackClick: undefined,
         onFullscreenClick: undefined
@@ -57,7 +58,7 @@ class SplitViewReaderHeader extends React.Component {
     render() {
         return (
             <Header 
-                data-no-shadow 
+                data-no-shadow={this.props['data-no-shadow']}
                 data-fancy
                 data-window-inset
                 className='svReaderHeader'>
