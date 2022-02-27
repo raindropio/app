@@ -16,7 +16,7 @@ class TextInner extends React.Component {
         autoSize: undefined,
         multiline: undefined,
         selectAll: undefined,
-        variant: 'default',     //less
+        variant: 'default',     //less, inline
         font: 'default',        //title
 
         children: null,         //after input

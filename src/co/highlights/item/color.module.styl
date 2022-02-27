@@ -1,0 +1,28 @@
+.colors {
+    display: flex
+    flex-direction: row
+    overflow: hidden
+
+    [data-active='true'] {
+        pointer-events: none
+    }
+
+    &:not(:hover):not(:focus-within) [data-active='false'] {
+        display: none
+    }
+
+    &:hover [data-active='true'] {
+        background: var(--disable-background-color)
+        box-shadow: inset 0 0 0 var(--shadow-height) var(--shadow-color)
+    }
+}
+
+.color {
+    display: block
+    width: var(--padding-medium)
+    height: var(--padding-medium)
+    border-radius: var(--padding-medium)
+    background: var(--color)
+    background-image: linear-gradient(to bottom, rgba(255,255,255,.3) 0, rgba(255,255,255,.1) 100%)
+    box-shadow: inset 0 0 0 1px var(--shadow-color)
+}

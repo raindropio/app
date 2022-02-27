@@ -28,7 +28,7 @@ export const shortDate = (original) => {
 
     try{
         if (isToday(d))
-            return t.s('today')+', '+getFormat('time')(d)
+            return getFormat('time')(d)
 
         return getFormat(!isThisYear(d) ? 'full' : 'compact')(d)
     }catch(e){}

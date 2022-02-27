@@ -8,6 +8,7 @@ import { toggleHighlights } from '~local/actions'
 import Header, { Title, Space } from '~co/common/header'
 import Button from '~co/common/button'
 import Icon from '~co/common/icon'
+import Highlights from '~co/highlights/items'
 
 export default function ReaderHighlightsExpanded({ item: { _id } }) {
     const dispatch = useDispatch()
@@ -30,7 +31,7 @@ export default function ReaderHighlightsExpanded({ item: { _id } }) {
             </Header>
 
             <div className={s.items}>
-                
+                <Highlights _id={_id} />
             </div>
         </div>
     )

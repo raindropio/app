@@ -23,6 +23,18 @@ export default function(state, action) {switch (action.type) {
             return state
         }
 
+        let isEqual = true
+        for(const key in changed)
+            if (highlights[index][key] != changed[key]) {
+                isEqual = false
+                break
+            }
+
+        if (isEqual) {
+            action.ignore = true
+            return state
+        }
+
         action.changed = {
             ...highlights[index],
             ...changed,

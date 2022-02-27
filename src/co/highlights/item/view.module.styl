@@ -1,0 +1,77 @@
+.item {
+    display: grid
+    grid-auto-flow: row
+    grid-row-gap: var(--padding-small)
+    padding: var(--padding-medium)
+    transition: .1s ease-in-out background
+    cursor: default
+
+    &:focus-within {
+        background: var(--sidebar-background-color)
+
+        .text {
+            color: var(--secondary-text-color)
+        }
+    }
+
+    &:hover, &:focus-within {
+        .buttons > * {
+            opacity: 1
+            transition-delay: .1s
+        }
+
+        .buttons .created {
+            opacity: 0
+        }
+
+        .note ::placeholder {
+            transition-delay: .1s
+            color: var(--disable-text-color)
+        }
+    }
+}
+
+.text {
+    transition: .1s ease-in-out color
+}
+
+.note {
+    flex: 1
+    min-height: auto
+
+    ::placeholder {
+        transition: .1s ease-in-out color
+        color: transparent
+    }
+}
+
+.created {
+    font-size: var(--tertiary-font-size)
+    color: var(--secondary-text-color)
+    pointer-events: none
+}
+
+.footer {
+    display: flex
+    flex-direction: row
+    align-items: center
+}
+
+.buttons {
+    display: flex
+    align-items: center
+    gap: var(--padding-small)
+    position: relative
+    margin: calc(var(--padding-mini) * -1) 0
+
+    & > * {
+        opacity: 0
+        transition: .1s ease-in-out opacity
+    }
+
+    .created {
+        opacity: 1
+        position: absolute
+        right: 0
+    }
+}

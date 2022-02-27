@@ -6,19 +6,19 @@ import { toggleHighlights } from '~local/actions'
 
 import { Footer } from '~co/screen/splitview/reader'
 import Button from '~co/common/button'
-import { Number } from '~co/common/icon'
+import Icon from '~co/common/icon'
 
-export default function ReaderHighlightsCollapsed({ item: { _id } }) {
+export default function ReaderHighlightsCollapsed({ item: { _id }, tab }) {
     const dispatch = useDispatch()
     const highlights = useSelector(state=>getHighlights(state, _id))
     const onExpandClick = useCallback(()=>dispatch(toggleHighlights()), [])
 
-    return (<Footer>
+    return (<Footer data-no-shadow={tab=='edit'}>
         <Button 
             variant='link'
             onClick={onExpandClick}>
-            <Number>{highlights.length}</Number>
-            {t.s('highlights')}
+            <Icon name='highlights' />
+            {highlights.length + ' ' + t.s('highlights').toLowerCase()}
         </Button>
     </Footer>)
 }

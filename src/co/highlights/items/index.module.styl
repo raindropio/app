@@ -1,0 +1,12 @@
+.highlights {
+    max-width: 16rem
+    margin: 0 auto
+
+    border-radius: var(--border-radius)
+    overflow: hidden
+    box-shadow: 0 0 0 var(--shadow-height) var(--shadow-color)
+
+    & > :not(:first-child) {
+        box-shadow: 0 calc(var(--shadow-height) * -1) 0 var(--shadow-color)
+    }
+}
