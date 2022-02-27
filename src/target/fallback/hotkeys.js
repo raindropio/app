@@ -3,6 +3,10 @@ export const hotkeys = {
         return []
     },
 
+    async getByName(name) {
+
+    },
+
     link() {
         return undefined
     }

@@ -6,6 +6,10 @@
     transition: .1s ease-in-out background
     cursor: default
 
+    &:hover {
+        background: var(--hover-background-color)
+    }
+
     &:focus-within {
         background: var(--sidebar-background-color)
 
@@ -17,7 +21,6 @@
     &:hover, &:focus-within {
         .buttons > * {
             opacity: 1
-            transition-delay: .1s
         }
 
         .buttons .created {
@@ -25,7 +28,6 @@
         }
 
         .note ::placeholder {
-            transition-delay: .1s
             color: var(--disable-text-color)
         }
     }
@@ -54,7 +56,7 @@
 .footer {
     display: flex
     flex-direction: row
-    align-items: center
+    align-items: flex-end
 }
 
 .buttons {

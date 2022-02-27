@@ -1,6 +1,6 @@
 import s from './view.module.styl'
 import t from '~t'
-import React, { useState, useCallback } from 'react'
+import React, { useEffect, useRef, useState, useCallback } from 'react'
 import Text from '../text'
 import { Text as Note } from '~co/common/form'
 import { ShortDate } from '~modules/format/date'
@@ -9,16 +9,28 @@ import Icon from '~co/common/icon'
 import Color from './color'
 
 export default function HighlightsItemView({ text, color, created, onChange, onRemove, ...etc }) {
+    const noteRef = useRef(null)
+
     const [note, setNote] = useState(()=>etc.note)
+    useEffect(()=>setNote(etc.note), [etc.note])
+
     const onChangeNote = useCallback(e=>setNote(e.target.value), [])
     const onSubmitNote = useCallback(e=>{
         e.preventDefault()
         onChange({ note })
     }, [note, onChange])
 
+    const onFormMouseDown = useCallback(e=>{
+        if (noteRef.current)
+            if (e.target == e.currentTarget || e.target == noteRef.current)
+                setTimeout(() => noteRef.current.focus())
+    }, [noteRef])
+
     return (
         <form 
             onSubmit={onSubmitNote} 
+            onMouseDown={onFormMouseDown}
+            onMouseLeave={onSubmitNote}
             className={s.item}>
             <Text 
                 className={s.text}
@@ -28,6 +40,7 @@ export default function HighlightsItemView({ text, color, created, onChange, onR
 
             <div className={s.footer}>
                 <Note 
+                    ref={noteRef}
                     className={s.note}
                     type='text'
                     variant='inline'

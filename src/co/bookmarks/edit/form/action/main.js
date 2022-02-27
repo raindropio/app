@@ -1,12 +1,10 @@
 import React from 'react'
 import t from '~t'
-import { ShortDate } from '~modules/format/date'
 
 import Preloader from '~co/common/preloader'
 import Button, { ButtonsGroup } from '~co/common/button'
-import Icon from '~co/common/icon'
 
-export default function BookmarkEditFormActionMain({ status, item: { created }, onRemove }) {
+export default function BookmarkEditFormActionMain({ status, onRemove }) {
     switch(status){
         case 'saving':
         case 'loading':
@@ -24,12 +22,6 @@ export default function BookmarkEditFormActionMain({ status, item: { created }, 
                         accent='danger'
                         onClick={onRemove}>
                         {t.s('remove')}
-                    </Button>
-
-                    <Button
-                        disabled>
-                        <Icon name='check_active' />
-                        <ShortDate date={created} />
                     </Button>
                 </ButtonsGroup>
             )

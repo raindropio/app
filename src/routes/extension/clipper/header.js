@@ -15,11 +15,11 @@ function ClipperHeader({ status, item }) {
     let title = ''
 
     switch(status) {
-        case 'new':     title = t.s('newBookmark'); break
+        case 'new':     title = t.s('newString'); break
         case 'idle':    title = ''; break
         case 'loading': title = ''; break
         case 'removed': title = t.s('removeSuccess'); break
-        default:        title = t.s('bookmark')+' '+t.s('saved').toLowerCase(); break
+        default:        title = t.s('edit'); break
     }
 
     const collectionPath = `/my/${item.collectionId}`

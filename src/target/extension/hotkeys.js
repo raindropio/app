@@ -35,6 +35,13 @@ export const hotkeys = {
         return [] 
     },
 
+    async getByName(name) {
+        const commands = await hotkeys.getAll()
+        for(const command of commands)
+            if (command.name == name)
+                return command
+    },
+
     link() {
         switch(process.env.EXTENSION_VENDOR) {
             case 'firefox':

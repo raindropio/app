@@ -24,6 +24,7 @@ function ClipperContent({ item, add_auto_save, add_default_collection, last_coll
             
             buttons={
                 <Buttons
+                    link={item.link}
                     collectionId={collectionId} />
             } />
     )
