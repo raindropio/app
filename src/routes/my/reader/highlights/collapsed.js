@@ -6,7 +6,7 @@ import { toggleHighlights } from '~local/actions'
 
 import { Footer } from '~co/screen/splitview/reader'
 import Button from '~co/common/button'
-import Icon, { Number } from '~co/common/icon'
+import { Number } from '~co/common/icon'
 
 export default function ReaderHighlightsCollapsed({ item: { _id } }) {
     const dispatch = useDispatch()
@@ -18,10 +18,7 @@ export default function ReaderHighlightsCollapsed({ item: { _id } }) {
             variant='link'
             onClick={onExpandClick}>
             <Number>{highlights.length}</Number>
-            
             {t.s('highlights')}
-
-            <Icon name='arrow' size='micro' />
         </Button>
     </Footer>)
 }

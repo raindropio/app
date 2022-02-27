@@ -3,7 +3,7 @@ import React, { useState, useCallback, useRef } from 'react'
 import { useSelector } from 'react-redux'
 import { PREVIEW_URL } from '~data/constants/app'
 
-import useWithWebView from '~co/bookmarks/highlights/useWithWebView'
+import useWithWebView from '~co/highlights/useWithWebView'
 import Preloader from '~co/common/preloader'
 
 export default function ReaderHTML({ item: { _id, type, link } }) {

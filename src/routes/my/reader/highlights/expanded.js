@@ -1,7 +1,8 @@
 import s from './expanded.module.styl'
 import t from '~t'
 import React, { useCallback } from 'react'
-import { useDispatch } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import { highlights as getHighlights } from '~data/selectors/bookmarks'
 import { toggleHighlights } from '~local/actions'
 
 import Header, { Title, Space } from '~co/common/header'
@@ -10,6 +11,7 @@ import Icon from '~co/common/icon'
 
 export default function ReaderHighlightsExpanded({ item: { _id } }) {
     const dispatch = useDispatch()
+    const highlights = useSelector(state=>getHighlights(state, _id))
     const onCollapseClick = useCallback(()=>dispatch(toggleHighlights()), [])
 
     return (
@@ -17,8 +19,11 @@ export default function ReaderHighlightsExpanded({ item: { _id } }) {
             <Header 
                 data-fancy
                 data-no-shadow>
-                <Title>{t.s('highlights')}</Title>
+                <Title>{highlights.length} {t.s('highlights').toLowerCase()}</Title>
                 <Space />
+                <Button variant='link'>
+                    <Icon name='add' />
+                </Button>
                 <Button onClick={onCollapseClick}>
                     <Icon name='close' />
                 </Button>

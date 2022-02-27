@@ -1,7 +1,7 @@
 import s from './highlights.module.styl'
 import React from 'react'
 import Icon from '~co/common/icon'
-import Text from '~co/bookmarks/highlights/text'
+import Text from '~co/highlights/text'
 
 export default function BookmarksItemHighlights({ highlights }) {
     if (!highlights.length) return null
