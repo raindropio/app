@@ -6,10 +6,6 @@
     transition: .1s ease-in-out background
     cursor: default
 
-    &:hover {
-        background: var(--hover-background-color)
-    }
-
     &:focus-within {
         background: var(--sidebar-background-color)
 
@@ -35,6 +31,10 @@
 
 .text {
     transition: .1s ease-in-out color
+
+    &[data-clickable='true'] {
+        cursor: pointer
+    }
 }
 
 .note {

@@ -2,14 +2,21 @@ import t from '~t'
 import React, { useCallback } from 'react'
 import { useDispatch } from 'react-redux'
 import { highlightUpdate, highlightRemove } from '~data/actions/bookmarks'
+
+import { useSendCallback } from '../useWithWebView/messaging'
 import { Confirm } from '~co/overlay/dialog'
 import View from './view'
 
 export default function HighlightsItem(props) {
-    const { bookmarkId, _id, note } = props
+    const { bookmarkId, _id, note, webViewRef } = props
 
     const dispatch = useDispatch()
-    
+    const send = useSendCallback(webViewRef)
+
+    const onScrollIntoView = useCallback(()=>{
+        send('RDH_SCROLL', { _id })
+    }, [send, _id])
+
     const onChange = useCallback(changed => 
         dispatch(highlightUpdate(bookmarkId, _id, changed)), 
         [bookmarkId, _id]
@@ -29,6 +36,7 @@ export default function HighlightsItem(props) {
     return (
         <View
             {...props}
+            onScrollIntoView={webViewRef && webViewRef.current ? onScrollIntoView : undefined}
             onChange={onChange}
             onRemove={onRemove} />
     )

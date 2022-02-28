@@ -4,13 +4,14 @@ import React, { useCallback } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { highlights as getHighlights } from '~data/selectors/bookmarks'
 import { toggleHighlights } from '~local/actions'
+import links from '~config/links'
 
 import Header, { Title, Space } from '~co/common/header'
 import Button from '~co/common/button'
 import Icon from '~co/common/icon'
 import Highlights from '~co/highlights/items'
 
-export default function ReaderHighlightsExpanded({ item: { _id } }) {
+export default function ReaderHighlightsExpanded({ item: { _id }, webViewRef }) {
     const dispatch = useDispatch()
     const highlights = useSelector(state=>getHighlights(state, _id))
     const onCollapseClick = useCallback(()=>dispatch(toggleHighlights()), [])
@@ -21,17 +22,25 @@ export default function ReaderHighlightsExpanded({ item: { _id } }) {
                 data-fancy
                 data-no-shadow>
                 <Title>{highlights.length} {t.s('highlights').toLowerCase()}</Title>
+                
                 <Space />
-                <Button variant='link'>
+
+                <Button 
+                    target='_blank'
+                    href={links.help.highlights.index}
+                    variant='link'>
                     <Icon name='add' />
                 </Button>
+
                 <Button onClick={onCollapseClick}>
                     <Icon name='close' />
                 </Button>
             </Header>
 
             <div className={s.items}>
-                <Highlights _id={_id} />
+                <Highlights 
+                    _id={_id}
+                    webViewRef={webViewRef} />
             </div>
         </div>
     )

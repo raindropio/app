@@ -17,6 +17,8 @@ class MyReader extends React.Component {
         query: {} //bookmark, tab
     }
 
+    webViewRef = React.createRef()
+
     state = {
         fullscreen: false
     }
@@ -59,8 +61,8 @@ class MyReader extends React.Component {
                     data-theme={tab=='preview' && item.type == 'article' && font_color ? font_color : undefined}
                     style={style}>
                     <Header {...this.props} {...this.handlers} />
-                    <Content {...this.props} />
-                    <Highlights {...this.props} />
+                    <Content {...this.props} webViewRef={this.webViewRef} />
+                    <Highlights {...this.props} webViewRef={this.webViewRef} />
                 </Reader>
             }</AccentColor>
         )

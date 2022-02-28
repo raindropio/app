@@ -8,7 +8,7 @@ import Button from '~co/common/button'
 import Icon from '~co/common/icon'
 import Color from './color'
 
-export default function HighlightsItemView({ text, color, created, onChange, onRemove, ...etc }) {
+export default function HighlightsItemView({ text, color, created, onScrollIntoView, onChange, onRemove, ...etc }) {
     const noteRef = useRef(null)
 
     const [note, setNote] = useState(()=>etc.note)
@@ -34,7 +34,9 @@ export default function HighlightsItemView({ text, color, created, onChange, onR
             className={s.item}>
             <Text 
                 className={s.text}
-                color={color}>
+                color={color}
+                data-clickable={typeof onScrollIntoView == 'function'}
+                onClick={onScrollIntoView}>
                 {text}
             </Text>
 
@@ -50,6 +52,7 @@ export default function HighlightsItemView({ text, color, created, onChange, onR
                     placeholder={`${t.s('add')} ${t.s('note').toLowerCase()}…`}
                     value={note}
                     onChange={onChangeNote}
+                    onFocus={onScrollIntoView}
                     onBlur={onSubmitNote} />
 
                 <div className={s.buttons}>

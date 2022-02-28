@@ -1,7 +1,8 @@
-import s from './empty.module.styl'
+import s from './view.module.styl'
 import t from '~t'
 import React, { useState, useEffect } from 'react'
 import { hotkeys } from '~target'
+import links from '~config/links'
 
 import Icon from '~co/common/icon'
 import Button from '~co/common/button'
@@ -28,7 +29,7 @@ export default function ExtensionHighlightsEmpty() {
             </p>
 
             <Button
-                href=''
+                href={links.help.highlights.addExtension}
                 target='_blank'
                 variant='primary'>
                 <Icon name='open' size='micro' />

@@ -36,6 +36,10 @@ export default {
         collaboration: 'https://help.raindrop.io/collaboration',
         'add-bookmark': 'https://help.raindrop.io/bookmarks#add-new-bookmark',
         search: 'https://help.raindrop.io/using-search',
+        highlights: {
+            index: 'https://help.raindrop.io/highlights',
+            addExtension: 'https://help.raindrop.io/highlights'
+        }
     },
 
     pro: {

@@ -34,19 +34,21 @@ export function useMessageEffect(ref, onMessage, deps=[]) {
     }, [ref, ...deps])
 }
 
+export function send(element, type, payload) {
+    if (!element) return
+    if (
+        element instanceof window.HTMLIFrameElement && 
+        element.contentWindow
+    )
+        element.contentWindow.postMessage({ type, payload }, '*')
+    else if (element && element.tagName == 'WEBVIEW')
+        element.send('RDH', { type, payload })
+}
+
 /*
     const send = useSend(ref)
     send('some_type', {payload...})
 */
 export function useSendCallback(ref) {
-    return useCallback((type, payload)=>{
-        if (!ref.current) return
-        else if (
-            ref.current instanceof window.HTMLIFrameElement && 
-            ref.current.contentWindow
-        )
-            ref.current.contentWindow.postMessage({ type, payload }, '*')
-        else if (ref.current && ref.current.tagName == 'WEBVIEW')
-            ref.current.send('RDH', { type, payload })
-    }, [ref])
+    return useCallback((type, payload) => send(ref.current, type, payload), [ref])
 }

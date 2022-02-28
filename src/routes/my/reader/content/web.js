@@ -1,10 +1,9 @@
 import s from './web.module.styl'
-import React, { useRef } from 'react'
+import React from 'react'
 import WebView from '~co/common/webview'
 import useWithWebView from '~co/highlights/useWithWebView'
 
-export default function ReaderWeb({ item: { _id, link } }) {
-	const webViewRef = useRef(null)
+export default function ReaderWeb({ item: { _id, link }, webViewRef }) {
 	useWithWebView(webViewRef, _id)
 
     return (

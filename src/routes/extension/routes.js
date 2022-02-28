@@ -13,7 +13,7 @@ export default ({ match: { path } })=>{
 			<Route path={`${path}/clipper`} component={Clipper} />
 			<Route path={`${path}/welcome`} component={Welcome} />
 			<Route path={`${path}/tabs/:collectionId`} component={Tabs} />
-			<Route path={`${path}/highlights/:_id`} component={Highlights} />
+			<Route path={`${path}/highlights`} component={Highlights} />
 			<Route component={NotFound} />
 		</Switch>
 	)

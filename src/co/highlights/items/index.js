@@ -7,7 +7,7 @@ import { oneLoad } from '~data/actions/bookmarks'
 import useScrollToNew from './useScrollToNew'
 import Item from '../item'
 
-export default function HighlightsItems({ _id }) {
+export default function HighlightsItems({ _id, webViewRef }) {
     const containerRef = useRef(null)
     const dispatch = useDispatch()
     const highlights = useSelector(state=>getHighlights(state, _id))
@@ -23,6 +23,7 @@ export default function HighlightsItems({ _id }) {
                 <Item
                     {...item}
                     bookmarkId={_id}
+                    webViewRef={webViewRef}
                     key={item._id || i} />
             )}
         </section>

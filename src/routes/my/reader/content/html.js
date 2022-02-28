@@ -1,14 +1,13 @@
 import s from './html.module.styl'
-import React, { useState, useCallback, useRef } from 'react'
+import React, { useState, useCallback } from 'react'
 import { useSelector } from 'react-redux'
 import { PREVIEW_URL } from '~data/constants/app'
 
 import useWithWebView from '~co/highlights/useWithWebView'
 import Preloader from '~co/common/preloader'
 
-export default function ReaderHTML({ item: { _id, type, link } }) {
+export default function ReaderHTML({ item: { _id, type, link }, webViewRef }) {
     //highlights
-    const webViewRef = useRef(null)
 	useWithWebView(webViewRef, _id)
 
     //article style
