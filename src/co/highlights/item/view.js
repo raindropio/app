@@ -1,6 +1,8 @@
 import s from './view.module.styl'
 import t from '~t'
 import React, { useEffect, useRef, useState, useCallback } from 'react'
+import { target } from '~target'
+
 import Text from '../text'
 import { Text as Note } from '~co/common/form'
 import { ShortDate } from '~modules/format/date'
@@ -30,7 +32,7 @@ export default function HighlightsItemView({ text, color, created, onScrollIntoV
         <form 
             onSubmit={onSubmitNote} 
             onMouseDown={onFormMouseDown}
-            onMouseLeave={onSubmitNote}
+            onMouseLeave={target == 'extension' ? onSubmitNote : undefined}
             className={s.item}>
             <Text 
                 className={s.text}
