@@ -8,9 +8,10 @@ import { Text as Note } from '~co/common/form'
 import { ShortDate } from '~modules/format/date'
 import Button from '~co/common/button'
 import Icon from '~co/common/icon'
+import ProCheck from '~co/user/pro/check'
 import Color from './color'
 
-export default function HighlightsItemView({ text, color, created, onScrollIntoView, onChange, onRemove, ...etc }) {
+export default function HighlightsItemView({ text, color, created, pro, onScrollIntoView, onChange, onRemove, ...etc }) {
     const noteRef = useRef(null)
 
     const [note, setNote] = useState(()=>etc.note)
@@ -21,6 +22,11 @@ export default function HighlightsItemView({ text, color, created, onScrollIntoV
         e.preventDefault()
         onChange({ note })
     }, [note, onChange])
+    const onClickNote = useCallback(e=>{
+        if (pro) return
+        e.preventDefault()
+        ProCheck('annotations')
+    }, [pro])
 
     const onFormMouseDown = useCallback(e=>{
         if (noteRef.current)
@@ -43,19 +49,23 @@ export default function HighlightsItemView({ text, color, created, onScrollIntoV
             </Text>
 
             <div className={s.footer}>
-                <Note 
-                    ref={noteRef}
-                    className={s.note}
-                    type='text'
-                    variant='inline'
-                    autoSize
-                    autoComplete='off'
-                    spellCheck='false'
-                    placeholder={`${t.s('add')} ${t.s('note').toLowerCase()}…`}
-                    value={note}
-                    onChange={onChangeNote}
-                    onFocus={onScrollIntoView}
-                    onBlur={onSubmitNote} />
+                <div 
+                    className={s.noteWrap}
+                    onClick={onClickNote}>
+                    <Note 
+                        ref={noteRef}
+                        className={s.note}
+                        type='text'
+                        variant='inline'
+                        autoSize
+                        autoComplete='off'
+                        spellCheck='false'
+                        disabled={!pro}
+                        placeholder={`${t.s('add')} ${t.s('note').toLowerCase()}…`}
+                        value={note}
+                        onChange={onChangeNote}
+                        onBlur={onSubmitNote} />
+                </div>
 
                 <div className={s.buttons}>
                     <Color 

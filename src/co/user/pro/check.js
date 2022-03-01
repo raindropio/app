@@ -13,6 +13,18 @@ export default async function Check(type='') {
             go = await Confirm(
                 t.s('nestedCollections'),
                 {
+                    id: `pro-check-${type}`,
+                    description: t.s('onlyInPro'),
+                    ok: t.s('upgradeToPro')
+                }
+            )
+        break
+
+        case 'annotations':
+            go = await Confirm(
+                t.s('add') + ' ' + t.s('note').toLowerCase(),
+                {
+                    id: `pro-check-${type}`,
                     description: t.s('onlyInPro'),
                     ok: t.s('upgradeToPro')
                 }
