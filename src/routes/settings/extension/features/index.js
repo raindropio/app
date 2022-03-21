@@ -4,7 +4,7 @@ import browser from '~target/extension/browser'
 import config from '~config'
 import { permissions } from '~target'
 
-import { Title, Checkbox, SubLabel } from '~co/common/form'
+import { Title, Checkbox, SubLabel, Separator } from '~co/common/form'
 import Icon from '~co/common/icon'
 import { Error } from '~co/overlay/dialog'
 
@@ -14,8 +14,10 @@ export default class SettingsExtensionFeatures extends React.Component {
             {
                 id: 'tabs',
                 enabled: false,
-                title: t.s('highlightSavedPages'),
-                excerpt: t.s('highlightSavedPagesD')
+                title: `${t.s('tabs')} ${t.s('access').toLowerCase()}`,
+                excerpt: <>
+                    {t.s('features')}: {t.s('highlights').toLowerCase()}, {t.s('save').toLowerCase()} {t.s('tabs').toLowerCase()} {t.s('und')} {t.s('highlightSavedPages').toLowerCase()}
+                </>
             }
         ]
     }
@@ -62,20 +64,27 @@ export default class SettingsExtensionFeatures extends React.Component {
         return (
             <>
                 <Title>
-                    {t.s('features')}
+                    {t.s('permissions')}
                 </Title>
                 
                 {this.state.permissions.map(this.renderPermission)}
 
                 {!!('omnibox' in browser) && (
-                    <div>
-                        <Icon name='search' size='micro' />&nbsp;&nbsp;
-                        {t.s('omniboxD')}
+                    <>
+                        <Separator />
 
-                        <SubLabel>
-                            <a href={config.links.help.omnibox} target='_blank'>{t.s('howToUse')}</a>
-                        </SubLabel>
-                    </div>
+                        <Title>
+                            {t.s('features')}
+                        </Title>
+                        <div>
+                            <Icon name='search' size='micro' />&nbsp;&nbsp;
+                            {t.s('omniboxD')}
+
+                            <SubLabel>
+                                <a href={config.links.help.omnibox} target='_blank'>{t.s('howToUse')}</a>
+                            </SubLabel>
+                        </div>
+                    </>
                 )}
             </>
         )

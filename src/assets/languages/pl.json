@@ -1,5 +1,4 @@
 {
-  "noInternetError": "Sprawdź swoje połączenie internetowe.",
   "server": "Błąd, spróbuj ponownie!",
   "server0": "Wprowadź stare hasło",
   "server2": "Wprowadź swoje imię!",
@@ -355,5 +354,6 @@
   "narrowSearch": "Sprecyzuj wyszukiwanie",
   "createdDate": "Data utworzenia",
   "dateSearchD": "Wyszukiwanie określonej daty w formacie RRRR-MM-DD lub określonego miesiąca (RRRR-MM) lub roku (RRRR). Umieść < lub > przed datą, aby wyszukać przed lub po określonej dacie.",
-  "currentCollection": "Bieżąca kolekcja"
+  "currentCollection": "Bieżąca kolekcja",
+  "highlights": "Wyróżnienia"
 }

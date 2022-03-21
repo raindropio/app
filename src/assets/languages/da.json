@@ -355,5 +355,6 @@
   "narrowSearch": "Indsnævre søgningen",
   "createdDate": "Oprettelsesdato",
   "dateSearchD": "Søg efter en specifik dato i formatet ÅÅÅÅ-MM-DD eller en specifik måned (ÅÅÅÅ-MM) eller et år (ÅÅÅÅ). Sæt < eller > foran datoen for at finde henholdsvis før eller efter en bestemt dato.",
-  "currentCollection": "Nuværende samling"
+  "currentCollection": "Nuværende samling",
+  "highlights": "Highlights"
 }
