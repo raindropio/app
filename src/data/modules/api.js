@@ -29,6 +29,7 @@ function* get(url, overrideOptions={}) {
 function* put(url, data={}, options={}) {
 	const res = yield req(url, {
 		...options,
+		keepalive: true,
 		method: 'PUT',
 		headers: {
 			'Accept': 'application/json',
@@ -45,6 +46,7 @@ function* put(url, data={}, options={}) {
 function* post(url, data={}, options={}) {
 	const res = yield req(url, {
 		...options,
+		keepalive: true,
 		method: 'POST',
 		headers: {
 			'Accept': 'application/json',
@@ -73,6 +75,7 @@ function* upload(url, _body, options={}) {
 
 	const res = yield req(url, {
 		...options,
+		keepalive: true,
 		method: 'PUT',
 		body
 	})
@@ -86,6 +89,7 @@ function* upload(url, _body, options={}) {
 function* del(url, data={}, options={}) {
 	const res = yield req(url, {
 		...options,
+		keepalive: true,
 		method: 'DELETE',
 		headers: {
 			'Accept': 'application/json',
@@ -158,8 +162,7 @@ const checkJSON = (json)=>{
 
 const defaultOptions = {
 	credentials: 'include',
-	mode: 'cors',
-	keepalive: true
+	mode: 'cors'
 }
 
 const convertGeneratorToPromise = (gen)=>function(){
