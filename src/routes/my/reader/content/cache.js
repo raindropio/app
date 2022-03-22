@@ -69,7 +69,7 @@ export default function ReaderCache({ item: { cache, _id } }) {
                     <CacheStatus cache={cache} url={url} />
                     <iframe 
                         className={s.frame} 
-                        sandbox='allow-scripts allow-popups'
+                        sandbox={`${process.env.APP_TARGET!='extension'?'allow-scripts':''} allow-popups allow-modals`}
                         plugins='true'
                         src={url} />
                 </div>

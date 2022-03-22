@@ -33,7 +33,7 @@ export default function ReaderHTML({ item: { _id, type, link }, webViewRef }) {
                 className={s.embed}
                 allowFullScreen
                 loading='eager'
-                sandbox='allow-scripts allow-popups allow-modals allow-same-origin'
+                sandbox={`${process.env.APP_TARGET!='extension'?'allow-scripts':''} allow-popups allow-modals`}
                 referrerPolicy='no-referrer'
                 src={src}
                 onLoad={onLoad} />

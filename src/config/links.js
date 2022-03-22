@@ -38,7 +38,7 @@ export default {
         search: 'https://help.raindrop.io/using-search',
         highlights: {
             index: 'https://help.raindrop.io/highlights',
-            addExtension: 'https://help.raindrop.io/highlights'
+            addExtension: 'https://help.raindrop.io/highlights/#add-extension'
         }
     },
 

@@ -23,8 +23,8 @@ export default function ExtensionHighlightsEmpty() {
             <Icon name='highlights' enlarge='2' />
 
             <p>
-                <b>Select text</b> on the web-page
-                {shortcut ? <> and press <b>{shortcut}</b><br/>or </> : <> then </>}
+                <b>Select text</b> on a web-page
+                {shortcut ? <> and press <b>{shortcut}</b><br/>or </> : <> and </>}
                 click <b>Save highlight</b> from context menu
             </p>
 

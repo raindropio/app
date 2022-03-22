@@ -26,7 +26,7 @@ export default ()=>{
 	return (
 		<iframe
 			className={s.free}
-			sandbox='allow-scripts allow-popups'
+			sandbox={`${process.env.APP_TARGET!='extension'?'allow-scripts':''} allow-popups allow-modals`}
 			plugins='true'
 			src={config.links.pro.frame} />
 	)
