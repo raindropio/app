@@ -1,6 +1,6 @@
 import browser from 'webextension-polyfill'
 import { currentTab } from '~target'
-import { reset, reload, apply, add, update, remove, addSelection, enable } from './logic'
+import { reset, reload, add, update, remove, addSelection, enable } from './logic'
 
 //Received messages from page
 async function onMessage({ type, payload }, sender) {
@@ -8,7 +8,6 @@ async function onMessage({ type, payload }, sender) {
 
     switch(type) {
         case 'RDH_READY':
-            await apply(sender.tab)
         break
 
         case 'RDH_ADD':
@@ -38,12 +37,13 @@ async function onMessage({ type, payload }, sender) {
 }
 
 //Reload highlights when tab url change
-async function onTabsUpdated(_, { status }) {
-    if (status == 'complete') {
-        const tab = await currentTab()
-        if (tab) await reload(tab)
-    }
+async function onTabsUpdated(id, { status }) {
+    if (typeof id == 'number' && 
+        status == 'complete')
+        await reload(await browser.tabs.get(id))
 }
+
+//Reload when bookmarks change
 async function linksChanged() {
     return reload(await currentTab())
 }

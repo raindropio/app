@@ -227,7 +227,8 @@ class SubscribeViewController: NSViewController, WKNavigationDelegate {
             
             SwiftyStoreKit.purchaseProduct(id, quantity: 1, atomically: false) { result in
                 switch result {
-                    case .success(let product):
+                    case .success(let product),
+                         .deferred(let product):
                         self.validatePurchase(){(success) -> () in
                             if success {
                                 NSApplication.shared.terminate(self)

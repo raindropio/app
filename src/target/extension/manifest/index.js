@@ -86,7 +86,10 @@ module.exports = ({ vendor, production=false }, l) => {
 
 		optional_permissions: [
 			'tabs',
-			...(vendor=='safari' || vendor=='safari-ios' ? ['<all_urls>'] : []) //tabs permission is not enought for safari, otherwise it will ask all the time a permission for each site
+
+			//required for highlights
+			//safari specific: tabs permission is not enought, otherwise it will ask all the time a permission for each site
+			'<all_urls>'
 		],
 
 		omnibox: {
@@ -146,13 +149,7 @@ module.exports = ({ vendor, production=false }, l) => {
 			content_security_policy: `script-src 'self' ${csp.hosts} ${!production?'\'unsafe-eval\'':''}; object-src 'none';`
 		} : {}),
 
-		content_scripts: [
-			{
-				matches: ['https://*/*'],
-				js: [file(l, '../../../assets/target/extension/highlight.js')],
-				run_at: 'document_start'
-			}
-		],
+		//do not use content_scripts. otherwise browser will ask for <all_urls> permission on install or update time!
 
 		web_accessible_resources: [
 			'index.html',

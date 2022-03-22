@@ -2,29 +2,30 @@ import browser from './browser'
 import { environment } from './environment'
 
 const permissions = {
-    async contains(permission, strict=false) {
+    async contains(permission, strict=true) {
+        //safari always require strict `tabs` permission
+        if (environment.includes('safari'))
+            strict = true
+
         return browser.permissions.contains({
             permissions: [permission],
 
-            //in case of 'tabs' safari needs <all_urls> permission to fully enable it
-            //otherwise permission requests will still be asked
-            //but instead of <all_urls> be sure to check fully qualified url!
-
-            //also be sure that this request return TRUE only if user gives a full access to all websites, and reload the app/background page, etc...
-            ...(strict && permission == 'tabs' && environment.includes('safari') ? {
+            //full access. required for highlights. Safari doesn't work properly without origins
+            ...(permission == 'tabs' && strict ? {
                 origins: ['http://a.com/']
             } : {})
         })
     },
 
     async request(permission) {
-        //in case of 'tabs' safari needs <all_urls> permission to fully enable it
-        //otherwise permission requests will still be asked
-        if (permission == 'tabs' && environment.includes('safari')) {
-            await browser.permissions.request({
+        if (permission == 'tabs') {
+            const result = await browser.permissions.request({
                 permissions: [permission],
                 origins: ['<all_urls>']
             })
+
+            if (!environment.includes('safari'))
+                return result
 
             //force to show permission request dialog in safari
             await browser.tabs.query({currentWindow: true})
@@ -42,8 +43,7 @@ const permissions = {
         return browser.permissions.remove({
             permissions: [permission],
 
-            //in case of 'tabs' safari needs <all_urls> permission to fully enable it
-            //otherwise permission requests will still be asked
+            //remove origins only in safari! in other browser will break api access to raindrop
             ...(permission == 'tabs' && environment.includes('safari') ? {
                 origins: ['<all_urls>']
             } : {})
@@ -54,7 +54,7 @@ const permissions = {
 //clean up if user doesn't give a full access tabs
 //otherwise user will be asked for permission each time he click on browser_action button
 if (environment.includes('safari'))
-    permissions.contains('tabs', true)
+    permissions.contains('tabs')
         .then(have=>{
             if (!have)
                 return permissions.remove('tabs')

@@ -27,9 +27,9 @@ export async function reload(force=false) {
     if (loading && !force)
         return
 
-    //do not load when no 'tabs' permission
+    //do not load when no 'tabs' permission, origins access not required
     try{
-        const havePermission = await permissions.contains('tabs')
+        const havePermission = await permissions.contains('tabs', false)
         if (!havePermission)
             return
     }catch(e){}

@@ -5,7 +5,7 @@ import { permissions } from '~target/extension'
 
 let cache = []
 async function preload() {
-    if (!await permissions.contains('tabs')) return []
+    if (!await permissions.contains('tabs', false)) return []
     const tabs = await browser.tabs.query({ currentWindow: true })
     return cache = tabs.filter(({url})=>/^https?/i.test(url))
 }

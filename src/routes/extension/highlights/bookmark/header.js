@@ -10,7 +10,7 @@ export default function ExtensionHighlightsScreen({ count }) {
     return (
         <Header 
             data-no-shadow
-            data-fancy>
+            data-static>
             <Button
                 as={Link}
                 to='/'

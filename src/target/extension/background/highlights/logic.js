@@ -1,12 +1,20 @@
 import browser from 'webextension-polyfill'
 import { permissions } from '~target'
 import * as links from '../links'
+import inject from './highlight.js?asis'
 import Api from '~data/modules/api'
 
 let state = new Map() //<url:highlights>
 let user = {}
 
 async function send(tab, type, payload) {
+    //inject highlights script
+    const [injected] = await browser.tabs.executeScript(tab.id, { code: 'window.__hi' })
+    if (!injected) {
+        await browser.tabs.executeScript(tab.id, { code: 'window.__hi = true' })
+        await browser.tabs.executeScript(tab.id, { file: inject, runAt: 'document_start' })
+    }
+
     return browser.tabs.sendMessage(tab.id, { type, payload })
 }
 
@@ -23,7 +31,7 @@ export async function available() {
         user = load.user || {}
     }
 
-    return user._id && permissions.contains('tabs', true)
+    return user._id && permissions.contains('tabs')
 }
 
 //Make all required preparations before using
