@@ -14,7 +14,6 @@ export default function WebViewBrowser({ src, forwardedRef, className='', onErro
 
     return (
         <iframe
-            sandbox={`${process.env.APP_TARGET!='extension'?'allow-scripts':''} allow-popups allow-modals`}
             plugins='true'
             allowFullScreen
             loading='eager'

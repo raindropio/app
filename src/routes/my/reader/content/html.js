@@ -33,7 +33,6 @@ export default function ReaderHTML({ item: { _id, type, link }, webViewRef }) {
                 className={s.embed}
                 allowFullScreen
                 loading='eager'
-                sandbox={`${process.env.APP_TARGET!='extension'?'allow-scripts allow-same-origin':''} allow-popups allow-modals`} //youtube doesn't work without `allow-same-origin`
                 referrerPolicy='no-referrer'
                 src={src}
                 onLoad={onLoad} />
