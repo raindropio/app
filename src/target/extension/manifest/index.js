@@ -110,7 +110,7 @@ module.exports = ({ vendor, production=false }, l) => {
 			},
 			save_highlight: {
 				suggested_key: {
-					default: 'Shift+Alt+H'
+					default: 'Alt+Shift+H'
 				},
 				description: '__MSG_saveHighlight__'
 			},
