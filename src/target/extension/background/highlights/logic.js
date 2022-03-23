@@ -23,6 +23,10 @@ export function reset() {
     state.clear()
 }
 
+export function unset(tab) {
+    state.delete(tab.url)
+}
+
 //Is highlights available?
 export async function available() {
     //load user
@@ -56,12 +60,18 @@ export async function apply(tab, highlights=[]) {
     await send(tab, 'RDH_APPLY', highlights)
 }
 
-//Load highlights for current tab
-export async function reload(tab) {
+//Load highlights for tab
+export async function load(tab) {
+    if (!tab) return
     if (!await available()) return
     if (!links.has(tab.url)) return
 
-    const { item={} } = await Api._get(`raindrop/${links.getId(tab.url)}`)
+    let item = state.get(tab.url)
+    if (!item) {
+        const r = await Api._get(`raindrop/${links.getId(tab.url)}`)
+        item = r.item || {}
+    }
+
     await apply(tab, item.highlights)
 }
 

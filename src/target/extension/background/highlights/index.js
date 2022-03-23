@@ -1,6 +1,6 @@
 import browser from 'webextension-polyfill'
 import { currentTab } from '~target'
-import { reset, reload, add, update, remove, addSelection, enable } from './logic'
+import { reset, load, unset, add, update, remove, addSelection, enable } from './logic'
 
 //Received messages from page
 async function onMessage({ type, payload }, sender) {
@@ -37,15 +37,25 @@ async function onMessage({ type, payload }, sender) {
 }
 
 //Reload highlights when tab url change
-async function onTabsUpdated(id, { status }) {
-    if (typeof id == 'number' && 
-        status == 'complete')
-        await reload(await browser.tabs.get(id))
+async function onTabActivated({ tabId }) {
+    const tab = await browser.tabs.get(tabId)
+    if (!tab.url || !tab.active) return
+
+    switch(tab.status) {
+        case 'complete':    await load(tab); break
+        default:            unset(tab); break
+    }
 }
 
-//Reload when bookmarks change
-async function linksChanged() {
-    return reload(await currentTab())
+async function onTabsUpdated(id) {
+    return onTabActivated({ tabId: id })
+}
+
+//Reload when bookmarks or permissions change
+async function reloadAll() {
+    reset()
+    const { id } = await currentTab()
+    return onTabActivated({ tabId: id })
 }
 
 //public methods
@@ -63,13 +73,16 @@ export default function() {
     browser.runtime.onMessage.addListener(onMessage)
 
     //current tab changed
+    browser.tabs.onActivated.removeListener(onTabActivated)
+    browser.tabs.onActivated.addListener(onTabActivated)
     browser.tabs.onUpdated.removeListener(onTabsUpdated)
     browser.tabs.onUpdated.addListener(onTabsUpdated)
 
-    browser.tabs.onActivated.removeListener(reload)
-    browser.tabs.onActivated.addListener(reload)
+    //permissions changed
+    browser.permissions.onAdded.removeListener(reloadAll)
+    browser.permissions.onAdded.addListener(reloadAll)
 
     //links are changed
-    document.removeEventListener('LINKS_CHANGED', linksChanged)
-    document.addEventListener('LINKS_CHANGED', linksChanged)
+    document.removeEventListener('LINKS_CHANGED', reloadAll)
+    document.addEventListener('LINKS_CHANGED', reloadAll)
 }
