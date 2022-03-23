@@ -16,16 +16,14 @@ class BookmarksDropArea extends React.Component {
             const openImport = await Confirm(
                 'Hmmm... wait a minute',
                 {
-                    description: 'Look\'s like you trying to import bookmarks file? Please read a help section to learn more about import',
+                    description: 'Looks like you trying to import bookmarks?',
                     ok: t.s('import')+' '+t.s('bookmarks').toLowerCase()+'…',
-                    cancel: t.s('continue')
                 }
             )
             
-            if (openImport){
-                window.open(links.help.import)
-                return
-            }
+            if (openImport)
+                window.open(links.app.import)
+            return
         }
 
         return new Promise((res, rej)=>{

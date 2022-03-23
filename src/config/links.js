@@ -11,7 +11,8 @@ if (target == 'extension')
 export default {
     app: {
         index: 'https://app.raindrop.io',
-        search: 'https://app.raindrop.io/my/0/'
+        search: 'https://app.raindrop.io/my/0/',
+        import: 'https://app.raindrop.io/settings/import'
     },
     
     download: 'https://raindrop.io/download',
