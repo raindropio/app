@@ -31,7 +31,7 @@ export default function HighlightsItem(props) {
                 })
         else
             dispatch(highlightRemove(bookmarkId, _id))
-    }, [bookmarkId, _id])
+    }, [bookmarkId, _id, note])
 
     return (
         <View

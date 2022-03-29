@@ -15,7 +15,7 @@ export default function HighlightsItems({ _id, webViewRef }) {
     const pro = useSelector(state=>isPro(state))
 
     //load highlights
-    useEffect(()=>dispatch(oneLoad(_id)), [_id])
+    useEffect(()=>{dispatch(oneLoad(_id))}, [_id])
 
     useScrollToNew(containerRef, highlights)
 

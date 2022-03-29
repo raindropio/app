@@ -1,5 +1,5 @@
 import browser from 'webextension-polyfill'
-import { permissions } from '~target'
+import { permissions, getMeta } from '~target'
 import * as links from '../links'
 import inject from './highlight.js?asis'
 import Api from '~data/modules/api'
@@ -40,7 +40,7 @@ export async function available() {
 
 //Make all required preparations before using
 export async function enable() {
-    if (!permissions.request('tabs')) {
+    if (!await permissions.request('tabs')) {
         alert('Permission required!')
         return false
     }
@@ -49,10 +49,11 @@ export async function enable() {
 
 //Apply highlights for current tab
 export async function apply(tab, highlights=[]) {
-    state.set(tab.url, highlights)
+    if (state.has(tab.url) || highlights.length)
+        state.set(tab.url, highlights)
 
     await send(tab, 'RDH_CONFIG', {
-        enabled: highlights.length ? true : false,
+        enabled: true,
         nav: true,
         pro: user.pro
     })
@@ -64,15 +65,17 @@ export async function apply(tab, highlights=[]) {
 export async function load(tab) {
     if (!tab) return
     if (!await available()) return
-    if (!links.has(tab.url)) return
 
-    let item = state.get(tab.url)
-    if (!item) {
-        const r = await Api._get(`raindrop/${links.getId(tab.url)}`)
-        item = r.item || {}
+    if (links.has(tab.url)) {
+        let item = state.get(tab.url)
+        if (!item) {
+            const r = await Api._get(`raindrop/${links.getId(tab.url)}`)
+            item = r.item || {}
+            await apply(tab, item.highlights)
+        }
+    } else {
+        await apply(tab, [])
     }
-
-    await apply(tab, item.highlights)
 }
 
 //Add highlight
@@ -80,32 +83,39 @@ export async function add(tab, newOne) {
     //local update
     await apply(tab, [...(state.get(tab.url)||[]), newOne])
 
-    //server apply
-    const { ids: [id] } = await Api._get(`import/url/exists?url=${encodeURIComponent(tab.url)}`)
+    //reload links if no url in cache, very important
+    if (!links.has(tab.url))
+        await links.reload(true)
 
+    //server apply
     let item = {}
 
     //existing bookmark
-    if (id) {
-        const updated = await Api._put(`raindrop/${id}`, {
+    if (links.has(tab.url)) {
+        const updated = await Api._put(`raindrop/${links.getId(tab.url)}`, {
             highlights: [newOne]
+        }, {
+            keepalive: true
         })
         item = updated.item
     }
     //new bookmark
     else {
-        const parse = await Api._get(`import/url/parse?url=${encodeURIComponent(tab.url)}`)
+        const meta = await getMeta(tab)
         const created = await Api._post('raindrop', {
-            ...(parse.item || {}),
             link: tab.url,
-            highlights: [newOne]
+            title: tab.title,
+            ...meta,
+            highlights: [newOne],
+            pleaseParse: { weight: 1 }
+        }, {
+            keepalive: true
         })
         item = created.item
+
+        //add to links cache
+        links.add(tab.url, item._id)
     }
-    
-    //reload links cache, other update/delete methods rely on it
-    if (!links.has(tab.url))
-        await links.reload(true)
 
     await apply(tab, item.highlights)
 }
@@ -127,6 +137,8 @@ export async function update(tab, highlightId, changed) {
     //server apply
     const { item={} } = await Api._put(`raindrop/${links.getId(tab.url)}`, {
         highlights: [highlights[index]]
+    }, {
+        keepalive: true
     })
     await apply(tab, item.highlights)
 }
@@ -145,6 +157,8 @@ export async function remove(tab, highlightId) {
             _id: highlightId,
             text: ''
         }]
+    }, {
+        keepalive: true
     })
     await apply(tab, item.highlights)
 }

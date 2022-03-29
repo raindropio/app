@@ -17,6 +17,10 @@ export function has(url) {
     return items.has(normalizeURL(url))
 }
 
+export function add(url, id) {
+    items.set(url, id)
+}
+
 //getId
 export function getId(url) {
     return items.get(normalizeURL(url))
@@ -41,6 +45,7 @@ export async function reload(force=false) {
 
     try{
         text = await Api._get('raindrops/links', {
+            cache: force ? 'no-store' : 'default',
             headers: {
                 'Content-Type': 'text/plain'
             },
