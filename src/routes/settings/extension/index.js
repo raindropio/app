@@ -6,7 +6,7 @@ import { Title } from '~co/common/header'
 
 import Add from './add'
 import BrowserExtensionMode from './browser_extension_mode'
-import Features from './features'
+import Permissions from './permissions'
 import Hotkeys from './hotkeys'
 
 export default ({ match })=>{
@@ -23,7 +23,7 @@ export default ({ match })=>{
 
                 <Separator />
 
-                <Features />
+                <Permissions />
 
                 <Separator />
 

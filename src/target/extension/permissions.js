@@ -19,19 +19,22 @@ const permissions = {
 
     async request(permission) {
         if (permission == 'tabs') {
-            const result = await browser.permissions.request({
+            //clean up, safari boolshit
+            if (await permissions.contains(permission))
+                await permissions.remove(permission)
+
+            await browser.permissions.request({
                 permissions: [permission],
                 origins: ['<all_urls>']
             })
 
-            if (!environment.includes('safari'))
-                return result
-
             //force to show permission request dialog in safari
-            await browser.tabs.query({currentWindow: true})
+            if (environment.includes('safari')) {
+                alert('Make sure ALL WEBSITES access is enabled!')
+                await browser.tabs.query({currentWindow: true})
+            }
 
-            //at this point we can't say exactly gived a user an <all_urls> access :(
-            return true
+            return permissions.contains(permission)
         }
 
         return browser.permissions.request({

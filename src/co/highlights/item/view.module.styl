@@ -13,20 +13,6 @@
             color: var(--secondary-text-color)
         }
     }
-
-    &:hover, &:focus-within {
-        .buttons > * {
-            opacity: 1
-        }
-
-        .buttons .created {
-            opacity: 0
-        }
-
-        .note ::placeholder {
-            color: var(--disable-text-color)
-        }
-    }
 }
 
 .text {
@@ -42,11 +28,6 @@
     
     .note {
         min-height: auto
-
-        ::placeholder {
-            transition: .1s ease-in-out color
-            color: transparent
-        }
     }
 }
 
@@ -69,14 +50,44 @@
     position: relative
     margin: calc(var(--padding-mini) * -1) 0
 
-    & > * {
+    .created {
+        opacity: 0
+        position: absolute
+        right: 0
+    }
+}
+
+/* Desktop specific behaviour */
+@media (pointer: fine) {
+    .item {
+        .note {
+            ::placeholder {
+                transition: .1s ease-in-out color
+                color: transparent
+            }
+        }
+
+        &:hover, &:focus-within {
+            .buttons > * {
+                opacity: 1
+            }
+
+            .buttons .created {
+                opacity: 0
+            }
+
+            .note ::placeholder {
+                color: var(--disable-text-color)
+            }
+        }
+    }
+
+    .buttons > * {
         opacity: 0
         transition: .1s ease-in-out opacity
     }
 
-    .created {
+    .buttons .created {
         opacity: 1
-        position: absolute
-        right: 0
     }
 }
