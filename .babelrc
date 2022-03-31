@@ -28,6 +28,7 @@
 		"production": {
 			"plugins": [
                 "lodash",
+                "transform-remove-console",
                 "@babel/transform-react-constant-elements"
 			]
 		}

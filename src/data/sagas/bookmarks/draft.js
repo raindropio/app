@@ -150,7 +150,6 @@ function* enrichCreated({ draft, item, overrideEmpty }) {
 		const parse = yield call(Api.get, 'import/url/parse?url='+encodeURIComponent(draft))
 		if (parse.error) return
 
-
 		let changed = {}
 
 		//set title
@@ -169,6 +168,9 @@ function* enrichCreated({ draft, item, overrideEmpty }) {
 			if (!item.cover)
 				changed.cover = parse.item.media[0].link
 		}
+
+		//set type
+		changed.type = parse.item.type
 
 		if (!Object.keys(changed))
 			return

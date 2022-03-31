@@ -26,7 +26,7 @@ export default function useWithWebView(ref, _id) {
     }, [_id, send])
 
     //effects
-    useEffect(()=>dispatch(oneLoad(_id)), [_id])
+    useEffect(()=>{dispatch(oneLoad(_id))}, [_id])
     useEffect(()=>{
         if (!ready) return
         send('RDH_CONFIG', { enabled: true, pro, nav: true })
