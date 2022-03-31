@@ -53,7 +53,7 @@ export async function apply(tab, highlights=[]) {
         state.set(tab.url, highlights)
 
     await send(tab, 'RDH_CONFIG', {
-        enabled: true,
+        enabled: !browser.contextMenus || highlights.length,
         nav: true,
         pro: user.pro
     })

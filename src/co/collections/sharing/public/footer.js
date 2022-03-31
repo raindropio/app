@@ -11,6 +11,7 @@ import Icon from '~co/common/icon'
 export default function SharingFooter({ collection: { public: pub, _id, slug } }) {
     const user = useSelector(state=>getUser(state))
     const link = `https://raindrop.io/${user.name}/${slug||''}-${_id}/share`
+    const rss = `https://raindrop.io/collection/${_id}/feed`
 
     return (
         <Layout>
@@ -24,6 +25,17 @@ export default function SharingFooter({ collection: { public: pub, _id, slug } }
                     <Icon name='dev' />
                     Embed
                 </Button>
+
+                <Button
+                    variant='outline' 
+                    disabled={!pub}
+                    href={rss}
+                    target='_blank'>
+                    <Icon name='rss' />
+                    RSS
+                </Button>
+
+                <div style={{flex:1}} />
 
                 <Button
                     href={links.help.publicPage}
