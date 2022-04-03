@@ -19,10 +19,6 @@ const permissions = {
 
     async request(permission) {
         if (permission == 'tabs') {
-            //clean up, safari boolshit
-            if (await permissions.contains(permission))
-                await permissions.remove(permission)
-
             await browser.permissions.request({
                 permissions: [permission],
                 origins: ['<all_urls>']
