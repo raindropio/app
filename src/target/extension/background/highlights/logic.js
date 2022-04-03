@@ -20,6 +20,7 @@ async function send(tab, type, payload) {
 
 //Reset state
 export function reset() {
+    user = {}
     state.clear()
 }
 
@@ -29,13 +30,7 @@ export function unset(tab) {
 
 //Is highlights available?
 export async function available() {
-    //load user
-    if (!user._id) {
-        const load = await Api._get('user')
-        user = load.user || {}
-    }
-
-    return user._id && permissions.contains('tabs')
+    return permissions.contains('tabs')
 }
 
 //Make all required preparations before using
@@ -52,8 +47,14 @@ export async function apply(tab, highlights=[]) {
     if (state.has(tab.url) || highlights.length)
         state.set(tab.url, highlights)
 
+    //load user
+    if (!user._id) {
+        const load = await Api._get('user')
+        user = load.user || {}
+    }
+
     await send(tab, 'RDH_CONFIG', {
-        enabled: browser.contextMenus ? (highlights.length?true:false) : true,
+        enabled: true,
         nav: true,
         pro: user.pro
     })
@@ -71,11 +72,15 @@ export async function load(tab) {
         if (!item) {
             const r = await Api._get(`raindrop/${links.getId(tab.url)}`)
             item = r.item || {}
+            //bookmark exists, activate highlights
             await apply(tab, item.highlights)
+            return
         }
-    } else {
-        await apply(tab, [])
     }
+
+    //activate highlights menu on a page if no context menu support (mobile)
+    if (!browser.contextMenus)
+        await apply(tab, [])
 }
 
 //Add highlight
