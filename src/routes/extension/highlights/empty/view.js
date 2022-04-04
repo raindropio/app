@@ -28,6 +28,13 @@ export default function ExtensionHighlightsEmpty() {
             variant='primary'>
             {t.s('continue')}
         </Button>
+
+        <Button
+            href={links.help.highlights.addExtension}
+            target='_blank'
+            variant='link'>
+            {t.s('help')}
+        </Button>
     </>)
 
     //howto
