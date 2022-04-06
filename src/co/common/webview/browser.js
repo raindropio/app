@@ -15,7 +15,7 @@ export default function WebViewBrowser({ src, forwardedRef, className='', onErro
     return (
         <iframe
             plugins='true'
-            allowFullScreen
+            allow='fullscreen; clipboard-write'
             loading='eager'
             {...etc}
             ref={forwardedRef}

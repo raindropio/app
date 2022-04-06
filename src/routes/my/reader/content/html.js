@@ -31,7 +31,7 @@ export default function ReaderHTML({ item: { _id, type, link }, webViewRef }) {
                 ref={webViewRef}
                 role='article'
                 className={s.embed}
-                allowFullScreen
+                allow='fullscreen; clipboard-write'
                 loading='eager'
                 referrerPolicy='no-referrer'
                 src={src}

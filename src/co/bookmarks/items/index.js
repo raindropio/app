@@ -41,6 +41,7 @@ export default function BookmarksItems(props) {
                     data={items}
                     keyExtractor={keyExtractor}
                     initialNumToRender={initialNumToRender}
+                    activateAfter={300}
 
                     scrollToItem={activeId}
 
