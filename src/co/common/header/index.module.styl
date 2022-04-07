@@ -1,10 +1,11 @@
 .header {
+    app-region: drag
     -webkit-app-region: drag
     display: flex
     flex-direction: row
     align-items: center
     min-height: var(--header-height)
-    padding: 0 var(--padding-medium)
+    padding: var(--padding-small) var(--padding-medium)
     box-shadow: 0 var(--shadow-height) 0 var(--shadow-color)
     z-index: 10
     flex-shrink: 0
@@ -14,7 +15,8 @@
     top: 0
 
     > * {
-        -webkit-app-region: no-drag;
+        app-region: no-drag
+        -webkit-app-region: no-drag
     }
 
     > *:not(:last-child):not(.space) {
@@ -34,11 +36,8 @@
     }
 }
 
-html:global(.electron.mac), html:global(.electron.win) {
-    .header[data-window-inset='true'] {
-        padding-top: calc(env(titlebar-area-height) + 4px)
-        padding-bottom: var(--padding-small)
-    }
+.header[data-window-inset='true'] {
+    padding-top: env(titlebar-area-height, var(--padding-small))
 }
 
 //fix for firefox popover

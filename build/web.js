@@ -61,7 +61,8 @@ module.exports = (env={}, args={}) =>
                     short_name: 'Raindrop',
                     description: 'All in One Bookmark Manager',
                     start_url: '/',
-                    display: 'minimal-ui',
+                    display: 'standalone',
+                    display_override: ['window-controls-overlay', 'minimal-ui'],
                     background_color: '#0F0F47',
                     orientation: 'any',
                     icons: [
@@ -77,7 +78,15 @@ module.exports = (env={}, args={}) =>
                             size: '512x512',
                             purpose: 'maskable'
                         }
-                    ]
+                    ],
+                    share_target: {
+                        action: '/add',
+                        method: 'GET',
+                        params: {
+                            title: 'title',
+                            url: 'link'
+                        }
+                    }
                 })
             ]
         }
