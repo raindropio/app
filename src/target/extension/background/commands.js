@@ -1,7 +1,7 @@
 import browser from 'webextension-polyfill'
 import config from '~config'
 import { currentTab } from '~target'
-import { open } from './portal'
+import { open } from './popup'
 import { addCurrentTabSelection } from './highlights'
 
 async function onCommand(command) {

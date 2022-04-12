@@ -5,8 +5,8 @@ import links from './links'
 import omnibox from './omnibox'
 import runtime from './runtime'
 import storage from './storage'
-import portal from './portal'
 import highlights from './highlights'
+import popup from './popup'
 
 action()
 commands()
@@ -15,5 +15,5 @@ omnibox()
 links()
 runtime()
 storage()
-portal()
 highlights()
+popup()

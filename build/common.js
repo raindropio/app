@@ -107,7 +107,7 @@ module.exports = ({ production, filename='[name].[contenthash]', sentry={} }, { 
 			hash: true,
 			scriptLoading: 'blocking',
 			inject: 'body',
-			excludeChunks: ['manifest', 'background', 'portal']
+			excludeChunks: ['manifest', 'background']
 		}),
 
 		//CSS

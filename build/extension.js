@@ -25,8 +25,7 @@ module.exports = (env={}, args={}) => {
 
             entry: {
                 manifest: './target/extension/manifest/index.js',
-                background: './target/extension/background/index.js',
-                portal: './target/extension/portal/index.js'
+                background: './target/extension/background/index.js'
             },
 
             output: {
@@ -63,14 +62,6 @@ module.exports = (env={}, args={}) => {
                         exclude: []
                     })
                 ] : []),
-
-                new HtmlWebpackPlugin({
-                    filename: 'portal.html',
-                    template: './target/extension/portal/index.ejs',
-                    scriptLoading: 'defer',
-                    inject: 'head',
-                    chunks: ['portal']
-                }),
 
                 new HTMLInlineCSSWebpackPlugin()
             ],

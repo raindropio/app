@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		764CF18727EA1975007CCD0A /* Just in Frameworks */ = {isa = PBXBuildFile; productRef = 764CF18627EA1975007CCD0A /* Just */; };
 		764D2CC027A02DE000BDCE3C /* background.js in Resources */ = {isa = PBXBuildFile; fileRef = 764D2CBF27A02DE000BDCE3C /* background.js */; };
-		7664684C26BA7B5200F20BA3 /* portal.html in Resources */ = {isa = PBXBuildFile; fileRef = 7664684B26BA7B5200F20BA3 /* portal.html */; };
 		76D94F2A2602348E003A3801 /* SubscribeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76D94F292602348E003A3801 /* SubscribeViewController.swift */; };
 		76D94F2F260234D4003A3801 /* SwiftyStoreKit in Frameworks */ = {isa = PBXBuildFile; productRef = 76D94F2E260234D4003A3801 /* SwiftyStoreKit */; };
 		76D94F382602354B003A3801 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76D94F372602354B003A3801 /* StoreKit.framework */; };
@@ -54,7 +53,6 @@
 
 /* Begin PBXFileReference section */
 		764D2CBF27A02DE000BDCE3C /* background.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = background.js; path = ../../../../dist/safari/prod/background.js; sourceTree = "<group>"; };
-		7664684B26BA7B5200F20BA3 /* portal.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = portal.html; path = ../../../../dist/safari/prod/portal.html; sourceTree = "<group>"; };
 		76D94F292602348E003A3801 /* SubscribeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubscribeViewController.swift; sourceTree = "<group>"; };
 		76D94F372602354B003A3801 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		76D94F39260235C8003A3801 /* WindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WindowController.swift; sourceTree = "<group>"; };
@@ -159,7 +157,6 @@
 			children = (
 				764D2CBF27A02DE000BDCE3C /* background.js */,
 				76E78B612514A30300D331A8 /* index.html */,
-				7664684B26BA7B5200F20BA3 /* portal.html */,
 				76E78B632514A30300D331A8 /* manifest.json */,
 				76E78B642514A30300D331A8 /* _locales */,
 				76E78B652514A30300D331A8 /* assets */,
@@ -268,7 +265,6 @@
 			files = (
 				76E78B692514A30300D331A8 /* manifest.json in Resources */,
 				76E78B6B2514A30300D331A8 /* assets in Resources */,
-				7664684C26BA7B5200F20BA3 /* portal.html in Resources */,
 				76E78B6A2514A30300D331A8 /* _locales in Resources */,
 				764D2CC027A02DE000BDCE3C /* background.js in Resources */,
 				76E78B672514A30300D331A8 /* index.html in Resources */,
@@ -440,7 +436,7 @@
 				CODE_SIGN_ENTITLEMENTS = Extension/Extension.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 213;
+				CURRENT_PROJECT_VERSION = 215;
 				DEVELOPMENT_TEAM = 7459JWM5TY;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = Extension/Info.plist;
@@ -465,7 +461,7 @@
 				CODE_SIGN_ENTITLEMENTS = Extension/Extension.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 213;
+				CURRENT_PROJECT_VERSION = 215;
 				DEVELOPMENT_TEAM = 7459JWM5TY;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = Extension/Info.plist;
@@ -494,7 +490,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 213;
+				CURRENT_PROJECT_VERSION = 215;
 				DEVELOPMENT_TEAM = 7459JWM5TY;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = App/Info.plist;
@@ -520,7 +516,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 213;
+				CURRENT_PROJECT_VERSION = 215;
 				DEVELOPMENT_TEAM = 7459JWM5TY;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = App/Info.plist;

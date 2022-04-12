@@ -1,5 +1,5 @@
 import browser from 'webextension-polyfill'
-import { open } from './portal'
+import { open } from './popup'
 import { addCurrentTabSelection } from './highlights'
 import { environment } from '../environment'
 
