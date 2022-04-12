@@ -15,9 +15,6 @@ let storage
 //browser env
 if (RAINDROP_ENVIRONMENT == 'browser')
 	storage = require('localforage')
-//browser extension
-else if (RAINDROP_ENVIRONMENT == 'browser-extension')
-	storage = require('redux-persist-webextension-storage').localStorage
 //react native
 else
 	storage = require('react-native').Platform.select({

@@ -10,7 +10,7 @@ const SentryCliPlugin = require('@sentry/webpack-plugin')
 //defaults
 process.env.SENTRY_RELEASE = String(new Date().getTime())
 
-module.exports = ({ production, filename='[name].[contenthash]', sentry={}, RAINDROP_ENVIRONMENT='browser' }, { profile }) => ({
+module.exports = ({ production, filename='[name].[contenthash]', sentry={} }, { profile }) => ({
 	mode:		production ? 'production' : 'development',
 	context:	path.resolve(__dirname, '../src'),
 	devtool:	production ? 'source-map' : 'eval-cheap-module-source-map',
@@ -97,7 +97,7 @@ module.exports = ({ production, filename='[name].[contenthash]', sentry={}, RAIN
 		new webpack.DefinePlugin({
 			'process.env.NODE_ENV': JSON.stringify(production?'production':'development'),
 			'process.env.SENTRY_RELEASE': JSON.stringify(process.env.SENTRY_RELEASE),
-			RAINDROP_ENVIRONMENT: JSON.stringify(RAINDROP_ENVIRONMENT)
+			RAINDROP_ENVIRONMENT: JSON.stringify('browser')
 		}),
 
 		//HTML

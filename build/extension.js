@@ -19,7 +19,7 @@ module.exports = (env={}, args={}) => {
     }
 
     return merge(
-        common({...env, RAINDROP_ENVIRONMENT: 'browser-extension'}, args),
+        common(env, args),
         {
             devtool: false, //extensions just ignore .map files
 
