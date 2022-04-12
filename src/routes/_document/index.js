@@ -13,7 +13,7 @@ export default class Document extends React.Component {
             <>
                 <Helmet 
                     defer={false}
-                    titleTemplate='%s ― Raindrop.io'
+                    titleTemplate='%s'
                     defaultTitle='Raindrop.io'>
                 </Helmet>
 

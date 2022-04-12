@@ -57,14 +57,19 @@ module.exports = (env={}, args={}) =>
                 //PWA manifest
                 new WebpackPwaManifest({
                     filename: 'manifest.webmanifest',
+
                     name: 'Raindrop.io',
                     short_name: 'Raindrop',
                     description: 'All in One Bookmark Manager',
+                    categories: ['productivity', 'news'],
+
                     start_url: '/',
+
                     display: 'standalone',
                     display_override: ['window-controls-overlay', 'minimal-ui'],
                     background_color: '#0F0F47',
                     orientation: 'any',
+
                     icons: [
                         {
                             src: path.resolve('src/assets/brand/macos_512.png'),
@@ -79,6 +84,7 @@ module.exports = (env={}, args={}) =>
                             purpose: 'maskable'
                         }
                     ],
+
                     share_target: {
                         action: '/add',
                         method: 'GET',
@@ -86,7 +92,24 @@ module.exports = (env={}, args={}) =>
                             title: 'title',
                             url: 'link'
                         }
-                    }
+                    },
+
+                    related_applications: [
+                        {
+                            platform: 'play',
+                            url: 'https://play.google.com/store/apps/details?id=io.raindrop.raindropio',
+                            id: 'io.raindrop.raindropio'
+                        },
+                        {
+                            platform: 'itunes',
+                            url: 'https://apps.apple.com/app/id1021913807'
+                        },
+                        {
+                            platform: 'chrome_web_store',
+                            url: 'https://chrome.google.com/webstore/detail/ldgfbffkinooeloadekpmfoklnobpien',
+                            id: 'ldgfbffkinooeloadekpmfoklnobpien'
+                        }
+                    ]
                 })
             ]
         }
