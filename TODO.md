@@ -1,3 +1,8 @@
+# Refactor 13 apr 2022
+- co/bookmarks/edit/index.js save on route change (only unsaved && status != 'new')
+- co/bookmarks/item(s) remove `events`, refactor item full
+- co/bookmarks remove /full part
+
 # Extension manifest v3 refactor
 - browser.browserAction -> browser.action || browser.browserAction
 - browser.tabs.executeScript({code: ''}) -> browser.scripting.executeScript({func: func})

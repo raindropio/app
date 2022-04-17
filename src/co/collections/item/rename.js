@@ -1,7 +1,6 @@
 import s from './view.module.styl'
 import React from 'react'
 import t from '~t'
-import { withRouter } from 'react-router-dom'
 
 import { Error } from '~co/overlay/dialog'
 import { Item, ItemTitle } from '~co/common/list'
@@ -84,4 +83,4 @@ class CollectionsItemRename extends React.PureComponent {
     }
 }
 
-export default withRouter(CollectionsItemRename)
+export default CollectionsItemRename

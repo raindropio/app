@@ -9,7 +9,6 @@ class BookmarksHeaderTitle extends React.Component {
     static defaultProps = {
         spaceId: 0,
         compact: false,
-        getLink: undefined
     }
 
     renderSearchStatus = ()=>{
@@ -38,7 +37,7 @@ class BookmarksHeaderTitle extends React.Component {
     }
 
     render() {
-        const { isSearching, compact, status, collection: { _id }, getLink } = this.props
+        const { isSearching, compact, status, collection: { _id } } = this.props
 
         return (
             <>
@@ -50,7 +49,7 @@ class BookmarksHeaderTitle extends React.Component {
                 )}
 
                 {compact && status.main=='loaded' ? (
-                    <Link to={getLink({ _id, full:true, refine: '' })}>
+                    <Link to={`../../${_id}/full`}>
                         {this.renderTitle()}
                     </Link>
                 ) : this.renderTitle()}

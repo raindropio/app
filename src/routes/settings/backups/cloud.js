@@ -1,6 +1,6 @@
 import s from './cloud.module.styl'
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import t from '~t'
 import _ from 'lodash'
 import { target } from '~target'
@@ -13,7 +13,8 @@ import { Label, Checkbox } from '~co/common/form'
 import Alert from '~co/common/alert'
 import Icon from '~co/common/icon'
 
-function SettingsBackupsCloud({ user, pro, location: { pathname } }) {
+function SettingsBackupsCloud({ user, pro }) {
+    const { pathname } = useLocation()
     const webApp = target == 'web'
 
     return (

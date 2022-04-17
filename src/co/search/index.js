@@ -10,7 +10,7 @@ import Form from './form'
 import Field from './field'
 import Menu from './menu'
 
-function Search({ autoFocus, spaceId: originalSpaceId, value: originalValue, events: { onSubmit } }) {
+function Search({ autoFocus, spaceId: originalSpaceId, value: originalValue='', events: { onSubmit } }) {
     const fieldRef = useRef(null)
 
     //space id

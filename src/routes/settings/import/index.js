@@ -3,6 +3,7 @@ import t from '~t'
 import { Helmet } from 'react-helmet'
 import { target } from '~target'
 import config from '~config'
+import { useLocation } from 'react-router-dom'
 import { Layout } from '~co/common/form'
 import Alert from '~co/common/alert'
 import { Header } from '~co/screen/splitview/main'
@@ -13,7 +14,9 @@ import Mode from './mode'
 import Parcel from './parcel'
 import Help from './help'
 
-export default function Import({ location: { pathname } }) {
+export default function Import() {
+	const { pathname } = useLocation()
+
 	if (target == 'extension')
 		return (
 			<>

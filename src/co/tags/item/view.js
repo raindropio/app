@@ -14,7 +14,7 @@ export default class TagsItemView extends React.Component {
         const {
             active,
             item: { _id, count, isNew, query },
-            getLink, showIcon=true, focusable,
+            showIcon=true, focusable,
             onRenameClick,
             oneRename, onRenameCancel, onContextMenuClose, onRemoveClick, onRename, oneRemove, //to ignore
             ...etc
@@ -44,7 +44,7 @@ export default class TagsItemView extends React.Component {
 
                 {focusable && (
                     <SuperLink 
-                        to={getLink({ _id: 0, search: query+' ' })}
+                        to={`../0/${encodeURIComponent(query.trim())}`}
                         tabIndex='0'/>
                 )}
             </Item>

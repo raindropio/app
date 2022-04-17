@@ -151,13 +151,13 @@ export default class CollectionsItem extends React.PureComponent {
     }
 
     render() {
-        const { item, getLink, ...props } = this.props
+        const { item, ...props } = this.props
 
         const Component = item._id == -101 ?
             Blank :
             (this.state.rename ? Rename : View)
 
-        const to = getLink ? getLink({ _id: item._id }) : ''
+        const to = `../${item._id}`
 
         return (
             <>

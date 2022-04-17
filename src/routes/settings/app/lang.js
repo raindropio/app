@@ -46,7 +46,7 @@ class SettingsAppLang extends React.Component {
                             target='_blank'
                             variant='flat'>
                             <Icon name='open' size='micro' />
-                            Help in translation
+                            Help us
                         </Button>
                     )}
                 </div>

@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import t from '~t'
+import { useParams } from 'react-router-dom'
 
 import Button from '~co/common/button'
 import Icon from '~co/common/icon'
@@ -9,51 +10,40 @@ import FiltersTags from './filters_tags'
 import Profile from './profile'
 import Upgrade from './upgrade'
 
-export default class MySidebar extends React.Component {
-    //collections
-    collections = React.createRef()
+export default function PageMySidebar() {
+    const { cId, search } = useParams()
+    const collections = useRef(null)
 
-    onCreateCollectionClick = (e)=>{
-        return this.collections.current.createNewCollection(e)
-    }
+    let activeId = parseInt(cId)
+    if (activeId=='0' && search)
+        activeId = search
 
-    render() {
-        const { _id, search, getLink } = this.props
+    return (
+        <Sidebar>
+            <Header>
+                <Profile />
+                
+                <Button 
+                    title={`${t.s('createNewCollection')}\nShift+click: ${t.s('createSubFolder').toLowerCase()}`}
+                    onClick={collections.current?.createNewCollection}>
+                    <Icon name='add' />
+                </Button>
+            </Header>
 
-        let activeId = parseInt(_id)
-        if (activeId=='0' && search)
-            activeId = search
+            <Content>
+                <FiltersTags activeId={activeId}>
+                    {(customRows, customRowRenderer)=>
+                        <Collections 
+                            ref={collections}
+                            activeId={activeId}
 
-        return (
-            <Sidebar>
-                <Header>
-                    <Profile />
-                    
-                    <Button 
-                        title={`${t.s('createNewCollection')}\nShift+click: ${t.s('createSubFolder').toLowerCase()}`}
-                        onClick={this.onCreateCollectionClick}>
-                        <Icon name='add' />
-                    </Button>
-                </Header>
+                            customRows={customRows}
+                            customRowRenderer={customRowRenderer} />
+                    }
+                </FiltersTags>
+            </Content>
 
-                <Content>
-                    <FiltersTags
-                        activeId={search}
-                        getLink={getLink}>
-                        {(customRows, customRowRenderer)=>
-                            <Collections 
-                                ref={this.collections}
-                                getLink={getLink}
-                                activeId={activeId}
-
-                                customRows={customRows}
-                                customRowRenderer={customRowRenderer} />
-                        }
-                    </FiltersTags>
-                </Content>
-
-                <Upgrade />
-            </Sidebar>
-        )
-    }
+            <Upgrade />
+        </Sidebar>
+    )
 }

@@ -1,50 +1,41 @@
-import s from './index.module.styl'
 import React from 'react'
-import t from '~t'
-import { Route, Switch, Redirect } from 'react-router-dom'
-import Screen from '~co/screen/basic'
+import { Routes, Route, Navigate } from 'react-router-dom'
 import { target } from '~target'
-import config from '~config'
-import Logo from '~assets/brand/icon_raw.svg?component'
 
-import Auth from './auth'
+import Layout from './layout'
+import Redirect from './redirect'
+import Electron from './electron'
+import Extension from './extension'
 import JWT from './jwt'
 import Login from './login'
-import Signup from './signup'
 import Lost from './lost'
 import Recover from './recover'
+import Signup from './signup'
 
-export default ({ match })=>(
-	<Screen className={s.page} appSize='large'>
-		<div className={s.content}>
-			<a href='https://raindrop.io' target='_blank' tabIndex='-1'>
-				<Logo className={s.logo} />
-			</a>
+export default function PageAccount() {
+    let index
+    switch(target) {
+        case 'extension':   index = 'extension'; break
+        case 'electron':    index = 'electron'; break
+        default:            index = 'login'; break
+    }
+    
+    return (
+        <Routes>
+            <Route element={<Layout />}>
+                <Route element={<Redirect />}>
+                    <Route index element={<Navigate replace to={index} />} />
 
-			{/* Check auth status and make redirects */}
-			<Auth />
+                    <Route path='electron' element={<Electron />} />
+                    <Route path='extension' element={<Extension />} />
+                    <Route path='jwt' element={<JWT />} />
+                    <Route path='login' element={<Login />} />
+                    <Route path='signup' element={<Signup />} />
+                </Route>
 
-			<Switch>
-				<Route path={`${match.path}/jwt`} component={JWT} />
-
-				{/* Override all routes for specific targets */}
-				{target == 'electron' && <Route component={require('./electron').default} />}
-				{target == 'extension' && <Route component={require('./extension').default} />}
-				{/* ------ */}
-
-				<Route path={`${match.path}/login`} component={Login} />
-				<Route path={`${match.path}/signup`} component={Signup} />
-				<Route path={`${match.path}/lost`} component={Lost} />
-				<Route path={`${match.path}/recover/:token`} component={Recover} />
-				
-				{/* Default route */}
-				<Route><Redirect to={`${match.path}/login`} /></Route>
-			</Switch>
-		</div>
-
-		<footer className={s.footer}>
-			&copy; 2013-{new Date().getFullYear()} Raindrop.io
-			<a href={config.links.help.index} target='_blank'>{t.s('support')}</a>
-		</footer>
-	</Screen>
-)
+                <Route path='lost' element={<Lost />} />
+                <Route path='recover/:token' element={<Recover />} />
+            </Route>
+        </Routes>
+    )
+}

@@ -8,7 +8,7 @@ import Icon, { Avatar } from '~co/common/icon'
 import Path from './path'
 
 export default function BookmarkItemInfo(props) {
-    const { className='', creatorRef, domain, type, link, created, reparse, collectionId, spaceId, important, broken, duplicate, cache, getLink } = props
+    const { className='', creatorRef, domain, type, link, created, reparse, collectionId, spaceId, important, broken, duplicate, cache } = props
 
     return (
         <div className={s.info+' '+className}>
@@ -38,7 +38,7 @@ export default function BookmarkItemInfo(props) {
                     <section data-inline className={s.duplicateLabel}><Icon name='duplicate' size='micro' /></section>
                     <section className={s.duplicateLabel}>
                         <Link 
-                            to={getLink({ search: `_id:${duplicate} duplicate:${duplicate} match:OR` })}
+                            to={'../../0/'+encodeURIComponent(`_id:${duplicate} duplicate:${duplicate} match:OR`)}
                             title={t.s('defaultCollection-0')+' '+t.s('original').toLowerCase()}>
                             {t.s('duplicates')}
                         </Link>

@@ -11,8 +11,7 @@ import Contextmenu from './contextmenu'
 class TagsItem extends React.PureComponent {
     static defaultProps = {
         //item,
-        active:     false,
-        getLink:    undefined
+        active:     false
     }
 
     state = {

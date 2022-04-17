@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import Protected from '~co/screen/protected'
+import { useParams } from 'react-router-dom'
 import Screen from '~co/screen/basic'
 import { Layout, Separator } from '~co/common/form'
 import { longDate } from '~modules/format/date'
@@ -15,7 +15,8 @@ import Action from './action'
 
 export { preload }
 
-export default function ExtensionTabsScreen({ match: { params } }) {
+export default function ExtensionTabsScreen() {
+    const params = useParams()
     const [tabs, setTabs] = useTabs()
     const [collectionId, setCollectionId] = useState(params.collectionId)
     const [tags, setTags] = useState(()=>[longDate(new Date()).replace(/,/g, ' ')])
@@ -23,41 +24,39 @@ export default function ExtensionTabsScreen({ match: { params } }) {
     const {onSubmit, loading} = useSubmit({ tabs, collectionId, tags, close })
 
     return (
-        <Protected redirect>
-            <Screen>
-                <Header />
-                
-                <form onSubmit={onSubmit}>
-                    <Layout type='grid'>
-                        <List 
+        <Screen>
+            <Header />
+            
+            <form onSubmit={onSubmit}>
+                <Layout type='grid'>
+                    <List 
+                        tabs={tabs}
+                        setTabs={setTabs} />
+
+                    {tabs.length>0 && (<>
+                        <Collection
+                            loading={loading}
+                            collectionId={collectionId}
+                            setCollectionId={setCollectionId} />
+
+                        <Tags
+                            loading={loading}
+                            collectionId={collectionId}
+                            tags={tags}
+                            setTags={setTags} />
+
+                        <Close 
+                            close={close}
+                            setClose={setClose} />
+
+                        <Separator variant='transparent' />
+
+                        <Action 
                             tabs={tabs}
-                            setTabs={setTabs} />
-
-                        {tabs.length>0 && (<>
-                            <Collection
-                                loading={loading}
-                                collectionId={collectionId}
-                                setCollectionId={setCollectionId} />
-
-                            <Tags
-                                loading={loading}
-                                collectionId={collectionId}
-                                tags={tags}
-                                setTags={setTags} />
-
-                            <Close 
-                                close={close}
-                                setClose={setClose} />
-
-                            <Separator variant='transparent' />
-
-                            <Action 
-                                tabs={tabs}
-                                loading={loading} />
-                        </>)}
-                    </Layout>
-                </form>
-            </Screen>
-        </Protected>
+                            loading={loading} />
+                    </>)}
+                </Layout>
+            </form>
+        </Screen>
     )
 }

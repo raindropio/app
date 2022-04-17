@@ -8,11 +8,11 @@ import CollectionIcon from '~co/collections/item/icon'
 
 const preventDefault = (e)=>{e.preventDefault()}
 
-function BookmarksItemPath({ collection, getLink }) {
+function BookmarksItemPath({ collection }) {
     return (
         <Link 
             tabIndex='-1'
-            to={getLink({ _id: collection._id, full: true })}
+            to={`../../${collection._id}/full`}
             className={s.path}
             onContextMenu={preventDefault}>
             <CollectionIcon 

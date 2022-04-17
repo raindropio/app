@@ -39,7 +39,6 @@ BookmarksContainer.defaultProps = {
     index:          0,
     compact:        false,
     compactLimit:   7,
-    getLink:        undefined,
     events:         {}  //onBookmarkClick
 }
 

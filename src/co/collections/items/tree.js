@@ -86,7 +86,6 @@ export default class CollectionsTree extends React.Component {
                 //tree specififc
                 active={active}
                 multiselect={multiselect}
-                getLink={this.props.getLink}
                 events={this.props.events}
                 actions={this.props.actions}
                 //drag/drop specific

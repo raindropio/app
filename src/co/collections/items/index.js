@@ -15,7 +15,6 @@ class CollectionsItems extends React.Component {
     static defaultProps = {
         activeId:           undefined, //string||number||array
         options:            {}, //hideIds[], showGroups:true, search:''
-        getLink:            undefined,
         events:             {}, //onItemClick, onGroupClick
         
         customRows:         undefined, //[] additional items in tree

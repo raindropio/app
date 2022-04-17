@@ -1,0 +1,10 @@
+{
+    "compilerOptions": {
+        "baseUrl": ".",
+        "paths": {
+            "~t": ["src/modules/translate"],
+            "~*": ["src/*"]
+        }
+    },
+    "include": ["src/**/*"]
+}

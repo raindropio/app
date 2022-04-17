@@ -1,93 +1,85 @@
 import s from './view.module.styl'
-import React from 'react'
+import React, { useState, useCallback } from 'react'
 import t from '~t'
-import { withRouter } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
+import { removeBlank, createFromBlank } from '~data/actions/collections'
 
 import { Error } from '~co/overlay/dialog'
 import { Item, ItemTitle } from '~co/common/list'
 import CollectionIcon from './icon'
 import { Text } from '~co/common/form'
 
-class CollectionsItemBlank extends React.PureComponent {
-    state = {
-        title: '',
-        loading: false
-    }
+export default function CollectionsItemBlank({ _id, level, to, events: { onItemClick } }) {
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
 
-    onKeyUp = (e)=>{
-        switch(e.keyCode) {
-            case 27: return this.cancel()
-        }
-    }
+    const [title, setTitle] = useState('')
+    const [loading, setLoading] = useState(false)
 
-    onChange = (e)=>{
-        this.setState({ title: e.target.value })
-    }
+    const cancel = useCallback(()=>dispatch(removeBlank()), [])
 
-    onSubmit = (e)=>{
-        e.preventDefault()
-        e.stopPropagation()
-        this.create()
-    }
-
-    cancel = ()=>{
-        this.props.actions.removeBlank()
-    }
-
-    create = ()=>{
+    const create = useCallback(()=>{
         //cancel
-        if (!this.state.title.trim())
-            return this.cancel()
+        if (!title.trim())
+            return cancel()
 
         //create collection
-        this.setState({ loading: true })
+        setLoading(true)
 
-        this.props.actions.createFromBlank({
-            title: this.state.title
-        }, (newItem)=>{
-            if (this.props.events.onItemClick)
-                this.props.events.onItemClick(newItem)
-            else
-                this.props.history.push(this.props.to.replace(this.props._id, newItem._id))
-        }, e=>{
-            Error(e)
-            this.cancel()
-        })
-    }
-
-    render() {
-        const { _id, level } = this.props
-        const { title, loading } = this.state
-
-        return (
-            <form onSubmit={this.onSubmit}>
-                <Item
-                    active={true}
-                    className={s.item}
-                    style={{'--level': level}}>
-                    <div className={s.expand} />
-                    
-                    <CollectionIcon 
-                        _id={_id}
-                        loading={loading} />
-
-                    <ItemTitle>
-                        <Text
-                            type='text'
-                            variant='less'
-                            required
-                            autoFocus
-                            disabled={loading}
-                            value={title}
-                            placeholder={t.s('collectionNew')}
-                            onKeyUp={this.onKeyUp}
-                            onChange={this.onChange}
-                            onBlur={this.create} />
-                    </ItemTitle>
-                </Item>
-            </form>
+        dispatch(
+            createFromBlank({ title }, (newItem)=>{
+                if (onItemClick)
+                    onItemClick(newItem)
+                else
+                    navigate(to.replace(_id, newItem._id))
+            }, e=>{
+                Error(e)
+                cancel()
+            })
         )
-    }
-}
+    }, [title, navigate, _id])
 
-export default withRouter(CollectionsItemBlank)
+    const onKeyUp = useCallback((e)=>{
+        switch(e.keyCode) {
+            case 27: return cancel()
+        }
+    }, [])
+
+    const onChange = useCallback((e)=>setTitle(e.target.value), [])
+
+    const onSubmit = useCallback((e)=>{
+        e.preventDefault()
+        e.stopPropagation()
+        create()
+    }, [create])
+
+    return (
+        <form onSubmit={onSubmit}>
+            <Item
+                active={true}
+                className={s.item}
+                style={{'--level': level}}>
+                <div className={s.expand} />
+                
+                <CollectionIcon 
+                    _id={_id}
+                    loading={loading} />
+
+                <ItemTitle>
+                    <Text
+                        type='text'
+                        variant='less'
+                        required
+                        autoFocus
+                        disabled={loading}
+                        value={title}
+                        placeholder={t.s('collectionNew')}
+                        onKeyUp={onKeyUp}
+                        onChange={onChange}
+                        onBlur={create} />
+                </ItemTitle>
+            </Item>
+        </form>
+    )
+}

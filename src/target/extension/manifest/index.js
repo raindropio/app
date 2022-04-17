@@ -1,5 +1,5 @@
 const fs = require('fs')
-const csp = require('~config/csp')
+const csp = require('../../../config/csp')
 const locales = require('./locales')
 
 function file({ emitFile }, filename) {

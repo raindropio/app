@@ -13,7 +13,7 @@ import Empty from './empty'
 const initialNumToRender = parseInt(SPACE_PER_PAGE / 2)
 
 export default function BookmarksItems(props) {
-    const { spaceId, activeId, compact, compactLimit, getLink, events } = props
+    const { spaceId, activeId, compact, compactLimit, events } = props
 
     //collection
     const getCollection = useRef(makeCollection()).current
@@ -41,7 +41,6 @@ export default function BookmarksItems(props) {
                     data={items}
                     keyExtractor={keyExtractor}
                     initialNumToRender={initialNumToRender}
-                    activateAfter={300}
 
                     scrollToItem={activeId}
 
@@ -57,7 +56,6 @@ export default function BookmarksItems(props) {
                             access={access}
                             //listing specififc
                             active={activeId == _id}
-                            getLink={getLink}
                             events={events} />
                     }
                 </Lazy>

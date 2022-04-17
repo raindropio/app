@@ -8,7 +8,7 @@ import { nextPage } from '~data/actions/bookmarks'
 import { Link } from 'react-router-dom'
 import Button from '~co/common/button'
 
-function BookmarksFooter({ spaceId, compact, compactLimit, getLink }) {
+function BookmarksFooter({ spaceId, compact, compactLimit }) {
     //data
     const count = useSelector(state=>bookmarksIds(state, spaceId).length)
     const getStatus = useRef(makeStatus()).current
@@ -65,7 +65,7 @@ function BookmarksFooter({ spaceId, compact, compactLimit, getLink }) {
                 as={Link}
                 variant='flat'
                 data-block
-                to={getLink({ _id:spaceId, full:true, refine:'' })}>
+                to={`../../${spaceId}/full`}>
                 {t.s('showAll')}
             </Button>
         )
@@ -85,7 +85,6 @@ BookmarksFooter.defaultProps = {
     spaceId:        0,
     compact:        false,
     compactLimit:   0, //useful when compact is true, means that full items count more that showed right now
-    getLink:        undefined
 }
 
 export default BookmarksFooter

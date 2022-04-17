@@ -1,6 +1,6 @@
-import React from 'react'
-import { connect } from 'react-redux'
-import { autoLoad, load } from '~data/actions/filters'
+import React, { useMemo, useCallback, useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { load } from '~data/actions/filters'
 import { getTags } from '~data/selectors/tags'
 import { getQuickFilters } from '~data/selectors/filters'
 
@@ -9,76 +9,65 @@ import Filter from '~co/filters/item'
 import TagsSection from '~co/tags/section'
 import Tag from '~co/tags/item'
 
-class FiltersTagsCustom extends React.Component {
-    static defaultProps = {
-        activeId:           '',
-        getLink:            undefined
-    }
+export default function MySidebarFiltersTags({ children, activeId }) {
+    const dispatch = useDispatch()
 
-    componentDidMount() {
-        this.props.load('global')
-    }
+    //load
+    useEffect(()=>{dispatch(load('global'))}, [])
 
-    rowRenderer = (row={})=>{
+    //data
+    const { tags_hide, filters_hide } = useSelector(state=>state.config)
+    const tags = useSelector(state=>getTags(state, 'global'))
+    const filters = useSelector(state=>getQuickFilters(state, 'global'))
+
+    const data = useMemo(()=>[
+        ...(filters.length ? [
+            { _id: 'filters', hidden: filters_hide },
+            ...(!filters_hide ? filters.map(filter=>({ ...filter, type: 'filter' })) : [])
+        ] : []),
+
+        ...(tags.length ? [
+            { _id: 'tags', hidden: tags_hide, count: tags.length },
+            ...(!tags_hide ? tags.map(tag=>({ ...tag, type: 'tag' })) : [])
+        ] : [])
+    ], [filters, filters_hide, tags, tags_hide])
+
+    //item render
+    const rowRenderer = useCallback((row={})=>{
         let Component
+        let active = false
+
         switch(row.type || row._id) {
-            case 'filters': Component = FiltersSection; break
-            case 'filter': Component = Filter; break
-            case 'tags': Component = TagsSection; break
-            case 'tag': Component = Tag; break
+            case 'filters': 
+                Component = FiltersSection
+                break
+
+            case 'filter':
+                Component = Filter
+                active = activeId == (row.query||'').trim()
+                break
+
+            case 'tags':
+                Component = TagsSection
+                break
+
+            case 'tag':
+                Component = Tag
+                active = activeId == ('#'+row._id)
+                break
+
             default: return false
         }
-
-        const { getLink, activeId } = this.props
-        const active = activeId.includes(row.query)
 
         return (
             <Component 
                 item={row}
-                getLink={getLink}
                 active={active} />
         )
-    }
+    }, [activeId])
 
-    render() {
-        return this.props.children(
-            this.props.data,
-            this.rowRenderer
-        )
-    }
-}
-
-function FiltersTagsCombined({ tags, tags_hide, filters, filters_hide, ...etc }) {
-    let data = []
-
-    if (filters.length){
-        data.push({ _id: 'filters', hidden: filters_hide })
-
-        if (!filters_hide)
-            data.push(...filters.map(filter=>({ ...filter, type: 'filter' })))
-    }
-
-    if (tags.length){
-        data.push({ _id: 'tags', hidden: tags_hide, count: tags.length })
-
-        if (!tags_hide)
-            data.push(...tags.map(tag=>({ ...tag, type: 'tag' })))
-    }
-
-    return (
-        <FiltersTagsCustom 
-            {...etc}
-            data={data} />
+    return children(
+        data,
+        rowRenderer
     )
 }
-
-export default connect(
-	(state) => ({
-        tags: getTags(state, 'global'), 
-        tags_hide: state.config.tags_hide,
-
-        filters: getQuickFilters(state, 'global'),
-        filters_hide: state.config.filters_hide
-    }),
-	{ load, autoLoad }
-)(FiltersTagsCombined)

@@ -137,9 +137,9 @@ class EditBookmarkContainer extends React.Component {
 					{...this.handlers} />
 
 				{/* When react-router route change commit unsaved changes */}
-				<Prompt 
+				{/* {<Prompt 
 					when={unsaved && status != 'new'}
-					message={this.handlers.onCommit} />
+					message={this.handlers.onCommit} />} */}
 			</div>
 		)
 	}

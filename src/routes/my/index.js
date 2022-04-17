@@ -1,17 +1,25 @@
 import React from 'react'
-import { Switch, Route } from 'react-router-dom'
+import { Routes, Route } from 'react-router-dom'
 
-import Protected from '~co/screen/protected'
-import Collection from './collection'
-import NotFound from './notFound'
+import Layout from './layout'
+import Item from './item'
+import Space from './space'
 
-export default function MyRoute({ match: { path } }) {
+export default function PageMy() {
+    const nested = (<>
+        <Route path='item/:itemId/*' element={<Item />} />
+    </>)
+
     return (
-        <Protected>
-            <Switch>
-                <Route path={`${path}/:_id(-?\\d+)/:search?`} component={Collection} />
-                <Route component={NotFound} />
-            </Switch>
-        </Protected>
+        <Routes>
+            <Route element={<Layout />}>
+                <Route path=':cId'>
+                    <Route path='' element={<Space />}>{nested}</Route>
+                    <Route path='full' element={<Space />}>{nested}</Route>
+                    <Route path=':search' element={<Space />}>{nested}</Route>
+                    <Route path=':search/:fromCid' element={<Space />}>{nested}</Route>
+                </Route>
+            </Route>
+        </Routes>
     )
 }

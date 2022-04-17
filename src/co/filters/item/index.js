@@ -5,7 +5,7 @@ import Icon from '~co/common/icon'
 import SuperLink from '~co/common/superLink'
 import useItemInfo from './useItemInfo'
 
-function SuggestionItem({ item, className='', forwardedRef, getLink, ...etc}) {
+function SuggestionItem({ item, className='', forwardedRef, ...etc}) {
     const { icon, title, info, token } = useItemInfo(item)
     const { query } = item
 
@@ -33,11 +33,9 @@ function SuggestionItem({ item, className='', forwardedRef, getLink, ...etc}) {
                     {info}
                 </ItemInfo>
 
-                {!!getLink && (
-                    <SuperLink 
-                        to={getLink({ _id: 0, search: query+' ' })}
-                        tabIndex='0'/>
-                )}
+                <SuperLink 
+                    to={`../0/${query}`}
+                    tabIndex='0'/>
             </Item>
 
             {item._id == 'current' && <Separator />}

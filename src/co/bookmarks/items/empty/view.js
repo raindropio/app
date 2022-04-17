@@ -18,7 +18,7 @@ export default class BookmarksEmptyView extends React.PureComponent {
     }
 
     render() {
-        const { status, spaceId, searchEmpty, compact, collection: { title }, getLink } = this.props
+        const { status, spaceId, searchEmpty, compact, collection: { title } } = this.props
         let content = null
 
         if (spaceId == -101) return null
@@ -98,7 +98,7 @@ export default class BookmarksEmptyView extends React.PureComponent {
                         <br/>
 
                         <p>
-							<Link to={getLink({ _id: 0 })}>{t.s('allBookmarks')}</Link>
+							<Link to='../../0'>{t.s('allBookmarks')}</Link>
                         </p>
                     </div>
                 )

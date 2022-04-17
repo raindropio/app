@@ -6,13 +6,13 @@ import Icon from '~co/common/icon'
 
 class BookmarksItemTag extends React.PureComponent {
     render() {
-        const { tag, getLink } = this.props
+        const { tag } = this.props
         
         return (
             <Link 
                 key={tag} 
                 tabIndex='-1'
-                to={getLink({ refine: tag.includes(' ') ? `"#${tag}"` : `#${tag}` })}>
+                to={'../'+encodeURIComponent(tag.includes(' ') ? `"#${tag}"` : `#${tag}`)}>
                 <Icon name='tag' size='micro' />
                 {tag}
             </Link>
@@ -22,7 +22,7 @@ class BookmarksItemTag extends React.PureComponent {
 
 export default class BookmarksItemTags extends React.PureComponent {
     render() {
-        const { tags=[], getLink, className } = this.props
+        const { tags=[], className } = this.props
 
         if (!tags.length)
             return null
@@ -33,8 +33,7 @@ export default class BookmarksItemTags extends React.PureComponent {
                     {tags.map(tag=>
                         <BookmarksItemTag 
                             key={tag}
-                            tag={tag}
-                            getLink={getLink} />
+                            tag={tag} />
                     )}
                 </span>
             </div>

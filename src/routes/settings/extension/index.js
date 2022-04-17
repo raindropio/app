@@ -9,10 +9,10 @@ import BrowserExtensionMode from './browser_extension_mode'
 import Permissions from './permissions'
 import Hotkeys from './hotkeys'
 
-export default ({ match })=>{
+export default ({ hideHeader=false })=>{
 	return (
 		<>
-            {!!match && <Header data-fancy><Title>{t.s('browserExtension')}</Title></Header>}
+            {!hideHeader && <Header data-fancy><Title>{t.s('browserExtension')}</Title></Header>}
 
             <Layout>
                 <BrowserExtensionMode />

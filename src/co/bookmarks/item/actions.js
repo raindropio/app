@@ -9,7 +9,7 @@ import Icon from '~co/common/icon'
 export default function BookmarkItemActions(props) {
     const { _id, link, access, important } = props
     const { className='' } = props
-    const { getLink, onCopyLinkClick, onImportantClick, onRemoveClick } = props
+    const { onCopyLinkClick, onImportantClick, onRemoveClick } = props
 
     return (
         <div className={s.actions+' '+className}>
@@ -38,7 +38,7 @@ export default function BookmarkItemActions(props) {
             <Button 
                 data-button='preview'
                 as={Link}
-                to={getLink({ bookmark: _id, tab: 'preview' })}
+                to={`item/${_id}/preview`}
                 variant='outline'
                 title={t.s('preview')}>
                 <Icon name='show' />
@@ -48,7 +48,7 @@ export default function BookmarkItemActions(props) {
             <Button 
                 data-button='web'
                 as={Link}
-                to={getLink({ bookmark: _id, tab: 'web' })}
+                to={`item/${_id}/web`}
                 variant='outline'
                 title={'Web '+t.s('preview')}>
                 <Icon name='web' />
@@ -77,7 +77,7 @@ export default function BookmarkItemActions(props) {
                 <Button 
                     data-button='tags'
                     as={Link}
-                    to={getLink({ bookmark: _id, tab: 'edit', autoFocus: 'tags' })}
+                    to={`item/${_id}/tags?autoFocus=tags`}
                     variant='outline'>
                     <Icon name='tag' />
                 </Button>
@@ -86,7 +86,7 @@ export default function BookmarkItemActions(props) {
                 <Button 
                     data-button='edit'
                     as={Link}
-                    to={getLink({ bookmark: _id, tab: 'edit', autoFocus: '' })}
+                    to={`item/${_id}/edit`}
                     variant='outline'>
                     {t.s('editMin')}
                 </Button>

@@ -8,7 +8,7 @@ import { Buttons, Layout } from '~co/common/form'
 import Button from '~co/common/button'
 import Icon from '~co/common/icon'
 
-export default function ExtensionWelcome({ match: { path } }) {
+export default function ExtensionWelcome() {
     return (
         <Layout className={s.footer}>
             <Buttons>
@@ -21,7 +21,7 @@ export default function ExtensionWelcome({ match: { path } }) {
 
                 <Button
                     as={Link}
-                    to={`${path}/activate`}
+                    to='activate'
                     variant='primary'>
                     {t.s('continue')}
                     <Icon name='next' size='micro' />

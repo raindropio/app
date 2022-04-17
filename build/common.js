@@ -67,7 +67,16 @@ module.exports = ({ production, filename='[name].[contenthash]', sentry={} }, { 
 			path.resolve(__dirname, '../node_modules')
 		],
 		alias: {
-			lodash: 'lodash-es'
+			lodash: 'lodash-es',
+			'~assets': path.resolve(__dirname, '../src/assets'),
+			'~co': path.resolve(__dirname, '../src/co'),
+			'~config': path.resolve(__dirname, '../src/config'),
+			'~data': path.resolve(__dirname, '../src/data'),
+			'~local': path.resolve(__dirname, '../src/local'),
+			'~modules': path.resolve(__dirname, '../src/modules'),
+			'~routes': path.resolve(__dirname, '../src/routes'),
+			'~t': path.resolve(__dirname, '../src/modules/translate'),
+			'~target': path.resolve(__dirname, '../src/target'),
 		}
 	},
 

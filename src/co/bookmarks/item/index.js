@@ -18,7 +18,6 @@ class BookmarkItem extends React.Component {
         view:               '', //list, grid, etc...
         access:             {}, //{ level }...
         //funcs
-        getLink:            undefined, //same as ...items/index
         events:             {}, //same as ...items/index
         actions:            {}, //redux collections
         //special

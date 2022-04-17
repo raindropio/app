@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import localStorage from '~modules/localStorage'
-import Fallback from './app'
+import Fallback from './fallback'
 import Screen from '~co/screen/basic'
 
 let _cachedMode = localStorage.getItem('_extension_mode_cached')

@@ -16,7 +16,7 @@ export default function BookmarkItemView(props) {
     const { innerRef, isDragging } = props
     const { _id, link, title, excerpt, highlight, cover, domain, tags, note, highlights, view, access } = props
     const { active, selected, selectModeEnabled, selectDisabled, important, broken, coverSize } = props
-    const { getLink, onClick, onDoubleClick, onSelectClick, onContextMenu, onKeyUp } = props
+    const { onClick, onDoubleClick, onSelectClick, onContextMenu, onKeyUp } = props
 
     return (
         <DragItem 
@@ -57,7 +57,7 @@ export default function BookmarkItemView(props) {
                             ) : null
                         )}
                         <Highlights className={s.highlights} highlights={highlights} />
-                        <Tags tags={tags} getLink={getLink} />
+                        <Tags tags={tags} />
                     </div>
 
                     {/* Info */}

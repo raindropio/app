@@ -1,8 +1,6 @@
-import s from './index.module.styl'
 import React from 'react'
 import { getMeta } from '~target'
 
-import Protected from '~co/screen/protected'
 import Screen from '~co/screen/basic'
 import Header from './header'
 import Content from './content'
@@ -33,12 +31,10 @@ export default class Clipper extends React.Component {
         const { item } = this.state
 
         return (
-            <Protected redirect>
-                <Screen className={s.screen}>
-                    <Header {...this.props} item={item} />
-                    <Content {...this.props} item={item} />
-                </Screen>
-            </Protected>
+            <Screen>
+                <Header {...this.props} item={item} />
+                <Content {...this.props} item={item} />
+            </Screen>
         )
     }
 }

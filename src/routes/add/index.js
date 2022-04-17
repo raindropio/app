@@ -1,8 +1,8 @@
 import React, { useMemo } from 'react'
+import { useLocation } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { getMeta } from '~target'
 
-import Protected from '~co/screen/protected'
 import Screen from '~co/screen/basic'
 import Header from './header'
 import Content from './content'
@@ -15,7 +15,9 @@ getMeta().then(m=>_meta = m).catch(()=>{})
 /*
     ?link=&title=
 */
-export default function AddRoute({ location: { search } }) {
+export default function AddRoute() {
+    const { search } = useLocation()
+
     const collectionId = useSelector(state=>
         state.config.add_default_collection || state.config.last_collection
     )
@@ -43,12 +45,10 @@ export default function AddRoute({ location: { search } }) {
     }, [search, collectionId])
 
     return (
-        <Protected redirect>
-            <Screen>
-                <Header item={item} />
-                <Content item={item} />
-                <Events />
-            </Screen>
-        </Protected>
+        <Screen>
+            <Header item={item} />
+            <Content item={item} />
+            <Events />
+        </Screen>
     )
 }

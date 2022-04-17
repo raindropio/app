@@ -11,7 +11,6 @@ class BookmarksEmpty extends React.Component {
     static defaultProps = {
         spaceId:        0,
         compact:        false,
-        getLink:        undefined
     }
 
     render() {
