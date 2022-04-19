@@ -1,5 +1,5 @@
 import React from 'react'
-import { Routes, Route, Navigate } from 'react-router-dom'
+import { Route, Navigate } from 'react-router-dom'
 import { target } from '~target'
 
 import Layout from './layout'
@@ -13,17 +13,15 @@ import Pro from './pro'
 
 export default function PageSettings() {
     return (
-        <Routes>
-            <Route element={<Layout />}>
-                <Route index element={<Navigate replace to={target=='extension'?'extension':'app'} />} />
-                <Route path='account' element={<Account />} />
-                <Route path='app' element={<App />} />
-                <Route path='backups' element={<Backups />} />
-                <Route path='extension' element={<Extension />} />
-                <Route path='import' element={<Import />} />
-                <Route path='integrations' element={<Integrations />} />
-                <Route path='pro' element={<Pro />} />
-            </Route>
-        </Routes>
+        <Route element={<Layout />}>
+            <Route index element={<Navigate replace to={target=='extension'?'extension':'app'} />} />
+            <Route path='account' element={<Account />} />
+            <Route path='app' element={<App />} />
+            <Route path='backups' element={<Backups />} />
+            <Route path='extension' element={<Extension />} />
+            <Route path='import' element={<Import />} />
+            <Route path='integrations' element={<Integrations />} />
+            <Route path='pro' element={<Pro />} />
+        </Route>
     )
 }

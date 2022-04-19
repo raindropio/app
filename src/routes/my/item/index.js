@@ -7,11 +7,14 @@ import { makeCollection } from '~data/selectors/collections'
 import { Routes, Route, useParams } from 'react-router-dom'
 
 import Layout from './layout'
-import Any from './any'
-import Cache from './content/cache'
-import Edit from './content/edit'
-import Preview from './content/preview'
-import Web from './content/web'
+import NotFound from './notFound'
+
+//tabs
+import Any from './tab/any'
+import Cache from './tab/cache'
+import Edit from './tab/edit'
+import Preview from './tab/preview'
+import Web from './tab/web'
 
 export default function PageMyItem() {
     const { itemId } = useParams()
@@ -38,21 +41,23 @@ export default function PageMyItem() {
 
     return (
         <Routes>
-            <Route element={<Layout tabs={tabs} item={item} webViewRef={webViewRef} />}>
-                {tabs.includes('cache') ?
-                    <Route path='cache' element={<Cache item={item} />} /> : null
-                }
-                {tabs.includes('edit') ?
-                    <Route path='edit' element={<Edit item={item} />} /> : null
-                }
-                {tabs.includes('preview') ?
-                    <Route path='preview' element={<Preview item={item} webViewRef={webViewRef} />} /> : null
-                }
-                {tabs.includes('web') ?
-                    <Route path='web' element={<Web item={item} webViewRef={webViewRef} />} /> : null
-                }
+            <Route element={<NotFound item={item} />}>
+                <Route element={<Layout tabs={tabs} item={item} webViewRef={webViewRef} />}>
+                    {tabs.includes('cache') ?
+                        <Route path='cache' element={<Cache item={item} />} /> : null
+                    }
+                    {tabs.includes('edit') ?
+                        <Route path='edit' element={<Edit item={item} />} /> : null
+                    }
+                    {tabs.includes('preview') ?
+                        <Route path='preview' element={<Preview item={item} webViewRef={webViewRef} />} /> : null
+                    }
+                    {tabs.includes('web') ?
+                        <Route path='web' element={<Web item={item} webViewRef={webViewRef} />} /> : null
+                    }
 
-                <Route path='*' element={<Any tabs={tabs} />} />
+                    <Route path='*' element={<Any tabs={tabs} />} />
+                </Route>
             </Route>
         </Routes>
     )

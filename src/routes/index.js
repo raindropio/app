@@ -3,6 +3,7 @@ import { target } from '~target'
 import { HashRouter, BrowserRouter, Routes, Route } from 'react-router-dom'
 
 import Protected from './_protected'
+import NotFound from './notFound'
 
 import Default from './default'
 import Account from './account'
@@ -19,14 +20,16 @@ export default function Pages() {
             <Routes>
                 <Route index element={<Default />} />
 
-                <Route path='account/*' element={<Account />} />
-                <Route path='extension/*' element={<Extension />} />
+                <Route path='account'>{Account()}</Route>
+                <Route path='extension'>{Extension()}</Route>
 
                 <Route element={<Protected redirect />}>
                     <Route path='add' element={<Add />} />
-                    <Route path='my/*' element={<My />} />
-                    <Route path='settings/*' element={<Settings />} />
+                    <Route path='my'>{My()}</Route>
+                    <Route path='settings'>{Settings()}</Route>
                 </Route>
+
+                <Route path='*' element={<NotFound />} />
             </Routes>
         </Router>
     )

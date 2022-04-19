@@ -59,7 +59,7 @@ function CacheStatus({ cache, url }) {
     )
 }
 
-export default function ReaderCache({ item: { cache, _id } }) {
+export default function PageMyItemTabCache({ item: { cache, _id } }) {
     const url = `${API_ENDPOINT_URL}raindrop/${_id}/cache`
 
     switch(cache) {

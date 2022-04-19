@@ -2,7 +2,7 @@ import React from 'react'
 import { useSearchParams } from 'react-router-dom'
 import Edit from '~co/bookmarks/edit'
 
-export default function PageMyItemContentEdit({ item: { _id } }) {
+export default function PageMyItemTabEdit({ item: { _id } }) {
     const [ searchParams ] = useSearchParams()
 
     return (

@@ -6,7 +6,7 @@ import { PREVIEW_URL } from '~data/constants/app'
 import useWithWebView from '~co/highlights/useWithWebView'
 import Preloader from '~co/common/preloader'
 
-export default function PageMyItemContentPreview({ item: { _id, type, link }, webViewRef }) {
+export default function PageMyItemTabPreview({ item: { _id, type, link }, webViewRef }) {
     //highlights
 	useWithWebView(webViewRef, _id)
 

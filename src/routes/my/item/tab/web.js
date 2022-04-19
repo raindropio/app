@@ -3,7 +3,7 @@ import React from 'react'
 import WebView from '~co/common/webview'
 import useWithWebView from '~co/highlights/useWithWebView'
 
-export default function ReaderWeb({ item: { _id, link }, webViewRef }) {
+export default function PageMyItemTabWeb({ item: { _id, link }, webViewRef }) {
 	useWithWebView(webViewRef, _id)
 
     return (

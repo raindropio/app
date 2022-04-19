@@ -77,7 +77,7 @@ export default function BookmarkItemActions(props) {
                 <Button 
                     data-button='tags'
                     as={Link}
-                    to={`item/${_id}/tags?autoFocus=tags`}
+                    to={`item/${_id}/edit?autoFocus=tags`}
                     variant='outline'>
                     <Icon name='tag' />
                 </Button>

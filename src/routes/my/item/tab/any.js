@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux'
 import { Navigate } from 'react-router-dom'
 import sessionStorage from '~modules/sessionStorage'
 
-export default function PageMyItemDefault({ tabs }) {
+export default function PageMyItemTabAny({ tabs }) {
     const last_tab = sessionStorage.getItem('my-item-last-tab')
     const { raindrops_click } = useSelector(state=>state.config)
     const tab = last_tab || raindrops_click
