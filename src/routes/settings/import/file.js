@@ -41,7 +41,7 @@ class ImportFile extends React.Component {
                     <div className={s.loaded}>
                         <b>{name}</b><br />
                         <span>
-                            {count.folders} {t.s('folders').toLowerCase()}, {count.bookmarks} {t.s('bookmarks')} {t.s('und')} {count.tags} {t.s('tags').toLowerCase()}
+                            {count.folders} {t.s('folders').toLowerCase()}, {count.bookmarks} {t.s('bookmarks')}, {count.tags} {t.s('tags').toLowerCase()} {t.s('und')} {count.highlights} {t.s('highlights').toLowerCase()}
                         </span>
                     </div>
                 )
@@ -67,7 +67,8 @@ class ImportFile extends React.Component {
                 return (
                     <div>
                         <Alert>
-                            <b>{t.s('uploadBookmarksFile')} (html, csv, enex {t.s('or')} txt)</b>. {t.s('importInfo2')}<br /><br />
+                            <b>{t.s('uploadBookmarksFile')} (html, csv, enex {t.s('or')} txt)</b>.<br />
+                            {t.s('importInfo2')}<br /><br />
                             <a href={config.links.help.import+'#supported-formats'} target='_blank'>
                                 {t.s('help')}
                                 <Icon name='open' size='micro' style={{marginLeft: 6}} />

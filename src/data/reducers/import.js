@@ -113,7 +113,8 @@ const initialState = Immutable({
         count: {
             bookmarks: 0,
             folders: 0,
-            tags: 0
+            tags: 0,
+            highlights: 0
         }
     },
     parcel: {
