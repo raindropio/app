@@ -35,10 +35,12 @@ function UserProfileMenu({
                     </MenuItem>
                 )}
 
-                <MenuItem href={config.links.download} target='_blank'>
-                    <Icon name='install' />
-                    {t.s('download')} {t.s('app').toLowerCase()}
-                </MenuItem>
+                {target != 'electron' && (
+                    <MenuItem href={config.links.download} target='_blank'>
+                        <Icon name='install' />
+                        {t.s('download')} {t.s('app').toLowerCase()}
+                    </MenuItem>
+                )}
 
                 <MenuSeparator />
 

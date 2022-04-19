@@ -33,9 +33,11 @@ function SuggestionItem({ item, className='', forwardedRef, ...etc}) {
                     {info}
                 </ItemInfo>
 
-                <SuperLink 
-                    to={`../0/${query}`}
-                    tabIndex='0'/>
+                {!etc.onClick ? (
+                    <SuperLink 
+                        to={`../0/${query}`}
+                        tabIndex='0'/>
+                ) : null}
             </Item>
 
             {item._id == 'current' && <Separator />}
