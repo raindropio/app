@@ -2,6 +2,7 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import { Navigate } from 'react-router-dom'
 import { target, environment } from '~target'
+import Splash from './_splash'
 
 export default function PageDefault() {
     const { last_collection, browser_extension_mode } = useSelector(state=>state.config)
@@ -16,5 +17,8 @@ export default function PageDefault() {
                     break
             }
 
-    return <Navigate to={to} replace />
+    return (<>
+        <Splash />
+        <Navigate to={to} replace />
+    </>)
 }

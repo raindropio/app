@@ -13,6 +13,13 @@ html, body, :global(#react) {
 }
 
 /* extension */
+body {
+    overflow: hidden;
+}
+body::-webkit-scrollbar {
+    display: none;
+}
+
 @media screen and (max-width: 800px) {
     html:global(.extension:not(.sidebar):not(.mobile)),
     html:global(.extension:not(.sidebar):not(.mobile)) body,

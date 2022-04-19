@@ -10,12 +10,9 @@
 /* extension */
 @media (max-width: 800px) {
     html:global(.extension:not(.sidebar):not(.mobile)) .page {
-        width: fit-content;
-        min-width: 420px;
-        max-width: var(--screen-max-width);
+        width: 420px;
         height: fit-content;
-        min-height: 100px;
-        max-height: var(--screen-max-height);
+        min-height: 300px;
     }
 }
 

@@ -12,9 +12,23 @@ readerMinWidth = 300px
     overflow: clip
 }
 
-html:global(.extension:not(.sidebar):not(.mobile)) .page {
-    width: var(--screen-max-width) !important;
-    height: var(--screen-max-height) !important;
+html:global(.extension:not(.sidebar):not(.mobile)) {
+    .page {
+        width: unquote('max(800px, 100vw)') !important;
+        height: unquote('max(600px, 100vh)') !important;
+        overflow: hidden;
+    }
+
+    @media (max-device-width: 800px), (max-device-height: 800px) {
+        .page {
+            width: unquote('max(700px, 100vw)') !important;
+        }
+    }
+
+    .splitview {
+        position: fixed;
+        left: 0;right:0;bottom:0;top:0;
+    }
 }
 
 html:global(.mobile) .splitview {

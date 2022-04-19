@@ -19,11 +19,12 @@ export default function PageProtected({ redirect }) {
 			return <Outlet />
 
 		case 'no':
-			return (
+			return (<>
 				<Navigate 
 					to={`/account/login${redirect?`?redirect=${encodeURIComponent(pathname+search)}`:''}`}
 					replace />
-			)
+				<Splash />
+			</>)
 
 		default:
 			return <Splash />

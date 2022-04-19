@@ -5,7 +5,6 @@ import { Helmet } from 'react-helmet'
 
 import HTML from './html'
 import Body from './body'
-import ScreenMaxSize from './screenMaxSize'
 
 export default class Document extends React.Component {
     render() {
@@ -17,7 +16,6 @@ export default class Document extends React.Component {
                     defaultTitle='Raindrop.io'>
                 </Helmet>
 
-                <ScreenMaxSize />
                 <HTML/>
                 <Body/>
 
