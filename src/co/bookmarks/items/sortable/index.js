@@ -60,7 +60,7 @@ export default function BookmarksItemsSortable({ data, spaceId, children }) {
             easing='cubic-bezier(0.45, 0, 0.55, 1)'
             delay={100}
             delayOnTouchOnly={true}
-            scroll={true}
+            scroll={false} //true freeze drag! in chrome >= 100
             revertOnSpill={true}
             removeOnSpill={true}
             supportPointer={false} //fix safari >=13
