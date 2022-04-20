@@ -12,7 +12,7 @@ export default function DialogAlertView({ id, message, description, ok, variant,
             onClose={()=>sendResult(id)}>
             <Content>
                 <Layout>
-                    <Title>{variant=='error'?'🥵':''} {message}</Title>
+                    <Title>{variant=='error'?'⛔️':''} {message}</Title>
                     <div className={s.description}>{description}</div>
 
                     <Button

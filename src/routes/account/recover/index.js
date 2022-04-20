@@ -6,7 +6,7 @@ import { recoverPassword } from '~data/actions/user'
 
 import { Link, useParams } from 'react-router-dom'
 import { Helmet } from 'react-helmet'
-import { Layout, Label, Text, Buttons } from '~co/common/form'
+import { Layout, Text, Buttons } from '~co/common/form'
 import Button from '~co/common/button'
 import Preloader from '~co/common/preloader'
 import Header, { Title } from '~co/common/header'
@@ -34,44 +34,61 @@ export default function PageAccountRecover() {
         dispatch(recoverPassword({ password, token }))
     }, [password, token])
 
-    return (
-        <form onSubmit={onSubmit}>
-            <Helmet><title>{t.s('changePassword')}</title></Helmet>
-            <Header data-no-shadow>
-                <Title>{t.s('newPassword')}</Title>
-            </Header>
+    return (<>
+        <Helmet><title>{t.s('changePassword')}</title></Helmet>
 
+        {status == 'success' ? (
             <Layout>
-                <Text
-                    autoFocus
-                    type='password'
-                    name='password'
-                    disabled={status=='loading'}
-                    required
-                    value={password}
-                    onChange={onChangePasswordField} />
+                <Header data-fancy>
+                    <Title>{t.s('saveSuccess')}</Title>
+                </Header>
 
-                <Buttons>
-                    {status == 'loading' ? (
-                        <Button variant='flat'>
-                            <Preloader />
-                        </Button>
-                    ) : (
-                        <Button
-                            as='input' 
-                            type='submit'
-                            variant='primary'
-                            value={t.s('changePassword')} />
-                        )}
-
-                    <Button
-                        as={Link}
-                        variant='outline'
-                        to='/account/login'>
-                        {t.s('cancel')}
-                    </Button>
-                </Buttons>
+                <Button
+                    as={Link}
+                    variant='outline'
+                    data-block
+                    to='/account/login'>
+                    {t.s('signIn')}
+                </Button>
             </Layout>
-        </form>
-    )
+        ) : (
+            <form onSubmit={onSubmit}>
+                <Header data-no-shadow>
+                    <Title>{t.s('newPassword')}</Title>
+                </Header>
+
+                <Layout>
+                    <Text
+                        autoFocus
+                        type='password'
+                        name='password'
+                        disabled={status=='loading'}
+                        required
+                        value={password}
+                        onChange={onChangePasswordField} />
+
+                    <Buttons>
+                        {status == 'loading' ? (
+                            <Button variant='flat'>
+                                <Preloader />
+                            </Button>
+                        ) : (
+                            <Button
+                                as='input' 
+                                type='submit'
+                                variant='primary'
+                                value={t.s('changePassword')} />
+                            )}
+
+                        <Button
+                            as={Link}
+                            variant='outline'
+                            to='/account/login'>
+                            {t.s('cancel')}
+                        </Button>
+                    </Buttons>
+                </Layout>
+            </form>
+        )}
+    </>)
 }
