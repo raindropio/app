@@ -1,10 +1,10 @@
-import React from 'react'
+import React, { useState, useCallback, useEffect } from 'react'
 import t from '~t'
-import { connect } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { userStatus, errorReason } from '~data/selectors/user'
 import { recoverPassword } from '~data/actions/user'
 
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { Helmet } from 'react-helmet'
 import { Layout, Label, Text, Buttons } from '~co/common/form'
 import Button from '~co/common/button'
@@ -12,79 +12,66 @@ import Preloader from '~co/common/preloader'
 import Header, { Title } from '~co/common/header'
 import { Error } from '~co/overlay/dialog'
 
-class AccountRecover extends React.Component {
-    state = {
-        password: ''
-    }
+export default function PageAccountRecover() {
+    const { token } = useParams()
+    const dispatch = useDispatch()
 
-    componentDidUpdate(prev) {
-        if (prev.error.recover != this.props.error.recover)
-            Error(this.props.error.recover)
-    }
+    const [password, setPassword] = useState('')
+    const status = useSelector(state=>userStatus(state).recover)
+    const error = useSelector(state=>errorReason(state).recover)
 
-    onChangeValue = (e)=>
-        this.setState({[e.target.name]: e.target.value})
+    useEffect(()=>{
+        if (error)
+            Error(error)
+    }, [error])
 
-    onSubmit = (e)=>{
+    const onChangePasswordField = useCallback(e=>
+        setPassword(e.target.value), []
+    )
+
+    const onSubmit = useCallback(e=>{
         e.preventDefault()
+        dispatch(recoverPassword({ password, token }))
+    }, [password, token])
 
-        this.props.recoverPassword({
-            ...this.state,
-            token: this.props.match.params.token
-        })
-    }
+    return (
+        <form onSubmit={onSubmit}>
+            <Helmet><title>{t.s('changePassword')}</title></Helmet>
+            <Header data-no-shadow>
+                <Title>{t.s('newPassword')}</Title>
+            </Header>
 
-    render() {
-        const status = this.props.status.recover
+            <Layout>
+                <Text
+                    autoFocus
+                    type='password'
+                    name='password'
+                    disabled={status=='loading'}
+                    required
+                    value={password}
+                    onChange={onChangePasswordField} />
 
-        return (
-            <form onSubmit={this.onSubmit}>
-                <Helmet><title>{t.s('recoverPassword')}</title></Helmet>
-                <Header data-fancy>
-                    <Title>{t.s('recoverPassword')}</Title>
-                </Header>
-
-                <Layout>
-                    <Label>{t.s('newPassword')}</Label>
-                    <Text
-                        autoFocus
-                        type='password'
-                        name='password'
-                        disabled={status=='loading'}
-                        required
-                        value={this.state.password}
-                        onChange={this.onChangeValue} />
-
-                    <Buttons>
-                        {status == 'loading' ? (
-                            <Button variant='flat'>
-                                <Preloader />
-                            </Button>
-                        ) : (
-                            <Button
-                                as='input' 
-                                type='submit'
-                                variant='primary'
-                                value={t.s('changePassword')} />
-                            )}
-
-                        <Button
-                            as={Link}
-                            variant='outline'
-                            to='/account/login'>
-                            {t.s('cancel')}
+                <Buttons>
+                    {status == 'loading' ? (
+                        <Button variant='flat'>
+                            <Preloader />
                         </Button>
-                    </Buttons>
-                </Layout>
-            </form>
-        )
-    }
-}
+                    ) : (
+                        <Button
+                            as='input' 
+                            type='submit'
+                            variant='primary'
+                            value={t.s('changePassword')} />
+                        )}
 
-export default connect(
-    state=>({
-        status: userStatus(state),
-		error: errorReason(state)
-    }),
-    { recoverPassword }
-)(AccountRecover)
+                    <Button
+                        as={Link}
+                        variant='outline'
+                        to='/account/login'>
+                        {t.s('cancel')}
+                    </Button>
+                </Buttons>
+            </Layout>
+        </form>
+    )
+}
