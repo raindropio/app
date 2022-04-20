@@ -37,58 +37,42 @@ export default function PageAccountRecover() {
     return (<>
         <Helmet><title>{t.s('changePassword')}</title></Helmet>
 
-        {status == 'success' ? (
+        <form onSubmit={onSubmit}>
+            <Header data-no-shadow>
+                <Title>{t.s('newPassword')}</Title>
+            </Header>
+
             <Layout>
-                <Header data-fancy>
-                    <Title>{t.s('saveSuccess')}</Title>
-                </Header>
+                <Text
+                    autoFocus
+                    type='password'
+                    name='password'
+                    disabled={status=='loading'}
+                    required
+                    value={password}
+                    onChange={onChangePasswordField} />
 
-                <Button
-                    as={Link}
-                    variant='outline'
-                    data-block
-                    to='/account/login'>
-                    {t.s('signIn')}
-                </Button>
-            </Layout>
-        ) : (
-            <form onSubmit={onSubmit}>
-                <Header data-no-shadow>
-                    <Title>{t.s('newPassword')}</Title>
-                </Header>
-
-                <Layout>
-                    <Text
-                        autoFocus
-                        type='password'
-                        name='password'
-                        disabled={status=='loading'}
-                        required
-                        value={password}
-                        onChange={onChangePasswordField} />
-
-                    <Buttons>
-                        {status == 'loading' ? (
-                            <Button variant='flat'>
-                                <Preloader />
-                            </Button>
-                        ) : (
-                            <Button
-                                as='input' 
-                                type='submit'
-                                variant='primary'
-                                value={t.s('changePassword')} />
-                            )}
-
-                        <Button
-                            as={Link}
-                            variant='outline'
-                            to='/account/login'>
-                            {t.s('cancel')}
+                <Buttons>
+                    {status == 'loading' ? (
+                        <Button variant='flat'>
+                            <Preloader />
                         </Button>
-                    </Buttons>
-                </Layout>
-            </form>
-        )}
+                    ) : (
+                        <Button
+                            as='input' 
+                            type='submit'
+                            variant='primary'
+                            value={t.s('changePassword')} />
+                        )}
+
+                    <Button
+                        as={Link}
+                        variant='outline'
+                        to='/account/login'>
+                        {t.s('cancel')}
+                    </Button>
+                </Buttons>
+            </Layout>
+        </form>
     </>)
 }

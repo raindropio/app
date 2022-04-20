@@ -32,10 +32,10 @@ export default function PageAccount() {
                 }})()}
 
                 <Route path='jwt' element={<JWT />} />
+                <Route path='recover/:token' element={<Recover />} />
             </Route>
 
             <Route path='lost' element={<Lost />} />
-            <Route path='recover/:token' element={<Recover />} />
         </Route>
     )
 }
