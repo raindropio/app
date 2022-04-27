@@ -52,7 +52,7 @@ class BookmarksAddSave extends React.Component {
     onEditClick = ()=>{
         const { onEdit, item } = this.props
 
-        onEdit(item)
+        onEdit([item])
     }
 
     render() {
@@ -61,7 +61,8 @@ class BookmarksAddSave extends React.Component {
         switch(status) {
             case 'saving':
                 return (
-                    <Button>
+                    <Button
+                        className={s.button}>
                         <Preloader />
                         <span className={s.label}>{t.s('save')}…</span>
                     </Button>
@@ -70,8 +71,9 @@ class BookmarksAddSave extends React.Component {
             case 'loaded':
                 return (
                     <Button 
+                        className={s.button}
                         variant='active'
-                        title={t.s('save')}
+                        title={t.s('edit')}
                         onClick={this.onEditClick}>
                         <Icon name='check_active' />
                         <span className={s.label}>{!search && t.s('saved')}</span>
@@ -81,7 +83,8 @@ class BookmarksAddSave extends React.Component {
             default:
                 return (
                     <Button 
-                        disabled={status == 'loading' || status == 'idle'}
+                        className={s.button}
+                        data-init={status == 'loading' || status == 'idle'}
                         variant='primary'
                         title={t.s('save')}
                         onMouseDown={this.onAddClick}>

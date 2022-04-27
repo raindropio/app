@@ -150,10 +150,6 @@ module.exports = ({ vendor, production=false }, l) => {
 		} : {}),
 
 		//do not use content_scripts. otherwise browser will ask for <all_urls> permission on install or update time!
-
-		web_accessible_resources: [
-			'index.html'
-		]
 	}
 
 	return { code: JSON.stringify(json, null, 2) };

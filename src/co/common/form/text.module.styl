@@ -10,6 +10,10 @@
     &[data-disabled="true"] {
         pointer-events: none
     }
+
+    &:focus-within {
+        transition: none
+    }
 }
 
 .text {
@@ -29,8 +33,7 @@
     }
 
     &[data-max-rows] {
-        overflow: hidden
-        overflow: clip
+        overflow: hidden !important
         max-height: calc( var(--primary-font-size) * var(--primary-line-height) * var(--max-rows) )
     }
 }

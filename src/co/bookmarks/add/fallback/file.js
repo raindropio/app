@@ -16,9 +16,9 @@ export default function BookmarksAddFallbackFile({ spaceId, onEdit }) {
                 oneUpload({
                     collectionId: spaceId,
                     file
-                }, (item)=>{
-                    onEdit && onEdit(item)
-                    res(item)
+                }, (items)=>{
+                    onEdit && onEdit(items)
+                    res(items)
                 }, rej)
             )
         })

@@ -3,7 +3,9 @@ import React from 'react'
 import _ from 'lodash-es'
 import TextareaAutosize from 'react-autosize-textarea'
 
+const emptyObj = {}
 const getMaxRowsProps = _.memoize(rows=>({
+    async: false,
     'data-max-rows': rows,
     style: {
         '--max-rows': rows
@@ -85,7 +87,7 @@ class TextInner extends React.Component {
                     ref={forwardedRef}
                     className={s.text}
 
-                    {...(maxRows ? getMaxRowsProps(maxRows) : {})} //react-autosize-textarea built-in maxRows buggy, content jumping
+                    {...(maxRows ? getMaxRowsProps(maxRows) : emptyObj)} //react-autosize-textarea built-in maxRows buggy, content jumping
 
                     onKeyDown={this.onKeyDownField}
                     onFocus={this.onFocus} />

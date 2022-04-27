@@ -8,7 +8,7 @@ let Component = target == 'extension' ?
 export default class BookmarksAddWrap extends React.PureComponent {
 	static defaultProps = {
 		spaceId: 0,
-		onEdit: undefined //func(item)
+		onEdit: undefined //func([item])
 	}
 
 	render() {

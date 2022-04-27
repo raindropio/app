@@ -76,7 +76,7 @@ const initialState = Immutable({
 	add_auto_save:			false,
 	mobile_add_auto_save:	false,
 	
-	browser_extension_mode: 'mini_app',
+	browser_extension_mode: 'clipper',
 
 	acknowledge:			[]
 })

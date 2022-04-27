@@ -4,7 +4,7 @@ async function onInstalled({ reason }) {
     switch(reason) {
         case 'install':
             await browser.tabs.create({
-                url: 'index.html#/extension/welcome',
+                url: '/welcome/index.html',
                 active: true
             })
             break

@@ -5,6 +5,11 @@ import Fallback from './fallback'
 import Screen from '~co/screen/basic'
 
 let _cachedMode = localStorage.getItem('_extension_mode_cached')
+let _cachedHeight = localStorage.getItem('_extension_height_cached')
+
+setTimeout(()=>{
+    localStorage.setItem('_extension_height_cached', window.innerHeight)
+}, 300)
 
 export default function SplashExtension() {
     const isBrowserAction = location.search.includes('browser_action')
@@ -19,7 +24,7 @@ export default function SplashExtension() {
     
     if (!isBrowserAction || mode=='clipper')
         return (
-            <Screen />
+            <Screen style={{height: `${_cachedHeight||0}px`}} />
         )
 
     return <Fallback />

@@ -19,9 +19,9 @@ export default function BookmarksAddFallbackLink({ spaceId, autoFocus, onEdit })
                 oneCreate({
                     collectionId: spaceId,
                     link
-                }, (item)=>{
-                    onEdit && onEdit(item)
-                    res(item)
+                }, (items)=>{
+                    onEdit && onEdit(items)
+                    res(items)
                 }, rej)
             )
         })

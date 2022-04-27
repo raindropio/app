@@ -3,8 +3,7 @@ const webpack = require('webpack')
 const { merge } = require('webpack-merge')
 const common = require('./common')
 
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const HTMLInlineCSSWebpackPlugin = require('html-inline-css-webpack-plugin').default
+const CopyPlugin = require('copy-webpack-plugin')
 const ZipPlugin = require('zip-webpack-plugin')
 
 module.exports = (env={}, args={}) => {
@@ -55,15 +54,19 @@ module.exports = (env={}, args={}) => {
                     'process.env.EXTENSION_VENDOR': JSON.stringify(env.vendor)
                 }),
 
+                new CopyPlugin({
+                    patterns: [
+                        { from: 'assets/target/extension/welcome', to: 'welcome' }
+                    ]
+                }),
+
                 ...(env.production ? [
                     new ZipPlugin({
                         path: '../../',
                         filename: `${env.vendor}-${env.production?'prod':'dev'}.zip`,
                         exclude: []
                     })
-                ] : []),
-
-                new HTMLInlineCSSWebpackPlugin()
+                ] : [])
             ],
 
             module: {
