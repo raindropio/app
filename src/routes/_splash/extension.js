@@ -24,7 +24,8 @@ export default function SplashExtension() {
     
     if (!isBrowserAction || mode=='clipper')
         return (
-            <Screen style={{height: `${_cachedHeight||0}px`}} />
+            <Screen 
+                style={_cachedHeight ? {height: `${_cachedHeight}px`} : undefined} />
         )
 
     return <Fallback />
