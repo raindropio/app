@@ -41,7 +41,7 @@ export default function ExtensionHighlightsEmpty() {
     const [shortcut, setShortcut] = useState('')
     useEffect(()=>{
         async function getHotkey() {
-            const command = await hotkeys.getByName('save_highlight')
+            const command = await hotkeys.getByName('save_page')
             if (command)
                 setShortcut(command.shortcut)
         }

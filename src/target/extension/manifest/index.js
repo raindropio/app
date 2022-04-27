@@ -106,13 +106,7 @@ module.exports = ({ vendor, production=false }, l) => {
 				suggested_key: {
 					default: 'Ctrl+Shift+S'
 				},
-				description: '__MSG_savePage__'
-			},
-			save_highlight: {
-				suggested_key: {
-					default: 'Alt+Shift+H'
-				},
-				description: '__MSG_saveHighlight__'
+				description: '__MSG_savePageOrHighlight__'
 			},
 			open_raindrop: {
 				description: '__MSG_openRaindrop__',

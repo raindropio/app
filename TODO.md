@@ -10,7 +10,6 @@
     - background = { service_worker:'background.js' }
     - browser_action -> action
     - content_security_policy -> content_security_policy: { extension_pages }
-    - web_accessible_resources -> web_accessible_resources: { resources }
 
 # Server
 - Send screenshot without ?width, then in data/getscreenshot remove regex

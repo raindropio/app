@@ -37,6 +37,10 @@ module.exports = ({ emitFile })=>{
                     message: s(lang, 'create') + ' ' + s(lang, 'newBookmark').toLowerCase(),
                     description: ''
                 },
+                savePageOrHighlight: {
+                    message: s(lang, 'newBookmark') + ' / ' + s(lang, 'save') + ' ' + s(lang, 'highlights').toLowerCase(),
+                    description: ''
+                },
                 saveLink: {
                     message: s(lang, 'save') + ' ' + s(lang, 'link').toLowerCase(),
                     description: ''
