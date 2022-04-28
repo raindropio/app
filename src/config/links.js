@@ -15,7 +15,7 @@ export default {
         import: 'https://app.raindrop.io/settings/import'
     },
     
-    download: 'https://raindrop.io/download',
+    download: `https://raindrop.io/download?ref=${target}`,
     blog: 'https://blog.raindrop.io',
     better: 'https://better.raindrop.io',
     twitter: 'https://twitter.com/raindrop_io',
