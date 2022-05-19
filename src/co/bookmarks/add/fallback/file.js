@@ -2,6 +2,8 @@ import React, { useCallback } from 'react'
 import t from '~t'
 import { useDispatch } from 'react-redux'
 import { oneUpload } from '~data/actions/bookmarks'
+import { Confirm } from '~co/overlay/dialog'
+import links from '~config/links'
 
 import { MenuItem } from '~co/overlay/popover'
 import Icon from '~co/common/icon'
@@ -10,8 +12,22 @@ import PickerFile from '~co/picker/file/element'
 export default function BookmarksAddFallbackFile({ spaceId, onEdit }) {
     const dispatch = useDispatch()
 
-    const onFile = useCallback(file=>(
-        new Promise((res, rej)=>{
+    const onFile = useCallback(async file=>{
+        if (/\.(html|csv|json|txt)$/i.test(file.name)){
+            const openImport = await Confirm(
+                'Hmmm... wait a minute',
+                {
+                    description: 'Looks like you trying to import bookmarks?',
+                    ok: t.s('import')+' '+t.s('bookmarks').toLowerCase()+'…',
+                }
+            )
+            
+            if (openImport)
+                window.open(links.app.import)
+            return
+        }
+
+        await new Promise((res, rej)=>{
             dispatch(
                 oneUpload({
                     collectionId: spaceId,
@@ -22,7 +38,7 @@ export default function BookmarksAddFallbackFile({ spaceId, onEdit }) {
                 }, rej)
             )
         })
-    ), [spaceId, onEdit])
+    }, [spaceId, onEdit])
 
     return (
         <MenuItem as='label'>
