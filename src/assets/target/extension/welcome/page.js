@@ -1,7 +1,9 @@
 window.onload = ()=>{
+    //environment
     if (navigator.userAgent.toLowerCase().includes('mac os'))
         document.documentElement.classList.add('mac')
 
+    //navigation
     const nav = document.querySelector('nav')
     const sections = document.querySelectorAll('section')
 
@@ -29,5 +31,11 @@ window.onload = ()=>{
 
     setActiveNav()
     window.addEventListener('scroll', setActiveNav)
-    window.addEventListener('resize', setActiveNav)
+    window.addEventListener('resize', setActiveNav);
+
+    //hotkey
+    ('chrome' in window ? window.chrome : window.browser).commands.getAll(commands=>{
+        const { shortcut } = commands.find(({name})=>name=='save_page')
+        document.querySelector('#save-hotkey').textContent = shortcut
+    })
 }

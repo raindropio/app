@@ -104,7 +104,7 @@ module.exports = ({ vendor, production=false }, l) => {
 			},
 			save_page: {
 				suggested_key: {
-					default: 'Ctrl+Shift+S'
+					default: vendor == 'firefox' ? 'Alt+Shift+S' : 'Ctrl+Shift+S'
 				},
 				description: '__MSG_savePageOrHighlight__'
 			},
@@ -114,10 +114,6 @@ module.exports = ({ vendor, production=false }, l) => {
 
 			...(vendor == 'firefox' || vendor == 'opera' ? {
 				_execute_sidebar_action: {
-					suggested_key: {
-						default: 'Ctrl+E',
-						mac: 'MacCtrl+E'
-					},
 					description: '__MSG_openSidebar__'
 				}
 			}: {}),
