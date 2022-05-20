@@ -1,14 +1,19 @@
 import React, { useCallback, useMemo } from 'react'
 import { useSelector } from 'react-redux'
 import { useNavigate, useLocation } from 'react-router-dom'
+import { target } from '~target'
 import Bookmarks from '~co/bookmarks'
 
 export default function PageMySpaceBookmarks({ cId, search, itemId }) {
     const { pathname } = useLocation()
-    const { raindrops_click } = useSelector(state=>state.config)
+    let { raindrops_click } = useSelector(state=>state.config)
     const navigate = useNavigate()
 
     const onBookmarkClick = useCallback(item=>{
+        //no preview in extension, so open in new tab instead
+        if (target == 'extension' && raindrops_click=='preview')
+            raindrops_click = 'new_tab'
+
         switch (raindrops_click) {
             case 'current_tab':
                 return false
@@ -21,7 +26,7 @@ export default function PageMySpaceBookmarks({ cId, search, itemId }) {
                 navigate(`item/${item._id}`)
                 return true
         }
-    }, [navigate])
+    }, [navigate, raindrops_click])
 
     const events = useMemo(()=>({
         onBookmarkClick
