@@ -13,7 +13,7 @@ export default function BookmarksAddFallbackFile({ spaceId, onEdit }) {
     const dispatch = useDispatch()
 
     const onFile = useCallback(async file=>{
-        if (/\.(html|csv|json|txt)$/i.test(file.name)){
+        if (/\.(html|csv|json)$/i.test(file.name)){
             const openImport = await Confirm(
                 'Hmmm... wait a minute',
                 {
