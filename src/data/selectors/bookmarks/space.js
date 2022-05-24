@@ -83,6 +83,6 @@ export const makeSpaceElements = ()=> createSelector(
 		bookmarksIds
 	],
 	(elements, ids)=>{
-		return _.pick(elements, ids)
+		return _.at(elements, ids)
 	}
 )
