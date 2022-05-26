@@ -19,7 +19,7 @@ export default function ExtensionHighlightsScreen() {
 
     return (
         <Screen>
-            <Header count={count} />
+            <Header _id={_id} count={count} />
 
             {count ? (
                 <div className={s.items}>
