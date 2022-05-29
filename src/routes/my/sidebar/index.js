@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React, { useCallback } from 'react'
 import t from '~t'
 import { useParams } from 'react-router-dom'
 
@@ -12,7 +12,18 @@ import Upgrade from './upgrade'
 
 export default function PageMySidebar() {
     const { cId, search } = useParams()
-    const collections = useRef(null)
+
+    const onCreateNewCollectionClick = useCallback(e=>{
+        e.preventDefault()
+        
+        window.dispatchEvent(
+            new CustomEvent('create-new-collection', {
+                detail: {
+                    asChild: e.shiftKey ? true : false
+                }
+            })
+        )
+    }, [])
 
     let activeId = parseInt(cId)
     if (activeId=='0' && search)
@@ -25,7 +36,7 @@ export default function PageMySidebar() {
                 
                 <Button 
                     title={`${t.s('createNewCollection')}\nShift+click: ${t.s('createSubFolder').toLowerCase()}`}
-                    onClick={collections.current?.createNewCollection}>
+                    onClick={onCreateNewCollectionClick}>
                     <Icon name='add' />
                 </Button>
             </Header>
@@ -33,8 +44,7 @@ export default function PageMySidebar() {
             <Content>
                 <FiltersTags activeId={activeId}>
                     {(customRows, customRowRenderer)=>
-                        <Collections 
-                            ref={collections}
+                        <Collections
                             activeId={activeId}
 
                             customRows={customRows}

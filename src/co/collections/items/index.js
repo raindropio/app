@@ -34,6 +34,7 @@ class CollectionsItems extends React.Component {
         this.props.actions.load()
 
         window.addEventListener('focus', this.refresh)
+        window.addEventListener('create-new-collection', this.createNewCollection)
     }
 
     componentDidUpdate({ activeId, status }) {
@@ -52,20 +53,15 @@ class CollectionsItems extends React.Component {
         this.props.actions.unselectAll()
 
         window.removeEventListener('focus', this.refresh)
+        window.removeEventListener('create-new-collection', this.createNewCollection)
     }
 
     refresh = ()=>
         this.props.actions.load()
 
     createNewCollection = (e)=>{
-        let asChild = false
-        if (typeof e == 'object' && e.preventDefault) {
-            e.preventDefault()
-            asChild = e.shiftKey ? true : false
-        }
-
         if (typeof this.props.activeId != 'object')
-            this.props.actions.addBlank(this.props.activeId, asChild)
+            this.props.actions.addBlank(this.props.activeId, e.detail.asChild)
     }
 
     render() {
