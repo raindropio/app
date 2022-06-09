@@ -4,6 +4,7 @@ import * as Sentry from '@sentry/minimal'
 
 import common from './common'
 import user from './user'
+import backups from './backups'
 import collections from './collections'
 import bookmarks from './bookmarks'
 import filters from './filters'
@@ -38,6 +39,7 @@ const root = function* () {
 	yield all([
 		user,
 		config,
+		backups,
 		collections,
 		bookmarks,
 		filters,

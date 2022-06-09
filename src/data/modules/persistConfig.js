@@ -38,6 +38,7 @@ export default {
 		)
 	},
 	whitelist: [
+		'backups',
 		'config',
 		'collections',
 		'bookmarks',

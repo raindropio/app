@@ -1,4 +1,5 @@
 import user from './user'
+import backups from './backups'
 import collections from './collections'
 import bookmarks from './bookmarks'
 import filters from './filters'
@@ -11,6 +12,7 @@ import _import from './import'
 
 export default {
 	user,
+	backups,
 	collections, //before bookmarks!
 	bookmarks,
 	filters,

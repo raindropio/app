@@ -40,6 +40,9 @@ export default {
         highlights: {
             index: 'https://help.raindrop.io/highlights',
             addExtension: 'https://help.raindrop.io/highlights/#'+(environment.includes('safari-ios') ? 'add-extension-safari-ios' : 'add-extension')
+        },
+        backups: {
+            automatic: 'https://help.raindrop.io/backups'
         }
     },
 

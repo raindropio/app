@@ -8,7 +8,7 @@ import {
 	USER_SUBSCRIPTION_LOAD_REQ,
 	USER_UPDATE_REQ,
 	USER_AVATAR_UPLOAD_REQ,
-	USER_EXPORT_TO_EMAIL
+	USER_BACKUP
 } from '../constants/user'
 
 export const load = ()=>({
@@ -34,8 +34,8 @@ export const avatarUpload = (avatar, onSuccess, onFail)=>({
 	onFail: wrapFunc(onFail)
 })
 
-export const exportToEmail = (onSuccess, onFail)=>({
-	type: USER_EXPORT_TO_EMAIL,
+export const backup = (onSuccess, onFail)=>({
+	type: USER_BACKUP,
 	onSuccess: wrapFunc(onSuccess),
 	onFail: wrapFunc(onFail)
 })
