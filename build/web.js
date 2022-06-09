@@ -91,6 +91,7 @@ module.exports = (env={}, args={}) =>
                         params: {
                             title: 'title',
                             url: 'link'
+                            //android not send `url` param, instead a `text` param with text and link
                         }
                     },
 
