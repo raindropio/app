@@ -18,7 +18,7 @@ export default function SettingsBackupsAutomatic() {
             {pro ? (
                 <a href={links.help.backups.automatic} target='_blank'>Learn more</a>
             ) : (<>
-                <b>{t.s('onlyInPro')}</b>. <Link to='/settings/pro'>{t.s('upgradeToPro')}</Link>
+                Automatic daily backups available in <b>Pro plan</b>. <Link to='/settings/pro'>{t.s('upgradeToPro')}</Link>
             </>)}
         </Alert>
     )
