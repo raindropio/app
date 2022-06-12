@@ -3,14 +3,14 @@ import t from '~t'
 
 import { Item, ItemIcon, ItemTitle, ItemActions } from '~co/common/list'
 import Icon from '~co/common/icon'
-import { LongDate } from '~modules/format/date'
+import { LongDateTime } from '~modules/format/date'
 import Button, { ButtonsGroup } from '~co/common/button'
 
 export default function SettingsBackupsFilesItem({ created, files }) {
     return (
         <Item>
             <ItemIcon><Icon name='cache_ready' /></ItemIcon>
-            <ItemTitle><LongDate date={created}/></ItemTitle>
+            <ItemTitle><LongDateTime date={created}/></ItemTitle>
 
             <ItemActions>
                 <ButtonsGroup>
