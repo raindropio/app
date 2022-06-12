@@ -42,7 +42,7 @@ export default {
             addExtension: 'https://help.raindrop.io/highlights/#'+(environment.includes('safari-ios') ? 'add-extension-safari-ios' : 'add-extension')
         },
         backups: {
-            automatic: 'https://help.raindrop.io/backups'
+            automatic: 'https://help.raindrop.io/backups#automatic'
         }
     },
 
