@@ -7,6 +7,14 @@ export default function CollectionsItemContextmenu({
     system, hidden,
     onContextMenuClose, onCreateNewGroupClick, onRenameClick, onToggleClick, onRemoveClick, onCollapseAllClick, onSortAllByTitleClick, onSelectAll, onCreateNewCollectionClick, onCleanClick
 }) {
+
+    const groupHideToggle = () =>
+        hidden
+            ? (t.has("showGroup") && t.s("showGroup")) ||
+            `${t.s("show")} ${t.s("group").toLowerCase()}`
+            : (t.has("hideGroup") && t.s("hideGroup")) ||
+            `${t.s("hide")} ${t.s("group").toLowerCase()}`;
+
     return (
         <Popover onClose={onContextMenuClose}>
             <Menu>
@@ -46,11 +54,12 @@ export default function CollectionsItemContextmenu({
                         </MenuItem>
 
                         <MenuItem onClick={onToggleClick}>
-                            {t.s(hidden ? 'show' : 'hide')} {t.s('group').toLowerCase()}
+                            {groupHideToggle()}
                         </MenuItem>
 
                         <MenuItem onClick={onRemoveClick}>
-                            {t.s('remove')} {t.s('group').toLowerCase()}
+                            {(t.has("removeGroup") && t.s("removeGroup")) ||
+                                `${t.s("remove")} ${t.s("group").toLowerCase()}`}
                         </MenuItem>
                     </>
                 ) : null}
