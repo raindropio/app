@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { set } from '~data/actions/config'
 import config from '~config'
 
-import { Label, Radio } from '~co/common/form'
+import { Label } from '~co/common/form'
 import Select from '~co/common/select'
 
 function SettingsAppBrokenLevel({ broken_level, set }) {
@@ -12,7 +12,7 @@ function SettingsAppBrokenLevel({ broken_level, set }) {
         <>
             <Label>
                 {t.s('broken')} {t.s('links').toLowerCase()}&nbsp;
-                <a href={config.links.help['broken-links']} target='_blank'>[?]</a>
+                <a href={config.links.help.troubleshooting.brokenLinks.modes} target='_blank'>[?]</a>
             </Label>
             <div>
                 <Select 
