@@ -17,7 +17,5 @@ if (location.search.includes('browser_action')){
 
         preloadLink(`https://api.raindrop.io/v1/import/url/exists?url=${encodeURIComponent(url)}`)
         preloadLink(`https://api.raindrop.io/v1/import/url/parse?url=${encodeURIComponent(url)}`)
-
-        window._preloadedTab = tab
     })
 }
