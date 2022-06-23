@@ -9,8 +9,6 @@
                         - load api
                         - inject JS
                         - send RDH_CONFIG, RDH_APPLY
-    - tab.status = any other
-        - unset
 2. permissions.onAdded / LINKS_CHANGED
     - reset
     - go to 1

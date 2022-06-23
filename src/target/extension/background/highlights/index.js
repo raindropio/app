@@ -1,14 +1,13 @@
 import browser from 'webextension-polyfill'
 import { currentTab } from '~target'
-import { reset, load, unset, add, update, remove, addSelection, enable } from './logic'
+import { load, add, update, remove, addSelection, enable } from './logic'
 
 //Received messages from page
 async function onMessage({ type, payload }, sender) {
     if (sender.id != browser.runtime.id || !sender.tab || typeof type != 'string') return
 
     switch(type) {
-        case 'RDH_READY':
-        break
+        case 'RDH_READY': break
 
         case 'RDH_ADD':
             try {
@@ -43,8 +42,9 @@ async function onTabActivated({ tabId }) {
     if (!tab.url || !tab.active) return
 
     switch(tab.status) {
-        case 'complete':    await load(tab); break
-        default:            unset(tab); break
+        case 'complete':
+            await load(tab)
+            break
     }
 }
 
@@ -54,7 +54,6 @@ async function onTabsUpdated(id) {
 
 //Reload when bookmarks or permissions change
 async function reloadAll() {
-    reset()
     const { id } = await currentTab()
     return onTabActivated({ tabId: id })
 }
@@ -67,8 +66,6 @@ export async function addCurrentTabSelection() {
 
 //default
 export default function() {
-    reset()
-
     //connection to injected script
     browser.runtime.onMessage.removeListener(onMessage)
     browser.runtime.onMessage.addListener(onMessage)
@@ -83,7 +80,5 @@ export default function() {
     browser.permissions.onAdded.removeListener(reloadAll)
     browser.permissions.onAdded.addListener(reloadAll)
 
-    //links are changed
-    document.removeEventListener('LINKS_CHANGED', reloadAll)
-    document.addEventListener('LINKS_CHANGED', reloadAll)
+    //DO NOT LISTEN FOR `LINKS_CHANGED` event!
 }
