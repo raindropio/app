@@ -16,7 +16,7 @@ export default function PageMySpace() {
 
     //used for browser tab title
     const getCollection = useMemo(makeCollection, [])
-    const { _id, title, cover=[] } = useSelector(state=>getCollection(state, params.cId))
+    const { _id, title } = useSelector(state=>getCollection(state, params.cId))
 
     //update last collection
     const dispatch = useDispatch()
@@ -26,7 +26,6 @@ export default function PageMySpace() {
         <AccentColor _id={params.cId}>{style=>(<>
             <Helmet>
                 <title>{title}</title>
-                {cover.length ? <link rel='icon' href={cover[0]} /> : null}
             </Helmet>
 
             <Main style={style}>
