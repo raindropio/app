@@ -6,7 +6,7 @@ import { target } from '~target'
 export default function BookmarksItemContextmenu({
     _id, link, important, access, reparse, cache,
     onContextMenuClose, onRemoveClick, onCopyLinkClick,
-    onSelectClick, onImportantClick, onCreateScreenshotClick, onReparseClick
+    onSelectClick, onImportantClick, onReparseClick
 }) {
     return (
         <Popover onClose={onContextMenuClose}>
@@ -43,10 +43,6 @@ export default function BookmarksItemContextmenu({
 
                         <MenuItem onClick={onImportantClick}>
                             {(important ? (t.s('remove')+' '+t.s('from')) : (t.s('add') +' ' + t.s('to'))) + ' ' + t.s('favorites').toLowerCase()}
-                        </MenuItem>
-
-                        <MenuItem onClick={onCreateScreenshotClick}>
-                            {t.s('clickToMakeScreenshot')}
                         </MenuItem>
 
                         {!reparse ? (

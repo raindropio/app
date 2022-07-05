@@ -66,9 +66,6 @@ class BookmarkItem extends React.Component {
         onCopyLinkClick: ()=>
             copyText(this.props.item.link),
 
-        onCreateScreenshotClick: ()=>
-            this.props.actions.oneScreenshot(this.props.item._id),
-
         onReparseClick: ()=>
             this.props.actions.oneReparse(this.props.item._id),
     
