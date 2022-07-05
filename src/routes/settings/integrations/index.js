@@ -2,7 +2,7 @@ import React from 'react'
 import t from '~t'
 import { Helmet } from 'react-helmet'
 
-import { Layout, Separator } from '~co/common/form'
+import { Layout } from '~co/common/form'
 import { Header } from '~co/screen/splitview/main'
 import { Title } from '~co/common/header'
 
@@ -17,7 +17,6 @@ export default (props)=>(
 		
 		<Layout type='grid'>
 			<Ready {...props} />
-			<Separator />
 
 			<Connections {...props} />
 

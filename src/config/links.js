@@ -26,7 +26,6 @@ export default {
         index: 'https://help.raindrop.io',
         about: 'https://help.raindrop.io/about',
         'open-multiple-links': 'https://help.raindrop.io/bookmarks#open-multiple-links-at-once',
-        zapier: 'https://help.raindrop.io/automation#zapier',
         import: 'https://help.raindrop.io/import',
         omnibox: 'https://help.raindrop.io/browser-extension#search-in-address-bar',
         'login-problems': 'https://help.raindrop.io/login-problems',

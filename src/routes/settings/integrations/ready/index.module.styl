@@ -1,5 +1,12 @@
-.buttons {
-    display: grid
-    grid-auto-flow: row
-    grid-gap: var(--padding-small)
+.list {
+    grid-column: 1 / -1
+    border-radius: var(--border-radius)
+    overflow: hidden
+    overflow: clip
+    box-shadow: 0 0 0 var(--shadow-height) var(--shadow-color)
+    background: var(--background-color)
+
+    > :not(:last-child) {
+        box-shadow: 0 var(--shadow-height) 0 var(--shadow-color)
+    }
 }
