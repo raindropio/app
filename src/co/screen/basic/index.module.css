@@ -57,9 +57,15 @@ input, textarea, select, button {
     opacity: 1;
 }
 
-:focus {
+:focus, :focus-visible {
     outline: 1px auto var(--accent-color);
     outline-offset: -1px;
+}
+
+@supports selector(:focus-visible) {
+    :not(input, textarea):focus {
+        outline: none;
+    }
 }
 
 a {

@@ -71,7 +71,7 @@
         background: var(--active-background-color)
     }
 
-    &:focus {
+    &:focus-visible {
         box-shadow: inset 0 0 0 1px var(--accent-color), 0 0 0 var(--shadow-height) var(--accent-color)
     }
 }
@@ -99,7 +99,7 @@
         background: var(--active-background-color)
     }
 
-    &:focus {
+    &:focus-visible {
         box-shadow: inset 0 0 0 1px var(--accent-color), 0 0 0 var(--shadow-height) var(--accent-color) !important
     }
 }
@@ -126,7 +126,7 @@
         background: var(--active-background-color)
     }
 
-    &:focus {
+    &:focus-visible {
         box-shadow: inset 0 0 0 1px var(--accent-color), 0 0 0 var(--shadow-height) var(--accent-color)
     }
 }
@@ -151,7 +151,7 @@
         background: var(--active-background-color)
     }
 
-    &:focus {
+    &:focus-visible {
         box-shadow: inset 0 0 0 1px var(--accent-color), 0 0 0 var(--shadow-height) var(--accent-color)
     }
 }
@@ -178,7 +178,7 @@
         filter: brightness(.9);
     }
 
-    &:focus {
+    &:focus-visible {
         box-shadow: 0 0 0 2px currentColor, 0 0 0 calc(var(--shadow-height) + 3px) var(--accent-color)
     }
 }
@@ -195,7 +195,7 @@
         color: var(--disable-text-color)
     }
 
-    &:focus {
+    &:focus-visible {
         box-shadow: inset 0 0 0 1px var(--accent-color), 0 0 0 var(--shadow-height) var(--accent-color)
     }
 }
@@ -214,7 +214,7 @@
         width: auto
     }
     
-    .button:not(:last-child):not(:focus) {
+    .button:not(:last-child):not(:focus-visible) {
         margin-right: 1px
         box-shadow: var(--shadow-height) 0 0 var(--shadow-color)
     }
