@@ -42,7 +42,9 @@ module.exports = ({ vendor, production=false }, l) => {
 			scripts: [
 				'background.js'
 			],
-			persistent: false
+			...(vendor == 'safari-ios' ? {
+				persistent: false
+			} : {})
 		},
 
 		browser_action: {
