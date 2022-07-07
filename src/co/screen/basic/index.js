@@ -35,7 +35,7 @@ class ScreenBasic extends React.Component {
                     <html
                         data-theme={theme.app}
                         data-app-size={appSize} />
-                    <meta name='theme-color' content={theme.app == 'night' ? '#303030' : '#FFFFFF'} />
+                    <meta name='theme-color' content={theme.app == 'night' ? '#2A2B2D' : '#FFFFFF'} />
                 </Helmet>
 
                 <div 
