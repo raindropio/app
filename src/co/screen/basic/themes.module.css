@@ -54,12 +54,12 @@
     color-scheme: dark;
     
     /* background */
-    --background-hsl: 0,0%,19%;
-    --sidebar-background-color: hsl(0,0%,16%);
+    --background-hsl: 228,3%,17%;
+    --sidebar-background-color: hsl(228,3%,14%);
     --alternative-background-color: rgba(0,0,0,.3);
     --hover-background-color: rgba(255,255,255,.07);
-    --active-background-color: hsl(0,0%,26%);
-    --disable-background-color: hsl(0,0%,17%);
+    --active-background-color: hsl(228,3%,22%);
+    --disable-background-color: hsl(228,3%,16%);
 
     /*brand*/
     --accent-hsl: 40,52%,71%;
@@ -68,9 +68,9 @@
     --danger-color: #FF6C5D;
 
     /* text colors */
-    color: hsl(0,0%,90%);
-    --primary-text-color: hsl(0,0%,80%);
-    --secondary-text-color: hsl(0,0%,60%);
+    color: hsl(228,3%,90%);
+    --primary-text-color: hsl(228,3%,80%);
+    --secondary-text-color: hsl(228,3%,60%);
     --disable-text-color: rgba(255,255,255,.4);
 
     /* scrollbar */
@@ -101,7 +101,7 @@
 (min-resolution: 192dpi) {
     :root, [data-app-size] {
         --shadow-height: .5px;
-        --shadow-alpha: .2;
+        --shadow-alpha: .17;
         --shadow-light-alpha: .12;
     }
 }
