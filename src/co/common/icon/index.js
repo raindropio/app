@@ -42,7 +42,7 @@ export function Avatar({ src, className='', ...etc }) {
 			<Icon 
 				{...etc}
 				className={s.avatarDefault + ' ' + className}
-				name='user_active' />
+				name='user' />
 		)
 
 	return (
