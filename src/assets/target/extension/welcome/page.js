@@ -36,6 +36,9 @@ window.onload = ()=>{
     //hotkey
     ('chrome' in window ? window.chrome : window.browser).commands.getAll(commands=>{
         const { shortcut } = commands.find(({name})=>name=='save_page')
-        document.querySelector('#save-hotkey').textContent = shortcut
+        if (shortcut)
+            document.querySelector('#save-hotkey').textContent = shortcut
+        else
+            document.querySelector('#save-hotkey').innerHTML = '<a href="chrome://extensions/shortcuts">Set hotkey</a>'
     })
 }

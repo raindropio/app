@@ -25,7 +25,9 @@ export async function open(path) {
         left: parseInt(origin.left + (origin.width/2) - (width/2)),
         top: parseInt(origin.top + (origin.height/2) - (height/2))
     })
-    winIds.add(id)
+    
+    //delay autoclose on blur, otherwise buggy on arch linux
+    setTimeout(() => { winIds.add(id) }, 100)
 }
 
 /* Close all open popups when focused window change */
