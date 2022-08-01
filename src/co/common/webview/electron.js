@@ -12,8 +12,9 @@ export default function WebViewElectron({ forwardedRef, className='', onLoad, on
         function didStartLoading() {
             setStarted(true)
         }
-        function didFailLoad() {
-            setTimeout(onError, 100)
+        function didFailLoad(e) {
+            if (e.isMainFrame)
+                setTimeout(onError, 100)
         }
 
         if (forwardedRef.current) {
