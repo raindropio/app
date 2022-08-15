@@ -20,6 +20,7 @@ export default function SettingsIntegrationsReady() {
     }, [hidden])
 
     const apps = useMemo(()=>[
+        { title: 'Readwise Sync', href: 'https://readwise.io/sync#raindrop', icon: 'readwise' },
         { title: 'Raycast Extension', href: 'https://www.raycast.com/lardissone/raindrop-io' },
         { title: 'Alfred Workflow', href: 'https://www.packal.org/workflow/search-raindropio', icon: 'alfred' },
     ], [])
