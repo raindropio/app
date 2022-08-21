@@ -348,11 +348,14 @@
   "regexAz09_-": "Harf (a-z), sayı (0-9), alt çizgi (_) ve kısa çizgi (-) içerebilir",
   "publicPage": "Genel sayfa",
   "invite": "Davet et",
+  "searchMatchAnyCondition": "Herhangi bir koşula uy",
   "before": "Öncesinde",
   "after": "Sonrasında",
   "putDashToExclude": "Aramada hariç tutmak istediğiniz koşulların önüne - (tire) koyun",
   "narrowSearch": "Aramanızı daraltın",
   "createdDate": "Oluşturulma tarihi",
   "dateSearchD": "YYYY-AA-GG formatında belirli bir tarihi, (YYYY-AA) formatında belirli bir ayı veya (YYYY) formatında belirli bir yılı aratın. Belirtilen tarihin öncesini veya sonrasını bulmak için tarihin önüne < veya > koyun.",
-  "currentCollection": "Mevcut koleksiyon"
+  "currentCollection": "Mevcut koleksiyon",
+  "highlights": "Vurgulananlar",
+  "notes": "Notlar"
 }

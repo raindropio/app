@@ -355,5 +355,7 @@
   "narrowSearch": "Förfina din sökning",
   "createdDate": "Skapad datum",
   "dateSearchD": "Sök efter ett speciellt datum med format ÅÅÅÅ-MM-DD eller en speciell månad (ÅÅÅÅ-MM) eller ett år (ÅÅÅÅ). Sätt < eller > framför ett datum för att söka före eller efter.",
-  "currentCollection": "Aktuell samling"
+  "currentCollection": "Aktuell samling",
+  "highlights": "Höjdpunkter",
+  "notes": "Anteckningar"
 }

@@ -356,5 +356,6 @@
   "createdDate": "Data di creazione",
   "dateSearchD": "Cerca una data specifica nel formato AAAA-MM-GG o un mese specifico (AAAA-MM) o un anno (AAAA). Metti < o > davanti a una data per trovare rispettivamente prima o dopo una data specifica.",
   "currentCollection": "Collezione corrente",
-  "highlights": "Evidenziamenti"
+  "highlights": "Evidenziamenti",
+  "notes": "Note"
 }

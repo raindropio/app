@@ -1,5 +1,5 @@
 {
-  "noInternetError": "インターネットに接続されていないかもしれません。",
+  "noInternetError": "インターネット接続に問題があるようです。",
   "server": "エラーです、もう一度お試しください！",
   "server0": "古いパスワードを入力",
   "server2": "名前を入力してください！",
@@ -16,7 +16,7 @@
   "saved": "保存済み",
   "addSuccess": "追加済み",
   "removeSuccess": "アイテムを削除しました！",
-  "coverUpload": "カバーをアップロード",
+  "coverUpload": "カバー画像をアップロード",
   "fileUploadUnable": "ファイルがアップロードできません！",
   "fileUploadError": "アップロードエラーです、もう一度お試しください！",
   "profile": "プロフィール",
@@ -93,7 +93,7 @@
   "changeIcon": "アイコンの変更",
   "change": "変更",
   "group": "グループ",
-  "removeGroupError": "ポップアップされたグループは削除できません！",
+  "removeGroupError": "中身のあるグループは削除できません！",
   "select": "選択",
   "create": "作成",
   "privacy": "プライバシー",
@@ -266,6 +266,7 @@
   "willStop": "に終了します。",
   "invoices": "支払い詳細と領収書",
   "billingCycle": "支払いサイクル",
+  "leave": "終了",
   "backups": "バックアップ",
   "rename": "名前の変更",
   "large": "大きい",
@@ -354,5 +355,7 @@
   "narrowSearch": "絞り込み検索",
   "createdDate": "作成日",
   "dateSearchD": "特定の日付 YYYY-MM-DD、特定の月 (YYYY-MM)、特定の年 (YYYY) を検索します。日付の前に<または>を付けると、特定の日付の前または後を検索します。",
-  "currentCollection": "現在のコレクション"
+  "currentCollection": "現在のコレクション",
+  "highlights": "ハイライト",
+  "notes": "備考"
 }

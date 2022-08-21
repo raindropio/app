@@ -355,5 +355,7 @@
   "narrowSearch": "收窄你的搜尋範圍",
   "createdDate": "創建日期",
   "dateSearchD": "以格式 YYYY-MM-DD 搜尋特定年月日 或 以格式 (YYYY-MM) 搜尋特定年月 或 以格式 (YYYY) 搜尋特定年份。將 < or > 放在日期前面以查找特定日期之前或之後。",
-  "currentCollection": "現有收藏"
+  "currentCollection": "現有收藏",
+  "highlights": "標記",
+  "notes": "筆記"
 }
