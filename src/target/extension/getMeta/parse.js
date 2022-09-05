@@ -1,13 +1,13 @@
 function getMeta() {
-    const elem = document.querySelector(
-        [...arguments]
-            .map(key=>`meta[name="${key}"], meta[property="${key}"]`)
-            .join(', ')
-    )
-    if (!elem) return null
+    for(const key of [...arguments]) {
+        const elem = document.querySelector(`meta[name="${key}"], meta[property="${key}"]`)
+        if (!elem) continue
+        const value = String(elem.value || elem.content || '').trim().substr(0, 10000)
+        if (!value) continue
+        return value
+    }
 
-    const value = elem.value || elem.content
-    return String(value).trim().substr(0, 10000)
+    return null
 }
 
 function getJsonLd() {
@@ -80,7 +80,7 @@ function getItem() {
         link: location.href
     }
 
-    const canonical = getMeta('twitter:url', 'og:url')
+    const canonical = getMeta('og:url', 'twitter:url')
     const ld = getJsonLd()
 
     //use open-graph or twitter cards (if page is not spa)
@@ -91,9 +91,9 @@ function getItem() {
     )
         item = {
             ...item,
-            title: getMeta('twitter:title', 'og:title') || getMeta('title') || document.title,
-            excerpt: getMeta('twitter:description', 'og:description') || getMeta('description'),
-            cover: getMeta('twitter:image', 'twitter:image:src', 'og:image', 'og:image:src'),
+            title: getMeta('og:title', 'twitter:title') || getMeta('title') || document.title,
+            excerpt: getMeta('og:description', 'twitter:description') || getMeta('description'),
+            cover: getMeta('og:image', 'og:image:src', 'twitter:image', 'twitter:image:src'),
         }
     //use json ld schema
     else if (ld.name || ld.headline)

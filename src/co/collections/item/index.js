@@ -157,7 +157,7 @@ export default class CollectionsItem extends React.PureComponent {
             Blank :
             (this.state.rename ? Rename : View)
 
-        const to = `../${item._id}`
+        const to = `/my/${item._id}`
 
         return (
             <>
