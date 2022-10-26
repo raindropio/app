@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		764CF18727EA1975007CCD0A /* Just in Frameworks */ = {isa = PBXBuildFile; productRef = 764CF18627EA1975007CCD0A /* Just */; };
+		7643886128C62A8600A8216A /* Just in Frameworks */ = {isa = PBXBuildFile; productRef = 7643886028C62A8600A8216A /* Just */; };
 		764D2CC027A02DE000BDCE3C /* background.js in Resources */ = {isa = PBXBuildFile; fileRef = 764D2CBF27A02DE000BDCE3C /* background.js */; };
 		76D94F2A2602348E003A3801 /* SubscribeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76D94F292602348E003A3801 /* SubscribeViewController.swift */; };
 		76D94F2F260234D4003A3801 /* SwiftyStoreKit in Frameworks */ = {isa = PBXBuildFile; productRef = 76D94F2E260234D4003A3801 /* SwiftyStoreKit */; };
@@ -81,7 +81,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				76D94F382602354B003A3801 /* StoreKit.framework in Frameworks */,
-				764CF18727EA1975007CCD0A /* Just in Frameworks */,
+				7643886128C62A8600A8216A /* Just in Frameworks */,
 				76D94F2F260234D4003A3801 /* SwiftyStoreKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -185,7 +185,7 @@
 			name = "Save to Raindrop.io";
 			packageProductDependencies = (
 				76D94F2E260234D4003A3801 /* SwiftyStoreKit */,
-				764CF18627EA1975007CCD0A /* Just */,
+				7643886028C62A8600A8216A /* Just */,
 			);
 			productName = "Save to Raindrop.io";
 			productReference = 76E78B382514A30200D331A8 /* Save to Raindrop.io.app */;
@@ -236,7 +236,7 @@
 			mainGroup = 76E78B2F2514A30200D331A8;
 			packageReferences = (
 				76D94F2D260234D4003A3801 /* XCRemoteSwiftPackageReference "SwiftyStoreKit" */,
-				764CF18527EA1975007CCD0A /* XCRemoteSwiftPackageReference "Just" */,
+				760CC96728C62A1B0037CEE6 /* XCRemoteSwiftPackageReference "Just" */,
 			);
 			productRefGroup = 76E78B392514A30200D331A8 /* Products */;
 			projectDirPath = "";
@@ -436,7 +436,7 @@
 				CODE_SIGN_ENTITLEMENTS = Extension/Extension.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 229;
+				CURRENT_PROJECT_VERSION = 230;
 				DEVELOPMENT_TEAM = 7459JWM5TY;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = Extension/Info.plist;
@@ -461,7 +461,7 @@
 				CODE_SIGN_ENTITLEMENTS = Extension/Extension.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 229;
+				CURRENT_PROJECT_VERSION = 230;
 				DEVELOPMENT_TEAM = 7459JWM5TY;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = Extension/Info.plist;
@@ -490,7 +490,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 229;
+				CURRENT_PROJECT_VERSION = 230;
 				DEVELOPMENT_TEAM = 7459JWM5TY;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = App/Info.plist;
@@ -516,7 +516,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 229;
+				CURRENT_PROJECT_VERSION = 230;
 				DEVELOPMENT_TEAM = 7459JWM5TY;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = App/Info.plist;
@@ -565,7 +565,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		764CF18527EA1975007CCD0A /* XCRemoteSwiftPackageReference "Just" */ = {
+		760CC96728C62A1B0037CEE6 /* XCRemoteSwiftPackageReference "Just" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/dduan/Just.git";
 			requirement = {
@@ -584,9 +584,9 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		764CF18627EA1975007CCD0A /* Just */ = {
+		7643886028C62A8600A8216A /* Just */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 764CF18527EA1975007CCD0A /* XCRemoteSwiftPackageReference "Just" */;
+			package = 760CC96728C62A1B0037CEE6 /* XCRemoteSwiftPackageReference "Just" */;
 			productName = Just;
 		};
 		76D94F2E260234D4003A3801 /* SwiftyStoreKit */ = {
