@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import { call, put, takeEvery, select, throttle, all } from 'redux-saga/effects'
+import { call, put, takeEvery, select } from 'redux-saga/effects'
 import Api from '../../modules/api'
 import { getUrl } from '../../helpers/bookmarks'
 
@@ -9,9 +9,7 @@ import {
 	SPACE_NEXTPAGE_REQ, SPACE_NEXTPAGE_SUCCESS, SPACE_NEXTPAGE_ERROR,
 	SPACE_CHANGE_SORT,
 	SPACE_VIEW_TOGGLE,
-	SPACE_VIEW_CONFIG,
-
-	BOOKMARK_UPDATE_SUCCESS
+	SPACE_VIEW_CONFIG
 } from '../../constants/bookmarks'
 import { USER_UPDATE_REQ } from '../../constants/user'
 
@@ -28,8 +26,6 @@ export default function* () {
 		SPACE_NEXTPAGE_REQ,
 		SPACE_CHANGE_SORT
 	], loadSpace)
-
-	yield throttle(1000, BOOKMARK_UPDATE_SUCCESS, maybeRefeshSpace)
 
 	yield takeEvery(SPACE_VIEW_TOGGLE, viewToggle)
 	yield takeEvery(SPACE_VIEW_CONFIG, viewConfig)
@@ -75,25 +71,6 @@ function* loadSpace({spaceId, query, ignore=false}) {
 			error,
 			query
 		})
-	}
-}
-
-function* maybeRefeshSpace({spaceId, movedFromSpaceId}) {
-	//Bookmark is moved from one collection, to another, now we need to refresh destination collection
-	if (movedFromSpaceId && movedFromSpaceId.length){
-		const operations = [];
-
-		(Array.isArray(spaceId) ? spaceId : [spaceId])
-			.forEach(_id => {
-				operations.push(
-					...[
-						put({type: SPACE_REFRESH_REQ, spaceId: String(parseInt(_id))}),
-						put({type: SPACE_REFRESH_REQ, spaceId: String(parseInt(_id+'s'))})
-					]
-				)
-			})
-
-		yield all(operations)
 	}
 }
 
