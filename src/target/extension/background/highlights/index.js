@@ -60,7 +60,7 @@ async function reloadAll() {
 
 //public methods
 export async function addCurrentTabSelection() {
-    if (!await enable()) return
+    await enable()
     return addSelection(await currentTab())
 }
 

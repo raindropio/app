@@ -163,7 +163,14 @@ export async function available() {
 
 //Make all required preparations before using
 export async function enable() {
-    if (!await permissions.request('tabs')) {
+    var havePermission = false
+    try {
+        havePermission = await permissions.request('tabs')
+    } catch (e) {
+        console.error(e)
+    }
+
+    if (!havePermission) {
         alert('Permission required!')
         return false
     }
