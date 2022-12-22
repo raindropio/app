@@ -9,6 +9,7 @@ import Action from './action'
 import Title from './title'
 import Link from './link'
 import More from './more'
+import Date from './date'
 
 export default class BookmarkEditForm extends React.Component {
     onSubmitForm = e=>{
@@ -35,6 +36,7 @@ export default class BookmarkEditForm extends React.Component {
                     <Tags {...this.props} />
                     <Link {...this.props} />
                     <More {...this.props} />
+                    <Date {...this.props} />
 
                     <Separator variant='transparent' />
                     
