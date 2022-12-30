@@ -20,14 +20,14 @@ export default function SettingsIntegrationsReady() {
     }, [hidden])
 
     const apps = useMemo(()=>[
-        { title: 'Readwise Sync', href: 'https://readwise.io/sync#raindrop', icon: 'readwise' },
         { title: 'Raycast Extension', href: 'https://www.raycast.com/lardissone/raindrop-io' },
-        { title: 'Alfred Workflow', href: 'https://www.packal.org/workflow/search-raindropio', icon: 'alfred' },
+        { title: 'Alfred Workflow', href: 'https://www.packal.org/workflow/search-raindropio', icon: 'alfred' }
     ], [])
 
     const webs = useMemo(()=>[
         { title: 'Send new bookmarks to Google Sheet', href: 'https://ifttt.com/applets/hn5RNTPp-log-new-items-in-raindrop-io-to-a-google-sheet', icon: 'google' },
         { title: 'Save favorite Youtube videos', href: 'https://ifttt.com/applets/DJyFrvNd-save-liked-youtube-video-to-raindrop-io', icon: 'youtube' },
+        { title: 'Readwise Sync', href: 'https://readwise.io/sync#raindrop', icon: 'readwise' },
         { title: 'Save favorite Tweets', href: 'https://ifttt.com/applets/zY5kqKtL-save-the-tweets-you-like-in-raindrop-io', icon: 'twitter' },
         { title: `${t.s('more')} 2000 ${t.s('integrations').toLowerCase()}…`, href: 'https://ifttt.com/raindrop', icon: 'open' }
     ], [])
