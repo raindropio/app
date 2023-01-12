@@ -55,7 +55,7 @@ export default function PageMyItemToolbar({ item, tab, tabs }) {
                 <Icon name='open' />
             </Button>
 
-            {tab == 'preview' && item.type == 'article' ? (
+            {tab == 'preview' && (item.type == 'article' || item.type == 'book') ? (
                 <Settings
                     tab={tab}
                     item={item} />

@@ -21,8 +21,11 @@ export default function PageMyItemTabPreview({ item: { _id, type, link }, webVie
     //src
     let src = ''
     switch(type) {
-        case 'article': src = PREVIEW_URL+'/article/'+btoa(link)+`#solid-bg=false&theme=${font_color||theme.app}&font-family=${font_family}&font-size=${font_size}`; break
-        default:        src = PREVIEW_URL+'/embed/'+btoa(link); break
+        case 'article':
+        case 'book':
+            src = PREVIEW_URL+'/article/'+btoa(link)+`#solid-bg=false&theme=${font_color||theme.app}&font-family=${font_family}&font-size=${font_size}`; break
+        default:
+            src = PREVIEW_URL+'/embed/'+btoa(link); break
     }
 
     return (
