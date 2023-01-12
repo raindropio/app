@@ -252,8 +252,6 @@
   "collapseAll": "Kollapsa alla",
   "document": "Dokument",
   "documents": "Dokumenter",
-  "book": "Bok",
-  "books": "Böcker",
   "audio": "Ljud",
   "audios": "Ljud",
   "byRelevance": "Efter relevans",
@@ -359,5 +357,7 @@
   "dateSearchD": "Sök efter ett speciellt datum med format ÅÅÅÅ-MM-DD eller en speciell månad (ÅÅÅÅ-MM) eller ett år (ÅÅÅÅ). Sätt < eller > framför ett datum för att söka före eller efter.",
   "currentCollection": "Aktuell samling",
   "highlights": "Höjdpunkter",
-  "notes": "Anteckningar"
+  "notes": "Anteckningar",
+  "book": "Bok",
+  "books": "Böcker"
 }

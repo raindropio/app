@@ -252,8 +252,6 @@
   "collapseAll": "收合全部",
   "document": "文件",
   "documents": "文件",
-  "book": "書",
-  "books": "圖書",
   "audio": "音效",
   "audios": "音效",
   "byRelevance": "按相關性",
@@ -359,5 +357,7 @@
   "dateSearchD": "以格式 YYYY-MM-DD 搜尋特定年月日 或 以格式 (YYYY-MM) 搜尋特定年月 或 以格式 (YYYY) 搜尋特定年份。將 < or > 放在日期前面以查找特定日期之前或之後。",
   "currentCollection": "現有收藏",
   "highlights": "標記",
-  "notes": "筆記"
+  "notes": "筆記",
+  "book": "書",
+  "books": "書籍"
 }

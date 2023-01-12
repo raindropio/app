@@ -252,8 +252,6 @@
   "collapseAll": "收起全部",
   "document": "文件",
   "documents": "文件",
-  "book": "书",
-  "books": "图书",
   "audio": "文件",
   "audios": "文件",
   "byRelevance": "通过相关性",
@@ -359,5 +357,7 @@
   "dateSearchD": "搜索格式为YYYY-MM-DD的特定日期，或特定的月份(YYYY-MM) 或年份(YYYY)。在日期前面加上<或>，可以分别找到特定日期之前或之后的收藏。",
   "currentCollection": "当前合集",
   "highlights": "高亮",
-  "notes": "备注"
+  "notes": "备注",
+  "book": "书",
+  "books": "书籍"
 }

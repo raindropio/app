@@ -252,8 +252,6 @@
   "collapseAll": "Klap alles in",
   "document": "document",
   "documents": "Documenten",
-  "book": "Boek",
-  "books": "Boeken",
   "audio": "audio",
   "audios": "Audio",
   "byRelevance": "Op relevantie",
@@ -359,5 +357,7 @@
   "dateSearchD": "Zoek naar een specifieke datum in formaat JJJJ-MM-DD of een specifieke maand (JJJJ-MM) of een jaar (JJJJ). Plaats < of > voor een datum om respectievelijk voor of na die specifieke datum te zoeken.",
   "currentCollection": "Huidige verzameling",
   "highlights": "Aantekeningen",
-  "notes": "Notities"
+  "notes": "Notities",
+  "book": "Boek",
+  "books": "Boeken"
 }

@@ -252,8 +252,6 @@
   "collapseAll": "Collapse all",
   "document": "Document",
   "documents": "Documents",
-  "book": "Book",
-  "books": "Books",
   "audio": "Audio",
   "audios": "Audios",
   "byRelevance": "By relevance",
@@ -359,5 +357,7 @@
   "dateSearchD": "Search for specific date in format YYYY-MM-DD or specific month (YYYY-MM) or a year (YYYY). Put < or > in front of a date to find before or after specific date respectively.",
   "currentCollection": "Current collection",
   "highlights": "Highlights",
-  "notes": "Notes"
+  "notes": "Notes",
+  "book": "Book",
+  "books": "Books"
 }

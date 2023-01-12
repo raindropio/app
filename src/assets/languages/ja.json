@@ -252,8 +252,6 @@
   "collapseAll": "全て閉じる",
   "document": "ドキュメント",
   "documents": "ドキュメント",
-  "book": "本",
-  "books": "書籍",
   "audio": "音声",
   "audios": "音声",
   "byRelevance": "関連性によって",
@@ -359,5 +357,7 @@
   "dateSearchD": "特定の日付 YYYY-MM-DD、特定の月 (YYYY-MM)、特定の年 (YYYY) を検索します。日付の前に<または>を付けると、特定の日付の前または後を検索します。",
   "currentCollection": "現在のコレクション",
   "highlights": "ハイライト",
-  "notes": "備考"
+  "notes": "備考",
+  "book": "本",
+  "books": "書籍"
 }

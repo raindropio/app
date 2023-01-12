@@ -252,8 +252,6 @@
   "collapseAll": "Tümünü daralt",
   "document": "Doküman",
   "documents": "Dokümanlar",
-  "book": "Kitap",
-  "books": "Kitabın",
   "audio": "Ses",
   "audios": "Sesler",
   "byRelevance": "Alakaya göre",
@@ -359,5 +357,7 @@
   "dateSearchD": "YYYY-AA-GG formatında belirli bir tarihi, (YYYY-AA) formatında belirli bir ayı veya (YYYY) formatında belirli bir yılı aratın. Belirtilen tarihin öncesini veya sonrasını bulmak için tarihin önüne < veya > koyun.",
   "currentCollection": "Mevcut koleksiyon",
   "highlights": "Vurgulananlar",
-  "notes": "Notlar"
+  "notes": "Notlar",
+  "book": "Kitap",
+  "books": "Kitaplar"
 }

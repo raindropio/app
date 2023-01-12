@@ -103,7 +103,7 @@
   "publicD": "Jeder mit diesem Link hat Zugang zur Seite (Anmeldung ist nicht erforderlich)",
   "move": "Verschieben",
   "selectAll": "Alle auswählen",
-  "supportOnlyUrls": "Du kannst nur Links mit http und https Protokoll speichern!",
+  "supportOnlyUrls": "Leider können wir diese Seite nicht speichern!",
   "addTags": "Tags hinzufügen",
   "noBookmarks": "Keine Lesezeichen",
   "copyURL": "URL kopieren",
@@ -252,8 +252,6 @@
   "collapseAll": "Alles ausklappen",
   "document": "Dokument",
   "documents": "Dokumente",
-  "book": "Buch",
-  "books": "Bücher",
   "audio": "Audio",
   "audios": "Audio",
   "byRelevance": "Nach Relevanz",
@@ -359,5 +357,7 @@
   "dateSearchD": "Suche nach einem bestimmten Datum im Format JJJJ-MM-TT oder einem bestimmten Monat (JJJJ-MM) oder einem Jahr (JJJJ). Setze < oder > vor ein Datum, um nach einem Datum vor oder nach einem bestimmten Zeitpunkt zu suchen.",
   "currentCollection": "Aktuelle Sammlung",
   "highlights": "Highlights",
-  "notes": "Notizen"
+  "notes": "Notizen",
+  "book": "Buch",
+  "books": "Bücher"
 }

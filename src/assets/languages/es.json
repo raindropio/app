@@ -252,8 +252,6 @@
   "collapseAll": "Contraer todo",
   "document": "Documento",
   "documents": "Documentos",
-  "book": "Libro",
-  "books": "Libros",
   "audio": "Audio",
   "audios": "Audios",
   "byRelevance": "Por relevancia",
@@ -359,5 +357,7 @@
   "dateSearchD": "Busca por una fecha específica con el formato AAAA-MM-DD, por un mes concreto (AAAA-MM) o por año (AAAA). Escribe < o > delante de una fecha para buscar antes o después de la misma.",
   "currentCollection": "Colección actual",
   "highlights": "Destacados",
-  "notes": "Notas"
+  "notes": "Notas",
+  "book": "Libro",
+  "books": "Libros"
 }

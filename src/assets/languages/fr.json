@@ -103,6 +103,7 @@
   "publicD": "Toute personne disposant du lien peut accéder à la page (l'inscription n'est pas requise)",
   "move": "Déplacer",
   "selectAll": "Tout sélectionner",
+  "supportOnlyUrls": "Malheureusement, nous ne pouvons sauvegarder cette page !",
   "addTags": "Ajouter des tags",
   "noBookmarks": "Aucun favoris",
   "copyURL": "Copier l'URL",
@@ -251,8 +252,6 @@
   "collapseAll": "Tout réduire",
   "document": "Document",
   "documents": "Documents",
-  "book": "Livre",
-  "books": "Livres",
   "audio": "Audio",
   "audios": "Audio",
   "byRelevance": "Par pertinence",
@@ -356,5 +355,9 @@
   "narrowSearch": "Affiner votre recherche",
   "createdDate": "Date de création",
   "dateSearchD": "Recherchez une date spécifique au format AAAA-MM-JJ ou un mois spécifique (AAAA-MM) ou une année (AAAA). Mettez < ou > devant une date pour rechercher respectivement avant ou après celle-ci.",
-  "currentCollection": "Collection actuelle"
+  "currentCollection": "Collection actuelle",
+  "highlights": "Points marquants",
+  "notes": "Notes",
+  "book": "Livre",
+  "books": "Livres"
 }

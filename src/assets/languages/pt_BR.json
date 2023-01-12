@@ -252,8 +252,6 @@
   "collapseAll": "Recolher tudo",
   "document": "documento",
   "documents": "Documentos",
-  "book": "Livro",
-  "books": "Livros",
   "audio": "Áudio",
   "audios": "Áudios",
   "byRelevance": "Por relevância",
@@ -359,5 +357,7 @@
   "dateSearchD": "Pesquise uma data específica no formato YYYY-MM-DD ou no mês específico (YYYY-MM) ou um ano (YYYY). Coloque < ou > antes da data para localizar antes ou depois de uma data específica, respectivamente.",
   "currentCollection": "Coleção atual",
   "highlights": "Destaques",
-  "notes": "Notas"
+  "notes": "Notas",
+  "book": "Livro",
+  "books": "Livros"
 }

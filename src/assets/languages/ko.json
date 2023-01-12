@@ -109,7 +109,7 @@
   "copyURL": "URL 복사",
   "help": "도움말",
   "name": "이름",
-  "import": "들여오기",
+  "import": "데이터 가져오기",
   "howToUse": "어떻게 사용하나요?",
   "helpContext": "바로가기 메뉴",
   "helpContextD": "더 많은 기능을 원하시면 마우스 오른쪽 버튼으로 북마크 또는 컬렉션을 클릭하세요",
@@ -252,8 +252,6 @@
   "collapseAll": "모두 닫기",
   "document": "문서",
   "documents": "문서함",
-  "book": "도서",
-  "books": "서적",
   "audio": "오디오",
   "audios": "오디오",
   "byRelevance": "관련도 순",
@@ -359,5 +357,7 @@
   "dateSearchD": "YYYY-MM-DD 또는 특정 월(YYYY-MM) 또는 1년(YYYY) 형식으로 된 특정 날짜를 검색하십시오. 날짜 앞에 < 또는 >을 넣으면 특정 날짜 전후의 날짜를 찾을 수 있습니다.",
   "currentCollection": "현재 컬렉션",
   "highlights": "하이라이트",
-  "notes": "메모"
+  "notes": "메모",
+  "book": "책",
+  "books": "도서"
 }
