@@ -2,6 +2,7 @@
 import './wdyr'
 import React from 'react'
 import { render } from 'react-dom'
+import { target, environment } from '~target'
 import Sentry from '~modules/vendors/sentry'
 
 //polyfills
@@ -46,11 +47,12 @@ render(
 	document.getElementById('react')
 )
 
-//load lazy scripts
-window.onload = ()=>
-	window.requestAnimationFrame(()=>{
-		for(const script of document.querySelectorAll('.lazy-script')){
-			script.async = true
-			script.src = script.getAttribute('data-src')
-		}
-	})
+//load lazy scripts (ignored in firefox extension, prohibited)
+if (!(target == 'extension' && environment.includes('firefox')))
+	window.onload = ()=>
+		window.requestAnimationFrame(()=>{
+			for(const script of document.querySelectorAll('.lazy-script')){
+				script.async = true
+				script.src = script.getAttribute('data-src')
+			}
+		})

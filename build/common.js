@@ -88,19 +88,17 @@ module.exports = ({ production, filename='[name].[contenthash]', sentry={} }, { 
 
 		//Sentry
 		...(production ? [
-			...(!profile ? [
-				new SentryCliPlugin({
-					org: 'oblako-corp',
-					project: 'app',
-					authToken: process.env.SENTRY_AUTH_TOKEN, //required in CI environment
-					release: process.env.SENTRY_RELEASE,
-	
-					include: './src',
-					ignore: [ 'node_modules', 'build', 'dist' ],
-					configFile: path.resolve(__dirname, 'sentry.properties'),
-					...sentry
-				})
-			] : [])
+			new SentryCliPlugin({
+				org: 'oblako-corp',
+				project: 'app',
+				authToken: process.env.SENTRY_AUTH_TOKEN, //required in CI environment
+				release: process.env.SENTRY_RELEASE,
+
+				include: './src',
+				ignore: [ 'node_modules', 'build', 'dist' ],
+				configFile: path.resolve(__dirname, 'sentry.properties'),
+				...sentry
+			})
 		]: []),
 
 		new webpack.DefinePlugin({
