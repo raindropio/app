@@ -1,0 +1,42 @@
+name: Publish GitHub Release
+
+on:
+  push:
+    branches:
+    - release/production
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        submodules: 'recursive'
+
+    - name: Use Node.js 16.x
+      uses: actions/setup-node@v1
+      with:
+        node-version: 16.x
+
+    - name: Install dependencies
+      run: yarn
+
+    - name: Build for all platforms
+      env:
+        SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+      run: yarn build && yarn build:extension && build:electron
+
+    - name: Read package json
+      id: json
+      uses: zoexx/github-action-json-file-properties@release
+      with:
+        file_path: "package.json"
+
+    - uses: "marvinpinto/action-automatic-releases@latest"
+      with:
+        repo_token: "${{ secrets.GITHUB_TOKEN }}"
+        automatic_release_tag: "latest"
+        prerelease: true
+        title: ${{steps.json.outputs.version}}
+        files: |
+          dist/*.zip
