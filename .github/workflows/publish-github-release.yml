@@ -21,6 +21,9 @@ jobs:
     - name: Install dependencies
       run: yarn
 
+    - name: Make version.sh for xcode project executable
+      run: chmod +x build/xcode/Save\ to\ Raindrop.io/version.sh
+
     - name: Build for all platforms
       env:
         SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
