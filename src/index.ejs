@@ -50,11 +50,13 @@
 	<div id="react"></div>
 
 	<!-- plausible -->
-	<script 
+	<%if (process.env.APP_TARGET != 'extension' || process.env.EXTENSION_VENDOR != 'firefox') { %>
+	<script
 		class='lazy-script'
 		data-src="https://app.raindrop.io/pb/<%= process.env.APP_TARGET === 'extension' ? 'hash' : 'site' %>.js"
 		data-domain='app.raindrop.io'
 		data-api='https://app.raindrop.io/pb/api/event'
 		data-exclude='/my, /my/*'></script>
+	<% } %>
 </body>
 </html>

@@ -39,7 +39,7 @@ jobs:
       with:
         repo_token: "${{ secrets.GITHUB_TOKEN }}"
         automatic_release_tag: "latest"
-        prerelease: true
+        prerelease: false
         title: ${{steps.json.outputs.version}}
         files: |
           dist/*.zip
