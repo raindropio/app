@@ -42,6 +42,7 @@ export default function PageSettingsSidebarPages() {
             { to: 'import', title: t.s('import'), icon: 'import' },
             { to: 'integrations', title: t.s('integrations'), icon: 'integrations' },
             { to: 'backups', title: t.s('backups'), icon: 'export' },
+            { to: 'tfa', title: '2FA', icon: 'lock' },
         ]
             .map(page=>({
                 ...page,

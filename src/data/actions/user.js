@@ -9,7 +9,10 @@ import {
 	USER_SUBSCRIPTION_LOAD_REQ,
 	USER_UPDATE_REQ,
 	USER_AVATAR_UPLOAD_REQ,
-	USER_BACKUP
+	USER_BACKUP,
+	USER_TFA_CONFIGURE,
+	USER_TFA_VERIFY,
+	USER_TFA_REVOKE
 } from '../constants/user'
 
 export const load = ()=>({
@@ -90,4 +93,24 @@ export const logout = (all=false)=>({
 
 export const loadSubscription = ()=>({
 	type: USER_SUBSCRIPTION_LOAD_REQ
+})
+
+export const tfaConfigure = (onSuccess, onFail)=>({
+	type: USER_TFA_CONFIGURE,
+	onSuccess: wrapFunc(onSuccess), //{ secret, qrCode }
+	onFail: wrapFunc(onFail)
+})
+
+export const tfaVerify = (code, onSuccess, onFail)=>({
+	type: USER_TFA_VERIFY,
+	code,
+	onSuccess: wrapFunc(onSuccess), //{ recoveryCode }
+	onFail: wrapFunc(onFail)
+})
+
+export const tfaRevoke = (code, onSuccess, onFail)=>({
+	type: USER_TFA_REVOKE,
+	code,
+	onSuccess: wrapFunc(onSuccess),
+	onFail: wrapFunc(onFail)
 })

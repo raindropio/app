@@ -16,7 +16,10 @@ import {
 	USER_LOST_PASSWORD, USER_LOST_PASSWORD_SUCCESS,
 	USER_RECOVER_PASSWORD,
 	USER_SUBSCRIPTION_LOAD_REQ, USER_SUBSCRIPTION_LOAD_SUCCESS, USER_SUBSCRIPTION_LOAD_ERROR,
-	USER_BACKUP
+	USER_BACKUP,
+	USER_TFA_CONFIGURE,
+	USER_TFA_VERIFY,
+	USER_TFA_REVOKE
 } from '../constants/user'
 
 //Requests
@@ -41,6 +44,10 @@ export default function* () {
 	yield takeLatest(USER_LOGOUT_REQ, logout)
 
 	yield takeLatest(USER_BACKUP, backup)
+
+	yield takeLatest(USER_TFA_CONFIGURE, tfaConfigure)
+	yield takeLatest(USER_TFA_VERIFY, tfaVerify)
+	yield takeLatest(USER_TFA_REVOKE, tfaRevoke)
 
 	yield takeLatest(USER_SUBSCRIPTION_LOAD_REQ, loadSubscription)
 }
@@ -198,6 +205,44 @@ function* backup({ ignore=false, onSuccess, onFail }) {
 
 	try {
 		yield call(Api.get, 'user/backup?json=1')
+		onSuccess()
+	} catch (error) {
+		onFail(error)
+	}
+}
+
+function* tfaConfigure({ ignore=false, onSuccess, onFail }) {
+	if (ignore)
+		return;
+
+	try {
+		const { secret, qrCode } = yield call(Api.get, 'user/tfa')
+		onSuccess({ secret, qrCode })
+	} catch (error) {
+		onFail(error)
+	}
+}
+
+function* tfaVerify({ ignore=false, code, onSuccess, onFail }) {
+	if (ignore)
+		return;
+
+	try {
+		const { user, recoveryCode } = yield call(Api.post, 'user/tfa', { code })
+		yield put({type: USER_UPDATE_SUCCESS, user })
+		onSuccess({ recoveryCode })
+	} catch (error) {
+		onFail(error)
+	}
+}
+
+function* tfaRevoke({ ignore=false, code, onSuccess, onFail }) {
+	if (ignore)
+		return;
+
+	try {
+		const { user } = yield call(Api.del, 'user/tfa', { code })
+		yield put({type: USER_UPDATE_SUCCESS, user })
 		onSuccess()
 	} catch (error) {
 		onFail(error)

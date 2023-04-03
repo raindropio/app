@@ -13,6 +13,8 @@ export const normalizeUser = (user={})=>{
 		registered:			user.registered||null,
 		lastUpdate:			user.lastUpdate||null,
 
+		tfa:				user.tfa || {},
+
 		//connect
 		google:				user.google || {},
 		apple:				user.apple || {},

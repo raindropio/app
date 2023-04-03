@@ -10,6 +10,7 @@ import Extension from './extension'
 import Import from './import'
 import Integrations from './integrations'
 import Pro from './pro'
+import Tfa from './tfa'
 
 export default function PageSettings() {
     return (
@@ -22,6 +23,7 @@ export default function PageSettings() {
             <Route path='import' element={<Import />} />
             <Route path='integrations' element={<Integrations />} />
             <Route path='pro' element={<Pro />} />
+            <Route path='tfa' element={<Tfa />} />
         </Route>
     )
 }
