@@ -1,4 +1,5 @@
 import React from 'react'
+import t from '~t'
 import { useSelector } from 'react-redux'
 import { user } from '~data/selectors/user'
 
@@ -13,7 +14,7 @@ export default function SettingsTfaStatus() {
         </Alert>
     ) : (
         <Alert>
-            Two-factor authentication (2FA) allows user account owners to add an additional layer of login security to Raindrop.io accounts.
+            {t.s('tfaD')}
         </Alert>
     )
 }

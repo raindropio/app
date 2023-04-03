@@ -12,7 +12,7 @@ export default function SettingsBackupsAutomatic() {
 
     return (
         <Alert style={{gridColumn: '1/-1'}}>
-            Never worry about losing your data. Your account creates daily backups of your collections, bookmarks, tags and highlights.
+            {t.s('backupsD')}
             <br/><br/>
 
             {pro ? (
