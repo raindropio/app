@@ -359,5 +359,7 @@
   "highlights": "Points marquants",
   "notes": "Notes",
   "book": "Livre",
-  "books": "Livres"
+  "books": "Livres",
+  "tfa": "Authentification à deux facteurs",
+  "enterTotp": "Entrez le code de l'authentificateur"
 }

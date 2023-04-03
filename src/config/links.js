@@ -4,7 +4,7 @@ import { target, environment } from '~target'
 let overrideProLink = ''
 if (target == 'extension')
     if (environment.includes('safari-ios'))
-        overrideProLink = 'https://api.raindrop.io/v1/auth/jwt?done_uri=rnio://settings/pro'
+        overrideProLink = 'https://api.raindrop.io/v1/auth/jwt?done_uri=raindrop://settings/pro'
     else if (environment.includes('safari'))
         overrideProLink = 'https://api.raindrop.io/v1/auth/jwt?done_uri=rniomacsafari://subscribe'
 
@@ -35,6 +35,7 @@ export default {
         collaboration: 'https://help.raindrop.io/collaboration',
         'add-bookmark': 'https://help.raindrop.io/bookmarks#add-new-bookmark',
         search: 'https://help.raindrop.io/using-search',
+        tfa: 'https://help.raindrop.io/tfa',
         highlights: {
             index: 'https://help.raindrop.io/highlights',
             addExtension: 'https://help.raindrop.io/highlights/#'+(environment.includes('safari-ios') ? 'add-extension-safari-ios' : 'add-extension')

@@ -1,110 +1,103 @@
-import React from 'react'
+import React, { useState, useCallback, useEffect } from 'react'
 import t from '~t'
-import { connect } from 'react-redux'
-import { userStatus, errorReason } from '~data/selectors/user'
+import { useDispatch, useSelector } from 'react-redux'
+import { userStatus, errorReason, tfaContinueToken } from '~data/selectors/user'
 import { loginWithPassword } from '~data/actions/user'
 
 import { Helmet } from 'react-helmet'
-import { Link } from 'react-router-dom'
+import { Link, Navigate } from 'react-router-dom'
 import { Layout, Text, Label } from '~co/common/form'
 import Button from '~co/common/button'
 import Preloader from '~co/common/preloader'
 import Social from '../social'
 import { Error } from '~co/overlay/dialog'
 
-class AccountLogin extends React.Component {
-    state = {
-        email: '',
-        password: ''
-    }
+export default function AccountLogin() {
+    const dispatch = useDispatch()
 
-    componentDidUpdate(prev) {
-        if (prev.error.login != this.props.error.login)
-            Error(this.props.error.login)
-    }
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+    const status = useSelector(state=>userStatus(state).login)
+    const error = useSelector(state=>errorReason(state).login)
+    const tfa = useSelector(tfaContinueToken)
 
-    onChangeValue = (e)=>
-        this.setState({[e.target.name]: e.target.value})
+    useEffect(()=>{
+        if (error) Error(error)
+    }, [error])
 
-    onSubmit = (e)=>{
+    const onChangeEmailField = useCallback(e=>setEmail(e.target.value), [])
+    const onChangePasswordField = useCallback(e=>setPassword(e.target.value), [])
+
+    const onSubmit = useCallback(e=>{
         e.preventDefault()
-        this.props.loginWithPassword(this.state)
-    }
+        dispatch(loginWithPassword({ email, password }))
+    }, [email, password])
 
-    render() {
-        const status = this.props.status.login
+    return (
+        <form onSubmit={onSubmit}>
+            {tfa ? (
+                <Navigate to={`/account/tfa/${tfa}`} replace />
+            ) : null}
 
-        return (
-            <form onSubmit={this.onSubmit}>
-                <Helmet><title>{t.s('signIn')}</title></Helmet>
+            <Helmet><title>{t.s('signIn')}</title></Helmet>
 
-                <Layout>
-                    <Label>Email {t.s('or')} {t.s('username').toLowerCase()}</Label>
-                    <Text
-                        type='text'
-                        name='email'
-                        disabled={status=='loading'}
-                        autoFocus
-                        required
-                        inputMode='email'
-                        autoCapitalize='none'
-                        spellCheck='false'
-                        value={this.state.email}
-                        onChange={this.onChangeValue} />
+            <Layout>
+                <Label>Email {t.s('or')} {t.s('username').toLowerCase()}</Label>
+                <Text
+                    type='text'
+                    name='email'
+                    disabled={status=='loading'}
+                    autoFocus
+                    required
+                    inputMode='email'
+                    autoCapitalize='none'
+                    spellCheck='false'
+                    value={email}
+                    onChange={onChangeEmailField} />
 
-                    <Label>
-                        {t.s('password')}
-                        <Button 
-                            as={Link}
-                            size='small'
-                            variant='link'
-                            to='/account/lost'
-                            tabIndex='1'>
-                            {t.s('recoverPassword')}
-                        </Button>
-                    </Label>
-                    <Text
-                        type='password'
-                        name='password'
-                        disabled={status=='loading'}
-                        required
-                        value={this.state.password}
-                        onChange={this.onChangeValue} />
-
-                    {status == 'loading' ? (
-                        <Button variant='flat' data-block>
-                            <Preloader />
-                        </Button>
-                    ) : (
-                        <Button
-                            as='input' 
-                            type='submit'
-                            variant='primary'
-                            data-block
-                            value={t.s('signIn')} />
-                    )}
-
-                    <Social 
-                        {...this.props}
-                        disabled={status == 'loading'} />
-
-                    <Button
+                <Label>
+                    {t.s('password')}
+                    <Button 
                         as={Link}
-                        to='/account/signup'
+                        size='small'
                         variant='link'
-                        data-block>
-                        {t.s('signUp')}
+                        to='/account/lost'
+                        tabIndex='1'>
+                        {t.s('recoverPassword')}
                     </Button>
-                </Layout>
-            </form>
-        )
-    }
-}
+                </Label>
+                <Text
+                    type='password'
+                    name='password'
+                    disabled={status=='loading'}
+                    required
+                    value={password}
+                    onChange={onChangePasswordField} />
 
-export default connect(
-    state=>({
-        status: userStatus(state),
-		error: errorReason(state)
-    }),
-    { loginWithPassword }
-)(AccountLogin)
+                {status == 'loading' ? (
+                    <Button variant='flat' data-block>
+                        <Preloader />
+                    </Button>
+                ) : (
+                    <Button
+                        as='input' 
+                        type='submit'
+                        variant='primary'
+                        data-block
+                        value={t.s('signIn')} />
+                )}
+
+                <Social
+                    disabled={status == 'loading'} />
+
+                <Button
+                    as={Link}
+                    to='/account/signup'
+                    variant='link'
+                    data-block>
+                    {t.s('signUp')}
+                </Button>
+            </Layout>
+        </form>
+    )
+}

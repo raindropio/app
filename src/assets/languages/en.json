@@ -359,5 +359,7 @@
   "highlights": "Highlights",
   "notes": "Notes",
   "book": "Book",
-  "books": "Books"
+  "books": "Books",
+  "tfa": "Two-Factor Authentication",
+  "enterTotp": "Enter an authenticator app code"
 }

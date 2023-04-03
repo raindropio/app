@@ -10,6 +10,7 @@ import JWT from './jwt'
 import Login from './login'
 import Lost from './lost'
 import Recover from './recover'
+import Tfa from './tfa'
 import Signup from './signup'
 
 export default function PageAccount() {
@@ -32,6 +33,7 @@ export default function PageAccount() {
                 }})()}
 
                 <Route path='jwt' element={<JWT />} />
+                <Route path='tfa/:token' element={<Tfa />} />
                 <Route path='recover/:token' element={<Recover />} />
             </Route>
 

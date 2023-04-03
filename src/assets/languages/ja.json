@@ -359,5 +359,7 @@
   "highlights": "ハイライト",
   "notes": "備考",
   "book": "本",
-  "books": "書籍"
+  "books": "書籍",
+  "tfa": "２段階認証",
+  "enterTotp": "確認コードを入力"
 }

@@ -4,6 +4,7 @@ import {
 	USER_LOGIN_PASSWORD, USER_REGISTER_PASSWORD,
 	USER_LOGIN_NATIVE,
 	USER_LOGIN_JWT,
+	USER_LOGIN_TFA,
 	USER_LOST_PASSWORD, USER_RECOVER_PASSWORD,
 	USER_SUBSCRIPTION_LOAD_REQ,
 	USER_UPDATE_REQ,
@@ -60,6 +61,14 @@ export const loginNative = (params, onSuccess, onFail)=>({
 export const loginWithJWT = (token, onSuccess, onFail)=>({
 	type: USER_LOGIN_JWT,
 	token,
+	onSuccess: wrapFunc(onSuccess),
+	onFail: wrapFunc(onFail)
+})
+
+export const loginWithTFA = ({ token, code }, onSuccess, onFail)=>({
+	type: USER_LOGIN_TFA,
+	token,
+	code,
 	onSuccess: wrapFunc(onSuccess),
 	onFail: wrapFunc(onFail)
 })

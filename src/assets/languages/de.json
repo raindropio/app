@@ -359,5 +359,7 @@
   "highlights": "Highlights",
   "notes": "Notizen",
   "book": "Buch",
-  "books": "Bücher"
+  "books": "Bücher",
+  "tfa": "Zwei-Faktor-Authentifizierung",
+  "enterTotp": "Authentifizierungsscode eingeben"
 }

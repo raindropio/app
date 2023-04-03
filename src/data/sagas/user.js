@@ -12,6 +12,7 @@ import {
 	USER_REGISTER_PASSWORD,
 	USER_LOGIN_NATIVE,
 	USER_LOGIN_JWT,
+	USER_CONTINUE_TFA, USER_LOGIN_TFA,
 	USER_LOST_PASSWORD, USER_LOST_PASSWORD_SUCCESS,
 	USER_RECOVER_PASSWORD,
 	USER_SUBSCRIPTION_LOAD_REQ, USER_SUBSCRIPTION_LOAD_SUCCESS, USER_SUBSCRIPTION_LOAD_ERROR,
@@ -32,6 +33,7 @@ export default function* () {
 	yield takeLatest(USER_REGISTER_PASSWORD, registerWithPassword)
 	yield takeLatest(USER_LOGIN_NATIVE, loginNative)
 	yield takeLatest(USER_LOGIN_JWT, loginJWT)
+	yield takeLatest(USER_LOGIN_TFA, loginTFA)
 
 	yield takeLatest(USER_LOST_PASSWORD, lostPassword)
 	yield takeLatest(USER_RECOVER_PASSWORD, recoverPassword)
@@ -86,7 +88,12 @@ function* uploadAvatar({ avatar, ignore=false, onSuccess, onFail }) {
 
 function* loginWithPassword({email, password, onSuccess, onFail}) {
 	try {
-		yield call(Api.post, 'auth/email/login', {email, password});
+		const { tfa } = yield call(Api.post, 'auth/email/login', { email, password });
+
+		if (tfa){
+			yield put({type: USER_CONTINUE_TFA, token: tfa, way: 'login', onSuccess});
+			return
+		}
 
 		yield put({type: USER_REFRESH_REQ, way: 'login', onSuccess});
 	} catch (error) {
@@ -107,7 +114,13 @@ function* registerWithPassword({name, email, password, onSuccess, onFail}) {
 
 function* loginNative({params, onSuccess, onFail}) {
 	try {
-		const {auth, ...etc} = yield call(Api.get, 'auth/'+params.provider+'/native'+params.token);
+		const { auth, tfa, ...etc } = yield call(Api.get, 'auth/'+params.provider+'/native'+params.token);
+
+		if (tfa){
+			yield put({type: USER_CONTINUE_TFA, token: tfa, way: 'native', onSuccess})
+			return
+		}
+
 		if (!auth)
 			throw new ApiError(etc)
 
@@ -126,6 +139,18 @@ function* loginJWT({token, onSuccess, onFail}) {
 		yield put({type: USER_REFRESH_REQ, way: 'jwt', onSuccess});
 	} catch (error) {
 		yield put({type: USER_LOAD_ERROR, error, way: 'jwt', onFail});
+	}
+}
+
+function* loginTFA({ token, code, onSuccess, onFail }) {
+	try {
+		const {result, ...etc} = yield call(Api.post, `auth/tfa/${token}`, { code });
+		if (!result)
+			throw new ApiError(etc)
+
+		yield put({type: USER_REFRESH_REQ, way: 'tfa', onSuccess});
+	} catch (error) {
+		yield put({type: USER_LOAD_ERROR, error, way: 'tfa', onFail});
 	}
 }
 

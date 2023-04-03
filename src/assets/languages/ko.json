@@ -359,5 +359,7 @@
   "highlights": "하이라이트",
   "notes": "메모",
   "book": "책",
-  "books": "도서"
+  "books": "도서",
+  "tfa": "이중 인증",
+  "enterTotp": "인증 코드 입력"
 }

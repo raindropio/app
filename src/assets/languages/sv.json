@@ -359,5 +359,7 @@
   "highlights": "Höjdpunkter",
   "notes": "Anteckningar",
   "book": "Bok",
-  "books": "Böcker"
+  "books": "Böcker",
+  "tfa": "Tvåfaktorsautentisering",
+  "enterTotp": "Ange autentiseringskod"
 }

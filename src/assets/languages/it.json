@@ -359,5 +359,7 @@
   "highlights": "Evidenziamenti",
   "notes": "Note",
   "book": "Libro",
-  "books": "Libri"
+  "books": "Libri",
+  "tfa": "Autenticazione a due fattori",
+  "enterTotp": "Inserisci il codice di verifica"
 }

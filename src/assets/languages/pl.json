@@ -359,5 +359,7 @@
   "highlights": "Wyróżnienia",
   "notes": "Notatki",
   "book": "Książka",
-  "books": "Książki"
+  "books": "Książki",
+  "tfa": "Uwierzytelnianie dwustopniowe",
+  "enterTotp": "Wpisz kod weryfikacyjny"
 }

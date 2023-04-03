@@ -359,5 +359,7 @@
   "highlights": "Vurgulananlar",
   "notes": "Notlar",
   "book": "Kitap",
-  "books": "Kitaplar"
+  "books": "Kitaplar",
+  "tfa": "İki-aşamalı Doğrulama",
+  "enterTotp": "Kimlik doğrulayıcı kodunu girin"
 }
