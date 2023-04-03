@@ -7,14 +7,13 @@ import links from '~config/links'
 
 import { Link, useParams } from 'react-router-dom'
 import { Helmet } from 'react-helmet'
-import { Layout, SubLabel, Text, Buttons } from '~co/common/form'
+import { Layout, Text, Buttons, Separator } from '~co/common/form'
 import Button from '~co/common/button'
 import Preloader from '~co/common/preloader'
 import Header, { Title } from '~co/common/header'
 import { Error } from '~co/overlay/dialog'
-import Icon from '~co/common/icon'
 
-export default function PageAccountTfa() {
+export default function PageAccountTfaLogin() {
     const { token } = useParams()
     const dispatch = useDispatch()
 
@@ -54,14 +53,10 @@ export default function PageAccountTfa() {
                     autoComplete='one-time-code'
                     name='code'
                     disabled={status=='loading'}
-                    required
                     placeholder={t.s('enterTotp')}
+                    required
                     value={code}
                     onChange={onChangeCodeField} />
-
-                <SubLabel>
-                    <a href={links.help.tfa} target='_blank'><Icon name='open' size='micro' />&nbsp; {t.s('help')}</a>
-                </SubLabel>
 
                 <Buttons>
                     {status == 'loading' ? (
@@ -82,6 +77,25 @@ export default function PageAccountTfa() {
                         variant='outline'
                         to='/account/login'>
                         {t.s('cancel')}
+                    </Button>
+                </Buttons>
+
+                <Separator />
+
+                <Buttons variant='between'>
+                    <Button 
+                        as={Link}
+                        variant='link'
+                        to={`/account/tfa/revoke/${token}`}
+                        tabIndex='1'>
+                        {t.s('disable')}
+                    </Button>
+
+                    <Button 
+                        href={links.help.tfa} 
+                        variant='link'
+                        target='_blank'>
+                        {t.s('help')}
                     </Button>
                 </Buttons>
             </Layout>

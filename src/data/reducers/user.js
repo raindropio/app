@@ -10,7 +10,7 @@ import {
 	USER_RECOVER_PASSWORD,
 	USER_LOGIN_NATIVE,
 	USER_LOGIN_JWT,
-	USER_CONTINUE_TFA, USER_LOGIN_TFA,
+	USER_LOGIN_TFA,
 	USER_SUBSCRIPTION_LOAD_REQ, USER_SUBSCRIPTION_LOAD_SUCCESS, USER_SUBSCRIPTION_LOAD_ERROR
 } from '../constants/user'
 import { REHYDRATE } from 'redux-persist/src/constants'
@@ -82,15 +82,7 @@ export default function(state = initialState, action){switch (action.type) {
 		return setSpecificStatus(state, 'jwt', 'loading')
 	}
 
-	//TFA
-	case USER_CONTINUE_TFA: {
-		if (typeof action.onSuccess == 'function')
-			action.onSuccess()
-
-		return setSpecificStatus(state)
-			.setIn(['tfa', 'continueToken'], action.token)
-	}
-
+	//2FA
 	case USER_LOGIN_TFA:{
 		return setSpecificStatus(state, 'tfa', 'loading')
 	}
@@ -186,7 +178,6 @@ export default function(state = initialState, action){switch (action.type) {
 
 const setSpecificStatus = (state, way='', val='idle')=>{
 	return state
-		.setIn(['tfa', 'continueToken'], '')
 		.setIn(['status', 'login'], 	way == 'login' ? val : 'idle')
 		.setIn(['status', 'register'], 	way == 'register' ? val : 'idle')
 		.setIn(['status', 'native'], 	way == 'native' ? val : 'idle')
@@ -217,9 +208,6 @@ const initialState = Immutable({
 		jwt:'',
 		save:'',
 		tfa:''
-	},
-	tfa: {
-		continueToken: ''
 	},
 	current: blankCurrent,
 	subscription: blankSubscription

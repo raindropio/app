@@ -1,11 +1,11 @@
 import React, { useState, useCallback, useEffect } from 'react'
 import t from '~t'
 import { useDispatch, useSelector } from 'react-redux'
-import { userStatus, errorReason, tfaContinueToken } from '~data/selectors/user'
+import { userStatus, errorReason } from '~data/selectors/user'
 import { loginWithPassword } from '~data/actions/user'
 
 import { Helmet } from 'react-helmet'
-import { Link, Navigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { Layout, Text, Label } from '~co/common/form'
 import Button from '~co/common/button'
 import Preloader from '~co/common/preloader'
@@ -14,12 +14,12 @@ import { Error } from '~co/overlay/dialog'
 
 export default function AccountLogin() {
     const dispatch = useDispatch()
+    const navigate = useNavigate()
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const status = useSelector(state=>userStatus(state).login)
     const error = useSelector(state=>errorReason(state).login)
-    const tfa = useSelector(tfaContinueToken)
 
     useEffect(()=>{
         if (error) Error(error)
@@ -30,15 +30,14 @@ export default function AccountLogin() {
 
     const onSubmit = useCallback(e=>{
         e.preventDefault()
-        dispatch(loginWithPassword({ email, password }))
-    }, [email, password])
+        dispatch(loginWithPassword({ email, password }, success=>{
+            if (success?.tfa)
+                navigate(`/account/tfa/login/${success.tfa}`, { replace: true })
+        }))
+    }, [email, password, navigate])
 
     return (
         <form onSubmit={onSubmit}>
-            {tfa ? (
-                <Navigate to={`/account/tfa/${tfa}`} replace />
-            ) : null}
-
             <Helmet><title>{t.s('signIn')}</title></Helmet>
 
             <Layout>

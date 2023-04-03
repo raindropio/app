@@ -36,7 +36,7 @@ export default function SettingsTfaEnable() {
         e.preventDefault()
         setLoading(true)
         dispatch(tfaVerify(
-            code,
+            { code },
             v=>{
                 setVerify(v)
                 setLoading(false)

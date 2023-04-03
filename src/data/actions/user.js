@@ -44,9 +44,11 @@ export const backup = (onSuccess, onFail)=>({
 	onFail: wrapFunc(onFail)
 })
 
-export const loginWithPassword = ({email, password})=>({
+export const loginWithPassword = ({email, password}, onSuccess, onFail)=>({
 	type: USER_LOGIN_PASSWORD,
-	email, password
+	email, password,
+	onSuccess: wrapFunc(onSuccess),
+	onFail: wrapFunc(onFail)
 })
 
 export const registerWithPassword = ({name, email, password})=>({
@@ -101,16 +103,18 @@ export const tfaConfigure = (onSuccess, onFail)=>({
 	onFail: wrapFunc(onFail)
 })
 
-export const tfaVerify = (code, onSuccess, onFail)=>({
+export const tfaVerify = ({ code }, onSuccess, onFail)=>({
 	type: USER_TFA_VERIFY,
 	code,
 	onSuccess: wrapFunc(onSuccess), //{ recoveryCode }
 	onFail: wrapFunc(onFail)
 })
 
-export const tfaRevoke = (code, onSuccess, onFail)=>({
+//token is optional if user is logged in
+export const tfaRevoke = ({ code, token }, onSuccess, onFail)=>({
 	type: USER_TFA_REVOKE,
 	code,
+	token,
 	onSuccess: wrapFunc(onSuccess),
 	onFail: wrapFunc(onFail)
 })

@@ -12,7 +12,7 @@ import {
 	USER_REGISTER_PASSWORD,
 	USER_LOGIN_NATIVE,
 	USER_LOGIN_JWT,
-	USER_CONTINUE_TFA, USER_LOGIN_TFA,
+	USER_LOGIN_TFA,
 	USER_LOST_PASSWORD, USER_LOST_PASSWORD_SUCCESS,
 	USER_RECOVER_PASSWORD,
 	USER_SUBSCRIPTION_LOAD_REQ, USER_SUBSCRIPTION_LOAD_SUCCESS, USER_SUBSCRIPTION_LOAD_ERROR,
@@ -98,7 +98,7 @@ function* loginWithPassword({email, password, onSuccess, onFail}) {
 		const { tfa } = yield call(Api.post, 'auth/email/login', { email, password });
 
 		if (tfa){
-			yield put({type: USER_CONTINUE_TFA, token: tfa, way: 'login', onSuccess});
+			onSuccess({ tfa })
 			return
 		}
 
@@ -124,7 +124,7 @@ function* loginNative({params, onSuccess, onFail}) {
 		const { auth, tfa, ...etc } = yield call(Api.get, 'auth/'+params.provider+'/native'+params.token);
 
 		if (tfa){
-			yield put({type: USER_CONTINUE_TFA, token: tfa, way: 'native', onSuccess})
+			onSuccess({ tfa })
 			return
 		}
 
@@ -236,14 +236,19 @@ function* tfaVerify({ ignore=false, code, onSuccess, onFail }) {
 	}
 }
 
-function* tfaRevoke({ ignore=false, code, onSuccess, onFail }) {
+function* tfaRevoke({ ignore=false, code, token, onSuccess, onFail }) {
 	if (ignore)
 		return;
 
 	try {
-		const { user } = yield call(Api.del, 'user/tfa', { code })
-		yield put({type: USER_UPDATE_SUCCESS, user })
-		onSuccess()
+		if (token) {
+			yield call(Api.del, `auth/tfa/${token}`, { code })
+			onSuccess()
+		} else {
+			const { user } = yield call(Api.del, 'user/tfa', { code })
+			yield put({type: USER_UPDATE_SUCCESS, user })
+			onSuccess()
+		}
 	} catch (error) {
 		onFail(error)
 	}

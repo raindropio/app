@@ -17,7 +17,7 @@ export default function SettingsTfaRevoke() {
 
     const onSubmit = useCallback(()=>{
         setConfirm(false)
-        dispatch(tfaRevoke(code, ()=>{}, Error))
+        dispatch(tfaRevoke({ code }, ()=>{}, Error))
     }, [code])
 
     if (!enabled)

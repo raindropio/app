@@ -27,13 +27,6 @@ export const errorReason = createSelector(
 	(errorReason)=>errorReason
 )
 
-export const tfaContinueToken = createSelector(
-	[({user={}})=>{
-		return user.tfa.continueToken
-	}],
-	(continueToken)=>continueToken
-)
-
 export const isNotAuthorized = createSelector(
 	[({user={}})=>{
 		return user.getIn(['status', 'authorized'])
