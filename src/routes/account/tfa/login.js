@@ -32,9 +32,15 @@ export default function PageAccountTfaLogin() {
     )
 
     const onSubmit = useCallback(e=>{
-        e.preventDefault()
+        if (e?.preventDefault)
+            e.preventDefault()
         dispatch(loginWithTFA({ token, code }))
     }, [code, token])
+
+    useEffect(()=>{
+        if (code.length == 6)
+            onSubmit()
+    }, [code.length, onSubmit])
 
     return (<>
         <Helmet><title>{t.s('tfa')}</title></Helmet>
