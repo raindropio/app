@@ -10,7 +10,6 @@ import Contextmenu from './contextmenu'
 import DropBookmarks from '~co/bookmarks/dnd/drop'
 import Sharing from '../sharing'
 import ChangeIcon from '../changeIcon'
-import ProCheck from '~co/user/pro/check'
 import OpenAllBookmarks from '~co/bookmarks/openAll'
 
 export default class CollectionsItem extends React.PureComponent {
@@ -120,8 +119,7 @@ export default class CollectionsItem extends React.PureComponent {
             this.setState({ sharing: false }),
 
         onCreateNewChildClick: async()=>{
-            if (await ProCheck('nested'))
-                this.props.actions.addBlank(this.props.item._id, true)
+            this.props.actions.addBlank(this.props.item._id, true)
         },
     
         onKeyUp: (e)=>{

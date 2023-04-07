@@ -6,7 +6,6 @@ import Item from '../item'
 import Group from '../group'
 import Empty from './empty'
 import { ItemHeightCallback } from '~co/common/list'
-import ProCheck from '~co/user/pro/check'
 
 export default class CollectionsTree extends React.Component {
     state = {
@@ -188,13 +187,8 @@ export default class CollectionsTree extends React.Component {
                             action = 'combine'
                     }
 
-                if (action=='combine'){
-                    //prevent move collection to collection for non-pro
-                    if (target.item && !await ProCheck('nested'))
-                        return
-
+                if (action=='combine')
                     this.props.actions.oneReorder(origin.item._id, { to: target.item ? target.item._id : target._id })
-                }
             }break
             
             case 'group':{

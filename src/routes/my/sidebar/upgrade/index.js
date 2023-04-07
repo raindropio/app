@@ -13,7 +13,7 @@ function Upgrade({ isPro }) {
 
     let message = t.s('proGreeting')
     if (_.random(0,1)==1)
-        message = `${t.s('fullTextSearch')}, ${t.s('nestedCollections').toLowerCase()}, ${t.s('suggested').toLowerCase()} ${t.s('tags').toLowerCase()} ${t.s('und')} ${t.s('more').toLowerCase()}…`
+        message = `${t.s('fullTextSearch')}, ${t.s('permanentCopy').toLowerCase()}, ${t.s('backups').toLowerCase()} ${t.s('und')} ${t.s('more').toLowerCase()}…`
     
     return (
         <a href={config.links.pro.buy} target='_blank' className={s.upgrade}>

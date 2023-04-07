@@ -9,11 +9,6 @@ import {
 } from '../../helpers/collections'
 
 import {
-	userIsPro,
-	onlyForProUsersCheck
-} from './utils'
-
-import {
 	COLLECTION_CREATE_REQ, COLLECTION_CREATE_SUCCESS, COLLECTION_CREATE_ERROR,
 	COLLECTION_UPDATE_REQ, COLLECTION_UPDATE_SUCCESS, COLLECTION_UPDATE_ERROR,
 	COLLECTION_REMOVE_REQ, COLLECTION_REMOVE_SUCCESS, COLLECTION_REMOVE_ERROR,
@@ -102,7 +97,7 @@ function* actualizeCollectionCount({ ignore, spaceId, movedFromSpaceId }) {
 		yield all(operations)
 }
 
-export function* createCollection({obj={}, ignore=false, after, fromBlank=false, nestedOnlyInPro=true, onSuccess, onFail}) {
+export function* createCollection({obj={}, ignore=false, after, fromBlank=false, onSuccess, onFail}) {
 	if (ignore)
 		return;
 
@@ -116,9 +111,7 @@ export function* createCollection({obj={}, ignore=false, after, fromBlank=false,
 			}
 			//Make child of specific collection
 			else {
-				const isPro = yield userIsPro()
-				if (isPro || !nestedOnlyInPro)
-					groupId = ''
+				groupId = ''
 			}
 		}
 
@@ -247,18 +240,15 @@ function* addBlank({ siblingId, asChild, ignore=false }) {
 		after = parseInt(siblingId)
 
 		//should be in specific parent
-		//prevent creating nested collection if non pro
-		if (state.user.current.pro){
-			const collection = state.collections.getIn(['items', after])
-			if (collection){
-				if (asChild){
-					item.parentId = collection._id
-					item.sort = -1
-				}
-				else if (collection.parentId){
-					item.parentId = collection.parentId
-					item.sort = collection.sort + 0.5
-				}
+		const collection = state.collections.getIn(['items', after])
+		if (collection){
+			if (asChild){
+				item.parentId = collection._id
+				item.sort = -1
+			}
+			else if (collection.parentId){
+				item.parentId = collection.parentId
+				item.sort = collection.sort + 0.5
 			}
 		}
 
@@ -442,8 +432,6 @@ function* reorderCollection({_id=0, ignore=false, to, after, before}) {
 				if (!collection.access.draggable)
 					throw new ApiError({ status: 403, errorMessage: 'collection is not draggable' })
 
-				yield onlyForProUsersCheck()
-
 				yield all([
 					//remove collection from groups
 					put({
@@ -523,10 +511,6 @@ function* reorderCollection({_id=0, ignore=false, to, after, before}) {
 							}
 						}
 					)
-
-					//prevent for non-pro users
-					if (collection.parentId != target.parentId)
-						yield onlyForProUsersCheck()
 
 					actions.push({
 						type: COLLECTION_UPDATE_REQ,

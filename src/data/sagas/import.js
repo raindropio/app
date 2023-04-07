@@ -122,8 +122,7 @@ function* ensureCollection(mode, obj, existingCollections) {
 
 	//create new collection if nothing found
 	return yield createCollection({
-		obj,
-		nestedOnlyInPro:false
+		obj
 	})
 }
 
