@@ -87,6 +87,7 @@ export const normalizeBookmark = (item={}, options)=>{
 		reparse:		item.reparse || (item.pleaseParse ? true : false),
 		cache:			item.cache ? item.cache.status : '',
 		fileType:		item.fileType || (item.file ? item.file.type : null),
+		reminder:		{ date: item.reminder?.date || undefined }
 	}
 
 	if (!options.flat)

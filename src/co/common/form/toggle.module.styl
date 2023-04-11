@@ -1,0 +1,38 @@
+.toggle {
+    height: var(--padding-medium)
+    border-radius: var(--padding-medium)
+    
+    display: inline-block
+    aspect-ratio: 1.75
+    padding: 2px
+    transition: .2s background ease-in-out, .1s opacity ease-in-out
+
+    span {
+        display: block
+        height: 100%
+        aspect-ratio: 1 / 1
+        border-radius: 50%
+        background: var(--background-color)
+        transition: .2s margin ease-in-out
+    }
+
+    &:focus {
+        box-shadow: 0 0 0 2px var(--accent-color)
+    }
+}
+
+.toggle.on {
+    background: var(--accent-color)
+
+    span {
+        margin-left: 50%
+    }
+}
+
+.toggle.off {
+    background: var(--secondary-text-color)
+}
+
+.toggle:active {
+    opacity: .8
+}

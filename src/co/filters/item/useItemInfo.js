@@ -37,6 +37,11 @@ export default function useItemInfo({ _id, query='', count, top, ...other }) {
             title = t.s('noTags')
         break
 
+        case 'reminder':
+            icon = 'reminder'
+            title = t.s('reminders')
+        break
+
         case 'type':
             if (top){
                 title = t.s(token)

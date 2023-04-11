@@ -1,14 +1,15 @@
 import s from './index.module.styl'
 import React from 'react'
 
-import { Layout, Separator } from '~co/common/form'
+import { Layout, Separator, Group } from '~co/common/form'
 import Cover from './cover'
 import Collection from './collection'
 import Tags from './tags'
 import Action from './action'
 import Title from './title'
 import Link from './link'
-import More from './more'
+import Reminder from './reminder'
+import Important from './important'
 import Date from './date'
 
 export default class BookmarkEditForm extends React.Component {
@@ -35,7 +36,13 @@ export default class BookmarkEditForm extends React.Component {
                     <Collection {...this.props} />
                     <Tags {...this.props} />
                     <Link {...this.props} />
-                    <More {...this.props} />
+
+                    <div />
+                    <Group>
+                        <Important {...this.props} />
+                        {/* <Reminder {...this.props} /> */}
+                    </Group>
+                    
                     <Date {...this.props} />
 
                     <Separator variant='transparent' />
