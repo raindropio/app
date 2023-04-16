@@ -361,5 +361,7 @@
   "book": "Bok",
   "books": "Böcker",
   "tfa": "Tvåfaktorsautentisering",
-  "enterTotp": "Ange autentiseringskod"
+  "enterTotp": "Ange autentiseringskod",
+  "reminder": "Påminnelse",
+  "reminders": "Påminnelser"
 }

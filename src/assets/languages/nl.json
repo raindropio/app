@@ -361,5 +361,7 @@
   "book": "Boek",
   "books": "Boeken",
   "tfa": "Tweestapsverificatie",
-  "enterTotp": "Authenticator code invoeren"
+  "enterTotp": "Authenticator code invoeren",
+  "reminder": "Herinnering",
+  "reminders": "Herinneringen"
 }

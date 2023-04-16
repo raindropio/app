@@ -361,5 +361,9 @@
   "book": "Buch",
   "books": "Bücher",
   "tfa": "Zwei-Faktor-Authentifizierung",
-  "enterTotp": "Authentifizierungsscode eingeben"
+  "enterTotp": "Authentifizierungsscode eingeben",
+  "tfaD": "Die Zwei-Faktor-Authentifizierung (auch bekannt als 2FA) fügt deinem Konto eine zusätzliche Sicherheitsebene hinzu, indem Sie zum Anmelden eine Authentifizierungs-App verwenden müssen",
+  "backupsD": "Mache dir keine Sorgen über den Verlust deiner Daten. Dein Konto erstellt tägliche Backups deiner Sammlungen, Lesezeichen, Tags und Highlights.",
+  "reminder": "Erinnerung",
+  "reminders": "Erinnerungen"
 }

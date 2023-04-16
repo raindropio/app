@@ -361,5 +361,9 @@
   "book": "Livre",
   "books": "Livres",
   "tfa": "Authentification à deux facteurs",
-  "enterTotp": "Entrez le code de l'authentificateur"
+  "enterTotp": "Entrez le code de l'authentificateur",
+  "tfaD": "L'authentification à deux facteurs (également appelée 2FA) ajoute une couche de sécurité supplémentaire à votre compte en vous obligeant à utiliser une application d'authentification lors de la connexion à votre compte",
+  "backupsD": "Ne vous inquiétez jamais de perdre vos données. Votre compte crée des sauvegardes quotidiennes de vos collections, signets, tags et surlignages.",
+  "reminder": "Rappel",
+  "reminders": "Rappels"
 }

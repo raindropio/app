@@ -361,5 +361,7 @@
   "book": "Kitap",
   "books": "Kitaplar",
   "tfa": "İki-aşamalı Doğrulama",
-  "enterTotp": "Kimlik doğrulayıcı kodunu girin"
+  "enterTotp": "Kimlik doğrulayıcı kodunu girin",
+  "reminder": "Hatırlatma",
+  "reminders": "Hatırlatmalar"
 }

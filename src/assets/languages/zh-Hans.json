@@ -361,5 +361,7 @@
   "book": "书",
   "books": "书籍",
   "tfa": "双重验证",
-  "enterTotp": "输入验证器生成的代码"
+  "enterTotp": "输入验证器生成的代码",
+  "reminder": "提示",
+  "reminders": "提醒"
 }

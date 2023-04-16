@@ -40,7 +40,7 @@ export default class BookmarkEditForm extends React.Component {
                     <div />
                     <Group>
                         <Important {...this.props} />
-                        {/* <Reminder {...this.props} /> */}
+                        <Reminder {...this.props} />
                     </Group>
                     
                     <Date {...this.props} />

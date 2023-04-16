@@ -361,5 +361,7 @@
   "book": "書",
   "books": "書籍",
   "tfa": "雙重身分驗證",
-  "enterTotp": "輸入驗證碼"
+  "enterTotp": "輸入驗證碼",
+  "reminder": "提示",
+  "reminders": "提醒"
 }

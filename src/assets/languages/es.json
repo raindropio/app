@@ -361,5 +361,7 @@
   "book": "Libro",
   "books": "Libros",
   "tfa": "Autenticación de dos factores",
-  "enterTotp": "Ingresa un código de autenticación"
+  "enterTotp": "Ingresa un código de autenticación",
+  "reminder": "Recordatorio",
+  "reminders": "Recordatorios"
 }

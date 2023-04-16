@@ -361,5 +361,7 @@
   "book": "Książka",
   "books": "Książki",
   "tfa": "Uwierzytelnianie dwustopniowe",
-  "enterTotp": "Wpisz kod weryfikacyjny"
+  "enterTotp": "Wpisz kod weryfikacyjny",
+  "reminder": "Przypomnienie",
+  "reminders": "Przypomnienia"
 }
