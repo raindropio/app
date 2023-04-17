@@ -2,7 +2,8 @@ import wrapFunc from '../../utils/wrapFunc'
 import {
 	BOOKMARK_LOAD_REQ, BOOKMARK_CREATE_REQ, BOOKMARKS_CREATE_REQ, BOOKMARK_UPDATE_REQ, BOOKMARK_REMOVE_REQ, BOOKMARK_UPLOAD_REQ,
 	BOOKMARK_RECOVER, BOOKMARK_IMPORTANT, BOOKMARK_SCREENSHOT, BOOKMARK_REPARSE, BOOKMARK_MOVE,
-	BOOKMARK_REORDER
+	BOOKMARK_REORDER,
+	BOOKMARK_SUGGEST
 } from '../../constants/bookmarks'
 
 //High level API
@@ -81,6 +82,11 @@ export const oneUpdate = (_id, set={}, onSuccess, onFail)=>({
 	set,
 	onSuccess: wrapFunc(onSuccess),
 	onFail: wrapFunc(onFail)
+})
+
+export const oneSuggest = (obj={})=>({
+	type: BOOKMARK_SUGGEST,
+	obj, //{link, title, excerpt, ...etc}
 })
 
 //Many

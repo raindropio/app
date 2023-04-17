@@ -10,8 +10,9 @@ import Button from '~co/common/button'
 import Icon from '~co/common/icon'
 import CollectionIcon from '~co/collections/item/icon'
 import Picker from '~co/collections/picker'
+import Suggested from './suggested'
 
-export default function BookmarkEditFormCollection({ item: { collectionId }, onChange, onCommit }) {
+export default function BookmarkEditFormCollection({ item, onChange, onCommit }) {
     const dispatch = useDispatch()
 
     const [pick, setPick] = useState(false)
@@ -19,7 +20,7 @@ export default function BookmarkEditFormCollection({ item: { collectionId }, onC
     //path
     useEffect(()=>dispatch(load()), [])
     const getCollectionPath = useMemo(()=>makeCollectionPath(), [])
-    const path = useSelector(state=>getCollectionPath(state, collectionId, { self: true }))
+    const path = useSelector(state=>getCollectionPath(state, item.collectionId, { self: true }))
     const pathText = useMemo(()=>path.map((p)=>p.title).join(' / '), [path])
 
     //button
@@ -51,18 +52,25 @@ export default function BookmarkEditFormCollection({ item: { collectionId }, onC
                 <Button 
                     ref={buttonRef}
                     href=''
-                    variant='outline'
+                    variant='flat'
                     onClick={onPickerClick}
                     title={pathText}>
                     <CollectionIcon {...(_.last(path)||{})} />
                     <span>{pathText || t.s('selectCollection')+'…'}</span>
                     <Icon name='arrow' />
                 </Button>
+
+                {item?.collectionId == -1 ? (
+                    <Suggested 
+                        item={item}
+                        onChange={onChange}
+                        onCommit={onCommit} />
+                ) : null}
             </div>
 
             {pick && (
                 <Picker 
-                    activeId={collectionId}
+                    activeId={item.collectionId}
                     events={pickerEvents}
                     onClose={onPickerClose} />
             )}

@@ -48,3 +48,10 @@ export const makeCreatorRef = ()=>createSelector(
 		return creatorRef
 	}
 )
+
+export const makeSuggestions = ()=>createSelector(
+	[({bookmarks})=>bookmarks.suggestions, (_, link)=>link],
+	(suggestions, link)=>(
+		suggestions[link] || { collections: [], tags: [] }
+	)
+)

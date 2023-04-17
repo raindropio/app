@@ -14,7 +14,8 @@ import {
 	BOOKMARK_REMOVE_SUCCESS, BOOKMARK_REMOVE_ERROR,
 	BOOKMARK_UPLOAD_PROGRESS,
 	BOOKMARK_IMPORTANT,
-	BOOKMARK_REORDER
+	BOOKMARK_REORDER,
+	BOOKMARK_SUGGESTED
 } from '../../constants/bookmarks'
 
 import {
@@ -201,6 +202,14 @@ export default function(state, action) {
 			return state
 				.setIn(['elements', action._id, 'collectionId'], to)
 				.setIn(['spaces', from, 'ids'], source)
+		}
+
+		//Suggestions
+		case BOOKMARK_SUGGESTED:{
+			const { link, collections, tags } = action
+
+			return state
+				.setIn(['suggestions', link], { collections, tags })
 		}
 
 		//Update tags
