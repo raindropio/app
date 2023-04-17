@@ -3,7 +3,6 @@ import t from '~t'
 
 import { Label } from '~co/common/form'
 import TagsField from '~co/tags/field'
-import Suggested from './suggested'
 
 class BookmarkEditFormTags extends React.Component {
     onChange = (tags)=>{
@@ -24,8 +23,6 @@ class BookmarkEditFormTags extends React.Component {
                         autoFocus={autoFocus=='tags'}
                         onChange={this.onChange}
                         onBlur={onCommit} />
-
-                    <Suggested {...this.props} />
                 </div>
             </>
         )

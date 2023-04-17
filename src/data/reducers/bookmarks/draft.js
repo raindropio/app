@@ -94,9 +94,6 @@ export default function(state, action) {switch (action.type) {
 			) : 'new'
 		)
 
-		if (draft.status=='removed')
-			action.dontLoadSuggestedTags = true;
-
 		//commit changes
 		return state.setIn(['drafts', _id], draft)
 	}
