@@ -15,7 +15,7 @@ import {
 	BOOKMARK_UPLOAD_PROGRESS,
 	BOOKMARK_IMPORTANT,
 	BOOKMARK_REORDER,
-	BOOKMARK_SUGGESTED
+	BOOKMARK_SUGGESTED_FIELDS
 } from '../../constants/bookmarks'
 
 import {
@@ -205,11 +205,11 @@ export default function(state, action) {
 		}
 
 		//Suggestions
-		case BOOKMARK_SUGGESTED:{
+		case BOOKMARK_SUGGESTED_FIELDS:{
 			const { link, collections, tags } = action
 
 			return state
-				.setIn(['suggestions', link], { collections, tags })
+				.setIn(['suggestedFields', link], { collections, tags })
 		}
 
 		//Update tags

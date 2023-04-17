@@ -9,7 +9,7 @@ import {
 	BOOKMARK_REMOVE_REQ, BOOKMARK_REMOVE_SUCCESS, BOOKMARK_REMOVE_ERROR,
 	BOOKMARK_UPLOAD_REQ,
 	BOOKMARK_REORDER,
-	BOOKMARK_SUGGEST, BOOKMARK_SUGGESTED,
+	BOOKMARK_SUGGEST_FIELDS, BOOKMARK_SUGGESTED_FIELDS,
 
 	BOOKMARK_RECOVER, BOOKMARK_IMPORTANT, BOOKMARK_SCREENSHOT, BOOKMARK_REPARSE, BOOKMARK_MOVE
 } from '../../constants/bookmarks'
@@ -36,7 +36,7 @@ export default function* () {
 	yield takeEvery(BOOKMARK_UPDATE_REQ, updateBookmark)
 	yield takeEvery(BOOKMARK_REMOVE_REQ, removeBookmark)
 	yield takeEvery(BOOKMARK_UPLOAD_REQ, uploadBookmark)
-	yield takeEvery(BOOKMARK_SUGGEST, suggestBookmark)
+	yield takeEvery(BOOKMARK_SUGGEST_FIELDS, suggestFields)
 
 	//many
 	yield takeEvery(BOOKMARKS_CREATE_REQ, createBookmarks)
@@ -360,7 +360,7 @@ function* reorder({ _id, ignore, order, collectionId }) {
 	})
 }
 
-function* suggestBookmark({ obj, ignore }) {
+function* suggestFields({ obj, ignore }) {
 	if (ignore) return;
 	if (!obj?.link) return;
 
@@ -370,7 +370,7 @@ function* suggestBookmark({ obj, ignore }) {
 			yield call(Api.post, 'raindrop/suggest', obj)
 
 		yield put({
-			type: BOOKMARK_SUGGESTED,
+			type: BOOKMARK_SUGGESTED_FIELDS,
 			link: obj.link,
 			collections: item.collections.map(({$id})=>$id),
 			tags: item.tags

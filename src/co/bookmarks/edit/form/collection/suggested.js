@@ -2,8 +2,8 @@ import s from './suggested.module.styl'
 import React, { useMemo, useEffect } from 'react'
 import t from '~t'
 import { useSelector, useDispatch } from 'react-redux'
-import { oneSuggest } from '~data/actions/bookmarks'
-import { makeSuggestions } from '~data/selectors/bookmarks'
+import { suggestFields } from '~data/actions/bookmarks'
+import { makeSuggestedFields } from '~data/selectors/bookmarks'
 import { makeCollection } from '~data/selectors/collections'
 
 import Button from '~co/common/button'
@@ -23,8 +23,8 @@ export default function BookmarkEditFormCollectionSuggested({ item, onChange, on
     const dispatch = useDispatch()
 
     //get suggestions
-    const getSuggestions = useMemo(()=>makeSuggestions(), [])
-    const fields = useSelector(state=>getSuggestions(state, item.link))
+    const getSuggestedFields = useMemo(()=>makeSuggestedFields(), [])
+    const fields = useSelector(state=>getSuggestedFields(state, item.link))
     const { last_collection } = useSelector(state=>state.config)
 
     //combine suggestions with last used
@@ -34,7 +34,7 @@ export default function BookmarkEditFormCollectionSuggested({ item, onChange, on
     ], [fields.collections, last_collection, item.collectionId])
 
     //load suggestions
-    useEffect(()=>dispatch(oneSuggest(item)), [item.link])
+    useEffect(()=>dispatch(suggestFields(item)), [item.link])
 
     if (!collections.length)
         return null

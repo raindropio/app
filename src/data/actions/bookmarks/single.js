@@ -3,7 +3,7 @@ import {
 	BOOKMARK_LOAD_REQ, BOOKMARK_CREATE_REQ, BOOKMARKS_CREATE_REQ, BOOKMARK_UPDATE_REQ, BOOKMARK_REMOVE_REQ, BOOKMARK_UPLOAD_REQ,
 	BOOKMARK_RECOVER, BOOKMARK_IMPORTANT, BOOKMARK_SCREENSHOT, BOOKMARK_REPARSE, BOOKMARK_MOVE,
 	BOOKMARK_REORDER,
-	BOOKMARK_SUGGEST
+	BOOKMARK_SUGGEST_FIELDS
 } from '../../constants/bookmarks'
 
 //High level API
@@ -84,8 +84,8 @@ export const oneUpdate = (_id, set={}, onSuccess, onFail)=>({
 	onFail: wrapFunc(onFail)
 })
 
-export const oneSuggest = (obj={})=>({
-	type: BOOKMARK_SUGGEST,
+export const suggestFields = (obj={})=>({
+	type: BOOKMARK_SUGGEST_FIELDS,
 	obj, //{link, title, excerpt, ...etc}
 })
 

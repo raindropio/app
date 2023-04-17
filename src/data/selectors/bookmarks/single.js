@@ -49,9 +49,9 @@ export const makeCreatorRef = ()=>createSelector(
 	}
 )
 
-export const makeSuggestions = ()=>createSelector(
-	[({bookmarks})=>bookmarks.suggestions, (_, link)=>link],
-	(suggestions, link)=>(
-		suggestions[link] || { collections: [], tags: [] }
+export const makeSuggestedFields = ()=>createSelector(
+	[({bookmarks})=>bookmarks.suggestedFields, (_, link)=>link],
+	(suggestedFields, link)=>(
+		suggestedFields[link] || { collections: [], tags: [] }
 	)
 )
