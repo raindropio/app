@@ -32,7 +32,7 @@ export default class BookmarkEditFormCover extends React.Component {
                 media
             })
 
-            this.props.onCommit()
+            this.props.onSave()
         },
 
         onScreenshot: async()=>{

@@ -34,20 +34,20 @@ function Templates({ onSetDate }) {
     )
 }
 
-export default function BookmarkEditFormReminder({ item: { reminder }, onChange, onCommit }) {
+export default function BookmarkEditFormReminder({ item: { reminder }, onChange, onSave }) {
     const onChangeDate = useCallback(date=>{
         onChange({ reminder: { date } })
     }, [onChange])
 
     const onSetDate = useCallback((date)=>{
         onChangeDate(date)
-        onCommit()
-    }, [onChangeDate, onCommit])
+        onSave()
+    }, [onChangeDate, onSave])
 
     const onDisable = useCallback(()=>{
         onChangeDate(undefined)
-        onCommit()
-    }, [onChangeDate, onCommit])
+        onSave()
+    }, [onChangeDate, onSave])
 
     return reminder.date ? (<>
         <DateTime 
@@ -59,7 +59,7 @@ export default function BookmarkEditFormReminder({ item: { reminder }, onChange,
             )}
             value={reminder.date}
             onChange={onChangeDate}
-            onBlur={onCommit} />
+            onBlur={onSave} />
     </>) : (
         <Templates onSetDate={onSetDate} />
     )

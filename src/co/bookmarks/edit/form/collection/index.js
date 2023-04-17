@@ -12,7 +12,7 @@ import CollectionIcon from '~co/collections/item/icon'
 import Picker from '~co/collections/picker'
 import Suggested from './suggested'
 
-export default function BookmarkEditFormCollection({ item, onChange, onCommit }) {
+export default function BookmarkEditFormCollection({ item, onChange, onSave }) {
     const dispatch = useDispatch()
 
     const [pick, setPick] = useState(false)
@@ -39,10 +39,10 @@ export default function BookmarkEditFormCollection({ item, onChange, onCommit })
     const pickerEvents = useMemo(()=>({
         onItemClick: ({ _id })=>{
             onChange({ collectionId: _id })
-            onCommit()
+            onSave()
             onPickerClose()
         }
-    }), [onChange, onCommit, onPickerClose])
+    }), [onChange, onSave, onPickerClose])
 
     return (
         <>

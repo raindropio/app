@@ -3,11 +3,11 @@ import t from '~t'
 import Button from '~co/common/button'
 import Icon from '~co/common/icon'
 
-export default function BookmarkEditFormImportant({ item: { important }, onChange, onCommit }) {
+export default function BookmarkEditFormImportant({ item: { important }, onChange, onSave }) {
     const onToggle = useCallback(e=>{
         e.preventDefault()
         onChange({ important: !important })
-        onCommit()
+        onSave()
     }, [important])
 
     return (
