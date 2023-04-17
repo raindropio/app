@@ -60,7 +60,7 @@ export default function BookmarkEditFormCollection({ item, onChange, onSave }) {
                     <Icon name='arrow' />
                 </Button>
 
-                {item?.collectionId == -1 ? (
+                {item?.collectionId <= 0 ? (
                     <Suggested 
                         item={item}
                         events={pickerEvents} />
