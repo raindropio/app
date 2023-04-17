@@ -1,5 +1,5 @@
 import s from './suggested.module.styl'
-import React, { useMemo, useEffect } from 'react'
+import React, { useMemo, useEffect, useCallback } from 'react'
 import t from '~t'
 import { useSelector, useDispatch } from 'react-redux'
 import { suggestFields } from '~data/actions/bookmarks'
@@ -19,7 +19,7 @@ function SuggestedCollectionLabel({ id }) {
     </>)
 }
 
-export default function BookmarkEditFormCollectionSuggested({ item, onChange, onCommit }) {
+export default function BookmarkEditFormCollectionSuggested({ item, events: { onItemClick } }) {
     const dispatch = useDispatch()
 
     //get suggestions
@@ -36,6 +36,12 @@ export default function BookmarkEditFormCollectionSuggested({ item, onChange, on
     //load suggestions
     useEffect(()=>dispatch(suggestFields(item)), [item.link])
 
+    //click
+    const onSuggestionClick = useCallback(e=>{
+        const _id = parseInt(e.currentTarget.getAttribute('data-id'))
+        onItemClick({ _id })
+    }, [onItemClick])
+
     if (!collections.length)
         return null
 
@@ -44,10 +50,11 @@ export default function BookmarkEditFormCollectionSuggested({ item, onChange, on
             {collections.map(id=>(
                 <Button 
                     key={id}
+                    data-id={id}
                     className={s.suggestion}
                     variant='outline'
                     size='small'
-                    onClick={()=>{onChange({ collectionId: id }); onCommit()}}>
+                    onClick={onSuggestionClick}>
                     <SuggestedCollectionLabel id={id} />
                 </Button>
             ))}

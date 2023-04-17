@@ -63,8 +63,7 @@ export default function BookmarkEditFormCollection({ item, onChange, onCommit })
                 {item?.collectionId == -1 ? (
                     <Suggested 
                         item={item}
-                        onChange={onChange}
-                        onCommit={onCommit} />
+                        events={pickerEvents} />
                 ) : null}
             </div>
 

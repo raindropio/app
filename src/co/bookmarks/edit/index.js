@@ -76,9 +76,11 @@ class EditBookmarkContainer extends React.Component {
 		},
 
 		onCommit: async()=>{
-			const { status } = this.props
-			if (status != 'new')
-				return this.handlers.onSave()
+			//give some time to update `unsaved` state
+			setTimeout(()=>{
+				if (this.props.unsaved)
+					return this.handlers.onSave()
+			})
 		},
     
         onSave: ()=>{
