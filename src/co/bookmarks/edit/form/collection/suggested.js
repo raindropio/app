@@ -24,14 +24,7 @@ export default function BookmarkEditFormCollectionSuggested({ item, events: { on
 
     //get suggestions
     const getSuggestedFields = useMemo(()=>makeSuggestedFields(), [])
-    const fields = useSelector(state=>getSuggestedFields(state, item.link))
-    const { last_collection } = useSelector(state=>state.config)
-
-    //combine suggestions with last used
-    const collections = useMemo(()=>[
-        ...(last_collection == item.collectionId || fields.collections.includes(last_collection) ? [] : [last_collection]), 
-        ...fields.collections
-    ], [fields.collections, last_collection, item.collectionId])
+    const fields = useSelector(state=>getSuggestedFields(state, item))
 
     //load suggestions
     useEffect(()=>dispatch(suggestFields(item)), [item.link])
@@ -46,7 +39,7 @@ export default function BookmarkEditFormCollectionSuggested({ item, events: { on
         <div 
             className={s.suggested}
             title={t.s('suggested')+' '+t.s('collection').toLowerCase()}>
-            {collections.map(id=>(
+            {fields.collections.map(id=>(
                 <Button 
                     key={id}
                     data-id={id}
