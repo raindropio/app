@@ -20,9 +20,14 @@ export const makeCollectionsSearch = ()=>createSelector(
 
 		const found = []
 
-		_.forEach(items, ({ _id, title='', count, cover })=>{
-			if (title.toLowerCase().includes(filter) &&
-                _id != ignore)
+		_.forEach(items, ({ _id, title='', slug='', count, cover })=>{
+			if (
+				_id != ignore
+				&& (
+					title.toLowerCase().includes(filter) ||
+					slug.toLowerCase().includes(filter)
+				)
+			)
 				found.push({
                     _id,
                     title,
