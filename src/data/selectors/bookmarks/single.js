@@ -57,7 +57,7 @@ export const makeSuggestedFields = ()=>createSelector(
 	],
 	({ collections=[], tags=[] }, last_collection, collectionId)=>({
 		collections: [
-			...(collectionId == last_collection || collections.includes(last_collection) ? [] : [last_collection]),
+			...(last_collection == 0 || collectionId == last_collection || collections.includes(last_collection) ? [] : [last_collection]),
 			...collections
 		].splice(0, 5),
 		
