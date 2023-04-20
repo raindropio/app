@@ -8,7 +8,7 @@ import { oneLoad, highlightAdd, highlightUpdate, highlightRemove } from '~data/a
 
 export default function useWithWebView(ref, _id) {
     //state
-    const [ready, setReady] = useState(false)
+    const [ready, setReady] = useState(0)
     const dispatch = useDispatch()
     const pro = useSelector(state=>isPro(state))
     const highlights = useSelector(state=>getHighlights(state, _id))
@@ -18,7 +18,7 @@ export default function useWithWebView(ref, _id) {
 
     useMessageEffect(ref, (type, payload) => {
         switch(type) {
-            case 'RDH_READY':   setReady(true); break
+            case 'RDH_READY':   setReady(r=>r+1); break
             case 'RDH_ADD':     dispatch(highlightAdd(_id, payload)); break
             case 'RDH_UPDATE':  dispatch(highlightUpdate(_id, payload._id, payload)); break
             case 'RDH_REMOVE':  dispatch(highlightRemove(_id, payload._id)); break
