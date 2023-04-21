@@ -7,7 +7,9 @@ async function onMessage({ type, payload }, sender) {
     if (sender.id != browser.runtime.id || !sender.tab || typeof type != 'string') return
 
     switch(type) {
-        case 'RDH_READY': break
+        case 'RDH_READY':
+            await load(sender.tab)
+        break
 
         case 'RDH_ADD':
             try {
