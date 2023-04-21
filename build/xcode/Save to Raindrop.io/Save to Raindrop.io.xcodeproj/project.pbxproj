@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 53;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -18,7 +18,7 @@
 		76E78B402514A30200D331A8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 76E78B3E2514A30200D331A8 /* Main.storyboard */; };
 		76E78B422514A30200D331A8 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E78B412514A30200D331A8 /* WelcomeViewController.swift */; };
 		76E78B442514A30200D331A8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 76E78B432514A30200D331A8 /* Assets.xcassets */; };
-		76E78B4B2514A30300D331A8 /* Save to Raindrop.io Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 76E78B4A2514A30300D331A8 /* Save to Raindrop.io Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		76E78B4B2514A30300D331A8 /* Save to Raindrop.io Extension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 76E78B4A2514A30300D331A8 /* Save to Raindrop.io Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		76E78B502514A30300D331A8 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76E78B4F2514A30300D331A8 /* Cocoa.framework */; };
 		76E78B532514A30300D331A8 /* SafariWebExtensionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E78B522514A30300D331A8 /* SafariWebExtensionHandler.swift */; };
 		76E78B672514A30300D331A8 /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = 76E78B612514A30300D331A8 /* index.html */; };
@@ -38,15 +38,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		76E78B5B2514A30300D331A8 /* Embed App Extensions */ = {
+		76E78B5B2514A30300D331A8 /* Embed Foundation Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				76E78B4B2514A30300D331A8 /* Save to Raindrop.io Extension.appex in Embed App Extensions */,
+				76E78B4B2514A30300D331A8 /* Save to Raindrop.io Extension.appex in Embed Foundation Extensions */,
 			);
-			name = "Embed App Extensions";
+			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -175,7 +175,7 @@
 				76E78B342514A30200D331A8 /* Sources */,
 				76E78B352514A30200D331A8 /* Frameworks */,
 				76E78B362514A30200D331A8 /* Resources */,
-				76E78B5B2514A30300D331A8 /* Embed App Extensions */,
+				76E78B5B2514A30300D331A8 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
@@ -214,8 +214,9 @@
 		76E78B302514A30200D331A8 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				BuildIndependentTargetsInParallel = YES;
 				LastSwiftUpdateCheck = 1200;
-				LastUpgradeCheck = 1240;
+				LastUpgradeCheck = 1430;
 				TargetAttributes = {
 					76E78B372514A30200D331A8 = {
 						CreatedOnToolsVersion = 12.0;
@@ -349,6 +350,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -410,6 +412,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -436,7 +439,8 @@
 				CODE_SIGN_ENTITLEMENTS = Extension/Extension.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 233;
+				CURRENT_PROJECT_VERSION = 237;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 7459JWM5TY;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = Extension/Info.plist;
@@ -445,7 +449,7 @@
 					"@executable_path/../Frameworks",
 					"@executable_path/../../../../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				MARKETING_VERSION = 5.2.73;
 				PRODUCT_BUNDLE_IDENTIFIER = io.raindrop.safari.extension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -461,7 +465,8 @@
 				CODE_SIGN_ENTITLEMENTS = Extension/Extension.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 233;
+				CURRENT_PROJECT_VERSION = 237;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 7459JWM5TY;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = Extension/Info.plist;
@@ -470,7 +475,7 @@
 					"@executable_path/../Frameworks",
 					"@executable_path/../../../../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				MARKETING_VERSION = 5.2.73;
 				PRODUCT_BUNDLE_IDENTIFIER = io.raindrop.safari.extension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -490,15 +495,17 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 233;
+				CURRENT_PROJECT_VERSION = 237;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 7459JWM5TY;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = App/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				MARKETING_VERSION = 5.2.73;
 				PRODUCT_BUNDLE_IDENTIFIER = io.raindrop.safari;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -516,15 +523,17 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 233;
+				CURRENT_PROJECT_VERSION = 237;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 7459JWM5TY;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = App/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				MARKETING_VERSION = 5.2.73;
 				PRODUCT_BUNDLE_IDENTIFIER = io.raindrop.safari;
 				PRODUCT_NAME = "$(TARGET_NAME)";

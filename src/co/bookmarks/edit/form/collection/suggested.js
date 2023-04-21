@@ -9,14 +9,24 @@ import { makeCollection } from '~data/selectors/collections'
 import Button from '~co/common/button'
 import CollectionIcon from '~co/collections/item/icon'
 
-function SuggestedCollectionLabel({ id }) {
+function Suggestion({ id, onClick }) {
     const getCollection = useMemo(()=>makeCollection(), [])
     const collection = useSelector(state=>getCollection(state, id))
 
-    return (<>
-        <CollectionIcon {...collection} />
-        <span>{collection.title}</span>
-    </>)
+    if (!collection.title)
+        return null
+
+    return (
+        <Button 
+            data-id={id}
+            className={s.suggestion}
+            variant='outline'
+            size='small'
+            onClick={onClick}>
+            <CollectionIcon {...collection} />
+            <span>{collection.title}</span>
+        </Button>
+    )
 }
 
 export default function BookmarkEditFormCollectionSuggested({ item, events: { onItemClick } }) {
@@ -40,15 +50,10 @@ export default function BookmarkEditFormCollectionSuggested({ item, events: { on
             className={s.suggested}
             title={t.s('suggested')+' '+t.s('collection').toLowerCase()}>
             {collections.map(id=>(
-                <Button 
-                    key={id}
-                    data-id={id}
-                    className={s.suggestion}
-                    variant='outline'
-                    size='small'
-                    onClick={onSuggestionClick}>
-                    <SuggestedCollectionLabel id={id} />
-                </Button>
+                <Suggestion 
+                    key={id} 
+                    id={id} 
+                    onClick={onSuggestionClick} />
             ))}
         </div>
     )
