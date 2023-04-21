@@ -14,7 +14,7 @@ export default function AccountExtension() {
                 <div />
 
                 <Button
-                    href={new URL('/account/signup', config.links.app.index).toString()}
+                    href={new URL(`/account/signup?redirect=${encodeURIComponent('/extension')}`, config.links.app.index).toString()}
                     target='_blank'
                     variant='primary'
                     data-block>
@@ -22,7 +22,7 @@ export default function AccountExtension() {
                 </Button>
 
                 <Button
-                    href={new URL('/account/login', config.links.app.index).toString()}
+                    href={new URL(`/account/login?redirect=${encodeURIComponent('/extension')}`, config.links.app.index).toString()}
                     target='_blank'
                     variant='outline'
                     data-block
