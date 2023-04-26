@@ -11,8 +11,8 @@ export default function PageMySpaceHeaderAdd({ cId, search }) {
     const { access } = useSelector(state=>getCollection(state, cId))
 
     const onEdit = useCallback(([item])=>{
-        navigate(`../../${item.collectionId}/item/${item._id}/edit`)
-    }, [])
+        navigate(`../../${cId == 0 ? cId : item.collectionId}/item/${item._id}/edit`)
+    }, [cId])
 
     if (cId == -99 || !access || access.level < 3)
         return null
