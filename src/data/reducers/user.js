@@ -141,9 +141,6 @@ export default function(state = initialState, action){switch (action.type) {
 		if (typeof action.onFail == 'function')
 			action.onFail(action.error)
 
-		if (state.status.authorized=='idle')
-			state = state.setIn(['status', 'authorized'], 'no')
-
 		if (action.way)
 			state = state.setIn(['errorReason', action.way], action.error)
 
