@@ -1,5 +1,5 @@
 import s from './index.module.styl'
-import React, { useEffect } from 'react'
+import React from 'react'
 import t from '~t'
 import config from '~config'
 import { target } from '~target'
@@ -8,20 +8,13 @@ import { Layout, Title } from '~co/common/form'
 import Button from '~co/common/button'
 
 function Extension() {
-    const href = new URL('/account/extension', config.links.app.index).href
-
-    useEffect(()=>{
-        window.open(href)
-        window.close()
-    }, [])
-
     return (
         <Layout>
             <Title className={s.center}>{t.s('startToSave')}</Title>
             <div />
 
             <Button 
-                href={href}
+                href={new URL('/account/extension', config.links.app.index).href}
                 target='_blank'
                 variant='primary'
                 data-block
