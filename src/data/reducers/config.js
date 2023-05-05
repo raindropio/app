@@ -50,7 +50,6 @@ const initialState = Immutable({
 	lang:					'', //should be empty!!
 	last_collection:		0,
 
-	raindrops_view:			'',
 	raindrops_sort:			'sort',
 	raindrops_hide:			[],
 	raindrops_grid_cover_size:	2,
@@ -64,6 +63,8 @@ const initialState = Immutable({
 	filters_hide:			false,
 	tags_sort:				'_id',
 	tags_hide:				false,
+
+	default_collection_view:	'list',
 	nested_view_legacy:		false,
 
 	font_size: 				0,

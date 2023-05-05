@@ -9,6 +9,7 @@ import { Title } from '~co/common/header'
 import Theme from './theme'
 import Size from './size'
 import Lang from './lang'
+import DefaultCollectionView from './default_collection_view'
 import RaindropsClick from './raindrops_click'
 import RaindropsButtons from './raindrops_buttons'
 import RaindropsSearchByScore from './raindrops_search_by_score'
@@ -28,6 +29,7 @@ export default ()=>{
 				<Size />
 				<Separator />
 
+				<DefaultCollectionView />
 				<RaindropsClick />
 				<RaindropsButtons />
 				<RaindropsSearchByScore />

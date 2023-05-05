@@ -12,6 +12,7 @@ import {
 	COLLECTIONS_CLEAN_REQ,
 	COLLECTIONS_CLEAN_SUCCESS,
 	COLLECTIONS_CLEAN_ERROR,
+	COLLECTIONS_CHANGE_VIEW,
 
 	COLLECTION_DRAFT_LOAD_REQ
 } from '../../constants/collections'
@@ -24,6 +25,7 @@ export default function* () {
 
 	yield takeEvery(COLLECTIONS_COLLAPSE_ALL, collapseAll)
 	yield takeEvery(COLLECTIONS_REORDER, reorderAll)
+	yield takeEvery(COLLECTIONS_CHANGE_VIEW, changeView)
 
 	yield takeEvery(COLLECTIONS_REMOVE_ALL, removeAllCollections)
 	yield takeEvery(COLLECTIONS_CLEAN_REQ, clean)
@@ -53,7 +55,7 @@ export function* loadCollections({ ignore=false, onSuccess, onFail }) {
 
 	try {
 		//Load Get
-		const [collections, stat={}, user={}] = yield all([
+		const [collections, stat={}, { user }] = yield all([
 			call(Api.get, 'collections/all'),
 			call(Api.get, 'user/stats'),
 			call(Api.get, 'user')
@@ -68,6 +70,10 @@ export function* loadCollections({ ignore=false, onSuccess, onFail }) {
 				if (statIndex!=-1)
 					return item.set('count', stat.items[statIndex].count)
 			}
+			
+			//view
+			if (user.config.default_collection_view)
+				item.set('view', user.config.default_collection_view)
 
 			return item;
 		})
@@ -78,8 +84,8 @@ export function* loadCollections({ ignore=false, onSuccess, onFail }) {
 				...defColls,
 				...collections.items||[],
 			],
-			groups: user.user.groups,
-			user: user.user,
+			groups: user.groups,
+			user,
 			onSuccess,
 			onFail
 		});
@@ -98,6 +104,12 @@ function* reorderAll({ ignore=false, method }){
 	if (ignore) return
 
 	yield call(Api.put, 'collections', { sort: method }) 
+}
+
+function* changeView({ ignore=false, view }){
+	if (ignore) return
+
+	yield call(Api.put, 'collections', { view }) 
 }
 
 export function* removeAllCollections({ ignore=false, onSuccess, onFail }){

@@ -9,7 +9,8 @@ import {
 	COLLECTIONS_REFRESH_REQ,
 	COLLECTIONS_REORDER,
 	COLLECTIONS_EXPAND_TO, COLLECTIONS_COLLAPSE_ALL,
-	COLLECTIONS_CLEAN_SUCCESS, COLLECTIONS_CLEAN_ERROR
+	COLLECTIONS_CLEAN_SUCCESS, COLLECTIONS_CLEAN_ERROR,
+	COLLECTIONS_CHANGE_VIEW
 } from '../../constants/collections'
 
 export default function(state, action) {switch (action.type) {
@@ -135,6 +136,18 @@ export default function(state, action) {switch (action.type) {
 	case COLLECTIONS_COLLAPSE_ALL:{
 		Object.entries(state.items).forEach(([_id])=>{
 			state = state.setIn(['items', _id, 'expanded'], false)
+		})
+
+		return state
+	}
+
+	case COLLECTIONS_CHANGE_VIEW:{
+		Object.entries(state.items).forEach(([_id])=>{
+			state = state.setIn(['items', _id, 'view'], action.view)
+		})
+
+		Object.entries(state.defaults).forEach(([_id])=>{
+			state = state.setIn(['defaults', _id, 'view'], action.view)
 		})
 
 		return state
