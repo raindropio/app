@@ -18,7 +18,7 @@ function* renameTag({tagName, newName, ignore=false, onSuccess, onFail}) {
 		return;
 
 	try{
-		const {result} = yield call(Api.put, 'tags', {tag: tagName, replace: newName})
+		const {result} = yield call(Api.put, 'tags/0', {tag: tagName, replace: newName})
 		if (!result)
 			throw new Error('cant update tag')
 
