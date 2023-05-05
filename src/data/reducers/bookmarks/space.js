@@ -28,11 +28,7 @@ export default function(state, action) {switch (action.type) {
 			const clean = space
 				.set('ids', _.uniq(space.ids).slice(0, SPACE_PER_PAGE))
 				.setIn(['query', 'page'], 0)
-				.setIn(['status', 'nextPage'],
-					space.status.nextPage == 'noMore' ?
-						'noMore' :
-						blankSpace.status.nextPage
-				)
+				.setIn(['status', 'nextPage'], blankSpace.status.nextPage)
 
 			state = state.setIn(['spaces', _id], clean)
 		})
@@ -230,7 +226,7 @@ export default function(state, action) {switch (action.type) {
 
 		space = space
 			.setIn(['status', 'nextPage'], (items.length ? 'idle' : 'noMore'))
-			.set('ids',						[...space.ids, ...clean.ids])
+			.set('ids',						_.uniq([...space.ids, ...clean.ids]))
 			.set('highlight',				space.highlight.merge(clean.highlight))
 
 		return state
