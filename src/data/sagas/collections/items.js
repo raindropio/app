@@ -64,18 +64,19 @@ export function* loadCollections({ ignore=false, onSuccess, onFail }) {
 		//Prepare default collections
 		const state = yield select()
 		const defColls = state.collections.defaults.map((item)=>{
+			var count = 0
+			var view = user.config.default_collection_view || 'list'
+			
 			//count
 			if (stat.items){
 				const statIndex = (stat.items||[]).findIndex((a)=>a._id==item._id)
 				if (statIndex!=-1)
-					return item.set('count', stat.items[statIndex].count)
+					count = stat.items[statIndex].count
 			}
 			
-			//view
-			if (user.config.default_collection_view)
-				item.set('view', user.config.default_collection_view)
-
-			return item;
+			return item
+				.set('count', count)
+				.set('view', view)
 		})
 
 		yield put({
