@@ -25,5 +25,6 @@ export const blankSpace = Immutable({
 		'sort':			{ enabled: true },
 	},
 	ids: emptyArray,
-	highlight: emptyObject //{_id: { title, excerpt, note, body }}
+	highlight: emptyObject, //{_id: { title, excerpt, note, body }}
+	count: 0
 })

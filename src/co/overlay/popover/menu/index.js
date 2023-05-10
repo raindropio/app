@@ -15,3 +15,4 @@ export const Menu = React.forwardRef((props, ref) => {
 
 export * from './item'
 export * from './separator'
+export * from './section'

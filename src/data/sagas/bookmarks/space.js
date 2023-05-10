@@ -56,12 +56,13 @@ function* loadSpace({spaceId, query, ignore=false}) {
 	if (ignore) return
 
 	try {
-		const { items=[] } = yield call(Api.get, `raindrops/${getUrl(spaceId, query)}`);
+		const { items=[], count } = yield call(Api.get, `raindrops/${getUrl(spaceId, query)}`);
 
 		yield put({
 			type: (query.page ? SPACE_NEXTPAGE_SUCCESS : SPACE_LOAD_SUCCESS),
 			spaceId: spaceId,
 			items: items,
+			count,
 			query
 		})
 	} catch (error) {

@@ -10,6 +10,7 @@ import Checkbox from './checkbox'
 import More from './more'
 import Remove from './remove'
 import Open from './open'
+import Export from '../../export/button'
 import Working from './working'
 import Cancel from './cancel'
 
@@ -28,9 +29,12 @@ class BookmarksSelectMode extends React.Component {
                 <Move {...this.props} />
                 <AddTags {...this.props} />
                 <Remove {...this.props} />
+                {/* <Export variant='outline' {...this.props} /> */}
                 <Open {...this.props} />
-                <Space />
                 <More {...this.props} />
+                
+                <Space />
+
                 <Cancel {...this.props} />
             </Header>
         )

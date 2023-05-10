@@ -2,9 +2,7 @@ import { blankSpace } from './blankSpace'
 import {SPACE_PER_PAGE} from '../../constants/bookmarks'
 import _ from 'lodash-es'
 
-export const getUrl = (__id, query)=>{
-	let id = parseInt(__id)||0
-
+export const getUrlQuery = (query)=>{
 	const entities = _.compact(_.map(query||blankSpace.query, (val,key)=>{
 		if (val)
 			switch(key){
@@ -17,7 +15,12 @@ export const getUrl = (__id, query)=>{
 			}
 	}))
 	entities.push('perpage='+SPACE_PER_PAGE)
-	entities.push('version=2')
 
-	return id+'?'+entities.join('&')
+	if (!entities.length)
+		return ''
+
+	return '?'+entities.join('&')
 }
+
+export const getUrl = (__id, query)=>
+	`${parseInt(__id)||0}${getUrlQuery(query)}`

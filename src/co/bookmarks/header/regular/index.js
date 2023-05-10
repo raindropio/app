@@ -12,6 +12,7 @@ import Open from './open'
 import More from './more'
 import Sort from './sort'
 import View from './view'
+import Export from '../../export/button'
 
 class BookmarksHeader extends React.Component {
     static defaultProps = {
@@ -46,6 +47,7 @@ class BookmarksHeader extends React.Component {
                 {status.main == 'loaded' ? (<>
                     <Sort {...this.props} />
                     <View {...this.props} />
+                    {/* <Export {...this.props} /> */}
                 </>) : null}
                 <More {...this.props} />
             </Header>
