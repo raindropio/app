@@ -5,9 +5,10 @@ import { target, environment } from '~target'
 import Splash from './_splash'
 
 export default function PageDefault() {
-    const { last_collection, browser_extension_mode } = useSelector(state=>state.config)
+    const { browser_extension_mode } = useSelector(state=>state.config)
+    const { visitedSpace } = useSelector(state=>state.local)
 
-    let to = `/my/${parseInt(last_collection)||'0'}`
+    let to = `/my/${parseInt(visitedSpace?.cId)||'0'}${visitedSpace?.search ? ('/' + visitedSpace.search) : ''}`
     
     if (target == 'extension')
         if (environment.includes('browser_action'))

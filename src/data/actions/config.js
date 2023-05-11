@@ -1,4 +1,4 @@
-import { CONFIG_SET_LASTCOLLECTION, CONFIG_ACKNOWLEDGE } from '../constants/config'
+import { CONFIG_ACKNOWLEDGE } from '../constants/config'
 import { USER_UPDATE_REQ } from '../constants/user'
 
 //set('key', val) or set({ obj... })
@@ -9,11 +9,6 @@ export const set = (key, val)=>({
 			key : 
 			{ [key]: val }
 	}
-})
-
-export const setLastCollection = (spaceId)=>({
-	type: CONFIG_SET_LASTCOLLECTION,
-	spaceId
 })
 
 export const hideSection = (section, value)=>({

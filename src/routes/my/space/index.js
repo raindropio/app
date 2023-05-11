@@ -3,7 +3,7 @@ import { Outlet, useParams } from 'react-router-dom'
 import { Helmet } from 'react-helmet'
 import { useSelector, useDispatch } from 'react-redux'
 import { makeCollection } from '~data/selectors/collections'
-import { setLastCollection } from '~data/actions/config'
+import { setVisitedSpace } from '~local/actions'
 
 import AccentColor from '~co/collections/item/accentColor'
 import Main, { Content } from '~co/screen/splitview/main'
@@ -16,11 +16,11 @@ export default function PageMySpace() {
 
     //used for browser tab title
     const getCollection = useMemo(makeCollection, [])
-    const { _id, title } = useSelector(state=>getCollection(state, params.cId))
+    const { title } = useSelector(state=>getCollection(state, params.cId))
 
-    //update last collection
+    //update last visited space
     const dispatch = useDispatch()
-    useEffect(()=>{ dispatch(setLastCollection(_id)) }, [_id])
+    useEffect(()=>{ dispatch(setVisitedSpace(params)) }, [params])
 
     return (
         <AccentColor _id={params.cId}>{style=>(<>

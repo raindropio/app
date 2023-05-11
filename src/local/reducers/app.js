@@ -6,7 +6,8 @@ import {
 	APP_SET_THEME,
 	APP_SET_APP_SIZE,
 	APP_COLLECTIONS_SEARCH_RESULTS_HIDE,
-	APP_TOGGLE_HIGHLIGHTS
+	APP_TOGGLE_HIGHLIGHTS,
+	APP_SET_VISITED_SPACE
 } from '../constants'
 
 export default function(state, action) {switch (action.type) {
@@ -24,6 +25,12 @@ export default function(state, action) {switch (action.type) {
 	case APP_TOGGLE_HIGHLIGHTS:
 		return state.set('highlightsExpanded', !state.highlightsExpanded)
 
+	case APP_SET_VISITED_SPACE:
+		return state.set('visitedSpace', {
+			cId: action?.cId || 0,
+			search: action?.search || ''
+		})
+
 	case REHYDRATE:{
 		const incoming = action.payload && action.payload.local||{}
 
@@ -32,6 +39,7 @@ export default function(state, action) {switch (action.type) {
 				case 'theme': state = setTheme(state, val); break
 				case 'appSize': state = state.set('appSize', String(val)||'default'); break
 				case 'highlightsExpanded': state = state.set('highlightsExpanded', val ? true : false); break
+				case 'visitedSpace': state = state.set('visitedSpace', { cId: val?.cId || 0, search: val?.search || '' })
 			}
 		})
 

@@ -34,7 +34,8 @@ const initialState = Immutable({
 	appSize: 'default',
 	collectionsSearchResults: true,
 	pause: '',
-	highlightsExpanded: true
+	highlightsExpanded: true,
+	visitedSpace: { cId: 0, search:'' },
 })
 
 export default {
