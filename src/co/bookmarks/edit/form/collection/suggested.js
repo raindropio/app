@@ -22,6 +22,7 @@ function Suggestion({ id, onClick }) {
             className={s.suggestion}
             variant='outline'
             size='small'
+            tabIndex='-1'
             onClick={onClick}>
             <CollectionIcon {...collection} />
             <span>{collection.title}</span>

@@ -65,7 +65,7 @@ export function* loadCollections({ ignore=false, onSuccess, onFail }) {
 		const state = yield select()
 		const defColls = state.collections.defaults.map((item)=>{
 			var count = 0
-			var view = user?.config?.default_collection_view || 'list'
+			// var view = user?.config?.default_collection_view || 'list'
 			
 			//count
 			if (stat.items){
@@ -76,7 +76,7 @@ export function* loadCollections({ ignore=false, onSuccess, onFail }) {
 			
 			return item
 				.set('count', count)
-				.set('view', view)
+				// .set('view', view)
 		})
 
 		yield put({
