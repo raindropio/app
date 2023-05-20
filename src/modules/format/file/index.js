@@ -1,2 +1,1 @@
-export * from './parseDataURI'
-export * from './resize'
+export * from './dataURItoFile'

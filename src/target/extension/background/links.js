@@ -2,7 +2,7 @@ import browser from 'webextension-polyfill'
 import { normalizeURL } from '~modules/format/url'
 import Api from '~data/modules/api'
 import debounce from '~modules/format/callback/debounce'
-import { permissions } from '~target'
+import * as action from './action'
 
 const options = {
     divider: '</-rl-/>',
@@ -30,13 +30,6 @@ export function getId(url) {
 export async function reload(force=false) {
     if (loading && !force)
         return
-
-    //do not load when no 'tabs' permission, origins access not required
-    try{
-        const havePermission = await permissions.contains('tabs', false)
-        if (!havePermission)
-            return
-    }catch(e){}
 
     loading = true
     items = new Map()
@@ -70,8 +63,8 @@ export async function reload(force=false) {
             items.set(url, _id)
     })
 
-    //send event
-    document.dispatchEvent(new Event('LINKS_CHANGED'))
+    //update action badge
+    action.updateBadge()
 }
 
 //messaging

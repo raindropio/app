@@ -3,7 +3,6 @@ import { currentTab, getMeta } from '~target'
 import browser from '~target/extension/browser'
 
 import Button from './button'
-import Permission from './permission'
 
 export default function BookmarksAddExtensionTab(props) {
     const [loading, setLoading] = useState(false)
@@ -43,10 +42,10 @@ export default function BookmarksAddExtensionTab(props) {
         }
     }, [])
 
-    //can't get tab due to permission
+    //can't get tab
     if (!loading &&
         !tab.link)
-        return <Permission reload={reload} />
+        return null
 
     return (
         <Button

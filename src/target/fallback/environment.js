@@ -8,11 +8,8 @@ if (typeof navigator != 'undefined'){
         && !navigator.userAgent.toLowerCase().includes('chrome'))
         browser.push('safari')
 
-    if ('MozAppearance' in document.documentElement.style)
+    if (navigator.userAgent.match(/firefox/i))
         browser.push('firefox')
-
-    if (!!window.opera || /opera|opr/i.test(navigator.userAgent))
-        browser.push('opera')
 
     //OS
     if (navigator.appVersion.indexOf('Win')!=-1) browser.push('win')

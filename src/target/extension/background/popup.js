@@ -1,7 +1,8 @@
 import browser from 'webextension-polyfill'
+import { environment } from '~target'
 
 //safari have problems with cookies in extension pages
-const base = /apple/i.test(navigator.vendor) ? 
+const base = environment.includes('safari') ? 
     'https://app.raindrop.io' : 
     '/index.html#'
 const winIds = new Set()
@@ -10,7 +11,7 @@ export async function open(path) {
     const width = 420;
     const height = 600;
 
-    let origin = { left: 0, top: 0, width: screen.width, height: screen.height }
+    let origin = { left: 0, top: 0, width: 0, height: 0 }
     try{
         origin = await browser.windows.getCurrent()
     } catch(_) {}
@@ -34,7 +35,7 @@ export async function open(path) {
 function onFocusChanged(id) {
     for(const close of winIds)
         if (close != id) {
-            browser.windows.remove(close)
+            try { browser.windows.remove(close) } catch(e) {}
             winIds.delete(close)
         }
 }

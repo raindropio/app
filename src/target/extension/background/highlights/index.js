@@ -1,19 +1,22 @@
 import browser from 'webextension-polyfill'
 import { currentTab } from '~target'
-import { load, add, update, remove, addSelection, enable } from './logic'
+import { load, add, update, remove, addSelection, requestPermission } from './logic'
 
 //Received messages from page
 async function onMessage({ type, payload }, sender) {
-    if (sender.id != browser.runtime.id || !sender.tab || typeof type != 'string') return
+    if (sender.id != browser.runtime.id) return
+
+    const tab = sender.tab || await currentTab()
 
     switch(type) {
         case 'RDH_READY':
-            await load(sender.tab)
+        case 'BOOKMARKS_CHANGED':
+            await load(tab)
         break
 
         case 'RDH_ADD':
             try {
-                await add(sender.tab, payload)
+                await add(tab, payload)
             } catch(e) {
                 alert(`Error saving highlight!\n${String(e)}`)
             }
@@ -21,7 +24,7 @@ async function onMessage({ type, payload }, sender) {
 
         case 'RDH_UPDATE':
             try {
-                await update(sender.tab, payload._id, payload)
+                await update(tab, payload._id, payload)
             } catch(e) {
                 alert(`Error updating highlight!\n${String(e)}`)
             }
@@ -29,7 +32,7 @@ async function onMessage({ type, payload }, sender) {
 
         case 'RDH_REMOVE':
             try {
-                await remove(sender.tab, payload._id)
+                await remove(tab, payload._id)
             } catch(e) {
                 alert(`Error removing highlight!\n${String(e)}`)
             }
@@ -41,13 +44,11 @@ async function onMessage({ type, payload }, sender) {
 async function onTabActivated({ tabId }) {
     if (!tabId) return
     const tab = await browser.tabs.get(tabId)
-    if (!tab.url || !tab.active) return
+    
+    if (!tab || !tab.url || !tab.active || tab.status != 'complete')
+        return
 
-    switch(tab.status) {
-        case 'complete':
-            await load(tab)
-            break
-    }
+    await load(tab)
 }
 
 async function onTabsUpdated(id) {
@@ -62,8 +63,8 @@ async function reloadAll() {
 
 //public methods
 export async function addCurrentTabSelection() {
-    await enable()
-    return addSelection(await currentTab())
+    if (await requestPermission())
+        return addSelection(await currentTab())
 }
 
 //default
@@ -81,6 +82,4 @@ export default function() {
     //permissions changed
     browser.permissions.onAdded.removeListener(reloadAll)
     browser.permissions.onAdded.addListener(reloadAll)
-
-    //DO NOT LISTEN FOR `LINKS_CHANGED` event!
 }

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { getMeta } from '~target'
 
 import Screen from '~co/screen/basic'
@@ -6,35 +6,20 @@ import Header from './header'
 import Content from './content'
 
 //faster load of current tab
-let item = {}
-async function getItem() {
-    item = await getMeta()
-    return item
-}
-getItem().catch(()=>{})
+var _cached = null
+const currentTab = getMeta().then(val=>_cached = val).catch(()=>{})
 //-----
 
-export default class Clipper extends React.Component {
-    constructor(props) {
-        super(props)
-        this.state = { item }
-    }
+export default function Clipper(props) {
+    const [item, setItem] = useState(_cached)
+    useEffect(async ()=>{ setItem(await currentTab) },[])
 
-    async componentDidMount() {
-        if (!this.state.item.link)
-            this.setState({
-                item: await getItem()
-            })
-    }
-
-    render() {
-        const { item } = this.state
-
-        return (
-            <Screen>
-                <Header {...this.props} item={item} />
-                <Content {...this.props} item={item} />
-            </Screen>
-        )
-    }
+    return (
+        <Screen>
+            {item ? (<>
+                <Header {...props} item={item} />
+                <Content {...props} item={item} />
+            </>) : null}
+        </Screen>
+    )
 }

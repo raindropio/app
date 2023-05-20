@@ -12,7 +12,7 @@ setTimeout(()=>{
 }, 300)
 
 export default function SplashExtension() {
-    const isBrowserAction = location.search.includes('browser_action')
+    const isBrowserAction = location.search.includes('action')
     const rehydrated = useSelector(state=>state._persist.rehydrated)
     const mode = useSelector(state=>rehydrated ? state.config.browser_extension_mode : _cachedMode)
 

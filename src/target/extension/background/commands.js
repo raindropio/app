@@ -4,16 +4,22 @@ import { currentTab } from '~target'
 import { open } from './popup'
 import { addCurrentTabSelection } from './highlights'
 
+function getSelectedText() {
+    var s = window.getSelection(); 
+    return s && s.rangeCount>0 && !s.isCollapsed && s.toString().trim().length>0
+}
+
 async function onCommand(command) {
     switch(command) {
         case 'save_page':{
             const { url='', id } = await currentTab()
 
             //save highlight if text is selected
-            const [textSelected] = await browser.tabs.executeScript(id, {
-                code: 'var s = window.getSelection(); s && s.rangeCount>0 && !s.isCollapsed && s.toString().trim().length>0'
+            const [{ result }] = await browser.scripting.executeScript({
+                target : {tabId : id},
+                func: getSelectedText
             })
-            if (textSelected)
+            if (result)
                 return addCurrentTabSelection()
 
             return open(`/add?link=${encodeURIComponent(url)}`)

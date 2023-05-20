@@ -1,7 +1,8 @@
 import s from './view.module.styl'
 import t from '~t'
 import React, { useState, useEffect, useCallback } from 'react'
-import { hotkeys, environment, permissions } from '~target'
+import browser from '~target/extension/browser'
+import { hotkeys, environment } from '~target'
 import links from '~config/links'
 
 import safariIosScreenshot from './assets/safari-ios.png'
@@ -11,11 +12,19 @@ import Button from '~co/common/button'
 export default function ExtensionHighlightsEmpty() {
     //permissions
     const [allowed, setAllowed] = useState(false)
-    useEffect(()=>{ permissions.contains('tabs').then(setAllowed) }, [])
+    useEffect(()=>{
+        browser.permissions.contains({
+            origins: ['*://*/*']
+        })
+            .then(setAllowed)
+    }, [])
 
     const requestPermission = useCallback((e)=>{
         e.preventDefault()
-        permissions.request('tabs').then(setAllowed)
+        browser.permissions.request({
+            origins: ['*://*/*']
+        })
+            .then(setAllowed)
     }, [])
 
     const needPermissions = (<>

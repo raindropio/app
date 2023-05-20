@@ -11,7 +11,7 @@ export default function PageDefault() {
     let to = `/my/${parseInt(visitedSpace?.cId)||'0'}${visitedSpace?.search ? ('/' + visitedSpace.search) : ''}`
     
     if (target == 'extension')
-        if (environment.includes('browser_action'))
+        if (environment.includes('action'))
             switch(browser_extension_mode) {
                 case 'clipper':
                     to = '/extension/clipper'

@@ -1,13 +1,13 @@
 function getMeta() {
-    for(const key of [...arguments]) {
-        const elem = document.querySelector(`meta[name="${key}"], meta[property="${key}"]`)
-        if (!elem) continue
-        const value = String(elem.value || elem.content || '').trim().substr(0, 10000)
-        if (!value) continue
-        return value
-    }
+    const elem = document.querySelector(
+        [...arguments]
+            .map(key=>`meta[name="${key}"], meta[property="${key}"]`)
+            .join(', ')
+    )
+    if (!elem) return null
 
-    return null
+    const value = elem.value || elem.content
+    return String(value).trim().substr(0, 10000)
 }
 
 function getJsonLd() {
@@ -43,12 +43,10 @@ function grabImages() {
     let images = []
 
     try{
-        let i=0
-        for(const img of document.querySelectorAll('img[src]:not([src^="data"]):not([src*=".svg"])')){
+        for(const img of document.querySelectorAll('img')){
             if (images.length >= 9) break
-            if (!img.complete) continue
+            if (!img.complete || !img.src || img.src.includes('.svg')) continue
             if (!img.offsetParent) continue //is hidden
-            if (i>1000) break; i++
     
             const width = Math.min(img.naturalWidth, img.width)
             const height = Math.min(img.naturalHeight, img.height)
@@ -80,7 +78,7 @@ function getItem() {
         link: location.href
     }
 
-    const canonical = getMeta('og:url', 'twitter:url')
+    const canonical = getMeta('twitter:url', 'og:url')
     const ld = getJsonLd()
 
     //use open-graph or twitter cards (if page is not spa)
@@ -91,9 +89,9 @@ function getItem() {
     )
         item = {
             ...item,
-            title: getMeta('og:title', 'twitter:title') || getMeta('title') || document.title,
-            excerpt: getMeta('og:description', 'twitter:description') || getMeta('description'),
-            cover: getMeta('og:image', 'og:image:src', 'twitter:image', 'twitter:image:src'),
+            title: getMeta('twitter:title', 'og:title') || getMeta('title') || document.title,
+            excerpt: getMeta('twitter:description', 'og:description') || getMeta('description'),
+            cover: getMeta('twitter:image', 'twitter:image:src', 'og:image', 'og:image:src'),
         }
     //use json ld schema
     else if (ld.name || ld.headline)
@@ -126,17 +124,11 @@ function getItem() {
             delete item.cover
         }
 
-    if (item.cover && !item.cover.startsWith('http'))
-        delete item.cover
-
     //grab images
     let images = [
         ...(item.cover ? [item.cover] : []),
         ...grabImages()
     ].filter((value, index, self)=>self.indexOf(value) === index)
-    
-    if (!item.cover && images.length)
-        item.cover = images[0]
 
     if (images.length)
         item.media = images.map(link=>({
@@ -150,6 +142,13 @@ function getItem() {
 
     if (item.excerpt && item.excerpt.length)
         item.excerpt = item.excerpt.substr(0, 10000)
+
+    //highlights
+    try {
+        const selectedText = window.getSelection().getRangeAt(0).toString().trim()
+        if (selectedText != '')
+            item.highlights = [{ _id: String(new Date().getTime()), text: selectedText }]
+    } catch(e) {}
 
     //remove empty keys
     for(const i in item)

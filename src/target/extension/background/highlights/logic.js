@@ -1,5 +1,5 @@
 import browser from 'webextension-polyfill'
-import { permissions, getMeta } from '~target'
+import { getMeta } from '~target'
 import * as links from '../links'
 import inject from './highlight.js?asis'
 import Api from '~data/modules/api'
@@ -9,7 +9,7 @@ let user = {}
 //Load highlights for tab
 export async function load(tab) {
     if (!tab) return
-    if (!await available()) return
+    if (!await havePermission()) return
 
     let highlights = []
 
@@ -143,8 +143,8 @@ async function send(tab, type, payload) {
     //inject highlights script
     const injected = await isInjected(tab)
     if (!injected) {
-        await browser.tabs.executeScript(tab.id, { code: 'window.__hi = true' })
-        await browser.tabs.executeScript(tab.id, { file: inject, runAt: 'document_start' })
+        await browser.scripting.executeScript({ target: { tabId: tab.id }, func: function() { window.__hi = true } })
+        await browser.scripting.executeScript({ target: { tabId: tab.id }, files: [inject] })
     }
 
     return browser.tabs.sendMessage(tab.id, { type, payload })
@@ -152,29 +152,30 @@ async function send(tab, type, payload) {
 
 //is injected
 async function isInjected(tab) {
-    const [injected] = await browser.tabs.executeScript(tab.id, { code: 'window.__hi' })
-    return injected ? true : false
+    const [{ result }] = await browser.scripting.executeScript({
+        target: { tabId: tab.id },
+        func: function() { return window.__hi }
+    })
+    return result ? true : false
 }
 
-//Are highlights available?
-export async function available() {
-    return permissions.contains('tabs')
+//Do user granted permissions
+export async function havePermission() {
+    return browser.permissions.contains({
+        origins: ['*://*/*']
+    })
 }
 
-//Make all required preparations before using
-export async function enable() {
-    var havePermission = false
-    try {
-        havePermission = await permissions.request('tabs')
-    } catch (e) {
-        console.error(e)
-    }
+//Open special page to give permissions
+export async function requestPermission() {
+    if (await havePermission())
+        return true
 
-    if (!havePermission) {
-        alert('Permission required!')
-        return false
-    }
-    return true
+    await browser.tabs.create({
+        url: '/index.html#/extension/highlights'
+    })
+
+    return false
 }
 
 //Apply highlights for current tab

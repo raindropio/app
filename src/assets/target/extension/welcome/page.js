@@ -39,6 +39,6 @@ window.onload = ()=>{
         if (shortcut)
             document.querySelector('#save-hotkey').textContent = shortcut
         else
-            document.querySelector('#save-hotkey').innerHTML = '<a href="chrome://extensions/shortcuts">Set hotkey</a>'
+            document.querySelector('#save-hotkey').innerHTML = '<a href="https://help.raindrop.io/browser-extension#change-hotkey">Set hotkey</a>'
     })
 }

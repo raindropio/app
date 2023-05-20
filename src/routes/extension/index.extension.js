@@ -11,7 +11,8 @@ export default ()=>{
 		<Route element={<Protected redirect />}>
 			<Route path='clipper' element={<Clipper />} />
 			<Route path='tabs/:collectionId' element={<Tabs />} />
-			<Route path='highlights'>{Highlights()}</Route>
 		</Route>
+
+		<Route path='highlights'>{Highlights()}</Route>
 	</>)
 }

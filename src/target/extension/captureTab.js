@@ -1,26 +1,19 @@
 import browser from './browser'
-import { currentTab } from './currentTab'
 import { captureTab as fallbackCaptureTab } from '../fallback'
-import { resize, parseDataURI } from '~modules/format/file'
-import { normalizeURL } from '~modules/format/url'
+import { dataURItoFile } from '~modules/format/file'
 
-export async function captureTab(link) {
-    const { url } = await currentTab()
+export async function captureTab(url) {
+    try{
+        const { id } = await browser.tabs.query({ url })
 
-    if (normalizeURL(url) == normalizeURL(link))
-        try{
-            await browser.runtime.sendMessage(null, { type: 'CAPTURE_TAB_START' })
+        //doesn't work in firefox, because it requires <all_urls> permissions
+        const dataURI = await browser.tabs.captureVisibleTab(id, {
+            format: 'jpeg',
+            quality: 90
+        })
 
-            //doesn't work in firefox, because it requires <all_urls> permissions
-            const dataURI = await browser.tabs.captureVisibleTab(null, { format: 'jpeg', quality: 100 })
+        return dataURItoFile(dataURI)
+    } catch(e) {console.log(e)}
 
-            await browser.runtime.sendMessage(null, { type: 'CAPTURE_TAB_END' })
-
-            return resize(
-                parseDataURI(dataURI), 
-                { width: 640, format: 'jpeg', quality: 90 }
-            )
-        } catch(e) {console.log(e)}
-
-    return fallbackCaptureTab(link)
+    return fallbackCaptureTab(url)
 }

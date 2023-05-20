@@ -41,17 +41,12 @@
 		<link rel="preconnect" href="https://api.raindrop.io" >
 		<link rel="preconnect" href="https://rdl.ink">
 	<% } %>
-
-	<!-- extension preload -->
-	<%if (process.env.APP_TARGET == 'extension') { %>
-		<script src='<%= require("./assets/target/extension/preload.js?asis").default %>'></script>
-	<% } %>
 </head>
 <body>
 	<div id="react"></div>
 
 	<!-- plausible -->
-	<%if (process.env.APP_TARGET != 'extension' || process.env.EXTENSION_VENDOR != 'firefox') { %>
+	<%if (process.env.APP_TARGET != 'extension') { %>
 	<script
 		class='lazy-script'
 		data-src="https://app.raindrop.io/pb/<%= process.env.APP_TARGET === 'extension' ? 'hash' : 'site' %>.js"

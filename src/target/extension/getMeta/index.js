@@ -1,22 +1,24 @@
 import browser from '../browser'
 import { currentTab } from '../currentTab'
-import parse from './parse?raw'
+import parse from './parse?asis'
 
 export async function getMeta() {
+    const { id, url: link, title } = await currentTab()
+
     try{
-        if (browser.tabs) {
-            const [meta] = await browser.tabs.executeScript(null, {
-                code: parse,
-                runAt: 'document_start'
+        if (browser.scripting) {
+            const [{ result }] = await browser.scripting.executeScript({
+                target: { tabId: id },
+                files: [parse],
+                injectImmediately: true
             })
-            if (meta && meta.link)
-                return meta
+            if (result && result.link)
+                return result
         }
     } catch (e) {
         console.log(e)
     }
 
     //fallback if meta fail
-    const { url: link, title } = await currentTab()
     return { link, title }
 }

@@ -1,5 +1,4 @@
 const fs = require('fs')
-const csp = require('../../../config/csp')
 const locales = require('./locales')
 
 function file({ emitFile }, filename) {
@@ -15,7 +14,7 @@ module.exports = ({ vendor, production=false }, l) => {
 	locales(l)
 
 	const json = {
-		manifest_version:2,
+		manifest_version:3,
 
 		//internal version bigger
 		version:		version.replace(/^5/, '6'),
@@ -38,22 +37,21 @@ module.exports = ({ vendor, production=false }, l) => {
 			128: file(l, '../../../assets/brand/icon_128.png')
 		},
 
-		background: {
-			scripts: [
-				'background.js'
-			],
-			...(vendor == 'safari-ios' ? {
-				persistent: false
-			} : {})
-		},
+		background: (
+			(vendor == 'firefox' || vendor == 'safari') ? {
+				scripts: ['background.js']
+			} : {
+				service_worker: 'background.js'
+			}
+		),
 
-		browser_action: {
+		action: {
 			default_popup: vendor=='safari' || vendor=='firefox' ? 
 				[
-					file(l, '../../../assets/target/extension/browser_action_in_iframe.html'),
-					file(l, '../../../assets/target/extension/browser_action_in_iframe.js'),
+					file(l, '../../../assets/target/extension/action_in_iframe.html'),
+					file(l, '../../../assets/target/extension/action_in_iframe.js'),
 				][0] : 
-				'index.html?browser_action',
+				'index.html?action',
 			default_icon: {
 				//chrome based icon
 				...(vendor == 'chrome' || vendor == 'opera' ? {
@@ -81,25 +79,34 @@ module.exports = ({ vendor, production=false }, l) => {
 
 		permissions: [
 			'contextMenus',
-			'activeTab',
+			'activeTab', //activeTab gives full host_permission
+			'scripting',
+			'tabs',
 			'storage',
 			...(production ? [] : ['http://localhost:3000/*'])
 		],
 
-		optional_permissions: [
-			'tabs',
-
-			//required for highlights
-			//safari specific: tabs permission is not enought, otherwise it will ask all the time a permission for each site
-			'<all_urls>'
+		[vendor == 'firefox' ? 'optional_permissions' : 'optional_host_permissions']: [
+			'*://*/*'
 		],
 
 		omnibox: {
 			keyword: 'rd'
 		},
 
+		// chrome_settings_overrides: {
+		// 	search_provider: {
+		// 		name: 'Raindrop.io',
+		// 		is_default: false,
+		// 		encoding: 'utf-8',
+		// 		search_url: 'https://app.raindrop.io/my/0/{searchTerms}',
+		// 		keyword: 'rd',
+		// 		favicon_url: file(l, '../../../assets/brand/favicon.ico')
+		// 	}
+		// },
+
 		commands: {
-			_execute_browser_action: {
+			_execute_action: {
 				suggested_key: {
 					default: 'Ctrl+Shift+E'
 				}
@@ -134,14 +141,7 @@ module.exports = ({ vendor, production=false }, l) => {
 					open_at_install: false
 				} : {})
 			}
-		}: {}),
-
-		//firefox review not pass if csp have custom domains in script-src
-		...(vendor != 'firefox' ? {
-			content_security_policy: `script-src 'self' ${csp.hosts} ${!production?'\'unsafe-eval\'':''}; object-src 'none';`
-		} : {}),
-
-		//do not use content_scripts. otherwise browser will ask for <all_urls> permission on install or update time!
+		}: {})
 	}
 
 	return { code: JSON.stringify(json, null, 2) };

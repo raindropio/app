@@ -1,6 +1,6 @@
 const BASE64_MARKER = ';base64,'
 
-export function parseDataURI(dataURI) {
+export function dataURItoFile(dataURI) {
     const mime = dataURI.split(BASE64_MARKER)[0].split(':')[1]
     const filename = 'dataURI-file-' + (new Date()).getTime() + '.' + mime.split('/')[1]
     const bytes = atob(dataURI.split(BASE64_MARKER)[1])
