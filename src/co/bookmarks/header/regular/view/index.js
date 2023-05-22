@@ -2,7 +2,7 @@ import React from 'react'
 import t from '~t'
 
 import Popover from '~co/overlay/popover'
-import { Layout } from '~co/common/form'
+import { Layout, Separator } from '~co/common/form'
 import Button from '~co/common/button'
 import Icon from '~co/common/icon'
 import Menu from './menu'
@@ -46,7 +46,8 @@ class BookmarksHeaderView extends React.Component {
                 {menu ? (
                     <Popover pin={this.pin} onClose={this.onMenuClose}>
                         <Layout>
-                            <Menu {...this.props} />
+                            <Menu {...this.props} onClose={this.onMenuClose} />
+                            <Separator />
                             <Show {...this.props} />
                             <CoverSize {...this.props} />
                         </Layout>
