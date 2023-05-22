@@ -33,9 +33,8 @@ export default function BookmarksExportPopover({ spaceId = 0, pin, onClose }) {
             onClose={onClose}>
             <Menu>
                 {spaceId == 0 && !query.search && !selectMode.ids.length ? (<>
-                    <MenuSection>Complete backup</MenuSection>
                     <MenuItem to='/settings/backups'>
-                        ZIP
+                        Complete backup
                     </MenuItem>
 
                     <MenuSeparator />
