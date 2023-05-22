@@ -48,7 +48,9 @@ module.exports = ({ vendor, production=false }, l) => {
 		background: (
 			(vendor == 'firefox' || vendor == 'safari' || vendor == 'safari-ios') ? {
 				scripts: ['background.js'],
-				persistent: false
+				...(vendor == 'safari' || vendor == 'safari-ios' ? {
+					persistent: false
+				} : {})
 			} : {
 				service_worker: 'background.js'
 			}
@@ -91,7 +93,8 @@ module.exports = ({ vendor, production=false }, l) => {
 			'activeTab', //activeTab gives full host_permission
 			'scripting',
 			'tabs',
-			'storage'
+			'storage',
+			...(vendor == 'chrome' ? ['sidePanel'] : [])
 		],
 
 		//dev
@@ -136,14 +139,21 @@ module.exports = ({ vendor, production=false }, l) => {
 
 			...(vendor == 'firefox' || vendor == 'opera' ? {
 				_execute_sidebar_action: {
-					description: '__MSG_openSidebar__'
+					description: '__MSG_openSidePanel__'
 				}
 			}: {}),
 		},
 
+		//sidebar
+		...(vendor == 'chrome' ? {
+			side_panel: {
+				default_path: 'sidepanel.html'
+			}
+		} : {}),
+
 		...(vendor == 'firefox' || vendor == 'opera' ? {
 			sidebar_action: {
-				default_panel: 'index.html?sidebar',
+				default_panel: 'sidepanel.html',
 				default_icon: {
 					16: file(l, '../../../assets/target/extension/action_firefox_light_16.png'),
 					24: file(l, '../../../assets/target/extension/action_firefox_light_24.png'),

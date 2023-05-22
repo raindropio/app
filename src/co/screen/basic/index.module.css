@@ -9,7 +9,7 @@
 
 /* extension */
 @media (max-width: 800px) {
-    html:global(.extension:not(.sidebar):not(.mobile)) .page {
+    html:global(.extension:not(.sidepanel):not(.mobile)) .page {
         width: 420px;
         height: fit-content;
         min-height: 300px;

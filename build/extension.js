@@ -7,6 +7,8 @@ const CopyPlugin = require('copy-webpack-plugin')
 const ZipPlugin = require('zip-webpack-plugin')
 
 module.exports = (env={}, args={}) => {
+    const outputPath = path.resolve(__dirname, '..', 'dist', env.vendor, env.production?'prod':'dev')
+
     env.filename = '[name]'
     
     switch(env.vendor) {
@@ -28,7 +30,7 @@ module.exports = (env={}, args={}) => {
             },
 
             output: {
-                path: path.resolve(__dirname, '..', 'dist', env.vendor, env.production?'prod':'dev'),
+                path: outputPath,
                 filename: ({ chunk: { name } }) => name=='background' ? 'background.js' : `assets/${env.filename}.js`,
                 chunkFilename: `assets/${env.filename}.js`,
                 publicPath: ''
@@ -56,7 +58,8 @@ module.exports = (env={}, args={}) => {
 
                 new CopyPlugin({
                     patterns: [
-                        { from: 'assets/target/extension/welcome', to: 'welcome' }
+                        { from: 'assets/target/extension/welcome', to: 'welcome' },
+                        { from: `${outputPath}/index.html`, to: 'sidepanel.html' }
                     ]
                 }),
 
