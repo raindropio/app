@@ -47,7 +47,8 @@ module.exports = ({ vendor, production=false }, l) => {
 
 		background: (
 			(vendor == 'firefox' || vendor == 'safari' || vendor == 'safari-ios') ? {
-				scripts: ['background.js']
+				scripts: ['background.js'],
+				persistent: false
 			} : {
 				service_worker: 'background.js'
 			}

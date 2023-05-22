@@ -38,7 +38,7 @@ export default function ExtensionHighlightsPermissions() {
     if (environment.includes('safari-ios'))
         content = (
             <ol>
-                <li>Open <b>Settings</b></li>
+                <li>Open iOS <b>Settings</b></li>
                 <li>Go to <b>Safari</b> / <b>Extensions</b> / <b>Raindrop.io</b></li>
                 <li>Tap <b>All Websites</b> or <b>Other Websites</b> and select <b>Allow</b></li>
                 <li>Restart Safari</li>
