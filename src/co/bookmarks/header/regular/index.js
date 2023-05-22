@@ -47,7 +47,7 @@ class BookmarksHeader extends React.Component {
                 {status.main == 'loaded' ? (<>
                     <Sort {...this.props} />
                     <View {...this.props} />
-                    {/* <Export {...this.props} /> */}
+                    <Export {...this.props} />
                 </>) : null}
                 <More {...this.props} />
             </Header>

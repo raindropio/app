@@ -29,7 +29,7 @@ class BookmarksSelectMode extends React.Component {
                 <Move {...this.props} />
                 <AddTags {...this.props} />
                 <Remove {...this.props} />
-                {/* <Export variant='outline' {...this.props} /> */}
+                <Export variant='outline' {...this.props} />
                 <Open {...this.props} />
                 <More {...this.props} />
                 
