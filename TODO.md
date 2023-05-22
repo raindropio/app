@@ -3,14 +3,6 @@
 - co/bookmarks/item(s) remove `events`, refactor item full
 - co/bookmarks remove /full part
 
-# Extension manifest v3 refactor
-- browser.browserAction -> browser.action || browser.browserAction
-- browser.tabs.executeScript({code: ''}) -> browser.scripting.executeScript({func: func})
-- manifest.json
-    - background = { service_worker:'background.js' }
-    - browser_action -> action
-    - content_security_policy -> content_security_policy: { extension_pages }
-
 # Server
 - Send screenshot without ?width, then in data/getscreenshot remove regex
 

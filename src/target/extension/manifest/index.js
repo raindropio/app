@@ -30,6 +30,14 @@ module.exports = ({ vendor, production=false }, l) => {
 		short_name:		'Raindrop.io',
 		default_locale:	'en',
 
+		...(vendor=='firefox' ? {
+			browser_specific_settings: {
+				gecko: {
+					id: 'jid0-adyhmvsP91nUO8pRv0Mn2VKeB84@jetpack'
+				}
+			},
+		} : {}),
+
 		icons: {
 			16: file(l, '../../../assets/brand/icon_16.png'),
 			32: file(l, '../../../assets/brand/icon_32.png'),
@@ -46,7 +54,7 @@ module.exports = ({ vendor, production=false }, l) => {
 		),
 
 		action: {
-			default_popup: vendor=='safari' || vendor=='firefox' ? 
+			default_popup: vendor=='safari' ? 
 				[
 					file(l, '../../../assets/target/extension/action_in_iframe.html'),
 					file(l, '../../../assets/target/extension/action_in_iframe.js'),
