@@ -49,9 +49,7 @@ export default function BookmarkEditFormCollectionSuggested({ item, events: { on
     return (
         <div 
             className={s.suggested}
-            title={t.s('suggested')+' '+t.s('collection').toLowerCase()}>
-            {!collections.length ? <Button size='small' /> : null}
-            
+            title={t.s('suggested')+' '+t.s('collection').toLowerCase()}>            
             {collections.map(id=>(
                 <Suggestion 
                     key={id} 

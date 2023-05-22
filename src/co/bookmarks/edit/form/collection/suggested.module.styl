@@ -2,12 +2,17 @@
     display: flex
     flex-wrap: wrap
     overflow: hidden
+    min-height: calc(var(--icon-size) + var(--padding-small))
     max-height: calc(var(--icon-size) + var(--padding-small))
-    transition: max-height .2s ease-in-out
+    transition: opacity .3s ease-in-out, max-height .2s ease-in-out
 
     &:hover {
         transition-delay: .2s
         max-height: calc( (var(--icon-size) + var(--padding-small)) * 3 )
+    }
+
+    &:empty {
+        opacity: 0
     }
 
     > * {
