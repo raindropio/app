@@ -152,11 +152,11 @@ async function send(tab, type, payload) {
 
 //is injected
 async function isInjected(tab) {
-    const [{ result }] = await browser.scripting.executeScript({
+    const [res] = await browser.scripting.executeScript({
         target: { tabId: tab.id },
         func: function() { return window.__hi }
     })
-    return result ? true : false
+    return res?.result ? true : false
 }
 
 //Do user granted permissions

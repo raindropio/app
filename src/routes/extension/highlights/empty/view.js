@@ -13,17 +13,16 @@ export default function ExtensionHighlightsEmpty() {
     //permissions
     const [allowed, setAllowed] = useState(false)
     useEffect(()=>{
-        browser.permissions.contains({
-            origins: ['*://*/*']
-        })
+        browser.permissions.contains({ origins: ['*://*/*'] })
             .then(setAllowed)
     }, [])
 
     const requestPermission = useCallback((e)=>{
         e.preventDefault()
-        browser.permissions.request({
-            origins: ['*://*/*']
-        })
+
+        browser.permissions.request({ origins: ['*://*/*'] })
+            .then(()=>browser.tabs.query({currentWindow: true})) //required for ios
+            .then(()=>browser.permissions.contains({ origins: ['*://*/*'] }))
             .then(setAllowed)
     }, [])
 
@@ -32,11 +31,19 @@ export default function ExtensionHighlightsEmpty() {
             <b>Additional permission required to use Highlights</b>
         </p>
 
-        <Button
-            onClick={requestPermission}
-            variant='primary'>
-            {t.s('continue')}
-        </Button>
+        {environment.includes('safari') && !environment.includes('safari-ios') ? (
+            <ol>
+                <li>Open <b>Safari Preferences</b></li>
+                <li>Find <b>Raindrop.io</b> in <b>Extensions</b></li>
+                <li>Click <b>Always Allow on Every Website</b></li>
+            </ol>
+        ) : (
+            <Button
+                onClick={requestPermission}
+                variant='primary'>
+                {t.s('continue')}
+            </Button>
+        )}
 
         <Button
             href={links.help.highlights.addExtension}

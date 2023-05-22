@@ -15,11 +15,11 @@ async function onCommand(command) {
             const { url='', id } = await currentTab()
 
             //save highlight if text is selected
-            const [{ result }] = await browser.scripting.executeScript({
+            const [res] = await browser.scripting.executeScript({
                 target : {tabId : id},
                 func: getSelectedText
             })
-            if (result)
+            if (res?.result)
                 return addCurrentTabSelection()
 
             return open(`/add?link=${encodeURIComponent(url)}`)

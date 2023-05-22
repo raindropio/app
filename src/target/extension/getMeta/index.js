@@ -7,13 +7,13 @@ export async function getMeta() {
 
     try{
         if (browser.scripting) {
-            const [{ result }] = await browser.scripting.executeScript({
+            const [res] = await browser.scripting.executeScript({
                 target: { tabId: id },
                 files: [parse],
                 injectImmediately: true
             })
-            if (result && result.link)
-                return result
+            if (res?.result && res?.result?.link)
+                return res.result
         }
     } catch (e) {
         console.log(e)
