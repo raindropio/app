@@ -6,9 +6,12 @@ import Screen from '~co/screen/basic'
 import Header, { Title } from '~co/common/header'
 import Button from '~co/common/button'
 import Icon from '~co/common/icon'
-import View from './view'
+import Howto from './howto'
+import Permissions, { usePermissionsGranted } from './permissions'
 
 export default ()=>{
+    const granted = usePermissionsGranted()
+
 	return (
 		<Screen>
             <Header data-no-shadow>
@@ -21,7 +24,7 @@ export default ()=>{
                 <Title>{`${t.s('add')} ${t.s('highlights').toLowerCase()}`}</Title>
             </Header>
             
-			<View />
+			{granted ? <Howto /> : <Permissions />}
 		</Screen>
 	)
 }

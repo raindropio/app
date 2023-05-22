@@ -143,8 +143,16 @@ async function send(tab, type, payload) {
     //inject highlights script
     const injected = await isInjected(tab)
     if (!injected) {
-        await browser.scripting.executeScript({ target: { tabId: tab.id }, func: function() { window.__hi = true } })
-        await browser.scripting.executeScript({ target: { tabId: tab.id }, files: [inject] })
+        await browser.scripting.executeScript({
+            target: { tabId: tab.id },
+            func: function() { window.__hi = true },
+            injectImmediately: true
+        })
+        await browser.scripting.executeScript({
+            target: { tabId: tab.id },
+            files: [inject],
+            injectImmediately: true
+        })
     }
 
     return browser.tabs.sendMessage(tab.id, { type, payload })
@@ -154,7 +162,8 @@ async function send(tab, type, payload) {
 async function isInjected(tab) {
     const [res] = await browser.scripting.executeScript({
         target: { tabId: tab.id },
-        func: function() { return window.__hi }
+        func: function() { return window.__hi },
+        injectImmediately: true
     })
     return res?.result ? true : false
 }

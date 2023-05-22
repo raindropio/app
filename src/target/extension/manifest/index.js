@@ -38,7 +38,7 @@ module.exports = ({ vendor, production=false }, l) => {
 		},
 
 		background: (
-			(vendor == 'firefox' || vendor == 'safari') ? {
+			(vendor == 'firefox' || vendor == 'safari' || vendor == 'safari-ios') ? {
 				scripts: ['background.js']
 			} : {
 				service_worker: 'background.js'
@@ -82,9 +82,13 @@ module.exports = ({ vendor, production=false }, l) => {
 			'activeTab', //activeTab gives full host_permission
 			'scripting',
 			'tabs',
-			'storage',
-			...(production ? [] : ['http://localhost:3000/*'])
+			'storage'
 		],
+
+		//dev
+		...(production ? {} : {
+			host_permissions: ['http://localhost:3000/*']
+		}),
 
 		[vendor == 'firefox' ? 'optional_permissions' : 'optional_host_permissions']: [
 			'*://*/*'

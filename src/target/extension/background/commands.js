@@ -17,7 +17,8 @@ async function onCommand(command) {
             //save highlight if text is selected
             const [res] = await browser.scripting.executeScript({
                 target : {tabId : id},
-                func: getSelectedText
+                func: getSelectedText,
+                injectImmediately: true
             })
             if (res?.result)
                 return addCurrentTabSelection()
