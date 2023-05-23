@@ -31,6 +31,13 @@ export async function reload(force=false) {
     if (loading && !force)
         return
 
+    //do not load when no 'tabs' permission, origins access not required
+    try{
+        if (!await browser.permissions.contains({
+            permissions: ['tabs']
+        })) return
+    }catch(e){}
+
     loading = true
     items = new Map()
 
@@ -85,6 +92,10 @@ export default function () {
     //message
     browser.runtime.onMessage.removeListener(onMessage)
     browser.runtime.onMessage.addListener(onMessage)
+
+    //permissions
+    browser.permissions.onAdded.removeListener(reload)
+    browser.permissions.onAdded.addListener(reload)
     
     reload()
 }

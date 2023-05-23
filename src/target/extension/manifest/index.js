@@ -90,21 +90,25 @@ module.exports = ({ vendor, production=false }, l) => {
 
 		permissions: [
 			'contextMenus',
-			'activeTab', //activeTab gives full host_permission
+			'activeTab',
 			'scripting',
-			'tabs',
 			'storage',
 			...(vendor == 'chrome' ? ['sidePanel'] : [])
 		],
+		
+		optional_permissions: [
+			'tabs',
+			...(vendor == 'firefox' ? ['*://*/*'] : [])
+		],
+
+		...(vendor != 'firefox' ? {
+			optional_host_permissions: ['*://*/*']
+		} : {}),
 
 		//dev
 		...(production ? {} : {
 			host_permissions: ['http://localhost:3000/*']
 		}),
-
-		[vendor == 'firefox' ? 'optional_permissions' : 'optional_host_permissions']: [
-			'*://*/*'
-		],
 
 		omnibox: {
 			keyword: 'rd'

@@ -7,6 +7,7 @@ import { Title } from '~co/common/header'
 import Add from './add'
 import BrowserExtensionMode from './browser_extension_mode'
 import Hotkeys from './hotkeys'
+import Permissions from './permissions'
 
 export default ({ hideHeader=false })=>{
 	return (
@@ -19,6 +20,10 @@ export default ({ hideHeader=false })=>{
                 <Separator />
 
                 <Add />
+
+                <Separator />
+
+                <Permissions />
 
                 <Separator />
 

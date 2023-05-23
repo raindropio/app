@@ -8,13 +8,18 @@ import { Layout } from '~co/common/form'
 import Alert from '~co/common/alert'
 import Button from '~co/common/button'
 
+const required = {
+    permissions: ['tabs'],
+    origins: ['*://*/*']
+}
+
 export function usePermissionsGranted() {
     const [granted, setGranted] = useState(true)
 
     useEffect(()=>{
         async function load() {
             setGranted(
-                await browser.permissions.contains({ origins: ['*://*/*'] })
+                await browser.permissions.contains(required)
             )
         }
         
@@ -29,7 +34,7 @@ export function usePermissionsGranted() {
 export default function ExtensionHighlightsPermissions() {
     const requestPermission = useCallback((e)=>{
         e.preventDefault()
-        browser.permissions.request({ origins: ['*://*/*'] })
+        browser.permissions.request(required)
     }, [])
 
     var content = null

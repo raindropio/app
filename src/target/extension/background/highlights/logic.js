@@ -171,6 +171,7 @@ async function isInjected(tab) {
 //Do user granted permissions
 export async function havePermission() {
     return browser.permissions.contains({
+        permissions: ['tabs'],
         origins: ['*://*/*']
     })
 }
