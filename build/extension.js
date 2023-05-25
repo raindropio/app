@@ -3,6 +3,7 @@ const webpack = require('webpack')
 const { merge } = require('webpack-merge')
 const common = require('./common')
 
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CopyPlugin = require('copy-webpack-plugin')
 const ZipPlugin = require('zip-webpack-plugin')
 
@@ -51,6 +52,15 @@ module.exports = (env={}, args={}) => {
             },
 
             plugins: [
+                new HtmlWebpackPlugin({
+                    title: 'Raindrop.io',
+                    template: './index.ejs',
+                    filename: 'sidepanel.html',
+                    scriptLoading: 'blocking',
+                    inject: 'body',
+                    excludeChunks: ['manifest', 'background']
+                }),
+
                 new webpack.DefinePlugin({
                     'process.env.APP_TARGET': JSON.stringify('extension'),
                     'process.env.EXTENSION_VENDOR': JSON.stringify(env.vendor)
@@ -58,8 +68,7 @@ module.exports = (env={}, args={}) => {
 
                 new CopyPlugin({
                     patterns: [
-                        { from: 'assets/target/extension/welcome', to: 'welcome' },
-                        { from: `${outputPath}/index.html`, to: 'sidepanel.html' }
+                        { from: 'assets/target/extension/welcome', to: 'welcome' }
                     ]
                 }),
 
