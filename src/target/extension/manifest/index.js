@@ -93,11 +93,12 @@ module.exports = ({ vendor, production=false }, l) => {
 			'activeTab',
 			'scripting',
 			'storage',
-			...(vendor == 'chrome' ? ['sidePanel'] : [])
+			...(vendor == 'chrome' ? ['sidePanel'] : []),
+			...(vendor == 'safari-ios' ? ['tabs'] : [])
 		],
 		
 		optional_permissions: [
-			'tabs',
+			...(vendor != 'safari-ios' ? ['tabs'] : []),
 			...(vendor == 'firefox' ? ['*://*/*'] : [])
 		],
 
