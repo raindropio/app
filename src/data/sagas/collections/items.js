@@ -34,20 +34,9 @@ export default function* () {
 function* preLoadCollections({ ignore=false }) {
 	if (ignore) return
 
-	try{
-		const { lastAction, version } = yield call(Api.get, 'user/lastAction')
-
-		yield put({
-			type: COLLECTIONS_LOAD_REQ,
-			lastAction,
-			version
-		})
-	} catch (error) {
-		yield put({
-			type: COLLECTIONS_LOAD_ERROR,
-			error
-		})
-	}
+	yield put({
+		type: COLLECTIONS_LOAD_REQ,
+	})
 }
 
 export function* loadCollections({ ignore=false, onSuccess, onFail }) {

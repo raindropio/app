@@ -55,8 +55,6 @@ export default function(state = initialState, action={}){
 
 const initialState = Immutable({
 	status: 'idle', /* idle, loading, loaded, error, empty */
-	lastAction: '',
-	version: '',
 	
 	items: {},
 	groups: [],

@@ -15,7 +15,7 @@ import {
 
 export default function(state, action) {switch (action.type) {
 	case REHYDRATE:{
-		const { items, groups, lastAction, version } = action.payload && action.payload.collections||{}
+		const { items, groups } = action.payload && action.payload.collections||{}
 
 		if (typeof items == 'object')
 			if (Object.keys(items).length>0)
@@ -26,8 +26,6 @@ export default function(state, action) {switch (action.type) {
 				state = state.set('groups', groups)
 
 		return state
-			.set('lastAction', lastAction)
-			.set('version', version)
 	}
 
 	//Load
@@ -38,19 +36,9 @@ export default function(state, action) {switch (action.type) {
 		return state
 	}
 
-	case COLLECTIONS_LOAD_REQ:{
-		const { lastAction, version } = action
-		
-		if (state.lastAction == lastAction &&
-			state.version == version) {
-			action.ignore = true
-			return state;
-		}
-
+	case COLLECTIONS_LOAD_REQ:{		
 		return state
 			.set('status', 'loading')
-			.set('lastAction', lastAction)
-			.set('version', version)
 	}
 
 	case COLLECTIONS_LOAD_SUCCESS:{
@@ -71,8 +59,6 @@ export default function(state, action) {switch (action.type) {
 
 		return state
 			.set('status', 'error')
-			.set('lastAction', '')
-			.set('version', '')
 	}
 
 	//Refresh
@@ -83,8 +69,6 @@ export default function(state, action) {switch (action.type) {
 		}
 
 		return state
-			.set('lastAction', '')
-			.set('version', '')
 	}
 
 	//Reorder all collections
