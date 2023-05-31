@@ -42,6 +42,7 @@ export default function BookmarkEditFormNote({ autoFocus, item: { note }, onComm
                 <Button 
                     className={s.button} 
                     onClick={onMarkdownClick}
+                    tabIndex='-1'
                     size='small'
                     title='Stlying with Markdown is supported'>
                     <Icon name='markdown' />

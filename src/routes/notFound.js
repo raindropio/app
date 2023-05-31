@@ -16,7 +16,7 @@ export default function NotFound() {
 
             <Button
                 as={Link}
-                to='/'
+                to='/my/0'
                 variant='outline'>
                 {t.s('goHome')}
             </Button>
