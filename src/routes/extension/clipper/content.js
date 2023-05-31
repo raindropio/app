@@ -19,7 +19,7 @@ function ClipperContent({ item, add_auto_save, add_default_collection, last_coll
                 autoCreate: add_auto_save
             }}
 
-            autoFocus='title'
+            autoFocus='note'
             autoWindowClose
             
             buttons={

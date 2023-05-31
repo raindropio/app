@@ -1,16 +1,21 @@
 import s from './text.module.styl'
 import React from 'react'
-import _ from 'lodash-es'
 import TextareaAutosize from 'react-autosize-textarea'
 
 const emptyObj = {}
-const getMaxRowsProps = _.memoize(rows=>({
+const getRowsProps = (min, max)=>({
     async: false,
-    'data-max-rows': rows,
+    ...(min ? {
+        'data-min-rows': min,
+    } : {}),
+    ...(max ? {
+        'data-max-rows': max,
+    } : {}),
     style: {
-        '--max-rows': rows
+        ...(min ? {'--min-rows': min}:{}),
+        ...(max ? {'--max-rows': max}:{})
     }
-}))
+})
 
 class TextInner extends React.Component {
     static defaultProps = {
@@ -63,7 +68,7 @@ class TextInner extends React.Component {
         e.currentTarget.querySelector(`.${s.text}`).focus()
 
     render() {
-        const { className='', autoSize, variant, font, multiline, selectAll, hidden, icon, children, forwardedRef, maxRows, ...etc } = this.props
+        const { className='', autoSize, variant, font, multiline, selectAll, hidden, icon, children, forwardedRef, minRows, maxRows, ...etc } = this.props
         const Component = autoSize ? TextareaAutosize : 'input'
 
         return (
@@ -87,7 +92,7 @@ class TextInner extends React.Component {
                     ref={forwardedRef}
                     className={s.text}
 
-                    {...(maxRows ? getMaxRowsProps(maxRows) : emptyObj)} //react-autosize-textarea built-in maxRows buggy, content jumping
+                    {...((minRows || maxRows) ? getRowsProps(minRows, maxRows) : emptyObj)} //react-autosize-textarea built-in maxRows buggy, content jumping
 
                     onKeyDown={this.onKeyDownField}
                     onFocus={this.onFocus} />

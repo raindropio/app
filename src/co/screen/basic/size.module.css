@@ -1,6 +1,7 @@
 :root {
     font-size: 40px; /* why so big number? because it breaks if browser have min font size setting (especially in safari) */
 
+    --padding-micro: .075rem;
     --padding-mini: .1rem;
     --padding-small: .2rem; /*8px*/
     --padding-medium: .4rem; /*16px*/

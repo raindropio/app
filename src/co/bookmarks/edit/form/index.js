@@ -3,6 +3,7 @@ import React from 'react'
 
 import { Layout, Separator, Group } from '~co/common/form'
 import Cover from './cover'
+import Note from './note'
 import Collection from './collection'
 import Tags from './tags'
 import Action from './action'
@@ -32,6 +33,7 @@ export default class BookmarkEditForm extends React.Component {
                 <Layout type='grid'>
                     <Cover {...this.props} />
                     <Title  {...this.props} />
+                    <Note {...this.props} />
                     
                     <Collection {...this.props} />
                     <Tags {...this.props} />

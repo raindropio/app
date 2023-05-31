@@ -25,7 +25,12 @@
 }
 
 .suggestion {
+    --shadow-color: var(--shadow-light-color)
     * {
         --icon-size: var(--padding-medium)
+    }
+
+    &[data-tint]:not([data-tint='']) {
+        background: unquote('color-mix(in srgb, var(--tint) 12%, transparent)')
     }
 }

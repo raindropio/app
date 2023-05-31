@@ -27,7 +27,7 @@ export default {
         about: 'https://help.raindrop.io/about',
         'open-multiple-links': 'https://help.raindrop.io/bookmarks#open-multiple-links-at-once',
         import: 'https://help.raindrop.io/import',
-        omnibox: 'https://help.raindrop.io/browser-extension#search-in-address-bar',
+        omnibox: 'https://help.raindrop.io/browser-extension#search-from-address-bar',
         'login-problems': 'https://help.raindrop.io/login-problems',
         changelog: 'https://help.raindrop.io/changelog',
         embed: 'https://help.raindrop.io/embed',

@@ -20,6 +20,8 @@ function Suggestion({ id, onClick }) {
         <Button 
             data-id={id}
             className={s.suggestion}
+            data-tint={collection.color}
+            style={{'--tint': collection.color}}
             variant='outline'
             size='small'
             tabIndex='-1'

@@ -7,7 +7,11 @@ export default class BookmarkEditFormTitle extends React.Component {
     state = {
         maxRows: {
             title: 3,
-            excerpt: 3
+            excerpt: 1
+        },
+        focused: {
+            title: false,
+            excerpt: false
         }
     }
 
@@ -19,12 +23,26 @@ export default class BookmarkEditFormTitle extends React.Component {
             maxRows: {
                 ...this.state.maxRows,
                 [e.target.getAttribute('name')]: undefined
+            },
+            focused: {
+                ...this.state.focused,
+                [e.target.getAttribute('name')]: true
             }
         })
 
+    onBlurField = e=> {
+        this.setState({
+            focused: {
+                ...this.state.focused,
+                [e.target.getAttribute('name')]: false
+            }
+        })
+        this.props.onCommit(e)
+    }
+
     render() {
         const { autoFocus, item: { title, excerpt }, onCommit } = this.props
-        const { maxRows } = this.state
+        const { maxRows, focused } = this.state
 
         return (
             <div>
@@ -43,24 +61,26 @@ export default class BookmarkEditFormTitle extends React.Component {
                     maxRows={maxRows.title}
                     onChange={this.onChangeField}
                     onFocus={this.onFocusField}
-                    onBlur={onCommit} />
+                    onBlur={this.onBlurField} />
 
-                <Text 
-                    variant='less'
-                    autoSize={true}
-                    multiline={true}
-                    type='text'
-                    autoComplete='off'
-                    spellCheck='false'
-                    autoFocus={autoFocus=='excerpt'}
-                    name='excerpt'
-                    maxLength='10000'
-                    value={excerpt}
-                    placeholder={t.s('enterDescription')}
-                    maxRows={maxRows.excerpt}
-                    onChange={this.onChangeField}
-                    onFocus={this.onFocusField}
-                    onBlur={onCommit} />
+                {excerpt || focused.excerpt ? (
+                    <Text 
+                        variant='less'
+                        font='secondary'
+                        autoSize={true}
+                        type='text'
+                        autoComplete='off'
+                        spellCheck='false'
+                        autoFocus={autoFocus=='excerpt'}
+                        name='excerpt'
+                        maxLength='10000'
+                        value={excerpt}
+                        placeholder={t.s('enterDescription')}
+                        maxRows={maxRows.excerpt}
+                        onChange={this.onChangeField}
+                        onFocus={this.onFocusField}
+                        onBlur={this.onBlurField} />
+                ) : null}
             </div>
         )
     }
