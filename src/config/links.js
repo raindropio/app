@@ -34,6 +34,7 @@ export default {
         publicPage: 'https://help.raindrop.io/public-page',
         collaboration: 'https://help.raindrop.io/collaboration',
         'add-bookmark': 'https://help.raindrop.io/bookmarks#add-new-bookmark',
+        'add-note': 'https://help.raindrop.io/bookmarks#notes',
         search: 'https://help.raindrop.io/using-search',
         tfa: 'https://help.raindrop.io/tfa',
         highlights: {

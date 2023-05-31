@@ -1,11 +1,12 @@
 import s from './note.module.styl'
 import t from '~t'
 import React, { useCallback } from 'react'
+import links from '~config/links'
 
 import { Text, Label } from '~co/common/form'
 import Icon from '~co/common/icon'
 import Button from '~co/common/button'
-import { Alert } from '~co/overlay/dialog'
+import { Confirm } from '~co/overlay/dialog'
 
 export default function BookmarkEditFormNote({ autoFocus, item: { note }, onCommit, onChange }) {    
     const onChangeField = useCallback(e=>
@@ -15,8 +16,12 @@ export default function BookmarkEditFormNote({ autoFocus, item: { note }, onComm
 
     const onMarkdownClick = useCallback(e=>{
         e.preventDefault()
-        Alert('Styling with Markdown is supported', {
-            description: 'You can use links, lists, bold & italic styles',
+        Confirm(t.s('note'), {
+            description: 'Styling with Markdown is supported',
+            cancel: t.s('howToUse')
+        }).then(ok=>{
+            if (!ok)
+                window.open(links.help['add-note'])
         })
     }, [])
 
