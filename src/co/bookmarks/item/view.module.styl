@@ -77,11 +77,6 @@
     align-content: flex-start
     grid-gap: calc(var(--padding-mini) / 2)
 
-    em {
-        font-weight: 600
-        font-style: normal
-    }
-
     .title {
         font-weight: 500
         font-size: var(--title-font-size)
@@ -97,6 +92,15 @@
 
         &:empty {
             display: none
+        }
+
+        a {
+            z-index: 1
+            position: relative
+
+            &:hover {
+                text-decoration: underline
+            }
         }
     }
 
@@ -114,17 +118,16 @@
     .note {
         margin: 0
 
+        img, hr {
+            display: none
+        }
+
         h1, h2, h3, h4, h5, h6 {
             font-size: 100%
         }
 
         * {
             margin: 0
-        }
-
-        a {
-            z-index: 1
-            position: relative
         }
     }
 }

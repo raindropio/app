@@ -51,7 +51,9 @@ export default function BookmarkItemView(props) {
                     
                     <div className={s.description}>
                         {note ? (
-                            <Markdown className={s.note}>{note}</Markdown>
+                            <div className={s.note}>
+                                <Markdown>{note}</Markdown>
+                            </div>
                         ) : (
                             excerpt ? (
                                 <SafeHtml className={s.excerpt}>{highlight.excerpt || excerpt}</SafeHtml>
