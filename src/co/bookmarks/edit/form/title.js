@@ -1,3 +1,4 @@
+import s from './title.module.styl'
 import React from 'react'
 import t from '~t'
 
@@ -41,11 +42,11 @@ export default class BookmarkEditFormTitle extends React.Component {
     }
 
     render() {
-        const { autoFocus, item: { title, excerpt }, onCommit } = this.props
-        const { maxRows, focused } = this.state
+        const { autoFocus, item: { title, excerpt } } = this.props
+        const { maxRows } = this.state
 
         return (
-            <div>
+            <div className={s.wrap}>
                 <Text 
                     variant='less'
                     font='title'
@@ -63,24 +64,24 @@ export default class BookmarkEditFormTitle extends React.Component {
                     onFocus={this.onFocusField}
                     onBlur={this.onBlurField} />
 
-                {excerpt || focused.excerpt ? (
-                    <Text 
-                        variant='less'
-                        font='secondary'
-                        autoSize={true}
-                        type='text'
-                        autoComplete='off'
-                        spellCheck='false'
-                        autoFocus={autoFocus=='excerpt'}
-                        name='excerpt'
-                        maxLength='10000'
-                        value={excerpt}
-                        placeholder={t.s('enterDescription')}
-                        maxRows={maxRows.excerpt}
-                        onChange={this.onChangeField}
-                        onFocus={this.onFocusField}
-                        onBlur={this.onBlurField} />
-                ) : null}
+                <Text 
+                    className={s.excerpt+' '+(!excerpt ? s.empty : '')}
+                    variant='less'
+                    font='secondary'
+                    autoSize={true}
+                    type='text'
+                    autoComplete='off'
+                    spellCheck='false'
+                    autoFocus={autoFocus=='excerpt'}
+                    name='excerpt'
+                    maxLength='10000'
+                    multiline={true}
+                    value={excerpt}
+                    placeholder={t.s('add') + ' ' + t.s('description').toLowerCase()}
+                    maxRows={maxRows.excerpt}
+                    onChange={this.onChangeField}
+                    onFocus={this.onFocusField}
+                    onBlur={this.onBlurField} />
             </div>
         )
     }
