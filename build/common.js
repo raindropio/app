@@ -111,7 +111,6 @@ module.exports = ({ production, filename='[name].[contenthash]', sentry={} }, { 
 		new HtmlWebpackPlugin({
 			title: 'Raindrop.io',
 			template: './index.ejs',
-			hash: true,
 			scriptLoading: 'blocking',
 			inject: 'body',
 			excludeChunks: ['manifest', 'background']
