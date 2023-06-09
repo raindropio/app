@@ -13,12 +13,12 @@ export default function SettingsBackupsFilesItem({ _id, created }) {
             <ItemTitle><LongDateTime date={created}/></ItemTitle>
 
             <ButtonsGroup>
-                <Button href={`${API_ENDPOINT_URL}user/backup/${_id}/html`} download>
+                <Button href={`${API_ENDPOINT_URL}backup/${_id}/html`} download>
                     <Icon name='download' size='micro' />
                     HTML
                 </Button>
 
-                <Button href={`${API_ENDPOINT_URL}user/backup/${_id}/csv`} download>
+                <Button href={`${API_ENDPOINT_URL}backup/${_id}/csv`} download>
                     <Icon name='download' size='micro' />
                     CSV
                 </Button>

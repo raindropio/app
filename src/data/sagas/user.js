@@ -204,7 +204,7 @@ function* backup({ ignore=false, onSuccess, onFail }) {
 		return;
 
 	try {
-		yield call(Api.get, 'user/backup?json=1')
+		yield call(Api.get, 'backup')
 		onSuccess()
 	} catch (error) {
 		onFail(error)
