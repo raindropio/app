@@ -1,10 +1,40 @@
 .wrap {
-    position: relative
+    display: inline-flex
+    flex-direction: row
+    align-items: center
+    gap: var(--padding-small)
+
+    min-height: var(--button-height)
+    padding: 0 var(--padding-small)
+    background: var(--alternative-background-color)
+    border-radius: var(--border-radius)
+    transition: box-shadow 0.1s ease-in-out, background 0.1s ease-in-out
+
+    &:focus-within {
+        transition: none
+        background: var(--background-color)
+        box-shadow: inset 0 0 0 1px var(--accent-color), 0 0 0 var(--shadow-height) var(--accent-color)
+    }
 }
 
 .input {
-    position: absolute
-    opacity: 0
-    pointer-events: none
-    left: 0;right:0;bottom:0;top:0;
+    font-size: var(--primary-font-size)
+    line-height: var(--primary-line-height)
+
+    outline: none
+    appearance: none
+    border: 0
+    padding: 0
+    resize: none
+    background: transparent
+
+    &::-webkit-inner-spin-button,
+    &::-webkit-calendar-picker-indicator {
+        display: none
+        -webkit-appearance: none
+    }
+}
+
+.input[type="date"] {
+    width: 9.5ch
 }

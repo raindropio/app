@@ -6,6 +6,7 @@ __MACOSX
 node_modules
 yarn-error.log
 npm-debug.log
+.yarn
 
 # Next
 dist

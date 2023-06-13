@@ -1,20 +1,9 @@
 import s from './date_time.module.styl'
-import React, { useMemo, useCallback, useRef } from 'react'
+import React, { useState, useEffect, useMemo, useCallback } from 'react'
 import { format } from 'date-fns'
 import parseISO from 'date-fns/parseISO'
 
-import Button from '~co/common/button'
-import { LongDateTime } from '~modules/format/date/longTime'
-
-export function DateTime({ className='', icon, value, min, onChange, ...etc }) {
-    const ref = useRef(null)
-
-    const onButtonClick = useCallback(e=>{
-        e.preventDefault()
-        ref.current.showPicker()
-    }, [ref])
-
-    //input
+export function DateTime({ className='', left, right, value, min, onChange, onFocus, onDoubleClick, ...etc }) {
     const convert = useCallback(date=>{
         try {
             return format(date instanceof Date ? date : parseISO(date), 'yyyy-MM-dd\'T\'HH:mm')
@@ -24,28 +13,41 @@ export function DateTime({ className='', icon, value, min, onChange, ...etc }) {
         }
     }, [])
 
-    const inputValue = useMemo(()=>convert(value), [value, convert])
     const inputMin = useMemo(()=>convert(min), [min, convert])
 
-    const onInputChange = useCallback(e=>{
-        const value = e.currentTarget.value
-        onChange(value ? new Date(value) : undefined)
-    }, [onChange])
+    //value
+    const [inputValue, setInputValue] = useState(convert(value))
+    const onInputChange = useCallback(e=>setInputValue(e.currentTarget.value), [setInputValue])
+    useEffect(()=>setInputValue(convert(value)), [value, setInputValue])
+    useEffect(()=>{ if (inputValue) { onChange(new Date(inputValue)) } }, [inputValue, onChange])
+
+    //focus
+    const onInputFocus = useCallback(e=>{
+        e.currentTarget.showPicker()
+        if (typeof onFocus == 'function')
+            onFocus(e)
+    }, [onFocus])
+
+    //double click
+    const onInputDoubleClick = useCallback(e=>{
+        e.currentTarget.showPicker()
+        if (typeof onDoubleClick == 'function')
+            onDoubleClick(e)
+    }, [onDoubleClick])
 
     return (
-        <Button 
-            className={s.wrap+' '+className}
-            {...etc}
-            onClick={onButtonClick}>
-            {icon}
-            <LongDateTime date={value} />
+        <label className={s.wrap+' '+className}>
+            {left || null}
             <input 
-                ref={ref}
+                {...etc}
                 className={s.input}
                 type='datetime-local' 
                 value={inputValue}
                 min={inputMin}
-                onChange={onInputChange} />
-        </Button>
+                onChange={onInputChange}
+                onFocus={onInputFocus}
+                onDoubleClick={onInputDoubleClick} />
+            {right || null}
+        </label>
     )
 }
