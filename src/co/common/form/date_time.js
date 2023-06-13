@@ -1,70 +1,51 @@
 import s from './date_time.module.styl'
-import React, { useCallback, useMemo } from 'react'
+import React, { useMemo, useCallback, useRef } from 'react'
 import { format } from 'date-fns'
+import parseISO from 'date-fns/parseISO'
 
-function DatePart({ onChange, value, ...etc }) {
-    const date = useMemo(()=>{
+import Button from '~co/common/button'
+import { LongDateTime } from '~modules/format/date/longTime'
+
+export function DateTime({ className='', icon, value, min, onChange, ...etc }) {
+    const ref = useRef(null)
+
+    const onButtonClick = useCallback(e=>{
+        e.preventDefault()
+        ref.current.showPicker()
+    }, [ref])
+
+    //input
+    const convert = useCallback(date=>{
         try {
-            return format(new Date(value), 'yyyy-MM-dd')
-        } catch(e) { return '' }
-    }, [value])
+            return format(date instanceof Date ? date : parseISO(date), 'yyyy-MM-dd\'T\'HH:mm')
+        } catch(e) {
+            console.error(e)
+            return undefined
+        }
+    }, [])
 
-    const onChangeDate = useCallback(e=>{
-        const oldDate = new Date(value)
-        const newDate = new Date(e.target.value)
-        newDate.setHours(oldDate.getHours())
-        newDate.setMinutes(oldDate.getMinutes())
-        onChange(newDate)
-    }, [value, onChange])
+    const inputValue = useMemo(()=>convert(value), [value, convert])
+    const inputMin = useMemo(()=>convert(min), [min, convert])
 
-    const onFocusDate = useCallback(e=>e.target.showPicker(), [])
+    const onInputChange = useCallback(e=>{
+        const value = e.currentTarget.value
+        onChange(value ? new Date(value) : undefined)
+    }, [onChange])
 
     return (
-        <input
+        <Button 
+            className={s.wrap+' '+className}
             {...etc}
-            className={s.input}
-            type='date'
-            value={date}
-            onChange={onChangeDate}
-            onDoubleClick={onFocusDate} />
-    )
-}
-
-function TimePart({ onChange, value, ...etc }) {
-    const time = useMemo(()=>{
-        try {
-            return format(new Date(value), 'HH:mm')
-        } catch(e) { return '' }
-    }, [value])
-
-    const onChangeTime = useCallback(e=>{
-        const [h,m] = e.target.value.split(':')
-        const date = new Date(value)
-        date.setHours(h)
-        date.setMinutes(m)
-        onChange(date)
-    }, [value, onChange])
-
-    const onFocusTime = useCallback(e=>e.target.showPicker(), [])
-
-    return (
-        <input
-            {...etc}
-            className={s.input}
-            type='time'
-            value={time}
-            onChange={onChangeTime}
-            onDoubleClick={onFocusTime} />
-    )
-}
-
-export function DateTime({ className='', left, right, ...etc }) {
-    return (
-        <div className={s.wrap + ' ' + className}>
-            {left || null}
-            <DatePart {...etc} />
-            <TimePart {...etc} autoFocus={false} />
-            {right || null}
-        </div>
+            onClick={onButtonClick}>
+            {icon}
+            <LongDateTime date={value} />
+            <input 
+                ref={ref}
+                className={s.input}
+                type='datetime-local' 
+                value={inputValue}
+                min={inputMin}
+                onChange={onInputChange} />
+        </Button>
     )
 }

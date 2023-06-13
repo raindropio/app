@@ -4,7 +4,6 @@ import { add, nextSunday } from 'date-fns'
 
 import { DateTime } from '~co/common/form'
 import { More, Menu, MenuItem } from '~co/overlay/popover'
-import Button from '~co/common/button'
 import Icon from '~co/common/icon'
 
 function Templates({ onSetDate }) {
@@ -35,28 +34,22 @@ function Templates({ onSetDate }) {
 }
 
 export default function BookmarkEditFormReminder({ item: { reminder }, onChange, onSave }) {
+    const minDate = useMemo(()=>new Date(), [])
+
     const onChangeDate = useCallback(date=>{
         onChange({ reminder: { date } })
     }, [onChange])
 
-    const onSetDate = useCallback((date)=>{
+    const onSetDate = useCallback(date=>{
         onChangeDate(date)
-        onSave()
-    }, [onChangeDate, onSave])
-
-    const onDisable = useCallback(()=>{
-        onChangeDate(undefined)
         onSave()
     }, [onChangeDate, onSave])
 
     return reminder.date ? (<>
         <DateTime 
-            left={<Icon name='reminder' style={{color: 'var(--accent-color)'}} />}
-            right={(
-                <Button onClick={onDisable} size='small'>
-                    <Icon name='close' size='micro' />
-                </Button>
-            )}
+            variant='outline'
+            icon={<Icon name='reminder' style={{color: 'var(--accent-color)'}} />}
+            min={minDate}
             value={reminder.date}
             onChange={onChangeDate}
             onBlur={onSave} />
