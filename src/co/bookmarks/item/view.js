@@ -15,7 +15,7 @@ import Actions from './actions'
 
 export default function BookmarkItemView(props) {
     const { innerRef, isDragging } = props
-    const { _id, link, title, excerpt, highlight, cover, domain, tags, note, highlights, reminder, view, access } = props
+    const { _id, link, title, excerpt, highlight, cover, domain, tags, note, highlights, reminder, view, access, spaceId } = props
     const { active, selected, selectModeEnabled, selectDisabled, important, broken, coverSize } = props
     const { onClick, onDoubleClick, onSelectClick, onContextMenu, onKeyUp } = props
 
@@ -62,7 +62,7 @@ export default function BookmarkItemView(props) {
                         ) : null}
                         <Reminder reminder={reminder} />
                         <Highlights className={s.highlights} highlights={highlights} />
-                        <Tags tags={tags} />
+                        <Tags tags={tags} spaceId={spaceId} />
                     </div>
 
                     {/* Info */}
