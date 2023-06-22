@@ -98,7 +98,7 @@ export default class BookmarksEmptyView extends React.PureComponent {
                         <br/>
 
                         <p>
-							<Link to='../../0'>{t.s('allBookmarks')}</Link>
+							<Link to='/my/0'>{t.s('allBookmarks')}</Link>
                         </p>
                     </div>
                 )

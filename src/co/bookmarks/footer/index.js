@@ -65,7 +65,7 @@ function BookmarksFooter({ spaceId, compact, compactLimit }) {
                 as={Link}
                 variant='flat'
                 data-block
-                to={`../../${spaceId}/full`}>
+                to={`/my/${spaceId}/full`}>
                 {t.s('showAll')}
             </Button>
         )

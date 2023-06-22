@@ -16,9 +16,9 @@ export default function PageMySpaceHeader(params) {
         if ((search||'').trim() != (params.search||'').trim() ||
             cId != params._id)
             if (params.search)
-                navigate(`../../${params._id}/${encodeURIComponent(params.search)}/${(parseInt(cId) ? parseInt(cId) : fromCid)||''}`)
+                navigate(`/my/${params._id}/${encodeURIComponent(params.search)}/${(parseInt(cId) ? parseInt(cId) : fromCid)||''}`)
             else
-                navigate(`../../${params._id}`)
+                navigate(`/my/${params._id}`)
     }, [navigate, cId, search, fromCid])
 
     const events = useMemo(()=>({ onSubmit }), [onSubmit])

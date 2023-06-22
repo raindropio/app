@@ -35,7 +35,7 @@ function SuggestionItem({ item, className='', forwardedRef, ...etc}) {
 
                 {!etc.onClick ? (
                     <SuperLink 
-                        to={`../0/${query}`}
+                        to={`/my/0/${query}`}
                         tabIndex='0'/>
                 ) : null}
             </Item>

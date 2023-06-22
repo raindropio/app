@@ -49,7 +49,7 @@ class BookmarksHeaderTitle extends React.Component {
                 )}
 
                 {compact && status.main=='loaded' ? (
-                    <Link to={`../${_id}/full`}>
+                    <Link to={`/my/${_id}/full`}>
                         {this.renderTitle()}
                     </Link>
                 ) : this.renderTitle()}

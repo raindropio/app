@@ -12,7 +12,7 @@ function BookmarksItemPath({ collection }) {
     return (
         <Link 
             tabIndex='-1'
-            to={`../../${collection._id}/full`}
+            to={`/my/${collection._id}/full`}
             className={s.path}
             onContextMenu={preventDefault}>
             <CollectionIcon 

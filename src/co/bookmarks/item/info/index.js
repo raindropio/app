@@ -38,7 +38,7 @@ export default function BookmarkItemInfo(props) {
                     <section data-inline className={s.duplicateLabel}><Icon name='duplicate' size='micro' /></section>
                     <section className={s.duplicateLabel}>
                         <Link 
-                            to={'../../0/'+encodeURIComponent(`_id:${duplicate} duplicate:${duplicate} match:OR`)}
+                            to={'/my/0/'+encodeURIComponent(`_id:${duplicate} duplicate:${duplicate} match:OR`)}
                             title={t.s('defaultCollection-0')+' '+t.s('original').toLowerCase()}>
                             {t.s('duplicates')}
                         </Link>

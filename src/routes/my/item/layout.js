@@ -23,7 +23,7 @@ export default function PageMyItemLayout({ tabs, item, webViewRef }) {
             data-theme={tab=='preview' && item.type == 'article' && font_color ? font_color : undefined}>
             <Reader.Header
                 data-no-shadow={tab!='web'}
-                backTo='../../../'
+                backTo='../'
                 onFullscreenClick={onFullscreenClick}>
                 <Toolbar
                     item={item}

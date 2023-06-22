@@ -44,7 +44,7 @@ export default class TagsItemView extends React.Component {
 
                 {focusable && (
                     <SuperLink 
-                        to={`../0/${encodeURIComponent(query.trim())}`}
+                        to={`/my/0/${encodeURIComponent(query.trim())}`}
                         tabIndex='0'/>
                 )}
             </Item>

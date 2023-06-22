@@ -24,7 +24,7 @@ export default function MyMainSearchIn({ cId, search, fromCid }) {
     ], [collection])
 
     const onChange = useCallback(_id=>{
-        navigate(`../../${_id}/${encodeURIComponent(search)}/${collection._id}`)
+        navigate(`/my/${_id}/${encodeURIComponent(search)}/${collection._id}`)
     }, [navigate, search, collection._id])
     
     if (!search || !collection._id)
