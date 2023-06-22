@@ -1,6 +1,6 @@
 import s from './text.module.styl'
 import React from 'react'
-import TextareaAutosize from 'react-autosize-textarea'
+import TextareaAutosize from 'react-textarea-autosize'
 
 const emptyObj = {}
 const getRowsProps = (min, max)=>({
