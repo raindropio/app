@@ -53,7 +53,8 @@ export default function ExtensionHighlightsPermissions() {
     else if (environment.includes('safari'))
         content = (
             <ol>
-                <li>Open <b>Safari Settings</b></li>
+                <li><a onClick={requestPermission}>Click here first</a></li>
+                <li>Then open <b>Safari Settings</b></li>
                 <li>Find <b>Raindrop.io</b> in <b>Extensions</b></li>
                 <li>Click <b>Always Allow on Every Website</b></li>
             </ol>
@@ -69,7 +70,9 @@ export default function ExtensionHighlightsPermissions() {
 
     return (<Layout>
         <Alert variant='warning'>
-            Additional permissions required to start using Highlights
+            The Raindrop.io extension <b>respects your privacy</b> and functions without requiring any additional permissions.<br /><br />
+            However, to <b>enable highlighting</b>, we need <b>access to the data of your visited webpages</b>.<br />
+            Rest assured, you can easily revoke this permission at any time through the extension settings.
         </Alert>
 
         {content}
