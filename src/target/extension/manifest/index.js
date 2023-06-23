@@ -46,9 +46,9 @@ module.exports = ({ vendor, production=false }, l) => {
 		},
 
 		background: (
-			(vendor == 'firefox' || vendor == 'safari' || vendor == 'safari-ios') ? {
+			(vendor == 'firefox' || vendor.startsWith('safari')) ? {
 				scripts: ['background.js'],
-				...(vendor == 'safari' || vendor == 'safari-ios' ? {
+				...(vendor.startsWith('safari') ? {
 					persistent: false
 				} : {})
 			} : {
@@ -71,7 +71,7 @@ module.exports = ({ vendor, production=false }, l) => {
 					32: file(l, '../../../assets/target/extension/action_chrome_32.png')
 				} : {}),
 				//safari icon
-				...(vendor == 'safari' || vendor == 'safari-ios' ? {
+				...(vendor.startsWith('safari') ? {
 					16: file(l, '../../../assets/target/extension/action_safari_16.png'),
 					19: file(l, '../../../assets/target/extension/action_safari_19.png'),
 					32: file(l, '../../../assets/target/extension/action_safari_32.png'),
@@ -94,11 +94,11 @@ module.exports = ({ vendor, production=false }, l) => {
 			'scripting',
 			'storage',
 			...(vendor == 'chrome' ? ['sidePanel'] : []),
-			...(vendor == 'safari-ios' ? ['tabs'] : [])
+			...(vendor.startsWith('safari') ? ['tabs'] : [])
 		],
 		
 		optional_permissions: [
-			...(vendor != 'safari-ios' ? ['tabs'] : []),
+			...(!vendor.startsWith('safari') ? ['tabs'] : []),
 			...(vendor == 'firefox' ? ['*://*/*'] : [])
 		],
 
