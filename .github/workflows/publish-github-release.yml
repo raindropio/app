@@ -19,7 +19,7 @@ jobs:
         node-version: 16.x
 
     - name: Install dependencies
-      run: yarn
+      run: npm i
 
     - name: Make version.sh for xcode project executable
       run: chmod +x build/xcode/Save\ to\ Raindrop.io/version.sh
@@ -27,7 +27,7 @@ jobs:
     - name: Build for all platforms
       env:
         SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
-      run: yarn build && yarn build:extension && yarn build:electron
+      run: npm run build && npm run build:extension && npm run build:electron
 
     - name: Read package json
       id: json
