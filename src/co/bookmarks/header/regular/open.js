@@ -10,6 +10,6 @@ export default ({ className, spaceId })=>(
         href={new URL(`/my/${spaceId}`, config.links.app.index).toString()}
         target='_blank'
         title={t.s('open')+' '+t.s('inNewTab')}>
-        <Icon name='open' />
+        <Icon name='open' size='micro' />
     </Button>
 )

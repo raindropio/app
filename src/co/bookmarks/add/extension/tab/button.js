@@ -64,7 +64,7 @@ class BookmarksAddSave extends React.Component {
                     <Button
                         className={s.button}>
                         <Preloader />
-                        <span className={s.label}>{t.s('save')}…</span>
+                        <span className={s.label+' hide-on-small-body'}>{t.s('save')}…</span>
                     </Button>
                 )
 
@@ -76,7 +76,7 @@ class BookmarksAddSave extends React.Component {
                         title={t.s('edit')}
                         onClick={this.onEditClick}>
                         <Icon name='check_active' />
-                        <span className={s.label}>{!search && t.s('saved')}</span>
+                        <span className={s.label+' hide-on-small-body'}>{!search && t.s('saved')}</span>
                     </Button>
                 )
 
@@ -89,7 +89,7 @@ class BookmarksAddSave extends React.Component {
                         title={t.s('save')}
                         onMouseDown={this.onAddClick}>
                         <Icon name='new_bookmark' />
-                        <span className={s.label}>{!search && t.s('save')}</span>
+                        <span className={s.label+' hide-on-small-body'}>{!search && t.s('save')}</span>
                     </Button>
                 )
         }

@@ -7,7 +7,6 @@ import { makeStatus } from '~data/selectors/bookmarks'
 import Header, { Title as TitleWrap, Space } from '~co/common/header'
 import Icon from './icon'
 import Title from './title'
-import Rename from './rename'
 import Open from './open'
 import More from './more'
 import Sort from './sort'
@@ -33,10 +32,6 @@ class BookmarksHeader extends React.Component {
                 <TitleWrap>
                     <Title {...this.props} />
                 </TitleWrap>
-
-                <Rename 
-                    className={s.rename}
-                    {...this.props} />
 
                 <Open 
                     className={s.open}

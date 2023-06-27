@@ -1,10 +1,10 @@
 import React from 'react'
 import t from '~t'
 import { connect } from 'react-redux'
-import { oneRemove } from '~data/actions/collections'
+import { oneUpdate, oneRemove } from '~data/actions/collections'
 import { getSearchEmpty } from '~data/selectors/bookmarks'
 
-import { Confirm } from '~co/overlay/dialog'
+import { Confirm, Prompt } from '~co/overlay/dialog'
 import Button from '~co/common/button'
 import Icon from '~co/common/icon'
 import Popover, { Menu, MenuItem } from '~co/overlay/popover'
@@ -37,6 +37,12 @@ class BookmarksHeaderMore extends React.Component {
     onIconClose = ()=>
         this.setState({ icon: false })
 
+    onRenameClick = async()=>{
+        const newname = await Prompt(t.s('rename'), this.props.collection.title)
+        if (newname)
+            this.props.oneUpdate(this.props.collection._id, { title: newname })
+    }
+
     onRemoveClick = async()=>{
         if (await Confirm(t.s('areYouSure'), {
             variant: 'warning',
@@ -66,6 +72,11 @@ class BookmarksHeaderMore extends React.Component {
                         pin={this.pin} 
                         onClose={this.onContextMenuClose}>
                         <Menu>
+                            <MenuItem onClick={this.onRenameClick}>
+                                <Icon name='edit' />
+                                {t.s('rename')}
+                            </MenuItem>
+
                             <MenuItem onClick={this.onIconClick}>
                                 <Icon name='image' />
                                 {t.s('changeIcon')}
@@ -93,5 +104,5 @@ export default connect(
 	(state, { spaceId })=>({
         isSearching: !getSearchEmpty(state, spaceId)
     }),
-	{ oneRemove }
+	{ oneUpdate, oneRemove }
 )(BookmarksHeaderMore)
