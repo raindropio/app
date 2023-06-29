@@ -11,10 +11,8 @@ export const makeCollectionsSearch = ()=>createSelector(
 		({collections={}})=>collections.groups,
         (state, ignore)=>parseInt(ignore),
         (state, ignore, filter)=>filter,
-		(state, ignore, filter, fullquery)=>fullquery,
     ],
-	(items, groups, ignore, _filter, fullquery)=>{
-		if (fullquery && fullquery != _filter) return emptyArray
+	(items, groups, ignore, _filter)=>{
 		const filter = (_filter||'').toLowerCase().trim()
 		if (!filter) return emptyArray
 

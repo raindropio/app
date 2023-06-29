@@ -59,7 +59,7 @@ export default function(state, action) {switch (action.type) {
 
 		//fix sort in query
 		if (space && query && query.sort)
-			if (!space.sorts[query.sort] || !space.sorts[query.sort].enabled)
+			if (!space.sorts[query.sort])
 				query.sort = '-created'
 
 		//reset bookmarks list when query changed
