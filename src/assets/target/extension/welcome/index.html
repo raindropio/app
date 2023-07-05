@@ -1,216 +1,331 @@
 <!DOCTYPE html>
 <head>
-    <title>Raindrop.io</title>
     <meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
-    <meta name="color-scheme" content="dark light">
     <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
-    <link rel="stylesheet" href="page.css" />
-    <script src="page.js" async></script>
+    <meta name="color-scheme" content="dark">
+    <link href="modern-normalize.css" rel="stylesheet" />
+    <link href="style.css" rel="stylesheet" />
+    <title>Raindrop.io Extension Installed</title>
+
+    <meta name="twitter:image:src" content="og.png" />
+    <meta name="twitter:site" content="@raindrop_io" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Raindrop.io Extension Installed" />
+    <meta name="twitter:description" content="Explore new features Raindrop.io brings to browser" />
+    
+    <meta property="og:image" content="og.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="600" />
+    <meta property="og:site_name" content="Raindrop.io" />
+    <meta property="og:type" content="object" />
+    <meta property="og:title" content="Raindrop.io Extension Installed" />
+    <meta property="og:description" content="Explore new features Raindrop.io brings to browser" />
 </head>
 <body>
-    <nav></nav>
-    <div class="scroll"><span /></div>
+    <button id="nav-left" class="button size-large variant-primary only-icon" hidden>
+        <svg class="icon"><use xlink:href="#icon-left"></use></svg>
+    </button>
+    <button id="nav-right" class="button size-large variant-primary only-icon">
+        <svg class="icon"><use xlink:href="#icon-right"></use></svg>
+    </button>
 
-    <!-- Save -->
-    <section id="save">
-        <picture class="not-ios">
-            <source srcset="save.png, save@2x.png 2x">
-            <img src="save.png" style="aspect-ratio: 984 / 462" />
-        </picture>
-        <picture class="is-ios">
-            <source srcset="ios.png, ios@2x.png 2x">
-            <img src="ios.png" style="aspect-ratio: 620 / 355" />
-        </picture>
+    <div class="slide center">
+        <div class="intro">
+            <h4><span class="text-gradient blue-green-gradient">New Power-ups Unlocked</span></h4>
+            <h2>
+                Explore new features
+                <span style="white-space: nowrap;"><img src="logo-icon.png" style="height: 48px; vertical-align: -6px; margin: 0 4px" />&nbsp;Raindrop</span>
+                brings to
+                <span class="browser-name"></span>
+            </h2>
+            <div class="spacer"></div>
+            <div class="scroll-icon"></div>
+        </div>
+    </div>
 
-        <article>
-            <h2>Save webpages, files, tabs &&nbsp;highlights</h2>
-            <p class="not-ios">
-                Click on a <svg class="ic"><use xlink:href="#ic-cloud"></use></svg> cloud icon,
-                <svg class="ic"><use xlink:href="#ic-hand"></use></svg> right click the element
-                or press <code id="save-hotkey">Ctrl+Shift+S</code><br/>
-                Even if a page you've saved is taken down, you'll still have a <svg class="ic"><use xlink:href="#ic-lock"></use></svg> copy of it.
+    <!-- Save button -->
+    <div class="slide columns left" id="save-button" data-is-intersecting="false">
+        <div class="image-column">
+            <img src="screen-save.jpg" />
+        </div>
+
+        <div class="text-column">
+            <h4><span class="text-gradient pink-red-gradient">Save Button</span></h4>
+            <h2>Collect & organize web pages as you browse</h2>
+            <div class="spacer"></div>
+            
+            <a href="#pin" class="button size-regular variant-primary">Pin in Toolbar</a>
+            <span class="or-text">or</span>
+            <span data-system-show="macos">
+                <button class="button size-regular variant-secondary only-icon" disabled>⇧</button>
+                <button data-browser-hide="firefox" class="button size-regular variant-secondary only-icon" disabled>⌘</button>
+                <button data-browser-show="firefox" class="button size-regular variant-secondary only-icon" disabled>⌥</button>
+                <button class="button size-regular variant-secondary only-icon" disabled>S</button>
+            </span>
+            <span data-system-show="windows linux">
+                <button class="button size-regular variant-secondary" disabled>
+                    <span data-browser-hide="firefox">Alt</span><span data-browser-show="firefox">Alt</span>
+                    <span>Shift</span>
+                    <span>S</span>
+                </button>
+            </span>
+        </div>
+    </div>
+
+    <div class="slide center" id="pin" hidden>
+        <div class="backport-background pink-red-gradient"></div>
+
+        <div class="text-container">
+            <h3>Pin "Save Button" in Toolbar</h3>
+            <ol>
+                <li>Click <svg class="icon"><use xlink:href="#icon-puzzle"></use></svg> button in a <span class="browser-name"></span> toolbar</li>
+                <li>Find <svg class="icon"><use xlink:href="#icon-cloud"></use></svg> Raindrop.io and click <svg class="icon"><use xlink:href="#icon-pin"></use></svg> button next to it</li>
+            </ol>
+            <p class="text-secondary">
+                Optional:
+                <button class="request-tabs-permission button variant-secondary size-inline">Enable saved page indicator</button>
+                which displays a small <svg class="icon"><use xlink:href="#icon-check"></use></svg> when you visit a page that has already been saved
             </p>
-            <p class="is-ios">
-                Tap <svg class="ic"><use xlink:href="#ic-puzzle"></use></svg> icon then <code>Manage Extensions</code> and enable <code>Raindrop.io</code>.<br/>
-                Next time activate extension through <svg class="ic"><use xlink:href="#ic-puzzle"></use></svg> menu.
-            </p>
-        </article>
-        <menu>
-            <li><a href="https://help.raindrop.io/browser-extension#how-to" target="_blank">
-                <strong>How to save?</strong>
-                <svg class="ic"><use xlink:href="#ic-open"></use></svg>
-            </a></li>
-            <li><a href="https://help.raindrop.io/backups#permanent-library" target="_blank">
-                <strong>Backups</strong>
-                <svg class="ic"><use xlink:href="#ic-open"></use></svg>
-            </a></li>
-        </menu>
-    </section>
-
-    <!-- Orgnize -->
-    <section id="organize">
-        <picture>
-            <source srcset="organize.png, organize@2x.png 2x">
-            <img src="organize.png" style="aspect-ratio: 914 / 452" />
-        </picture>
-        <article>
-            <h2>Organize with collections, filters &&nbsp;tags</h2>
+            <hr class="pink-red-gradient" />
             <p>
-                Group related items within the same context. Thousands of predefined icons.<br/>
-                Add tags to classify items. Search efficiently by type, tags, or domain
+                Web pages and files saved in your private account.
+                Suitable collections and tags will be suggested automatically, improving with the more you collect.
             </p>
-        </article>
-        <menu>
-            <li><a href="https://help.raindrop.io/collections" target="_blank">
-                <strong>Collections</strong>
-                <svg class="ic"><use xlink:href="#ic-open"></use></svg>
-            </a></li>
-            <li><a href="https://help.raindrop.io/tags" target="_blank">
-                <strong>Filters & tags</strong>
-                <svg class="ic"><use xlink:href="#ic-open"></use></svg>
-            </a></li>
-        </menu>
-    </section>
+            <p>Have too many tabs open? <a href="https://help.raindrop.io/browser-extension#save-tabs" target="_blank">Save them all</a> with a click.</p>
+        </div>
+    </div>
 
-    <!-- Search -->
-    <section id="search">
-        <picture>
-            <source srcset="search.png, search@2x.png 2x">
-            <img src="search.png" style="aspect-ratio: 864 / 380" />
-        </picture>
-        <article>
-            <h2>Search by page content<br/>Read inside app</h2>
-            <p>
-                Search through the entire content of a pages and PDF’s you’ve saved.<br/>
-                Read articles, view videos, and browse the web without ever leaving your library
+    <!-- Sidepanel -->
+    <div data-browser-show="chrome firefox" class="slide columns left" id="sidepanel" data-is-intersecting="false">
+        <div class="image-column">
+            <img src="screen-sidepanel.jpg" />
+        </div>
+
+        <div class="text-column">
+            <h4><span class="text-gradient blue-green-gradient">Sidepanel</span></h4>
+            <h2>Retrive collected items in one click</h2>
+            <div class="spacer"></div>
+            <a href="#open-sidepanel" class="button size-regular variant-primary">Open Sidepanel</a>
+        </div>
+    </div>
+
+    <div class="slide center" id="open-sidepanel" hidden>
+        <div class="backport-background blue-green-gradient"></div>
+
+        <div class="text-container">
+            <h3>Open Raindrop.io Sidepanel</h3>
+            <ol>
+                <li>Click <svg class="icon"><use xlink:href="#icon-sidepanel"></use></svg> button in a <span class="browser-name"></span> toolbar</li>
+                <li>In dropdown select <svg class="icon"><use xlink:href="#icon-cloud"></use></svg> Raindrop.io</li>
+                <li>Raindrop.io will automatically appear the next time you click <svg class="icon"><use xlink:href="#icon-sidepanel"></use></svg> button</li>
+            </ol>
+            <hr class="pink-red-gradient" />
+            <p>In sidepanel you can browse your collection, search and add new items.</p>
+            <p>What's cool is that you can simply drag new links and images into this panel to save them.</p>
+        </div>
+    </div>
+
+    <!-- Search field -->
+    <div data-browser-show="chrome firefox opera edge" class="slide columns right" id="search-field" data-is-intersecting="false">
+        <div class="image-column">
+            <img src="screen-search.jpg" />
+        </div>
+
+        <div class="text-column">
+            <h4><span class="text-gradient blue-purple-gradient">Search Field</span></h4>
+            <h2>Type in address bar to find collected items</h2>
+            <div class="spacer"></div>
+            <a href="#start-search" class="button size-regular variant-primary">Start Search</a>
+        </div>
+    </div>
+
+    <div class="slide center" id="start-search" hidden>
+        <div class="backport-background blue-purple-gradient"></div>
+
+        <div class="text-container">
+            <h3>Address Bar Integration</h3>
+            <ol>
+                <li>Click address bar in <span class="browser-name"></span> toolbar</li>
+                <li>Type the special keyword &nbsp;<button class="button variant-secondary size-regular" disabled>rd</button>&nbsp; followed by a space</li>
+                <li>Enter your search query, results will appear below</li>
+            </ol>
+            <hr class="pink-red-gradient" />
+            <p>Raindrop can search by title, notes, URL, tag, type, date or entire content of web-page, EPUB or PDF (no OCR).</p>
+            <p>Best in class support for 16 languages. Find precisely by crafting advanced searches with our <a href="https://help.raindrop.io/using-search#operators" target="_blank">super power operators</a>.</p>
+        </div>
+    </div>
+
+    <!-- Multiplayer -->
+    <div class="slide columns right" id="multiplayer" data-is-intersecting="false">
+        <div class="image-column">
+            <img src="screen-multiplayer.jpg" />
+        </div>
+
+        <div class="text-column">
+            <h4><span class="text-gradient mint-green-gradient">Multiplayer</span> &nbsp;<span class="badge mint-green-gradient">Opt-in</span></h4>
+            <h2>Edit collection together. Share with entire web</h2>
+            <div class="spacer"></div>
+            <a href="https://help.raindrop.io/public-page" target="_blank" class="button size-regular variant-primary">Learn more</a>
+        </div>
+    </div>
+
+    <!-- Highlights -->
+    <div class="slide columns feature" id="highlights" data-is-intersecting="false">
+        <div class="backport-background pink-red-gradient"></div>
+
+        <div>
+            <div class="pink-red-gradient mask-icon" style='clip-path: url(#mask-highlights);'></div>
+            <div class="spacer"></div>
+            <h4><span class="text-gradient pink-red-gradient">Highlights & Annotations</span></h4>
+            <h2>Save important passages</h2>
+            <div class="spacer"></div>
+            <a href="https://help.raindrop.io/highlights" target="_blank" class="button size-regular variant-primary">Learn more</a>
+        </div>
+    </div>
+
+    <div class="slide columns feature" id="reminders" data-is-intersecting="false">
+        <div class="backport-background yellow-orange-gradient"></div>
+
+        <div>
+            <div class="yellow-orange-gradient mask-icon" style='clip-path: url(#mask-reminders);'></div>
+            <div class="spacer"></div>
+            <h4><span class="text-gradient yellow-orange-gradient">Reminders</span></h4>
+            <h2>Schedule content for later</h2>
+            <div class="spacer"></div>
+            <a href="https://help.raindrop.io/reminders" target="_blank" class="button size-regular variant-primary">Learn more</a>
+        </div>
+    </div>
+
+    <div class="slide columns feature" id="permanent-copies" data-is-intersecting="false">
+        <div class="backport-background blue-green-gradient"></div>
+
+        <div>
+            <div class="blue-green-gradient mask-icon" style='clip-path: url(#mask-permanent-copies);'></div>
+            <div class="spacer"></div>
+            <h4><span class="text-gradient blue-green-gradient">Permanent Copies</span></h4>
+            <h2>Never lose access to collected items</h2>
+            <div class="spacer"></div>
+            <a href="https://help.raindrop.io/permanent-copy" target="_blank" class="button size-regular variant-primary">Learn more</a>
+        </div>
+    </div>
+
+    <div class="slide columns feature" id="automation" data-is-intersecting="false">
+        <div class="backport-background blue-purple-gradient"></div>
+
+        <div>
+            <div class="blue-purple-gradient mask-icon" style='clip-path: url(#mask-automation);'></div>
+            <div class="spacer"></div>
+            <h4><span class="text-gradient blue-purple-gradient">Automations</span></h4>
+            <h2>Connect with 2,000+ apps</h2>
+            <div class="spacer"></div>
+            <a href="https://raindrop.io/download" target="_blank" class="button size-regular variant-primary">Learn more</a>
+        </div>
+    </div>
+
+    <div class="slide columns feature" id="download" data-is-intersecting="false">
+        <div class="backport-background pink-red-gradient"></div>
+
+        <div>
+            <div class="pink-red-gradient mask-icon" style='clip-path: url(#mask-download);'></div>
+            <div class="spacer"></div>
+            <h4><span class="text-gradient pink-red-gradient">Desktop & Mobile Apps</span></h4>
+            <h2>Sync with all of your devices</h2>
+            <div class="spacer"></div>
+            <a href="https://raindrop.io/download" target="_blank" class="button size-regular variant-primary">Learn more</a>
+        </div>
+    </div>
+
+    <!-- Get started -->
+    <div class="slide center" id="get-started" data-is-intersecting="false">
+        <div class="get-started text-container" style="text-align: center;">
+            <div data-authenticated-hide>
+                <p>
+                    Sign up to sync your collections, bookmarks & highlights across all your devices                
+                </p>
+                <div class="spacer"></div>
+        
+                <div class="buttons">
+                    <a href="https://api.raindrop.io/v1/auth/google" class="button size-large variant-primary">
+                        <svg class="icon" style="fill: #FF3B30;"><use xlink:href="#icon-google"></use></svg> Continue with Google
+                    </a>
+        
+                    <a href="https://api.raindrop.io/v1/auth/apple" class="button size-large variant-primary">
+                        <svg class="icon"><use xlink:href="#icon-apple"></use></svg> Continue with Apple
+                    </a>
+        
+                    <a href="https://app.raindrop.io/account/signup" class="button size-large variant-secondary">
+                        Email or Username
+                    </a>
+                </div>
+            </div>
+
+            <p data-authenticated-show>
+                You ready to go!
             </p>
-        </article>
-        <menu>
-            <li><a href="https://help.raindrop.io/using-search" target="_blank">
-                <strong>Learn more</strong>
-                <svg class="ic"><use xlink:href="#ic-open"></use></svg>
-            </a></li>
-            <li class="not-ios"><a href="https://help.raindrop.io/browser-extension#search-from-address-bar" target="_blank">
-                <strong>Search from address bar</strong>
-                <svg class="ic"><use xlink:href="#ic-open"></use></svg>
-                <small>Open new tab and press <code>rd + space</code></small>
-            </a></li>
-        </menu>
-    </section>
 
-    <!-- Import -->
-    <section id="import">
-        <picture>
-            <source srcset="import.png, import@2x.png 2x">
-            <img src="import.png" style="aspect-ratio: 874 / 300" />
-        </picture>
-        <article>
-            <h2>Import bookmarks, sync favorites</h2>
-            <p>
-                Transfer existing bookmarks and deeply integrate with web.<br/>
-                Automatically save favorite YouTube videos or send items to your Google Sheets
+            <div class="spacer"></div>
+
+            <p class="text-secondary text-small">
+                We keep your <a href="https://help.raindrop.io/about#privacy" target="_blank">data safe</a>, never sold.<br/>
+                No ads & trackers. <svg class="icon"><use xlink:href="#icon-github"></use></svg> <a href="https://github.com/raindropio" target="_blank">Open-source apps</a>.
             </p>
-        </article>
-        <menu>
-            <li><a href="https://help.raindrop.io/import" target="_blank">
-                <strong>Import bookmarks</strong>
-                <svg class="ic"><use xlink:href="#ic-open"></use></svg>
-                <small>Transfer existing bookmarks from browser & services</small>
-            </a></li>
-            <li><a href="https://help.raindrop.io/automation" target="_blank">
-                <strong>1200+ Integrations</strong>
-                <svg class="ic"><use xlink:href="#ic-open"></use></svg>
-                <small>YouTube, Twitter, Pocket, Google Sheets and more</code></small>
-            </a></li>
-        </menu>
-    </section>
-
-    <!-- More -->
-    <section id="more">
-        <picture>
-            <source srcset="logo.png, logo@2x.png 2x">
-            <img src="logo.png" style="aspect-ratio: 1 / 1" />
-        </picture>
-        <menu>
-            <li class="max"><a href="https://raindrop.io/download" target="_blank">
-                <strong>Access even outside of the browser</strong>
-                <svg class="ic"><use xlink:href="#ic-imac"></use></svg>
-                <small>
-                    Apps for Web, <span class="not-ios">Windows,</span> Mac, iPad, iPhone<span class="not-ios">, and Android</span>
-                </small>
-            </a></li>
-            <li><a href="https://help.raindrop.io/about#privacy" target="_blank">
-                <strong>Private & secure</strong>
-                <svg class="ic"><use xlink:href="#ic-lock"></use></svg>
-                <small>We keep your data safe, never sold. No ads & trackers. Open-source apps</code></small>
-            </a></li>
-            <li><a href="https://help.raindrop.io/backups#export-to-file" target="_blank">
-                <strong>Export anytime</strong>
-                <svg class="ic"><use xlink:href="#ic-download"></use></svg>
-                <small>Move in or move out from Raindrop.io at any time you want</code></small>
-            </a></li>
-            <li><a href="https://help.raindrop.io/collaboration" target="_blank">
-                <strong>Collaboration</strong>
-                <svg class="ic"><use xlink:href="#ic-group"></use></svg>
-                <small>Enable access to your collection by coworkers, family or the entire web</code></small>
-            </a></li>
-            <li><a href="https://help.raindrop.io/public-page" target="_blank">
-                <strong>Share & embed</strong>
-                <svg class="ic"><use xlink:href="#ic-internet"></use></svg>
-                <small>Share individual collections with the entire web. Sign-up is not required</code></small>
-            </a></li>
-        </menu>
-    </section>
+        </div>
+    </div>
 
     <!-- Sprites -->
-    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" id="svg-sprite">
-        <symbol id="ic-open" viewBox="0 0 24 24" stroke-width="1.5" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M21 3L15 3M21 3L12 12M21 3V9" stroke="currentColor"  stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M21 13V19C21 20.1046 20.1046 21 19 21H5C3.89543 21 3 20.1046 3 19V5C3 3.89543 3.89543 3 5 3H11" stroke="currentColor"  stroke-linecap="round"/>
+    <svg width="0" height="0" hidden>
+        <symbol xmlns="http://www.w3.org/2000/svg" id="icon-apple">
+            <path fill-rule="nonzero" d="M9.44520922,6.1719649 C8.73421404,6.1719649 7.63397151,5.36347039 6.47522938,5.39197019 C4.94523976,5.41222006 3.54274928,6.27921417 2.75450463,7.65245485 C1.1667654,10.4086861 2.34500741,14.4796585 3.8937469,16.7198933 C4.65349174,17.8103859 5.54973566,19.0373776 6.73772759,18.9991278 C7.87771986,18.9503782 8.30521696,18.2588829 9.68895757,18.2588829 C11.0621982,18.2588829 11.4514456,18.9991278 12.6589374,18.969878 C13.8866791,18.9503782 14.6659238,17.8598856 15.4159187,16.758893 C16.2829128,15.4929016 16.6429104,14.26516 16.6624102,14.1976604 C16.6331604,14.1879105 14.2759264,13.2819166 14.2474266,10.5549352 C14.2279268,8.27495063 16.107414,7.18445803 16.1951634,7.13570836 C15.1234207,5.568219 13.4779319,5.39272019 12.9026858,5.35372045 C11.4026959,5.23672125 10.1464545,6.1712149 9.44520922,6.1712149 L9.44520922,6.1719649 Z M11.978692,3.87248051 C12.6109377,3.11348566 13.0286849,2.05224286 12.9124357,1 C12.0071918,1.03899974 10.9159492,1.6037459 10.2634537,2.36349075 C9.67845764,3.03548619 9.17296107,4.11697885 9.30871015,5.14897184 C10.3122033,5.22697131 11.3449463,4.63297534 11.977942,3.8732305"></path>
         </symbol>
-        <symbol id="ic-cloud" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M12 4C6 4 6 8 6 10C4.33333 10 1 11 1 15C1 19 4.33333 20 6 20H18C19.6667 20 23 19 23 15C23 11 19.6667 10 18 10C18 8 18 4 12 4Z" stroke="currentColor" stroke-linejoin="round"/>
+        <symbol xmlns="http://www.w3.org/2000/svg" id="icon-check">
+            <path fill-rule="nonzero" d="M8.9375,13 L13.8958333,8.0625 L12.8333333,7 L8.9375,10.875 L7.16666667,9.125 L6.10416667,10.1875 L8.9375,13 Z M10,18 C8.90277778,18 7.86805556,17.7916667 6.89583333,17.375 C5.92361111,16.9583333 5.07291667,16.3854167 4.34375,15.65625 C3.61458333,14.9270833 3.04166667,14.0763889 2.625,13.1041667 C2.20833333,12.1319444 2,11.0972222 2,10 C2,8.88888889 2.20833333,7.85069444 2.625,6.88541667 C3.04166667,5.92013889 3.61458333,5.07291667 4.34375,4.34375 C5.07291667,3.61458333 5.92361111,3.04166667 6.89583333,2.625 C7.86805556,2.20833333 8.90277778,2 10,2 C11.1111111,2 12.1493056,2.20833333 13.1145833,2.625 C14.0798611,3.04166667 14.9270833,3.61458333 15.65625,4.34375 C16.3854167,5.07291667 16.9583333,5.92013889 17.375,6.88541667 C17.7916667,7.85069444 18,8.88888889 18,10 C18,11.0972222 17.7916667,12.1319444 17.375,13.1041667 C16.9583333,14.0763889 16.3854167,14.9270833 15.65625,15.65625 C14.9270833,16.3854167 14.0798611,16.9583333 13.1145833,17.375 C12.1493056,17.7916667 11.1111111,18 10,18 Z"></path>
         </symbol>
-        <symbol id="ic-hand" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M8 14.5714L6.17716 12.8354C5.53522 12.224 4.51329 12.2705 3.92953 12.9377V12.9377C3.40196 13.5406 3.41749 14.4453 3.96544 15.0298L9.90739 21.3679C10.2855 21.7712 10.8127 22 11.3655 22C12.4505 22 14.2343 22 16 22C18.4 22 20 20 20 18C20 18 20 18 20 18C20 18 20 11.1429 20 9.42859" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M17 9.99995C17 9.99995 17 9.87483 17 9.42852C17 7.1428 20 7.1428 20 9.42852" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M14 9.99998C14 9.99998 14 9.17832 14 8.2857C14 5.99998 17 5.99998 17 8.2857C17 8.50885 17 9.2054 17 9.42855C17 9.87487 17 9.99998 17 9.99998" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M11 10.0001C11 10.0001 11 8.61584 11 7.50005C11 5.21434 14 5.21434 14 7.50005C14 7.50005 14 7.50005 14 7.50005C14 7.50005 14 8.06261 14 8.28577C14 9.17839 14 10.0001 14 10.0001" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M8 14.5714V3.5C8 2.67157 8.67157 2 9.5 2V2C10.3284 2 11 2.67056 11 3.49899C11 4.68968 11 6.34156 11 7.5C11 8.61578 11 10 11 10" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+        <symbol xmlns="http://www.w3.org/2000/svg" id="icon-cloud">
+            <path fill-rule="nonzero" d="M10,4 C12.7614237,4 15,6.23857625 15,9 L14.9977466,9.1254382 C16.7241171,9.56869678 18,11.1353492 18,13 C18,15.209139 16.209139,17 14,17 L6,17 C3.790861,17 2,15.209139 2,13 C2,11.1353492 3.27588293,9.56869678 5.0022534,9.1254382 C5.00051918,9.08398643 5,9.04205385 5,9 C5,6.23857625 7.23857625,4 10,4 Z"></path>
         </symbol>
-        <symbol id="ic-lock" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M16 12H17.4C17.7314 12 18 12.2686 18 12.6V19.4C18 19.7314 17.7314 20 17.4 20H6.6C6.26863 20 6 19.7314 6 19.4V12.6C6 12.2686 6.26863 12 6.6 12H8M16 12V8C16 6.66667 15.2 4 12 4C8.8 4 8 6.66667 8 8V12M16 12H8" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+        <symbol xmlns="http://www.w3.org/2000/svg" id="icon-github">
+            <path fill-rule="nonzero" d="M10,2 C5.58,2 2,5.67294603 2,10.2031179 C2,13.8282124 4.292,16.9023308 7.47,17.985826 C7.87,18.063072 8.01666667,17.8094589 8.01666667,17.5913927 C8.01666667,17.3965686 8.01,16.8804558 8.00666667,16.1968627 C5.78133333,16.6917841 5.312,15.0962777 5.312,15.0962777 C4.948,14.1495012 4.422,13.8965717 4.422,13.8965717 C3.69733333,13.3879784 4.478,13.3982323 4.478,13.3982323 C5.28133333,13.4556541 5.70333333,14.2431534 5.70333333,14.2431534 C6.41666667,15.4975469 7.576,15.1352425 8.03333333,14.9253794 C8.10533333,14.3949111 8.31133333,14.0332903 8.54,13.8282124 C6.76333333,13.6231344 4.896,12.9176663 4.896,9.77450496 C4.896,8.87899793 5.206,8.14755325 5.71933333,7.573335 C5.62933333,7.36620627 5.35933333,6.53222262 5.78933333,5.40224314 C5.78933333,5.40224314 6.45933333,5.18212614 7.98933333,6.24306272 C8.62933333,6.06054335 9.30933333,5.97030905 9.98933333,5.96620749 C10.6693333,5.97030905 11.3493333,6.06054335 11.9893333,6.24306272 C13.5093333,5.18212614 14.1793333,5.40224314 14.1793333,5.40224314 C14.6093333,6.53222262 14.3393333,7.36620627 14.2593333,7.573335 C14.7693333,8.14755325 15.0793333,8.87899793 15.0793333,9.77450496 C15.0793333,12.9258694 13.2093333,13.6197165 11.4293333,13.8213764 C11.7093333,14.06747 11.9693333,14.5705945 11.9693333,15.3389533 C11.9693333,16.4368039 11.9593333,17.318639 11.9593333,17.5852404 C11.9593333,17.8005722 12.0993333,18.0569196 12.5093333,17.9748885 C15.71,16.8989128 18,13.8227436 18,10.2031179 C18,5.67294603 14.418,2 10,2"></path>
         </symbol>
-        <symbol id="ic-download" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M12 13V22M12 22L15.5 18.5M12 22L8.5 18.5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M20 17.6073C21.4937 17.0221 23 15.6889 23 13C23 9 19.6667 8 18 8C18 6 18 2 12 2C6 2 6 6 6 8C4.33333 8 1 9 1 13C1 15.6889 2.50628 17.0221 4 17.6073" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+        <symbol xmlns="http://www.w3.org/2000/svg" id="icon-google">
+            <path fill-rule="nonzero" d="M2.85172576,6.40859727 C1.71609141,8.66838491 1.71609141,11.3321289 2.85172576,13.5919165 C4.20923571,16.2941631 6.97464947,17.999801 9.99871463,18 C12.1583526,18 13.9748705,17.2895397 15.3009286,16.0684359 C16.8106569,14.6757722 17.6825855,12.6170519 17.6825855,10.1829179 C17.6821167,9.63761028 17.6348483,9.09334894 17.5413007,8.55612513 L10.000733,8.55612513 L10.000733,11.6361322 L14.3200089,11.6361322 C14.1423435,12.6303282 13.5663822,13.5088515 12.7255099,14.0682479 C12.0069761,14.554671 11.0825703,14.8332037 10.000733,14.8332037 C7.91375572,14.8332037 6.14365992,13.4264115 5.509897,11.5311778 C5.17518069,10.5380069 5.17518069,9.46250686 5.509897,8.46933594 C6.14365992,6.57208388 7.91375572,5.16731002 10.000733,5.16731002 C11.1411089,5.14865558 12.2430653,5.57928857 13.0686299,6.36621185 L15.3534058,4.08547268 C13.9057207,2.72478625 11.9873715,1.97755597 10.000733,2.00051377 C6.97464947,2.00071277 4.20923571,3.70635063 2.85172576,6.40859727 Z"></path>
         </symbol>
-        <symbol id="ic-internet" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22" stroke="currentColor"   stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M13 2.04932C13 2.04932 16 5.99994 16 11.9999" stroke="currentColor"   stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M11 21.9506C11 21.9506 8 17.9999 8 11.9999C8 5.99994 11 2.04932 11 2.04932" stroke="currentColor"   stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M2.62964 15.5H12" stroke="currentColor"   stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M2.62964 8.5H21.3704" stroke="currentColor"   stroke-linecap="round" stroke-linejoin="round"/>
-            <path fill-rule="evenodd" clip-rule="evenodd" d="M21.8789 17.9174C22.3727 18.2211 22.3423 18.9604 21.8337 19.0181L19.2671 19.309L18.1159 21.6213C17.8878 22.0795 17.1827 21.8552 17.0661 21.2873L15.8108 15.1713C15.7123 14.6913 16.1437 14.3892 16.561 14.646L21.8789 17.9174Z" stroke="currentColor"  />
+        <symbol xmlns="http://www.w3.org/2000/svg" id="icon-info">
+            <path fill-rule="nonzero" d="M9.25,14 L10.75,14 L10.75,9 L9.25,9 L9.25,14 Z M9.99560417,7.5 C10.2068681,7.5 10.3854167,7.42854861 10.53125,7.28564583 C10.6770833,7.14272917 10.75,6.96564583 10.75,6.75439583 C10.75,6.54313194 10.6785486,6.36458333 10.5356458,6.21875 C10.3927292,6.07291667 10.2156458,6 10.0043958,6 C9.79313194,6 9.61458333,6.07145139 9.46875,6.21435417 C9.32291667,6.35727083 9.25,6.53435417 9.25,6.74560417 C9.25,6.95686806 9.32145139,7.13541667 9.46435417,7.28125 C9.60727083,7.42708333 9.78435417,7.5 9.99560417,7.5 Z M10.00575,18 C8.90469444,18 7.86805556,17.7916667 6.89583333,17.375 C5.92361111,16.9583333 5.07291667,16.3854167 4.34375,15.65625 C3.61458333,14.9270833 3.04166667,14.0766806 2.625,13.1050417 C2.20833333,12.1333889 2,11.0951944 2,9.99045833 C2,8.88570833 2.20833333,7.85069444 2.625,6.88541667 C3.04166667,5.92013889 3.61458333,5.07291667 4.34375,4.34375 C5.07291667,3.61458333 5.92331944,3.04166667 6.89495833,2.625 C7.86661111,2.20833333 8.90480556,2 10.0095417,2 C11.1142917,2 12.1493056,2.20833333 13.1145833,2.625 C14.0798611,3.04166667 14.9270833,3.61458333 15.65625,4.34375 C16.3854167,5.07291667 16.9583333,5.92169444 17.375,6.89008333 C17.7916667,7.85848611 18,8.89320833 18,9.99425 C18,11.0953056 17.7916667,12.1319444 17.375,13.1041667 C16.9583333,14.0763889 16.3854167,14.9270833 15.65625,15.65625 C14.9270833,16.3854167 14.0783056,16.9583333 13.1099167,17.375 C12.1415139,17.7916667 11.1067917,18 10.00575,18 Z"></path>
         </symbol>
-        <symbol id="ic-group" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M1 20V19C1 15.134 4.13401 12 8 12V12C11.866 12 15 15.134 15 19V20" stroke="currentColor" stroke-linecap="round"/>
-            <path d="M13 14V14C13 11.2386 15.2386 9 18 9V9C20.7614 9 23 11.2386 23 14V14.5" stroke="currentColor" stroke-linecap="round"/>
-            <path d="M8 12C10.2091 12 12 10.2091 12 8C12 5.79086 10.2091 4 8 4C5.79086 4 4 5.79086 4 8C4 10.2091 5.79086 12 8 12Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M18 9C19.6569 9 21 7.65685 21 6C21 4.34315 19.6569 3 18 3C16.3431 3 15 4.34315 15 6C15 7.65685 16.3431 9 18 9Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+        <symbol xmlns="http://www.w3.org/2000/svg" id="icon-puzzle">
+            <path fill-rule="nonzero" d="M6.77745833,18.2291667 L3.74510417,18.2291667 C3.26520139,18.2291667 2.854375,18.0612847 2.512625,17.7255208 C2.170875,17.3897569 2,16.98125 2,16.5 L2,13.4791667 C2.69444444,13.4791667 3.29513889,13.2632639 3.80208333,12.8314583 C4.30902778,12.3996389 4.5625,11.8510278 4.5625,11.185625 C4.5625,10.5202083 4.30902778,9.97222222 3.80208333,9.54166667 C3.29513889,9.11111111 2.69444444,8.89583333 2,8.89583333 L2,5.83333333 C2,5.35208333 2.17135417,4.94010417 2.5140625,4.59739583 C2.85677083,4.2546875 3.26875,4.08333333 3.75,4.08333333 L6.95833333,4.08333333 C6.95833333,3.48611111 7.16319444,2.98958333 7.57291667,2.59375 C7.98263889,2.19791667 8.48263889,2 9.07291667,2 C9.66319444,2 10.1597222,2.19791667 10.5625,2.59375 C10.9652778,2.98958333 11.1666667,3.48611111 11.1666667,4.08333333 L14.382125,4.08333333 C14.858625,4.08333333 15.2682292,4.2546875 15.6109375,4.59739583 C15.9536458,4.94010417 16.125,5.35208333 16.125,5.83333333 L16.125,9.0625 C16.7361111,9.0625 17.2395833,9.26388889 17.6354167,9.66666667 C18.03125,10.0694444 18.2291667,10.5659722 18.2291667,11.15625 C18.2291667,11.7465278 18.0327083,12.2465278 17.6397917,12.65625 C17.246875,13.0659722 16.7419444,13.2708333 16.125,13.2708333 L16.125,16.4827292 C16.125,16.9616042 15.954125,17.3723958 15.612375,17.7151042 C15.270625,18.0578125 14.8597986,18.2291667 14.3798958,18.2291667 L11.3475417,18.2291667 C11.3475417,17.5208333 11.1224931,16.9166667 10.6723958,16.4166667 C10.2222986,15.9166667 9.68566667,15.6666667 9.0625,15.6666667 C8.43933333,15.6666667 7.90270139,15.9157986 7.45260417,16.4140625 C7.00250694,16.9123264 6.77745833,17.5173611 6.77745833,18.2291667 Z"></path>
         </symbol>
-        <symbol id="ic-puzzle" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M4 14V18.4C4 18.7314 4.26863 19 4.6 19H10" stroke="currentColor"   stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M19 14V18.4C19 18.7314 18.7314 19 18.4 19H14" stroke="currentColor"   stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M14 5H18.4C18.7314 5 19 5.26863 19 5.6V10" stroke="currentColor"   stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M4 10V5.6C4 5.26863 4.26863 5 4.6 5H10" stroke="currentColor"   stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M14 19V20C14 21.1046 13.1046 22 12 22C10.8954 22 10 21.1046 10 20V19" stroke="currentColor"   stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M4 10H5C6.10457 10 7 10.8954 7 12C7 13.1046 6.10457 14 5 14H4" stroke="currentColor"   stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M19 10H20C21.1046 10 22 10.8954 22 12C22 13.1046 21.1046 14 20 14H19" stroke="currentColor"   stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M14 5V4C14 2.89543 13.1046 2 12 2C10.8954 2 10 2.89543 10 4V5" stroke="currentColor"   stroke-linecap="round" stroke-linejoin="round"/>
+        <symbol xmlns="http://www.w3.org/2000/svg" id="icon-sidepanel">
+            <path fill-rule="nonzero" d="M3.39583333,18 C3.01198611,18 2.68338194,17.8633264 2.41002083,17.5899792 C2.13667361,17.3166181 2,16.9880139 2,16.6041667 L2,3.39583333 C2,3.01197222 2.13667361,2.68336806 2.41002083,2.41002083 C2.68338194,2.13667361 3.01198611,2 3.39583333,2 L16.6041667,2 C16.9880278,2 17.3166319,2.13667361 17.5899792,2.41002083 C17.8633264,2.68336806 18,3.01197222 18,3.39583333 L18,16.6041667 C18,16.9880139 17.8633264,17.3166181 17.5899792,17.5899792 C17.3166319,17.8633264 16.9880278,18 16.6041667,18 L3.39583333,18 Z M10.5,16.5 L10.5,3.5 L3.5,3.5 L3.5,16.5 L10.5,16.5 Z"></path>
         </symbol>
-        <symbol id="ic-imac" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M2 15.5V2.6C2 2.26863 2.26863 2 2.6 2H21.4C21.7314 2 22 2.26863 22 2.6V15.5M2 15.5V17.4C2 17.7314 2.26863 18 2.6 18H21.4C21.7314 18 22 17.7314 22 17.4V15.5M2 15.5H22M9 22H10.5M10.5 22V18M10.5 22H13.5M13.5 22H15M13.5 22L13.5 18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>            
+        <symbol xmlns="http://www.w3.org/2000/svg" id="icon-pin">
+            <polygon fill-rule="nonzero" points="13 9 15 11 15 12.5 10.75 12.5 10.75 17.25 10 18 9.25 17.25 9.25 12.5 5 12.5 5 11 7 9 7 3.5 6 3.5 6 2 14 2 14 3.5 13 3.5"/>
+        </symbol>
+        <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" id="icon-right">
+            <path d="m480-192-51-51 201-201H192v-72h438L429-717l51-51 288 288-288 288Z"/>
+        </symbol>
+        <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" id="icon-left">
+            <path d="M480-192 192-480l288-288 51 51-201 201h438v72H330l201 201-51 51Z"/>
+        </symbol>
+
+        <defs>
+            <clipPath id="mask-highlights">
+                <path d="M3.70299017,55.9063483 C2.62786808,56.1623297 1.6935358,55.8935492 0.899993311,55.1000067 C0.106450822,54.3064642 -0.162329699,53.3721319 0.0936517493,52.2970098 L2.85825139,39.3187504 L16.6812496,53.1417486 L3.70299017,55.9063483 Z M20.6745602,50.5307378 L5.46926216,35.3254398 L39.4891966,1.30550538 C40.3595335,0.435168462 41.4346556,0 42.7145628,0 C43.9944701,0 45.0695922,0.435168462 45.9399291,1.30550538 L54.6944946,10.0600709 C55.5648315,10.9304078 56,12.0055299 56,13.2854372 C56,14.5653444 55.5648315,15.6404665 54.6944946,16.5108034 L20.6745602,50.5307378 Z"/>
+            </clipPath>
+            <clipPath id="mask-reminders">
+                <path d="M6,47.6 L6,43.4 L11.88,43.4 L11.88,21.98 C11.88,18.06 13.035,14.5716667 15.345,11.515 C17.655,8.45833333 20.7,6.53333333 24.48,5.74 L24.48,3.71 C24.48,2.63666667 24.865,1.75 25.635,1.05 C26.405,0.35 27.3266667,0 28.4,0 C29.4733333,0 30.395,0.35 31.165,1.05 C31.935,1.75 32.32,2.63666667 32.32,3.71 L32.32,5.74 C36.1,6.53333333 39.1566667,8.45833333 41.49,11.515 C43.8233333,14.5716667 44.99,18.06 44.99,21.98 L44.99,43.4 L50.8,43.4 L50.8,47.6 L6,47.6 Z M28.4,56 C26.9066667,56 25.6,55.4516667 24.48,54.355 C23.36,53.2583333 22.8,51.94 22.8,50.4 L34,50.4 C34,51.94 33.4516667,53.2583333 32.355,54.355 C31.2583333,55.4516667 29.94,56 28.4,56 Z"/>
+            </clipPath>
+            <clipPath id="mask-permanent-copies">
+                <path d="M23.6727273,41.0909091 L38.3090909,26.4545455 L35.7636364,23.9090909 L23.7363636,35.9363636 L17.3727273,29.5727273 L14.7636364,32.1818182 L23.6727273,41.0909091 Z M13.4272727,48.6636364 C9.69393939,48.6636364 6.52272727,47.3590909 3.91363636,44.75 C1.30454545,42.1409091 0,38.969697 0,35.2363636 C0,31.9272727 1.06060606,29.0212121 3.18181818,26.5181818 C5.3030303,24.0151515 7.9969697,22.5090909 11.2636364,22 C12.1121212,17.8848485 14.1060606,14.5227273 17.2454545,11.9136364 C20.3848485,9.30454545 24.0121212,8 28.1272727,8 C32.8787879,8 36.8878788,9.72878788 40.1545455,13.1863636 C43.4212121,16.6439394 45.0545455,20.7909091 45.0545455,25.6272727 L45.0545455,27.1545455 C48.1090909,27.069697 50.6969697,28.0560606 52.8181818,30.1136364 C54.9393939,32.1712121 56,34.769697 56,37.9090909 C56,40.8363636 54.9393939,43.3606061 52.8181818,45.4818182 C50.6969697,47.6030303 48.1727273,48.6636364 45.2454545,48.6636364 L13.4272727,48.6636364 Z"/>
+            </clipPath>
+            <clipPath id="mask-download">
+                <path d="M19.11,32.54 L25.13,27.85 L31.22,32.54 L28.91,24.7 L35,20.15 L27.65,20.15 L25.13,12.94 L22.68,20.15 L15.4,20.15 L21.35,24.7 L19.11,32.54 Z M42,53.4 C41.2066667,53.4 40.5416667,53.1316667 40.005,52.595 C39.4683333,52.0583333 39.2,51.3933333 39.2,50.6 L39.2,28.2 C39.2,27.4066667 39.4683333,26.7416667 40.005,26.205 C40.5416667,25.6683333 41.2066667,25.4 42,25.4 L53.2,25.4 C53.9933333,25.4 54.6583333,25.6683333 55.195,26.205 C55.7316667,26.7416667 56,27.4066667 56,28.2 L56,50.6 C56,51.3933333 55.7316667,52.0583333 55.195,52.595 C54.6583333,53.1316667 53.9933333,53.4 53.2,53.4 L42,53.4 Z M42,49.2 L53.2,49.2 L53.2,29.6 L42,29.6 L42,49.2 Z M16.8,53.4 L16.8,49.2 L23.1,49.2 L23.1,42.2 L4.2,42.2 C3.12666667,42.2 2.15833333,41.7683333 1.295,40.905 C0.431666667,40.0416667 0,39.0733333 0,38 L0,7.2 C0,6.12666667 0.431666667,5.15833333 1.295,4.295 C2.15833333,3.43166667 3.12666667,3 4.2,3 L46.13,3 C47.2033333,3 48.1833333,3.43166667 49.07,4.295 C49.9566667,5.15833333 50.4,6.12666667 50.4,7.2 L50.4,23.3 L42,23.3 C40.6466667,23.3 39.4916667,23.7783333 38.535,24.735 C37.5783333,25.6916667 37.1,26.8466667 37.1,28.2 L37.1,42.2 L27.3,42.2 L27.3,49.2 L33.6,49.2 L33.6,53.4 L16.8,53.4 Z"/>
+            </clipPath>
+            <clipPath id="mask-automation">
+                <path d="M22.3234624,38.2687927 L22.3234624,17.6036446 L38.3963554,27.9362187 L22.3234624,38.2687927 Z M28.5102506,56 C23.365224,56 18.6666667,54.7987851 14.4145786,52.3963554 C10.1624905,49.9939256 6.6332574,46.5816249 3.82687927,42.1594533 L3.82687927,50.833713 L0,50.833713 L0,35.5899772 L15.1799544,35.5899772 L15.1799544,39.4168565 L6.6332574,39.4168565 C9.05694761,43.4563402 12.1822323,46.5922551 16.0091116,48.8246014 C19.8359909,51.0569476 24.0030372,52.1731207 28.5102506,52.1731207 C33.6552771,52.1731207 38.2900532,50.6742597 42.4145786,47.6765376 C46.539104,44.6788155 49.4092635,40.7350038 51.0250569,35.8451025 L54.7881549,36.6742597 C52.959757,42.4570995 49.6324981,47.1237661 44.8063781,50.6742597 C39.9802582,54.2247532 34.5482156,56 28.5102506,56 Z M0.127562642,25.3849658 C0.425208808,22.4935459 1.1055429,19.7615793 2.16856492,17.1890661 C3.23158694,14.6165528 4.67729689,12.2247532 6.50569476,10.0136674 L9.24829157,12.7562642 C7.76006074,14.6697039 6.56947608,16.6894457 5.67653759,18.8154897 C4.78359909,20.9415338 4.2095672,23.1313591 3.95444191,25.3849658 L0.127562642,25.3849658 Z M12.8200456,9.18451025 L10.1412301,6.37813212 C12.4373576,4.50721336 14.8823083,3.04024298 17.476082,1.97722096 C20.0698557,0.914198937 22.7911921,0.255125285 25.6400911,0 L25.6400911,3.82687927 C23.4290053,4.03948368 21.2817008,4.58162491 19.1981777,5.45330296 C17.1146545,6.32498102 14.9886105,7.56871678 12.8200456,9.18451025 Z M43.3075171,9.18451025 C41.3940774,7.65375854 39.3743356,6.43128322 37.2482916,5.51708428 C35.1222475,4.60288535 32.9111617,4.03948368 30.6150342,3.82687927 L30.6150342,0 C33.5064541,0.255125285 36.2384207,0.914198937 38.8109339,1.97722096 C41.3834472,3.04024298 43.7752468,4.50721336 45.9863326,6.37813212 L43.3075171,9.18451025 Z M52.1731207,25.3849658 C51.9605163,23.2164009 51.365224,21.0265756 50.3872437,18.8154897 C49.4092635,16.6044039 48.1548975,14.5421412 46.6241458,12.6287016 L49.3029613,9.82232346 C51.2589218,12.118451 52.8109339,14.5952923 53.9589977,17.2528474 C55.1070615,19.9104024 55.7873956,22.6211086 56,25.3849658 L52.1731207,25.3849658 Z"/>
+            </clipPath>
+        </defs>
     </svg>
+
+    <script async src="logic.js"></script>
 </body>
