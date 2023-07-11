@@ -201,17 +201,15 @@ module.exports = ({ production, filename='[name].[contenthash]', sentry={} }, { 
 							}
 						},
 						{
-							loader: 'image-webpack-loader',
+							loader: 'svgo-loader',
 							options: {
-								svgo: {
-									multipass: true,
-									plugins: [
-										{ name: 'preset-default', params: { overrides: {
-											removeViewBox: false
-										} } },
-										{ name: 'removeAttrs', params: { attrs: '(stroke|fill)' } },
-									]
-								}
+								multipass: true,
+								plugins: [
+									{ name: 'preset-default', params: { overrides: {
+										removeViewBox: false
+									} } },
+									{ name: 'removeAttrs', params: { attrs: '(stroke|fill)' } },
+								]
 							},
 						}
 					]
@@ -228,13 +226,7 @@ module.exports = ({ production, filename='[name].[contenthash]', sentry={} }, { 
 						outputPath: 'assets',
 						name: `${filename}.[ext]`
 					}
-				},
-				{
-					loader: 'image-webpack-loader',
-					options: {
-						disable: !production
-					},
-				},
+				}
 			],
 		},
 
