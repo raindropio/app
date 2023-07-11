@@ -1,6 +1,7 @@
 import React from 'react'
 import t from '~t'
 import { parseDate } from './parse'
+import dateFnsFormat from 'date-fns/format'
 
 let _format
 function getFormat() {
@@ -20,8 +21,15 @@ function getFormat() {
 }
 
 export const shortDateTime = (original) => {
+    let d
+    try{ d = parseDate(original) } catch(e){}
+    
     try{
-        return getFormat()(parseDate(original))
+        return getFormat()(d)
+    }catch(e){}
+
+    try{
+        return dateFnsFormat(d, 'P p')
     }catch(e){}
 
     return ''
