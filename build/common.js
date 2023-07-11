@@ -36,7 +36,7 @@ module.exports = ({ production, filename='[name].[contenthash]', sentry={} }, { 
 	},
 
 	performance: {
-		hints: production ? 'error' : false,
+		hints: production ? 'warning' : false,
 		maxEntrypointSize: 2000000,
 		maxAssetSize: 2000000
 	},
