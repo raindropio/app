@@ -85,15 +85,15 @@ module.exports = (env={}, args={}) =>
                         }
                     ],
 
-                    share_target: {
-                        action: '/add',
-                        method: 'GET',
-                        params: {
-                            title: 'title',
-                            url: 'link'
-                            //android not send `url` param, instead a `text` param with text and link
-                        }
-                    },
+                    // share_target: {
+                    //     action: '/add',
+                    //     method: 'GET',
+                    //     params: {
+                    //         title: 'title',
+                    //         url: 'link'
+                    //         //android not send `url` param, instead a `text` param with text and link
+                    //     }
+                    // },
 
                     related_applications: [
                         {

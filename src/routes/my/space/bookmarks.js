@@ -20,6 +20,8 @@ export default function PageMySpaceBookmarks({ cId, search, itemId }) {
 
             case 'new_tab':
                 window.open(item.link)
+                if (target == 'extension')
+                    window.close()
                 return true
 
             default:

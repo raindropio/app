@@ -144,6 +144,9 @@ module.exports = ({ vendor, production=false }, l) => {
 
 			...(vendor == 'firefox' || vendor == 'opera' ? {
 				_execute_sidebar_action: {
+					suggested_key: {
+						default: 'Alt+Shift+B'
+					},
 					description: '__MSG_openSidePanel__'
 				}
 			}: {}),
