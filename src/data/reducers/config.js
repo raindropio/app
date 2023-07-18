@@ -55,7 +55,7 @@ const initialState = Immutable({
 	raindrops_grid_cover_size:	2,
 	raindrops_list_cover_size:	1,
 	raindrops_list_cover_right:	false,
-	raindrops_click:		'preview',
+	raindrops_click:		'new_tab',
 	raindrops_buttons:		[],
 	raindrops_search_by_score:true,
 	raindrops_search_incollection:false,

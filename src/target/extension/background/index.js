@@ -7,6 +7,7 @@ import runtime from './runtime'
 import storage from './storage'
 import highlights from './highlights'
 import popup from './popup'
+import fixSafariPermissions from './fix-safari-permissions'
 
 action()
 commands()
@@ -17,3 +18,4 @@ runtime()
 storage()
 highlights()
 popup()
+fixSafariPermissions()

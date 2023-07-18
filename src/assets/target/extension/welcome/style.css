@@ -4,6 +4,14 @@
     --secondary-text: rgba(255,255,255,.7);
 }
 
+@media (prefers-color-scheme: light) {
+    :root {
+        --screen-background: white;
+        --secondary-background: rgba(0,0,0,.1);
+        --secondary-text: rgba(0,0,0,.7);
+    }
+}
+
 html {
     background: var(--screen-background);
     -webkit-tap-highlight-color: transparent;
@@ -135,6 +143,12 @@ hr {
     left: 0;top:0;right: 0;bottom: 0;
     opacity: .1;
     pointer-events: none;
+}
+
+@media (prefers-color-scheme: light) {
+    .blue-green-gradient, .pink-red-gradient, .blue-purple-gradient, .mint-green-gradient, .yellow-orange-gradient {
+        filter: brightness(85%);
+    }
 }
 
 .blue-green-gradient {

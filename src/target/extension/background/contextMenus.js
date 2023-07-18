@@ -32,11 +32,14 @@ async function init() {
 
     //create
     await Promise.all([
-        browser.contextMenus.create({
-            id: 'save_page',
-            title: browser.i18n.getMessage('savePage')+suffix,
-            contexts: ['page']
-        }),
+        ...(!environment.includes('safari') ? [
+            browser.contextMenus.create({
+                id: 'save_page',
+                title: browser.i18n.getMessage('savePage')+suffix,
+                contexts: ['page']
+            })
+        ] : []),
+        
         browser.contextMenus.create({
             id: 'save_link',
             title: browser.i18n.getMessage('saveLink')+suffix,
