@@ -10,6 +10,8 @@ import { Link } from 'react-router-dom'
 import { Label, Progress } from '~co/common/form'
 import { LongDate } from '~modules/format/date'
 
+const isMobile = navigator.userAgent.includes('RaindropMobile')
+
 class SettingsAccountUsage extends React.Component {
     componentDidMount() {
         this.props.userRefresh()
@@ -35,9 +37,9 @@ class SettingsAccountUsage extends React.Component {
                     max={files.size}
                     value={files.used}>
                     {t.s('usedThisMonth').toLowerCase()} {t.s('forUploads')}
-                    {!pro && (
+                    {!isMobile && !pro ? (
                         <>. <Link to='/settings/pro'>{t.s('upgradeToPro')}</Link></>  
-                    )}
+                    ) : null}
                 </Progress>
     
                 <div />
