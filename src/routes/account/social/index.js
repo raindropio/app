@@ -1,47 +1,28 @@
 import s from './index.module.styl'
+import t from '~t'
 import React from 'react'
 import { API_ENDPOINT_URL } from '~data/constants/app'
 import sessionStorage from '~modules/sessionStorage'
 
+import { Separator } from '~co/common/form'
 import Button from '~co/common/button'
 import Icon from '~co/common/icon'
 
-export default class AccountSocialLogin extends React.Component {
-    state = {
-        all: false
-    }
+export default function AccountSocialLogin({ disabled }) {
+    const redirect = sessionStorage.getItem('redirect') || ''
 
-    onShowAllClick = () =>
-        this.setState({ all: true })
-
-    render() {
-        const { all } = this.state
-        const redirect = sessionStorage.getItem('redirect') || ''
-
-        return (
-            <div className={s.buttons}>
-                {['google', 'apple', ...(all ? ['facebook', 'twitter', 'vkontakte'] : [])].map(vendor=>(
-                    <Button 
-                        key={vendor}
-                        className={s[vendor]}
-                        variant='outline'
-                        disabled={this.props.disabled}
-                        data-block
-                        href={`${API_ENDPOINT_URL}auth/${vendor}?redirect=${encodeURIComponent(redirect)}`}>
-                        <Icon name={vendor} />
-                    </Button>
-                ))}
-                
-                {!all && (
-                    <Button
-                        variant='outline'
-                        data-block
-                        disabled={this.props.disabled}
-                        onClick={this.onShowAllClick}>
-                        <Icon name='more_horizontal' />
-                    </Button>
-                )}
-            </div>
-        )
-    }
+    return (<>
+        <Separator />
+        {['google', 'apple'].map(vendor=>(
+            <Button 
+                key={vendor}
+                className={s[vendor]+' '+s.vendor}
+                variant='outline'
+                disabled={disabled}
+                data-block
+                href={`${API_ENDPOINT_URL}auth/${vendor}?redirect=${encodeURIComponent(redirect)}`}>
+                <Icon name={vendor} className={s.icon} /> {t.s('signInSocial')} <span>{vendor}</span>
+            </Button>
+        ))}
+    </>)
 }

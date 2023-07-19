@@ -50,7 +50,7 @@ export default function SettingsProfileConnect() {
                 <div>
                     <ConnectionError />
 
-                    {['google', 'apple', 'facebook', 'twitter', 'vkontakte'].map(key=>{
+                    {['google', 'apple'].map(key=>{
                         const enabled = user[key] && user[key].enabled
 
                         return (

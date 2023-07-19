@@ -18,9 +18,6 @@ export const normalizeUser = (user={})=>{
 		//connect
 		google:				user.google || {},
 		apple:				user.apple || {},
-		facebook:			user.facebook || {},
-		twitter:			user.twitter || {},
-		vkontakte:			user.vkontakte || {},
 		dropbox:			user.dropbox || {},
 		gdrive:				user.gdrive || {},
 	}

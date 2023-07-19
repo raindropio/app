@@ -93,13 +93,13 @@ class AccountSignup extends React.Component {
                             value={t.s('register')} />
                     )}
 
+                    <div className={s.acceptLicence}>
+                        {t.s('privacyTerms')} <a href='https://help.raindrop.io/terms' target='_blank'>{t.s('termsOfService')}</a> {t.s('und')} <a href='https://help.raindrop.io/privacy' target='_blank'>{t.s('privacyPolicy')}</a>
+                    </div>                    
+
                     <Social 
                         {...this.props}
                         disabled={status == 'loading'} />
-
-                    <div className={s.acceptLicence}>
-                        {t.s('privacyTerms')} <a href='https://help.raindrop.io/terms' target='_blank'>{t.s('termsOfService')}</a> {t.s('und')} <a href='https://help.raindrop.io/privacy' target='_blank'>{t.s('privacyPolicy')}</a>
-                    </div>
 
                     <Button
                         as={Link}
