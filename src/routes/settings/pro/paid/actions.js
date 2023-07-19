@@ -7,30 +7,22 @@ import { Label } from '~co/common/form'
 import Button from '~co/common/button'
 import Icon from '~co/common/icon'
 
-export default function ProActions({ subscription: { links={}, plan } }) {
-    let actions = null
+export default function ProActions({ subscription: { links={}, status } }) {
+    return (
+        <>
+            <Label>{t.s('manage')}</Label>
 
-    if (plan == 'legacy')
-        actions = (
-            <Button
-                variant='primary'
-                href={config.links.pro.buy}
-                target='_blank'>
-                <Icon name='progress' size='micro' />
-                {t.s('renewPro')}
-            </Button>
-        )
-    else
-        actions = (
-            <>
-                <Button
-                    autoFocus
-                    variant='primary'
-                    href={links.manage}
-                    target='_blank'>
-                    <Icon name='user' size='micro' />
-                    {t.s('change')} {t.s('subscription').toLowerCase()}
-                </Button>
+            <div className={s.actions}>
+                {links.manage ? (
+                    <Button
+                        autoFocus
+                        variant='primary'
+                        href={links.manage}
+                        target='_blank'>
+                        <Icon name='user' size='micro' />
+                        {t.s('change')} {t.s('subscription').toLowerCase()}
+                    </Button>
+                ) : null}
 
                 <Button
                     href={config.links.pro['help-change-billing-cycle']}
@@ -47,15 +39,6 @@ export default function ProActions({ subscription: { links={}, plan } }) {
                         Invoices
                     </Button>
                 )}
-            </>
-        )
-
-    return (
-        <>
-            <Label>{t.s('manage')}</Label>
-
-            <div className={s.actions}>
-                {actions}
             </div>
         </>
     )
