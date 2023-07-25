@@ -1,6 +1,6 @@
 import s from './cloud.module.styl'
 import React from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 import t from '~t'
 import _ from 'lodash'
 import { target } from '~target'
@@ -25,12 +25,6 @@ function SettingsBackupsCloud({ user, pro }) {
                 {!webApp && (
                     <Alert variant='warning'>
                         Please <a href={`${config.links.app.index}${pathname}`} target='_blank'>open web app</a> to configure cloud backup!
-                    </Alert>
-                )}
-
-                {!pro && (
-                    <Alert variant='warning'>
-                        {t.s('onlyInPro')}. <Link to='/settings/pro'>{t.s('upgradeToPro')}</Link>
                     </Alert>
                 )}
 

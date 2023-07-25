@@ -7,6 +7,8 @@ import { Link } from 'react-router-dom'
 import Alert from '~co/common/alert'
 import links from '~config/links'
 
+const isMobile = navigator.userAgent.includes('RaindropMobile')
+
 export default function SettingsBackupsAutomatic() {
     const pro = useSelector(state=>isPro(state))
 
@@ -18,7 +20,8 @@ export default function SettingsBackupsAutomatic() {
             {pro ? (
                 <a href={links.help.backups.automatic} target='_blank'>Learn more</a>
             ) : (<>
-                Automatic daily backups available in <b>Pro plan</b>. <Link to='/settings/pro'>{t.s('upgradeToPro')}</Link>
+                Automatic daily backups available in <b>Pro plan</b>.&nbsp;
+                {!isMobile ? (<Link to='/settings/pro'>{t.s('upgradeToPro')}</Link>) : null}
             </>)}
         </Alert>
     )
