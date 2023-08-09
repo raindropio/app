@@ -1,11 +1,14 @@
 import React, { useCallback, useMemo } from 'react'
 import t from '~t'
 import { add, nextSunday } from 'date-fns'
+import { useSelector } from 'react-redux'
+import { isPro } from '~data/selectors/user'
 
 import { DateTime } from '~co/common/form'
 import { More, Menu, MenuItem } from '~co/overlay/popover'
 import Icon from '~co/common/icon'
 import Button from '~co/common/button'
+import ProCheck from '~co/user/pro/check'
 
 function Templates({ onSetDate }) {
     const templates = useMemo(()=>[
@@ -35,6 +38,7 @@ function Templates({ onSetDate }) {
 }
 
 export default function BookmarkEditFormReminder({ item: { reminder }, onChange, onSave }) {
+    const pro = useSelector(state=>isPro(state))
     const minDate = useMemo(()=>new Date(), [])
 
     const onChangeDate = useCallback(date=>{
@@ -50,6 +54,12 @@ export default function BookmarkEditFormReminder({ item: { reminder }, onChange,
         onChangeDate(undefined)
         onSave()
     }, [onChangeDate, onSave])
+
+
+    if (!pro)
+        return <Button onClick={()=>ProCheck('reminders')} variant='outline'>
+            <Icon name='reminder' />
+        </Button>
 
     return reminder.date ? (<>
         <DateTime 

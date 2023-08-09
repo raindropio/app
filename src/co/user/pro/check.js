@@ -19,6 +19,17 @@ export default async function Check(type='') {
                 }
             )
         break
+
+        case 'reminders':
+            go = await Confirm(
+                t.s('add') + ' ' + t.s('reminder').toLowerCase(),
+                {
+                    id: `pro-check-${type}`,
+                    description: t.s('onlyInPro'),
+                    ok: t.s('upgradeToPro')
+                }
+            )
+        break
     }
 
     if (go)
