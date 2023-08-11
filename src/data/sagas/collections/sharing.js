@@ -6,7 +6,8 @@ import {
 	SHARING_REMOVE_USER_REQ, SHARING_REMOVE_USER_SUCCESS, SHARING_REMOVE_USER_ERROR,
 	SHARING_UNSHARE_REQ, SHARING_UNSHARE_SUCCESS, SHARING_UNSHARE_ERROR,
 	SHARING_SEND_INVITES_REQ, SHARING_SEND_INVITES_SUCCESS, SHARING_SEND_INVITES_ERROR,
-	COLLECTION_DRAFT_LOAD_REQ
+	SHARING_JOIN, 
+	COLLECTION_DRAFT_LOAD_REQ, COLLECTIONS_REFRESH_REQ
 } from '../../constants/collections'
 
 //Requests
@@ -18,6 +19,7 @@ export default function* () {
 	yield takeEvery(SHARING_UPDATE_USER_REQ, updateUser)
 	yield takeEvery(SHARING_REMOVE_USER_REQ, removeUser)
 	yield takeEvery(SHARING_UNSHARE_REQ, unshare)
+	yield takeEvery(SHARING_JOIN, join)
 }
 
 function* load({ collectionId=0, ignore=false }) {
@@ -135,5 +137,22 @@ function* unshare({ collectionId=0, ignore=false }) {
 			collectionId,
 			error
 		});
+	}
+}
+
+function* join({ token, ignore=false, onSuccess, onFail }) {
+	if (ignore)
+		return;
+
+	try{
+		const { cId } = yield call(Api.get, `collaborators/join?token=${token}`)
+
+		yield put({
+			type: COLLECTIONS_REFRESH_REQ
+		})
+
+		onSuccess(cId)
+	} catch (error) {
+		onFail(error)
 	}
 }
