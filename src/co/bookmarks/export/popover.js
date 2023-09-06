@@ -32,31 +32,29 @@ export default function BookmarksExportPopover({ spaceId = 0, pin, onClose }) {
             pin={pin} 
             onClose={onClose}>
             <Menu>
-                {spaceId == 0 && !query.search && !selectMode.ids.length ? (<>
+                {spaceId == 0 && !query.search && !selectMode.ids.length ? (
                     <MenuItem to='/settings/backups'>
-                        Complete backup
+                        Download complete backup
+                    </MenuItem>
+                ) : (<>
+                    <MenuSection>
+                        {t.s('export')}{' '}
+                        {selectMode.ids.length > 0 ? selectMode.ids.length : count}{' '}
+                        {t.s('bookmarks')}
+                    </MenuSection>
+
+                    <MenuItem href={`${prefix}/export.html${suffix}`} download>
+                        HTML
                     </MenuItem>
 
-                    <MenuSeparator />
-                </>) : null}
+                    <MenuItem href={`${prefix}/export.csv${suffix}`} download>
+                        CSV
+                    </MenuItem>
 
-                <MenuSection>
-                    {t.s('export')}{' '}
-                    {selectMode.ids.length > 0 ? selectMode.ids.length : count}{' '}
-                    {t.s('bookmarks')}
-                </MenuSection>
-
-                <MenuItem href={`${prefix}/export.html${suffix}`} download>
-                    HTML
-                </MenuItem>
-
-                <MenuItem href={`${prefix}/export.csv${suffix}`} download>
-                    CSV
-                </MenuItem>
-
-                <MenuItem href={`${prefix}/export.txt${suffix}`} download>
-                    Text
-                </MenuItem>
+                    <MenuItem href={`${prefix}/export.txt${suffix}`} download>
+                        Text
+                    </MenuItem>
+                </>)}
             </Menu>
         </Popover>
     )
