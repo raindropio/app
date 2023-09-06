@@ -205,9 +205,12 @@ function* backup({ ignore=false, onSuccess, onFail }) {
 
 	try {
 		yield call(Api.get, 'backup')
-		onSuccess()
+		
+		if (typeof onSuccess == 'function')
+			onSuccess()
 	} catch (error) {
-		onFail(error)
+		if (typeof onFail == 'function')
+			onFail(error)
 	}
 }
 
