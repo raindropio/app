@@ -32,6 +32,12 @@ export default function TagsPicker({ value=[], onChange, spaceId, ...etc }) {
                     inputValue: ''
                 }
 
+            case Downshift.stateChangeTypes.touchEnd:
+                return {
+                    ...changes,
+                    isOpen: true
+                }
+
             default:
                 return changes
         }
@@ -112,7 +118,7 @@ export default function TagsPicker({ value=[], onChange, spaceId, ...etc }) {
                             selected: value,
                             onSelectedChange: onChange,
                             icon: 'tag',
-                            onFocus: downshift.toggleMenu,
+                            onFocus: downshift.openMenu,
                             onKeyDown: onInputKeyDown
                         })} />
 
