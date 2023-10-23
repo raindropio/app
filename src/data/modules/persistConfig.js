@@ -24,7 +24,7 @@ else
 			setItem: require('rn-user-defaults').default.set,
 			removeItem: require('rn-user-defaults').default.clear,
 		},
-		android: require('@react-native-community/async-storage').default
+		android: require('@react-native-async-storage/async-storage').default
 	})
 
 const version = 35
