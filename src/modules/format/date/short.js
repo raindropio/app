@@ -8,6 +8,7 @@ import { parseDate } from './parse'
 let _formats = {}
 function getFormat(type) {
     if (!_formats[type]){
+        const hour12 = new Date().toLocaleTimeString().toString().match(/am|pm/i) ? true : false
         let params = {}
 
         switch (type) {
@@ -16,7 +17,7 @@ function getFormat(type) {
             default:        params = { year: 'numeric', month: 'short', day: 'numeric' }; break;
         }
 
-        _formats[type] = new Intl.DateTimeFormat(t.currentLang, params).format
+        _formats[type] = new Intl.DateTimeFormat(t.currentLang, { hour12, ...params }).format
     }
 
     return _formats[type]
@@ -31,7 +32,7 @@ export const shortDate = (original) => {
             return getFormat('time')(d)
 
         return getFormat(!isThisYear(d) ? 'full' : 'compact')(d)
-    }catch(e){}
+    }catch(e){console.log(e)}
 
     try{
         return dateFnsFormat(d, 'P')

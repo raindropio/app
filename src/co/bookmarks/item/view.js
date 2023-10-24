@@ -52,7 +52,7 @@ export default function BookmarkItemView(props) {
                     <div className={s.description}>
                         {note ? (
                             <div className={s.note}>
-                                <Markdown>{note}</Markdown>
+                                <Markdown options={{ disableParsingRawHTML: true }}>{note}</Markdown>
                             </div>
                         ) : null}
                         {excerpt ? (

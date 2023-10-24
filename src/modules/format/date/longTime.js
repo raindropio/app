@@ -9,6 +9,7 @@ function getFormat() {
         _format = new Intl.DateTimeFormat(
             t.currentLang,
             {
+                hour12: new Date().toLocaleTimeString().toString().match(/am|pm/i) ? true : false,
                 year: 'numeric',
                 month: 'long',
                 day: 'numeric',
