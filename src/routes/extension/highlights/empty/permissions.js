@@ -32,9 +32,11 @@ export function usePermissionsGranted() {
 }
 
 export default function ExtensionHighlightsPermissions() {
-    const requestPermission = useCallback((e)=>{
+    const requestPermission = useCallback(async(e)=>{
         e.preventDefault()
-        browser.permissions.request(required)
+        await browser.permissions.request(required)
+        await browser.tabs.reload()
+        window.close()
     }, [])
 
     var content = null
@@ -47,16 +49,6 @@ export default function ExtensionHighlightsPermissions() {
                 <li>Go to <b>Safari</b> / <b>Extensions</b> / <b>Raindrop.io</b></li>
                 <li>Tap <b>All Websites</b> or <b>Other Websites</b> and select <b>Allow</b></li>
                 <li>Restart Safari</li>
-            </ol>
-        )
-    //macos
-    else if (environment.includes('safari'))
-        content = (
-            <ol>
-                <li><a onClick={requestPermission}>Click here first</a></li>
-                <li>Then open <b>Safari Settings</b></li>
-                <li>Find <b>Raindrop.io</b> in <b>Extensions</b></li>
-                <li>Click <b>Always Allow on Every Website</b></li>
             </ol>
         )
     else

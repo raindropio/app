@@ -9,11 +9,16 @@ import { Error } from '~co/overlay/dialog'
 
 function Permission({ required, title }) {
     const [granted, setGranted] = useState(false)
+    const [isOptional, setIsOptional] = useState(false)
+
     useEffect(()=>{
         async function load() {
             setGranted(
                 await browser.permissions.contains(required)
             )
+
+            const manifest = browser.runtime.getManifest()
+            setIsOptional(required.permissions.every(p=>manifest.optional_permissions.includes(p)))
         }
         
         load()
@@ -21,7 +26,7 @@ function Permission({ required, title }) {
         browser.permissions.onAdded.addListener(load)
         browser.permissions.onRemoved.removeListener(load)
         browser.permissions.onRemoved.addListener(load)
-    }, [required, setGranted])
+    }, [required, setGranted, setIsOptional])
 
     const onToggle = useCallback((e)=>{
         browser.permissions[e.currentTarget.checked ? 'request' : 'remove'](required)
@@ -31,6 +36,7 @@ function Permission({ required, title }) {
     return (
         <Checkbox 
             checked={granted}
+            disabled={!isOptional}
             onChange={onToggle}>
             {title}
         </Checkbox>
