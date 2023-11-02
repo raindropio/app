@@ -1,11 +1,11 @@
 import s from './view.module.styl'
 import React from 'react'
-import Markdown from 'markdown-to-jsx'
 import t from '~t'
 
 import DragItem from '~co/bookmarks/dnd/drag/item'
 import SuperLink from '~co/common/superLink'
 import SafeHtml from '~co/common/safeHtml'
+import SafeMarkdown from '~co/common/safeMarkdown'
 import Cover from './cover'
 import Tags from './tags'
 import Highlights from './highlights'
@@ -47,18 +47,14 @@ export default function BookmarkItemView(props) {
 
                 <div className={s.about}>
                     {/* Text */}
-                    <SafeHtml className={s.title}>{highlight.title || title}</SafeHtml>
+                    <SafeHtml className={s.title} html={highlight.title || title} />
                     
                     <div className={s.description}>
                         {note ? (
-                            <div className={s.note}>
-                                <Markdown options={{ disableParsingRawHTML: true }}>{note}</Markdown>
-                            </div>
+                            <SafeMarkdown className={s.note} markdown={note} />
                         ) : null}
                         {excerpt ? (
-                            <SafeHtml className={s.excerpt}>
-                                {highlight.excerpt || excerpt}
-                            </SafeHtml>
+                            <SafeHtml className={s.excerpt} html={highlight.excerpt || excerpt} />
                         ) : null}
                         <Reminder reminder={reminder} />
                         <Highlights className={s.highlights} highlights={highlights} />
