@@ -2,10 +2,13 @@ import s from './cache.module.styl'
 import React from 'react'
 import t from '~t'
 import { API_ENDPOINT_URL } from '~data/constants/app'
+import { useSelector } from 'react-redux'
+import { isPro } from '~data/selectors/user'
 
 import Header, { Title, Space } from '~co/common/header'
 import Button from '~co/common/button'
 import Icon from '~co/common/icon'
+import Alert from '~co/common/alert'
 
 const invalidStatus = {
     'invalid-origin': 'Origin is unreachable.',
@@ -60,7 +63,15 @@ function CacheStatus({ cache, url }) {
 }
 
 export default function PageMyItemTabCache({ item: { cache, _id } }) {
+    const pro = useSelector(state=>isPro(state))
     const url = `${API_ENDPOINT_URL}raindrop/${_id}/cache`
+
+    if (!pro)
+        return (
+            <Alert variant='warning'>
+                {t.s('onlyInPro')}
+            </Alert>
+        )
 
     switch(cache) {
         case 'ready':
