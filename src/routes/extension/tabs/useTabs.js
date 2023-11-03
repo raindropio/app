@@ -34,7 +34,7 @@ export default function useTabs() {
             .then(preload)
             .then(setTabs)
             .catch(e=>{
-                if (e?.message != 'This function must be called during a user gesture')
+                if (!e?.message?.includes('user'))
                     Error(e)
             })
     }, [])

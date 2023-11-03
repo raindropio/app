@@ -30,7 +30,12 @@ async function onClicked({ menuItemId, pageUrl, srcUrl, linkUrl }, { windowId })
             return open('/settings', { width: 800, height: 700, autoClose: false })
 
         case 'execute_side_panel':
-            return browser.sidePanel.open({ windowId })
+            if (browser.sidePanel)
+                return browser.sidePanel.open({ windowId })
+            else if (browser.sidebarAction)
+                return browser.sidebarAction.open()
+            else
+                break
     }
 }
 
@@ -73,7 +78,7 @@ async function init() {
             contexts: ['selection']
         }),
 
-        ...(environment.includes('chrome') ? [
+        ...(browser.sidePanel || browser.sidebarAction ? [
             browser.contextMenus.create({
                 id: 'execute_side_panel',
                 title: browser.i18n.getMessage('openSidePanel'),
