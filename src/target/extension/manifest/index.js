@@ -142,6 +142,15 @@ module.exports = ({ vendor, production=false }, l) => {
 				description: '__MSG_openRaindrop__',
 			},
 
+			...(vendor == 'chrome' ? {
+				execute_side_panel: {
+					suggested_key: {
+						default: 'Alt+Shift+B'
+					},
+					description: '__MSG_openSidePanel__'
+				}
+			}: {}),
+
 			...(vendor == 'firefox' || vendor == 'opera' ? {
 				_execute_sidebar_action: {
 					suggested_key: {

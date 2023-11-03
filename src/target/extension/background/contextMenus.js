@@ -3,7 +3,7 @@ import { open } from './popup'
 import { addCurrentTabSelection } from './highlights'
 import { environment } from '../environment'
 
-async function onClicked({ menuItemId, pageUrl, srcUrl, linkUrl }, ) {
+async function onClicked({ menuItemId, pageUrl, srcUrl, linkUrl }, { windowId }) {
     switch(menuItemId) {
         case 'save_page':
             return open(`/add?link=${encodeURIComponent(pageUrl)}`)
@@ -19,6 +19,18 @@ async function onClicked({ menuItemId, pageUrl, srcUrl, linkUrl }, ) {
 
         case 'save_highlight':
             return addCurrentTabSelection()
+
+        case 'save_tabs':
+            return open('/extension/tabs/-1')
+
+        case 'open_app':
+            return open('/', { width: 1280, height: 800, autoClose: false })
+
+        case 'settings':
+            return open('/settings', { width: 800, height: 700, autoClose: false })
+
+        case 'execute_side_panel':
+            return browser.sidePanel.open({ windowId })
     }
 }
 
@@ -59,6 +71,32 @@ async function init() {
             id: 'save_highlight',
             title: browser.i18n.getMessage('saveHighlight')+suffix,
             contexts: ['selection']
+        }),
+
+        ...(environment.includes('chrome') ? [
+            browser.contextMenus.create({
+                id: 'execute_side_panel',
+                title: browser.i18n.getMessage('openSidePanel'),
+                contexts: ['action']
+            })
+        ] : []),
+        
+        browser.contextMenus.create({
+            id: 'open_app',
+            title: browser.i18n.getMessage('openApp'),
+            contexts: ['action']
+        }),
+
+        browser.contextMenus.create({
+            id: 'save_tabs',
+            title: browser.i18n.getMessage('saveTabs'),
+            contexts: ['action']
+        }),
+
+        browser.contextMenus.create({
+            id: 'settings',
+            title: browser.i18n.getMessage('settings'),
+            contexts: ['action']
         })
     ])
 }

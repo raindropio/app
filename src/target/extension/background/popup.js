@@ -7,10 +7,7 @@ const base = environment.includes('safari') ?
     '/index.html#'
 const winIds = new Set()
 
-export async function open(path) {
-    const width = 420;
-    const height = 600;
-
+export async function open(path, { width = 420, height = 600, autoClose = true } = {}) {
     let origin = { left: 0, top: 0, width: 0, height: 0 }
     try{
         origin = await browser.windows.getCurrent()
@@ -28,7 +25,8 @@ export async function open(path) {
     })
     
     //delay autoclose on blur, otherwise buggy on arch linux
-    setTimeout(() => { winIds.add(id) }, 100)
+    if (autoClose)
+        setTimeout(() => { winIds.add(id) }, 100)
 }
 
 /* Close all open popups when focused window change */

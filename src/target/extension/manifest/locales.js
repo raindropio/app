@@ -57,6 +57,10 @@ module.exports = ({ emitFile })=>{
                     message: s(lang, 'save') + ' ' + s(lang, 'highlights').toLowerCase(),
                     description: ''
                 },
+                saveTabs: {
+                    message: s(lang, 'save') + ' ' + s(lang, 'tabs').toLowerCase(),
+                    description: ''
+                },
                 openRaindrop: {
                     message: s(lang, 'open') + ' Raindrop.io web-' + s(lang, 'site').toLowerCase(),
                     description: ''
@@ -65,8 +69,16 @@ module.exports = ({ emitFile })=>{
                     message: s(lang, 'open') + ' ' + s(lang, 'sidebar').toLowerCase(),
                     description: ''
                 },
+                openApp: {
+                    message: s(lang, 'open') + ' ' + s(lang, 'app').toLowerCase(),
+                    description: ''
+                },
                 in: {
                     message: s(lang, 'in'),
+                    description: ''
+                },
+                settings: {
+                    message: s(lang, 'settings'),
                     description: ''
                 }
             },
