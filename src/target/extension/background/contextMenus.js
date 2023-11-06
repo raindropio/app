@@ -24,10 +24,10 @@ async function onClicked({ menuItemId, pageUrl, srcUrl, linkUrl }, { windowId })
             return open('/extension/tabs/-1')
 
         case 'open_app':
-            return open('/', { width: 1280, height: 800, autoClose: false })
+            return open('/', { width: 1280, height: 800 })
 
         case 'settings':
-            return open('/settings', { width: 800, height: 700, autoClose: false })
+            return open('/settings', { width: 800, height: 700 })
 
         case 'execute_side_panel':
             if (browser.sidePanel)
