@@ -110,7 +110,6 @@ function* req(url, options={}, retries=0) {
 	let errorMessage = 'failed to load'
 
 	for(let i = 0; i <= retries; i++){
-		console.log(i, retries)
 		try{
 			const winner = yield race({
 				req: call(fetchWrap, finalURL, {...defaultOptions, ...options}),

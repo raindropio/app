@@ -1,10 +1,11 @@
 import React from 'react'
 import t from '~t'
+import { API_ENDPOINT_URL } from '~data/constants/app'
 import Popover, { Menu, MenuItem, MenuSeparator } from '~co/overlay/popover'
 import { target } from '~target'
 
 export default function BookmarksItemContextmenu({
-    _id, link, important, access, reparse, cache,
+    _id, link, important, access, reparse, cache, fileType,
     onContextMenuClose, onRemoveClick, onCopyLinkClick,
     onSelectClick, onImportantClick, onReparseClick
 }) {
@@ -30,6 +31,12 @@ export default function BookmarksItemContextmenu({
                 {access && access.level >= 2 && cache ? (
                     <MenuItem to={`item/${_id}/cache`}>
                         {cache != 'ready' ? '⚠️ ' : ''}{t.s('permanentCopy')}
+                    </MenuItem>
+                ) : null}
+
+                {fileType ? (
+                    <MenuItem href={`${API_ENDPOINT_URL}raindrop/${_id}/file?download`}>
+                        {t.s('download')}
                     </MenuItem>
                 ) : null}
 
