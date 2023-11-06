@@ -9,7 +9,7 @@ import {
 import ApiError from './error'
 
 function* get(url, overrideOptions={}) {
-	const res = yield req(url, overrideOptions)
+	const res = yield req(url, overrideOptions, API_RETRIES)
 
 	var json = {}
 	if (res.headers){
@@ -99,7 +99,7 @@ function* del(url, data={}, options={}) {
 	return json;
 }
 
-function* req(url, options={}) {
+function* req(url, options={}, retries=0) {
 	var finalURL = API_ENDPOINT_URL + url
 
 	if (url.indexOf('/') == 0)
@@ -109,7 +109,8 @@ function* req(url, options={}) {
 
 	let errorMessage = 'failed to load'
 
-	for(let i = 0; i < API_RETRIES; i++){
+	for(let i = 0; i <= retries; i++){
+		console.log(i, retries)
 		try{
 			const winner = yield race({
 				req: call(fetchWrap, finalURL, {...defaultOptions, ...options}),
@@ -127,8 +128,8 @@ function* req(url, options={}) {
 			if (e && e.status && e.status >= 400 && e.status < 500)
 				break;
 			//retry
-			else if(i < API_RETRIES-1) {
-				yield delay(100 + (API_RETRIES * 100) ); //stop 100ms and try again
+			else if(i < retries-1) {
+				yield delay(100 + (retries * 100) ); //stop 100ms and try again
 			}
 		}
 	}

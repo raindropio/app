@@ -16,12 +16,14 @@ export default function ExtensionTabsSubmit({ tabs, collectionId, tags, close })
         //save
         dispatch(
             manyCreate(
-                tabs.map(({title, url})=>({
-                    title,
-                    link: url,
-                    collectionId,
-                    tags
-                })),
+                tabs
+                    .reverse() //make sure first is first
+                    .map(({title, url})=>({
+                        title,
+                        link: url,
+                        collectionId,
+                        tags
+                    })),
                 async()=>{
                     if (close)
                         await browser.tabs.remove(tabs.map(({id})=>id))
