@@ -38,11 +38,11 @@
 
         <div class="text-column">
             <h4><span class="text-gradient pink-red-gradient">Save Button</span></h4>
-            <h2>Collect & organize web pages as you browse</h2>
+            <h2>Collect & organize web pages</h2>
             <div class="spacer"></div>
             
             <a href="#pin" class="button size-regular variant-primary">Pin in Toolbar</a>
-            <span class="or-text">or</span>
+            <span class="or-text">or press</span>
             <span data-system-show="macos">
                 <button class="button size-regular variant-secondary only-icon" disabled>⇧</button>
                 <button data-browser-hide="firefox" class="button size-regular variant-secondary only-icon" disabled>⌘</button>
@@ -52,8 +52,7 @@
             <span data-system-show="windows linux">
                 <button class="button size-regular variant-secondary" disabled>
                     <span data-browser-hide="firefox">Ctrl</span><span data-browser-show="firefox">Alt</span>
-                    <span>Shift</span>
-                    <span>S</span>
+                    +Shift+S
                 </button>
             </span>
         </div>
@@ -63,16 +62,16 @@
         <div class="backport-background pink-red-gradient"></div>
 
         <div class="text-container">
-            <h3>Pin "Save Button" in Toolbar</h3>
+            <h3>Pin Raindrop.io Button in Toolbar</h3>
             <ol>
-                <li>Click <svg class="icon"><use xlink:href="#icon-puzzle"></use></svg> button in a <span class="browser-name"></span> toolbar</li>
-                <li>Find <svg class="icon"><use xlink:href="#icon-cloud"></use></svg> Raindrop.io and click <svg class="icon"><use xlink:href="#icon-pin"></use></svg> button next to it</li>
+                <li>Click <svg class="icon"><use xlink:href="#icon-puzzle"></use></svg> in a <span class="browser-name"></span> toolbar</li>
+                <li>Find <svg class="icon"><use xlink:href="#icon-cloud"></use></svg> Raindrop.io and click <svg class="icon"><use xlink:href="#icon-pin"></use></svg> next to it</li>
+                <li>
+                    Recommended:
+                    <button class="request-tabs-permission button variant-primary size-inline">Enable saved page indicator</button>
+                    which displays a small <svg class="icon"><use xlink:href="#icon-check"></use></svg> when you visit a page that has already been saved
+                </li>
             </ol>
-            <p class="text-secondary">
-                Optional:
-                <button class="request-tabs-permission button variant-secondary size-inline">Enable saved page indicator</button>
-                which displays a small <svg class="icon"><use xlink:href="#icon-check"></use></svg> when you visit a page that has already been saved
-            </p>
             <hr class="pink-red-gradient" />
             <p>
                 Web pages and files saved in your private account.
@@ -83,20 +82,26 @@
     </div>
 
     <!-- Sidepanel -->
-    <div data-browser-show="chrome firefox" class="slide columns left" id="sidepanel" data-is-intersecting="false">
+    <div data-browser-show="chrome firefox edge" class="slide columns left" id="sidepanel" data-is-intersecting="false">
         <div class="image-column">
             <img src="screen-sidepanel.webp" />
         </div>
 
         <div class="text-column">
             <h4><span class="text-gradient blue-green-gradient">Sidepanel</span></h4>
-            <h2>Retrieve collected items in one click</h2>
+            <h2>Collection always at hand</h2>
             <div class="spacer"></div>
 
             <a href="#open-sidepanel" class="button size-regular variant-primary">Open Sidepanel</a>
 
-            <span data-browser-show="firefox">
-                <span class="or-text">or</span>
+            <span class="or-text">or press</span>
+
+            <span data-system-show="macos">
+                <button class="button size-regular variant-secondary only-icon" disabled>⌥</button>
+                <button class="button size-regular variant-secondary only-icon" disabled>⇧</button>
+                <button class="button size-regular variant-secondary only-icon" disabled>B</button>
+            </span>
+            <span data-system-show="windows linux">
                 <button class="button size-regular variant-secondary" disabled>
                     Alt+Shift+B
                 </button>
@@ -129,7 +134,7 @@
 
         <div class="text-column">
             <h4><span class="text-gradient blue-purple-gradient">Search Field</span></h4>
-            <h2>Type in address bar to find collected items</h2>
+            <h2>Type in address bar to find items</h2>
             <div class="spacer"></div>
             <a href="#start-search" class="button size-regular variant-primary">Start Search</a>
         </div>
@@ -152,30 +157,58 @@
     </div>
 
     <!-- Multiplayer -->
-    <div class="slide columns right" id="multiplayer" data-is-intersecting="false">
+    <div class="slide columns right" id="highlights" data-is-intersecting="false">
         <div class="image-column">
-            <img src="screen-multiplayer.webp" />
+            <img src="screen-highlights.webp" />
         </div>
 
         <div class="text-column">
-            <h4><span class="text-gradient mint-green-gradient">Multiplayer</span> &nbsp;<span class="badge mint-green-gradient">Opt-in</span></h4>
-            <h2>Edit collection together. Share with entire web</h2>
+            <h4><span class="text-gradient yellow-orange-gradient">Highlights & Annotations</span></h4>
+            <h2>Save important passages</h2>
             <div class="spacer"></div>
-            <a href="https://help.raindrop.io/public-page" target="_blank" class="button size-regular variant-primary">Learn more</a>
+            
+            <button class="button size-regular variant-secondary" disabled>Select text</button>
+            <span class="or-text">and press</span>
+            <span data-system-show="macos">
+                <button class="button size-regular variant-secondary only-icon" disabled>⇧</button>
+                <button data-browser-hide="firefox" class="button size-regular variant-secondary only-icon" disabled>⌘</button>
+                <button data-browser-show="firefox" class="button size-regular variant-secondary only-icon" disabled>⌥</button>
+                <button class="button size-regular variant-secondary only-icon" disabled>S</button>
+            </span>
+            <span data-system-show="windows linux">
+                <button class="button size-regular variant-secondary" disabled>
+                    <span data-browser-hide="firefox">Ctrl</span><span data-browser-show="firefox">Alt</span>
+                    +Shift+S
+                </button>
+            </span>
         </div>
     </div>
 
-    <!-- Highlights -->
-    <div class="slide columns feature" id="highlights" data-is-intersecting="false">
+    <!-- Permanent copies -->
+    <div class="slide columns feature" id="permanent-copies" data-is-intersecting="false">
+        <div class="backport-background blue-green-gradient"></div>
+
+        <div>
+            <div class="blue-green-gradient mask-icon" style='clip-path: url(#mask-permanent-copies);'></div>
+            <div class="spacer"></div>
+            <h4><span class="text-gradient blue-green-gradient">Permanent Copies</span></h4>
+            <h2>Never lose access to collected items</h2>
+            <div class="spacer"></div>
+            <a href="https://help.raindrop.io/permanent-copy" target="_blank" class="button size-regular variant-primary">Learn more</a>
+        </div>
+    </div>
+
+    <div class="slide columns feature" id="multiplayer" data-is-intersecting="false">
         <div class="backport-background pink-red-gradient"></div>
 
         <div>
-            <div class="pink-red-gradient mask-icon" style='clip-path: url(#mask-highlights);'></div>
+            <div class="pink-red-gradient mask-icon" style='clip-path: url(#mask-share);'></div>
             <div class="spacer"></div>
-            <h4><span class="text-gradient pink-red-gradient">Highlights & Annotations</span></h4>
-            <h2>Save important passages</h2>
+            <h4><span class="text-gradient pink-red-gradient">Multiplayer</span> &nbsp;<span class="badge pink-red-gradient">Opt-in</span></h4>
+            <h2>Edit together. Share with web</h2>
             <div class="spacer"></div>
-            <a href="https://help.raindrop.io/highlights" target="_blank" class="button size-regular variant-primary">Learn more</a>
+            <a href="https://help.raindrop.io/public-page" target="_blank" class="button size-regular variant-primary">Public page</a> &nbsp;
+            <a href="https://help.raindrop.io/public-page" target="_blank" class="button size-regular variant-secondary">Collaboration</a>
         </div>
     </div>
 
@@ -189,19 +222,6 @@
             <h2>Schedule content for later</h2>
             <div class="spacer"></div>
             <a href="https://help.raindrop.io/reminders" target="_blank" class="button size-regular variant-primary">Learn more</a>
-        </div>
-    </div>
-
-    <div class="slide columns feature" id="permanent-copies" data-is-intersecting="false">
-        <div class="backport-background blue-green-gradient"></div>
-
-        <div>
-            <div class="blue-green-gradient mask-icon" style='clip-path: url(#mask-permanent-copies);'></div>
-            <div class="spacer"></div>
-            <h4><span class="text-gradient blue-green-gradient">Permanent Copies</span></h4>
-            <h2>Never lose access to collected items</h2>
-            <div class="spacer"></div>
-            <a href="https://help.raindrop.io/permanent-copy" target="_blank" class="button size-regular variant-primary">Learn more</a>
         </div>
     </div>
 
@@ -236,7 +256,7 @@
         <div class="get-started text-container" style="text-align: center;">
             <div data-authenticated-hide>
                 <p>
-                    Sign up to sync your collections, bookmarks & highlights across all your devices                
+                    Sign up to sync your collection and highlights across all your devices                
                 </p>
                 <div class="spacer"></div>
         
@@ -305,8 +325,8 @@
         </symbol>
 
         <defs>
-            <clipPath id="mask-highlights">
-                <path d="M3.70299017,55.9063483 C2.62786808,56.1623297 1.6935358,55.8935492 0.899993311,55.1000067 C0.106450822,54.3064642 -0.162329699,53.3721319 0.0936517493,52.2970098 L2.85825139,39.3187504 L16.6812496,53.1417486 L3.70299017,55.9063483 Z M20.6745602,50.5307378 L5.46926216,35.3254398 L39.4891966,1.30550538 C40.3595335,0.435168462 41.4346556,0 42.7145628,0 C43.9944701,0 45.0695922,0.435168462 45.9399291,1.30550538 L54.6944946,10.0600709 C55.5648315,10.9304078 56,12.0055299 56,13.2854372 C56,14.5653444 55.5648315,15.6404665 54.6944946,16.5108034 L20.6745602,50.5307378 Z"/>
+            <clipPath id="mask-share">
+                <path d="M0 56c0-11.782 9.559-21.333 21.35-21.333 11.791 0 21.35 9.55 21.35 21.333H0Zm21.35-24c-8.847 0-16.012-7.16-16.012-16S12.503 0 21.35 0c8.847 0 16.013 7.16 16.013 16S30.197 32 21.35 32ZM41 37.955C49.233 40.058 55.423 47.263 56 56h-7.962a26.56 26.56 0 0 0-7.039-18.045Zm-5.399-6.07C39.96 27.98 42.7 22.31 42.7 16c0-3.78-.984-7.33-2.709-10.408 6.112 1.219 10.715 6.607 10.715 13.075C50.706 26.033 44.735 32 37.363 32c-.597 0-1.185-.04-1.762-.115Z"/>
             </clipPath>
             <clipPath id="mask-reminders">
                 <path d="M6,47.6 L6,43.4 L11.88,43.4 L11.88,21.98 C11.88,18.06 13.035,14.5716667 15.345,11.515 C17.655,8.45833333 20.7,6.53333333 24.48,5.74 L24.48,3.71 C24.48,2.63666667 24.865,1.75 25.635,1.05 C26.405,0.35 27.3266667,0 28.4,0 C29.4733333,0 30.395,0.35 31.165,1.05 C31.935,1.75 32.32,2.63666667 32.32,3.71 L32.32,5.74 C36.1,6.53333333 39.1566667,8.45833333 41.49,11.515 C43.8233333,14.5716667 44.99,18.06 44.99,21.98 L44.99,43.4 L50.8,43.4 L50.8,47.6 L6,47.6 Z M28.4,56 C26.9066667,56 25.6,55.4516667 24.48,54.355 C23.36,53.2583333 22.8,51.94 22.8,50.4 L34,50.4 C34,51.94 33.4516667,53.2583333 32.355,54.355 C31.2583333,55.4516667 29.94,56 28.4,56 Z"/>

@@ -60,7 +60,6 @@ export default class BookmarkEditFormCover extends React.Component {
                     title={t.s('changeIcon')}
                     onClick={this.onModalOpen}>
                     <Cover 
-                        indicator={true}
                         cover={cover}
                         link={link}
                         view='list' />

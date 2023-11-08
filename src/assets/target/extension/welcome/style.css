@@ -60,7 +60,7 @@ h3 {
 }
 
 h4 {
-    font-size: 24px;
+    font-size: 28px;
     font-weight: 600;
 }
 
@@ -433,7 +433,7 @@ hr {
 }
 
 .columns.left {
-    grid-template-columns: 3fr minmax(100px, 400px) 1fr;
+    grid-template-columns: 3fr minmax(100px, 410px) 1fr;
     grid-template-areas: "image text ."
 }
 .columns.left .image-column {
@@ -445,7 +445,7 @@ hr {
 }
 
 .columns.right {
-    grid-template-columns: 1fr minmax(100px, 400px) 3fr;
+    grid-template-columns: 1fr minmax(100px, 410px) 3fr;
     grid-template-areas: ". text image"
 }
 .columns.right .image-column {
@@ -486,7 +486,7 @@ hr {
 .or-text {
     font-size: 16px;
     color: var(--secondary-text);
-    margin: 16px;
+    margin: 12px;
 }
 
 .badge {
