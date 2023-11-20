@@ -1,5 +1,6 @@
 import browser from 'webextension-polyfill'
 import config from '~config'
+import { currentTab } from '~target'
 import { open } from './popup'
 import { addCurrentTabSelection } from './highlights'
 
@@ -11,7 +12,7 @@ function getSelectedText() {
 async function onCommand(command, tab) {
     switch(command) {
         case 'save_page':{
-            const { url='', id } = tab
+            const { url='', id } = tab || await currentTab()
 
             //save highlight if text is selected
             const [res] = await browser.scripting.executeScript({
