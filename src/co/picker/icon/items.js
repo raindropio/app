@@ -11,7 +11,7 @@ export default class CollectionPickerIconItems extends React.Component {
 
     getTemplateKey = ({ title })=>title
 
-    renderTemplate = ({ title, icons }, index)=>(
+    renderTemplate = ({ title, icons=[] }, index)=>(
         <div className={s.template} key={index}>
             <div className={s.section}>
                 {title}
