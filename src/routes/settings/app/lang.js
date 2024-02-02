@@ -5,18 +5,11 @@ import _ from 'lodash'
 import { connect } from 'react-redux'
 import { set } from '~data/actions/config'
 import supported from '~assets/languages/index.json'
-import config from '~config'
 
 import { Label } from '~co/common/form'
 import Select from '~co/common/select'
-import Button from '~co/common/button'
-import Icon from '~co/common/icon'
 
 class SettingsAppLang extends React.Component {
-    static defaultProps = {
-        showContribute: true
-    }
-
     list = _.sortBy(Object.entries(supported), ([key, label])=>label)
 
     onChange = (e)=>{
@@ -24,7 +17,7 @@ class SettingsAppLang extends React.Component {
     }
 
     render() {
-        const { lang, showContribute } = this.props
+        const { lang } = this.props
 
         return (
             <>
@@ -39,16 +32,6 @@ class SettingsAppLang extends React.Component {
                             <option key={key} value={key}>{label}</option>
                         )}
                     </Select>
-
-                    {showContribute && (
-                        <Button 
-                            href={config.links.translation}
-                            target='_blank'
-                            variant='flat'>
-                            <Icon name='open' size='micro' />
-                            Help us
-                        </Button>
-                    )}
                 </div>
             </>
         )
