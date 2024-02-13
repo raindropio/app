@@ -61,8 +61,7 @@ export default class PickerImage extends React.Component {
             autoFocus={this.props.selected == link}
             onClick={()=>this.onLink(link)}>
             <img 
-                src={`${getThumbUri(link)}?mode=crop&width=128&height=96&dpr=${window.devicePixelRatio||1}`}
-                loading='lazy' />
+                src={`${getThumbUri(link)}?mode=crop&width=128&height=96&dpr=${window.devicePixelRatio||1}`} />
         </button>
 
     render() {

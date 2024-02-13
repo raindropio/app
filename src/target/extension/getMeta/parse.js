@@ -130,11 +130,15 @@ function getItem() {
         ...grabImages()
     ].filter((value, index, self)=>self.indexOf(value) === index)
 
-    if (images.length)
+    if (images.length) {
         item.media = images.map(link=>({
             type: 'image',
             link
         }))
+
+        if (!item.cover)
+            item.cover = images[0]
+    }
 
     //limit length
     if (item.title && item.title.length)
