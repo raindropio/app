@@ -38,8 +38,8 @@ class Bookmarks extends React.Component {
                 <Lazy
                     data={ids} 
                     keyExtractor={this.keyExtractor}
-                    initialNumToRender={1}
-                    activateAfter={1}>
+                    initialNumToRender={20}
+                    activateAfter={20}>
                     {spaceId=>this.renderSpace(spaceId)}
                 </Lazy>
             </div>
