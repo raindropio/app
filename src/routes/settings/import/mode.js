@@ -8,10 +8,10 @@ import Alert from '~co/common/alert'
 
 class ImportMode extends React.Component {
     modes = [
-        [
-            'all',
-            t.s('import')+' '+t.s('all').toLowerCase()
-        ],
+        // [
+        //     'all',
+        //     t.s('import')+' '+t.s('all').toLowerCase()
+        // ],
         [
             'new',
             t.s('only')+' '+(t.s('newString')+' '+t.s('folders')+' '+t.s('und')+' '+t.s('bookmarks')).toLowerCase()
