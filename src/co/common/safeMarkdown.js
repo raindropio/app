@@ -6,9 +6,9 @@ function safe(html) {
     return {
         dangerouslySetInnerHTML: {
             __html: DOMPurify.sanitize(
-                marked.parseInline(html, { silent: true }),
+                marked.parse(html, { silent: true, breaks: true }),
                 {
-                    ALLOWED_TAGS: ['i', 'b', 'strong', 'ul', 'ol', 'li', 'pre', 'code', 'em', 'blockquote', 'a']
+                    ALLOWED_TAGS: ['i', 'b', 'strong', 'ul', 'ol', 'li', 'pre', 'code', 'em', 'blockquote', 'a', 'p']
                 }
             )
         }
