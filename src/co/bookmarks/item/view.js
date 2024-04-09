@@ -51,11 +51,15 @@ export default function BookmarkItemView(props) {
                     
                     <div className={s.description}>
                         {note ? (
-                            <SafeMarkdown className={s.note} markdown={note} />
+                            <SafeMarkdown className={s.note} markdown={highlight.note || note} />
                         ) : null}
-                        {excerpt ? (
-                            <SafeHtml className={s.excerpt} html={highlight.excerpt || excerpt} />
-                        ) : null}
+                        {highlight.body || highlight.excerpt ? (
+                            <SafeHtml className={s.body} html={highlight.body || highlight.excerpt} />
+                        ) : (
+                            excerpt ? (
+                                <SafeHtml className={s.excerpt} html={excerpt} />
+                            ) : null
+                        )}
                         <Reminder reminder={reminder} />
                         <Highlights className={s.highlights} highlights={highlights} />
                         <Tags tags={tags} spaceId={spaceId} />

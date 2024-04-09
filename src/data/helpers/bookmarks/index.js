@@ -107,7 +107,7 @@ export const normalizeBookmarks = (items=[], options)=>{
 		meta[item._id] = normalizeMeta(item)
 
 		if (item.highlight)
-			highlight[item._id] = _.pick(item.highlight, 'title', 'excerpt', 'note', 'body')
+			highlight[item._id] = _.pick(item.highlight, 'title', 'excerpt', 'note', 'body', 'link')
 
 		ids.push(item._id)
 	})

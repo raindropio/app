@@ -3,12 +3,13 @@ import React from 'react'
 import t from '~t'
 
 import { ShortDate } from '~modules/format/date'
+import SafeHtml from '~co/common/safeHtml'
 import { Link } from 'react-router-dom'
 import Icon, { Avatar } from '~co/common/icon'
 import Path from './path'
 
 export default function BookmarkItemInfo(props) {
-    const { className='', creatorRef, domain, type, link, created, reparse, collectionId, spaceId, important, broken, duplicate, cache } = props
+    const { className='', creatorRef, domain, type, link, created, reparse, collectionId, spaceId, important, broken, duplicate, cache, highlight } = props
 
     return (
         <div className={s.info+' '+className}>
@@ -58,7 +59,9 @@ export default function BookmarkItemInfo(props) {
                 <section data-inline><Icon name={type} size='micro' /></section>
             ) : null}
 
-            <section>{domain}</section>
+            {highlight.link ? (
+                <SafeHtml tagName='section' html={highlight.link} />
+            ) : <section>{domain}</section>}
 
             <section><ShortDate date={created}/></section>
         </div>

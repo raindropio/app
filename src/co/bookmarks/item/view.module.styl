@@ -77,6 +77,11 @@
     align-content: flex-start
     grid-gap: calc(var(--padding-mini) / 2)
 
+    em {
+        font-weight: bold
+        font-style: normal
+    }
+
     .title {
         font-weight: 500
         font-size: var(--title-font-size)
@@ -104,7 +109,7 @@
         }
     }
 
-    .title, .excerpt, .note {
+    .title, .excerpt, .note, .body {
         display: -webkit-box
         line-clamp: 5
         -webkit-line-clamp: 5
@@ -113,7 +118,7 @@
         overflow: clip
     }
 
-    .title, .excerpt {
+    .title, .excerpt, .body {
         white-space: pre
         white-space: pre-wrap
     }
@@ -211,7 +216,7 @@
         padding: calc(var(--padding-medium) - var(--padding-mini))
     }
 
-    .title, .excerpt {
+    .title, .excerpt, .body {
         line-clamp: 3;
         -webkit-line-clamp: 3;
     }
