@@ -16,6 +16,7 @@ import RaindropsSearchByScore from './raindrops_search_by_score'
 import TagsSort from './tags_sort'
 import BrokenLevel from './broken_level'
 import NestedViewLegacy from './nested_view_legacy'
+import Ai from './ai'
 
 export default ()=>{
 	return (
@@ -38,6 +39,9 @@ export default ()=>{
 				<TagsSort />
 				<BrokenLevel />
 				<NestedViewLegacy />
+				<Separator />
+				
+				{/* <Ai /> */}
 			</Layout>
 		</>
 	)

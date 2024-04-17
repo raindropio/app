@@ -1,0 +1,27 @@
+.main, .header {
+    background-color: var(--sidebar-background-color) !important;
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
+}
+
+.split {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1fr;
+}
+.split[data-enabled="false"] {
+    align-items: center;
+}
+
+.content {
+    padding: var(--padding-large)
+}
+
+@media (min-width: 1000px) {
+    .split[data-enabled="true"] {
+        grid-template-columns: 400px 1fr;
+    }
+}

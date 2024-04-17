@@ -12,6 +12,7 @@ import tags from './tags'
 import covers from './covers'
 import config from './config'
 import oauth from './oauth'
+import predictions from './predictions'
 import _import from './import'
 
 //saga will be restart on case of failure, error intself will be send to sentry
@@ -46,6 +47,7 @@ const root = function* () {
 		tags,
 		covers,
 		oauth,
+		predictions,
 		_import,
 
 		common

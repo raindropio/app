@@ -49,6 +49,9 @@ export default {
             brokenLinks: {
                 modes: 'https://help.raindrop.io/troubleshooting/false-broken-links/#modes',
             }
+        },
+        organize: {
+            index: 'https://help.raindrop.io/ai-organize'
         }
     },
 

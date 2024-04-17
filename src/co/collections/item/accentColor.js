@@ -18,11 +18,11 @@ export default connect(
             }
         }
     }
-)(function CollectionAccentColor({ color, theme, children }) {
+)(function CollectionAccentColor({ color, theme, children, force }) {
     let hsl = ''
     try{ hsl = HexToHsl(color) }catch(e){}
 
-    return children(theme.app=='night' || !color ? emptyObj : {
+    return children((!force && theme.app=='night') || !color ? emptyObj : {
         '--accent-color': color,
         '--accent-hsl': hsl
     })

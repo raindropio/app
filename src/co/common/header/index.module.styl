@@ -20,7 +20,7 @@
     }
 
     > *:not(:last-child):not(.space) {
-        margin-right: var(--padding-small)
+        margin-right: var(--padding-mini)
     }
 
     &[data-no-shadow='true'] {
@@ -33,6 +33,7 @@
 
     &[data-static='true'] {
         position: static
+        z-index: auto
     }
 }
 

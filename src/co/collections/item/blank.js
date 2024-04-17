@@ -25,19 +25,24 @@ export default function CollectionsItemBlank({ _id, level, to, events: { onItemC
             return cancel()
 
         //create collection
-        setLoading(true)
+        setLoading(loading=>{
+            if (loading)
+                return loading
 
-        dispatch(
-            createFromBlank({ title }, (newItem)=>{
-                if (onItemClick)
-                    onItemClick(newItem)
-                else
-                    navigate(to.replace(_id, newItem._id))
-            }, e=>{
-                Error(e)
-                cancel()
-            })
-        )
+            dispatch(
+                createFromBlank({ title }, (newItem)=>{
+                    if (onItemClick)
+                        onItemClick(newItem)
+                    else
+                        navigate(to.replace(_id, newItem._id))
+                }, e=>{
+                    Error(e)
+                    cancel()
+                })
+            )
+            
+            return true
+        })
     }, [title, navigate, _id])
 
     const onKeyUp = useCallback((e)=>{
