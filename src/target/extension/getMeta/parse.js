@@ -47,6 +47,7 @@ function grabImages() {
             if (images.length >= 9) break
             if (!img.complete || !img.src || img.src.includes('.svg')) continue
             if (!img.offsetParent) continue //is hidden
+            if (img.closest('header, footer, aside')) continue //minor image
     
             const width = Math.min(img.naturalWidth, img.width)
             const height = Math.min(img.naturalHeight, img.height)
