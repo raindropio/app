@@ -1,10 +1,10 @@
 import s from './suggested.module.styl'
-import React, { useMemo, useEffect, useCallback } from 'react'
+import React, { useMemo, useCallback } from 'react'
 import t from '~t'
-import { useSelector, useDispatch } from 'react-redux'
-import { suggestFields } from '~data/actions/bookmarks'
+import { useSelector } from 'react-redux'
 import { makeSuggestedFields } from '~data/selectors/bookmarks'
 import { makeCollection } from '~data/selectors/collections'
+import { isPro } from '~data/selectors/user'
 
 import Button from '~co/common/button'
 import CollectionIcon from '~co/collections/item/icon'
@@ -33,20 +33,19 @@ function Suggestion({ id, onClick }) {
 }
 
 export default function BookmarkEditFormCollectionSuggested({ item, events: { onItemClick } }) {
-    const dispatch = useDispatch()
-
     //get suggestions
+    const pro = useSelector(state=>isPro(state))
     const getSuggestedFields = useMemo(()=>makeSuggestedFields(), [])
     const { collections=[] } = useSelector(state=>getSuggestedFields(state, item))
-
-    //load suggestions
-    useEffect(()=>dispatch(suggestFields(item)), [item.link])
 
     //click
     const onSuggestionClick = useCallback(e=>{
         const _id = parseInt(e.currentTarget.getAttribute('data-id'))
         onItemClick({ _id })
     }, [onItemClick])
+
+    if (!pro)
+        return null
 
     return (
         <div 

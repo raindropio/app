@@ -1,32 +1,33 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 import t from '~t'
 
 import { Label } from '~co/common/form'
 import TagsField from '~co/tags/field'
+import Suggested from './suggested'
 
-class BookmarkEditFormTags extends React.Component {
-    onChange = (tags)=>{
-        this.props.onChange({ tags })
-    }
+export default function BookmarkEditFormTags({ autoFocus, item, onCommit, onChange, onSave }) {
+    const onTagsFieldChange = useCallback((tags)=>onChange({ tags }), [onChange])
+    const onSuggestionClick = useCallback((tag)=>{
+        onChange({ tags: [...item.tags, tag] })
+        onSave()
+    }, [onChange, item.tags])
 
-    render() {
-        const { autoFocus, item: { tags, collectionId }, onCommit } = this.props
+    return (
+        <>
+            <Label>{t.s('tags')}</Label>
+            <div>
+                <TagsField 
+                    value={item.tags}
+                    spaceId={item.collectionId}
+                    
+                    autoFocus={autoFocus=='tags'}
+                    onChange={onTagsFieldChange}
+                    onBlur={onCommit} />
 
-        return (
-            <>
-                <Label>{t.s('tags')}</Label>
-                <div>
-                    <TagsField 
-                        value={tags}
-                        spaceId={collectionId}
-                        
-                        autoFocus={autoFocus=='tags'}
-                        onChange={this.onChange}
-                        onBlur={onCommit} />
-                </div>
-            </>
-        )
-    }
+                <Suggested 
+                    item={item}
+                    onTagClick={onSuggestionClick} />
+            </div>
+        </>
+    )
 }
-
-export default BookmarkEditFormTags

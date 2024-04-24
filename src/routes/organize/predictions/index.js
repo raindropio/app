@@ -1,33 +1,50 @@
 import s from './style.module.styl'
-import React, { useMemo, useEffect } from 'react'
+import React, { useEffect, useCallback } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { makeGroupped } from '~data/selectors/predictions'
+import * as collectionsActions from '~data/actions/collections'
 import * as predictionsActions from '~data/actions/predictions'
 
+import FlipMove from 'react-flip-move'
 import Preloader from '~co/common/preloader'
 import Move from './move'
 import Tag from './tag'
 import Mergetags from './mergetags'
 import Empty from './empty'
+import { Error } from '~co/overlay/dialog'
 
 export default function MyOrganizePredictions() {
     const dispatch = useDispatch()
     
     //selectors
-    const getGroupped = useMemo(makeGroupped, [])
-    const groups = useSelector(state=>getGroupped(state))
+    const predictions = useSelector(state=>state.predictions.items)
     const status = useSelector(state=>state.predictions.status)
     const count = useSelector(state=>state.predictions.items.length)
 
     //load
-    useEffect(()=>dispatch(predictionsActions.load()), [])
+    useEffect(()=>{
+        dispatch(predictionsActions.load())
+        dispatch(collectionsActions.load())
+    }, [dispatch])
+
+    //events
+    const onUpdate = useCallback(({ _id, ...changes })=>
+        dispatch(predictionsActions.patch({ ...changes, _id })),
+        [dispatch]
+    )
+
+    const onApply = useCallback(_id=>
+        dispatch(predictionsActions.apply(_id, null, Error)),
+        [dispatch]
+    )
 
     if (count)
         return (
-            <div className={s.groups}>
-                {groups.map(([kind, predictions])=>{
+            <FlipMove 
+                className={s.listing}
+                duration={500}>
+                {predictions.map(prediction=>{
                     let Component = null
-                    switch (kind) {
+                    switch (prediction.kind) {
                         case 'move': Component = Move; break
                         case 'tag': Component = Tag; break
                         case 'mergetags': Component = Mergetags; break
@@ -35,16 +52,16 @@ export default function MyOrganizePredictions() {
 
                     if (Component)
                         return (
-                            <div key={kind} className={s.listing}>
-                                {predictions.map(prediction=>
-                                    <Component key={prediction._id} prediction={prediction} />
-                                )}
-                            </div>
+                            <Component 
+                                key={prediction._id}
+                                prediction={prediction}
+                                onUpdate={onUpdate}
+                                onApply={onApply} />
                         )
                         
                     return null
                 })}
-            </div>
+            </FlipMove>
         )
 
     if (status == 'loading')

@@ -2,7 +2,7 @@ import Immutable from 'seamless-immutable'
 import { REHYDRATE } from 'redux-persist/src/constants'
 import * as c from '../constants/predictions'
 
-const supportedKinds = ['move', 'tag', 'untag', 'mergetags']
+const supportedKinds = ['move', 'tag', 'mergetags']
 
 export default function(state = initialState, action){switch (action.type) {
     case REHYDRATE:{
@@ -23,9 +23,8 @@ export default function(state = initialState, action){switch (action.type) {
     }
 
     case c.PREDICTIONS_LOAD_SUCCESS:{
-        const items = (action.items||[]).filter(item=>
-            supportedKinds.includes(item.kind)
-        )
+        const items = (action.predictions||[])
+            .filter(item=>supportedKinds.includes(item.kind))
 
         return state
             .set('status', 'loaded')
@@ -42,16 +41,28 @@ export default function(state = initialState, action){switch (action.type) {
         const { _id, ...props } = action
 
         return state
-            .set('items', state.items.map(item=>{
-                if (item._id != _id)
-                    return item
+            .set('items', state.items
+                .map(item=>{
+                    if (item._id != _id)
+                        return item
 
-                let patched = item
-                for(const key in props)
-                    if (typeof item[key] != 'undefined')
-                        patched = patched.set(key, props[key])
-                return patched
-            }))
+                    let patched = item
+                    for(const key in props)
+                        if (typeof item[key] != 'undefined')
+                            patched = patched.set(key, props[key])
+                    return patched
+                })
+                .filter(item=>item.raindropRefs ? item.raindropRefs.length : true)
+            )
+    }
+
+    case c.PREDICTION_APPLY_SUCCESS: {
+        const { _id } = action
+
+        return state
+            .set('items', state.items
+                .filter(item=>item._id != _id)
+            )
     }
 
     default:

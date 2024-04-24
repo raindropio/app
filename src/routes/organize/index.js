@@ -15,7 +15,7 @@ export default function PageOrganize() {
 
     return (
         <Screen className={s.main} appSize='large'>
-            <Header className={s.header} data-solid>
+            <Header className={s.header} data-solid data-no-shadow>
                 <FirstAction className='svSidebarShowButton'>
                     <Button as={Link} to='/'>
                         <Icon name='back' />

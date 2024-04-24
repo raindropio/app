@@ -1,0 +1,38 @@
+.suggested {
+    display: flex
+    flex-wrap: wrap
+    overflow: hidden
+    min-height: calc(var(--icon-size) + var(--padding-small))
+    max-height: calc(var(--icon-size) + var(--padding-small))
+    transition: opacity .2s ease-in-out, max-height .15s ease-in-out, min-height .15s ease-in-out
+
+    &:hover:not(:empty) {
+        transition-delay: .2s
+        max-height: calc( (var(--icon-size) + var(--padding-small)) * 3 )
+    }
+
+    &:empty {
+        opacity: 0
+        min-height: 0
+        max-height: 0
+    }
+
+    > * {
+        margin-top: var(--padding-small)
+        margin-right: var(--padding-small)
+        max-width: 300px
+        overflow: hidden
+        overflow: clip
+    }
+}
+
+.suggestion {
+    --shadow-color: var(--shadow-light-color)
+    * {
+        --icon-size: var(--padding-medium)
+    }
+
+    &[data-tint]:not([data-tint='']) {
+        background: unquote('color-mix(in srgb, var(--tint) 12%, transparent)')
+    }
+}

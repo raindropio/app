@@ -1,7 +1,7 @@
 import s from './style.module.styl'
-import React, { useState, useMemo } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-import { patch } from '~data/actions/predictions'
+import t from '~t'
+import React, { useState, useMemo, useCallback, forwardRef } from 'react'
+import { useSelector } from 'react-redux'
 import { makeCollectionPath } from '~data/selectors/collections'
 
 import Picker from '~co/collections/picker'
@@ -11,34 +11,37 @@ import Icon from '~co/common/icon'
 import RaindropsList from './raindrops-list'
 import CollectionIcon from '~co/collections/item/icon'
 
-function Destination({ _id, collectionRef }) {
-    const dispatch = useDispatch()
+function Destination({ prediction: { _id, collectionRef }, onUpdate, onApply }) {
     const [pick, showPick] = useState(false)
 
     const getCollectionPath = useMemo(()=>makeCollectionPath(), [])
     const path = useSelector(state=>getCollectionPath(state, collectionRef, { self: true }))
 
     const pickerEvents = useMemo(()=>({
-        onItemClick: (c)=>{
-            dispatch(patch({ _id, collectionRef: c._id }));
+        onItemClick: c=>{
+            onUpdate({ _id, collectionRef: c._id })
             showPick(false)
         }
-    }), [showPick, dispatch])
+    }), [showPick, onUpdate])
+    const onApplyClick = useCallback(()=>onApply(_id), [_id])
 
     return (
         <header>
             <h4>
-                Move to <a className={s.destination} href='' onClick={e=>{e.preventDefault(); showPick(true)}}>
-                    <CollectionIcon {...path[0]} className={s.icon} />
+                {t.s('move')} {t.s('to')} <a className={s.destination} href='' onClick={e=>{e.preventDefault(); showPick(true)}}>
+                    {/*path.length ? (
+                        <CollectionIcon {...path[path.length-1]} className={s.icon} />
+                    ) : null*/}
+                    
                     <span className={s.path}>
-                        {path.length ? path.map(({ title })=><span>{title}</span>) : 'Select collection'}
+                        {path.length ? path.map(({ title })=><span key={title}>{title}</span>) : 'Select collection'}
                     </span>&nbsp;<Icon name='arrow' size='micro' />
                 </a>
             </h4>
             
             {collectionRef ? (
-                <Button variant='primary' className={s.accentButton}>
-                    &nbsp;Move&nbsp;
+                <Button as='button' variant='primary' data-shape='pill' className={s.accentButton} onClick={onApplyClick}>
+                    <Icon name='ai' size='micro' /> {t.s('move')}
                 </Button>
             ) : null}
 
@@ -52,13 +55,13 @@ function Destination({ _id, collectionRef }) {
     )
 }
 
-export default function MyOrganizePredictionsMove({ prediction: { _id, collectionRef, raindropRefs } }) {
+export default forwardRef(function MyOrganizePredictionsMove({ prediction, onUpdate, onApply }, ref) {
     return (
-        <AccentColor _id={collectionRef} force>{style=>
-            <div className={s.prediction+' '+(style['--accent-color'] ? s.colored : '')} style={style}>
-                <Destination _id={_id} collectionRef={collectionRef} />
-                <RaindropsList raindropRefs={raindropRefs} />
+        <AccentColor _id={prediction.collectionRef} force>{style=>
+            <div ref={ref} className={s.prediction+' '+(style['--accent-color'] ? s.colored : '')} style={style}>
+                <Destination prediction={prediction} onUpdate={onUpdate} onApply={onApply} />
+                <RaindropsList prediction={prediction} onUpdate={onUpdate} />
             </div>
         }</AccentColor>
     )
-}
+})

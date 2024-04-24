@@ -83,3 +83,17 @@ export const makeSpaceElements = ()=> createSelector(
 		return _.at(elements, ids)
 	}
 )
+
+export const makeItems = ()=> createSelector(
+	[
+		state => state.bookmarks.elements,
+		state => state.bookmarks.meta,
+		(_,ids) => ids
+	],
+	(elements, metas, ids)=>{
+		return ids.flatMap(id=>elements[id] ? [{
+			...elements[id],
+			...metas[id]
+		}] : [])
+	}
+)

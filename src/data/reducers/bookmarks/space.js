@@ -12,6 +12,7 @@ import {
 	BOOKMARK_CREATE_SUCCESS, BOOKMARK_UPDATE_SUCCESS, BOOKMARK_REMOVE_SUCCESS
 } from '../../constants/bookmarks'
 import { COLLECTION_REMOVE_SUCCESS } from '../../constants/collections'
+import { PREDICTIONS_LOAD_SUCCESS } from '../../constants/predictions'
 
 export default function(state, action) {switch (action.type) {
 	case REHYDRATE:{
@@ -350,5 +351,15 @@ export default function(state, action) {switch (action.type) {
 		}
 		
 		return state
+	}
+
+	case PREDICTIONS_LOAD_SUCCESS: {
+		const { raindrops=[] } = action
+
+		const clean = normalizeBookmarks(raindrops)
+
+		return state
+			.set('elements',	state.elements.merge(clean.elements))
+			.set('meta',		state.meta.merge(clean.meta))
 	}
 }}
