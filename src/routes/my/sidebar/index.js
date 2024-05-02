@@ -37,8 +37,8 @@ export default function PageMySidebar() {
 
                 {/* <Button 
                     as={Link}
-                    title='Organize with AI'
-                    to='/organize'>
+                    title='AI Suggestions'
+                    to='/suggestions'>
                     <Icon name='ai' />
                 </Button> */}
                 

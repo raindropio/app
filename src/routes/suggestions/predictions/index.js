@@ -4,7 +4,6 @@ import { useSelector, useDispatch } from 'react-redux'
 import * as collectionsActions from '~data/actions/collections'
 import * as predictionsActions from '~data/actions/predictions'
 
-import FlipMove from 'react-flip-move'
 import Preloader from '~co/common/preloader'
 import Move from './move'
 import Tag from './tag'
@@ -12,12 +11,13 @@ import Mergetags from './mergetags'
 import Empty from './empty'
 import { Error } from '~co/overlay/dialog'
 
-export default function MyOrganizePredictions() {
+export default function MySuggestionsPredictions() {
     const dispatch = useDispatch()
     
     //selectors
     const predictions = useSelector(state=>state.predictions.items)
     const status = useSelector(state=>state.predictions.status)
+    const apply_status = useSelector(state=>state.predictions.apply_status)
     const count = useSelector(state=>state.predictions.items.length)
 
     //load
@@ -39,9 +39,7 @@ export default function MyOrganizePredictions() {
 
     if (count)
         return (
-            <FlipMove 
-                className={s.listing}
-                duration={500}>
+            <div className={s.listing}>
                 {predictions.map(prediction=>{
                     let Component = null
                     switch (prediction.kind) {
@@ -55,13 +53,14 @@ export default function MyOrganizePredictions() {
                             <Component 
                                 key={prediction._id}
                                 prediction={prediction}
+                                status={apply_status[prediction._id]}
                                 onUpdate={onUpdate}
                                 onApply={onApply} />
                         )
                         
                     return null
                 })}
-            </FlipMove>
+            </div>
         )
 
     if (status == 'loading')

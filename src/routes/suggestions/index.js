@@ -10,8 +10,8 @@ import Icon from '~co/common/icon'
 import Intro from './intro'
 import Predictions from './predictions'
 
-export default function PageOrganize() {
-    const enabled = useSelector(state=>state.config.ai_organize)
+export default function PageSuggestions() {
+    const enabled = useSelector(state=>state.config.ai_suggestions)
 
     return (
         <Screen className={s.main} appSize='large'>
@@ -22,7 +22,7 @@ export default function PageOrganize() {
                     </Button>
                 </FirstAction>
 
-                <Title>Organize with ✦ AI</Title>
+                <Title>✦ AI Suggestions</Title>
             </Header>
 
             <div className={s.split} data-enabled={enabled}>

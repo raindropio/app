@@ -11,7 +11,7 @@ import Add from './add'
 import Extension from './extension'
 import My from './my'
 import Join from './join'
-import Organize from './organize'
+import Suggestions from './suggestions'
 import Settings from './settings'
 
 const Router = target == 'web' ? BrowserRouter : HashRouter
@@ -29,7 +29,7 @@ export default function Pages() {
                     <Route path='add' element={<Add />} />
                     <Route path='my'>{My()}</Route>
                     <Route path='join/:token' element={<Join />} />
-                    <Route path='organize' element={<Organize />} />
+                    <Route path='suggestions' element={<Suggestions />} />
                     <Route path='settings'>{Settings()}</Route>
                 </Route>
 

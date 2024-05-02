@@ -9,7 +9,7 @@ export default function(state = initialState, action){switch (action.type) {
 		const { predictions={} } = action.payload||{}
 
 		if (predictions.status == 'loaded')
-			return predictions
+			return predictions.set('apply_status', {})
 
 		return state
 	}
@@ -56,13 +56,19 @@ export default function(state = initialState, action){switch (action.type) {
             )
     }
 
+    case c.PREDICTION_APPLY_REQ:{
+        const { _id } = action
+        return state.setIn(['apply_status', _id], 'loading')
+    }
+
     case c.PREDICTION_APPLY_SUCCESS: {
         const { _id } = action
+        return state.setIn(['apply_status', _id], 'success')
+    }
 
-        return state
-            .set('items', state.items
-                .filter(item=>item._id != _id)
-            )
+    case c.PREDICTION_APPLY_ERROR: {
+        const { _id } = action
+        return state.setIn(['apply_status', _id], 'error')
     }
 
     default:
@@ -71,5 +77,6 @@ export default function(state = initialState, action){switch (action.type) {
 
 const initialState = Immutable({
     status: 'idle', //idle|loading|loaded|error
-    items: []
+    items: [],
+    apply_status: {} // _id: loading|success|error
 })

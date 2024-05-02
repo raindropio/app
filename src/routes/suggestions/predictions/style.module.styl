@@ -1,7 +1,13 @@
 .listing {
     display: grid
-    grid-template-columns: repeat( auto-fit, minmax(550px, 1fr) )
+    grid-template-columns: 1fr
     grid-gap: var(--padding-large)
+}
+
+@media (min-width: 1000px) {
+    .listing {
+        grid-template-columns: repeat( auto-fit, minmax(550px, 1fr) )
+    }
 }
 
 .prediction {
@@ -13,6 +19,7 @@
         inset 0 0 0 var(--shadow-height) rgba(255,255,255,.07),
         0 .5px 1px rgba(0,0,0,.1),
         0 2px 2px rgba(0,0,0,.1)
+    transition: filter .2s ease-in-out, opacity .2s ease-in-out
 
     header {
         padding-bottom: var(--padding-medium)
@@ -72,6 +79,16 @@
     ul {
         margin: 0
         padding-inline-start: 1em;
+    }
+
+    &[data-status='loading'], &[data-status='success'] {
+        filter: grayscale(100%)
+        opacity: .6
+        pointer-events: none
+    }
+
+    &[data-status='success'] {
+        opacity: .4
     }
 }
 

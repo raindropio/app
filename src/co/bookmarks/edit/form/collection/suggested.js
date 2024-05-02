@@ -22,11 +22,12 @@ function Suggestion({ id, onClick }) {
             className={s.suggestion}
             data-tint={collection.color}
             style={{'--tint': collection.color}}
-            variant='outline'
+            variant='dotted'
+            data-shape='pill'
             size='small'
             tabIndex='-1'
             onClick={onClick}>
-            <CollectionIcon {...collection} />
+            {collection.cover?.[0] ? <CollectionIcon {...collection} /> : null}
             <span>{collection.title}</span>
         </Button>
     )
@@ -34,6 +35,7 @@ function Suggestion({ id, onClick }) {
 
 export default function BookmarkEditFormCollectionSuggested({ item, events: { onItemClick } }) {
     //get suggestions
+    const enabled = useSelector(state=>state.config.ai_suggestions)
     const pro = useSelector(state=>isPro(state))
     const getSuggestedFields = useMemo(()=>makeSuggestedFields(), [])
     const { collections=[] } = useSelector(state=>getSuggestedFields(state, item))
@@ -44,7 +46,7 @@ export default function BookmarkEditFormCollectionSuggested({ item, events: { on
         onItemClick({ _id })
     }, [onItemClick])
 
-    if (!pro)
+    if (!enabled || !pro)
         return null
 
     return (

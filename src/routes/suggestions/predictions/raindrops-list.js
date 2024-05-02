@@ -46,7 +46,7 @@ function Render({ raindrops, onRemove }) {
     ))
 }
 
-export default function MyOrganizePredictionsRaindropsList({ prediction: { _id, raindropRefs=[] }, onUpdate }) {
+export default function MySuggestionsPredictionsRaindropsList({ prediction: { _id, raindropRefs=[] }, onUpdate }) {
     const getItems = useMemo(()=>makeItems(), [])
     const raindrops = useSelector(state=>getItems(state, raindropRefs))
     const first = useMemo(()=>raindrops.slice(0, 3), [raindrops])

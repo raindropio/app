@@ -30,7 +30,6 @@ function* apply({ _id, onSuccess, onFail }) {
 		const prediction = state.predictions.items.find(item=>item._id==_id)
 		if (!prediction) return
 
-		yield put({ type: c.PREDICTION_APPLY_SUCCESS, _id })
 		yield call(Api.post, `prediction/${_id}`, prediction)
 		yield put({ type: c.PREDICTION_APPLY_SUCCESS, _id })
 
@@ -40,7 +39,6 @@ function* apply({ _id, onSuccess, onFail }) {
 		if (typeof onFail == 'function')
 			onFail(error)
 
-		yield put({ type: c.PREDICTIONS_LOAD_REQ })
 		yield put({
 			type: c.PREDICTION_APPLY_ERROR,
 			_id,

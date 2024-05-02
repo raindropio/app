@@ -7,7 +7,7 @@ import RaindropsList from './raindrops-list'
 import TagsField from '~co/tags/field'
 import Icon from '~co/common/icon'
 
-function Destination({ prediction: { _id, tags }, onUpdate, onApply }) {
+function Destination({ prediction: { _id, tags }, status, onUpdate, onApply }) {
     const [focused, setFocused] = useState(false)
     const onChange = useCallback(tags=>onUpdate({ _id, tags }), [onUpdate])
     const onFocus = useCallback(e=>{ e.preventDefault(); setFocused(true) }, [setFocused])
@@ -30,20 +30,24 @@ function Destination({ prediction: { _id, tags }, onUpdate, onApply }) {
                     </a>
                 </>)}
             </h4>
-            
-            {tags.length ? (
-                <Button as='button' variant='primary' data-shape='pill' onClick={onApplyClick}>
+
+            {status == 'success' ? (
+                <Button disabled variant='active'>{t.s('done')}</Button>
+            ) : (
+                <Button
+                    disabled={(status ? true : false) || !tags.length}
+                    as='button' variant='primary' data-shape='pill' onClick={onApplyClick}>
                     <Icon name='ai' size='micro' /> {t.s('add')}
                 </Button>
-            ) : null}
+            )}
         </header>
     )
 }
 
-export default forwardRef(function MyOrganizePredictionsTag({ prediction, onUpdate, onApply }, ref) {
+export default forwardRef(function MySuggestionsPredictionsTag({ prediction, status, onUpdate, onApply }, ref) {
     return (
-        <div ref={ref} className={s.prediction}>
-            <Destination prediction={prediction} onUpdate={onUpdate} onApply={onApply} />
+        <div ref={ref} className={s.prediction} data-status={status}>
+            <Destination prediction={prediction} status={status} onUpdate={onUpdate} onApply={onApply} />
             <RaindropsList prediction={prediction} onUpdate={onUpdate} />
         </div>
     )

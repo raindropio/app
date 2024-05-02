@@ -12,17 +12,19 @@ function Suggestion({ tag, onClick }) {
         <Button 
             data-tag={tag}
             className={s.suggestion}
-            variant='outline'
+            variant='dotted'
+            data-shape='pill'
             size='small'
             tabIndex='-1'
             onClick={onClick}>
-            +{tag}
+            {tag}
         </Button>
     )
 }
 
 export default function BookmarkEditFormTagsSuggested({ item, onTagClick }) {
     //get suggestions
+    const enabled = useSelector(state=>state.config.ai_suggestions)
     const pro = useSelector(state=>isPro(state))
     const getSuggestedFields = useMemo(()=>makeSuggestedFields(), [])
     const suggestions = useSelector(state=>getSuggestedFields(state, item))
@@ -34,7 +36,7 @@ export default function BookmarkEditFormTagsSuggested({ item, onTagClick }) {
         onTagClick(tag)
     }, [onTagClick])
 
-    if (!pro)
+    if (!enabled || !pro)
         return null
 
     return (

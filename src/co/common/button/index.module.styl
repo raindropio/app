@@ -136,6 +136,33 @@
     }
 }
 
+//outline
+.button[data-variant='dotted'] {
+    background: var(--background-color)
+    color: var(--primary-text-color)
+    border: var(--shadow-height) dashed unquote('color-mix(in srgb, var(--tint, var(--secondary-text-color)) 60%, transparent)')
+
+    &[disabled] {
+        box-shadow: none
+        background: var(--disable-background-color)
+        color: var(--disable-text-color)
+    }
+
+    @media (pointer: fine) {
+        &:hover:not(:active) {
+            border-color: var(--disable-text-color)
+        }
+    }
+
+    &:active {
+        background: var(--active-background-color)
+    }
+
+    &:focus-visible {
+        border-color: var(--accent-color)
+    }
+}
+
 //flat
 .button[data-variant='flat'] {
     background: var(--alternative-background-color)
@@ -210,6 +237,10 @@
     font-size: var(--secondary-font-size)
     line-height: var(--icon-size)
     --button-height: var(--icon-size)
+
+    &[data-shape='pill'] {
+        padding: 0 var(--padding-small)
+    }
 }
 
 .group {

@@ -50,8 +50,8 @@ export default {
                 modes: 'https://help.raindrop.io/troubleshooting/false-broken-links/#modes',
             }
         },
-        organize: {
-            index: 'https://help.raindrop.io/ai-organize'
+        suggestions: {
+            index: 'https://help.raindrop.io/ai-suggestions'
         }
     },
 

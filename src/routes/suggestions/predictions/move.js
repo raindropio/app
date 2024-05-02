@@ -8,10 +8,11 @@ import Picker from '~co/collections/picker'
 import AccentColor from '~co/collections/item/accentColor'
 import Button from '~co/common/button'
 import Icon from '~co/common/icon'
+import Preloader from '~co/common/preloader'
 import RaindropsList from './raindrops-list'
 import CollectionIcon from '~co/collections/item/icon'
 
-function Destination({ prediction: { _id, collectionRef }, onUpdate, onApply }) {
+function Destination({ prediction: { _id, collectionRef }, status, onUpdate, onApply }) {
     const [pick, showPick] = useState(false)
 
     const getCollectionPath = useMemo(()=>makeCollectionPath(), [])
@@ -38,12 +39,20 @@ function Destination({ prediction: { _id, collectionRef }, onUpdate, onApply }) 
                     </span>&nbsp;<Icon name='arrow' size='micro' />
                 </a>
             </h4>
-            
-            {collectionRef ? (
-                <Button as='button' variant='primary' data-shape='pill' className={s.accentButton} onClick={onApplyClick}>
+
+            {status == 'success' ? (
+                <Button disabled variant='active'>{t.s('done')}</Button>
+            ) : (
+                <Button 
+                    disabled={(status ? true : false) || !collectionRef}
+                    as='button'
+                    variant='primary'
+                    data-shape='pill'
+                    className={s.accentButton}
+                    onClick={onApplyClick}>
                     <Icon name='ai' size='micro' /> {t.s('move')}
                 </Button>
-            ) : null}
+            )}
 
             {pick && (
                 <Picker 
@@ -55,11 +64,11 @@ function Destination({ prediction: { _id, collectionRef }, onUpdate, onApply }) 
     )
 }
 
-export default forwardRef(function MyOrganizePredictionsMove({ prediction, onUpdate, onApply }, ref) {
+export default forwardRef(function MySuggestionsPredictionsMove({ prediction, status, onUpdate, onApply }, ref) {
     return (
         <AccentColor _id={prediction.collectionRef} force>{style=>
-            <div ref={ref} className={s.prediction+' '+(style['--accent-color'] ? s.colored : '')} style={style}>
-                <Destination prediction={prediction} onUpdate={onUpdate} onApply={onApply} />
+            <div ref={ref} className={s.prediction+' '+(style['--accent-color'] ? s.colored : '')} data-status={status} style={style}>
+                <Destination prediction={prediction} status={status} onUpdate={onUpdate} onApply={onApply} />
                 <RaindropsList prediction={prediction} onUpdate={onUpdate} />
             </div>
         }</AccentColor>

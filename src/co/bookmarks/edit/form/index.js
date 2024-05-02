@@ -19,7 +19,10 @@ export default function BookmarkEditForm(props) {
     const dispatch = useDispatch()
 
     //load suggestions
-    useEffect(()=>dispatch(suggestFields(props.item)), [props.item.link])
+    useEffect(()=>
+        dispatch(suggestFields(props.item)),
+        [props.item._id, props.item.cover]
+    )
 
     const onSubmitForm = useCallback(e=>{
         e.preventDefault()
