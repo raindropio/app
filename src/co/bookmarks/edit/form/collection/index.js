@@ -39,7 +39,8 @@ export default function BookmarkEditFormCollection({ item, onChange, onSave }) {
     const pickerEvents = useMemo(()=>({
         onItemClick: ({ _id })=>{
             onChange({ collectionId: _id })
-            onSave()
+            if (typeof onSave == 'function')
+                onSave()
             onPickerClose()
         }
     }), [onChange, onSave, onPickerClose])

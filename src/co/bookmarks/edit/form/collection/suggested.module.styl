@@ -13,7 +13,7 @@
 
     &:empty {
         opacity: 0
-        transform: translateY(5px)
+        transform: translateY(2px)
 
         &[data-is-new='false'] {
             min-height: 0
@@ -28,7 +28,7 @@
 }
 
 .path {
-    max-width: 150px
+    max-width: 15ch
     overflow: hidden
     overflow: clip
     direction: rtl
@@ -43,5 +43,15 @@
 
     &[data-tint]:not([data-tint='']) {
         background: unquote('color-mix(in srgb, var(--tint) 12%, transparent)')
+    }
+}
+
+@media screen and (min-width: 600px) {
+    .path {
+        max-width: 30ch
+    }
+
+    .suggested {
+        max-height: 100% !important
     }
 }
