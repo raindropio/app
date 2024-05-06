@@ -74,6 +74,16 @@ function similarURL(url) {
     return true
 }
 
+function htmlDecode(input) {
+    try {
+        var doc = new DOMParser().parseFromString(input||'', 'text/html');
+        return doc.documentElement.textContent;
+    } catch(e) {
+        e.error(e)
+        return input
+    }
+}
+
 function getItem() {
     let item = {
         link: location.href
@@ -98,8 +108,8 @@ function getItem() {
     else if (ld.name || ld.headline)
         item = {
             ...item,
-            title: ld.name || ld.headline,
-            excerpt: ld.description,
+            title: htmlDecode(ld.name || ld.headline),
+            excerpt: htmlDecode(ld.description),
             cover: ld.image && ld.image.url
         }
     //fallback. do not set any data from meta tags here!!
