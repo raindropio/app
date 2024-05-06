@@ -4,7 +4,7 @@
     overflow: hidden
     min-height: calc(var(--icon-size) + var(--padding-small))
     max-height: calc(var(--icon-size) + var(--padding-small))
-    transition: opacity .2s ease-in-out, max-height .15s ease-in-out, min-height .15s ease-in-out
+    transition: opacity .5s ease-in-out, transform .2s ease-in-out, max-height .2s ease-in-out, min-height .2s ease-in-out
 
     &:hover:not(:empty) {
         transition-delay: .2s
@@ -13,6 +13,7 @@
 
     &:empty {
         opacity: 0
+        transform: translateY(5px)
         min-height: 0
         max-height: 0
     }

@@ -58,7 +58,8 @@ export const getPath = (allCollections, allGroups, objectId, options={})=>{
 		_id: 	parent._id,
 		type:   'collection',
 		title: 	parent.title,
-		cover: 	parent.cover
+		cover: 	parent.cover,
+		color:	parent.color
 	})
 	const findParents = (findId, deep=0)=>{
 		const parent = allCollections[findId]

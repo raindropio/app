@@ -4,24 +4,35 @@
     overflow: hidden
     min-height: calc(var(--icon-size) + var(--padding-small))
     max-height: calc(var(--icon-size) + var(--padding-small))
-    transition: opacity .3s ease-in-out, max-height .2s ease-in-out
+    transition: opacity .5s ease-in-out, transform .2s ease-in-out, max-height .2s ease-in-out, min-height .2s ease-in-out
 
-    &:hover {
+    &:hover:not(:empty) {
         transition-delay: .2s
         max-height: calc( (var(--icon-size) + var(--padding-small)) * 3 )
     }
 
     &:empty {
         opacity: 0
+        transform: translateY(5px)
+
+        &[data-is-new='false'] {
+            min-height: 0
+            max-height: 0
+        }
     }
 
     > * {
         margin-top: var(--padding-small)
         margin-right: var(--padding-small)
-        max-width: 300px
-        overflow: hidden
-        overflow: clip
     }
+}
+
+.path {
+    max-width: 150px
+    overflow: hidden
+    overflow: clip
+    direction: rtl
+    text-align: left
 }
 
 .suggestion {

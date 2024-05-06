@@ -1,23 +1,24 @@
 import s from './suggested.module.styl'
 import React, { useMemo, useCallback } from 'react'
-import t from '~t'
 import { useSelector } from 'react-redux'
 import { makeSuggestedFields } from '~data/selectors/bookmarks'
-import { makeCollection } from '~data/selectors/collections'
+import { makeCollectionPath } from '~data/selectors/collections'
 import { isPro } from '~data/selectors/user'
 
 import Button from '~co/common/button'
-import CollectionIcon from '~co/collections/item/icon'
 
 function Suggestion({ id, onClick }) {
-    const getCollection = useMemo(()=>makeCollection(), [])
-    const collection = useSelector(state=>getCollection(state, id))
+    const getCollectionPath = useMemo(()=>makeCollectionPath(), [])
+    const path = useSelector(state=>getCollectionPath(state, id, { self: true }))
+    const shortPath = useMemo(()=>path.map((p)=>p.title).slice(-2).join(' / '), [path])
+    const fullPath = useMemo(()=>path.map((p)=>p.title).join(' / '), [path])
+    const collection = useMemo(()=>path?.[path.length-1], [path])
 
-    if (!collection.title)
+    if (!collection?.title)
         return null
 
     return (
-        <Button 
+        <Button
             data-id={id}
             className={s.suggestion}
             data-tint={collection.color}
@@ -26,9 +27,9 @@ function Suggestion({ id, onClick }) {
             data-shape='pill'
             size='small'
             tabIndex='-1'
+            title={fullPath}
             onClick={onClick}>
-            {collection.cover?.[0] ? <CollectionIcon {...collection} /> : null}
-            <span>{collection.title}</span>
+            <span className={s.path}>{shortPath}</span>
         </Button>
     )
 }
@@ -51,8 +52,8 @@ export default function BookmarkEditFormCollectionSuggested({ item, events: { on
 
     return (
         <div 
-            className={s.suggested}
-            title={t.s('suggested')+' '+t.s('collection').toLowerCase()}>            
+            className={s.suggested} 
+            data-is-new={item.collectionId <= 0}>
             {collections.map(id=>(
                 <Suggestion 
                     key={id} 

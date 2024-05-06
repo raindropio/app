@@ -4,7 +4,7 @@ import { makeTagsSearch } from '../tags'
 import { makeCollectionsSearch } from './collections'
 import { makeOptions } from './options'
 
-//(state, spaceId, filter) -> []
+//(state, spaceId, filter, query) -> []
 export const makeSuggestions = ()=>createSelector(
     [
         makeOptions(),

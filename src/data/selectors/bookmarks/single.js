@@ -7,6 +7,7 @@ import {
 } from '../../helpers/bookmarks'
 
 const emptyObject = {}
+const emptyArray = []
 
 //Single
 export const bookmark = ({bookmarks}, _id)=>bookmarks.elements[_id] ? bookmarks.elements[_id] : blankBookmark
@@ -52,15 +53,14 @@ export const makeCreatorRef = ()=>createSelector(
 export const makeSuggestedFields = ()=>createSelector(
 	[
 		({bookmarks}, { link })=>bookmarks.suggestedFields[link] || {},
-		({config})=>config.last_collection,
 		(_, { collectionId })=>collectionId
 	],
-	({ collections=[], tags=[] }, last_collection, collectionId)=>({
-		collections: [
-			...(last_collection == 0 || collectionId == last_collection || collections.includes(last_collection) ? [] : [last_collection]),
-			...collections
-		].splice(0, 5),
-		
+	({ collections=[], tags=[] }, collectionId)=>({
+		collections: collections?.[0] == collectionId ? 
+			emptyArray : 
+			[...collections]
+				.filter(cid=>cid!=collectionId)
+				.splice(0, 5),
 		tags
 	})
 )
