@@ -108,7 +108,7 @@ function AddForm({ spaceId, onEdit, pin, onClose }) {
         onAddTo(item.collectionId)
     }, [onAddTo, item.collectionId])
 
-    //on load
+    //grab link from clipboard
     useEffect(()=>{
         async function getLink() {
             //in safari readText works bad, so this line prevents run on safari
@@ -119,6 +119,7 @@ function AddForm({ spaceId, onEdit, pin, onClose }) {
 
         getLink()
             .then(link=>onChangeField({ link }))
+            .catch(e=>console.error(e))
             .finally(()=>setLoading(false))
     }, [setLoading, onChangeField])
 
