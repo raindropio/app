@@ -1,5 +1,6 @@
 import { useMemo } from 'react'
 import browser from '~target/extension/browser'
+import { environment } from '~target'
 
 export default function useExternalLinks() {
     useMemo(()=>{
@@ -34,7 +35,8 @@ export default function useExternalLinks() {
             })
 
             //close popover
-            window.close()
+            if (!environment.includes('sidepanel'))
+                window.close()
         }
 
         //very important to bind to window insted of document, to be sure that it happen after all other event listeners

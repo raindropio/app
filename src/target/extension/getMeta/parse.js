@@ -1,9 +1,9 @@
 function getMeta() {
-    const elem = document.querySelector(
+    const elem = [...document.querySelectorAll(
         [...arguments]
             .map(key=>`meta[name="${key}"], meta[property="${key}"]`)
             .join(', ')
-    )
+    )].at(-1) //last occurrence
     if (!elem) return null
 
     const value = elem.value || elem.content
