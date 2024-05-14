@@ -41,7 +41,7 @@ export default ()=>{
 				<NestedViewLegacy />
 				<Separator />
 				
-				{/* <Ai /> */}
+				<Ai />
 			</Layout>
 		</>
 	)

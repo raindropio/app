@@ -35,12 +35,12 @@ export default function PageMySidebar() {
             <Header>
                 <Profile />
 
-                {/* <Button 
+                <Button 
                     as={Link}
                     title='AI Suggestions'
                     to='/suggestions'>
                     <Icon name='ai' />
-                </Button> */}
+                </Button>
                 
                 <Button 
                     title={`${t.s('createNewCollection')}\nShift+click: ${t.s('createSubFolder').toLowerCase()}`}
