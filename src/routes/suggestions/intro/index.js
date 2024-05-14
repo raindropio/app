@@ -1,7 +1,9 @@
 import s from './index.module.styl'
+import t from '~t'
 import React, { useCallback } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import * as configActions from '~data/actions/config'
+import { isPro } from '~data/selectors/user'
 
 import Button from '~co/common/button'
 import links from '~config/links'
@@ -10,6 +12,7 @@ import introImage from './intro.png'
 export default function PageSuggestionsIntro() {
     const dispatch = useDispatch()
     const enabled = useSelector(state=>state.config.ai_suggestions)
+    const pro = useSelector(state=>isPro(state))
     const enable = useCallback(()=>dispatch(configActions.set('ai_suggestions', true)), [])
 
     return (
@@ -29,6 +32,12 @@ export default function PageSuggestionsIntro() {
             {!enabled ? (<div>
                 <Button variant='primary' onClick={enable}>
                     &nbsp;Enable AI Suggestions&nbsp;
+                </Button>
+            </div>) : null}
+
+            {!pro ? (<div>
+                <Button variant='primary' href={links.pro.buy} target='_blank'>
+                    &nbsp;{t.s('upgradeToPro')}&nbsp;
                 </Button>
             </div>) : null}
         </div>

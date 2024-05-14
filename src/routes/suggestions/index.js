@@ -1,6 +1,7 @@
 import s from './index.module.css'
 import React from 'react'
 import { useSelector } from 'react-redux'
+import { isPro } from '~data/selectors/user'
 
 import Screen from '~co/screen/basic'
 import Header, { Title, FirstAction } from '~co/common/header'
@@ -12,6 +13,7 @@ import Predictions from './predictions'
 
 export default function PageSuggestions() {
     const enabled = useSelector(state=>state.config.ai_suggestions)
+    const pro = useSelector(state=>isPro(state))
 
     return (
         <Screen className={s.main} appSize='large'>
@@ -25,10 +27,10 @@ export default function PageSuggestions() {
                 <Title>✦ AI Suggestions</Title>
             </Header>
 
-            <div className={s.split} data-enabled={enabled}>
+            <div className={s.split} data-enabled={enabled && pro}>
                 <Intro />
 
-                {enabled ? (
+                {enabled && pro ? (
                     <div className={s.content}>
                         <Predictions />
                     </div>
