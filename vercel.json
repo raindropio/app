@@ -1,10 +1,4 @@
 {
-    "routes": [
-        {
-            "src": "/account/login",
-            "status": 401
-        }
-    ],
     "rewrites": [
         {
             "source": "/pb/site.js",
