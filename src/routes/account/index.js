@@ -1,6 +1,6 @@
 import React from 'react'
 import { Route, Navigate } from 'react-router-dom'
-import { target } from '~target'
+import { target, environment } from '~target'
 
 import Protected from '../_protected'
 import Layout from './layout'
@@ -19,11 +19,15 @@ export default function PageAccount() {
     return (
         <Route element={<Layout />}>
             <Route element={<Redirect />}>
-                {(()=>{switch(target) {
-                    case 'electron':
+                {(()=>{switch(true) {
+                    case (target == 'electron'):
                         return <Route path='*' element={<Electron />} />
 
-                    case 'extension':
+                    case (
+                        target == 'extension' &&
+                        //fuck you app store review! they force me to show login in extension popup
+                        (!environment.includes('safari') || environment.includes('safari-ios'))
+                    ):
                         return <Route path='*' element={<Extension />} />
                         
                     default:

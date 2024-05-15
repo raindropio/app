@@ -88,7 +88,7 @@ class BookmarksAddSave extends React.Component {
                         variant='primary'
                         title={t.s('save')}
                         onMouseDown={this.onAddClick}>
-                        <Icon name='new_bookmark' />
+                        <Icon name='add' />
                         <span className={s.label+' hide-on-small-body'}>{!search && t.s('save')}</span>
                     </Button>
                 )
