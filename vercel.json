@@ -1,0 +1,22 @@
+{
+    "routes": [
+        {
+            "src": "/account/login",
+            "status": 401
+        }
+    ],
+    "rewrites": [
+        {
+            "source": "/pb/site.js",
+            "destination": "https://plausible.io/js/plausible.exclusions.js"
+        },
+        {
+            "source": "/pb/hash.js",
+            "destination": "https://plausible.io/js/plausible.hash.exclusions.js"
+        },
+        {
+            "source": "/pb/api/event",
+            "destination": "https://plausible.io/api/event"
+        }
+    ]
+}
