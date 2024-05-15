@@ -1,6 +1,10 @@
 {
     "rewrites": [
         {
+            "source": "/(account|add|extension|join|my|settings|suggestions).*",
+            "destination": "/index.html"
+        },
+        {
             "source": "/pb/site.js",
             "destination": "https://plausible.io/js/plausible.exclusions.js"
         },
