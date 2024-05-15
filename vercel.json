@@ -1,7 +1,7 @@
 {
     "rewrites": [
         {
-            "source": "/(account|add|extension|join|my|settings|suggestions).*",
+            "source": "/(account|add|extension|join|my|settings|suggestions):path*",
             "destination": "/index.html"
         },
         {
