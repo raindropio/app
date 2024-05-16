@@ -20,6 +20,14 @@
         }
     ],
 
+    "redirects": [
+        {
+            "source": "/account/login",
+            "destination": "/account/login",
+            "statusCode": 401
+        }
+    ],
+
     "headers": [
         {
             "source": "/(.*)",
