@@ -1,14 +1,6 @@
 {
     "$schema": "https://openapi.vercel.sh/vercel.json",
 
-    "redirects": [
-        {
-            "source": "/account/login",
-            "destination": "/account/login",
-            "statusCode": 401
-        }
-    ],
-
     "rewrites": [
         {
             "source": "/(account|add|extension|join|my|settings|suggestions)(/.*)?",
