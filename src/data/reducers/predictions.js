@@ -20,6 +20,7 @@ export default function(state = initialState, action){switch (action.type) {
     case c.PREDICTIONS_LOAD_REQ:{
         return state
             .set('status', 'loading')
+            .set('updateDate', null)
     }
 
     case c.PREDICTIONS_LOAD_SUCCESS:{
@@ -29,6 +30,7 @@ export default function(state = initialState, action){switch (action.type) {
         return state
             .set('status', 'loaded')
             .set('items', items)
+            .set('updateDate', action.updateDate)
     }
 
     case c.PREDICTIONS_LOAD_ERROR:{
@@ -78,5 +80,6 @@ export default function(state = initialState, action){switch (action.type) {
 const initialState = Immutable({
     status: 'idle', //idle|loading|loaded|error
     items: [],
+    updateDate: null,
     apply_status: {} // _id: loading|success|error
 })

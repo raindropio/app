@@ -9,12 +9,11 @@ export default function* () {
 
 function* load() {
     try {
-		const { predictions, raindrops } = yield call(Api.get, 'predictions?version=1')
+		const res = yield call(Api.get, 'predictions?version=1')
 
 		yield put({
 			type: c.PREDICTIONS_LOAD_SUCCESS,
-			predictions,
-			raindrops
+			...res
 		})
 	} catch (error) {
 		yield put({
