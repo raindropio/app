@@ -31,7 +31,7 @@ export default function HighlightsItemView({ text, color, created, pro, onScroll
     const onFormMouseDown = useCallback(e=>{
         if (noteRef.current)
             if (e.target == e.currentTarget || e.target == noteRef.current)
-                setTimeout(() => noteRef.current.focus())
+                setTimeout(() => noteRef.current?.focus())
     }, [noteRef])
 
     return (

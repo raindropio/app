@@ -39,8 +39,8 @@ export default function AccountRedirect() {
             sessionStorage.removeItem('redirect')
 
             //redirect inside of an app
-            if (redirect.startsWith(window.location.origin))
-                return <Navigate to={redirect.replace(window.location.origin, '')} replace />
+            if (redirect.toLowerCase().startsWith(window.location.origin.toLowerCase()))
+                return <Navigate to={redirect.replace(new RegExp(window.location.origin, 'i'), '')} replace />
 
             //redirect outside
             location.href = redirect
