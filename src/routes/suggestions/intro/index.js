@@ -24,7 +24,7 @@ export default function PageSuggestionsIntro() {
 
             <div className={s.headline}>
                 Reduce repetive work and organize your bookmarks in a few clicks.
-                Tips are grounded on your collections and tags. <a className={s.learnMore} href={links.help.suggestions.index} target='_blank'>Learn more</a>
+                Tips are grounded on your collections and tags. <a className={s.learnMore} href={links.help.suggestions.organize} target='_blank'>Learn more</a>
             </div>
 
             <div className={s.sub}>You get your own private AI categorization model based on your data. Your data never used for training.</div>

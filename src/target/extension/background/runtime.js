@@ -4,7 +4,7 @@ import { environment } from '../environment'
 async function onInstalled({ reason }) {
     switch(reason) {
         case 'install':
-            if (!environment.includes('safari-ios'))
+            if (!environment.includes('safari'))
                 await browser.tabs.create({
                     url: '/welcome/index.html',
                     active: true

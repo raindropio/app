@@ -18,7 +18,7 @@ export default function MySuggestionsPredictionsEmpty() {
     return (
         <Alert>
             <b>Not enough data yet</b><br />
-            Add tags, create collections and organize few bookmarks to give AI some clue. <a href={links.help.suggestions.index} target='_blank'>Learn more</a>
+            Add tags, create collections and organize few bookmarks to give AI some clue. <a href={links.help.suggestions.faq} target='_blank'>Learn more</a>
         </Alert>
     )
 }
