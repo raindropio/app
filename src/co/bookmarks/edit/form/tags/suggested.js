@@ -27,8 +27,7 @@ export default function BookmarkEditFormTagsSuggested({ item, onTagClick }) {
     const enabled = useSelector(state=>state.config.ai_suggestions)
     const pro = useSelector(state=>isPro(state))
     const getSuggestedFields = useMemo(()=>makeSuggestedFields(), [])
-    const suggestions = useSelector(state=>getSuggestedFields(state, item))
-    const tags = useMemo(()=>(suggestions.tags||[]).filter(tag=>!item.tags.includes(tag)), [suggestions.tags, item.tags])
+    const { tags=[] } = useSelector(state=>getSuggestedFields(state, item))
 
     //click
     const onSuggestionClick = useCallback(e=>{

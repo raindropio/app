@@ -81,7 +81,7 @@ const initialState = Immutable({
 
 	acknowledge:			[],
 
-	ai_suggestions:			false
+	ai_suggestions:			true
 })
 
 //this keys can be kept untouched on reset

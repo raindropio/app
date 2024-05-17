@@ -53,14 +53,18 @@ export const makeCreatorRef = ()=>createSelector(
 export const makeSuggestedFields = ()=>createSelector(
 	[
 		({bookmarks}, { link })=>bookmarks.suggestedFields[link] || {},
-		(_, { collectionId })=>collectionId
+		(_, { collectionId })=>collectionId,
+		(_, { tags })=>tags
 	],
-	({ collections=[], tags=[] }, collectionId)=>({
-		collections: collections?.[0] == collectionId ? 
-			emptyArray : 
-			[...collections]
-				.filter(cid=>cid!=collectionId)
-				.splice(0, 5),
-		tags
-	})
+	({ collections=[], tags=[] }, collectionId, itemTags)=>{
+		return ({
+			collections: collections?.[0] == collectionId ? 
+				emptyArray : 
+				[...collections]
+					.filter(cid=>cid!=collectionId)
+					.splice(0, 5),
+			tags: tags
+				.filter(tag=>!itemTags?.includes(tag))
+		})
+	}
 )

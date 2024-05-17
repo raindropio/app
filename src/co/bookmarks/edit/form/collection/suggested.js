@@ -7,9 +7,11 @@ import { isPro } from '~data/selectors/user'
 
 import Button from '~co/common/button'
 
+const self = { self: true }
+
 function Suggestion({ id, onClick }) {
     const getCollectionPath = useMemo(()=>makeCollectionPath(), [])
-    const path = useSelector(state=>getCollectionPath(state, id, { self: true }))
+    const path = useSelector(state=>getCollectionPath(state, id, self))
     const shortPath = useMemo(()=>path.map((p)=>p.title).slice(-2).join(' / '), [path])
     const fullPath = useMemo(()=>path.map((p)=>p.title).join(' / '), [path])
     const collection = useMemo(()=>path?.[path.length-1], [path])
