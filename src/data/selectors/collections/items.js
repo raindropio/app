@@ -140,3 +140,14 @@ export const makeBranchIds = () => createSelector(
 			.map(({item})=>item._id)
 	}
 )
+
+export const makeNested = () => createSelector(
+	[_collectionsItems, (_, cid)=>cid],
+	(items, cid)=>{
+		if (cid <= 0)
+			return emptyArray
+
+		return _.sortBy(items, ({sort})=>sort)
+			.filter(({parentId})=>parentId==cid)
+	}
+)

@@ -17,11 +17,11 @@ export default function(state, action) {switch (action.type) {
             blankSpace.sorts
                 .setIn(
                     ['sort', 'enabled'],
-                    parseInt(spaceId) != 0 && !space.getIn(['query', 'search']).length ? true : false
+                    parseInt(spaceId) != 0 && !space.getIn(['query', 'search'])?.length ? true : false
                 )
                 .setIn(
                     ['score', 'enabled'],
-                    space.getIn(['query', 'search']).length ? true : false
+                    space.getIn(['query', 'search'])?.length ? true : false
                 )
         )
 

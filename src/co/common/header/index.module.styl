@@ -1,6 +1,4 @@
 .header {
-    app-region: drag
-    -webkit-app-region: drag
     display: flex
     flex-direction: row
     align-items: center
@@ -13,11 +11,6 @@
 
     position: sticky
     top: 0
-
-    > * {
-        app-region: no-drag
-        -webkit-app-region: no-drag
-    }
 
     > *:not(:last-child):not(.space) {
         margin-right: var(--padding-mini)

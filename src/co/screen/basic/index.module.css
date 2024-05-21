@@ -7,6 +7,19 @@
     min-height: 100%;
 }
 
+/* electron */
+html:before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: env(titlebar-area-height);
+    app-region: drag;
+    -webkit-app-region: drag;
+    z-index: 999999999999999;
+}
+
 /* extension */
 @media (max-width: 800px) {
     html:global(.extension:not(.sidepanel):not(.mobile)) .page {
