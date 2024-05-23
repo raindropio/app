@@ -43,18 +43,19 @@ export default function(state = initialState, action){switch (action.type) {
         const { _id, ...props } = action
 
         return state
-            .set('items', state.items
-                .map(item=>{
-                    if (item._id != _id)
-                        return item
+            .set('items',
+                state.items
+                    .map(item=>{
+                        if (item._id != _id)
+                            return item
 
-                    let patched = item
-                    for(const key in props)
-                        if (typeof item[key] != 'undefined')
-                            patched = patched.set(key, props[key])
-                    return patched
-                })
-                .filter(item=>item.raindropRefs ? item.raindropRefs.length : true)
+                        let patched = item
+                        for(const key in props)
+                            if (key != 'type')
+                                patched = patched.set(key, props[key])
+                        return patched
+                    })
+                    .filter(item=>item.raindropRefs ? item.raindropRefs.length : true)
             )
     }
 
