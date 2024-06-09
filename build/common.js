@@ -46,7 +46,12 @@ module.exports = ({ production, filename='[name].[contenthash]', sentry={} }, { 
 		minimizer: [
 			new TerserJSPlugin({
 				parallel: true,
-				extractComments: false
+				extractComments: false,
+				terserOptions: {
+					output: {
+						comments: false
+					}
+				}
 			}),
 			new CssMinimizerPlugin({
 				minimizerOptions: {

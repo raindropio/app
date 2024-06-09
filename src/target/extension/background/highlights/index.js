@@ -43,8 +43,9 @@ async function onMessage({ type, payload }, sender) {
 //Reload highlights when tab url change
 async function onTabActivated({ tabId }) {
     if (!tabId) return
+
     const tab = await browser.tabs.get(tabId)
-    
+
     if (!tab || !tab.url || !tab.active || tab.status != 'complete')
         return
 
