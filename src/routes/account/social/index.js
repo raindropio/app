@@ -3,17 +3,12 @@ import t from '~t'
 import React from 'react'
 import { API_ENDPOINT_URL } from '~data/constants/app'
 import sessionStorage from '~modules/sessionStorage'
-import { target, environment } from '~target'
 
 import { Separator } from '~co/common/form'
 import Button from '~co/common/button'
 import Icon from '~co/common/icon'
 
 export default function AccountSocialLogin({ disabled }) {
-    //fuck you app store review again!
-    if (target=='extension' && environment.includes('safari'))
-        return null
-
     const redirect = sessionStorage.getItem('redirect') || ''
 
     return (<>
