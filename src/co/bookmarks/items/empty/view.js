@@ -5,9 +5,6 @@ import t from '~t'
 import config from '~config'
 import { target } from '~target'
 
-import IllustrationNo from './no.svg?component'
-import IllustrationSearch from './search.svg?component'
-import IllustrationError from './error.svg?component'
 import Button from '~co/common/button'
 import Icon from '~co/common/icon'
 
@@ -42,7 +39,6 @@ export default class BookmarksEmptyView extends React.PureComponent {
                         if (!compact)
                             content = (
                                 <div>
-                                    <IllustrationSearch />
                                     <h2>{t.s('nothingFound')} {t.s('in')} {title}</h2>
                                 </div>
                             )
@@ -53,8 +49,6 @@ export default class BookmarksEmptyView extends React.PureComponent {
                         if (!compact)
                             content = (
                                 <div>
-                                    <IllustrationNo />
-
                                     <h2>{t.s('noBookmarks')}</h2>
                                     <p>
                                         {t.s('noItemsTip')}
@@ -107,9 +101,7 @@ export default class BookmarksEmptyView extends React.PureComponent {
             case 'error':
                 content = (
                     <div>
-                        {!compact && (<IllustrationError />)}
-
-						<h2>{t.s('error')}</h2>
+						<h2>⚠️ {t.s('error')}</h2>
 						<p>
 							<a href='' onClick={this.refresh}>{t.s('refresh')}</a>
 						</p>
