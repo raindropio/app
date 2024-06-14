@@ -55,6 +55,13 @@ h2 {
     letter-spacing: -.5px;
 }
 
+h2 code {
+    background: var(--secondary-background);
+    color: var(--secondary-text);
+    padding: 0 4px;
+    border-radius: 4px;
+}
+
 h3 {
     font-size: 32px;
 }

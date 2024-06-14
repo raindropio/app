@@ -8,11 +8,13 @@ import { Text as Note } from '~co/common/form'
 import { ShortDate } from '~modules/format/date'
 import Button from '~co/common/button'
 import Icon from '~co/common/icon'
-import ProCheck from '~co/user/pro/check'
 import Color from './color'
+import UserUpgrade from '~co/user/upgrade'
 
 export default function HighlightsItemView({ text, color, created, pro, onScrollIntoView, onChange, onRemove, ...etc }) {
     const noteRef = useRef(null)
+
+    const [needUpgrade, setNeedUpgrade] = useState(false)
 
     const [note, setNote] = useState(()=>etc.note)
     useEffect(()=>setNote(etc.note), [etc.note])
@@ -25,7 +27,7 @@ export default function HighlightsItemView({ text, color, created, pro, onScroll
     const onClickNote = useCallback(e=>{
         if (pro) return
         e.preventDefault()
-        ProCheck('annotations')
+        setNeedUpgrade(true)
     }, [pro])
 
     const onFormMouseDown = useCallback(e=>{
@@ -85,6 +87,8 @@ export default function HighlightsItemView({ text, color, created, pro, onScroll
                     </div>
                 </div>
             </div>
+
+            {needUpgrade ? <UserUpgrade onClose={()=>setNeedUpgrade(false)} /> : null}
         </form>
     )
 }

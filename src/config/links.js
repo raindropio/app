@@ -63,7 +63,8 @@ export default {
         'compare': overrideProLink || 'https://raindrop.io/pro',
         'faq': 'https://help.raindrop.io/billing-faq',
         'help-legacy-subscription': 'https://help.raindrop.io/article/52-legacy-subscription',
-        'help-change-billing-cycle': 'https://help.raindrop.io/change-billing-cycle'
+        'help-change-billing-cycle': 'https://help.raindrop.io/change-billing-cycle',
+        'help-learn-more': 'https://help.raindrop.io/premium-features'
     },
 
     dev: {

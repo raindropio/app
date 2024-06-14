@@ -1,0 +1,111 @@
+.modal {
+    --border-radius: 8px;
+    --head-font-size: var(--icon-size);
+    --padding-medium: 20px;
+    --padding-small: 12px;
+    --primary-font-size: 15px;
+    font-size: var(--primary-font-size);
+}
+
+.container {
+    display: grid;
+    grid-template-columns: 240px 380px;
+    overflow: auto;
+}
+
+@media screen and (max-width: 800px) {
+    .container {
+        grid-template-columns: 1fr;
+    }
+    .intro {
+        order: 1
+    }
+}
+
+@property --deg {
+  syntax: '<angle>';
+  inherits: false;
+  initial-value: 90deg;
+}
+.intro {
+    --deg: 0deg;
+    position: relative;
+    background-image: linear-gradient(var(--deg), #5083F0 10%, #D885FF 40%, #FF6B6B 90%);
+    background-size: 200% 100%;
+    background-position: center;
+    animation: intro 20s ease-in infinite;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(0,0,0,.35);
+
+    .icon {
+        mix-blend-mode: overlay;
+        margin: var(--padding-medium);
+    }
+
+    .noise {
+        position: absolute;
+        left: 0; top: 0; bottom: 0; right: 0;
+        width: 100%;height: 100%;
+        opacity: .13;
+        filter: contrast(5%) brightness(5%);
+    }
+}
+
+@keyframes intro {
+    from { --deg: 0deg }
+    to { --deg: 360deg }
+}
+
+.content {
+    padding: 0 var(--padding-medium);
+    padding-bottom: var(--padding-medium);
+
+    p {
+        margin-top: var(--padding-mini);
+        margin-bottom: var(--padding-medium);
+    }
+}
+
+h4 {
+    margin: 0;
+    margin-bottom: var(--padding-small);
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 7px;
+}
+
+li {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: default;
+
+    .icon {
+        color: var(--primary-text-color)
+        transition: color .15s ease-in
+    }
+
+    &:hover {
+        .icon {
+            color: var(--broken-color)
+        }
+    }
+}
+
+.actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: var(--padding-medium);
+}
+
+.more {
+    color: var(--secondary-text-color);
+    padding-top: 4px;
+}

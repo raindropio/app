@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo } from 'react'
+import React, { useCallback, useMemo, useState } from 'react'
 import t from '~t'
 import { add, nextSunday } from 'date-fns'
 import { useSelector } from 'react-redux'
@@ -8,7 +8,7 @@ import { DateTime } from '~co/common/form'
 import { More, Menu, MenuItem } from '~co/overlay/popover'
 import Icon from '~co/common/icon'
 import Button from '~co/common/button'
-import ProCheck from '~co/user/pro/check'
+import UserUpgrade from '~co/user/upgrade'
 
 function Templates({ onSetDate }) {
     const templates = useMemo(()=>[
@@ -37,6 +37,24 @@ function Templates({ onSetDate }) {
     )
 }
 
+function Free() {
+    const [show, setShow] = useState(false)
+    const onClick = useCallback((e)=>{
+        e.preventDefault()
+        setShow(true)
+    }, [setShow])
+
+    return (
+        <>
+            <Button onClick={onClick} variant='outline'>
+                <Icon name='reminder' />
+            </Button>
+
+            {show ? <UserUpgrade onClose={()=>setShow(false)} /> : null}
+        </>
+    )
+}
+
 export default function BookmarkEditFormReminder({ item: { reminder }, onChange, onSave }) {
     const pro = useSelector(state=>isPro(state))
     const minDate = useMemo(()=>new Date(), [])
@@ -57,9 +75,7 @@ export default function BookmarkEditFormReminder({ item: { reminder }, onChange,
 
 
     if (!pro)
-        return <Button onClick={()=>ProCheck('reminders')} variant='outline'>
-            <Icon name='reminder' />
-        </Button>
+        return <Free />
 
     return reminder.date ? (<>
         <DateTime 

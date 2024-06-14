@@ -88,11 +88,11 @@
         </div>
 
         <div class="text-column">
-            <h4><span class="text-gradient blue-green-gradient">Sidepanel</span></h4>
+            <h4><span class="text-gradient blue-green-gradient">Sidebar</span></h4>
             <h2>Collection always at hand</h2>
             <div class="spacer"></div>
 
-            <a href="#open-sidepanel" class="button size-regular variant-primary">Open Sidepanel</a>
+            <a href="#open-sidepanel" class="button size-regular variant-primary">Open Sidebar</a>
 
             <span class="or-text">or press</span>
 
@@ -113,15 +113,27 @@
         <div class="backport-background blue-green-gradient"></div>
 
         <div class="text-container">
-            <h3>Open Raindrop.io Sidepanel</h3>
+            <h3>Open Raindrop.io Sidebar</h3>
             <ol>
-                <li data-browser-show="firefox"><a href="https://support.mozilla.org/kb/use-firefox-sidebar-access-bookmarks-history-synced" target="_blank">Add the Sidebar button to your controls</a></li>
-                <li>Click <svg class="icon"><use xlink:href="#icon-sidepanel"></use></svg> button in a <span class="browser-name"></span> toolbar</li>
-                <li>In dropdown select <svg class="icon"><use xlink:href="#icon-cloud"></use></svg> Raindrop.io</li>
-                <li>Raindrop.io will automatically appear the next time you click <svg class="icon"><use xlink:href="#icon-sidepanel"></use></svg> button</li>
+                <li>Right click <button class="button variant-secondary size-regular" disabled><svg class="icon"><use xlink:href="#icon-cloud"></use></svg></button> Raindrop.io extension icon in a toolbar</li>
+                <li>In dropdown select <button class="button variant-secondary size-regular" disabled>Open sidebar</button></li>
             </ol>
-            <hr class="pink-red-gradient" />
-            <p>In sidepanel you can browse your collection, search and add new items.</p>
+            <p>
+                Or press
+
+                <span data-system-show="macos">
+                    <button class="button size-regular variant-secondary only-icon" disabled>⌥</button>
+                    <button class="button size-regular variant-secondary only-icon" disabled>⇧</button>
+                    <button class="button size-regular variant-secondary only-icon" disabled>B</button>
+                </span>
+                <span data-system-show="windows linux">
+                    <button class="button size-regular variant-secondary" disabled>
+                        Alt+Shift+B
+                    </button>
+                </span>
+            </p>
+            <hr class="blue-green-gradient" />
+            <p>In sidebar you can browse your collection, search and add new items.</p>
             <p>What's cool is that you can simply drag new links and images into this panel to save them.</p>
         </div>
     </div>
@@ -134,9 +146,9 @@
 
         <div class="text-column">
             <h4><span class="text-gradient blue-purple-gradient">Search Field</span></h4>
-            <h2>Type in address bar to find items</h2>
+            <h2>Type <code>rd</code> to find items</h2>
             <div class="spacer"></div>
-            <a href="#start-search" class="button size-regular variant-primary">Start Search</a>
+            <a href="#start-search" class="button size-regular variant-primary">Learn more</a>
         </div>
     </div>
 
@@ -150,7 +162,7 @@
                 <li>Type the special keyword &nbsp;<button class="button variant-secondary size-regular" disabled>rd</button>&nbsp; followed by a space</li>
                 <li>Enter your search query, results will appear below</li>
             </ol>
-            <hr class="pink-red-gradient" />
+            <hr class="blue-purple-gradient" />
             <p>Raindrop can search by title, notes, URL, tag, type, date or entire content of web-page, EPUB or PDF (no OCR).</p>
             <p>Best in class support for 16 languages. Find precisely by crafting advanced searches with our <a href="https://help.raindrop.io/using-search#operators" target="_blank">super power operators</a>.</p>
         </div>
@@ -276,7 +288,7 @@
             </div>
 
             <p data-authenticated-show>
-                You ready to go!
+                You ready to go! Close this page and start collecting.
             </p>
 
             <div class="spacer"></div>
