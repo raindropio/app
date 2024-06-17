@@ -1,5 +1,5 @@
 import s from './index.module.styl'
-import React, { useCallback } from 'react'
+import React, { useState, useCallback, useEffect } from 'react'
 import links from '~config/links'
 
 import Modal, { Content, Header } from '~co/overlay/modal'
@@ -7,6 +7,23 @@ import Icon from '~co/common/icon'
 import Button from '~co/common/button'
 
 export default function UserUpgrade({ onClose }) {
+    //load monthly price
+    const [price, setPrice] = useState('')
+    useEffect(()=>{
+        (async()=>{
+            const res = await fetch('https://raindrop.onfastspring.com/popup-raindrop/builder', {
+                method: 'POST',
+                body: `put=${encodeURIComponent('{"items":[{"path":"promonthly1","quantity":1}]}')}`,
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                }
+            })
+            const json = await res.json()
+            setPrice(json.total)
+        })()
+    }, [])
+
+    //close on click buy
     const onBuyClick = useCallback(()=>onClose(), [onClose])
 
     return (
@@ -26,16 +43,16 @@ export default function UserUpgrade({ onClose }) {
                 <div>
                     <Header 
                         data-no-shadow
-                        title='Go Pro' />
+                        title={`Go Pro ${price ? `for ${price}/mo`:''}`} />
 
                     <Content className={s.content}>
                         <p>
-                            Unlock powerful features to help you do more with the content you save. <a href={links.pro['help-learn-more']} target='_blank'>Learn more</a>
+                            Unlock powerful features to help you do more with the content you save. <a href={links.pro.compare} target='_blank'>Learn more</a>
                         </p>
 
                         <h4>Includes</h4>
                         <ul>
-                            <li><Icon className={s.icon} name='ai' /> Collection & tag suggestions</li>
+                            <li><Icon className={s.icon} name='ai' /> Suggested collections & tags</li>
                             <li><Icon className={s.icon} name='sort_score' /> Full-text search</li>
                             <li><Icon className={s.icon} name='export' /> Forever copies</li>
                             <li><Icon className={s.icon} name='highlights' /> Annotations</li>
@@ -54,7 +71,7 @@ export default function UserUpgrade({ onClose }) {
                                 href={links.pro.buy}
                                 target='_blank'
                                 onClick={onBuyClick}>
-                                Upgrade
+                                Subscribe
                             </Button>
                         </div>
                     </Content>
