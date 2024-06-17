@@ -1,5 +1,6 @@
 import { call, put, takeEvery, select } from 'redux-saga/effects'
 import Api from '../../modules/api'
+import _ from 'lodash-es'
 
 import {
 	BOOKMARK_LOAD_REQ, BOOKMARK_LOAD_SUCCESS, BOOKMARK_LOAD_ERROR,
@@ -111,21 +112,28 @@ function* createBookmarks({items=[], ignore=false, onSuccess, onFail}) {
 	if (ignore) return;
 
 	try{
-		const res = yield call(Api.post, 'raindrops', {
-			items: items.map(item=>({
-				...item,
-				pleaseParse: {
-					weight: items.length
-				}
-			}))
-		}, { timeout: 0 })
+		let created = []
+
+		const chunks = _.chunk(items, 999)
+		for(const chunk of chunks){
+			const res = yield call(Api.post, 'raindrops', {
+				items: chunk.map(item=>({
+					...item,
+					pleaseParse: {
+						weight: items.length
+					}
+				}))
+			}, { timeout: 0 })
+			
+			created.push(...res.items)
+		}
 
 		yield put({
 			type: BOOKMARK_CREATE_SUCCESS,
-			_id: res.items.map(({_id})=>_id),
-			item: res.items,
+			_id: created.map(({_id})=>_id),
+			item: created,
 			onSuccess, onFail
-		});
+		})
 	} catch (error) {
 		yield put({
 			type: BOOKMARK_CREATE_ERROR,
