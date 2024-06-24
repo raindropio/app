@@ -92,17 +92,19 @@ async function init() {
             contexts: ['action']
         }),
 
-        browser.contextMenus.create({
-            id: 'save_tabs',
-            title: browser.i18n.getMessage('saveTabs'),
-            contexts: ['action']
-        }),
+        ...(!environment.includes('safari') ? [
+            browser.contextMenus.create({
+                id: 'save_tabs',
+                title: browser.i18n.getMessage('saveTabs'),
+                contexts: ['action']
+            }),
 
-        browser.contextMenus.create({
-            id: 'settings',
-            title: browser.i18n.getMessage('settings'),
-            contexts: ['action']
-        })
+            browser.contextMenus.create({
+                id: 'settings',
+                title: browser.i18n.getMessage('settings'),
+                contexts: ['action']
+            })
+        ] : [])
     ])
 }
 
