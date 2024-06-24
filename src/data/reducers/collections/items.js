@@ -8,7 +8,7 @@ import {
 	COLLECTIONS_LOAD_PRE, COLLECTIONS_LOAD_REQ, COLLECTIONS_LOAD_SUCCESS, COLLECTIONS_LOAD_ERROR,
 	COLLECTIONS_REFRESH_REQ,
 	COLLECTIONS_REORDER,
-	COLLECTIONS_EXPAND_TO, COLLECTIONS_COLLAPSE_ALL,
+	COLLECTIONS_EXPAND_TO, COLLECTIONS_TOGGLE_ALL,
 	COLLECTIONS_CLEAN_SUCCESS, COLLECTIONS_CLEAN_ERROR,
 	COLLECTIONS_CHANGE_VIEW
 } from '../../constants/collections'
@@ -117,9 +117,11 @@ export default function(state, action) {switch (action.type) {
 		return state
 	}
 
-	case COLLECTIONS_COLLAPSE_ALL:{
+	case COLLECTIONS_TOGGLE_ALL:{
+		action.expanded = Object.entries(state.items).some(([_id])=>_id > 0 && !state.getIn(['items', _id, 'expanded']))
+
 		Object.entries(state.items).forEach(([_id])=>{
-			state = state.setIn(['items', _id, 'expanded'], false)
+			state = state.setIn(['items', _id, 'expanded'], action.expanded)
 		})
 
 		return state

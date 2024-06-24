@@ -6,7 +6,7 @@ import _ from 'lodash-es'
 import {
 	COLLECTIONS_LOAD_PRE, COLLECTIONS_LOAD_REQ, COLLECTIONS_LOAD_SUCCESS, COLLECTIONS_LOAD_ERROR,
 	COLLECTIONS_REFRESH_REQ,
-	COLLECTIONS_COLLAPSE_ALL,
+	COLLECTIONS_TOGGLE_ALL,
 	COLLECTIONS_REORDER,
 	COLLECTIONS_REMOVE_ALL,
 	COLLECTIONS_CLEAN_REQ,
@@ -23,7 +23,7 @@ export default function* () {
 	yield takeEvery([ COLLECTIONS_LOAD_PRE, COLLECTIONS_REFRESH_REQ ], preLoadCollections)
 	yield takeEvery([ COLLECTIONS_LOAD_REQ, COLLECTION_DRAFT_LOAD_REQ ], loadCollections)
 
-	yield takeEvery(COLLECTIONS_COLLAPSE_ALL, collapseAll)
+	yield takeEvery(COLLECTIONS_TOGGLE_ALL, toggleAll)
 	yield takeEvery(COLLECTIONS_REORDER, reorderAll)
 	yield takeEvery(COLLECTIONS_CHANGE_VIEW, changeView)
 
@@ -84,10 +84,10 @@ export function* loadCollections({ ignore=false, onSuccess, onFail }) {
 	}
 }
 
-function* collapseAll({ ignore=false }){
+function* toggleAll({ ignore=false, expanded=false }){
 	if (ignore) return
 
-	yield call(Api.put, 'collections', { expanded: false }) 
+	yield call(Api.put, 'collections', { expanded }) 
 }
 
 function* reorderAll({ ignore=false, method }){
