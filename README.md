@@ -1,6 +1,9 @@
 # Raindrop.io 5.0
 Mono repo for Raindrop.io web app, browser extension and desktop app
 
+## Hi Mozilla Add-on review!
+[Build highlight.js](https://github.com/raindropio/highlight)
+
 ## Build
 Be sure to run `npm i` before calling any commands below
 | target   | command | notes |
@@ -8,7 +11,7 @@ Be sure to run `npm i` before calling any commands below
 | web      | `npm run build` |
 | electron | `npm run build:electron` |
 | chrome   | `npm run build:extension:chrome` |
-| firefox  | `npm run build:extension:firefox` |
+| firefox  | `npm run build:extension:firefox` | Saved to `dist/firefox/prod`
 | opera    | `npm run build:extension:opera` |
 | safari   | `npm run build:extension:safari` | Then open **build/xcode** project
 
