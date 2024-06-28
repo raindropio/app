@@ -162,7 +162,7 @@ async function send(tab, type, payload) {
 async function isInjected(tab) {
     if (!await browser.permissions.contains({
         permissions: ['scripting'],
-        origins: [tab.url]
+        ...(tab?.url ? {origins: [tab.url]} : {})
     }))
         return false
 

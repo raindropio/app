@@ -1,4 +1,3 @@
-import * as Sentry from '@sentry/minimal'
 import { put, takeEvery } from 'redux-saga/effects'
 import ApiError from '../modules/error'
 
@@ -29,7 +28,9 @@ function* checkAuth(action={}) {
 
 //Send additional info to 3rd-party scripts
 function thirdPartyUserUpdate({ user: { _id, email } }) {
-	Sentry.configureScope(scope => {
-		scope.setUser({ id: _id, email })
-	})
+	if (RAINDROP_ENVIRONMENT != 'browser' || process.env.SENTRY_RELEASE) {
+		require('@sentry/minimal').configureScope(scope => {
+			scope.setUser({ id: _id, email })
+		})
+	}
 }

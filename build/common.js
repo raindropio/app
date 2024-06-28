@@ -108,8 +108,8 @@ module.exports = ({ production, filename='[name].[contenthash]', sentry={} }, { 
 
 		new webpack.DefinePlugin({
 			'process.env.NODE_ENV': JSON.stringify(production?'production':'development'),
-			'process.env.SENTRY_RELEASE': JSON.stringify(process.env.SENTRY_RELEASE),
-			RAINDROP_ENVIRONMENT: JSON.stringify('browser')
+			RAINDROP_ENVIRONMENT: JSON.stringify('browser'),
+			'process.env.SENTRY_RELEASE': JSON.stringify(production && !sentry?.disabled? process.env.SENTRY_RELEASE : undefined)
 		}),
 
 		//HTML

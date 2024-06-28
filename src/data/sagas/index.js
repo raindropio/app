@@ -1,6 +1,5 @@
 import { all, spawn, delay, call } from 'redux-saga/effects'
 import ApiError from '../modules/error'
-import * as Sentry from '@sentry/minimal'
 
 import common from './common'
 import user from './user'
@@ -28,7 +27,9 @@ function* failSafe(saga) {
 			
 				if (typeof e != 'object' ||
 					e instanceof ApiError == false)
-					Sentry.captureException(e)
+					if (RAINDROP_ENVIRONMENT != 'browser' || process.env.SENTRY_RELEASE) {
+						require('@sentry/minimal').captureException(e)
+					}
 
 				yield delay(1000)
 			}
