@@ -3,8 +3,8 @@ const onFrameResize = ([{ contentRect: { width, height } }])=>{
     if (!width && !height)
         return
 
-    document.body.style.width = width
-    document.body.style.height = height
+    document.body.style.width = Math.min(width, 800)
+    document.body.style.height = Math.min(height, 600)
 
     //persist
     try{
