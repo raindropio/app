@@ -74,10 +74,22 @@ export default class DropModule extends React.Component {
                             throw new Error('drag data is incorrect json: '+String(data))
                         }
                     }
+                //text links
+                else if (record.type == 'text/plain'){
+                    const found = e.dataTransfer.getData(record.type)
+                        .split('\n')
+                        .map(v=>v.trim())
+                        .filter(v=>URL.canParse(v) && new URL(v).host != location.host)
+                    
+                    for(const link of found)
+                        if (!links.includes(link))
+                            links.push(link)
+                }
                 //link
                 else if (record.type == 'text/uri-list'){
                     const link = e.dataTransfer.getData(record.type)
-                    if (new URL(link).host != location.host)
+                    if (new URL(link).host != location.host && 
+                        !links.includes(link))
                         links.push(link)
                 }
             }

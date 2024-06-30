@@ -22,7 +22,7 @@ function ClipperHeader({ status, item }) {
         default:        title = t.s('edit'); break
     }
 
-    const collectionPath = `/my/${item.collectionId}`
+    const collectionPath = `/my/${status=='new' ? 0 : item.collectionId}`
 
     return (
         <Header data-no-shadow data-static>
