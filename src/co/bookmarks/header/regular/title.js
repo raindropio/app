@@ -2,22 +2,13 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import t from '~t'
 import { connect } from 'react-redux'
-import { getSearchEmpty } from '~data/selectors/bookmarks'
+import { getSearchEmpty, makeCount } from '~data/selectors/bookmarks'
 import { makeCollection } from '~data/selectors/collections'
 
 class BookmarksHeaderTitle extends React.Component {
     static defaultProps = {
         spaceId: 0,
         compact: false,
-    }
-
-    renderSearchStatus = ()=>{
-        const { status } = this.props
-
-        switch(status.main) {
-            case 'empty':   return t.s('nothingFound')
-            default:        return t.s('defaultCollection-0')
-        }
     }
 
     renderTitle = ()=>{
@@ -37,34 +28,33 @@ class BookmarksHeaderTitle extends React.Component {
     }
 
     render() {
-        const { isSearching, compact, status, collection: { _id } } = this.props
+        const { isSearching, compact, status, collection: { _id }, count } = this.props
 
-        return (
-            <>
-                {isSearching && (
-                    <>
-                        {this.renderSearchStatus()}&nbsp;
-                        {t.s('in')}&nbsp;
-                    </>
-                )}
-
-                {compact && status.main=='loaded' ? (
+        return isSearching ?
+            (
+                status.main == 'loading' ? 
+                    '' :
+                    `${count} ${t.s('bookmarks')} ${isSearching ? t.s('found').toLowerCase() : ''}`
+            ) :
+            (
+                compact && status.main=='loaded' ? (
                     <Link to={`/my/${_id}/full`}>
                         {this.renderTitle()}
                     </Link>
-                ) : this.renderTitle()}
-            </>
-        )
+                ) : this.renderTitle()
+            )
     }
 }
 
 export default connect(
 	() => {
         const getCollection = makeCollection()
+        const getCount = makeCount()
     
         return (state, { spaceId })=>({
             collection: getCollection(state, spaceId),
-            isSearching: !getSearchEmpty(state, spaceId)
+            isSearching: !getSearchEmpty(state, spaceId),
+            count: getCount(state, spaceId),
         })
     }
 )(BookmarksHeaderTitle)

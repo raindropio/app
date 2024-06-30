@@ -23,6 +23,8 @@ export const makeBookmarksLastChange = () => createSelector(
 export const count = ({bookmarks}, spaceId)=>
 	bookmarks.spaces[spaceId] ? bookmarks.spaces[spaceId].count : blankSpace.count
 
+export const makeCount = ()=>count
+
 //Query
 export const query = ({bookmarks}, spaceId)=>
 	bookmarks.spaces[spaceId] ? bookmarks.spaces[spaceId].query : blankSpace.query
