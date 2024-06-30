@@ -60,6 +60,7 @@ export default function HighlightsItemView({ text, color, created, pro, onScroll
                         type='text'
                         variant='inline'
                         autoSize
+                        multiline
                         autoComplete='off'
                         spellCheck='false'
                         disabled={!pro}
