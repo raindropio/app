@@ -32,6 +32,9 @@ async function onCommand(command, tab) {
                 active: true
             })
 
+        case 'open_app':
+            return open('/', { width: 1280, height: 800 })
+
         case 'execute_side_panel': {
             const { windowId } = tab
             return browser.sidePanel.open({ windowId })

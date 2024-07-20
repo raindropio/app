@@ -141,6 +141,9 @@ module.exports = ({ vendor, production=false }, l) => {
 			open_raindrop: {
 				description: '__MSG_openRaindrop__',
 			},
+			open_app: {
+				description: '__MSG_openApp__',
+			},
 
 			...(vendor == 'chrome' ? {
 				execute_side_panel: {
