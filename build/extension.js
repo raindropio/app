@@ -14,6 +14,7 @@ module.exports = (env={}, args={}) => {
     
     switch(env.vendor) {
         case 'chrome': env.sentry = { urlPrefix: 'chrome-extension://ldgfbffkinooeloadekpmfoklnobpien/' }; break
+        case 'edge': env.sentry = { urlPrefix: 'chrome-extension://lpngnnjemnkjmgpoolldhiejhkmmgfge/' }; break
         case 'firefox': env.sentry = { disabled: true }; break //ignored, because reviewers complain
         case 'opera': env.sentry = { urlPrefix: 'chrome-extension://omkjjddnkfagilfgmbmeeffkljlpaglj/' }; break
         case 'safari': env.sentry = { urlPrefix: 'safari-web-extension://F54B64D3-0D2D-4C9C-BDF5-8671C44683E7/' }; break

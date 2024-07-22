@@ -43,18 +43,10 @@
             
             <a href="#pin" class="button size-regular variant-primary">Pin in Toolbar</a>
             <span class="or-text">or press</span>
-            <span data-system-show="macos">
-                <button class="button size-regular variant-secondary only-icon" disabled>⇧</button>
-                <button data-browser-hide="firefox" class="button size-regular variant-secondary only-icon" disabled>⌘</button>
-                <button data-browser-show="firefox" class="button size-regular variant-secondary only-icon" disabled>⌥</button>
-                <button class="button size-regular variant-secondary only-icon" disabled>S</button>
-            </span>
-            <span data-system-show="windows linux">
-                <button class="button size-regular variant-secondary" disabled>
-                    <span data-browser-hide="firefox">Ctrl</span><span data-browser-show="firefox">Alt</span>
-                    +Shift+S
-                </button>
-            </span>
+
+            <button data-system-show="macos" class="button size-regular variant-secondary only-icon" disabled>⌃</button>
+            <button data-system-hide="macos" class="button size-regular variant-secondary" disabled>Alt</button>
+            <button class="button size-regular variant-secondary only-icon" disabled>R</button>
         </div>
     </div>
 
@@ -96,16 +88,9 @@
 
             <span class="or-text">or press</span>
 
-            <span data-system-show="macos">
-                <button class="button size-regular variant-secondary only-icon" disabled>⌥</button>
-                <button class="button size-regular variant-secondary only-icon" disabled>⇧</button>
-                <button class="button size-regular variant-secondary only-icon" disabled>B</button>
-            </span>
-            <span data-system-show="windows linux">
-                <button class="button size-regular variant-secondary" disabled>
-                    Alt+Shift+B
-                </button>
-            </span>
+            <button data-system-show="macos" class="button size-regular variant-secondary only-icon" disabled>⌘</button>
+            <button data-system-hide="macos" class="button size-regular variant-secondary" disabled>Ctrl</button>
+            <button class="button size-regular variant-secondary only-icon" disabled>.</button>
         </div>
     </div>
 
@@ -121,16 +106,9 @@
             <p>
                 Or press
 
-                <span data-system-show="macos">
-                    <button class="button size-regular variant-secondary only-icon" disabled>⌥</button>
-                    <button class="button size-regular variant-secondary only-icon" disabled>⇧</button>
-                    <button class="button size-regular variant-secondary only-icon" disabled>B</button>
-                </span>
-                <span data-system-show="windows linux">
-                    <button class="button size-regular variant-secondary" disabled>
-                        Alt+Shift+B
-                    </button>
-                </span>
+                <button data-system-show="macos" class="button size-regular variant-secondary only-icon" disabled>⌘</button>
+                <button data-system-hide="macos" class="button size-regular variant-secondary" disabled>Ctrl</button>
+                <button class="button size-regular variant-secondary only-icon" disabled>.</button>
             </p>
             <hr class="blue-green-gradient" />
             <p>In sidebar you can browse your collection, search and add new items.</p>
@@ -168,7 +146,7 @@
         </div>
     </div>
 
-    <!-- Multiplayer -->
+    <!-- Highlights -->
     <div class="slide columns right" id="highlights" data-is-intersecting="false">
         <div class="image-column">
             <img src="screen-highlights.webp" />
@@ -181,17 +159,19 @@
             
             <button class="button size-regular variant-secondary" disabled>Select text</button>
             <span class="or-text">and press</span>
-            <span data-system-show="macos">
-                <button class="button size-regular variant-secondary only-icon" disabled>⇧</button>
-                <button data-browser-hide="firefox" class="button size-regular variant-secondary only-icon" disabled>⌘</button>
-                <button data-browser-show="firefox" class="button size-regular variant-secondary only-icon" disabled>⌥</button>
+            
+            <span data-browser-show="chrome">
+                <button data-system-show="macos" class="button size-regular variant-secondary only-icon" disabled>⌘</button>
+                <button data-system-hide="macos" class="button size-regular variant-secondary" disabled>Ctrl</button>
+                <button data-system-show="macos" class="button size-regular variant-secondary only-icon" disabled>⇧</button>
+                <button data-system-hide="macos" class="button size-regular variant-secondary" disabled>Shift</button>
                 <button class="button size-regular variant-secondary only-icon" disabled>S</button>
             </span>
-            <span data-system-show="windows linux">
-                <button class="button size-regular variant-secondary" disabled>
-                    <span data-browser-hide="firefox">Ctrl</span><span data-browser-show="firefox">Alt</span>
-                    +Shift+S
-                </button>
+
+            <span data-browser-hide="chrome">
+                <button data-system-show="macos" class="button size-regular variant-secondary only-icon" disabled>⌃</button>
+                <button data-system-hide="macos" class="button size-regular variant-secondary" disabled>Alt</button>
+                <button class="button size-regular variant-secondary only-icon" disabled>X</button>
             </span>
         </div>
     </div>

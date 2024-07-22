@@ -65,7 +65,7 @@ module.exports = ({ vendor, production=false }, l) => {
 				'index.html?action',
 			default_icon: {
 				//chrome based icon
-				...(vendor == 'chrome' || vendor == 'opera' ? {
+				...(vendor == 'chrome' || vendor == 'edge' || vendor == 'opera' ? {
 					16: file(l, '../../../assets/target/extension/action_chrome_16.png'),
 					24: file(l, '../../../assets/target/extension/action_chrome_24.png'),
 					32: file(l, '../../../assets/target/extension/action_chrome_32.png')
@@ -93,7 +93,7 @@ module.exports = ({ vendor, production=false }, l) => {
 			'activeTab',
 			'scripting',
 			'storage',
-			...(vendor == 'chrome' ? ['sidePanel'] : []),
+			...(vendor == 'chrome' || vendor == 'edge' ? ['sidePanel'] : []),
 			...(vendor == 'safari-ios' ? ['tabs'] : [])
 		],
 		
@@ -129,26 +129,31 @@ module.exports = ({ vendor, production=false }, l) => {
 		commands: {
 			_execute_action: {
 				suggested_key: {
-					default: 'Ctrl+Shift+E'
+					default: 'Alt+R',
+					mac: 'MacCtrl+R'
 				}
 			},
 			save_page: {
-				suggested_key: {
-					default: vendor == 'firefox' ? 'Alt+Shift+S' : 'Ctrl+Shift+S'
+				suggested_key: vendor == 'chrome' ? {
+					default: 'Ctrl+Shift+S'
+				} : {
+					default: 'Alt+X',
+					mac: 'MacCtrl+X'
 				},
 				description: '__MSG_savePageOrHighlight__'
 			},
 			open_raindrop: {
 				description: '__MSG_openRaindrop__',
-			},
-			open_app: {
-				description: '__MSG_openApp__',
+				suggested_key: {
+					default: 'Alt+A',
+					mac: 'MacCtrl+A'
+				}
 			},
 
-			...(vendor == 'chrome' ? {
+			...(vendor == 'chrome' || vendor == 'edge' ? {
 				execute_side_panel: {
 					suggested_key: {
-						default: 'Alt+Shift+B'
+						default: 'Ctrl+Period'
 					},
 					description: '__MSG_openSidePanel__'
 				}
@@ -157,7 +162,7 @@ module.exports = ({ vendor, production=false }, l) => {
 			...(vendor == 'firefox' || vendor == 'opera' ? {
 				_execute_sidebar_action: {
 					suggested_key: {
-						default: 'Alt+Shift+B'
+						default: 'Ctrl+Period'
 					},
 					description: '__MSG_openSidePanel__'
 				}
@@ -165,7 +170,7 @@ module.exports = ({ vendor, production=false }, l) => {
 		},
 
 		//sidebar
-		...(vendor == 'chrome' ? {
+		...(vendor == 'chrome' || vendor == 'edge' ? {
 			side_panel: {
 				default_path: 'sidepanel.html'
 			}

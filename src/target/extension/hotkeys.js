@@ -4,7 +4,7 @@ export const hotkeys = {
     async getAll() {
         try{
             const commands = await browser.commands.getAll()
-            if (Array.isArray(commands) && commands.length)
+            if (commands?.[0]?.name)
                 return commands
         } catch(e){
             console.log(e)
@@ -17,11 +17,11 @@ export const hotkeys = {
             const { os } = await browser.runtime.getPlatformInfo()
 
             return Object.entries(commands)
-                .map(([name, { suggested_key, description }])=>{
-                    var shortcut = suggested_key ? (suggested_key[os] || suggested_key.default || '') : ''
+                .map(([name, { suggested_key={}, description='' }])=>{
+                    var shortcut = suggested_key?.[os] || suggested_key?.default || ''
 
                     if (os == 'mac')
-                        shortcut = shortcut.replace(/^Ctrl/, '⌘')
+                        shortcut = shortcut.replace(/^Ctrl/, '⌘').replace(/^MacCtrl/, '⌃')
 
                     return {
                         name,
@@ -48,6 +48,7 @@ export const hotkeys = {
                 return 'https://support.mozilla.org/en-US/kb/manage-extension-shortcuts-firefox'
 
             case 'chrome':
+            case 'edge':
             case 'opera':
                 return 'chrome://extensions/shortcuts'
         }

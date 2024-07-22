@@ -11,7 +11,8 @@ Be sure to run `npm i` before calling any commands below
 | web      | `npm run build` |
 | electron | `npm run build:electron` |
 | chrome   | `npm run build:extension:chrome` |
-| firefox  | `npm run build:extension:firefox` | Saved to `dist/firefox/prod`
+| edge     | `npm run build:extension:edge` |
+| firefox   | `npm run build:extension:firefox` | Saved to `dist/firefox/prod`
 | opera    | `npm run build:extension:opera` |
 | safari   | `npm run build:extension:safari` | Then open **build/xcode** project
 
