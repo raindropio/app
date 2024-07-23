@@ -142,7 +142,7 @@ module.exports = ({ vendor, production=false }, l) => {
 				},
 				description: '__MSG_savePageOrHighlight__'
 			},
-			open_raindrop: {
+			open_raindrop_web: {
 				description: '__MSG_openRaindrop__'
 			},
 

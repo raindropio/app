@@ -26,7 +26,7 @@ async function onCommand(command, tab) {
             return open(`/add?link=${encodeURIComponent(url)}`)
         }
 
-        case 'open_raindrop':
+        case 'open_raindrop_web':
             return browser.tabs.create({
                 url: config.links.app.index,
                 active: true
