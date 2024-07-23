@@ -143,11 +143,7 @@ module.exports = ({ vendor, production=false }, l) => {
 				description: '__MSG_savePageOrHighlight__'
 			},
 			open_raindrop: {
-				description: '__MSG_openRaindrop__',
-				suggested_key: {
-					default: 'Alt+A',
-					mac: 'MacCtrl+A'
-				}
+				description: '__MSG_openRaindrop__'
 			},
 
 			...(vendor == 'chrome' || vendor == 'edge' ? {

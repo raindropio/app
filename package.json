@@ -1,6 +1,6 @@
 {
 	"name": "app",
-	"version": "5.6.50",
+	"version": "5.6.51",
 	"description": "All-in-one bookmark manager",
 	"author": "Rustem Mussabekov",
 	"license": "MIT",
@@ -13,7 +13,7 @@
 		"local:electron": "webpack serve --config build/electron.js",
 		"local:prod": "npm run build && serve dist/web/prod -l 80",
 		"build": "webpack --config build/web.js --env production",
-		"build:extension": "npm run build:extension:chrome && npm run build:extension:firefox && npm run build:extension:opera && npm run build:extension:safari && npm run build:extension:safari-ios",
+		"build:extension": "npm run build:extension:chrome && npm run build:extension:edge && npm run build:extension:firefox && npm run build:extension:opera && npm run build:extension:safari && npm run build:extension:safari-ios",
 		"build:extension:chrome": "webpack --config build/extension.js --env production --env vendor=chrome",
 		"build:extension:edge": "webpack --config build/extension.js --env production --env vendor=edge",
 		"build:extension:firefox": "webpack --config build/extension.js --env production --env vendor=firefox",
