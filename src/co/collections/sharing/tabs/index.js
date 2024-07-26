@@ -24,7 +24,7 @@ export default function SharingTabs({ tab, setTab, _id }) {
     ], [collection, sharingCount])
 
     return (
-        <Header style={{paddingTop:0}}>
+        <Header style={{paddingTop:0}} data-static>
             <Tabs 
                 items={tabs}
                 active={tab}
