@@ -21,7 +21,7 @@ export default function SettingsIntegrationsReady() {
 
     const apps = useMemo(()=>[
         { title: 'Raycast Extension', href: 'https://www.raycast.com/lardissone/raindrop-io' },
-        { title: 'Alfred Workflow', href: 'https://www.packal.org/workflow/search-raindropio', icon: 'alfred' }
+        { title: 'Alfred Workflow', href: 'https://github.com/westerlind/alfred-raindrop-search', icon: 'alfred' }
     ], [])
 
     const webs = useMemo(()=>[

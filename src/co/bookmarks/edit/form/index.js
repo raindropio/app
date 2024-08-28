@@ -21,7 +21,7 @@ export default function BookmarkEditForm(props) {
     //load suggestions
     useEffect(()=>
         dispatch(suggestFields(props.item)),
-        [props.item._id, props.item.media]
+        [props.item._id]
     )
 
     const onSubmitForm = useCallback(e=>{
