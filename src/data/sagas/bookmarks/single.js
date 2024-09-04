@@ -21,6 +21,8 @@ import {
 	getMeta
 } from '../../helpers/bookmarks'
 
+import { isPro } from '../../selectors/user'
+
 //Requests
 export default function* () {
 	//helpers
@@ -369,10 +371,14 @@ function* reorder({ _id, ignore, order, collectionId }) {
 }
 
 function* suggestFields({ obj, ignore }) {
-	if (ignore) return;
-	if (!obj?.link && !obj?._id) return;
+	if (ignore) return
+	if (!obj?.link && !obj?._id) return
 
 	try{
+		const state = yield select()
+		const pro = isPro(state)
+		if (!pro) return
+
 		const { item } = obj._id ?
 			yield call(Api.get, `raindrop/${obj._id}/suggest`) :
 			yield call(Api.post, 'raindrop/suggest', obj)

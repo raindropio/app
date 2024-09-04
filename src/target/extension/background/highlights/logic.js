@@ -1,5 +1,5 @@
 import browser from 'webextension-polyfill'
-import { getMeta } from '~target'
+import { getMeta, environment } from '~target'
 import * as links from '../links'
 import inject from './highlight.js?asis'
 import Api from '~data/modules/api'
@@ -26,7 +26,7 @@ export async function load(tab) {
     //activate
     if (
         highlights.length || //when any highlights
-        !browser.contextMenus || //always active for mobile
+        environment.includes('safari-ios') || //always active for safari-ios
         await isInjected(tab) //or reset highlights if already injected
     )
         await apply(tab, highlights)
