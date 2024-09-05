@@ -18,7 +18,7 @@ export default function BookmarkEditFormActionMain({ status, onRemove }) {
             return (
                 <ButtonsGroup>
                     <Button 
-                        variant='link'
+                        variant='flat'
                         accent='danger'
                         onClick={onRemove}>
                         {t.s('remove')}

@@ -3,6 +3,7 @@ import config from '~config'
 import { currentTab } from '~target'
 import { open } from './popup'
 import { addCurrentTabSelection } from './highlights'
+import Api from '~data/modules/api'
 
 function getSelectedText() {
     var s = window.getSelection(); 
@@ -22,6 +23,16 @@ async function onCommand(command, tab) {
             })
             if (res?.result)
                 return addCurrentTabSelection()
+
+            let openAction = false
+            try {
+                const {user:{config}} = (await Api._get('user'))
+                openAction = config.browser_extension_mode == 'clipper' && config.add_auto_save == true
+            }
+            catch(e) { console.error(e) }
+
+            if (openAction)
+                return browser.action.openPopup()
 
             return open(`/add?link=${encodeURIComponent(url)}`)
         }
