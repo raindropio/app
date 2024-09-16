@@ -219,9 +219,7 @@ export const blankCollection = normalizeCollection()
 
 export const blankSharing = Immutable({
 	status: 'idle',
-	items: [],
-	sendInvitesTo: [],
-	sendInvitesStatus: 'idle',
+	items: []
 })
 
 export const blankSelectMode = Immutable({

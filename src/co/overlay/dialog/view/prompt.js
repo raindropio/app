@@ -24,7 +24,7 @@ export default class DialogPromptView extends React.PureComponent {
     }
 
     render() {
-        const { message } = this.props
+        const { message, ok, cancel, description } = this.props
         const { value } = this.state
 
         return (
@@ -38,6 +38,8 @@ export default class DialogPromptView extends React.PureComponent {
     
                 <form onSubmit={this.onSubmit}>
                     <Layout>
+                        {description ? <div className={s.description}>{description}</div> : null}
+
                         <Text 
                             autoFocus
                             selectAll
@@ -50,13 +52,13 @@ export default class DialogPromptView extends React.PureComponent {
                             as='input'
                             type='submit'
                             variant='primary'
-                            value='OK' />
+                            value={ok || 'OK'} />
 
                         <Button 
                             data-block
                             variant='outline'
                             onClick={this.onCancel}>
-                            {t.s('cancel')}
+                            {cancel || t.s('cancel')}
                         </Button>
                     </Layout>
                 </form>

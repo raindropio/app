@@ -29,8 +29,8 @@ export async function Confirm(message, custom={}) {
 }
 
 //Open prompt
-export async function Prompt(message, value='') {
-    return DialogsContainer.openDialog('prompt', { message, value })
+export async function Prompt(message, value='', custom={}) {
+    return DialogsContainer.openDialog('prompt', { message, value, ...custom })
 }
 
 //Include this component anywhere in the app once!

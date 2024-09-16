@@ -23,9 +23,3 @@ export const makeCollaboratorByUserId = ()=>createSelector(
 
 export const getSharingCount = (state, _id)=>
 	getSharing(state, _id).length
-
-export const getSharingSendInvitesTo = (state, _id) =>
-	state.collections.sharing.sendInvitesTo[_id] || blankSharing.sendInvitesTo
-
-export const getSharingSendInvitesStatus = (state, _id) =>
-	state.collections.sharing.sendInvitesStatus[_id] || blankSharing.sendInvitesStatus

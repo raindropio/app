@@ -62,8 +62,6 @@ const initialState = Immutable({
 	drafts: {},
 	sharing: {
 		status: {},
-		sendInvitesTo: {},
-		sendInvitesStatus: {},
 		items: {}
 	},
 	selectMode: blankSelectMode,

@@ -47,26 +47,31 @@ function* draftLoad({ _id=0 }) {
 	yield put({ type: SHARING_LOAD_REQ, collectionId: _id })
 }
 
-function* sendInvites({ collectionId=0, ignore=false, emails=[], role }) {
+function* sendInvites({ collectionId=0, ignore=false, role, onSuccess, onFail }) {
 	if ((ignore)||(collectionId<=0))
 		return;
 
 	try{
 		const res = yield call(Api.post, `collection/${collectionId}/sharing`, {
-			emails, role
+			role
 		})
+
+		if (typeof onSuccess == 'function')
+			onSuccess(res.link)
 
 		yield put({
 			type: SHARING_SEND_INVITES_SUCCESS,
-			collectionId,
-			emails: res.emails
-		});
+			collectionId
+		})
 	} catch (error) {
+		if (typeof onFail == 'function')
+			onFail(error)
+
 		yield put({
 			type: SHARING_SEND_INVITES_ERROR,
 			collectionId,
 			error
-		});
+		})
 	}
 }
 

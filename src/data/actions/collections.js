@@ -131,11 +131,13 @@ export const sharingUnshare = (collectionId)=>({
 	collectionId
 })
 
-export const sharingSendInvites = (collectionId, emails=[], role)=>({
+//onSuccess(link: string)
+export const sharingSendInvites = (collectionId, role, onSuccess, onFail)=>({
 	type: SHARING_SEND_INVITES_REQ,
 	collectionId,
-	emails,
-	role
+	role,
+	onSuccess: wrapFunc(onSuccess),
+	onFail: wrapFunc(onFail)
 })
 
 export const sharingJoin = (token, onSuccess, onFail)=>({
