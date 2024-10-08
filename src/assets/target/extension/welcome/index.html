@@ -45,9 +45,19 @@
             <a href="#pin" class="button size-regular variant-primary">Pin in Toolbar</a>
             <span class="or-text">or press</span>
 
-            <button data-system-show="macos" class="button size-regular variant-secondary only-icon" disabled>⌃</button>
-            <button data-system-hide="macos" class="button size-regular variant-secondary" disabled>Alt</button>
-            <button class="button size-regular variant-secondary only-icon" disabled>R</button>
+            <span data-browser-show="chrome">
+                <button data-system-show="macos" class="button size-regular variant-secondary only-icon" disabled>⌘</button>
+                <button data-system-hide="macos" class="button size-regular variant-secondary" disabled>Ctrl</button>
+                <button data-system-show="macos" class="button size-regular variant-secondary only-icon" disabled>⇧</button>
+                <button data-system-hide="macos" class="button size-regular variant-secondary" disabled>Shift</button>
+                <button class="button size-regular variant-secondary only-icon" disabled>S</button>
+            </span>
+
+            <span data-browser-hide="chrome">
+                <button data-system-show="macos" class="button size-regular variant-secondary only-icon" disabled>⌃</button>
+                <button data-system-hide="macos" class="button size-regular variant-secondary" disabled>Alt</button>
+                <button class="button size-regular variant-secondary only-icon" disabled>X</button>
+            </span>
         </div>
     </div>
 

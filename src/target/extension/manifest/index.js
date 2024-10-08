@@ -127,14 +127,8 @@ module.exports = ({ vendor, production=false }, l) => {
 		// },
 
 		commands: {
-			_execute_action: {
-				suggested_key: {
-					default: 'Alt+R',
-					mac: 'MacCtrl+R'
-				}
-			},
 			save_page: {
-				suggested_key: vendor == 'chrome' ? {
+				suggested_key: (vendor == 'chrome' || vendor == 'safari') ? {
 					default: 'Ctrl+Shift+S'
 				} : {
 					default: 'Alt+X',
@@ -142,6 +136,7 @@ module.exports = ({ vendor, production=false }, l) => {
 				},
 				description: '__MSG_savePageOrHighlight__'
 			},
+			
 			open_raindrop_web: {
 				description: '__MSG_openRaindrop__'
 			},
