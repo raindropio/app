@@ -79,7 +79,10 @@ export default class DropModule extends React.Component {
                     const found = e.dataTransfer.getData(record.type)
                         .split('\n')
                         .map(v=>v.trim())
-                        .filter(v=>URL.canParse(v) && new URL(v).host != location.host)
+                        .filter(v=>{
+                            try { return new URL(v).host != location.host }
+                            catch(e) { return false }
+                        })
                     
                     for(const link of found)
                         if (!links.includes(link))
