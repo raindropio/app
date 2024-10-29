@@ -1,16 +1,15 @@
 import React, { useRef, useMemo } from 'react'
 import t from '~t'
 import { useSelector } from 'react-redux'
-import { query as getQuery, makeSelectMode, count as getCount } from '~data/selectors/bookmarks'
+import { query as getQuery, makeSelectMode } from '~data/selectors/bookmarks'
 import { getUrlQuery } from '~data/helpers/bookmarks'
 import { API_ENDPOINT_URL } from '~data/constants/app'
 
-import Popover, { Menu, MenuItem, MenuSeparator, MenuSection } from '~co/overlay/popover'
+import Popover, { Menu, MenuItem, MenuSection } from '~co/overlay/popover'
 
 export default function BookmarksExportPopover({ spaceId = 0, pin, onClose }) {
     //space
     const query = useSelector(state=>getQuery(state, spaceId))
-    const count = useSelector(state=>getCount(state, spaceId))
 
     //select mode
     const getSelectMode = useRef(makeSelectMode()).current
@@ -28,31 +27,35 @@ export default function BookmarksExportPopover({ spaceId = 0, pin, onClose }) {
     )
 
     return (
-        <Popover 
-            pin={pin} 
+        <Popover
+            pin={pin}
             onClose={onClose}>
             <Menu>
-                {spaceId == 0 && !query.search && !selectMode.ids.length ? (
-                    <MenuItem to='/settings/backups'>
-                        Download complete backup
-                    </MenuItem>
-                ) : (<>
+                {spaceId == 0 && !query.search && !selectMode.ids.length ? (<>
                     <MenuSection>
-                        {t.s('export')}{' '}
-                        {selectMode.ids.length > 0 ? selectMode.ids.length : count}{' '}
-                        {t.s('bookmarks')}
+                        Click “Get backup” to download all your<br/>
+                        collections, bookmarks, tags, and highlights.<br/><br/>
+                        Or click “Download uploaded files” to download<br/>
+                        only your uploaded files, if available.
                     </MenuSection>
 
-                    <MenuItem href={`${prefix}/export.html${suffix}`} download>
-                        HTML
+                    <br/>
+
+                    <MenuItem to='/settings/backups'>
+                        Get backup
                     </MenuItem>
 
-                    <MenuItem href={`${prefix}/export.csv${suffix}`} download>
-                        CSV
+                    <MenuItem href={`${prefix}/export.zip${suffix}`} download>
+                        Download uploaded files
                     </MenuItem>
+                </>) : (<>
+                    <MenuSection>
+                        The ZIP file will contain your bookmarks,<br/>
+                        tags, highlights, and any uploaded files.
+                    </MenuSection>
 
-                    <MenuItem href={`${prefix}/export.txt${suffix}`} download>
-                        Text
+                    <MenuItem href={`${prefix}/export.zip${suffix}`} download>
+                        Download {selectMode.ids.length ? 'selection' : 'collection'}
                     </MenuItem>
                 </>)}
             </Menu>
