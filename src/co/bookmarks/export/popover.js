@@ -49,14 +49,24 @@ export default function BookmarksExportPopover({ spaceId = 0, pin, onClose }) {
                         Download uploaded files
                     </MenuItem>
                 </>) : (<>
-                    <MenuSection>
-                        The ZIP file will contain your bookmarks,<br/>
-                        tags, highlights, and any uploaded files.
-                    </MenuSection>
-
-                    <MenuItem href={`${prefix}/export.zip${suffix}`} download>
-                        Download {selectMode.ids.length ? 'selection' : 'collection'}
+                    <MenuItem href={`${prefix}/export.html${suffix}`} download>
+                        HTML
                     </MenuItem>
+
+                    <MenuItem href={`${prefix}/export.html${suffix}`} download>
+                        CSV
+                    </MenuItem>
+
+                    <MenuItem href={`${prefix}/export.html${suffix}`} download>
+                        TXT
+                    </MenuItem>
+                    <MenuItem href={`${prefix}/export.zip${suffix}`} download>
+                        ZIP
+                    </MenuItem>
+
+                    <MenuSection>
+                        Prefer ZIP if you need to<br/>download your uploaded files.
+                    </MenuSection>
                 </>)}
             </Menu>
         </Popover>
