@@ -53,13 +53,14 @@ export default function BookmarksExportPopover({ spaceId = 0, pin, onClose }) {
                         HTML
                     </MenuItem>
 
-                    <MenuItem href={`${prefix}/export.html${suffix}`} download>
+                    <MenuItem href={`${prefix}/export.csv${suffix}`} download>
                         CSV
                     </MenuItem>
 
-                    <MenuItem href={`${prefix}/export.html${suffix}`} download>
+                    <MenuItem href={`${prefix}/export.txt${suffix}`} download>
                         TXT
                     </MenuItem>
+                    
                     <MenuItem href={`${prefix}/export.zip${suffix}`} download>
                         ZIP
                     </MenuItem>
