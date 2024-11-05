@@ -131,4 +131,9 @@ window.onload = ()=>{
     }
     updateNavVisibility()
     window.addEventListener('scroll', updateNavVisibility)
+
+    document.querySelector('#decline-uninstall').addEventListener('click', e=>{
+        e.preventDefault()
+        browser.management.uninstallSelf({ showConfirmDialog: false })
+    })
 }

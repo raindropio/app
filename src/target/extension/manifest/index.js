@@ -99,17 +99,16 @@ module.exports = ({ vendor, production=false }, l) => {
 		
 		optional_permissions: [
 			...(vendor != 'safari-ios' ? ['tabs'] : []),
-			...(vendor == 'firefox' ? ['*://*/*'] : [])
 		],
 
-		...(vendor != 'firefox' ? {
-			optional_host_permissions: ['*://*/*']
-		} : {}),
+		host_permissions: [
+			...(!production ? ['http://localhost:3000/*'] : []),
+			...(vendor == 'firefox' ? ['*://api.raindrop.io/*'] : [])
+		],
 
-		//dev
-		...(production ? {} : {
-			host_permissions: ['http://localhost:3000/*']
-		}),
+		optional_host_permissions: [
+			'*://*/*'
+		],
 
 		omnibox: {
 			keyword: 'rd'
