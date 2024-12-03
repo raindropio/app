@@ -12,6 +12,7 @@ import Highlights from './highlights'
 import Reminder from './reminder'
 import Info from './info'
 import Actions from './actions'
+import { PreloadPreviewLink } from '~routes/my/item/tab/preview'
 
 export default function BookmarkItemView(props) {
     const { innerRef, isDragging } = props
@@ -98,6 +99,8 @@ export default function BookmarkItemView(props) {
                     onKeyUp={onKeyUp}>
                     {title}
                 </SuperLink>
+
+                <PreloadPreviewLink item={props} />
             </article>
         )}</DragItem>
     )
