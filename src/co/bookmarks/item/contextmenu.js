@@ -5,7 +5,7 @@ import Popover, { Menu, MenuItem, MenuSeparator } from '~co/overlay/popover'
 import { target } from '~target'
 
 export default function BookmarksItemContextmenu({
-    _id, link, important, access, reparse, cache, fileType,
+    _id, link, important, access, reparse, cache, fileType, type,
     onContextMenuClose, onRemoveClick, onCopyLinkClick,
     onSelectClick, onImportantClick, onReparseClick
 }) {
@@ -23,7 +23,7 @@ export default function BookmarksItemContextmenu({
                 <MenuSeparator />
 
                 {target != 'extension' && (
-                    <MenuItem to={`item/${_id}`}>
+                    <MenuItem to={`item/${_id}/${type == 'link' ? 'web' : 'preview'}`}>
                         {t.s('preview')}
                     </MenuItem>
                 )}

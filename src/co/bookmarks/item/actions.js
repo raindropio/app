@@ -7,7 +7,7 @@ import Button from '~co/common/button'
 import Icon from '~co/common/icon'
 
 export default function BookmarkItemActions(props) {
-    const { _id, link, access, important } = props
+    const { _id, link, access, important, type } = props
     const { className='' } = props
     const { onCopyLinkClick, onImportantClick, onRemoveClick } = props
 
@@ -38,7 +38,7 @@ export default function BookmarkItemActions(props) {
             <Button 
                 data-button='preview'
                 as={Link}
-                to={`item/${_id}/preview`}
+                to={`item/${_id}/${type == 'link' ? 'web' : 'preview'}`}
                 variant='outline'
                 title={t.s('preview')}>
                 <Icon name='show' />

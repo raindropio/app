@@ -126,6 +126,8 @@ module.exports = ({ vendor, production=false }, l) => {
 		// },
 
 		commands: {
+			_execute_action: {
+			},
 			save_page: {
 				suggested_key: (vendor == 'chrome' || vendor == 'safari') ? {
 					default: 'Ctrl+Shift+S'
