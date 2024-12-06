@@ -8,4 +8,4 @@ assignees: ''
 ---
 
 Do not post feature requests here please!
-We have a dedicated website for them https://better.raindrop.io/feature-requests
+We have a dedicated website for them https://raindropio.canny.io/feature-requests

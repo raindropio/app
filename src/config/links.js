@@ -17,7 +17,7 @@ export default {
     
     download: 'https://raindrop.io/download',
     blog: 'https://blog.raindrop.io',
-    better: 'https://better.raindrop.io',
+    better: 'https://raindropio.canny.io',
     twitter: 'https://twitter.com/raindrop_io',
     translation: 'https://crowdin.com/project/raindrop',
     home: 'https://raindrop.io',
