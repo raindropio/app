@@ -17,6 +17,10 @@
     }
 
     @media (pointer: fine) {
+        &:not(:hover) .actions {
+            display: none
+        }
+
         &:hover {
             background: var(--hover-background-color)
 
@@ -99,7 +103,7 @@ a.item {
 }
 
 .item .actions {
-    display: none
+    display: flex;
     text-align: right
     justify-content: flex-end
     position: relative
