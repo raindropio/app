@@ -27,9 +27,11 @@ export default function(state, action) {switch (action.type) {
 			//fix tags
 			if (key=='tags')
 				val = _.uniq(
-					val.map(tag=>
-						tag.trim().replace(/^#|^"#|^"|"$/gm, '')
-					)
+					val
+						.flatMap(tag=>tag.split(','))
+						.map(tag=>
+							tag.trim().replace(/^#|^"#|^"|"$/gm, '')
+						)
 				)
 
 			//update draft
