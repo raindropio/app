@@ -12,9 +12,22 @@ const options = {
 var items = new Map()
 var loading = false
 
+function simplifyURL(url) {
+    return normalizeURL(url, {
+        stripHash: !new URL(url).hash.includes('/'), //do not strip hash when it seems an SPA
+        stripWWW: true,
+        removeQueryParameters: [
+            //tracking
+            /^utm_\w+/i, 'ref', 'ref_src', 'source',
+            //youtube specific
+            ...(/youtube|youtu\.be/i.test(url) ? ['t'] : []),
+        ]
+    })
+}
+
 //has
 export function has(url) {
-    return items.has(normalizeURL(url))
+    return items.has(simplifyURL(url))
 }
 
 export function add(url, id) {
@@ -23,7 +36,7 @@ export function add(url, id) {
 
 //getId
 export function getId(url) {
-    return items.get(normalizeURL(url))
+    return items.get(simplifyURL(url))
 }
 
 //reload
@@ -60,7 +73,7 @@ export async function reload(force=false) {
 
     text.split('\n').forEach(line=>{
         const [_id, href] = line.split(options.divider)
-        const url = normalizeURL(
+        const url = simplifyURL(
             decodeURIComponent(
                 href||''
             )
