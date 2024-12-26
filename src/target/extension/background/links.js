@@ -1,5 +1,5 @@
 import browser from 'webextension-polyfill'
-import { normalizeURL } from '~modules/format/url'
+import { normalizeURL, isSPA } from '~modules/format/url'
 import Api from '~data/modules/api'
 import debounce from '~modules/format/callback/debounce'
 import * as action from './action'
@@ -14,7 +14,7 @@ var loading = false
 
 function simplifyURL(url) {
     return normalizeURL(url, {
-        stripHash: !new URL(url).hash.includes('/'), //do not strip hash when it seems an SPA
+        stripHash: !isSPA(url), //do not strip hash when it seems an SPA
         stripWWW: true,
         removeQueryParameters: [
             //tracking
