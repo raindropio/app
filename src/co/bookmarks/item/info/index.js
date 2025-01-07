@@ -9,7 +9,7 @@ import Icon, { Avatar } from '~co/common/icon'
 import Path from './path'
 
 export default function BookmarkItemInfo(props) {
-    const { className='', creatorRef, domain, type, link, created, reparse, collectionId, spaceId, important, broken, duplicate, cache, highlight } = props
+    const { className='', creatorRef, domain, type, link, created, reparse, collectionId, spaceId, important, broken, duplicate, cache, highlight, fileType } = props
 
     return (
         <div className={s.info+' '+className}>
@@ -51,7 +51,7 @@ export default function BookmarkItemInfo(props) {
                 <section data-inline><Icon name='progress' size='micro' /></section>
             ) : null}
 
-            {cache && cache != 'ready' && cache != 'retry' ? (
+            {!fileType && cache && cache != 'ready' && cache != 'retry' ? (
                 <section data-inline><Icon name='cache_failed' size='micro' /></section>
             ) : null}
 

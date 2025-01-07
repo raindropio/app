@@ -1,7 +1,7 @@
 import React, { useCallback, useMemo } from 'react'
 import { useSelector } from 'react-redux'
 import { useNavigate, useLocation } from 'react-router-dom'
-import { target, environment } from '~target'
+import { target, environment, openTab } from '~target'
 import Bookmarks from '~co/bookmarks'
 
 export default function PageMySpaceBookmarks({ cId, search, itemId }) {
@@ -19,7 +19,7 @@ export default function PageMySpaceBookmarks({ cId, search, itemId }) {
                 return false
 
             case 'new_tab':
-                window.open(item.link)
+                openTab(item.link, true)
                 if (target == 'extension' && !environment.includes('sidepanel'))
                     window.close()
                 return true
