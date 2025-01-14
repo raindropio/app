@@ -1,5 +1,5 @@
 import s from './suggested.module.styl'
-import React, { useMemo, useCallback } from 'react'
+import React, { useState, useMemo, useCallback } from 'react'
 import { useSelector } from 'react-redux'
 import { makeSuggestedFields } from '~data/selectors/bookmarks'
 import { makeCollectionPath } from '~data/selectors/collections'
@@ -43,6 +43,10 @@ export default function BookmarkEditFormCollectionSuggested({ item, events: { on
     const getSuggestedFields = useMemo(()=>makeSuggestedFields(), [])
     const { collections=[] } = useSelector(state=>getSuggestedFields(state, item))
 
+    //expand
+    const [expanded, setExpanded] = useState(false)
+    const onMouseOver = useCallback(()=>setExpanded(true), [])
+
     //click
     const onSuggestionClick = useCallback(e=>{
         const _id = parseInt(e.currentTarget.getAttribute('data-id'))
@@ -55,7 +59,9 @@ export default function BookmarkEditFormCollectionSuggested({ item, events: { on
     return (
         <div 
             className={s.suggested} 
-            data-is-new={item.collectionId <= 0}>
+            data-expanded={expanded}
+            data-is-new={item.collectionId <= 0}
+            onMouseOver={onMouseOver}>
             {collections.map(id=>(
                 <Suggestion 
                     key={id} 

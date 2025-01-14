@@ -386,8 +386,9 @@ function* suggestFields({ obj, ignore }) {
 		yield put({
 			type: BOOKMARK_SUGGESTED_FIELDS,
 			link: obj.link,
-			collections: item.collections.map(({$id})=>$id),
-			tags: item.tags
+			collections: (item.collections || []).map(({$id})=>$id),
+			tags: item.tags || [],
+			new_tags: item.new_tags || []
 		})
 	} catch (error) {
 		console.error(error)

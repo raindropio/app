@@ -206,10 +206,10 @@ export default function(state, action) {
 
 		//Suggestions
 		case BOOKMARK_SUGGESTED_FIELDS:{
-			const { link, collections, tags } = action
+			const { link, collections=[], tags=[], new_tags=[] } = action
 
 			return state
-				.setIn(['suggestedFields', link], { collections, tags })
+				.setIn(['suggestedFields', link], { collections, tags, new_tags })
 		}
 
 		//Update tags

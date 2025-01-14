@@ -4,10 +4,10 @@
     overflow: hidden
     min-height: calc(var(--icon-size) + var(--padding-small))
     max-height: calc(var(--icon-size) + var(--padding-small))
-    transition: opacity .15s ease-in, max-height .2s ease-out, min-height .2s ease-out
+    transition: opacity .2s ease-in, max-height .3s ease-out, min-height .3s ease-out
 
-    &:hover:not(:empty) {
-        transition-delay: .2s
+    &[data-expanded=true]:not(:empty) {
+        transition-delay: .2s;
         max-height: calc( (var(--icon-size) + var(--padding-small)) * 3 )
     }
 
@@ -30,7 +30,7 @@
         --icon-size: var(--padding-medium)
     }
 
-    &[data-tint]:not([data-tint='']) {
-        background: unquote('color-mix(in srgb, var(--tint) 12%, transparent)')
+    &[data-is-new=true] {
+        color: var(--secondary-text-color)
     }
 }

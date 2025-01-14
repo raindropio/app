@@ -54,9 +54,10 @@ export const makeSuggestedFields = ()=>createSelector(
 	[
 		({bookmarks}, { link })=>bookmarks.suggestedFields[link] || {},
 		(_, { collectionId })=>collectionId,
-		(_, { tags })=>tags
+		(_, { tags })=>tags,
+		(_, { new_tags })=>new_tags
 	],
-	({ collections=[], tags=[] }, collectionId, itemTags)=>{
+	({ collections=[], tags=[], new_tags=[] }, collectionId, itemTags)=>{
 		return ({
 			collections: collections?.[0] == collectionId ? 
 				emptyArray : 
@@ -64,6 +65,8 @@ export const makeSuggestedFields = ()=>createSelector(
 					.filter(cid=>cid!=collectionId)
 					.splice(0, 5),
 			tags: tags
+				.filter(tag=>!itemTags?.includes(tag)),
+			new_tags: new_tags
 				.filter(tag=>!itemTags?.includes(tag))
 		})
 	}
