@@ -7,8 +7,11 @@
     transition: opacity .2s ease-in, max-height .3s ease-out, min-height .3s ease-out
 
     &[data-expanded=true]:not(:empty) {
-        transition-delay: .2s;
         max-height: calc( (var(--icon-size) + var(--padding-small)) * 3 )
+
+        &:hover {
+            transition-delay: .2s;
+        }
     }
 
     &:empty {
