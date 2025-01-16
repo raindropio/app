@@ -20,10 +20,7 @@ export default function BookmarkEditForm(props) {
 
     //load suggestions
     useEffect(()=>
-        {
-            if (props.status == 'loaded' || props.status == 'new')
-                dispatch(suggestFields(props.item))
-        },
+        { dispatch(suggestFields(props.item)) },
         [props.item._id, props.status]
     )
 

@@ -15,7 +15,7 @@ import {
 	BOOKMARK_UPLOAD_PROGRESS,
 	BOOKMARK_IMPORTANT,
 	BOOKMARK_REORDER,
-	BOOKMARK_SUGGESTED_FIELDS
+	BOOKMARK_SUGGEST_FIELDS, BOOKMARK_SUGGESTED_FIELDS
 } from '../../constants/bookmarks'
 
 import {
@@ -205,6 +205,19 @@ export default function(state, action) {
 		}
 
 		//Suggestions
+		case BOOKMARK_SUGGEST_FIELDS:{
+			const { obj } = action
+			const link = obj?.link
+
+			if (!link || state.suggestedFields[link]) {
+				action.ignore = true
+				return state
+			}
+
+			return state
+				.setIn(['suggestedFields', link], {})
+		}
+
 		case BOOKMARK_SUGGESTED_FIELDS:{
 			const { link, collections=[], tags=[], new_tags=[] } = action
 
