@@ -112,6 +112,7 @@ const initialState = Immutable({
         items: [],
         count: {
             bookmarks: 0,
+            duplicates: 0,
             folders: 0,
             tags: 0,
             highlights: 0

@@ -43,6 +43,14 @@ class ImportFile extends React.Component {
                         <span>
                             {count.folders} {t.s('folders').toLowerCase()}, {count.bookmarks} {t.s('bookmarks')}, {count.tags} {t.s('tags').toLowerCase()} {t.s('und')} {count.highlights} {t.s('highlights').toLowerCase()}
                         </span>
+
+                        {count.duplicates ? (<>
+                            <br /><br />
+
+                            <Alert variant='warning'>
+                                Your file contains <b>{count.duplicates} duplicate bookmarks</b>. Only <b>{count.bookmarks-count.duplicates} unique bookmarks will be imported</b>.
+                            </Alert>
+                        </>) : null}
                     </div>
                 )
 
