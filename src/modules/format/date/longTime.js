@@ -1,5 +1,4 @@
 import React from 'react'
-import t from '~t'
 import { parseDate } from './parse'
 import dateFnsFormat from 'date-fns/format'
 
@@ -7,7 +6,7 @@ let _format
 function getFormat() {
     if (!_format)
         _format = new Intl.DateTimeFormat(
-            t.currentLang,
+            undefined,
             {
                 hour12: new Date().toLocaleTimeString().toString().match(/am|pm/i) ? true : false,
                 year: 'numeric',

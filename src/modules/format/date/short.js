@@ -1,5 +1,4 @@
 import React from 'react'
-import t from '~t'
 import isToday from 'date-fns/isToday'
 import isThisYear from 'date-fns/isThisYear'
 import dateFnsFormat from 'date-fns/format'
@@ -17,7 +16,7 @@ function getFormat(type) {
             default:        params = { year: 'numeric', month: 'short', day: 'numeric' }; break;
         }
 
-        _formats[type] = new Intl.DateTimeFormat(t.currentLang, { hour12, ...params }).format
+        _formats[type] = new Intl.DateTimeFormat(undefined, { hour12, ...params }).format
     }
 
     return _formats[type]

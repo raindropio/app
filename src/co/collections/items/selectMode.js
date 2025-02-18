@@ -17,7 +17,7 @@ export default class CollectionsSelectMode extends React.Component {
     onMergeSelected = async()=>{
         const { selectMode: { ids }, actions: { mergeSelected } } = this.props
         
-        if (await Confirm(`${t.s('areYouSure')}\n${t.s('merge')} ${ids.length} ${t.s('collectionsCount')}`))
+        if (await Confirm(`${t.s('areYouSure')}\n${t.s('merge')} ${ids.length} ${t.s('collectionsCount')}.\nAll selected collections will be merged into one.`))
             mergeSelected()
     }
 

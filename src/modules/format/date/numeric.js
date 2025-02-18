@@ -8,19 +8,16 @@ function getFormat() {
         _format = new Intl.DateTimeFormat(
             undefined,
             {
-                hour12: new Date().toLocaleTimeString().toString().match(/am|pm/i) ? true : false,
                 year: 'numeric',
-                month: 'short',
+                month: 'numeric',
                 day: 'numeric',
-                hour: 'numeric',
-                minute: 'numeric'
             }
         ).format
 
     return _format
 }
 
-export const shortDateTime = (original) => {
+export const numericDate = (original) => {
     let d
     try{ d = parseDate(original) } catch(e){}
     
@@ -29,14 +26,14 @@ export const shortDateTime = (original) => {
     }catch(e){}
 
     try{
-        return dateFnsFormat(d, 'P p')
+        return dateFnsFormat(d, 'P')
     }catch(e){}
 
     return ''
 }
 
-export const ShortDateTime = React.memo(
+export const NumericDate = React.memo(
     function({ date }) {
-        return shortDateTime(date)
+        return numericDate(date)
     }
 )
