@@ -10,7 +10,7 @@ import { Header } from '~co/screen/splitview/main'
 import { Title, Space } from '~co/common/header'
 
 import File from './file'
-import Mode from './mode'
+// import Mode from './mode'
 import Parcel from './parcel'
 import Help from './help'
 
@@ -42,7 +42,7 @@ export default function Import() {
 				<Helmet><title>{t.s('import')}</title></Helmet>
 		
 				<File />
-				<Mode />
+				{/* <Mode /> */}
 				<Parcel />
 			</Layout>
 		</>

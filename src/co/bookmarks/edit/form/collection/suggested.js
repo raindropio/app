@@ -31,7 +31,7 @@ function Suggestion({ id, onClick }) {
             tabIndex='-1'
             title={fullPath}
             onClick={onClick}>
-            <span className={s.path}>{shortPath}</span>
+            <div className={s.path}><span>{shortPath}</span></div>
         </Button>
     )
 }

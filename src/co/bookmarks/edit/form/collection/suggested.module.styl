@@ -35,6 +35,12 @@
     overflow: clip
     direction: rtl
     text-align: left
+    text-overflow: ellipsis
+
+    span {
+        direction: ltr
+        unicode-bidi: bidi-override
+    }
 }
 
 .suggestion {
