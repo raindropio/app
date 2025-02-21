@@ -1,88 +1,70 @@
 import s from './title.module.styl'
-import React from 'react'
+import React, { useState, useCallback, useRef } from 'react'
+import { useSelector } from 'react-redux'
+import { makeViewHide } from '~data/selectors/bookmarks'
 import t from '~t'
-
 import { Text } from '~co/common/form'
 
-export default class BookmarkEditFormTitle extends React.Component {
-    state = {
-        maxRows: {
-            title: 3,
-            excerpt: 1
-        },
-        focused: {
-            title: false,
-            excerpt: false
-        }
-    }
+export default function BookmarkEditFormTitle({ autoFocus, item: { title, excerpt }, onChange, onCommit }) {
+    const [maxRows, setMaxRows] = useState({
+        title: 3,
+        excerpt: 1
+    })
 
-    onChangeField = e=>
-        this.props.onChange({ [e.target.getAttribute('name')]: e.target.value })
+    const onChangeField = useCallback((e) => {
+        onChange({ [e.target.getAttribute('name')]: e.target.value })
+    }, [onChange])
 
-    onFocusField = e=>
-        this.setState({
-            maxRows: {
-                ...this.state.maxRows,
-                [e.target.getAttribute('name')]: undefined
-            },
-            focused: {
-                ...this.state.focused,
-                [e.target.getAttribute('name')]: true
-            }
-        })
+    const onFocusField = useCallback((e) => {
+        const fieldName = e.target.getAttribute('name')
+        setMaxRows(prev => ({
+            ...prev,
+            [fieldName]: undefined
+        }))
+    }, [setMaxRows])
 
-    onBlurField = e=> {
-        this.setState({
-            focused: {
-                ...this.state.focused,
-                [e.target.getAttribute('name')]: false
-            }
-        })
-        this.props.onCommit(e)
-    }
+    const getViewHide = useRef(makeViewHide()).current
+    const viewHide = useSelector(state=>getViewHide(state, 0))
 
-    render() {
-        const { autoFocus, item: { title, excerpt } } = this.props
-        const { maxRows } = this.state
+    return (
+        <div className={s.wrap}>
+            <Text 
+                variant='less'
+                font='title'
+                autoSize={true}
+                type='text'
+                required={true}
+                autoComplete='off'
+                spellCheck='false'
+                autoFocus={autoFocus === 'title'}
+                name='title'
+                placeholder={t.s('title')}
+                value={title}
+                maxRows={maxRows.title}
+                onChange={onChangeField}
+                onFocus={onFocusField}
+                onBlur={onCommit} />
 
-        return (
-            <div className={s.wrap}>
+            {viewHide.includes('excerpt') ? null : (
                 <Text 
-                    variant='less'
-                    font='title'
-                    autoSize={true}
-                    type='text'
-                    required={true}
-                    autoComplete='off'
-                    spellCheck='false'
-                    autoFocus={autoFocus=='title'}
-                    name='title'
-                    placeholder={t.s('title')}
-                    value={title}
-                    maxRows={maxRows.title}
-                    onChange={this.onChangeField}
-                    onFocus={this.onFocusField}
-                    onBlur={this.onBlurField} />
-
-                <Text 
-                    className={s.excerpt+' '+(!excerpt ? s.empty : '')}
+                    className={`${s.excerpt} ${!excerpt ? s.empty : ''}`}
                     variant='less'
                     font='secondary'
                     autoSize={true}
                     type='text'
                     autoComplete='off'
                     spellCheck='false'
-                    autoFocus={autoFocus=='excerpt'}
+                    autoFocus={autoFocus === 'excerpt'}
                     name='excerpt'
                     maxLength='10000'
                     multiline={true}
                     value={excerpt}
-                    placeholder={t.s('add') + ' ' + t.s('description').toLowerCase()}
+                    placeholder={`${t.s('add')} ${t.s('description').toLowerCase()}`}
                     maxRows={maxRows.excerpt}
-                    onChange={this.onChangeField}
-                    onFocus={this.onFocusField}
-                    onBlur={this.onBlurField} />
-            </div>
-        )
-    }
+                    onChange={onChangeField}
+                    onFocus={onFocusField}
+                    onBlur={onCommit} />
+            )}
+        </div>
+    )
 }
