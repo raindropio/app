@@ -83,7 +83,7 @@ function AddForm({ spaceId, onEdit, pin, onClose }) {
                         autoComplete='off'
                         spellCheck='false'
                         autoFocus={true}
-                        maxRows={5}
+                        maxRows={10}
                         value={text}
                         placeholder='https://'
                         onChange={onChangeInput} />
