@@ -12,7 +12,8 @@ import {
 	BOOKMARK_REORDER,
 	BOOKMARK_SUGGEST_FIELDS, BOOKMARK_SUGGESTED_FIELDS,
 
-	BOOKMARK_RECOVER, BOOKMARK_IMPORTANT, BOOKMARK_SCREENSHOT, BOOKMARK_REPARSE, BOOKMARK_MOVE
+	BOOKMARK_RECOVER, BOOKMARK_IMPORTANT, BOOKMARK_SCREENSHOT, BOOKMARK_REPARSE, BOOKMARK_MOVE,
+	BOOKMARKS_REPARSE_INPLACE
 } from '../../constants/bookmarks'
 
 import {
@@ -43,6 +44,7 @@ export default function* () {
 
 	//many
 	yield takeEvery(BOOKMARKS_CREATE_REQ, createBookmarks)
+	yield takeEvery(BOOKMARKS_REPARSE_INPLACE, reparseInplace)
 }
 
 function* loadBookmark({ ignore=false, _id }) {
@@ -390,6 +392,27 @@ function* suggestFields({ obj, ignore }) {
 			tags: item.tags || [],
 			new_tags: item.new_tags || []
 		})
+	} catch (error) {
+		console.error(error)
+	}
+}
+
+function* reparseInplace({ items, ignore }) {
+	if (ignore) return
+
+	try{
+		for(const { _id, link } of items) {
+			const parsed = yield call(Api.get, 'import/url/parse?url='+encodeURIComponent(link))
+
+			yield put({
+				type: BOOKMARK_UPDATE_REQ,
+				_id: _id,
+				set: {
+					...parsed.item,
+					pleaseParse: null
+				}
+			})
+		}
 	} catch (error) {
 		console.error(error)
 	}

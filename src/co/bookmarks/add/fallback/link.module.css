@@ -1,15 +1,3 @@
 .modal {
     width: 11rem
 }
-
-.suggestions {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: var(--padding-small);
-    padding-bottom: var(--padding-small)
-}
-
-.or {
-    color: var(--secondary-text-color)
-}

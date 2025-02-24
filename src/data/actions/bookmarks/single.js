@@ -3,7 +3,8 @@ import {
 	BOOKMARK_LOAD_REQ, BOOKMARK_CREATE_REQ, BOOKMARKS_CREATE_REQ, BOOKMARK_UPDATE_REQ, BOOKMARK_REMOVE_REQ, BOOKMARK_UPLOAD_REQ,
 	BOOKMARK_RECOVER, BOOKMARK_IMPORTANT, BOOKMARK_SCREENSHOT, BOOKMARK_REPARSE, BOOKMARK_MOVE,
 	BOOKMARK_REORDER,
-	BOOKMARK_SUGGEST_FIELDS
+	BOOKMARK_SUGGEST_FIELDS,
+	BOOKMARKS_REPARSE_INPLACE
 } from '../../constants/bookmarks'
 
 //High level API
@@ -95,4 +96,9 @@ export const manyCreate = (items=[], onSuccess, onFail)=>({
 	items,
 	onSuccess: wrapFunc(onSuccess),
 	onFail: wrapFunc(onFail)
+})
+
+export const manyReparseInplace = (items=[])=>({
+	type: BOOKMARKS_REPARSE_INPLACE,
+	items
 })
