@@ -8,7 +8,6 @@ export function extractURLs(text) {
         (String(text)||'').match(urlPattern) || []
     )
         .filter(url=>
-            (url.match(/https?/g) || []).length == 1 &&
             isURL(url, { require_protocol: true, require_tld: true })
         )
 }
