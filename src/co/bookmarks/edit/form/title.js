@@ -1,4 +1,3 @@
-import s from './title.module.styl'
 import React, { useState, useCallback, useRef } from 'react'
 import { useSelector } from 'react-redux'
 import { makeViewHide } from '~data/selectors/bookmarks'
@@ -27,7 +26,7 @@ export default function BookmarkEditFormTitle({ autoFocus, item: { title, excerp
     const viewHide = useSelector(state=>getViewHide(state, 0))
 
     return (
-        <div className={s.wrap}>
+        <div>
             <Text 
                 variant='less'
                 font='title'
@@ -47,7 +46,6 @@ export default function BookmarkEditFormTitle({ autoFocus, item: { title, excerp
 
             {viewHide.includes('excerpt') ? null : (
                 <Text 
-                    className={`${s.excerpt} ${!excerpt ? s.empty : ''}`}
                     variant='less'
                     font='secondary'
                     autoSize={true}
