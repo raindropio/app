@@ -61,7 +61,9 @@ export default function BookmarkItemInfo(props) {
 
             {highlight.link ? (
                 <SafeHtml tagName='section' html={highlight.link} />
-            ) : <section>{domain}</section>}
+            ) : (
+                <section>{fileType ? t.s('file') : domain}</section>
+            )}
 
             <section><ShortDate date={created}/></section>
         </div>
