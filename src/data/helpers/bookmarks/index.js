@@ -130,7 +130,7 @@ export const normalizeMeta = (item={})=>{
 }
 
 export const normalizeHighlight = (highlight)=>{
-	return _.pick(highlight||{}, ['_id', 'text', 'note', 'color', 'created'])
+	return _.pick(highlight||{}, ['_id', 'text', 'note', 'color', 'created', 'position'])
 }
 
 export const blankSelectMode = Immutable({
