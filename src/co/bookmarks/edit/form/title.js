@@ -1,6 +1,4 @@
-import React, { useState, useCallback, useRef } from 'react'
-import { useSelector } from 'react-redux'
-import { makeViewHide } from '~data/selectors/bookmarks'
+import React, { useState, useCallback } from 'react'
 import t from '~t'
 import { Text } from '~co/common/form'
 
@@ -22,9 +20,6 @@ export default function BookmarkEditFormTitle({ autoFocus, item: { title, excerp
         }))
     }, [setMaxRows])
 
-    const getViewHide = useRef(makeViewHide()).current
-    const viewHide = useSelector(state=>getViewHide(state, 0))
-
     return (
         <div>
             <Text 
@@ -44,25 +39,23 @@ export default function BookmarkEditFormTitle({ autoFocus, item: { title, excerp
                 onFocus={onFocusField}
                 onBlur={onCommit} />
 
-            {viewHide.includes('excerpt') ? null : (
-                <Text 
-                    variant='less'
-                    font='secondary'
-                    autoSize={true}
-                    type='text'
-                    autoComplete='off'
-                    spellCheck='false'
-                    autoFocus={autoFocus === 'excerpt'}
-                    name='excerpt'
-                    maxLength='10000'
-                    multiline={true}
-                    value={excerpt}
-                    placeholder={`${t.s('add')} ${t.s('description').toLowerCase()}`}
-                    maxRows={maxRows.excerpt}
-                    onChange={onChangeField}
-                    onFocus={onFocusField}
-                    onBlur={onCommit} />
-            )}
+            <Text 
+                variant='less'
+                font='secondary'
+                autoSize={true}
+                type='text'
+                autoComplete='off'
+                spellCheck='false'
+                autoFocus={autoFocus === 'excerpt'}
+                name='excerpt'
+                maxLength='10000'
+                multiline={true}
+                value={excerpt}
+                placeholder={`${t.s('add')} ${t.s('description').toLowerCase()}`}
+                maxRows={maxRows.excerpt}
+                onChange={onChangeField}
+                onFocus={onFocusField}
+                onBlur={onCommit} />
         </div>
     )
 }
