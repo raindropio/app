@@ -168,6 +168,11 @@ module.exports = ({ vendor, production=false }, l) => {
 			}
 		} : {}),
 
+		// Enable extension to be pinned to Edge sidebar 
+		...(vendor == 'edge' ? {
+			edge_side_panel: {}
+		} : {}),
+
 		...(vendor == 'firefox' || vendor == 'opera' ? {
 			sidebar_action: {
 				default_panel: 'sidepanel.html',
