@@ -110,7 +110,11 @@ module.exports = (env={}, args={}) =>
                             url: 'https://chrome.google.com/webstore/detail/ldgfbffkinooeloadekpmfoklnobpien',
                             id: 'ldgfbffkinooeloadekpmfoklnobpien'
                         }
-                    ]
+                    ],
+
+                    edge_side_panel: {
+                        preferred_width: 400
+                    }
                 })
             ]
         }

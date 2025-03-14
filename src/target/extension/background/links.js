@@ -22,7 +22,7 @@ function simplifyURL(url) {
             //youtube specific
             ...(/youtube|youtu\.be/i.test(url) ? ['t'] : []),
         ]
-    })
+    }).toLowerCase()
 }
 
 //has
