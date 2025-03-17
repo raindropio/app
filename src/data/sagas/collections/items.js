@@ -88,6 +88,7 @@ function* toggleAll({ ignore=false, expanded=false }){
 	if (ignore) return
 
 	yield call(Api.put, 'collections', { expanded }) 
+	yield put({ type: COLLECTIONS_REFRESH_REQ })
 }
 
 function* reorderAll({ ignore=false, method }){

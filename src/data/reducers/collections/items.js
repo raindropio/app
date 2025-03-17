@@ -119,11 +119,6 @@ export default function(state, action) {switch (action.type) {
 
 	case COLLECTIONS_TOGGLE_ALL:{
 		action.expanded = Object.entries(state.items).some(([_id])=>_id > 0 && !state.getIn(['items', _id, 'expanded']))
-
-		Object.entries(state.items).forEach(([_id])=>{
-			state = state.setIn(['items', _id, 'expanded'], action.expanded)
-		})
-
 		return state
 	}
 
