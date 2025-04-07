@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux'
 import { bookmark, tags, makeHighlights, makeIsSelected, makeHighlight, makeCreatorRef, makeSelectModeEnabled, selectModeWorking, getCoverSize } from '~data/selectors/bookmarks'
 import * as bookmarksActions from '~data/actions/bookmarks'
 import { copyText } from '~modules/browser'
+import { openTab } from '~target'
 
 import View from './view'
 import Contextmenu from './contextmenu'
@@ -34,9 +35,9 @@ class BookmarkItem extends React.Component {
 
             const { selectModeEnabled, item } = this.props
 
-            if (e.metaKey || e.ctrlKey || e.nativeEvent.which==3){
+            if (e.metaKey || e.ctrlKey || e.nativeEvent.which==2){
                 e.preventDefault()
-                return window.open(item.link)
+                return openTab(item.link)
             }
 
             if (selectModeEnabled || e.shiftKey){
@@ -51,7 +52,7 @@ class BookmarkItem extends React.Component {
 
         onDoubleClick: (e)=>{
             e.preventDefault()
-            window.open(this.props.item.link)
+            openTab(this.props.item.link)
         },
 
         onSelectClick: (e={})=>

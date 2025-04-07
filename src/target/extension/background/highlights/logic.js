@@ -139,6 +139,7 @@ export async function addSelection(tab) {
 //inject and send message to highlights script on page
 async function send(tab, type, payload) {
     if (!tab) return
+    if (/^https?/.test(tab?.url||'') === false) return
 
     //inject highlights script
     const injected = await isInjected(tab)
@@ -160,6 +161,9 @@ async function send(tab, type, payload) {
 
 //is injected
 async function isInjected(tab) {
+    if (/^https?/.test(tab?.url||'') === false)
+        return false
+
     if (!await browser.permissions.contains({
         permissions: ['scripting'],
         ...(tab?.url ? {origins: [tab.url]} : {})
