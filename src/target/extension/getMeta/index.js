@@ -2,8 +2,8 @@ import browser from '../browser'
 import { currentTab } from '../currentTab'
 import parse from './parse?asis'
 
-export async function getMeta() {
-    const { id, url: link, title } = await currentTab()
+export async function getMeta(tab) {
+    const { id, url: link, title } = tab || await currentTab()
 
     try{
         if (browser.scripting) {

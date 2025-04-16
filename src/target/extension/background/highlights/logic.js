@@ -1,5 +1,5 @@
 import browser from 'webextension-polyfill'
-import { getMeta, environment } from '~target'
+import { environment } from '~target'
 import * as links from '../links'
 import inject from './highlight.js?asis'
 import Api from '~data/modules/api'
@@ -51,11 +51,9 @@ export async function add(tab, newOne) {
     }
     //new bookmark
     else {
-        const meta = await getMeta(tab)
         const created = await Api._post('raindrop', {
             link: tab.url,
             title: tab.title,
-            ...meta,
             highlights: [newOne],
             pleaseParse: { weight: 1 }
         }, {
