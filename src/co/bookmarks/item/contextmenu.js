@@ -30,7 +30,7 @@ export default function BookmarksItemContextmenu({
 
                 {access && access.level >= 2 && cache ? (
                     <MenuItem to={`item/${_id}/cache`}>
-                        {cache != 'ready' ? '⚠️ ' : ''}{t.s('permanentCopy')}
+                        {cache != 'ready' ? '⚠️ ' : ''}{t.s('open')} {t.s('permanentCopy').toLowerCase()}
                     </MenuItem>
                 ) : null}
 
