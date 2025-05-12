@@ -29,7 +29,7 @@ export default function(state, action) {switch (action.type) {
 			const clean = space
 				.set('ids', _.uniq(space.ids).slice(0, SPACE_PER_PAGE))
 				.setIn(['query', 'page'], 0)
-				.setIn(['status', 'nextPage'], blankSpace.status.nextPage)
+				//.setIn(['status', 'nextPage'], blankSpace.status.nextPage)
 
 			state = state.setIn(['spaces', _id], clean)
 		})
@@ -134,7 +134,7 @@ export default function(state, action) {switch (action.type) {
 
 		//statuses
 		space = space.setIn(['status', 'main'],		ids.length ? 'loaded' : 'empty')
-		space = space.setIn(['status', 'nextPage'],	(space.status.main == 'empty') ? 'noMore' : 'idle')
+		space = space.setIn(['status', 'nextPage'],	(space.status.main == 'empty' || count == ids.length) ? 'noMore' : 'idle')
 
 		return state
 			.setIn(['spaces', spaceId], space)
