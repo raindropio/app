@@ -12,7 +12,10 @@ const currentTab = getMeta().then(val=>_cached = val).catch(()=>{})
 
 export default function Clipper(props) {
     const [item, setItem] = useState(_cached)
-    useEffect(async ()=>{ setItem(await currentTab) },[])
+    useEffect(async ()=>{
+        if (item) return
+        setItem(await currentTab)
+    },[])
 
     return (
         <Screen>

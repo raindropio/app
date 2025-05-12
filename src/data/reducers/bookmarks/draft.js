@@ -148,17 +148,15 @@ export default function(state, action) {switch (action.type) {
 
 	case BOOKMARK_CREATE_SUCCESS:{
 		const { draft, item } = action
-		if (!draft) return state
-
-		const newItem = normalizeBookmark(item, {flat: false})
+		if (!draft || !state.drafts[draft]) return state
 
 		return state
-			.setIn(
-				['drafts', draft],
-				blankDraft
-					.set('status', 'loaded')
-					.set('item', newItem)
-					.set('changedFields', [])
+			.setIn(['drafts', draft, 'status'], 'loaded')
+			.setIn(['drafts', draft, 'error'], undefined)
+			.setIn(['drafts', draft, 'item'],
+				state.drafts[draft].item.merge(
+					_.omit(normalizeBookmark(item, {flat: false}), state.drafts[draft].changedFields)
+				)
 			)
 	}
 
