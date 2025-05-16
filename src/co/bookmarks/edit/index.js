@@ -5,6 +5,7 @@ import { Prompt } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { draftLoad, draftCommit, draftChange, draftCoverUpload, oneRemove, oneRecover } from '~data/actions/bookmarks'
 import { getDraftItem, getDraftStatus, makeDraftUnsaved } from '~data/selectors/bookmarks'
+import { target } from '~target'
 
 import { Error } from '~co/overlay/dialog'
 import Form from './form'
@@ -55,7 +56,7 @@ class EditBookmarkContainer extends React.Component {
 		//save unsaved changes if user try to close window
 		this.handlers.onCommit()
 		
-		if (unsaved && status != 'new')
+		if (target == 'web' && unsaved && status != 'new')
 			if (e && e.preventDefault){
 				e.preventDefault()
 				e.returnValue = ''
