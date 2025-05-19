@@ -25,11 +25,13 @@ export default function(state, action) {switch (action.type) {
 				space.status.main != 'loaded' ||
 				space.status.nextPage == 'loading') return
 
+			const ids = _.uniq(space.ids)
+
 			//clean up
 			const clean = space
-				.set('ids', _.uniq(space.ids).slice(0, SPACE_PER_PAGE))
+				.set('ids', ids.slice(0, SPACE_PER_PAGE))
 				.setIn(['query', 'page'], 0)
-				//.setIn(['status', 'nextPage'], blankSpace.status.nextPage)
+				.setIn(['status', 'nextPage'], ids.length <= SPACE_PER_PAGE ? space.status.nextPage : blankSpace.status.nextPage)
 
 			state = state.setIn(['spaces', _id], clean)
 		})
