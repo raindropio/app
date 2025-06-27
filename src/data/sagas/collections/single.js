@@ -115,7 +115,7 @@ export function* createCollection({obj={}, ignore=false, after, fromBlank=false,
 			}
 		}
 
-		const { item={} } = yield call(Api.post, 'collection', obj)
+		const { item={} } = yield call(Api.post, 'collection', obj, {}, 3)
 
 		item.new = true
 

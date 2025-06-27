@@ -14,7 +14,7 @@ function* fileUpload({ file, ignore=false, onSuccess, onFail }) {
     if (ignore) return
 
 	try{
-		const { items=[], count } = yield call(Api.upload, 'import/file', { import: file }, { timeout: 0 })
+		const { items=[], count } = yield call(Api.upload, 'import/file', { import: file }, { timeout: 0 }, 3)
 
 		yield put({
 			type: c.IMPORT_FILE_UPLOAD_SUCCESS,
@@ -144,7 +144,7 @@ function* processBookmarks(mode, bookmarks, collectionId) {
 		if (mode === 'new'){
 			const { duplicates=[] } = yield call(Api.post, 'import/url/exists', {
 				urls: items.map(({ link })=>link)
-			}, { timeout: 0 })
+			}, { timeout: 0 }, 3)
 
 			if (duplicates.length)
 				items = items.filter(({ link })=>
@@ -156,7 +156,7 @@ function* processBookmarks(mode, bookmarks, collectionId) {
 
 		//create bookmarks
 		if (items.length)
-			yield call(Api.post, 'raindrops', { items }, { timeout: 0 })
+			yield call(Api.post, 'raindrops', { items }, { timeout: 0 }, 3)
 
 		//update progress
 		yield put({

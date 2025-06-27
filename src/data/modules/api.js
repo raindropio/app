@@ -42,7 +42,7 @@ function* put(url, data={}, options={}) {
 	return json;
 }
 
-function* post(url, data={}, options={}) {
+function* post(url, data={}, options={}, retries=0) {
 	const res = yield req(url, {
 		...options,
 		method: 'POST',
@@ -51,7 +51,7 @@ function* post(url, data={}, options={}) {
 			'Content-Type': 'application/json'
 		},
 		body: JSON.stringify(data)
-	})
+	}, retries)
 	const json = yield res.json()
 	checkJSON(json)
 
@@ -63,7 +63,7 @@ function* post(url, data={}, options={}) {
 		file: {uri, name, type:'image/jpeg'}
 	}
 */
-function* upload(url, _body, options={}) {
+function* upload(url, _body, options={}, retries=0) {
 	const body = new FormData()
 
 	for (const key in _body ) {
@@ -75,7 +75,7 @@ function* upload(url, _body, options={}) {
 		...options,
 		method: 'PUT',
 		body
-	})
+	}, retries)
 
 	const json = yield res.json()
 	checkJSON(json)
