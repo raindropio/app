@@ -93,6 +93,7 @@ class ImportFile extends React.Component {
                             <input 
                                 ref={this.input}
                                 type='file'
+                                accept='*/*'
                                 style={{display: 'none'}}
                                 onChange={this.onFileUpload} />
                         </Button>

@@ -43,6 +43,8 @@ function AccountProfileAvatar({ avatar, status }) {
 
                     <input 
                         type='file'
+                        accept='image/*'
+                        capture='user'
                         style={{display: 'none'}}
                         onChange={onUpload} />
                 </Button>

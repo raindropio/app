@@ -21,6 +21,7 @@ function PickerFileElement({ children, onDropFiles }) {
 
             <input 
                 type='file' 
+                accept='*/*'
                 hidden
                 onChange={onFileChange} />
         </>

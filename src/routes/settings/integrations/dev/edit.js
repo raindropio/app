@@ -172,6 +172,7 @@ class DevEdit extends React.Component {
 
                                     <input 
                                         type='file'
+                                        accept='image/*'
                                         style={{display: 'none'}}
                                         onChange={this.onIconUpload} />
                                 </Button>
