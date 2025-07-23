@@ -35,8 +35,12 @@ export default function PageJoin() {
                     <Alert 
                         className={s.alert}
                         variant='danger'>
-                        Becoming a member of the collection is impossible.<br/>
-                        The URL is invalid or out of date. Please ask the collection's author to invite you again.
+                        {error?.message?.includes?.('token') ?
+                            (<div>
+                                Becoming a member of the collection is impossible.<br/>
+                                The URL is invalid or out of date. Please ask the collection\'s author to invite you again.
+                            </div>) :
+                            error?.message}
                     </Alert>
                 ) : <Preloader enlarge='2' />
             )}
