@@ -1,9 +1,6 @@
 # Raindrop.io 5.0
 Mono repo for Raindrop.io web app, browser extension and desktop app
 
-## Hi Mozilla Add-on review!
-[Build highlight.js](https://github.com/raindropio/highlight)
-
 ## Build
 Be sure to run `npm i` before calling any commands below
 | target   | command | notes |
