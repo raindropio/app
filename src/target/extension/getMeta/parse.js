@@ -18,6 +18,7 @@ function getJsonLd() {
             const json = JSON.parse(elem.innerText) || {}
             if (typeof json['@context'] != 'string' || !json['@context'].includes('schema.org')) continue
             if (json.url && !similarURL(json.url)) continue
+            if (json['@id'] && URL.canParse(json['@id']) && !similarURL(json['@id'])) continue
 
             if (json.name || json.headline){
                 item = json
@@ -79,7 +80,7 @@ function htmlDecode(input) {
         var doc = new DOMParser().parseFromString(input||'', 'text/html');
         return doc.documentElement.textContent;
     } catch(e) {
-        e.error(e)
+        console.error(e)
         return input
     }
 }
