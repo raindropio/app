@@ -45,7 +45,10 @@ async function onCommand(command, tab) {
 
         case 'execute_side_panel': {
             const { windowId } = tab
-            return browser.sidePanel.open({ windowId })
+            await browser.sidePanel.open({ windowId })
+            //hack to toggle sidepanel
+            try { await browser.runtime.sendMessage('closeSidePanel') } catch {}
+            return
         }
     }
 }
