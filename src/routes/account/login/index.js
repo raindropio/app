@@ -1,51 +1,41 @@
-import React, { useState, useCallback, useEffect } from 'react'
+import React, { useState, useCallback, useMemo } from 'react'
 import t from '~t'
-import { useDispatch, useSelector } from 'react-redux'
-import { userStatus, errorReason } from '~data/selectors/user'
-import { loginWithPassword } from '~data/actions/user'
+import { API_ENDPOINT_URL } from '~data/constants/app'
 
 import { Helmet } from 'react-helmet'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useSearchParams } from 'react-router-dom'
 import { Layout, Text, Label } from '~co/common/form'
 import Button from '~co/common/button'
-import Preloader from '~co/common/preloader'
 import Social from '../social'
-import { Error } from '~co/overlay/dialog'
+import Alert from '~co/common/alert'
 
 export default function AccountLogin() {
-    const dispatch = useDispatch()
-    const navigate = useNavigate()
-
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const status = useSelector(state=>userStatus(state).login)
-    const error = useSelector(state=>errorReason(state).login)
+    const [search] = useSearchParams()
+    const redirect = sessionStorage.getItem('redirect') || ''
 
-    useEffect(()=>{
-        if (error) Error(error)
-    }, [error])
+    const error = useMemo(()=>{
+        const { error } = Object.fromEntries(new URLSearchParams(search))||{}
+        return error
+    }, [search])
 
     const onChangeEmailField = useCallback(e=>setEmail(e.target.value), [])
     const onChangePasswordField = useCallback(e=>setPassword(e.target.value), [])
 
-    const onSubmit = useCallback(e=>{
-        e.preventDefault()
-        dispatch(loginWithPassword({ email, password }, success=>{
-            if (success?.tfa)
-                navigate(`/account/tfa/login/${success.tfa}`, { replace: true })
-        }))
-    }, [email, password, navigate])
-
     return (
-        <form onSubmit={onSubmit}>
+        <form method='POST' action={`${API_ENDPOINT_URL}auth/email/login`}>
             <Helmet><title>{t.s('signIn')}</title></Helmet>
 
             <Layout>
+                {error ? (
+                    <Alert variant='danger'>{error}</Alert>
+                ) : null}
+
                 <Label>Email {t.s('or')} {t.s('username').toLowerCase()}</Label>
                 <Text
                     type='text'
                     name='email'
-                    disabled={status=='loading'}
                     autoFocus
                     required
                     inputMode='email'
@@ -68,26 +58,20 @@ export default function AccountLogin() {
                 <Text
                     type='password'
                     name='password'
-                    disabled={status=='loading'}
                     required
                     value={password}
                     onChange={onChangePasswordField} />
 
-                {status == 'loading' ? (
-                    <Button variant='flat' data-block>
-                        <Preloader />
-                    </Button>
-                ) : (
-                    <Button
-                        as='input' 
-                        type='submit'
-                        variant='primary'
-                        data-block
-                        value={t.s('signIn')} />
-                )}
+                <input type='hidden' name='redirect' value={redirect} />
 
-                <Social
-                    disabled={status == 'loading'} />
+                <Button
+                    as='input'
+                    type='submit'
+                    variant='primary'
+                    data-block
+                    value={t.s('signIn')} />
+
+                <Social />
 
                 <Button
                     as={Link}
