@@ -63,28 +63,28 @@ module.exports = ({ vendor, production=false }, l) => {
 					file(l, '../../../assets/target/extension/action_in_iframe.js'),
 				][0] : 
 				'index.html?action',
-			default_icon: {
-				//chrome based icon
-				...(vendor == 'chrome' || vendor == 'edge' || vendor == 'opera' ? {
-					16: file(l, '../../../assets/target/extension/action_chrome_16.png'),
-					24: file(l, '../../../assets/target/extension/action_chrome_24.png'),
-					32: file(l, '../../../assets/target/extension/action_chrome_32.png')
-				} : {}),
-				//safari icon
-				...(vendor.startsWith('safari') ? {
-					16: file(l, '../../../assets/target/extension/action_safari_16.png'),
-					19: file(l, '../../../assets/target/extension/action_safari_19.png'),
-					32: file(l, '../../../assets/target/extension/action_safari_32.png'),
-					38: file(l, '../../../assets/target/extension/action_safari_38.png')
-				} : {})
-			},
-			//firefox
+			
+			default_icon: vendor == 'firefox' ?
+				//firefox
+				file(l, '../../../assets/target/extension/action.svg') :
+				{
+					//chrome based icon
+					...(vendor == 'chrome' || vendor == 'edge' || vendor == 'opera' ? {
+						16: file(l, '../../../assets/target/extension/action_chrome_16.png'),
+						24: file(l, '../../../assets/target/extension/action_chrome_24.png'),
+						32: file(l, '../../../assets/target/extension/action_chrome_32.png')
+					} : {}),
+					//safari icon
+					...(vendor.startsWith('safari') ? {
+						16: file(l, '../../../assets/target/extension/action_safari_16.png'),
+						19: file(l, '../../../assets/target/extension/action_safari_19.png'),
+						32: file(l, '../../../assets/target/extension/action_safari_32.png'),
+						38: file(l, '../../../assets/target/extension/action_safari_38.png')
+					} : {})
+				},
+
 			...(vendor == 'firefox' ? {
-				theme_icons: [
-					{'light': file(l, '../../../assets/target/extension/action_firefox_dark_16.png'), 'dark': file(l, '../../../assets/target/extension/action_firefox_light_16.png'), size: 16},
-					{'light': file(l, '../../../assets/target/extension/action_firefox_dark_24.png'), 'dark': file(l, '../../../assets/target/extension/action_firefox_light_24.png'), size: 24},
-					{'light': file(l, '../../../assets/target/extension/action_firefox_dark_32.png'), 'dark': file(l, '../../../assets/target/extension/action_firefox_light_32.png'), size: 32}
-				]
+				default_area: 'navbar'
 			} : {})
 		},
 
@@ -129,7 +129,7 @@ module.exports = ({ vendor, production=false }, l) => {
 			...(vendor != 'safari' ? {
 				_execute_action: {
 				}
-		 	} : {}),
+			} : {}),
 
 			save_page: {
 				suggested_key: (vendor == 'chrome' || vendor == 'safari') ? {
@@ -174,11 +174,7 @@ module.exports = ({ vendor, production=false }, l) => {
 		...(vendor == 'firefox' || vendor == 'opera' ? {
 			sidebar_action: {
 				default_panel: 'sidepanel.html',
-				default_icon: {
-					16: file(l, '../../../assets/target/extension/action_firefox_light_16.png'),
-					24: file(l, '../../../assets/target/extension/action_firefox_light_24.png'),
-					32: file(l, '../../../assets/target/extension/action_firefox_light_32.png')
-				},
+				default_icon: file(l, '../../../assets/target/extension/action.svg'),
 				...(vendor == 'firefox' ? {
 					browser_style: false,
 					open_at_install: false

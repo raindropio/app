@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+<style>
+    path {
+        fill: black;
+        opacity: 0.6;
+    }
+    @media (prefers-color-scheme: dark) {
+        path {
+            fill: white;
+            opacity: 0.9;
+        }
+    }
+</style>
+<path d="M8 2a5 5 0 0 1 5 5v.1a4 4 0 0 1-1 7.9H4a4 4 0 0 1-1-7.9V7a5 5 0 0 1 5-5Zm0 1.5C6 3.5 4.5 5.1 4.5 7v1.3l-1.1.3a2.5 2.5 0 0 0 .6 4.9h8a2.5 2.5 0 0 0 .6-5l-1.1-.2V7c0-2-1.6-3.5-3.5-3.5Z"/></svg>
