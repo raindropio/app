@@ -1,6 +1,7 @@
 import React, { useState, useCallback, useMemo } from 'react'
 import t from '~t'
 import { API_ENDPOINT_URL } from '~data/constants/app'
+import sessionStorage from '~modules/sessionStorage'
 
 import { Helmet } from 'react-helmet'
 import { Link, useSearchParams } from 'react-router-dom'
