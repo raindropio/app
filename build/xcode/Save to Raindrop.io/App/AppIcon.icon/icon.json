@@ -1,8 +1,8 @@
 {
   "fill" : {
     "linear-gradient" : [
-      "display-p3:0.41598,0.64807,0.88689,1.00000",
-      "display-p3:0.15155,0.34935,0.94171,1.00000"
+      "display-p3:0.31334,0.88004,1.00000,1.00000",
+      "display-p3:0.29554,0.38363,1.00000,1.00000"
     ]
   },
   "groups" : [
@@ -259,6 +259,28 @@
           }
         }
       ]
+    },
+    {
+      "blend-mode" : "overlay",
+      "layers" : [
+        {
+          "fill" : {
+            "solid" : "display-p3:0.99316,0.99316,0.99316,1.00000"
+          },
+          "image-name" : "aaa3.svg",
+          "name" : "aaa3",
+          "opacity" : 0.2
+        }
+      ],
+      "opacity" : 1,
+      "shadow" : {
+        "kind" : "neutral",
+        "opacity" : 0.5
+      },
+      "translucency" : {
+        "enabled" : true,
+        "value" : 0.5
+      }
     }
   ],
   "supported-platforms" : {
