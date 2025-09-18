@@ -1,13 +1,17 @@
 .path {
     direction: rtl
     text-align: left
-    unicode-bidi: plaintext
     
     display: block
     white-space: nowrap
     overflow: hidden
     text-overflow: ellipsis
     word-wrap: break-word
+}
+
+.path span {
+    direction: ltr;
+    unicode-bidi: bidi-override;
 }
 
 .parents {
