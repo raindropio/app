@@ -8,7 +8,8 @@ function safe(html) {
             __html: DOMPurify.sanitize(
                 marked.parse(html, { silent: true, breaks: true }),
                 {
-                    ALLOWED_TAGS: ['i', 'b', 'strong', 'ul', 'ol', 'li', 'pre', 'code', 'em', 'blockquote', 'a', 'p', 'br']
+                    ALLOWED_TAGS: ['i', 'b', 'strong', 'ul', 'ol', 'li', 'pre', 'code', 'em', 'blockquote', 'a', 'p', 'br'],
+                    ALLOW_UNKNOWN_PROTOCOLS: true
                 }
             )
         }
