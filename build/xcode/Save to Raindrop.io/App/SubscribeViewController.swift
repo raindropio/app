@@ -1,11 +1,3 @@
-//
-//  PurchaseViewController.swift
-//  Raindrop for Safari
-//
-//  Created by Mussabekov, Rustem on 08/02/2019.
-//  Copyright © 2019 Raindrop.io. All rights reserved.
-//
-
 import Cocoa
 import SwiftyStoreKit
 import Just

@@ -1,11 +1,3 @@
-//
-//  WindowController.swift
-//  Raindrop.io
-//
-//  Created by Rustem Mussabekov on 05/06/2019.
-//  Copyright © 2019 Raindrop.io. All rights reserved.
-//
-
 import Cocoa
 
 class WindowController: NSWindowController {
@@ -55,5 +47,4 @@ class WindowController: NSWindowController {
             self.window?.contentViewController = controllers[name]
         }
     }
-
 }

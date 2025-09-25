@@ -76,12 +76,22 @@ class WebView: WKWebView, WKScriptMessageHandler, WKUIDelegate {
     
     //window.open, etc
     public func webView(_ webView: WKWebView, createWebViewWith configuration: WKWebViewConfiguration, for navigationAction: WKNavigationAction, windowFeatures: WKWindowFeatures) -> WKWebView? {
-        if navigationAction.targetFrame == nil {
-            load(navigationAction.request)
-        }
         if let url = navigationAction.request.url, let openurl = onOpenUrl {
             openurl(url)
         }
         return nil
+    }
+    
+    //file input
+    func webView(_ webView: WKWebView, runOpenPanelWith parameters: WKOpenPanelParameters, initiatedByFrame frame: WKFrameInfo, completionHandler: @escaping ([URL]?) -> Void) {
+        let panel = NSOpenPanel()
+        panel.canChooseFiles = true
+        panel.canChooseDirectories = parameters.allowsDirectories
+        panel.allowsMultipleSelection = parameters.allowsMultipleSelection
+        panel.resolvesAliases = true
+        panel.treatsFilePackagesAsDirectories = false
+        panel.beginSheetModal(for: self.window!) { resp in
+            completionHandler(resp == .OK ? panel.urls : nil)
+        }
     }
 }

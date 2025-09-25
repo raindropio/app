@@ -42,7 +42,7 @@ class Extension: NSViewController {
     //extension received items
     override func beginRequest(with context: NSExtensionContext) {
         super.beginRequest(with: context)
-        
+                
         Task {
             for input in context.inputItems {
                 guard let input = input as? NSExtensionItem else { continue }
@@ -116,8 +116,12 @@ class Extension: NSViewController {
         
         if url.absoluteString.contains("/settings") {
             self.onClose()
-            NSWorkspace.shared.open(url)
+            extensionContext?.open(url)
         }
+    }
+    
+    private func onOpenUrl(_ url: URL) {
+        extensionContext?.open(url)
     }
     
     @objc private func onClose() {
@@ -127,14 +131,13 @@ class Extension: NSViewController {
     }
     
     private func onSizeChange(_ size: NSSize) {
-        preferredContentSize = .init(
-            width: preferredContentSize.width,
-            height: min(max(size.height, 200), 800)
-        )
-    }
-    
-    private func onOpenUrl(_ url: URL) {
-        NSWorkspace.shared.open(url)
+        let height = min(max(size.height, 200), 800)
+        if (height != preferredContentSize.height) {
+            preferredContentSize = .init(
+                width: preferredContentSize.width,
+                height: height
+            )
+        }
     }
     
     required init?(coder: NSCoder) {

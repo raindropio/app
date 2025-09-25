@@ -6,8 +6,6 @@
 	<string>Raindrop.io</string>
 	<key>CFBundleDisplayName</key>
 	<string>Raindrop.io</string>
-	<key>CFBundleIconFile</key>
-	<string>icon</string>
 	<key>NSExtension</key>
 	<dict>
 		<key>NSExtensionAttributes</key>

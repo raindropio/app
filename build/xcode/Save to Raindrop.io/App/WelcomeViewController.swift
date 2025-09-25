@@ -1,10 +1,3 @@
-//
-//  ViewController.swift
-//  Save to Raindrop.io
-//
-//  Created by Rustem Mussabekov on 18.09.2020.
-//
-
 import Cocoa
 import SafariServices.SFSafariApplication
 import SafariServices.SFSafariExtensionManager
