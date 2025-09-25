@@ -2,6 +2,8 @@ import s from './text.module.styl'
 import React from 'react'
 import TextareaAutosize from 'react-textarea-autosize'
 
+const fieldSizingSupported = typeof window != 'undefined' && window?.CSS?.supports('field-sizing', 'content')
+
 const emptyObj = {}
 const getRowsProps = (min, max)=>({
     async: false,
@@ -69,7 +71,7 @@ class TextInner extends React.Component {
 
     render() {
         const { className='', autoSize, variant, font, multiline, selectAll, hidden, icon, children, forwardedRef, minRows, maxRows, ...etc } = this.props
-        const Component = autoSize ? TextareaAutosize : 'input'
+        const Component = autoSize ? (fieldSizingSupported ? 'textarea' : TextareaAutosize) : 'input'
 
         return (
             <div 
