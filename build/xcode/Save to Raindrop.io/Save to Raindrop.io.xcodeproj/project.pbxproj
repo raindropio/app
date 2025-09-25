@@ -3,10 +3,12 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 54;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		762F04152E84293B008D41DB /* Share.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 762F04092E84293B008D41DB /* Share.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		762F041B2E843168008D41DB /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 762F041A2E843168008D41DB /* WebKit.framework */; };
 		7643886128C62A8600A8216A /* Just in Frameworks */ = {isa = PBXBuildFile; productRef = 7643886028C62A8600A8216A /* Just */; };
 		764D2CC027A02DE000BDCE3C /* background.js in Resources */ = {isa = PBXBuildFile; fileRef = 764D2CBF27A02DE000BDCE3C /* background.js */; };
 		76B764012E7972A5003EA0DA /* AppIcon.icon in Resources */ = {isa = PBXBuildFile; fileRef = 76B764002E7972A5003EA0DA /* AppIcon.icon */; };
@@ -29,6 +31,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		762F04132E84293B008D41DB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 76E78B302514A30200D331A8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 762F04082E84293B008D41DB;
+			remoteInfo = Share;
+		};
 		76E78B4C2514A30300D331A8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 76E78B302514A30200D331A8 /* Project object */;
@@ -45,6 +54,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
+				762F04152E84293B008D41DB /* Share.appex in Embed Foundation Extensions */,
 				76E78B4B2514A30300D331A8 /* Save to Raindrop.io Extension.appex in Embed Foundation Extensions */,
 			);
 			name = "Embed Foundation Extensions";
@@ -53,6 +63,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		762F04092E84293B008D41DB /* Share.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = Share.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		762F041A2E843168008D41DB /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		764D2CBF27A02DE000BDCE3C /* background.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = background.js; path = ../../../../dist/safari/prod/background.js; sourceTree = "<group>"; };
 		76B764002E7972A5003EA0DA /* AppIcon.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = AppIcon.icon; sourceTree = "<group>"; };
 		76D94F292602348E003A3801 /* SubscribeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubscribeViewController.swift; sourceTree = "<group>"; };
@@ -77,7 +89,29 @@
 		76E78B652514A30300D331A8 /* assets */ = {isa = PBXFileReference; lastKnownFileType = folder; name = assets; path = ../../../../dist/safari/prod/assets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		762F04182E84293B008D41DB /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 762F04082E84293B008D41DB /* Share */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		762F040A2E84293B008D41DB /* Share */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (762F04182E84293B008D41DB /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = Share; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
+
 /* Begin PBXFrameworksBuildPhase section */
+		762F04062E84293B008D41DB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				762F041B2E843168008D41DB /* WebKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		76E78B352514A30200D331A8 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -104,6 +138,7 @@
 			children = (
 				76E78B3A2514A30200D331A8 /* App */,
 				76E78B512514A30300D331A8 /* Extension */,
+				762F040A2E84293B008D41DB /* Share */,
 				76E78B4E2514A30300D331A8 /* Frameworks */,
 				76E78B392514A30200D331A8 /* Products */,
 			);
@@ -114,6 +149,7 @@
 			children = (
 				76E78B382514A30200D331A8 /* Save to Raindrop.io.app */,
 				76E78B4A2514A30300D331A8 /* Save to Raindrop.io Extension.appex */,
+				762F04092E84293B008D41DB /* Share.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -138,6 +174,7 @@
 		76E78B4E2514A30300D331A8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				762F041A2E843168008D41DB /* WebKit.framework */,
 				76D94F372602354B003A3801 /* StoreKit.framework */,
 				76E78B4F2514A30300D331A8 /* Cocoa.framework */,
 			);
@@ -171,6 +208,28 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		762F04082E84293B008D41DB /* Share */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 762F04192E84293B008D41DB /* Build configuration list for PBXNativeTarget "Share" */;
+			buildPhases = (
+				762F04052E84293B008D41DB /* Sources */,
+				762F04062E84293B008D41DB /* Frameworks */,
+				762F04072E84293B008D41DB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				762F040A2E84293B008D41DB /* Share */,
+			);
+			name = Share;
+			packageProductDependencies = (
+			);
+			productName = Share;
+			productReference = 762F04092E84293B008D41DB /* Share.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		76E78B372514A30200D331A8 /* Save to Raindrop.io */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 76E78B5C2514A30300D331A8 /* Build configuration list for PBXNativeTarget "Save to Raindrop.io" */;
@@ -184,6 +243,7 @@
 			);
 			dependencies = (
 				76E78B4D2514A30300D331A8 /* PBXTargetDependency */,
+				762F04142E84293B008D41DB /* PBXTargetDependency */,
 			);
 			name = "Save to Raindrop.io";
 			packageProductDependencies = (
@@ -218,9 +278,12 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
-				LastSwiftUpdateCheck = 1200;
+				LastSwiftUpdateCheck = 2600;
 				LastUpgradeCheck = 2600;
 				TargetAttributes = {
+					762F04082E84293B008D41DB = {
+						CreatedOnToolsVersion = 26.0.1;
+					};
 					76E78B372514A30200D331A8 = {
 						CreatedOnToolsVersion = 12.0;
 					};
@@ -248,11 +311,19 @@
 			targets = (
 				76E78B372514A30200D331A8 /* Save to Raindrop.io */,
 				76E78B492514A30300D331A8 /* Save to Raindrop.io Extension */,
+				762F04082E84293B008D41DB /* Share */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		762F04072E84293B008D41DB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		76E78B362514A30200D331A8 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -279,6 +350,13 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		762F04052E84293B008D41DB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		76E78B342514A30200D331A8 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -301,6 +379,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		762F04142E84293B008D41DB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 762F04082E84293B008D41DB /* Share */;
+			targetProxy = 762F04132E84293B008D41DB /* PBXContainerItemProxy */;
+		};
 		76E78B4D2514A30300D331A8 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 76E78B492514A30300D331A8 /* Save to Raindrop.io Extension */;
@@ -320,6 +403,97 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		762F04162E84293B008D41DB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 401;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_INCOMING_NETWORK_CONNECTIONS = NO;
+				ENABLE_OUTGOING_NETWORK_CONNECTIONS = YES;
+				ENABLE_RESOURCE_ACCESS_AUDIO_INPUT = NO;
+				ENABLE_RESOURCE_ACCESS_BLUETOOTH = NO;
+				ENABLE_RESOURCE_ACCESS_CALENDARS = NO;
+				ENABLE_RESOURCE_ACCESS_CAMERA = NO;
+				ENABLE_RESOURCE_ACCESS_CONTACTS = NO;
+				ENABLE_RESOURCE_ACCESS_LOCATION = NO;
+				ENABLE_RESOURCE_ACCESS_PRINTING = NO;
+				ENABLE_RESOURCE_ACCESS_USB = NO;
+				ENABLE_USER_SELECTED_FILES = readonly;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Share/Info.plist;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				MARKETING_VERSION = 5.6.93;
+				PRODUCT_BUNDLE_IDENTIFIER = io.raindrop.safari.Share;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		762F04172E84293B008D41DB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 401;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_INCOMING_NETWORK_CONNECTIONS = NO;
+				ENABLE_OUTGOING_NETWORK_CONNECTIONS = YES;
+				ENABLE_RESOURCE_ACCESS_AUDIO_INPUT = NO;
+				ENABLE_RESOURCE_ACCESS_BLUETOOTH = NO;
+				ENABLE_RESOURCE_ACCESS_CALENDARS = NO;
+				ENABLE_RESOURCE_ACCESS_CAMERA = NO;
+				ENABLE_RESOURCE_ACCESS_CONTACTS = NO;
+				ENABLE_RESOURCE_ACCESS_LOCATION = NO;
+				ENABLE_RESOURCE_ACCESS_PRINTING = NO;
+				ENABLE_RESOURCE_ACCESS_USB = NO;
+				ENABLE_USER_SELECTED_FILES = readonly;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Share/Info.plist;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				MARKETING_VERSION = 5.6.93;
+				PRODUCT_BUNDLE_IDENTIFIER = io.raindrop.safari.Share;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
 		76E78B562514A30300D331A8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -449,7 +623,7 @@
 				CODE_SIGN_ENTITLEMENTS = Extension/Extension.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 400;
+				CURRENT_PROJECT_VERSION = 401;
 				DEAD_CODE_STRIPPING = YES;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -476,7 +650,7 @@
 				CODE_SIGN_ENTITLEMENTS = Extension/Extension.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 400;
+				CURRENT_PROJECT_VERSION = 401;
 				DEAD_CODE_STRIPPING = YES;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -506,7 +680,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 400;
+				CURRENT_PROJECT_VERSION = 401;
 				DEAD_CODE_STRIPPING = YES;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -535,7 +709,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 400;
+				CURRENT_PROJECT_VERSION = 401;
 				DEAD_CODE_STRIPPING = YES;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -558,6 +732,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		762F04192E84293B008D41DB /* Build configuration list for PBXNativeTarget "Share" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				762F04162E84293B008D41DB /* Debug */,
+				762F04172E84293B008D41DB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		76E78B332514A30200D331A8 /* Build configuration list for PBXProject "Save to Raindrop.io" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
