@@ -59,6 +59,7 @@ export default class DropModule extends React.Component {
             for(const record of e.dataTransfer.items) {
                 //file
                 if (record.kind === 'file' &&
+                    record.type &&
                     this.props.onDropFiles)
                     files.push(record.getAsFile())
                 //custom
