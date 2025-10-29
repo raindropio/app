@@ -177,12 +177,11 @@ function* recoverPassword({token, password, onSuccess, onFail}) {
 		if (!email)
 			throw new ApiError(etc)
 
-		//login with new password
-		yield call(Api.post, 'auth/email/login', {email, password})
-
-		yield put({type: USER_REFRESH_REQ, way: 'recover', onSuccess})
+		if (typeof onSuccess == 'function')
+			onSuccess()
 	} catch (error) {
-		yield put({type: USER_LOAD_ERROR, error, way: 'recover', onFail})
+		if (typeof onFail == 'function')
+			onFail(error)
 	}
 }
 
