@@ -36,7 +36,7 @@ export default function PageMyItem() {
         ...target != 'extension' && item.type!='link' ? ['preview'] : [], 
         ...target != 'extension' ? ['web'] : [], 
         ...access && access.level>=3?['edit']:[], 
-        ...item.cache && !item.fileType && access && access.level>=3?['cache']:[],
+        ...!item.fileType && access && access.level>=3?['cache']:[],
     ], [item, access])
 
     return (

@@ -22,12 +22,13 @@ function CacheStatus({ cache, url }) {
     switch(cache) {
         case 'ready':
             icon = 'ready'
-            title = t.s('permanentCopy') + ' ' + t.s('saved').toLowerCase()
+            title = t.s('done')
         break
 
         case 'retry':
+        case '':
             icon = 'retry'
-            title = t.s('permanentCopy') + ' ' + t.s('uploadProgress').toLowerCase()
+            title = 'Not available yet...'
         break
 
         default:
@@ -39,7 +40,12 @@ function CacheStatus({ cache, url }) {
     return (
         <Header className={s.status} data-status={cache}>
             {icon && <Icon name={'cache_'+icon} className={s.icon} />}
-            <Title>{title}</Title>
+            <Title>
+                {title}<br/>
+                <small>
+                    Permanent copies are made automatically for all bookmarks — you don’t need to do anything. <a href='https://help.raindrop.io/permanent-copy' target='_blank'>Learn more</a>
+                </small>
+            </Title>
             <Space />
 
             {cache == 'ready' && (
