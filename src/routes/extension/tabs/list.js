@@ -39,7 +39,7 @@ export default function AddTabsList({ tabs, setTabs }) {
                                 <Button 
                                     title={t.s('remove')}
                                     onClick={()=>removeTab(id)}>
-                                    <Icon name='trash' />
+                                    <Icon name='minus' />
                                 </Button>
                             </ItemActions>
                         </Item>
