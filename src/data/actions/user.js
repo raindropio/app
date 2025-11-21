@@ -83,9 +83,11 @@ export const lostPassword = ({ email })=>({
 	email
 })
 
-export const recoverPassword = ({ token, password })=>({
+export const recoverPassword = ({ token, password }, onSuccess, onFail)=>({
 	type: USER_RECOVER_PASSWORD,
-	token, password
+	token, password,
+	onSuccess: wrapFunc(onSuccess),
+	onFail: wrapFunc(onFail)
 })
 
 export const logout = (all=false)=>({

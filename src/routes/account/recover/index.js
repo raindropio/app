@@ -19,6 +19,7 @@ export default function PageAccountRecover() {
     const [password, setPassword] = useState('')
     const status = useSelector(state=>userStatus(state).recover)
     const error = useSelector(state=>errorReason(state).recover)
+    const [done, setDone] = useState(false)
 
     useEffect(()=>{
         if (error)
@@ -31,8 +32,27 @@ export default function PageAccountRecover() {
 
     const onSubmit = useCallback(e=>{
         e.preventDefault()
-        dispatch(recoverPassword({ password, token }))
+        dispatch(recoverPassword({ password, token }, ()=>{
+            setDone(true)
+        }))
     }, [password, token])
+
+    if (done)
+        return (
+            <Layout>
+                <Header data-fancy>
+                    <Title>Password is changed</Title>
+                </Header>
+
+                <Button
+                    as={Link}
+                    variant='outline'
+                    data-block
+                    to='/account/login'>
+                    {t.s('signIn')}
+                </Button>
+            </Layout>
+        )
 
     return (<>
         <Helmet><title>{t.s('changePassword')}</title></Helmet>
