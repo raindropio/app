@@ -320,6 +320,7 @@ function* reparse({_id, ignore=false, onSuccess, onFail}) {
 			type: BOOKMARK_UPDATE_REQ,
 			_id: item._id,
 			set: {
+				title: item.link,
 				excerpt: '',
 				cover: '',
 				media: [],
