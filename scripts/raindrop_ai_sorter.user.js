@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Raindrop.io AI Sorter
 // @namespace    http://tampermonkey.net/
-// @version      0.1
+// @version      0.2
 // @description  Scrapes Raindrop.io bookmarks, tags them using AI, and organizes them into collections.
 // @author       You
 // @match        https://app.raindrop.io/*
@@ -198,6 +198,7 @@
                         <option value="tag_only">Tag Bookmarks Only</option>
                         <option value="organize_only">Organize (Cluster Tags)</option>
                         <option value="full">Full (Tag + Organize)</option>
+                        <option value="cleanup_tags">Cleanup Tags (Deduplicate)</option>
                     </select>
                 </div>
 
@@ -511,6 +512,19 @@
             return res.items;
         }
 
+        async getAllTags() {
+            const res = await this.request('/tags');
+            return res.items; // [{_id: "tagname", count: 10}, ...]
+        }
+
+        async removeTag(tagName) {
+            if (STATE.config.dryRun) {
+                console.log(`[DryRun] Delete Tag: ${tagName}`);
+                return {};
+            }
+            return await this.request('/tags', 'DELETE', { ids: [tagName] });
+        }
+
         async getChildCollections() {
              const res = await this.request('/collections/childrens');
              return res.items;
@@ -785,6 +799,29 @@
             return {};
         }
 
+        async analyzeTagConsolidation(allTags) {
+            const prompt = `
+                Analyze this list of tags and identify synonyms, typos, or duplicates.
+                Create a mapping where the key is the "Bad/Deprecated" tag and the value is the "Canonical/Good" tag.
+                Only include pairs where a merge is necessary.
+
+                Example: { "js": "javascript", "reactjs": "react", "machine-learning": "ai" }
+
+                Tags:
+                ${JSON.stringify(allTags.slice(0, 1000))}
+            `;
+            // Note: Truncating tags list to avoid context limits if user has thousands
+
+            if (this.config.provider === 'openai') {
+                return await this.callOpenAI(prompt, true);
+            } else if (this.config.provider === 'anthropic') {
+                 return await this.callAnthropic(prompt, true);
+            } else if (this.config.provider === 'custom') {
+                return await this.callOpenAI(prompt, true, true);
+            }
+            return {};
+        }
+
         async callOpenAI(prompt, isObject = false, isCustom = false) {
              const baseUrl = isCustom ? this.config.customBaseUrl : 'https://api.openai.com/v1';
              const url = baseUrl.endsWith('/') ? `${baseUrl}chat/completions` : `${baseUrl}/chat/completions`;
@@ -999,6 +1036,105 @@
         }
 
         if (STATE.stopRequested) return;
+
+        // --- Phase 3: Cleanup (Tag Consolidation) ---
+        if (mode === 'cleanup_tags') {
+            log('Phase 3: Tag Cleanup...');
+
+            // 1. Fetch all tags
+            log('Fetching all tags...');
+            let allUserTags = [];
+            try {
+                allUserTags = await api.getAllTags();
+            } catch(e) {
+                log('Failed to fetch tags: ' + e.message, 'error');
+                return;
+            }
+
+            if (allUserTags.length === 0) {
+                log('No tags found to cleanup.', 'warn');
+                return;
+            }
+
+            // 2. Analyze with LLM
+            log(`Analyzing ${allUserTags.length} tags for duplicates/synonyms...`);
+            const tagNames = allUserTags.map(t => t._id);
+            const mergePlan = await llm.analyzeTagConsolidation(tagNames);
+
+            const changes = Object.entries(mergePlan);
+            if (changes.length === 0) {
+                log('No tag consolidations suggested.');
+                return;
+            }
+
+            log(`Proposed merges: ${changes.length}`);
+            log(JSON.stringify(mergePlan, null, 2));
+
+            if (STATE.config.dryRun) {
+                log('DRY RUN: No tags modified.');
+                return;
+            }
+
+            // 3. Execute Merges
+            // Iterate map: "Bad" -> "Good"
+            let processed = 0;
+            updateProgress(0);
+
+            for (const [badTag, goodTag] of changes) {
+                if (STATE.stopRequested) break;
+
+                log(`Merging "${badTag}" into "${goodTag}"...`);
+
+                // Fetch bookmarks with badTag
+                // Note: Raindrop search for tag is #tagname
+                // Use API to get IDs? Or simple search?
+                // The /raindrops/0?search=[{"key":"tag","val":"badTag"}] endpoint logic needed?
+                // Or search string: "#badTag"
+
+                let page = 0;
+                let hasMore = true;
+
+                while(hasMore && !STATE.stopRequested) {
+                    // Search for the bad tag
+                    const searchStr = encodeURIComponent(`#"${badTag}"`);
+                    const res = await api.request(`/raindrops/0?search=${searchStr}&page=${page}&perpage=50`);
+
+                    if (!res.items || res.items.length === 0) {
+                        hasMore = false;
+                        break;
+                    }
+
+                    const itemsToUpdate = res.items;
+
+                    // Update each item: Add goodTag, Remove badTag
+                    // Actually, if we just add GoodTag, we can delete BadTag globally later?
+                    // Raindrop API: Update tags list.
+
+                    await Promise.all(itemsToUpdate.map(async (bm) => {
+                        const newTags = bm.tags.filter(t => t !== badTag);
+                        if (!newTags.includes(goodTag)) newTags.push(goodTag);
+
+                        await api.updateBookmark(bm._id, { tags: newTags });
+                    }));
+
+                    // If we modified items, they might disappear from search view if we paginate?
+                    // Raindrop search pagination is stable if criteria still matches?
+                    // If we remove the tag, it NO LONGER matches search `#"badTag"`.
+                    // So next fetch of page 0 will return new items.
+                    // So we should keep page = 0.
+                    // But we need to ensure we actually removed the tag.
+
+                    if (itemsToUpdate.length < 50) hasMore = false;
+                }
+
+                // Finally delete the bad tag explicitly to be clean
+                await api.removeTag(badTag);
+                log(`Removed tag "${badTag}"`);
+
+                processed++;
+                updateProgress((processed / changes.length) * 100);
+            }
+        }
 
         // --- Phase 2: Recursive Clustering & Organization ---
         if (mode === 'organize_only' || mode === 'full') {
