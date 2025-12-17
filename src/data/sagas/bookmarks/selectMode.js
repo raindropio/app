@@ -94,6 +94,9 @@ export default function* () {
 		SELECT_MODE_REPARSE_SELECTED, 
 		updateBookmarks({
 			set: ()=>({
+				excerpt: '',
+				cover: '',
+				media: [],
 				pleaseParse: {
 					date: new Date()
 				}
