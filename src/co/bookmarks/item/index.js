@@ -69,7 +69,7 @@ class BookmarkItem extends React.Component {
 
         onReparseClick: ()=>
             this.props.actions.oneReparse(this.props.item._id),
-    
+
         onContextMenu: (e)=>{
             e.preventDefault()
             e.target.focus()

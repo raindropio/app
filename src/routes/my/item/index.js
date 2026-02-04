@@ -14,6 +14,7 @@ import Any from './tab/any'
 import Cache from './tab/cache'
 import Edit from './tab/edit'
 import Preview from './tab/preview'
+import Ask from './tab/ask'
 import Web from './tab/web'
 
 export default function PageMyItem() {
@@ -33,10 +34,11 @@ export default function PageMyItem() {
     const { access } = useSelector(state=>getCollection(state, item.collectionId))
 
     const tabs = useMemo(()=>[
-        ...target != 'extension' && item.type!='link' ? ['preview'] : [], 
-        ...target != 'extension' ? ['web'] : [], 
-        ...access && access.level>=3?['edit']:[], 
+        ...target != 'extension' && item.type!='link' ? ['preview'] : [],
+        ...target != 'extension' ? ['web'] : [],
+        ...access && access.level>=3?['edit']:[],
         ...!item.fileType && access && access.level>=3?['cache']:[],
+        'ask',
     ], [item, access])
 
     return (
@@ -54,6 +56,9 @@ export default function PageMyItem() {
                     }
                     {tabs.includes('web') ?
                         <Route path='web' element={<Web item={item} webViewRef={webViewRef} />} /> : null
+                    }
+                    {tabs.includes('ask') ?
+                        <Route path='ask' element={<Ask item={item} />} /> : null
                     }
 
                     <Route path='*' element={<Any tabs={tabs} />} />

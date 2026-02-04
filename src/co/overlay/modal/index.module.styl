@@ -10,6 +10,10 @@
     align-items: center
     justify-content: center
 
+    &.hidden {
+        display: none
+    }
+
     &:before {
         content: ''
         position: absolute
@@ -37,7 +41,7 @@
     z-index: 1
     max-width: 90%  
     max-height: 90%
-    border-radius: var(--border-radius)
+    border-radius: var(--padding-small)
     box-shadow: 0 10px 30px rgba(0,0,0,.15)
 	border: 1px solid var(--shadow-color)
     display: flex

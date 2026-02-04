@@ -252,5 +252,7 @@
   "until": "kunnes",
   "me": "Minä olen",
   "collaboratorsLead": "Jaa kokoelmasi ja työskentele yhdessä työtovereidesi, ystäviesi tai perheesi kanssa",
-  "invite": "Kutsu"
+  "invite": "Kutsu",
+  "ask": "Kysy",
+  "alwaysAsk": "Kysy aina"
 }

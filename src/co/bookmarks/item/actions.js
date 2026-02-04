@@ -55,12 +55,22 @@ export default function BookmarkItemActions(props) {
             </Button>
 
             {/* copy */}
-            <Button 
+            <Button
                 data-button='copy'
                 onClick={onCopyLinkClick}
                 variant='outline'
                 title={t.s('copyLinkToClipboard')}>
                 <Icon name='duplicates' />
+            </Button>
+
+            {/* ask */}
+            <Button
+                data-button='ask'
+                as={Link}
+                to={`item/${_id}/ask`}
+                variant='outline'
+                title={t.s('ask')}>
+                <Icon name='ai' />
             </Button>
 
             {access && access.level >= 3 ? (<>

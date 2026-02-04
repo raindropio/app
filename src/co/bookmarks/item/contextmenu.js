@@ -2,6 +2,7 @@ import React from 'react'
 import t from '~t'
 import { API_ENDPOINT_URL } from '~data/constants/app'
 import Popover, { Menu, MenuItem, MenuSeparator } from '~co/overlay/popover'
+import Icon from '~co/common/icon'
 import { target } from '~target'
 
 export default function BookmarksItemContextmenu({
@@ -21,6 +22,10 @@ export default function BookmarksItemContextmenu({
                 </MenuItem>
 
                 <MenuSeparator />
+
+                <MenuItem to={`item/${_id}/ask`}>
+                    {t.s('ask')} &nbsp;<Icon name='ai' />
+                </MenuItem>
 
                 {target != 'extension' && (
                     <MenuItem to={`item/${_id}/${type == 'link' ? 'web' : 'preview'}`}>

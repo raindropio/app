@@ -18,6 +18,10 @@ export default function PageMyItemToolbar({ item, tab, tabs }) {
                 title: t.s('editMin'),
             },
             {
+                key: 'ask',
+                title: t.s('ask'),
+            },
+            {
                 key: 'web',
                 title: 'Web',
             },

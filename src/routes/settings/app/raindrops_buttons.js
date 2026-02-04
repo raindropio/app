@@ -17,6 +17,7 @@ class SettingsAppRaindropsButtons extends React.Component {
         ['preview',     t.s('preview'), 'show'],
         ['web',         'Web', 'web'],
         ['copy',        t.s('copyLinkToClipboard'), 'duplicates'],
+        ['ask',         t.s('ask'), 'ai'],
         ['important',   t.s('add') +' ' + t.s('to') + ' ' + t.s('favorites').toLowerCase(), 'like'],
         ['tags',        t.s('tags'), 'tag'],
         ['edit',        t.s('edit'), 'edit'],

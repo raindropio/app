@@ -12,21 +12,38 @@ export default class Modal extends React.Component {
     static defaultProps = {
         closable: true,
         important: false,       //over everything else and prevent mousedown bubbling (popovers unclosable)
+        hidden: false,          //hide modal visually without unmounting
         onClose: undefined      //func, required
     }
 
     body = React.createRef()
 
     componentDidMount() {
-        eventOrder.add(this)
+        if (!this.props.hidden)
+            this.addListeners()
+    }
 
+    componentDidUpdate(prevProps) {
+        if (prevProps.hidden !== this.props.hidden) {
+            if (this.props.hidden)
+                this.removeListeners()
+            else
+                this.addListeners()
+        }
+    }
+
+    componentWillUnmount() {
+        this.removeListeners()
+    }
+
+    addListeners() {
+        eventOrder.add(this)
         window.addEventListener('keydown', this.onWindowKeyDown)
         window.addEventListener('mousedown', this.onWindowMouseDown, true)
     }
 
-    componentWillUnmount() {
+    removeListeners() {
         eventOrder.delete(this)
-
         window.removeEventListener('keydown', this.onWindowKeyDown)
         window.removeEventListener('mousedown', this.onWindowMouseDown, true)
     }
@@ -45,27 +62,32 @@ export default class Modal extends React.Component {
     }
 
     onWindowMouseDown = e => {
-        //prevent clicking outside when important true
-        if (this.props.important &&
-            !this.body.current?.contains(e.target)){
-            e.preventDefault()
-            e.stopPropagation()
+        if (!this.body.current?.contains(e.target)){
+            //prevent clicking outside when important true
+            if (this.props.important){
+                e.preventDefault()
+                e.stopPropagation()
+            }
+            else if (this.props.closable)
+                this.props.onClose()
         }
     }
 
     render() {
-        const { as='div', children, onClose, closable, important, stretch, className='', ...etc } = this.props
+        const { as='div', children, onClose, closable, important, hidden, stretch, className='', ...etc } = this.props
         const Component = as
 
         return (
             <Portal>
                 <Context.Provider value={{ onClose, closable }}>
-                    <Helmet defer={false}>
-                        <html data-modal-showing data-modal-stretch={stretch} />
-                    </Helmet>
+                    {!hidden && (
+                        <Helmet defer={false}>
+                            <html data-modal-showing data-modal-stretch={stretch} />
+                        </Helmet>
+                    )}
 
-                    <div 
-                        className={s.modal+' '+(important ? s.important : '')}>
+                    <div
+                        className={s.modal+' '+(important ? s.important : '')+(hidden ? ' '+s.hidden : '')}>
                         <Component 
                             className={s.wrap+' '+className}
                             data-stretch={stretch}
