@@ -2,7 +2,6 @@ import React, { useCallback } from 'react'
 import t from '~t'
 import { useParams } from 'react-router-dom'
 
-import { Link } from 'react-router-dom'
 import Button from '~co/common/button'
 import Icon from '~co/common/icon'
 import Sidebar, { Header, Content } from '~co/screen/splitview/sidebar'
@@ -35,13 +34,6 @@ export default function PageMySidebar() {
             <Header>
                 <Profile />
 
-                <Button 
-                    as={Link}
-                    title='AI Suggestions'
-                    to='/suggestions'>
-                    <Icon name='ai' />
-                </Button>
-                
                 <Button 
                     title={`${t.s('createNewCollection')}\nShift+click: ${t.s('createSubFolder').toLowerCase()}`}
                     onClick={onCreateNewCollectionClick}>

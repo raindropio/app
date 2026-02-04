@@ -39,7 +39,6 @@ export default {
 		'user',
 		'local',
 		'rate',
-		'predictions',
 		...(process.env.NODE_ENV == 'development' ? ['import'] : []),
 
 		//app specifics
