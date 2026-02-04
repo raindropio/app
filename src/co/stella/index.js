@@ -12,7 +12,7 @@ export default function Stella({ raindropId, className, onClose, onToolCalled, .
 
     const url = useMemo(()=>
         BETA_AI_URL + '?' + new URLSearchParams({
-            raindropId,
+            ...(raindropId ? { raindropId } : {}),
             ...(onClose ? { closable: 'true' } : {})
         }).toString(),
         [raindropId, onClose]
