@@ -18,7 +18,7 @@ import Ask from './tab/ask'
 import Web from './tab/web'
 
 export default function PageMyItem() {
-    const { itemId } = useParams()
+    const { itemId, cId } = useParams()
     const dispatch = useDispatch()
 
     //webview
@@ -58,7 +58,7 @@ export default function PageMyItem() {
                         <Route path='web' element={<Web item={item} webViewRef={webViewRef} />} /> : null
                     }
                     {tabs.includes('ask') ?
-                        <Route path='ask' element={<Ask item={item} />} /> : null
+                        <Route path='ask' element={<Ask item={item} cId={cId} />} /> : null
                     }
 
                     <Route path='*' element={<Any tabs={tabs} />} />

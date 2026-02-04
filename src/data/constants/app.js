@@ -13,4 +13,4 @@ export const
 	FAVICON_URL 		= `${WORKERS_BASE_URL}/favicon`,
 	RENDER_URL 			= `${WORKERS_BASE_URL}/render`,
 	PREVIEW_URL			= 'https://preview.systems',
-	STELLA_URL			= process.env.NODE_ENV == 'production' ? 'https://beta-ai.raindrop.io/ai' : 'http://localhost:5173/ai'
+	BETA_AI_URL			= process.env.NODE_ENV == 'production' ? 'https://beta-ai.raindrop.io/ai' : 'http://localhost:5173/ai'
