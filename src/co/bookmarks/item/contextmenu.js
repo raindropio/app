@@ -4,12 +4,15 @@ import { API_ENDPOINT_URL } from '~data/constants/app'
 import Popover, { Menu, MenuItem, MenuSeparator } from '~co/overlay/popover'
 import Icon from '~co/common/icon'
 import { target } from '~target'
+import { useSelector } from 'react-redux'
 
 export default function BookmarksItemContextmenu({
     _id, link, important, access, reparse, cache, fileType, type,
     onContextMenuClose, onRemoveClick, onCopyLinkClick,
     onSelectClick, onImportantClick, onReparseClick
 }) {
+    const ai_assistant = useSelector(state=>state.config.ai_assistant)
+
     return (
         <Popover onClose={onContextMenuClose}>
             <Menu>
@@ -23,9 +26,11 @@ export default function BookmarksItemContextmenu({
 
                 <MenuSeparator />
 
-                <MenuItem to={`item/${_id}/ask`}>
-                    {t.s('ask')} &nbsp;<Icon name='ai' />
-                </MenuItem>
+                {ai_assistant ? (
+                    <MenuItem to={`item/${_id}/ask`}>
+                        {t.s('ask')} &nbsp;<Icon name='ai' />
+                    </MenuItem>
+                ) : null}
 
                 {target != 'extension' && (
                     <MenuItem to={`item/${_id}/${type == 'link' ? 'web' : 'preview'}`}>

@@ -7,11 +7,19 @@ import config from '~config'
 
 import { Label, Checkbox, SubLabel } from '~co/common/form'
 
-function SettingsAppAi ({ ai_suggestions, isPro, set }){
+function SettingsAppAi ({ ai_suggestions, ai_assistant, isPro, set }){
 	return (
 		<>
 			<Label>AI</Label>
 			<div>
+				<Checkbox 
+					disabled={!isPro}
+					checked={isPro && ai_assistant}
+					onChange={()=>set('ai_assistant', !ai_assistant)}>
+					{t.s('ask')} AI
+					<a href={config.links.help.stella.index} target='_blank'>[?]</a>
+				</Checkbox>
+
 				<Checkbox 
 					disabled={!isPro}
 					checked={isPro && ai_suggestions}
@@ -28,6 +36,7 @@ function SettingsAppAi ({ ai_suggestions, isPro, set }){
 export default connect(
 	(state)=>({
 		ai_suggestions: state.config.ai_suggestions,
+		ai_assistant: state.config.ai_assistant,
 		isPro: isPro(state)
 	}),
 	{ set }

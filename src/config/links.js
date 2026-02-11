@@ -54,6 +54,9 @@ export default {
             index: 'https://help.raindrop.io/ai-suggestions',
             organize: 'https://help.raindrop.io/ai-suggestions#tips',
             faq: 'https://help.raindrop.io/ai-suggestions#faq'
+        },
+        stella: {
+            index: 'https://help.raindrop.io/stella',
         }
     },
 
