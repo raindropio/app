@@ -62,14 +62,11 @@ export default class Modal extends React.Component {
     }
 
     onWindowMouseDown = e => {
-        if (!this.body.current?.contains(e.target)){
-            //prevent clicking outside when important true
-            if (this.props.important){
-                e.preventDefault()
-                e.stopPropagation()
-            }
-            else if (this.props.closable)
-                this.props.onClose()
+        //prevent clicking outside when important true
+        if (this.props.important &&
+            !this.body.current?.contains(e.target)){
+            e.preventDefault()
+            e.stopPropagation()
         }
     }
 
