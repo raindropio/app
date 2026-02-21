@@ -28,7 +28,7 @@ function SettingsBackupsCloud({ user, pro }) {
                     </Alert>
                 )}
 
-                {['dropbox', 'gdrive'].map(key=>{
+                {['dropbox', 'gdrive', 'onedrive'].map(key=>{
                     const enabled = user[key] && user[key].enabled
 
                     return (

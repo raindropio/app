@@ -20,6 +20,7 @@ export const normalizeUser = (user={})=>{
 		apple:				user.apple || {},
 		dropbox:			user.dropbox || {},
 		gdrive:				user.gdrive || {},
+		onedrive:			user.onedrive || {},
 	}
 
 	return Immutable(clean)
