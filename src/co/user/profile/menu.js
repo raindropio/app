@@ -49,19 +49,14 @@ function UserProfileMenu({
                     {t.s('help')} {t.s('und')} {t.s('support').toLowerCase()}
                 </MenuItem>
 
-                <MenuItem href={config.links.help.changelog} target='_blank'>
+                <MenuItem href={config.links.blog} target='_blank'>
                     <Icon name='history' />
+                    {t.s('blog')}
+                </MenuItem>
+
+                <MenuItem href={config.links.help.changelog} target='_blank'>
+                    <Icon name='calendar' />
                     {t.s('whatsNew')}?
-                </MenuItem>
-
-                <MenuItem href={config.links.better} target='_blank'>
-                    <Icon name='like' />
-                    {t.s('pro_nextFeatures')}
-                </MenuItem>
-
-                <MenuItem href={config.links.twitter} target='_blank'>
-                    <Icon name='twitter_outline' />
-                    Twitter
                 </MenuItem>
 
                 <MenuSeparator />
