@@ -9,7 +9,7 @@ import Icon from '~co/common/icon'
 
 export default function SharingLink({ collection: { slug, _id, public: pub } }) {
     const user = useSelector(state=>getUser(state))
-    const link = `https://raindrop.io/${user.name}/${slug||''}-${_id}`
+    const link = `https://${user.name}.raindrop.page/${slug||''}-${_id}`
 
     const input = useRef(null)
     const copy = useCallback(()=>{
