@@ -46,7 +46,10 @@ export default function(state, action) {
 		}
 
 		case BOOKMARK_LOAD_SUCCESS:{
-			const 
+			if (typeof action.onSuccess == 'function')
+				action.onSuccess(action.item)
+
+			const
 				updatedItem = normalizeBookmark(action.item),
 				updatedMeta = normalizeMeta(action.item)
 

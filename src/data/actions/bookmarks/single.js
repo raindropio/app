@@ -8,9 +8,11 @@ import {
 } from '../../constants/bookmarks'
 
 //High level API
-export const oneLoad = (_id)=>({
+export const oneLoad = (_id, onSuccess, onFail)=>({
 	type: BOOKMARK_LOAD_REQ,
-	_id: parseInt(_id)
+	_id: parseInt(_id),
+	onSuccess: wrapFunc(onSuccess),
+	onFail: wrapFunc(onFail)
 })
 
 export const oneRemove = (_id, onSuccess, onFail)=>({

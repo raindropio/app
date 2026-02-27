@@ -1,9 +1,10 @@
 import s from './header.module.styl'
-import React from 'react'
+import React, { useCallback } from 'react'
 import t from '~t'
 import config from '~config'
-import { connect } from 'react-redux'
+import { connect, useDispatch } from 'react-redux'
 import { getDraftStatus, getDraftItem } from '~data/selectors/bookmarks'
+import { draftCommit } from '~data/actions/bookmarks'
 import isThisMinute from 'date-fns/isThisMinute'
 import parseISO from 'date-fns/parseISO'
 
@@ -14,6 +15,8 @@ import Icon from '~co/common/icon'
 import { Button as ProfileButton } from '~co/user/profile'
 
 function ClipperHeader({ status, item }) {
+    const dispatch = useDispatch()
+
     let title = ''
 
     switch(status) {
@@ -31,6 +34,18 @@ function ClipperHeader({ status, item }) {
 
     const collectionPath = `/my/${status=='new' ? 0 : item.collectionId}`
 
+    const getAskLink = useCallback((item)=>
+        `${config.links.app.index}/my/${item.collectionId}/item/${item._id}/ask`, []
+    )
+
+    const onAskClick = useCallback((e)=>{
+        if (status != 'new') return
+        e.preventDefault()
+        dispatch(draftCommit(item.link, ([item])=>
+            window.open(getAskLink(item), '_blank')
+        ))
+    }, [status, item.link])
+
     return (
         <Header data-no-shadow data-static>
             <Button
@@ -44,6 +59,15 @@ function ClipperHeader({ status, item }) {
             <Title className={s.title}>{title}</Title>
 
             <Space />
+
+            <Button
+                as='a'
+                href={getAskLink(item)}
+                target='_blank'
+                title={t.s('ask')}
+                onClick={onAskClick}>
+                <Icon name='ai' />
+            </Button>
 
             <Button
                 as='a'

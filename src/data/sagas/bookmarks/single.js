@@ -47,7 +47,7 @@ export default function* () {
 	yield takeEvery(BOOKMARKS_REPARSE_INPLACE, reparseInplace)
 }
 
-function* loadBookmark({ ignore=false, _id }) {
+function* loadBookmark({ ignore=false, _id, onSuccess, onFail }) {
 	if (ignore)
 		return;
 
@@ -57,13 +57,15 @@ function* loadBookmark({ ignore=false, _id }) {
 		yield put({
 			type: BOOKMARK_LOAD_SUCCESS,
 			_id,
-			item
+			item,
+			onSuccess, onFail
 		})
 	} catch (error) {
 		yield put({
 			type: BOOKMARK_LOAD_ERROR,
 			_id,
-			error
+			error,
+			onSuccess, onFail
 		})
 	}
 }

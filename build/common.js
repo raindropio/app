@@ -92,7 +92,7 @@ module.exports = ({ production, filename='[name].[contenthash]', sentry={} }, { 
 		]),
 
 		//Sentry
-		...(production && !sentry?.disabled ? [
+		...(production && process.env.SENTRY_AUTH_TOKEN && !sentry?.disabled ? [
 			new SentryCliPlugin({
 				org: 'oblako-corp',
 				project: 'app',

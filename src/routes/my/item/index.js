@@ -1,4 +1,4 @@
-import React, { useMemo, useEffect, useRef } from 'react'
+import React, { useState, useMemo, useEffect, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { target } from '~target'
 import { oneLoad } from '~data/actions/bookmarks'
@@ -25,7 +25,11 @@ export default function PageMyItem() {
     const webViewRef = useRef(null)
     
     //item
-    useEffect(()=>{dispatch(oneLoad(parseInt(itemId)))}, [itemId])
+    const [isLoading, setIsLoading] = useState(true)
+    useEffect(()=>{
+        setIsLoading(true)
+        dispatch(oneLoad(parseInt(itemId), ()=>setIsLoading(false), ()=>setIsLoading(false)))
+    }, [itemId])
     const getBookmark = useMemo(makeBookmark, [])
     const item = useSelector(state=>getBookmark(state, parseInt(itemId)))
 
@@ -43,7 +47,7 @@ export default function PageMyItem() {
 
     return (
         <Routes>
-            <Route element={<NotFound item={item} />}>
+            <Route element={<NotFound item={item} isLoading={isLoading} />}>
                 <Route element={<Layout tabs={tabs} item={item} webViewRef={webViewRef} />}>
                     {tabs.includes('cache') ?
                         <Route path='cache' element={<Cache item={item} />} /> : null
