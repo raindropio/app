@@ -46,7 +46,7 @@ function Free() {
 
     return (
         <>
-            <Button onClick={onClick} variant='outline'>
+            <Button onClick={onClick} variant='outline' title={t.s('add') + ' ' + t.s('reminder').toLowerCase()}>
                 <Icon name='reminder' />
             </Button>
 
