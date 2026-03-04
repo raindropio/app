@@ -107,7 +107,7 @@ module.exports = (env={}, args={}) =>
                         },
                         {
                             platform: 'chrome_web_store',
-                            url: 'https://chrome.google.com/webstore/detail/ldgfbffkinooeloadekpmfoklnobpien',
+                            url: 'https://chromewebstore.google.com/detail/ldgfbffkinooeloadekpmfoklnobpien',
                             id: 'ldgfbffkinooeloadekpmfoklnobpien'
                         }
                     ],
