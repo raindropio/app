@@ -38,7 +38,7 @@ class AccountLost extends React.Component {
             return (
                 <Layout>
                     <Header data-fancy>
-                        <Title>{t.s('checkYourEmail')}</Title>
+                        <Title>{t.s('passwordResetEmailSent')}</Title>
                     </Header>
 
                     <Button

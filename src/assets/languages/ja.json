@@ -63,7 +63,7 @@
   "enterDescription": "説明を入力",
   "type": "タイプ",
   "language": "言語",
-  "checkYourEmail": "メールボックスをチェック！",
+  "passwordResetEmailSent": "このメールアドレスに関連するアカウントが存在する場合、パスワードリセットリンクが間もなく送信されます。",
   "und": "と",
   "from": "より",
   "tags": "タグ",

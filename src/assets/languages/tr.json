@@ -63,7 +63,7 @@
   "enterDescription": "Açıklama gir",
   "type": "Tür",
   "language": "Dil",
-  "checkYourEmail": "Gelen kutunu kontrol et!",
+  "passwordResetEmailSent": "Bu e-posta adresine ait bir hesap varsa, kısa süre içinde şifre sıfırlama bağlantısı gönderilecektir.",
   "und": "ve",
   "from": "Kaynak:",
   "tags": "Etiketler",

@@ -63,7 +63,7 @@
   "enterDescription": "설명 입력",
   "type": "종류",
   "language": "언어",
-  "checkYourEmail": "이메일을 확인해주세요!",
+  "passwordResetEmailSent": "해당 이메일로 등록된 계정이 있는 경우, 비밀번호 재설정 링크가 곧 발송됩니다.",
   "und": "그리고",
   "from": "소유자",
   "tags": "태그",

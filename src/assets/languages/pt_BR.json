@@ -63,7 +63,7 @@
   "enterDescription": "Entre com a descrição",
   "type": "Tipo",
   "language": "Idioma",
-  "checkYourEmail": "Verifique sua caixa de entrada no seu e-mail!",
+  "passwordResetEmailSent": "Se uma conta existir para este e-mail, um link de redefinição de senha será enviado em breve.",
   "und": "e",
   "from": "por",
   "tags": "Tags",

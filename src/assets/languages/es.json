@@ -63,7 +63,7 @@
   "enterDescription": "Introduce una descripción",
   "type": "Tipo",
   "language": "Idioma",
-  "checkYourEmail": "¡Comprueba tu bandeja de entrada!",
+  "passwordResetEmailSent": "Si existe una cuenta con este correo electrónico, recibirás un enlace para restablecer tu contraseña en breve.",
   "und": "&",
   "from": "De",
   "tags": "Etiquetas",
