@@ -40,7 +40,7 @@ export default function SharingCustomization({ collection }) {
             onSubmit={onSubmit}>
             <Separator/>
 
-            <Title>{t.s('publicPage')} {t.s('appearance').toLowerCase()}</Title>
+            <Title>{t.s('publicPageAppearance')}</Title>
 
             <Label>{t.s('description')}</Label>
             <Text 

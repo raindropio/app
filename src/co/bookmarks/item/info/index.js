@@ -40,7 +40,7 @@ export default function BookmarkItemInfo(props) {
                     <section className={s.duplicateLabel}>
                         <Link 
                             to={'/my/0/'+encodeURIComponent(`_id:${duplicate} duplicate:${duplicate} match:OR`)}
-                            title={t.s('defaultCollection-0')+' '+t.s('original').toLowerCase()}>
+                            title={t.s('searchOriginal')}>
                             {t.s('duplicates')}
                         </Link>
                     </section>

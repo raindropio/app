@@ -13,7 +13,7 @@ export function Progress({ className='', children, hidden, display, ...etc }) {
 
         case 'file_size':
             prefix = fileSize(etc.value)
-            value = `${t.s('of')} ${fileSize(etc.max)}`;
+            value = t.format('ofMaxSize', fileSize(etc.max));
         break
 
         case 'infinite':

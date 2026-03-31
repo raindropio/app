@@ -12,11 +12,11 @@ export default class BookmarksHeaderSelectModeLoading extends React.Component {
     
     strings = {
         move: t.s('move'),
-        important: _.capitalize(t.s('to')) + ' ' + t.s('favorites').toLowerCase(),
-        importantRemove: t.s('remove')+' '+t.s('from')+' '+t.s('favorites').toLowerCase(),
+        important: t.s('addToFavorites'),
+        importantRemove: t.s('removeFromFavorites'),
         screenshot: t.s('clickToMakeScreenshot'),
-        removeTags: t.s('remove')+' '+t.s('tags').toLowerCase(),
-        reparse: t.s('refresh')+' '+t.s('preview').toLowerCase(),
+        removeTags: t.s('removeTags'),
+        reparse: t.s('refreshPreview'),
         remove: t.s('remove')
     }
 

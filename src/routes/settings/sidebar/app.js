@@ -19,12 +19,6 @@ export default function SettingsSidebarApp() {
                 <ItemTitle>{t.s('help')}</ItemTitle>
                 <ItemLink href={config.links.help.index} target='_blank' />
             </Item>
-
-            <Item>
-                <ItemIcon><Icon name='cloud' /></ItemIcon>
-                <ItemTitle>{t.s('about')}</ItemTitle>
-                <ItemLink href={config.links.help.about} target='_blank' />
-            </Item>
         </>
     )
 }

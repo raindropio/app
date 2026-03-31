@@ -30,23 +30,20 @@ export default function BookmarksExportPopover({ spaceId = 0, pin, onClose }) {
         <Popover
             pin={pin}
             onClose={onClose}>
-            <Menu>
+            <Menu style={{maxWidth: '250px'}}>
                 {spaceId == 0 && !query.search && !selectMode.ids.length ? (<>
                     <MenuSection>
-                        Click “Get backup” to download all your<br/>
-                        collections, bookmarks, tags, and highlights.<br/><br/>
-                        Or click “Download uploaded files” to download<br/>
-                        only your uploaded files, if available.
+                        {t.s('exportBackupDescription')}
                     </MenuSection>
 
                     <br/>
 
                     <MenuItem to='/settings/backups'>
-                        Get backup
+                        {t.s('getBackup')}
                     </MenuItem>
 
                     <MenuItem href={`${prefix}/export.zip${suffix}`} download>
-                        Download uploaded files
+                        {t.s('downloadUploadedFiles')}
                     </MenuItem>
                 </>) : (<>
                     <MenuItem href={`${prefix}/export.html${suffix}`} download>
@@ -66,7 +63,7 @@ export default function BookmarksExportPopover({ spaceId = 0, pin, onClose }) {
                     </MenuItem>
 
                     <MenuSection>
-                        Prefer ZIP if you need to<br/>download your uploaded files.
+                        {t.s('exportZipHint')}
                     </MenuSection>
                 </>)}
             </Menu>

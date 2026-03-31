@@ -53,7 +53,7 @@ class SettingsIntegrationsMy extends React.Component {
                 <Button 
                     data-id={_id}
                     data-name={name}
-                    title={t.s('remove')+' '+t.s('app').toLowerCase()}
+                    title={t.s('removeApp')}
                     onClick={this.onRemoveClick}>
                     <Icon name='trash' />
                 </Button>

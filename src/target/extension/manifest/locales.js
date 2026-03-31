@@ -34,47 +34,47 @@ module.exports = ({ emitFile })=>{
                     description: ''
                 },
                 savePage: {
-                    message: s(lang, 'create') + ' ' + s(lang, 'newBookmark').toLowerCase(),
+                    message: s(lang, 'saveLink'),
                     description: ''
                 },
                 savePageOrHighlight: {
-                    message: s(lang, 'bookmark') + ' / ' + s(lang, 'save') + ' ' + s(lang, 'highlights').toLowerCase(),
+                    message: s(lang, 'extSavePageOrHighlight'),
                     description: ''
                 },
                 saveLink: {
-                    message: s(lang, 'save') + ' ' + s(lang, 'link').toLowerCase(),
+                    message: s(lang, 'extSaveLink'),
                     description: ''
                 },
                 saveImage: {
-                    message: s(lang, 'save') + ' ' + s(lang, 'image').toLowerCase(),
+                    message: s(lang, 'extSaveImage'),
                     description: ''
                 },
                 saveVideo: {
-                    message: s(lang, 'save') + ' ' + s(lang, 'video').toLowerCase(),
+                    message: s(lang, 'extSaveVideo'),
                     description: ''
                 },
                 saveHighlight: {
-                    message: s(lang, 'save') + ' ' + s(lang, 'highlights').toLowerCase(),
+                    message: s(lang, 'addHighlights'),
                     description: ''
                 },
                 saveTabs: {
-                    message: s(lang, 'save') + ' ' + s(lang, 'tabs').toLowerCase(),
+                    message: s(lang, 'saveTabs'),
                     description: ''
                 },
                 openRaindrop: {
-                    message: s(lang, 'open') + ' Raindrop.io web-' + s(lang, 'site').toLowerCase(),
+                    message: s(lang, 'extOpenWebsite'),
                     description: ''
                 },
                 openSidePanel: {
-                    message: s(lang, 'open') + ' ' + s(lang, 'sidebar').toLowerCase(),
+                    message: s(lang, 'extOpenSidePanel'),
                     description: ''
                 },
                 openApp: {
-                    message: s(lang, 'open') + ' ' + s(lang, 'app').toLowerCase(),
+                    message: s(lang, 'extOpenApp'),
                     description: ''
                 },
                 in: {
-                    message: s(lang, 'in'),
+                    message: s(lang, 'extInRaindrop'),
                     description: ''
                 },
                 settings: {

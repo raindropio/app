@@ -24,7 +24,7 @@ function SettingsBackupsCloud({ user, pro }) {
             <div>
                 {!webApp && (
                     <Alert variant='warning'>
-                        Please <a href={`${config.links.app.index}${pathname}`} target='_blank'>open web app</a> to configure cloud backup!
+                        {t.s('openWebAppBackup')} <a href={`${config.links.app.index}${pathname}`} target='_blank'>{t.s('openInBrowser')}</a>
                     </Alert>
                 )}
 

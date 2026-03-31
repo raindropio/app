@@ -23,7 +23,7 @@ export default function SearchMenuInCollection({ spaceId, originalSpaceId, value
                 key={spaceId == originalSpaceId}
                 checked={spaceId == originalSpaceId}
                 onChange={onChange}>
-                {_.capitalize(t.s('in'))} {t.s('currentCollection').toLowerCase()}
+                {t.s('inCurrentCollection')}
             </Checkbox>
         </Layout>
     )

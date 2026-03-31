@@ -20,7 +20,7 @@ class SettingsIntegrationsConnections extends React.Component {
         e.preventDefault()
         const _id = e.currentTarget.getAttribute('data-id')
 
-        if (await Confirm(t.s('areYouSure'), { ok: t.s('remove')+' '+t.s('app').toLowerCase() }))
+        if (await Confirm(t.s('areYouSure'), { ok: t.s('removeApp') }))
             this.props.clientRevoke(_id)
     }
 
@@ -36,7 +36,7 @@ class SettingsIntegrationsConnections extends React.Component {
             <ItemActions>
                 <Button 
                     data-id={_id}
-                    title={t.s('remove')+' '+t.s('app').toLowerCase()}
+                    title={t.s('removeApp')}
                     onClick={this.onRevokeClick}>
                     <Icon name='close' />
                 </Button>
@@ -52,7 +52,7 @@ class SettingsIntegrationsConnections extends React.Component {
 
         return (
             <>
-                <Title>{t.s('connected')} {t.s('interest_technology_applications').toLowerCase()}</Title>
+                <Title>{t.s('connectedApps')}</Title>
 
                 <div className={s.list}>
                     {clients.map(this.renderClient)}

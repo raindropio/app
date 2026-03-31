@@ -48,7 +48,7 @@ export default function BookmarkEditFormTagsSuggested({ item, onTagClick }) {
         <div
             className={s.suggested}
             data-expanded={expanded}
-            title={t.s('suggested')+' '+t.s('tags').toLowerCase()}
+            title={t.s('suggestedTags')}
             onMouseOver={onMouseOver}>            
             {tags.map(tag=>(
                 <Suggestion 

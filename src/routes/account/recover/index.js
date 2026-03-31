@@ -41,7 +41,7 @@ export default function PageAccountRecover() {
         return (
             <Layout>
                 <Header data-fancy>
-                    <Title>Password is changed</Title>
+                    <Title>{t.s('passwordChanged')}</Title>
                 </Header>
 
                 <Button

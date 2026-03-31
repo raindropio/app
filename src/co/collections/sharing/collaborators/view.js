@@ -33,7 +33,7 @@ export default function CollectionSharingCollaboratorsView({ users={}, onUnshare
             {groups.map( ([group, users])=>{
                 let label
                 switch(group) {
-                    case 'member': label = t.s('role_member')+' '+t.s('und')+' '+t.s('invite').toLowerCase(); break
+                    case 'member': label = t.s('memberAndInvite'); break
                     default: label = t.s('role_'+group)
                 }
         

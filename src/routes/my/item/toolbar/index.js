@@ -33,7 +33,7 @@ export default function PageMyItemToolbar({ item, tab, tabs }) {
             },
             {
                 key: 'cache',
-                title: t.s('permanentCopy'),
+                title: t.s('webArchive'),
             }
         ]
             .filter(({key})=> tabs.includes(key) )

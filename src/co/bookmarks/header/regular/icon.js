@@ -41,7 +41,7 @@ class BookmarksHeaderIcon extends React.PureComponent {
                     {selectable && (
                         <label 
                             className={s.select}
-                            title={t.s('select')+' '+t.s('all')}>
+                            title={t.s('selectAll')}>
                             <input 
                                 tabIndex='-1'
                                 type='checkbox' />

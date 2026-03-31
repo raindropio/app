@@ -83,7 +83,7 @@ export default class PickerImage extends React.Component {
                     <Button
                         as='label'
                         variant='link'
-                        title={`${t.s('upload')} ${t.s('file').toLowerCase()}…`}>
+                        title={t.s('uploadFile')}>
                         <PickerFile onFile={this.onFile}>
                             <Icon name='upload' />
                         </PickerFile>

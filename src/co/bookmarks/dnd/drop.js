@@ -14,10 +14,10 @@ class BookmarksDropArea extends React.Component {
     onUploadFile = async(file)=>{
         if (/\.(html|csv|json|enex)$/i.test(file.name)){
             const openImport = await Confirm(
-                'Hmmm... wait a minute',
+                t.s('importConfirmTitle'),
                 {
-                    description: 'Looks like you trying to import bookmarks?',
-                    ok: t.s('import')+' '+t.s('bookmarks').toLowerCase()+'…',
+                    description: t.s('importConfirmDescription'),
+                    ok: t.s('importBookmarks')+'…',
                 }
             )
             

@@ -18,7 +18,7 @@ export default function ProStatus({ subscription: { status='', plan='', loading 
     }
     else
         switch(status) {
-            case 'payment_failed': label = 'Payment failed'; break
+            case 'payment_failed': label = t.s('paymentFailed'); break
             default: label = t.s(status); break
         }
 

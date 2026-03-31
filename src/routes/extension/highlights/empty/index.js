@@ -21,7 +21,7 @@ export default ()=>{
                     title={t.s('back')}>
                     <Icon name='back' />
                 </Button>
-                <Title>{`${t.s('add')} ${t.s('highlights').toLowerCase()}`}</Title>
+                <Title>{t.s('addHighlights')}</Title>
             </Header>
             
 			{granted ? <Howto /> : <Permissions />}

@@ -34,7 +34,7 @@ class SettingsAccountProfile extends React.Component {
                     value={name}
                     onChange={onChange} />
     
-                <Label>Email</Label>
+                <Label>{t.s('email')}</Label>
                 <Text
                     required
                     disabled={status=='loading'}

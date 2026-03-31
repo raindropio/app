@@ -12,7 +12,7 @@ function getTitles() {
     if (!_titles)
         _titles = {
             recent: t.s('recent'),
-            collection: _.capitalize(t.s('in')) + ' ' + t.s('collection').toLowerCase(),
+            collection: t.s('inCollection'),
             other: _.capitalize(t.s('other'))
         }
     return _titles

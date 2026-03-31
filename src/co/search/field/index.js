@@ -40,7 +40,7 @@ function SearchField({ downshift: { getInputProps, isOpen, openMenu, toggleMenu 
             {/* toggle button */}
             <Button 
                 tabIndex='-1'
-                title={t.s('defaultCollection-0')+' '+t.s('settings').toLowerCase() + ' / ' + t.s('fastFilter').toLowerCase()}
+                title={t.s('searchSettings')}
                 variant={isOpen ? 'active' : 'default'}
                 onMouseDown={preventDefault}
                 onMouseUp={onToggleButton}>

@@ -16,7 +16,7 @@ export default function ProHelp() {
                     href={config.links.pro.compare}
                     target='_blank'>
                     <Icon name='cloud' size='micro' />
-                    {t.s('all')} {t.s('features').toLowerCase()}
+                    {t.s('allFeatures')}
                 </Button>
 
                 <Button

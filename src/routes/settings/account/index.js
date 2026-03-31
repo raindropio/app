@@ -16,7 +16,7 @@ import Remove from './remove'
 
 export default (props)=>(
 	<>
-		<Helmet><title>{t.s('account')} {t.s('settings').toLowerCase()}</title></Helmet>
+		<Helmet><title>{t.s('accountSettings')}</title></Helmet>
 		<Header data-fancy><Title>{t.s('account')}</Title></Header>
 
 		<Layout type='grid'>

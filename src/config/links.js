@@ -17,41 +17,35 @@ export default {
     
     download: 'https://raindrop.io/download',
     blog: 'https://blog.raindrop.io',
-    translation: 'https://crowdin.com/project/raindrop',
     home: 'https://raindrop.io',
 
     help: {
         index: 'https://help.raindrop.io',
         about: 'https://help.raindrop.io/about',
-        'open-multiple-links': 'https://help.raindrop.io/bookmarks#open-multiple-links-at-once',
+        'open-multiple-links': 'https://help.raindrop.io/troubleshooting/open-multiple-links',
         import: 'https://help.raindrop.io/import',
-        omnibox: 'https://help.raindrop.io/browser-extension#search-from-address-bar',
-        'saved-indicator': 'https://help.raindrop.io/browser-extension/#saved-indicator',
-        'login-problems': 'https://help.raindrop.io/login-problems',
+        omnibox: 'https://help.raindrop.io/using-search#searching-from-the-browser-address-bar',
+        'saved-indicator': 'https://help.raindrop.io/install-extension#enabling-saved-page-indicator',
+        'login-problems': 'https://help.raindrop.io/troubleshooting/login',
         changelog: 'https://help.raindrop.io/changelog',
         embed: 'https://help.raindrop.io/embed',
         publicPage: 'https://help.raindrop.io/public-page',
         collaboration: 'https://help.raindrop.io/collaboration',
-        'add-bookmark': 'https://help.raindrop.io/bookmarks#add-new-bookmark',
-        'add-note': 'https://help.raindrop.io/bookmarks#notes',
+        'add-bookmark': 'https://help.raindrop.io/bookmarks',
+        'add-note': 'https://help.raindrop.io/bookmarks#managing-a-bookmark',
         search: 'https://help.raindrop.io/using-search',
-        tfa: 'https://help.raindrop.io/tfa',
+        tfa: 'https://help.raindrop.io/authentication#two-factor-authentication-2fa',
         highlights: {
             index: 'https://help.raindrop.io/highlights',
             addExtension: 'https://help.raindrop.io/highlights/#'+(environment.includes('safari-ios') ? 'add-extension-safari-ios' : 'add-extension')
         },
         backups: {
-            automatic: 'https://help.raindrop.io/backups#automatic'
+            automatic: 'https://help.raindrop.io/export#automatic-daily-backups'
         },
         troubleshooting: {
             brokenLinks: {
-                modes: 'https://help.raindrop.io/troubleshooting/false-broken-links/#modes',
+                modes: 'https://help.raindrop.io/broken-links#reducing-false-positives',
             }
-        },
-        suggestions: {
-            index: 'https://help.raindrop.io/ai-suggestions',
-            organize: 'https://help.raindrop.io/ai-suggestions#tips',
-            faq: 'https://help.raindrop.io/ai-suggestions#faq'
         },
         stella: {
             index: 'https://help.raindrop.io/stella',
@@ -62,9 +56,8 @@ export default {
         'buy': overrideProLink || 'https://raindrop.io/pro/buy',
         'frame': 'https://raindrop.io/pro?frame=1',
         'compare': overrideProLink || 'https://raindrop.io/pro',
-        'faq': 'https://help.raindrop.io/billing-faq',
-        'help-legacy-subscription': 'https://help.raindrop.io/article/52-legacy-subscription',
-        'help-change-billing-cycle': 'https://help.raindrop.io/change-billing-cycle',
+        'faq': 'https://help.raindrop.io/premium-features#faq',
+        'help-change-billing-cycle': 'https://help.raindrop.io/premium-features#managing-your-subscription',
         'help-learn-more': 'https://help.raindrop.io/premium-features'
     },
 

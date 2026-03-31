@@ -31,7 +31,7 @@ export default class TagsItemView extends React.Component {
                 <ItemTitle>{_id}</ItemTitle>
 
                 {count ? <ItemInfo>{compact(count)}</ItemInfo> : null}
-                {isNew ? <ItemInfo>{t.s('newString')} {t.s('tag')}</ItemInfo> : null}
+                {isNew ? <ItemInfo>{t.s('newTag')}</ItemInfo> : null}
                 <ItemActions>
                     {etc.onContextMenu && (
                         <Button 

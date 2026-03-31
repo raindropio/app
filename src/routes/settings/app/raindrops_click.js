@@ -18,7 +18,7 @@ function SettingsAppRaindropsClick({ raindrops_click, set }) {
                     onChange={e=>set('raindrops_click', e.target.value)}>
                     {[
                         ['current_tab', t.s('open')],
-                        ['new_tab', t.s('open') + ' ' + t.s('inNewTab')],
+                        ['new_tab', t.s('openInNewTab')],
                         ...(target != 'extension' ? [
                             ['preview', t.s('preview')],
                             ['web', 'Web'],

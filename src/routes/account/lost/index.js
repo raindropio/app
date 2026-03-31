@@ -59,7 +59,7 @@ class AccountLost extends React.Component {
                 </Header>
 
                 <Layout>
-                    <Label>Email</Label>
+                    <Label>{t.s('email')}</Label>
                     <Text
                         type='email'
                         inputMode='email'

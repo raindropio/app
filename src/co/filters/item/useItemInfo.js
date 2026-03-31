@@ -73,12 +73,12 @@ export default function useItemInfo({ _id, query='', count, top, ...other }) {
             if (top)
                 title = t.s('language')
             else
-                title = _.capitalize(codeToLanguage(_id))+' '+t.s('language').toLowerCase()
+                title = t.format('langFilter', _.capitalize(codeToLanguage(_id)))
         break
 
         case 'broken':
             icon = token
-            title = t.s(token)+' '+t.s('links').toLowerCase()
+            title = t.s('brokenLinks')
         break
 
         case 'duplicate':
@@ -93,12 +93,12 @@ export default function useItemInfo({ _id, query='', count, top, ...other }) {
         break
 
         case 'info':
-            title = `${_.capitalize(t.s('in'))} ${t.s('title').toLowerCase()}/${t.s('description').toLowerCase()}`
+            title = t.s('inTitleDescription')
             icon = 'info'
         break
 
         case 'link':
-            title = _.capitalize(t.s('in')) + ' URL'
+            title = t.s('inUrl')
         break
 
         case 'match':

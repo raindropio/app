@@ -21,7 +21,7 @@ import Ai from './ai'
 export default ()=>{
 	return (
 		<>
-			<Helmet><title>{t.s('app')} {t.s('settings').toLowerCase()}</title></Helmet>
+			<Helmet><title>{t.s('appSettings')}</title></Helmet>
 			<Header data-fancy><Title>{t.s('app')}</Title></Header>
 			
 			<Layout type='grid'>

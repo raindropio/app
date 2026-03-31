@@ -12,7 +12,7 @@ export default function HighlightsExportButton({ _id, ...etc }) {
     return (<>
         <Button 
             ref={pin}
-            title={t.s('export')+' '+t.s('highlights').toLowerCase()}
+            title={t.s('exportHighlights')}
             {...etc}
             onClick={()=>setShow(true)} />
 

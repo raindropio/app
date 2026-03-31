@@ -20,7 +20,7 @@ export default function SettingsBackupsAdd() {
     if (creating)
         return (
             <Alert variant='success'>
-                Your new backup is being created, but it may take a few minutes. You can leave this page and come back later.
+                {t.s('backupCreating')}
             </Alert>
         )
 
@@ -30,7 +30,7 @@ export default function SettingsBackupsAdd() {
             href=''
             onClick={onClickNew}>
             <ItemIcon><Icon name='add' /></ItemIcon>
-            <ItemTitle>{t.s('create')} {t.s('newString').toLowerCase()}</ItemTitle>
+            <ItemTitle>{t.s('createNew')}</ItemTitle>
         </Item>
     )
 }

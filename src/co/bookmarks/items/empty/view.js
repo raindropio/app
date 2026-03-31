@@ -39,7 +39,7 @@ export default class BookmarksEmptyView extends React.PureComponent {
                         if (!compact)
                             content = (
                                 <div>
-                                    <h2>{t.s('nothingFound')} {t.s('in')} {title}</h2>
+                                    <h2>{t.format('nothingFoundIn', title)}</h2>
                                 </div>
                             )
                     break
@@ -62,7 +62,7 @@ export default class BookmarksEmptyView extends React.PureComponent {
                                             target='_blank'
                                             variant='outline'>
                                             <Icon name='open' size='micro' />
-                                            {t.s('install')} {t.s('browserExtension').toLowerCase()}
+                                            {t.s('installBrowserExtension')}
                                         </Button>
                                     </>)}
 
@@ -73,7 +73,7 @@ export default class BookmarksEmptyView extends React.PureComponent {
                                         to='/settings/import'
                                         variant='outline'>
                                         <Icon name='cloud' size='micro' />
-                                        {t.s('import')} {t.s('bookmarks')}
+                                        {t.s('importBookmarks')}
                                     </Button>
                                 </div>
                             )
@@ -86,7 +86,7 @@ export default class BookmarksEmptyView extends React.PureComponent {
                     <div>                        
                         <h2>{t.s('removeCollectionSuccess')}</h2>
                         <p>
-                            {t.s('or')} {t.s('nothingFound').toLowerCase()}
+                            {t.s('orNothingFound')}
                         </p>
 
                         <br/>

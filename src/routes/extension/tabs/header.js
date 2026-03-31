@@ -17,7 +17,7 @@ export default function ExtensionTabsHeader() {
             </Button>
 
             <Title>
-                {t.s('save')} {t.s('tabs').toLowerCase()}
+                {t.s('saveTabs')}
             </Title>
         </Header>
     )

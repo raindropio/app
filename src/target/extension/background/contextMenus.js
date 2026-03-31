@@ -45,7 +45,7 @@ async function init() {
         await browser.contextMenus.removeAll()
     } catch (e) {}
 
-    const suffix = (environment.includes('safari')?` ${browser.i18n.getMessage('in')} Raindrop.io`:'')
+    const suffix = (environment.includes('safari')?` ${browser.i18n.getMessage('in')}`:'')
 
     //create
     await Promise.all([

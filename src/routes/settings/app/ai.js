@@ -23,13 +23,12 @@ function SettingsAppAi ({ ai_suggestions, ai_assistant, isPro, set }){
 				<Checkbox 
 					checked={ai_suggestions}
 					onChange={()=>set('ai_suggestions', !ai_suggestions)}>
-					{t.s('suggested')} {t.s('collectionsCount').toLowerCase()} {t.s('und')} {t.s('tags').toLowerCase()}
-					<a href={config.links.help.suggestions.index} target='_blank'>[?]</a>
+					{t.s('suggestedCollectionsAndTags')}
 				</Checkbox>
 
 				<SubLabel>
 					{!isPro && <>Only available for <Link to='/settings/pro'>Pro</Link>. </>}
-					You get your own private AI categorization model based on your data. Your data is never used for training.
+					{t.s('aiDescription')}
 				</SubLabel>
 			</div>
 		</>

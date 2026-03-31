@@ -10,9 +10,9 @@ export default function BookmarksAddPermission({ reload }) {
         browser.permissions.request({ permissions: ['tabs'] })
             .then(reload)
             .catch(()=>{
-                Alert('Can`t set required permissions', {
+                Alert(t.s('cantSetPermissions'), {
                     variant: 'error',
-                    description: `Fix: Click Raindrop.io extension button in browser toolbar, then click your profile picture and open Settings. In settings screen enable "${t.s('highlightSavedPages')}" checkbox.`
+                    description: t.format('cantSetPermissionsFix', t.s('highlightSavedPages'))
                 })
             })
     }, [])

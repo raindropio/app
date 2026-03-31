@@ -17,7 +17,7 @@ export default function BookmarkEditFormNote({ autoFocus, item: { note }, onComm
     const onMarkdownClick = useCallback(e=>{
         e.preventDefault()
         Confirm(t.s('note'), {
-            description: 'Styling with Markdown is supported',
+            description: t.s('markdownSupported'),
             cancel: t.s('howToUse')
         }).then(ok=>{
             if (!ok)
@@ -44,7 +44,7 @@ export default function BookmarkEditFormNote({ autoFocus, item: { note }, onComm
                     onClick={onMarkdownClick}
                     tabIndex='-1'
                     size='small'
-                    title='Styling with Markdown is supported'>
+                    title={t.s('markdownSupported')}>
                     <Icon name='markdown' />
                 </Button>
             </Text>

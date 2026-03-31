@@ -21,7 +21,7 @@ export default function ExtensionTabsAction({ tabs, loading }) {
                 as='input'
                 type='submit'
                 variant='primary'
-                value={`${t.s('save')} ${tabs.length} ${t.s('tabs').toLowerCase()}`} />
+                value={t.format('saveTabsCount', tabs.length)} />
         </Buttons>
     )
 }

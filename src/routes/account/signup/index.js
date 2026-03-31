@@ -39,7 +39,7 @@ class AccountSignup extends React.Component {
 
         return (
             <form onSubmit={this.onSubmit}>
-                <Helmet><title>{t.s('signUp')}</title></Helmet>
+                <Helmet><title>{t.s('register')}</title></Helmet>
                 <Header data-fancy>
                     <Title>{t.s('startCollecting')}</Title>
                 </Header>
@@ -59,7 +59,7 @@ class AccountSignup extends React.Component {
                         value={this.state.name}
                         onChange={this.onChangeValue} />
 
-                    <Label>Email</Label>
+                    <Label>{t.s('email')}</Label>
                     <Text
                         type='email'
                         name='email'
@@ -94,7 +94,7 @@ class AccountSignup extends React.Component {
                     )}
 
                     <div className={s.acceptLicence}>
-                        {t.s('privacyTerms')} <a href='https://help.raindrop.io/terms' target='_blank'>{t.s('termsOfService')}</a> {t.s('und')} <a href='https://help.raindrop.io/privacy' target='_blank'>{t.s('privacyPolicy')}</a>
+                        <span dangerouslySetInnerHTML={{__html: t.format('privacyTermsFull', `<a href='https://help.raindrop.io/terms' target='_blank'>${t.s('termsOfService')}</a>`, `<a href='https://help.raindrop.io/privacy' target='_blank'>${t.s('privacyPolicy')}</a>`)}} />
                     </div>                    
 
                     <Social 

@@ -11,7 +11,7 @@ function SettingsAppBrokenLevel({ broken_level, set }) {
     return (
         <>
             <Label>
-                {t.s('broken')} {t.s('links').toLowerCase()}&nbsp;
+                {t.s('brokenLinks')}&nbsp;
                 <a href={config.links.help.troubleshooting.brokenLinks.modes} target='_blank'>[?]</a>
             </Label>
             <div>

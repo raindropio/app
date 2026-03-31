@@ -44,7 +44,7 @@ export default class CollectionsItemView extends React.PureComponent {
                 {...dropHandlers}>
                 <div 
                     className={s.expand}
-                    title={expanded ? 'Collapse' : 'Expand'}
+                    title={expanded ? t.s('collapse') : t.s('expand')}
                     onMouseUp={onExpandClick}>
                     <Icon name='arrow_alt' />
                 </div>

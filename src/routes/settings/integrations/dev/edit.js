@@ -145,7 +145,7 @@ class DevEdit extends React.Component {
                                 name='site'
                                 onChange={this.onTextChange} />
 
-                            <Label>Redirect URI</Label>
+                            <Label>{t.s('devRedirectUri')}</Label>
                             <Text 
                                 required
                                 autoSize
@@ -191,15 +191,15 @@ class DevEdit extends React.Component {
 
                             <Separator />
 
-                            <Title>Credentials</Title>
+                            <Title>{t.s('devCredentials')}</Title>
 
-                            <Label>Client ID</Label>
+                            <Label>{t.s('devClientId')}</Label>
                             <Text 
                                 readOnly
                                 variant='less'
                                 value={_id} />
 
-                            <Label>Client secret</Label>
+                            <Label>{t.s('devClientSecret')}</Label>
                             <div>
                                 <Text 
                                     readOnly
@@ -207,11 +207,11 @@ class DevEdit extends React.Component {
                                     value={secret} />
 
                                 <a href='' onClick={this.onResetSecretClick}>
-                                    Reset secret
+                                    {t.s('devResetSecret')}
                                 </a>
                             </div>
 
-                            <Label>Test token</Label>
+                            <Label>{t.s('devTestToken')}</Label>
                             <div>
                                 {testToken && (
                                     <Text 
@@ -221,7 +221,7 @@ class DevEdit extends React.Component {
                                 )}
 
                                 <a href='' onClick={this.onCreateTestTokenClick}>
-                                    {testToken ? 'Reset' : 'Create'} test token
+                                    {t.s(testToken ? 'devResetTestToken' : 'devCreateTestToken')}
                                 </a>
 
                                 <br /><br />
@@ -235,7 +235,7 @@ class DevEdit extends React.Component {
                                 <Button
                                     variant='outline'
                                     onClick={this.onRevokeAllTokensClick}>
-                                    Revoke all user tokens
+                                    {t.s('devRevokeAllTokens')}
                                 </Button>
                             </Buttons>
                         </Layout>

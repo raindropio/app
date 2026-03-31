@@ -45,10 +45,10 @@ export default function ExtensionHighlightsPermissions() {
     if (environment.includes('safari-ios'))
         content = (
             <ol>
-                <li>Open iOS <b>Settings</b></li>
-                <li>Go to <b>Safari</b> / <b>Extensions</b> / <b>Raindrop.io</b></li>
-                <li>Tap <b>All Websites</b> or <b>Other Websites</b> and select <b>Allow</b></li>
-                <li>Restart Safari</li>
+                <li>{t.s('highlightsPermissionIos1')}</li>
+                <li>{t.s('highlightsPermissionIos2')}</li>
+                <li>{t.s('highlightsPermissionIos3')}</li>
+                <li>{t.s('highlightsPermissionIos4')}</li>
             </ol>
         )
     else
@@ -62,9 +62,9 @@ export default function ExtensionHighlightsPermissions() {
 
     return (<Layout>
         <Alert variant='warning'>
-            The Raindrop.io extension <b>respects your privacy</b> and functions without requiring any additional permissions.<br /><br />
-            However, to <b>enable highlighting</b>, we need <b>access to the data of your visited webpages</b>.<br />
-            Rest assured, you can easily revoke this permission at any time through the extension settings.
+            {t.s('highlightsPermissionPrivacy')}<br /><br />
+            {t.s('highlightsPermissionAccess')}<br />
+            {t.s('highlightsPermissionRevoke')}
         </Alert>
 
         {content}

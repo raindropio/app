@@ -10,12 +10,12 @@ export default function CollectionsItemContextmenu({
             <Menu>
                 {onRenameClick ? (
                     <MenuItem onClick={onRenameClick}>
-                        {t.s('rename')} {t.s('tag')}
+                        {t.s('renameTag')}
                     </MenuItem>
                 ) : null}
 
                 {onRemoveClick ? (<MenuItem onClick={onRemoveClick}>
-                    {t.s('remove')} {t.s('tag')}
+                    {t.s('removeTag')}
                 </MenuItem>) : null}
             </Menu>
         </Popover>

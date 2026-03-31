@@ -42,7 +42,7 @@ function BookmarksFooter({ spaceId, compact, compactLimit }) {
 
         case 'noMore':
             if (count)
-                content = `${count} ${t.s('bookmarks')} ${isSearching ? t.s('found').toLowerCase() : ''}`
+                content = isSearching ? t.format('bookmarksFound', count) : t.format('bookmarksCount', count)
             break
 
         default:

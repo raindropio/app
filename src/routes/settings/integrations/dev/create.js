@@ -18,7 +18,7 @@ class DevCreate extends React.Component {
         loading: false
     }
 
-    title = t.s('create')+' '+t.s('newString').toLowerCase()+' '+t.s('app').toLowerCase()
+    title = t.s('createNewApp')
 
     onNameChange = (e)=>
         this.setState({ name: e.target.value })

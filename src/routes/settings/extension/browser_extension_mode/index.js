@@ -19,7 +19,7 @@ class SettingsBrowserExtensionMode extends React.Component {
                     {[
                         [
                             'mini_app', 
-                            t.s('mini') + ' ' + t.s('app').toLowerCase(), 
+                            t.s('miniApp'), 
                             t.s('miniAppD'),
                             require('./mini_app.svg?component').default
                         ],

@@ -51,7 +51,7 @@ export default function BookmarkEditFormTitle({ autoFocus, item: { title, excerp
                 maxLength='10000'
                 multiline={true}
                 value={excerpt}
-                placeholder={`${t.s('add')} ${t.s('description').toLowerCase()}`}
+                placeholder={t.s('addDescription')}
                 maxRows={maxRows.excerpt}
                 onChange={onChangeField}
                 onFocus={onFocusField}

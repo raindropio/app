@@ -17,7 +17,7 @@ export default function BookmarksItemContextmenu({
         <Popover onClose={onContextMenuClose}>
             <Menu>
                 <MenuItem href={link} rel='noopener' target='_blank'>
-                    {t.s('open')} {t.s('inNewTab')}
+                    {t.s('openInNewTab')}
                 </MenuItem>
 
                 <MenuItem onClick={onCopyLinkClick}>
@@ -40,7 +40,7 @@ export default function BookmarksItemContextmenu({
 
                 {access && access.level >= 2 ? (
                     <MenuItem to={`item/${_id}/cache`}>
-                        {cache && cache != 'ready' ? '⚠️ ' : ''}{t.s('open')} {t.s('permanentCopy').toLowerCase()}
+                        {cache && cache != 'ready' ? '⚠️ ' : ''}{t.s('openWebArchive')}
                     </MenuItem>
                 ) : null}
 
@@ -59,12 +59,12 @@ export default function BookmarksItemContextmenu({
                         </MenuItem>
 
                         <MenuItem onClick={onImportantClick}>
-                            {(important ? (t.s('remove')+' '+t.s('from')) : (t.s('add') +' ' + t.s('to'))) + ' ' + t.s('favorites').toLowerCase()}
+                            {important ? t.s('removeFromFavorites') : t.s('addToFavorites')}
                         </MenuItem>
 
                         {!reparse ? (
                             <MenuItem onClick={onReparseClick}>
-                                {t.s('refresh')+' '+t.s('preview').toLowerCase()}
+                                {t.s('refreshPreview')}
                             </MenuItem>
                         ) : null}
 

@@ -22,7 +22,7 @@ export default function SearchMenuRecent() {
                 <Button
                     size='small'
                     variant='outline'
-                    title={`${t.s('remove')} ${t.s('recent').toLowerCase()}`}
+                    title={t.s('removeRecent')}
                     onClick={onClearClick}>
                     <Icon name='close' size='micro' />
                 </Button>

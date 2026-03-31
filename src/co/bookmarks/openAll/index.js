@@ -79,10 +79,9 @@ class BookmarkOpenAll extends React.Component {
             case 'loaded':
                 return (
                     <>
-                        <Header title='Having problems?' data-no-shadow />
+                        <Header title={t.s('havingProblems')} data-no-shadow />
                         <Content data-indent>
-                            Usually browsers prevent opening too many tabs at once.<br/>
-                            To fix that please read our <a href={config.links.help['open-multiple-links']} target='_blank'>help page</a>.
+                            {t.s('openAllTabsHelp')} <a href={config.links.help['open-multiple-links']} target='_blank'>{t.s('learnMore')}</a>
                         </Content>
                     </>
                 )

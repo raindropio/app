@@ -20,7 +20,7 @@ export default function ProActions({ subscription: { links={}, status } }) {
                         href={links.manage}
                         target='_blank'>
                         <Icon name='user' size='micro' />
-                        {t.s('change')} {t.s('subscription').toLowerCase()}
+                        {t.s('changeSubscription')}
                     </Button>
                 ) : null}
 
@@ -28,7 +28,7 @@ export default function ProActions({ subscription: { links={}, status } }) {
                     href={config.links.pro['help-change-billing-cycle']}
                     target='_blank'>
                     <Icon name='calendar' size='micro' />
-                    {t.s('change')} {t.s('billingCycle').toLowerCase()}
+                    {t.s('changeBillingCycle')}
                 </Button>
 
                 {links.payments && (

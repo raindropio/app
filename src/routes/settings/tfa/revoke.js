@@ -33,7 +33,7 @@ export default function SettingsTfaRevoke() {
 
             {confirm ? (
                 <Modal onClose={()=>setConfirm(false)}>
-                    <Header title={t.s('disable')+' '+t.s('tfa').toLowerCase()} />
+                    <Header title={t.s('disableTfa')} />
 
                     <form onSubmit={onSubmit}>
                         <Layout>

@@ -14,7 +14,7 @@ function SettingsExtensionAdd({ add_default_collection, add_auto_save, browser_e
     return (
         <>
             <Title>
-                Clipper {t.s('settings').toLowerCase()}
+                {t.s('clipperSettings')}
             </Title>
 
             <Layout type='grid'>
@@ -24,7 +24,7 @@ function SettingsExtensionAdd({ add_default_collection, add_auto_save, browser_e
                 <Checkbox 
                     checked={add_auto_save}
                     onChange={()=>set('add_auto_save', !add_auto_save)}>
-                    {t.s('save')} {t.s('automatically').toLowerCase()}
+                    {t.s('saveAutomatically')}
                 </Checkbox>
 
                 <Label>

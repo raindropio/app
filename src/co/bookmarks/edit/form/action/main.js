@@ -32,7 +32,7 @@ export default function BookmarkEditFormActionMain({ status, onRemove }) {
                     variant='link'
                     accent='danger'
                     onClick={onRemove}>
-                    {t.s('remove')} {t.s('from')} {t.s('defaultCollection--99')}
+                    {t.s('removeFromTrash')}
                 </Button>
             )
 

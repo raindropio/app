@@ -34,7 +34,7 @@ class BookmarksHeaderTitle extends React.Component {
             (
                 status.main == 'loading' ? 
                     '' :
-                    `${count} ${t.s('bookmarks')} ${isSearching ? t.s('found').toLowerCase() : ''}`
+                    isSearching ? t.format('bookmarksFound', count) : t.format('bookmarksCount', count)
             ) :
             (
                 compact && status.main=='loaded' ? (

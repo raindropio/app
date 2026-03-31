@@ -69,7 +69,7 @@ class PickerIcon extends React.Component {
                     <Search 
                         autoFocus
                         value={search}
-                        placeholder={`${t.s('defaultCollection-0')} ${t.s('icon').toLowerCase()}...`}
+                        placeholder={t.s('searchIcon')}
                         loading={this.props.status == 'loading'}
                         onChange={this.onSearchChange} />
                 </Layout>

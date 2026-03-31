@@ -65,7 +65,7 @@ export default function CollectionSharingInviteView({ access, onInvite }) {
                         value='member'
                         disabled={loading}
                         onChange={onRoleChange}>
-                        {t.s('role_members')+' '+t.s('und')+' '+t.s('invite').toLowerCase()}
+                        {t.s('memberAndInvite')}
                     </Radio>
 
                     <Radio 

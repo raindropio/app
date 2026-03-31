@@ -18,7 +18,7 @@ export default function ReaderHighlightsCollapsed({ item: { _id }, tab }) {
             variant='link'
             onClick={onExpandClick}>
             <Icon name='highlights' />
-            {highlights.length + ' ' + t.s('highlights').toLowerCase()}
+            {t.format('highlightsCount', highlights.length)}
         </Button>
     </Footer>)
 }

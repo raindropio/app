@@ -17,7 +17,7 @@ export default function ProPeriod({ subscription: { stopAt, renewAt } }) {
 
         return (
             <>
-                <Label>{t.s('next')} {t.s('payment').toLowerCase()}</Label>
+                <Label>{t.s('nextPayment')}</Label>
                 <div className={s.period}>
                     {renewAt && <LongDate date={renewAt} />}
                 </div>

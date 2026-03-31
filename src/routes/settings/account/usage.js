@@ -24,7 +24,7 @@ class SettingsAccountUsage extends React.Component {
         return (
             <>
                 {/* Type */}
-                <Label>{t.s('account')} {t.s('type').toLowerCase()}</Label>
+                <Label>{t.s('accountType')}</Label>
                 <div>{pro ? (
                     <Link to='/settings/pro'>PRO {t.s('subscription')}</Link>
                 ) : t.s('free')}</div>
@@ -36,7 +36,7 @@ class SettingsAccountUsage extends React.Component {
                     min='0'
                     max={files.size}
                     value={files.used}>
-                    {t.s('usedThisMonth').toLowerCase()} {t.s('forUploads')}
+                    {t.s('usedForUploads')}
                     {!isMobile && !pro ? (
                         <>. <Link to='/settings/pro'>{t.s('upgradeToPro')}</Link></>  
                     ) : null}

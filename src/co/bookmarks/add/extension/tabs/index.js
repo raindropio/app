@@ -10,7 +10,7 @@ export default function BookmarksAddExtensionTabs({ spaceId }) {
             as={Link}
             to={`/extension/tabs/${spaceId}`}>
             <Icon name='add_tabs' />
-            {t.s('save')} {t.s('tabs').toLowerCase()}…
+            {t.s('saveTabs')}…
         </MenuItem>
     )
 }

@@ -10,7 +10,7 @@ export default function PickerIconAdd(props) {
         <Button 
             as='label'
             variant='link'
-            title={t.s('upload')+' '+t.s('file').toLowerCase()}>
+            title={t.s('uploadFile')}>
             <PickerFile {...props}>
                 <Icon name='add' />
             </PickerFile>

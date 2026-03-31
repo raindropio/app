@@ -32,12 +32,12 @@ class BookmarksHeaderViewShow extends React.Component {
             ['excerpt', t.s('description')],
             ['highlights', t.s('highlights')],
             ['tags', t.s('tags')],
-            ['info', _.capitalize(t.s('bookmarks')) + ' ' + t.s('info').toLowerCase()]
+            ['info', t.s('bookmarkInfo')]
         ]
 
         return (
             <>
-                <Label>{t.s('show')} {t.s('in')} {t.s('view_'+view).toLowerCase()}</Label>
+                <Label>{t.format('showInView', t.s('view_'+view))}</Label>
                 
                 <div>
                     {options.map(([key, title])=>
@@ -52,7 +52,7 @@ class BookmarksHeaderViewShow extends React.Component {
 
                 {view == 'list' && !viewHide.includes('cover') ? (
                     <>
-                        <Label>{t.s('cover')} {t.s('position')}</Label>
+                        <Label>{t.s('coverPosition')}</Label>
 
                         <div>
                             <Radio 

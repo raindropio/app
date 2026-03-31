@@ -28,7 +28,7 @@ export default function PageAccountTfaRevoke() {
         dispatch(tfaRevoke(
             { token, code },
             ()=>{
-                Alert('Your 2FA is disabled now. Please login again.')
+                Alert(t.s('tfaDisabledAlert'))
                 navigate('/account')
             },
             e=>{
@@ -39,11 +39,11 @@ export default function PageAccountTfaRevoke() {
     }, [code, token, navigate])
 
     return (<>
-        <Helmet><title>{t.s('disable')} {t.s('tfa').toLowerCase()}</title></Helmet>
+        <Helmet><title>{t.s('disableTfa')}</title></Helmet>
 
         <form onSubmit={onSubmit}>
             <Header data-no-shadow>
-                <Title>{t.s('disable')} {t.s('tfa').toLowerCase()}</Title>
+                <Title>{t.s('disableTfa')}</Title>
             </Header>
 
             <Layout>
@@ -53,7 +53,7 @@ export default function PageAccountTfaRevoke() {
                     name='code'
                     disabled={loading}
                     required
-                    placeholder='Recovery code'
+                    placeholder={t.s('recoveryCode')}
                     value={code}
                     onChange={onChangeCodeField} />
 

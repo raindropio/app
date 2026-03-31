@@ -41,7 +41,7 @@ class ImportFile extends React.Component {
                     <div className={s.loaded}>
                         <b>{name}</b><br />
                         <span>
-                            {count.folders} {t.s('folders').toLowerCase()}, {count.bookmarks} {t.s('bookmarks')}, {count.tags} {t.s('tags').toLowerCase()} {t.s('und')} {count.highlights} {t.s('highlights').toLowerCase()}
+                            {count.folders} {t.s('folders').toLowerCase()}, {count.bookmarks} {t.s('bookmarks')}, {count.tags} {t.s('tags').toLowerCase()}, {count.highlights} {t.s('highlights').toLowerCase()}
                         </span>
 
                         {count.duplicates ? (<>
@@ -75,7 +75,7 @@ class ImportFile extends React.Component {
                 return (
                     <div>
                         <Alert>
-                            <b>{t.s('uploadBookmarksFile')} (html, csv, enex {t.s('or')} txt)</b>.<br />
+                            <b>{t.s('uploadBookmarksFile')} {t.s('uploadBookmarksFileFormats')}</b>.<br />
                             {t.s('importInfo2')}<br /><br />
                             <a href={config.links.help.import+'#supported-formats'} target='_blank'>
                                 {t.s('help')}
@@ -88,7 +88,7 @@ class ImportFile extends React.Component {
                             as='label'
                             variant='primary'>
                             <Icon name='upload' />
-                            {t.s('upload')} {t.s('file').toLowerCase()}…
+                            {t.s('uploadFile')}
         
                             <input 
                                 ref={this.input}

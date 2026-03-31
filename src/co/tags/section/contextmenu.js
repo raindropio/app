@@ -10,17 +10,17 @@ export default function CollectionsItemContextmenu({
         <Popover onClose={onContextMenuClose}>
             <Menu>
                 <MenuItem onClick={onClick}>
-                    {t.s(hidden ? 'show' : 'hide')} {t.s('tags').toLowerCase()}
+                    {t.s(hidden ? 'showTags' : 'hideTags')}
                 </MenuItem>
 
                 <MenuSeparator />
 
                 <MenuItem onClick={onSortTagsById}>
-                    {t.s('sortMin')} {t.s('tags').toLowerCase()} {t.s('byName').toLowerCase()}
+                    {t.s('sortTagsByName')}
                 </MenuItem>
 
                 <MenuItem onClick={onSortTagsByCount}>
-                    {t.s('sortMin')} {t.s('tags').toLowerCase()} {t.s('byBookmarksCount').toLowerCase()}
+                    {t.s('sortTagsByCount')}
                 </MenuItem>
             </Menu>
         </Popover>

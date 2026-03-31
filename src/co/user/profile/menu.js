@@ -38,7 +38,7 @@ function UserProfileMenu({
                 {!environment.includes('safari') && (
                     <MenuItem href={config.links.download} target='_blank'>
                         <Icon name='install' />
-                        {t.s('download')} {t.s('app').toLowerCase()}
+                        {t.s('downloadApp')}
                     </MenuItem>
                 )}
 
@@ -46,7 +46,7 @@ function UserProfileMenu({
 
                 <MenuItem href={config.links.help.index} target='_blank'>
                     <Icon name='help' />
-                    {t.s('help')} {t.s('und')} {t.s('support').toLowerCase()}
+                    {t.s('helpAndSupport')}
                 </MenuItem>
 
                 <MenuItem href={config.links.blog} target='_blank'>

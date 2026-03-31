@@ -13,7 +13,7 @@ function SettingsAppRaindropsSearchByScore ({ raindrops_search_by_score, set }){
 				<Checkbox 
 					checked={raindrops_search_by_score}
 					onChange={()=>set('raindrops_search_by_score', !raindrops_search_by_score)}>
-					{t.s('sortMin')} {t.s('byRelevance').toLowerCase()}
+					{t.s('sortByRelevance')}
 				</Checkbox>
 			</div>
 		</>

@@ -11,7 +11,7 @@ export default function CollectionsItemContextmenu({
         <Popover onClose={onContextMenuClose}>
             <Menu>
                 <MenuItem onClick={onSelectAll}>
-                    {t.s('select')} {t.s('all')}
+                    {t.s('selectAll')}
                 </MenuItem>
 
                 <MenuSeparator />
@@ -21,15 +21,15 @@ export default function CollectionsItemContextmenu({
                 </MenuItem>
 
                 <MenuItem onClick={onCollapseAllClick}>
-                    {t.s('collapseAll')} {t.s('collectionsCount')}
+                    {t.s('collapseAllCollections')}
                 </MenuItem>
 
                 <MenuItem onClick={onSortAllByTitleClick}>
-                    {t.s('sortMin')} {t.s('all').toLowerCase()} {t.s('collectionsCount')} {t.s('byName').toLowerCase()}
+                    {t.s('sortAllCollectionsByName')}
                 </MenuItem>
 
                 <MenuItem onClick={onCleanClick}>
-                    {t.s('remove')} {t.s('all').toLowerCase()} {t.s('collectionEmpty').toLowerCase()}
+                    {t.s('removeAllEmptyCollections')}
                 </MenuItem>
 
                 <MenuSeparator />
@@ -46,11 +46,11 @@ export default function CollectionsItemContextmenu({
                         </MenuItem>
 
                         <MenuItem onClick={onToggleClick}>
-                            {t.s(hidden ? 'show' : 'hide')} {t.s('group').toLowerCase()}
+                            {t.s(hidden ? 'showGroup' : 'hideGroup')}
                         </MenuItem>
 
                         <MenuItem onClick={onRemoveClick}>
-                            {t.s('remove')} {t.s('group').toLowerCase()}
+                            {t.s('removeGroup')}
                         </MenuItem>
                     </>
                 ) : null}

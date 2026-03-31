@@ -13,12 +13,12 @@ class SettingsAppRaindropsButtons extends React.Component {
     options = [
         ['select',      t.s('select'), 'select_all'],
         ['current_tab', t.s('open'), 'click'],
-        ['new_tab',     t.s('open') + ' ' + t.s('inNewTab'), 'open'],
+        ['new_tab',     t.s('openInNewTab'), 'open'],
         ['preview',     t.s('preview'), 'show'],
         ['web',         'Web', 'web'],
         ['copy',        t.s('copyLinkToClipboard'), 'duplicates'],
         ['ask',         t.s('ask'), 'ai'],
-        ['important',   t.s('add') +' ' + t.s('to') + ' ' + t.s('favorites').toLowerCase(), 'like'],
+        ['important',   t.s('addToFavorites'), 'like'],
         ['tags',        t.s('tags'), 'tag'],
         ['edit',        t.s('edit'), 'edit'],
         ['remove',      t.s('remove'), 'trash']
@@ -90,7 +90,7 @@ class SettingsAppRaindropsButtons extends React.Component {
                                             name={this.getOption(id)[2]} />
                                     ) :
                                 //nothing selected
-                                <span>{t.s('hide')} {t.s('all').toLowerCase()}</span>
+                                <span>{t.s('hideAll')}</span>
                             }
                             <Icon name='expand' size='micro' />
                         </Button>

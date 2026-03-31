@@ -28,7 +28,7 @@ function CacheStatus({ cache, url }) {
         case 'retry':
         case '':
             icon = 'retry'
-            title = 'Not available yet...'
+            title = t.s('webArchiveNotAvailable')
         break
 
         default:
@@ -43,7 +43,7 @@ function CacheStatus({ cache, url }) {
             <Title>
                 {title}<br/>
                 <small>
-                    Permanent copies are made automatically for all bookmarks — you don’t need to do anything. <a href='https://help.raindrop.io/permanent-copy' target='_blank'>Learn more</a>
+                    {t.s('webArchiveDescription')} <a href='https://help.raindrop.io/permanent-copy' target='_blank'>{t.s('learnMore')}</a>
                 </small>
             </Title>
             <Space />

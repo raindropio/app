@@ -19,8 +19,8 @@ export default function MyMainSearchIn({ cId, search, fromCid }) {
 
     //tabs
     const tabs = useMemo(()=>[
-        {key: 0, title: `${t.s('defaultCollection-0')} ${t.s('everywhere').toLowerCase()}`},
-        {key: collection._id, title: `${_.capitalize(t.s('in'))} "${collection.title}"`}
+        {key: 0, title: t.s('searchEverywhere')},
+        {key: collection._id, title: t.format('inCollectionName', collection.title)}
     ], [collection])
 
     const onChange = useCallback(_id=>{

@@ -23,7 +23,7 @@ export default function ReaderHighlightsExpanded({ item: { _id }, webViewRef }) 
             <Header 
                 data-fancy
                 data-no-shadow>
-                <Title>{highlights.length} {t.s('highlights').toLowerCase()}</Title>
+                <Title>{t.format('highlightsCount', highlights.length)}</Title>
                 
                 <Space />
 
@@ -31,7 +31,7 @@ export default function ReaderHighlightsExpanded({ item: { _id }, webViewRef }) 
                     target='_blank'
                     href={links.help.highlights.index}
                     variant='link'
-                    title={t.s('add')+' '+t.s('highlights').toLowerCase()}>
+                    title={t.s('addHighlights')}>
                     <Icon name='add' />
                 </Button>
 

@@ -17,12 +17,12 @@ export default class CollectionsItemContextmenu extends React.Component {
                 <Menu>
                     {to && target!='web' ? (
                         <MenuItem href={new URL(to, config.links.app.index).toString()} target='_blank'>
-                            {t.s('open')} {t.s('inNewTab')}
+                            {t.s('openInNewTab')}
                         </MenuItem>
                     ) : null}
 
                     {onOpenAllClick ? <MenuItem onClick={onOpenAllClick}>
-                        {t.s('open') + ' ' + t.s('allBookmarks').toLowerCase()}
+                        {t.s('openAllBookmarks')}
                     </MenuItem> : null}
 
                     { _id>0 && access && access.level>=3 && onCreateNewChildClick ? (

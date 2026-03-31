@@ -18,7 +18,7 @@ class SettingsExtensionHotkeys extends React.Component {
     renderHotkey = ({ description, shortcut, name })=>(
         <div key={name}>
             {shortcut || '-'}
-            <SubLabel>{description || (t.s('open') + ' ' + t.s('browserExtension').toLowerCase())}</SubLabel>
+            <SubLabel>{description || (t.s('openBrowserExtension'))}</SubLabel>
         </div>
     )
 
@@ -41,7 +41,7 @@ class SettingsExtensionHotkeys extends React.Component {
                         <a
                             href=''
                             onClick={e=>{e.preventDefault();openTab(hotkeys.link(), true)}}>
-                            {t.s('change')} {t.s('helpHotKey').toLowerCase()}
+                            {t.s('changeHotkeys')}
                         </a>
                     </SubLabel>
                 ) : null}

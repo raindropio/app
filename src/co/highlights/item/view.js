@@ -64,7 +64,7 @@ export default function HighlightsItemView({ text, color, created, pro, onScroll
                         autoComplete='off'
                         spellCheck='false'
                         disabled={!pro}
-                        placeholder={`${t.s('add')} ${t.s('note').toLowerCase()}…`}
+                        placeholder={t.s('addNote')+'…'}
                         value={note}
                         onChange={onChangeNote}
                         onBlur={onSubmitNote} />
@@ -78,7 +78,7 @@ export default function HighlightsItemView({ text, color, created, pro, onScroll
                     <Button 
                         variant='link'
                         accent='danger'
-                        title={`${t.s('remove')} ${t.s('highlights').toLowerCase()}`}
+                        title={t.s('removeHighlights')}
                         onClick={onRemove}>
                         <Icon name='trash' />
                     </Button>

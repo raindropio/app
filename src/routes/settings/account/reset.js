@@ -10,8 +10,8 @@ import Modal, { Header } from '~co/overlay/modal'
 import Preloader from '~co/common/preloader'
 
 class SettingsProfileReset extends React.Component {
-    label = `${t.s('remove')} ${t.s('allBookmarks').toLowerCase()} ${t.s('und')} ${t.s('collectionsCount')}`
-    action = `${t.s('remove')} ${t.s('all').toLowerCase()}`
+    label = t.s('removeAllData')
+    action = t.s('removeAll')
 
     state = {
         loading: false

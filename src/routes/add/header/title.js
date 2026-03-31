@@ -17,7 +17,7 @@ export default ({ item })=>{
         case 'new':     title = t.s('newBookmark'); break
         case 'idle':    title = ''; break
         case 'loading': title = ''; break
-        default:        title = t.s('bookmark')+' '+t.s('saved').toLowerCase(); break
+        default:        title = t.s('bookmarkSaved'); break
     }
 
     return (

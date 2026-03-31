@@ -9,7 +9,7 @@ export default function ExtensionTabsClose({ close, setClose }) {
             <Checkbox
                 checked={close}
                 onChange={e=>setClose(e.target.checked)}>
-                {t.s('close')} {t.s('tabs').toLowerCase()}
+                {t.s('closeTabs')}
             </Checkbox>
         </>
     )

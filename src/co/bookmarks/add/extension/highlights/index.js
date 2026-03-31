@@ -10,7 +10,7 @@ export default function BookmarksAddExtensionHighlights() {
             as={Link}
             to={'/extension/highlights'}>
             <Icon name='highlights' />
-            {t.s('add')} {t.s('highlights').toLowerCase()}…
+            {t.s('addHighlights')}…
         </MenuItem>
     )
 }

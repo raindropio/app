@@ -8,7 +8,7 @@ import { Label, Radio } from '~co/common/form'
 function SettingsAppTagsSort({ tags_sort, reorder }) {
     return (
         <>
-            <Label>{t.s('tags')} {t.s('sortBy').toLowerCase()}</Label>
+            <Label>{t.s('sortTags')}</Label>
             <div>
                 {[
                     ['_id', t.s('byName')],

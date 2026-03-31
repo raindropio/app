@@ -44,7 +44,7 @@ class BookmarksSelectModeMore extends React.Component {
     onRemoveTagsClick = (e)=>{
         e.preventDefault()
 
-        const title = t.s('remove')+' '+t.s('all').toLowerCase()+' '+t.s('tags').toLowerCase()
+        const title = t.s('removeAllTags')
 
         Confirm(
             title,
@@ -87,26 +87,26 @@ class BookmarksSelectModeMore extends React.Component {
 
                             <MenuItem onClick={this.onReparseClick}>
                                 <Icon name='refresh' />
-                                {t.s('refresh')+' '+t.s('preview').toLowerCase()}
+                                {t.s('refreshPreview')}
                             </MenuItem>
 
                             <MenuSeparator />
 
                             <MenuItem onClick={this.onImportantClick}>
                                 <Icon name='like_active' />
-                                {_.capitalize(t.s('to')) + ' ' + t.s('favorites').toLowerCase()}
+                                {t.s('addToFavorites')}
                             </MenuItem>
 
                             <MenuItem onClick={this.onImportantRemoveClick}>
                                 <Icon name='like' />
-                                {t.s('remove')} {t.s('from')} {t.s('favorites').toLowerCase()}
+                                {t.s('removeFromFavorites')}
                             </MenuItem>
 
                             <MenuSeparator />
 
                             <MenuItem onClick={this.onRemoveTagsClick}>
                                 <Icon name='tag' />
-                                {t.s('remove')} {t.s('tags').toLowerCase()}
+                                {t.s('removeTags')}
                             </MenuItem>
                         </Menu>
                     </Popover>

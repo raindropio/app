@@ -23,7 +23,7 @@ function ConnectionError() {
 
     switch(connect_error) {
         case 'conflict':
-            content = <span>Can't link this account, because it already used by another user. Unlink it first and try again.</span>;
+            content = <span>{t.s('connectConflict')}</span>;
             break
 
         default: 
@@ -69,7 +69,7 @@ export default function SettingsProfileConnect() {
                 </div>
             ) : (
                 <Alert variant='warning'>
-                    Please <a href={`${config.links.app.index}${pathname}`} target='_blank'>open web app</a> to configure social accounts!
+                    {t.s('openWebAppSocial')} <a href={`${config.links.app.index}${pathname}`} target='_blank'>{t.s('openInBrowser')}</a>
                 </Alert>
             )}
         </>

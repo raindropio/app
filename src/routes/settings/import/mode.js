@@ -10,11 +10,11 @@ class ImportMode extends React.Component {
     modes = [
         [
             'all',
-            t.s('import')+' '+t.s('all').toLowerCase()
+            t.s('importAll')
         ],
         [
             'new',
-            t.s('only')+' '+(t.s('newString')+' '+t.s('folders')+' '+t.s('und')+' '+t.s('bookmarks')).toLowerCase()
+            t.s('importOnlyNew')
         ],
         [
             'from_scratch',

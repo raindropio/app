@@ -85,7 +85,7 @@ export default class PickerSourceBaseProgress extends React.Component {
 
                 <Content data-indent>
                     <div className={s.title}>
-                        {done.length} {t.s('of')} {items.length} {t.s('saved').toLowerCase()}
+                        {t.format('uploadProgressCount', done.length, items.length)}
                     </div>
 
                     {failed.map(({name, message})=>

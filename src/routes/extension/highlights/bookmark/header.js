@@ -20,7 +20,7 @@ export default function ExtensionHighlightsScreen({ _id, count }) {
                 <Icon name='back' />
             </Button>
 
-            <Title>{count ? `${count} ${t.s('highlights').toLowerCase()}` : t.s('highlights')}</Title>
+            <Title>{count ? t.format('highlightsCount', count) : t.s('highlights')}</Title>
 
             <Space />
             
@@ -29,7 +29,7 @@ export default function ExtensionHighlightsScreen({ _id, count }) {
                     as={Link}
                     to='/extension/highlights'
                     variant='link'
-                    title={t.s('add')+' '+t.s('highlights').toLowerCase()}>
+                    title={t.s('addHighlights')}>
                     <Icon name='add' />
                 </Button>
 

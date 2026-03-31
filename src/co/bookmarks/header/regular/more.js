@@ -84,7 +84,7 @@ class BookmarksHeaderMore extends React.Component {
 
                             <MenuItem onClick={this.onRemoveClick}>
                                 <Icon name='trash' />
-                                {t.s('remove')} {t.s('collection').toLowerCase()}
+                                {t.s('removeCollection')}
                             </MenuItem>
                         </Menu>
                     </Popover>

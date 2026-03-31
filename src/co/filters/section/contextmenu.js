@@ -10,7 +10,7 @@ export default function CollectionsItemContextmenu({
         <Popover onClose={onContextMenuClose}>
             <Menu>
                 <MenuItem onClick={onClick}>
-                    {t.s(hidden ? 'show' : 'hide')} {t.s('fastFilter').toLowerCase()}
+                    {t.s(hidden ? 'showFilters' : 'hideFilters')}
                 </MenuItem>
             </Menu>
         </Popover>

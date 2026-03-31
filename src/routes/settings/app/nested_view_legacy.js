@@ -13,7 +13,7 @@ function SettingsAppNestViewLegacy ({ nested_view_legacy, set }){
 				<Checkbox 
 					checked={nested_view_legacy}
 					onChange={()=>set('nested_view_legacy', !nested_view_legacy)}>
-					{t.s('old')} {t.s('view').toLowerCase()}
+					{t.s('oldView')}
 				</Checkbox>
 			</div>
 		</>

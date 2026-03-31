@@ -15,10 +15,10 @@ export default function BookmarksAddFallbackFile({ spaceId, onEdit }) {
     const onFile = useCallback(async file=>{
         if (/\.(html|csv|json|enex)$/i.test(file.name)){
             const openImport = await Confirm(
-                'Hmmm... wait a minute',
+                t.s('importConfirmTitle'),
                 {
-                    description: 'Looks like you trying to import bookmarks?',
-                    ok: t.s('import')+' '+t.s('bookmarks').toLowerCase()+'…',
+                    description: t.s('importConfirmDescription'),
+                    ok: t.s('importBookmarks')+'…',
                 }
             )
             
@@ -44,7 +44,7 @@ export default function BookmarksAddFallbackFile({ spaceId, onEdit }) {
         <MenuItem as='label'>
             <PickerFile onFile={onFile}>
                 <Icon name='upload' />
-                {t.s('upload')} {t.s('file').toLowerCase()}…
+                {t.s('uploadFile')}
             </PickerFile>
         </MenuItem>
     )

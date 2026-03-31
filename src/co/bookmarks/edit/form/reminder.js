@@ -22,7 +22,7 @@ function Templates({ onSetDate }) {
         <More 
             variant='outline' 
             content={<Icon name='reminder_add' />}
-            title={t.s('add') + ' ' + t.s('reminder').toLowerCase()}
+            title={t.s('addReminder')}
             onClick={()=>onSetDate(new Date())}>
             <Menu>
                 {templates.map(([title, date])=>

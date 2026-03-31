@@ -20,7 +20,7 @@ export default function WebViewError({ className='', src }) {
 
             <div className={s.message}>
                 <Icon name='hide' enlarge='2' />
-                <h3>{t.s('preview')} {t.s('error').toLowerCase()}</h3>
+                <h3>{t.s('previewError')}</h3>
                 <div>
                     <b>{getDomain(src)}</b> not reachable or blocks site preview.
                 </div>

@@ -20,7 +20,7 @@ export default function Upgrade() {
 
     let message = useMemo(()=>{
         if (_.random(0,1)==1)
-            return `${t.s('fullTextSearch')}, ${t.s('permanentCopy').toLowerCase()}, ${t.s('backups').toLowerCase()} ${t.s('und')} ${t.s('more').toLowerCase()}…`
+            return t.s('proFeaturesList')
         return t.s('proGreeting')
     }, [])
     

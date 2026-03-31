@@ -30,7 +30,7 @@ export default function BookmarkItemActions(props) {
                 target='_blank'
                 rel='noopener'
                 variant='outline'
-                title={t.s('open')+' '+t.s('inNewTab')}>
+                title={t.s('openInNewTab')}>
                 <Icon name='open' />
             </Button>
 
@@ -79,7 +79,7 @@ export default function BookmarkItemActions(props) {
                     data-button='important'
                     onClick={onImportantClick}
                     variant='outline'
-                    title={(important ? (t.s('remove')+' '+t.s('from')) : (t.s('add') +' ' + t.s('to'))) + ' ' + t.s('favorites').toLowerCase()}>
+                    title={important ? t.s('removeFromFavorites') : t.s('addToFavorites')}>
                     <Icon name={'like'+(important?'_active':'')} />
                 </Button>
 

@@ -17,14 +17,11 @@ export default function SettingsAppDefaultCollectionView() {
         const view = e.target.value
         dispatch(set('default_collection_view', view))
 
-        const keepExistingUntouched = await Confirm('Default view changed', {
+        const keepExistingUntouched = await Confirm(t.s('defaultViewChanged'), {
             variant: 'warning',
-            description: <>
-                <b>New collections</b> will now have a <b>{t.s(`view_${view}`)}</b> view mode.
-                Do you want to also apply this change to all existing collections?
-            </>,
-            ok: 'Remain untouched',
-            cancel: 'Update all'
+            description: t.format('defaultViewDescription', t.s(`view_${view}`)),
+            ok: t.s('remainUntouched'),
+            cancel: t.s('updateAll')
         })
 
         if (!keepExistingUntouched)
@@ -33,7 +30,7 @@ export default function SettingsAppDefaultCollectionView() {
 
     return (
         <>
-            <Label>Default view mode</Label>
+            <Label>{t.s('defaultViewMode')}</Label>
             <div>
                 <Select 
                     variant='outline'
