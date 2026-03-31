@@ -1,6 +1,8 @@
 import { call, put, takeLatest, all } from 'redux-saga/effects'
+import { load as loadRecaptcha } from 'recaptcha-v3'
 import Api from '../modules/api'
 import ApiError from '../modules/error'
+import { RECAPTCHA_SITE_KEY } from '../constants/app'
 import {
 	USER_LOAD_REQ, USER_LOAD_SUCCESS, USER_LOAD_ERROR,
 	USER_UPDATE_REQ, USER_UPDATE_SUCCESS, USER_UPDATE_ERROR,
@@ -110,7 +112,10 @@ function* loginWithPassword({email, password, onSuccess, onFail}) {
 
 function* registerWithPassword({name, email, password, onSuccess, onFail}) {
 	try {
-		yield call(Api.post, 'auth/email/signup', {name, email:email||'0', password});
+		const inst = yield call(loadRecaptcha, RECAPTCHA_SITE_KEY)
+		const recaptcha = yield call([inst, inst.execute], 'signup')
+
+		yield call(Api.post, 'auth/email/signup', {name, email:email||'0', password, recaptcha});
 		yield call(Api.post, 'auth/email/login', {email, password});
 
 		yield put({type: USER_REFRESH_REQ, way: 'register', onSuccess});

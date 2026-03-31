@@ -1,5 +1,5 @@
 import s from './index.module.styl'
-import React, { useState, useCallback, useEffect } from 'react'
+import React, { useCallback } from 'react'
 import links from '~config/links'
 import t from '~t'
 
@@ -8,22 +8,6 @@ import Icon from '~co/common/icon'
 import Button from '~co/common/button'
 
 export default function UserUpgrade({ onClose }) {
-    //load monthly price
-    const [price, setPrice] = useState('')
-    useEffect(()=>{
-        (async()=>{
-            const res = await fetch('https://raindrop.onfastspring.com/popup-raindrop/builder', {
-                method: 'POST',
-                body: `put=${encodeURIComponent('{"items":[{"path":"promonthly1","quantity":1}]}')}`,
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                }
-            })
-            const json = await res.json()
-            setPrice(json.total)
-        })()
-    }, [])
-
     //close on click buy
     const onBuyClick = useCallback(()=>onClose(), [onClose])
 
@@ -44,7 +28,7 @@ export default function UserUpgrade({ onClose }) {
                 <div>
                     <Header 
                         data-no-shadow
-                        title={price ? t.format('goProFor', price) : t.s('goPro')} />
+                        title={t.s('goPro')} />
 
                     <Content className={s.content}>
                         <p>
