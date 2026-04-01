@@ -12,7 +12,9 @@ import {
 	USER_BACKUP,
 	USER_TFA_CONFIGURE,
 	USER_TFA_VERIFY,
-	USER_TFA_REVOKE
+	USER_TFA_REVOKE,
+	USER_SEND_EMAIL_CONFIRM,
+	USER_CONFIRM_EMAIL
 } from '../constants/user'
 
 export const load = ()=>({
@@ -116,6 +118,19 @@ export const tfaVerify = ({ code }, onSuccess, onFail)=>({
 export const tfaRevoke = ({ code, token }, onSuccess, onFail)=>({
 	type: USER_TFA_REVOKE,
 	code,
+	token,
+	onSuccess: wrapFunc(onSuccess),
+	onFail: wrapFunc(onFail)
+})
+
+export const sendEmailConfirm = (onSuccess, onFail)=>({
+	type: USER_SEND_EMAIL_CONFIRM,
+	onSuccess: wrapFunc(onSuccess),
+	onFail: wrapFunc(onFail)
+})
+
+export const confirmEmail = ({ token }, onSuccess, onFail)=>({
+	type: USER_CONFIRM_EMAIL,
 	token,
 	onSuccess: wrapFunc(onSuccess),
 	onFail: wrapFunc(onFail)

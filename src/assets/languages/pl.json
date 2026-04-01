@@ -419,5 +419,9 @@
   "links": "Linki",
   "documents": "Dokumenty",
   "audios": "Audio",
-  "books": "Książki"
+  "books": "Książki",
+  "confirmYourEmail": "Potwierdź swój adres e-mail. Sprawdź skrzynkę odbiorczą — wysłaliśmy link potwierdzający.",
+  "resendEmail": "Wyślij ponownie",
+  "emailConfirmation": "Potwierdzenie e-mail",
+  "emailConfirmed": "Twój e-mail został pomyślnie potwierdzony!"
 }

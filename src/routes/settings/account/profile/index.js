@@ -1,40 +1,37 @@
-import React from 'react'
+import React, { useState, useCallback } from 'react'
 import t from '~t'
 import withEdit from '~co/user/withEdit'
-
 import { Label, Text, Buttons } from '~co/common/form'
 import Button from '~co/common/button'
 import Icon from '~co/common/icon'
 import Avatar from './avatar'
 import Password from './password'
+import ConfirmEmail from './confirm-email'
 
-class SettingsAccountProfile extends React.Component {
-    state = {
-        changePassword: false
-    }
+function SettingsAccountProfile({ name, email, emailConfirmed, password, newpassword='', unsaved, status, onChange, onSubmit }) {
+    const [changePassword, setChangePassword] = useState(false)
 
-    onChangePasswordClick = e=>{
+    const onChangePasswordClick = useCallback(e=>{
         e.preventDefault()
-        this.setState({ changePassword: true })
-    }
+        setChangePassword(true)
+    }, [])
 
-    onChangePasswordClose = ()=>
-        this.setState({ changePassword: false })
+    const onChangePasswordClose = useCallback(()=>
+        setChangePassword(false)
+    , [])
 
-    render() {
-        const { name, email, password, newpassword='', unsaved, status, onChange, onSubmit } = this.props
+    return (
+        <>
+            <Label>{t.s('username')}</Label>
+            <Text
+                required
+                disabled={status=='loading'}
+                name='name'
+                value={name}
+                onChange={onChange} />
 
-        return (
-            <>
-                <Label>{t.s('username')}</Label>
-                <Text 
-                    required
-                    disabled={status=='loading'}
-                    name='name'
-                    value={name}
-                    onChange={onChange} />
-    
-                <Label>{t.s('email')}</Label>
+            <Label>{t.s('email')}</Label>
+            <div>
                 <Text
                     required
                     disabled={status=='loading'}
@@ -42,46 +39,48 @@ class SettingsAccountProfile extends React.Component {
                     name='email'
                     value={email}
                     onChange={onChange} />
-    
-                <Label>{t.s('password')}</Label>
-    
-                {!password && email ? (
-                    <Text
-                        required
+
+                {!emailConfirmed && <ConfirmEmail />}
+            </div>
+
+            <Label>{t.s('password')}</Label>
+
+            {!password && email ? (
+                <Text
+                    required
+                    disabled={status=='loading'}
+                    type='password'
+                    name='newpassword'
+                    value={newpassword}
+                    onChange={onChange} />
+            ) : (
+                <div><Button
+                    variant='outline'
+                    onClick={onChangePasswordClick}>
+                    <Icon name='edit' size='micro' />
+                    {t.s('changePassword')}
+                </Button></div>
+            )}
+
+            <Avatar />
+
+            {unsaved && (
+                <Buttons>
+                    <Button
                         disabled={status=='loading'}
-                        type='password'
-                        name='newpassword'
-                        value={newpassword}
-                        onChange={onChange} />
-                ) : (
-                    <div><Button 
-                        variant='outline'
-                        onClick={this.onChangePasswordClick}>
-                        <Icon name='edit' size='micro' />
-                        {t.s('changePassword')}
-                    </Button></div>
-                )}
+                        variant='primary'
+                        onClick={onSubmit}>
+                        {t.s('save')}
+                    </Button>
+                </Buttons>
+            )}
 
-                <Avatar />
-    
-                {unsaved && (
-                    <Buttons>
-                        <Button 
-                            disabled={status=='loading'}
-                            variant='primary'
-                            onClick={onSubmit}>
-                            {t.s('save')}
-                        </Button>
-                    </Buttons>
-                )}
-
-                {this.state.changePassword && (
-                    <Password 
-                        onClose={this.onChangePasswordClose} />
-                )}
-            </>
-        )
-    }
+            {changePassword && (
+                <Password
+                    onClose={onChangePasswordClose} />
+            )}
+        </>
+    )
 }
 
 export default withEdit(SettingsAccountProfile, ['name', 'email', 'newpassword'])

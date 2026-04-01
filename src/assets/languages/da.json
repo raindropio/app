@@ -418,5 +418,9 @@
   "links": "Links",
   "documents": "Dokumenter",
   "audios": "Lyd",
-  "books": "Bøger"
+  "books": "Bøger",
+  "confirmYourEmail": "Bekræft venligst din e-mailadresse. Tjek din indbakke for et bekræftelseslink.",
+  "resendEmail": "Send e-mail igen",
+  "emailConfirmation": "E-mailbekræftelse",
+  "emailConfirmed": "Din e-mail er blevet bekræftet!"
 }

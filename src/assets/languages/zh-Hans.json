@@ -419,5 +419,9 @@
   "links": "链接",
   "documents": "文档",
   "audios": "音频",
-  "books": "书籍"
+  "books": "书籍",
+  "confirmYourEmail": "请验证您的邮箱地址。请检查收件箱中的确认链接。",
+  "resendEmail": "重新发送邮件",
+  "emailConfirmation": "邮箱确认",
+  "emailConfirmed": "您的邮箱已成功确认！"
 }

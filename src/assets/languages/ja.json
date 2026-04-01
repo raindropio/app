@@ -419,5 +419,9 @@
   "links": "リンク",
   "documents": "ドキュメント",
   "audios": "オーディオ",
-  "books": "本"
+  "books": "本",
+  "confirmYourEmail": "メールアドレスを確認してください。受信トレイの確認リンクをご確認ください。",
+  "resendEmail": "メールを再送信",
+  "emailConfirmation": "メール確認",
+  "emailConfirmed": "メールアドレスが正常に確認されました！"
 }

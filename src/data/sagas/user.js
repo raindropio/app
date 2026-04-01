@@ -21,7 +21,9 @@ import {
 	USER_BACKUP,
 	USER_TFA_CONFIGURE,
 	USER_TFA_VERIFY,
-	USER_TFA_REVOKE
+	USER_TFA_REVOKE,
+	USER_SEND_EMAIL_CONFIRM,
+	USER_CONFIRM_EMAIL
 } from '../constants/user'
 
 //Requests
@@ -52,6 +54,9 @@ export default function* () {
 	yield takeLatest(USER_TFA_REVOKE, tfaRevoke)
 
 	yield takeLatest(USER_SUBSCRIPTION_LOAD_REQ, loadSubscription)
+
+	yield takeLatest(USER_SEND_EMAIL_CONFIRM, sendEmailConfirm)
+	yield takeLatest(USER_CONFIRM_EMAIL, confirmEmail)
 }
 
 function* loadUser({ignore=false, reset=true, way, onSuccess, onFail}) {
@@ -271,5 +276,26 @@ function* loadSubscription({ignore=false}) {
 		yield put({type: USER_SUBSCRIPTION_LOAD_SUCCESS, subscription})
 	} catch (error) {
 		yield put({type: USER_SUBSCRIPTION_LOAD_ERROR, error})
+	}
+}
+
+function* sendEmailConfirm({ ignore=false, onSuccess, onFail }) {
+	if (ignore)
+		return;
+
+	try {
+		yield call(Api.post, `user/send_email_confirm`)
+		onSuccess()
+	} catch (error) {
+		onFail(error)
+	}
+}
+
+function* confirmEmail({ token, onSuccess, onFail }) {
+	try {
+		yield call(Api.post, 'auth/email/confirm', { token })
+		onSuccess()
+	} catch (error) {
+		onFail(error)
 	}
 }

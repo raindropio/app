@@ -40,17 +40,20 @@ export default (Component, fields=[])  => {
                     unsaved: true
                 }),
         
-            onSubmit: (onSuccess)=>                
+            onSubmit: (onSuccess)=>{
+                const emailIsChanged = this.state.user.email != this.props.user.email
+
                 this.props.save(
                     _.pick(this.state.user, fields),
                     ()=>{
-                        Alert(t.s('saveSuccess'))
+                        Alert(t.s('saveSuccess') + (emailIsChanged ? `\n${t.s('confirmYourEmail')}` : ''))
                         
                         if (typeof onSuccess == 'function')
                             onSuccess()
                     },
                     Error
                 )
+            }
         }
     
         render() {

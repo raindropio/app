@@ -419,5 +419,9 @@
   "links": "Links",
   "documents": "Documenten",
   "audios": "Audio's",
-  "books": "Boeken"
+  "books": "Boeken",
+  "confirmYourEmail": "Bevestig uw e-mailadres. Controleer uw inbox voor een bevestigingslink.",
+  "resendEmail": "E-mail opnieuw verzenden",
+  "emailConfirmation": "E-mailbevestiging",
+  "emailConfirmed": "Uw e-mail is succesvol bevestigd!"
 }

@@ -419,5 +419,9 @@
   "links": "Bağlantılar",
   "documents": "Belgeler",
   "audios": "Sesler",
-  "books": "Kitaplar"
+  "books": "Kitaplar",
+  "confirmYourEmail": "Lütfen e-posta adresinizi doğrulayın. Onay bağlantısı için gelen kutunuzu kontrol edin.",
+  "resendEmail": "E-postayı tekrar gönder",
+  "emailConfirmation": "E-posta onayı",
+  "emailConfirmed": "E-postanız başarıyla onaylandı!"
 }

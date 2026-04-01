@@ -346,5 +346,9 @@
   "links": "Linkit",
   "documents": "Asiakirjat",
   "audios": "Äänet",
-  "books": "Kirjat"
+  "books": "Kirjat",
+  "confirmYourEmail": "Vahvista sähköpostiosoitteesi. Tarkista saapuneet-kansiosi vahvistuslinkin varalta.",
+  "resendEmail": "Lähetä sähköposti uudelleen",
+  "emailConfirmation": "Sähköpostin vahvistus",
+  "emailConfirmed": "Sähköpostisi on vahvistettu onnistuneesti!"
 }

@@ -421,5 +421,9 @@
   "links": "Links",
   "documents": "Dokumente",
   "audios": "Audios",
-  "books": "Bücher"
+  "books": "Bücher",
+  "confirmYourEmail": "Bitte bestätigen Sie Ihre E-Mail-Adresse. Prüfen Sie Ihren Posteingang auf einen Bestätigungslink.",
+  "resendEmail": "E-Mail erneut senden",
+  "emailConfirmation": "E-Mail-Bestätigung",
+  "emailConfirmed": "Ihre E-Mail wurde erfolgreich bestätigt!"
 }

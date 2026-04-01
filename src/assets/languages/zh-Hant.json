@@ -419,5 +419,9 @@
   "links": "連結",
   "documents": "文件",
   "audios": "音訊",
-  "books": "書籍"
+  "books": "書籍",
+  "confirmYourEmail": "請驗證您的電子郵件地址。請檢查收件匣中的確認連結。",
+  "resendEmail": "重新發送郵件",
+  "emailConfirmation": "電子郵件確認",
+  "emailConfirmed": "您的電子郵件已成功確認！"
 }

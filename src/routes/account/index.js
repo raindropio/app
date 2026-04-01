@@ -14,6 +14,7 @@ import Recover from './recover'
 import TfaLogin from './tfa/login'
 import TfaRevoke from './tfa/revoke'
 import Signup from './signup'
+import Confirm from './confirm'
 
 export default function PageAccount() {
     return (
@@ -25,7 +26,7 @@ export default function PageAccount() {
 
                     case 'extension':
                         return <Route path='*' element={<Extension />} />
-                        
+
                     default:
                         return (<>
                             <Route index element={<Navigate replace to='login' />} />
@@ -37,10 +38,11 @@ export default function PageAccount() {
                 <Route path='jwt' element={<JWT />} />
                 <Route path='tfa/login/:token' element={<TfaLogin />} />
                 <Route path='tfa/revoke/:token' element={<TfaRevoke />} />
-                <Route path='recover/:token' element={<Recover />} />
             </Route>
 
             <Route path='lost' element={<Lost />} />
+            <Route path='recover/:token' element={<Recover />} />
+            <Route path='confirm/:token' element={<Confirm />} />
 
             <Route element={<Protected redirect />}>
                 <Route path='extension' element={<Extension />} />

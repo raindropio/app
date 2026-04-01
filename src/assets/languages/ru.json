@@ -421,5 +421,9 @@
   "links": "Ссылки",
   "documents": "Документы",
   "audios": "Аудио",
-  "books": "Книги"
+  "books": "Книги",
+  "confirmYourEmail": "Пожалуйста, подтвердите ваш email. Проверьте почту — мы отправили ссылку для подтверждения.",
+  "resendEmail": "Отправить повторно",
+  "emailConfirmation": "Подтверждение email",
+  "emailConfirmed": "Ваш email успешно подтверждён!"
 }

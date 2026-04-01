@@ -5,6 +5,7 @@ export const normalizeUser = (user={})=>{
 		_id: 				user._id,
 		name:				user.name||'',
 		email: 				user.email||'',
+		emailConfirmed:		user.emailConfirmed ? true : false,
 		password: 			Boolean(user.password)||false,
 		avatar:				user.avatar,
 		pro: 				Boolean(user.pro)||false,
