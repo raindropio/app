@@ -131,7 +131,7 @@ module.exports = ({ production, filename='[name].[contenthash]', sentry={} }, { 
 	module: { rules: [
 		{
 			test: /\.js$/,
-			exclude: /node_modules/,
+			exclude: [/node_modules/, /build\/polyfills/],
 			oneOf: [
 				{
 					resourceQuery: /asis/,

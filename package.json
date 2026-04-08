@@ -1,6 +1,6 @@
 {
 	"name": "app",
-	"version": "5.7.4",
+	"version": "5.7.5",
 	"description": "All-in-one bookmark manager",
 	"author": "Rustem Mussabekov",
 	"license": "MIT",
@@ -99,7 +99,7 @@
 		"svgo-loader": "^4.0.0",
 		"terser-webpack-plugin": "^5.3.0",
 		"val-loader": "^4.0.0",
-		"webpack": "^5.70.0",
+		"webpack": "^5.93.0",
 		"webpack-bundle-analyzer": "^4.5.0",
 		"webpack-cli": "^4.9.0",
 		"webpack-dev-server": "^4.7.0",

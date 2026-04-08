@@ -24,6 +24,15 @@ module.exports = (env={}, args={}) => {
     return merge(
         common(env, args),
         {
+            //Replace lodash-es/_root.js that uses `Function('return this')()` which is
+            //prohibited in Chrome Web Store Manifest V3 (remotely hosted code policy)
+            resolve: {
+                alias: {
+                    [path.resolve(__dirname, '../node_modules/lodash-es/_root.js')]: path.resolve(__dirname, 'polyfills/_root.js'),
+                    [path.resolve(__dirname, '../node_modules/core-js/internals/global.js')]: path.resolve(__dirname, 'polyfills/core-js-global.js')
+                }
+            },
+
             devtool: false, //extensions just ignore .map files
 
             entry: {
@@ -35,7 +44,9 @@ module.exports = (env={}, args={}) => {
                 path: outputPath,
                 filename: ({ chunk: { name } }) => name=='background' ? 'background.js' : `assets/${env.filename}.js`,
                 chunkFilename: `assets/${env.filename}.js`,
-                publicPath: ''
+                publicPath: '',
+                globalObject: 'globalThis',
+                environment: { globalThis: true }
             },
 
             performance: {
