@@ -423,5 +423,17 @@
   "confirmYourEmail": "Vänligen verifiera din e-postadress. Kontrollera din inkorg för en bekräftelselänk.",
   "resendEmail": "Skicka e-post igen",
   "emailConfirmation": "E-postbekräftelse",
-  "emailConfirmed": "Din e-post har bekräftats!"
+  "emailConfirmed": "Din e-post har bekräftats!",
+  "enterUrl": "Enter URL",
+  "dragToReorder": "Long press item then drag to reorder",
+  "moveToTrash": "Move to Trash",
+  "nItemsSelected": "{0} selected",
+  "restore": "Restore",
+  "you": "You",
+  "webAndDesktopApp": "Web and Desktop app",
+  "noCollections": "No collections",
+  "selected": "Selected",
+  "automatically": "Automatically",
+  "shareExtension": "\"Dela\"-tillägg",
+  "changeLaterInSettings": "You can change these options later in settings"
 }

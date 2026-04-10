@@ -413,5 +413,17 @@
   "confirmYourEmail": "कृपया अपना ईमेल पता सत्यापित करें। पुष्टि लिंक के लिए अपना इनबॉक्स जांचें।",
   "resendEmail": "ईमेल पुनः भेजें",
   "emailConfirmation": "ईमेल पुष्टि",
-  "emailConfirmed": "आपका ईमेल सफलतापूर्वक सत्यापित हो गया!"
+  "emailConfirmed": "आपका ईमेल सफलतापूर्वक सत्यापित हो गया!",
+  "enterUrl": "Enter URL",
+  "dragToReorder": "Long press item then drag to reorder",
+  "moveToTrash": "Move to Trash",
+  "nItemsSelected": "{0} selected",
+  "restore": "Restore",
+  "you": "You",
+  "webAndDesktopApp": "Web and Desktop app",
+  "noCollections": "No collections",
+  "selected": "Selected",
+  "automatically": "Automatically",
+  "shareExtension": "\"शेयर\" एक्सटेंशन",
+  "changeLaterInSettings": "You can change these options later in settings"
 }

@@ -423,5 +423,17 @@
   "confirmYourEmail": "Bevestig uw e-mailadres. Controleer uw inbox voor een bevestigingslink.",
   "resendEmail": "E-mail opnieuw verzenden",
   "emailConfirmation": "E-mailbevestiging",
-  "emailConfirmed": "Uw e-mail is succesvol bevestigd!"
+  "emailConfirmed": "Uw e-mail is succesvol bevestigd!",
+  "enterUrl": "Enter URL",
+  "dragToReorder": "Long press item then drag to reorder",
+  "moveToTrash": "Move to Trash",
+  "nItemsSelected": "{0} selected",
+  "restore": "Restore",
+  "you": "You",
+  "webAndDesktopApp": "Web and Desktop app",
+  "noCollections": "No collections",
+  "selected": "Selected",
+  "automatically": "Automatically",
+  "shareExtension": "\"Deel\"-extensie",
+  "changeLaterInSettings": "You can change these options later in settings"
 }

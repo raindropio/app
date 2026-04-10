@@ -423,5 +423,17 @@
   "confirmYourEmail": "メールアドレスを確認してください。受信トレイの確認リンクをご確認ください。",
   "resendEmail": "メールを再送信",
   "emailConfirmation": "メール確認",
-  "emailConfirmed": "メールアドレスが正常に確認されました！"
+  "emailConfirmed": "メールアドレスが正常に確認されました！",
+  "enterUrl": "Enter URL",
+  "dragToReorder": "Long press item then drag to reorder",
+  "moveToTrash": "Move to Trash",
+  "nItemsSelected": "{0} selected",
+  "restore": "Restore",
+  "you": "You",
+  "webAndDesktopApp": "Web and Desktop app",
+  "noCollections": "No collections",
+  "selected": "Selected",
+  "automatically": "Automatically",
+  "shareExtension": "「共有」機能拡張",
+  "changeLaterInSettings": "You can change these options later in settings"
 }

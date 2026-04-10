@@ -425,5 +425,17 @@
   "confirmYourEmail": "Пожалуйста, подтвердите ваш email. Проверьте почту — мы отправили ссылку для подтверждения.",
   "resendEmail": "Отправить повторно",
   "emailConfirmation": "Подтверждение email",
-  "emailConfirmed": "Ваш email успешно подтверждён!"
+  "emailConfirmed": "Ваш email успешно подтверждён!",
+  "enterUrl": "Enter URL",
+  "dragToReorder": "Long press item then drag to reorder",
+  "moveToTrash": "Move to Trash",
+  "nItemsSelected": "{0} selected",
+  "restore": "Restore",
+  "you": "You",
+  "webAndDesktopApp": "Web and Desktop app",
+  "noCollections": "No collections",
+  "selected": "Selected",
+  "automatically": "Automatically",
+  "shareExtension": "Расширение «Поделиться»",
+  "changeLaterInSettings": "You can change these options later in settings"
 }

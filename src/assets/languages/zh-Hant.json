@@ -423,5 +423,17 @@
   "confirmYourEmail": "請驗證您的電子郵件地址。請檢查收件匣中的確認連結。",
   "resendEmail": "重新發送郵件",
   "emailConfirmation": "電子郵件確認",
-  "emailConfirmed": "您的電子郵件已成功確認！"
+  "emailConfirmed": "您的電子郵件已成功確認！",
+  "enterUrl": "Enter URL",
+  "dragToReorder": "Long press item then drag to reorder",
+  "moveToTrash": "Move to Trash",
+  "nItemsSelected": "{0} selected",
+  "restore": "Restore",
+  "you": "You",
+  "webAndDesktopApp": "Web and Desktop app",
+  "noCollections": "No collections",
+  "selected": "Selected",
+  "automatically": "Automatically",
+  "shareExtension": "「分享」擴充功能",
+  "changeLaterInSettings": "You can change these options later in settings"
 }

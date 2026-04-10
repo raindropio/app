@@ -423,5 +423,17 @@
   "confirmYourEmail": "请验证您的邮箱地址。请检查收件箱中的确认链接。",
   "resendEmail": "重新发送邮件",
   "emailConfirmation": "邮箱确认",
-  "emailConfirmed": "您的邮箱已成功确认！"
+  "emailConfirmed": "您的邮箱已成功确认！",
+  "enterUrl": "Enter URL",
+  "dragToReorder": "Long press item then drag to reorder",
+  "moveToTrash": "Move to Trash",
+  "nItemsSelected": "{0} selected",
+  "restore": "Restore",
+  "you": "You",
+  "webAndDesktopApp": "Web and Desktop app",
+  "noCollections": "No collections",
+  "selected": "Selected",
+  "automatically": "Automatically",
+  "shareExtension": "\"分享\"扩展",
+  "changeLaterInSettings": "You can change these options later in settings"
 }

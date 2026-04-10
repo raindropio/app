@@ -425,5 +425,17 @@
   "confirmYourEmail": "Please verify your email address. Check your inbox for a confirmation link.",
   "resendEmail": "Resend email",
   "emailConfirmation": "Email confirmation",
-  "emailConfirmed": "Your email has been confirmed successfully!"
+  "emailConfirmed": "Your email has been confirmed successfully!",
+  "enterUrl": "Enter URL",
+  "dragToReorder": "Long press item then drag to reorder",
+  "moveToTrash": "Move to Trash",
+  "nItemsSelected": "{0} selected",
+  "restore": "Restore",
+  "you": "You",
+  "webAndDesktopApp": "Web and Desktop app",
+  "noCollections": "No collections",
+  "selected": "Selected",
+  "automatically": "Automatically",
+  "shareExtension": "Share extension",
+  "changeLaterInSettings": "You can change these options later in settings"
 }

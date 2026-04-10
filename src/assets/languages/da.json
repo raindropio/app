@@ -422,5 +422,17 @@
   "confirmYourEmail": "Bekræft venligst din e-mailadresse. Tjek din indbakke for et bekræftelseslink.",
   "resendEmail": "Send e-mail igen",
   "emailConfirmation": "E-mailbekræftelse",
-  "emailConfirmed": "Din e-mail er blevet bekræftet!"
+  "emailConfirmed": "Din e-mail er blevet bekræftet!",
+  "enterUrl": "Enter URL",
+  "dragToReorder": "Long press item then drag to reorder",
+  "moveToTrash": "Move to Trash",
+  "nItemsSelected": "{0} selected",
+  "restore": "Restore",
+  "you": "You",
+  "webAndDesktopApp": "Web and Desktop app",
+  "noCollections": "No collections",
+  "selected": "Selected",
+  "automatically": "Automatically",
+  "shareExtension": "Udvidelse til \"Del\"",
+  "changeLaterInSettings": "You can change these options later in settings"
 }

@@ -16,8 +16,15 @@ let storage
 if (RAINDROP_ENVIRONMENT == 'browser')
 	storage = require('localforage')
 //react native
-else
-	storage = require('@react-native-async-storage/async-storage').default
+else {
+	const mmkv = require('react-native-mmkv').createMMKV({ id: 'redux-persist' })
+
+	storage = {
+		getItem: (key) => Promise.resolve(mmkv.getString(key) ?? null),
+		setItem: (key, value) => { mmkv.set(key, value); return Promise.resolve(true) },
+		removeItem: (key) => { mmkv.remove(key); return Promise.resolve() }
+	}
+}
 
 const version = 42
 

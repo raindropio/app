@@ -422,5 +422,17 @@
   "confirmYourEmail": "이메일 주소를 인증해 주세요. 받은편지함에서 인증 링크를 확인하세요.",
   "resendEmail": "이메일 재전송",
   "emailConfirmation": "이메일 인증",
-  "emailConfirmed": "이메일이 성공적으로 인증되었습니다!"
+  "emailConfirmed": "이메일이 성공적으로 인증되었습니다!",
+  "enterUrl": "Enter URL",
+  "dragToReorder": "Long press item then drag to reorder",
+  "moveToTrash": "Move to Trash",
+  "nItemsSelected": "{0} selected",
+  "restore": "Restore",
+  "you": "You",
+  "webAndDesktopApp": "Web and Desktop app",
+  "noCollections": "No collections",
+  "selected": "Selected",
+  "automatically": "Automatically",
+  "shareExtension": "\"공유\" 확장 프로그램",
+  "changeLaterInSettings": "You can change these options later in settings"
 }

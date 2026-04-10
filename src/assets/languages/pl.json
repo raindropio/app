@@ -423,5 +423,17 @@
   "confirmYourEmail": "Potwierdź swój adres e-mail. Sprawdź skrzynkę odbiorczą — wysłaliśmy link potwierdzający.",
   "resendEmail": "Wyślij ponownie",
   "emailConfirmation": "Potwierdzenie e-mail",
-  "emailConfirmed": "Twój e-mail został pomyślnie potwierdzony!"
+  "emailConfirmed": "Twój e-mail został pomyślnie potwierdzony!",
+  "enterUrl": "Enter URL",
+  "dragToReorder": "Long press item then drag to reorder",
+  "moveToTrash": "Move to Trash",
+  "nItemsSelected": "{0} selected",
+  "restore": "Restore",
+  "you": "You",
+  "webAndDesktopApp": "Web and Desktop app",
+  "noCollections": "No collections",
+  "selected": "Selected",
+  "automatically": "Automatically",
+  "shareExtension": "Rozszerzenie „Udostępnij\"",
+  "changeLaterInSettings": "You can change these options later in settings"
 }

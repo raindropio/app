@@ -423,5 +423,17 @@
   "confirmYourEmail": "Lütfen e-posta adresinizi doğrulayın. Onay bağlantısı için gelen kutunuzu kontrol edin.",
   "resendEmail": "E-postayı tekrar gönder",
   "emailConfirmation": "E-posta onayı",
-  "emailConfirmed": "E-postanız başarıyla onaylandı!"
+  "emailConfirmed": "E-postanız başarıyla onaylandı!",
+  "enterUrl": "Enter URL",
+  "dragToReorder": "Long press item then drag to reorder",
+  "moveToTrash": "Move to Trash",
+  "nItemsSelected": "{0} selected",
+  "restore": "Restore",
+  "you": "You",
+  "webAndDesktopApp": "Web and Desktop app",
+  "noCollections": "No collections",
+  "selected": "Selected",
+  "automatically": "Automatically",
+  "shareExtension": "\"Paylaş\" uzantısı",
+  "changeLaterInSettings": "You can change these options later in settings"
 }

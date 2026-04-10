@@ -9,17 +9,17 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
       with:
         submodules: 'recursive'
 
-    - name: Use Node.js 16.x
-      uses: actions/setup-node@v1
+    - name: Use Node.js
+      uses: actions/setup-node@v4
       with:
-        node-version: 16.x
+        node-version: 24
 
     - name: Install dependencies
-      run: npm i
+      run: npm ci
 
     - name: Make version.sh for xcode project executable
       run: chmod +x build/xcode/Save\ to\ Raindrop.io/version.sh
