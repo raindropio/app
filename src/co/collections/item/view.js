@@ -91,7 +91,7 @@ export default class CollectionsItemView extends React.PureComponent {
                     tabIndex='0'
 
 					onClick={onClick}
-					onDoubleClick={onRenameClick}
+					onDoubleClick={onExpandClick}
                     onContextMenu={onContextMenu}
 					onKeyUp={onKeyUp}>
                     {title}
