@@ -34,7 +34,7 @@
 		"downshift": "^6.1.0",
 		"form-request-submit-polyfill": "^2.0.0",
 		"intersection-observer": "^0.12.0",
-		"lodash-es": "^4.17.0",
+		"lodash-es": "^4.18.1",
 		"marked": "^9.1.5",
 		"normalize-url": "^7.0.0",
 		"rc-resize-observer": "^1.0.0",
