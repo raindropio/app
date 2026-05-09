@@ -30,7 +30,7 @@
 		"@juggle/resize-observer": "^3.3.0",
 		"@sentry/react": "^6.0.0",
 		"date-fns": "^2.28.0",
-		"dompurify": "^2.2.0",
+		"dompurify": "^3.4.0",
 		"downshift": "^6.1.0",
 		"form-request-submit-polyfill": "^2.0.0",
 		"intersection-observer": "^0.12.0",
