@@ -7,8 +7,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CopyPlugin = require('copy-webpack-plugin')
 const ZipPlugin = require('zip-webpack-plugin')
 
-module.exports = (env={}, args={}) => {
-    const outputPath = path.resolve(__dirname, '..', 'dist', env.vendor, env.production?'prod':'dev')
+module.exports = (env = {}, args = {}) => {
+    const outputPath = path.resolve(__dirname, '..', 'dist', env.vendor, env.production ? 'prod' : 'dev')
 
     env.filename = '[name]'
 
@@ -37,7 +37,7 @@ module.exports = (env={}, args={}) => {
 
             output: {
                 path: outputPath,
-                filename: ({ chunk: { name } }) => name=='background' ? 'background.js' : `assets/${env.filename}.js`,
+                filename: ({ chunk: { name } }) => name == 'background' ? 'background.js' : `assets/${env.filename}.js`,
                 chunkFilename: `assets/${env.filename}.js`,
                 publicPath: '',
                 globalObject: 'globalThis',
@@ -82,7 +82,7 @@ module.exports = (env={}, args={}) => {
                 ...(env.production ? [
                     new ZipPlugin({
                         path: '../../',
-                        filename: `${env.vendor}-${env.production?'prod':'dev'}.zip`,
+                        filename: `${env.vendor}-${env.production ? 'prod' : 'dev'}.zip`,
                         exclude: []
                     })
                 ] : [])
@@ -90,7 +90,7 @@ module.exports = (env={}, args={}) => {
 
             module: {
                 rules: [{
-                    test: /manifest\/index\.js$/,
+                    test: /manifest[\\/]index\.js$/,
                     use: [
                         {
                             loader: 'file-loader',
