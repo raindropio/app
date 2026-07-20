@@ -1,17 +1,9 @@
 # Flow
-1. tab.onActivated / tab.onTabsUpdated
-    - tab.status = completed
-        - load
-            - load user
-            - have permissions
-                - links.has
-                    - highlights not yet loaded:
-                        - load api
-                        - inject JS
-                        - send RDH_CONFIG, RDH_APPLY
-2. permissions.onAdded / LINKS_CHANGED
-    - reset
-    - go to 1
-3. addCurrentTabSelection()
-    - request permissions
-        - send RDH_ADD_SELECTION
+- tab activated / page loaded / BOOKMARKS_CHANGED
+    - sync: links cache → load highlights → push to page (inject script if needed)
+- page sends RDH_ADD / RDH_UPDATE / RDH_REMOVE
+    - save to server → push verified state back to page
+    - on failure → sync, page reverts to real state
+- RDH_READY is ignored: every injection is followed by push with config
+- addCurrentTabSelection()
+    - request permissions → RDH_ADD_SELECTION → page sends RDH_ADD

@@ -1,182 +1,106 @@
 import browser from 'webextension-polyfill'
 import { environment } from '~target'
 import * as links from '../links'
-import inject from './highlight.js?asis'
+import * as action from '../action'
+import file from './highlight.js?asis'
 import Api from '~data/modules/api'
 
-let user = {}
-
-//Load highlights for tab
-export async function load(tab) {
-    if (!tab) return
+//server state → page
+export async function sync(tab) {
+    if (!isWebPage(tab)) return
     if (!await havePermission()) return
+
+    await links.load()
 
     let highlights = []
 
-    if (links.has(tab.url)) {
-        const id = links.getId(tab.url)
+    if (links.has(tab.url))
         try {
-            const { item={} } = await Api._get(`raindrop/${id}`)
+            const { item={} } = await Api._get(`raindrop/${links.getId(tab.url)}`)
             highlights = item.highlights || []
         } catch(e) {
             console.error(e)
         }
-    }
 
-    //activate
     if (
-        highlights.length || //when any highlights
-        environment.includes('safari-ios') || //always active for safari-ios
-        await isInjected(tab) //or reset highlights if already injected
+        highlights.length ||
+        environment.includes('safari-ios') || //always active there
+        await isInjected(tab) //reset what page shows otherwise
     )
-        await apply(tab, highlights)
+        await push(tab, highlights)
 }
 
-//Add highlight
-export async function add(tab, newOne) {
-    if (!tab) return
-    let item = {}
+//page changes → server → verified state back to page
+export async function add(tab, highlight) {
+    let item
 
-    //reload links
-    await links.reload(true)
+    const id = await findId(tab.url)
+    if (id)
+        try {
+            const updated = await Api._put(`raindrop/${id}`, {
+                highlights: [highlight]
+            }, {
+                keepalive: true
+            })
+            item = updated.item
+        } catch(e) {
+            if (e.status != 404) throw e
+        }
 
-    //existing bookmark
-    if (links.has(tab.url)) {
-        const updated = await Api._put(`raindrop/${links.getId(tab.url)}`, {
-            highlights: [newOne]
-        }, {
-            keepalive: true
-        })
-        item = updated.item
-    }
-    //new bookmark
-    else {
+    if (!item) {
         const created = await Api._post('raindrop', {
             link: tab.url,
             title: tab.title,
-            highlights: [newOne],
+            highlights: [highlight],
             pleaseParse: { weight: 1 }
         }, {
             keepalive: true
         })
         item = created.item
 
-        //reload links
-        await links.reload(true)
+        links.add(tab.url, item._id)
+        action.updateBadge().catch(console.error)
     }
 
-    await apply(tab, item.highlights)
+    await push(tab, item.highlights)
 }
 
-//Update highlight
-export async function update(tab, highlightId, changed) {
-    if (!tab) return
-    if (!highlightId) return
+export async function update(tab, highlight) {
+    const id = await findId(tab.url)
+    if (!id) throw new Error('no bookmark for tab url')
 
-    //reload links
-    await links.reload(true)
-    
-    if (links.has(tab.url)) {
-        //get item
-        const { item: { highlights=[] } } = await Api._get(`raindrop/${links.getId(tab.url)}`)
-
-        //get highlight index
-        const index = highlights.findIndex(h=>h._id == highlightId)
-
-        if (index != -1) {
-            //local update
-            highlights[index] = { ...highlights[index], ...changed }
-            await apply(tab, highlights)
-
-            //server apply
-            await Api._put(`raindrop/${links.getId(tab.url)}`, {
-                highlights: [highlights[index]]
-            }, {
-                keepalive: true
-            })
-        }
-    }
-
-    //reload highlights
-    await load(tab)
-}
-
-//Remove highlight
-export async function remove(tab, highlightId) {
-    if (!tab) return
-    if (!highlightId) return
-
-    //reload links
-    await links.reload(true)
-    
-    //server apply
-    if (links.has(tab.url))
-        await Api._put(`raindrop/${links.getId(tab.url)}`, {
-            highlights: [{
-                _id: highlightId,
-                text: ''
-            }]
-        }, {
-            keepalive: true
-        })
-
-    //reload highlights
-    await load(tab)
-}
-
-//Save highlight of current selection of current tab
-export async function addSelection(tab) {
-    if (!tab) return
-    return send(tab, 'RDH_ADD_SELECTION')
-}
-
-
-
-
-
-//inject and send message to highlights script on page
-async function send(tab, type, payload) {
-    if (!tab) return
-    if (/^https?/.test(tab?.url||'') === false) return
-
-    //inject highlights script
-    const injected = await isInjected(tab)
-    if (!injected) {
-        await browser.scripting.executeScript({
-            target: { tabId: tab.id },
-            func: function() { window.__hi = true },
-            injectImmediately: true
-        })
-        await browser.scripting.executeScript({
-            target: { tabId: tab.id },
-            files: [inject],
-            injectImmediately: true
-        })
-    }
-
-    return browser.tabs.sendMessage(tab.id, { type, payload })
-}
-
-//is injected
-async function isInjected(tab) {
-    if (/^https?/.test(tab?.url||'') === false)
-        return false
-
-    if (!await browser.permissions.contains({
-        permissions: ['scripting'],
-        ...(tab?.url ? {origins: [tab.url]} : {})
-    }))
-        return false
-
-    const [res] = await browser.scripting.executeScript({
-        target: { tabId: tab.id },
-        func: function() { return window.__hi },
-        injectImmediately: true
+    //server merges into existing highlights by _id
+    const { item } = await Api._put(`raindrop/${id}`, {
+        highlights: [highlight]
+    }, {
+        keepalive: true
     })
-    return res?.result ? true : false
+
+    await push(tab, item.highlights)
 }
 
-//Do user granted permissions
+export async function remove(tab, highlightId) {
+    const id = await findId(tab.url)
+    if (!id) throw new Error('no bookmark for tab url')
+
+    //empty text removes it
+    const { item } = await Api._put(`raindrop/${id}`, {
+        highlights: [{
+            _id: highlightId,
+            text: ''
+        }]
+    }, {
+        keepalive: true
+    })
+
+    await push(tab, item.highlights)
+}
+
+export async function addSelection(tab) {
+    if (!await inject(tab)) return
+    return browser.tabs.sendMessage(tab.id, { type: 'RDH_ADD_SELECTION' })
+}
+
 export async function havePermission() {
     return browser.permissions.contains({
         permissions: ['tabs'],
@@ -184,7 +108,6 @@ export async function havePermission() {
     })
 }
 
-//Open special page to give permissions
 export async function requestPermission() {
     if (await havePermission())
         return true
@@ -196,28 +119,81 @@ export async function requestPermission() {
     return false
 }
 
-//Apply highlights for current tab
-export async function apply(tab, highlights=[]) {
-    if (!tab) return
+//bookmark can be created elsewhere and be missing in local cache
+async function findId(url) {
+    await links.load()
 
-    //load user
-    if (!user._id)
-        try {
-            const load = await Api._get('user')
-            user = load.user || {}
-        } catch(e) {
-            console.error(e)
-        }
+    if (links.has(url))
+        return links.getId(url)
 
-    //not logged in
-    if (!user._id)
-        return
+    const { ids=[] } = await Api._get(`import/url/exists?url=${encodeURIComponent(url)}`)
+    if (ids.length) {
+        links.add(url, ids[0])
+        return ids[0]
+    }
+}
 
-    await send(tab, 'RDH_CONFIG', {
-        enabled: true,
-        nav: true,
-        pro: (user.pro ? true : false)
+async function push(tab, highlights) {
+    const config = await getConfig()
+    if (!config) return //logged out
+
+    if (!await inject(tab)) return
+
+    await browser.tabs.sendMessage(tab.id, { type: 'RDH_CONFIG', payload: config })
+    await browser.tabs.sendMessage(tab.id, { type: 'RDH_APPLY', payload: highlights })
+}
+
+async function getConfig() {
+    try {
+        const { user } = await Api._get('user')
+        if (user?._id)
+            return {
+                enabled: true,
+                nav: true,
+                pro: user.pro ? true : false
+            }
+    } catch(e) {
+        console.error(e)
+    }
+    return null
+}
+
+async function inject(tab) {
+    if (!isWebPage(tab)) return false
+
+    if (await isInjected(tab))
+        return true
+
+    await browser.scripting.executeScript({
+        target: { tabId: tab.id },
+        func: function() { window.__hi = true },
+        injectImmediately: true
+    })
+    await browser.scripting.executeScript({
+        target: { tabId: tab.id },
+        files: [file],
+        injectImmediately: true
     })
 
-    await send(tab, 'RDH_APPLY', highlights)
+    return true
+}
+
+//page keeps the mark even when extension context restarts
+async function isInjected(tab) {
+    if (!await browser.permissions.contains({
+        permissions: ['scripting'],
+        origins: [tab.url]
+    }))
+        return false
+
+    const [res] = await browser.scripting.executeScript({
+        target: { tabId: tab.id },
+        func: function() { return window.__hi },
+        injectImmediately: true
+    })
+    return res?.result ? true : false
+}
+
+function isWebPage(tab) {
+    return /^https?:/.test(tab?.url || '')
 }

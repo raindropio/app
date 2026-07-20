@@ -1,46 +1,36 @@
 import browser from 'webextension-polyfill'
 import { currentTab } from '~target'
-import { load, add, update, remove, addSelection, requestPermission } from './logic'
+import { sync, add, update, remove, addSelection, requestPermission } from './logic'
 
-//Received messages from page
 async function onMessage({ type, payload }, sender) {
     if (sender.id != browser.runtime.id) return
 
     const tab = sender.tab || await currentTab()
 
+    //RDH_READY is ignored on purpose: every injection is followed by push() with config
     switch(type) {
-        case 'RDH_READY':
         case 'BOOKMARKS_CHANGED':
-            await load(tab)
+            await sync(tab)
         break
 
         case 'RDH_ADD':
-            try {
-                await add(tab, payload)
-            } catch(e) {
-                alert(`Error saving highlight!\n${String(e)}`)
-            }
-        break
-
         case 'RDH_UPDATE':
-            try {
-                await update(tab, payload._id, payload)
-            } catch(e) {
-                alert(`Error updating highlight!\n${String(e)}`)
-            }
-        break
-
         case 'RDH_REMOVE':
             try {
-                await remove(tab, payload._id)
+                if (type == 'RDH_ADD')
+                    await add(tab, payload)
+                else if (type == 'RDH_UPDATE')
+                    await update(tab, payload)
+                else
+                    await remove(tab, payload._id)
             } catch(e) {
-                alert(`Error removing highlight!\n${String(e)}`)
+                console.error(e)
+                await sync(tab) //revert page to real state
             }
         break
     }
 }
 
-//Reload highlights when tab url change
 async function onTabActivated({ tabId }) {
     if (!tabId) return
 
@@ -49,38 +39,35 @@ async function onTabActivated({ tabId }) {
     if (!tab || !tab.url || !tab.active || tab.status != 'complete')
         return
 
-    await load(tab)
+    await sync(tab)
 }
 
-async function onTabsUpdated(id) {
-    return onTabActivated({ tabId: id })
+async function onTabUpdated(tabId, changeInfo={}) {
+    //full load or spa navigation, title/favicon/etc. is noise
+    if (changeInfo.status == 'complete' || changeInfo.url)
+        await onTabActivated({ tabId })
 }
 
-//Reload when bookmarks or permissions change
-async function reloadAll() {
+async function onPermissionsAdded() {
     const { id } = await currentTab()
-    return onTabActivated({ tabId: id })
+    if (id)
+        await onTabActivated({ tabId: id })
 }
 
-//public methods
 export async function addCurrentTabSelection() {
     if (await requestPermission())
         return addSelection(await currentTab())
 }
 
-//default
 export default function() {
-    //connection to injected script
     browser.runtime.onMessage.removeListener(onMessage)
     browser.runtime.onMessage.addListener(onMessage)
 
-    //current tab changed
     browser.tabs.onActivated.removeListener(onTabActivated)
     browser.tabs.onActivated.addListener(onTabActivated)
-    browser.tabs.onUpdated.removeListener(onTabsUpdated)
-    browser.tabs.onUpdated.addListener(onTabsUpdated)
+    browser.tabs.onUpdated.removeListener(onTabUpdated)
+    browser.tabs.onUpdated.addListener(onTabUpdated)
 
-    //permissions changed
-    browser.permissions.onAdded.removeListener(reloadAll)
-    browser.permissions.onAdded.addListener(reloadAll)
+    browser.permissions.onAdded.removeListener(onPermissionsAdded)
+    browser.permissions.onAdded.addListener(onPermissionsAdded)
 }

@@ -108,6 +108,7 @@ function* req(url, options={}, retries=0) {
 		finalURL = url
 
 	let errorMessage = 'failed to load'
+	let status
 
 	for(let i = 0; i <= retries; i++){
 		try{
@@ -122,6 +123,7 @@ function* req(url, options={}, retries=0) {
 			return winner.req;
 		}catch(e){
 			errorMessage = e.message || ''
+			status = e.status
 
 			//stop if client error
 			if (e && e.status && e.status >= 400 && e.status < 500)
@@ -133,7 +135,7 @@ function* req(url, options={}, retries=0) {
 		}
 	}
 
-	throw new ApiError({ errorMessage: `${errorMessage} ${finalURL}` })
+	throw new ApiError({ status, errorMessage: `${errorMessage} ${finalURL}` })
 }
 
 const fetchWrap = (url, options)=>(

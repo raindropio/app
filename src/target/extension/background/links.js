@@ -9,7 +9,8 @@ const options = {
 }
 
 var items = new Map()
-var loading = false
+var loaded = false
+var downloading = null
 
 function simplifyURL(url) {
     return normalizeURL(url, {
@@ -24,7 +25,6 @@ function simplifyURL(url) {
     }).toLowerCase()
 }
 
-//has
 export function has(url) {
     return items.has(simplifyURL(url))
 }
@@ -33,31 +33,34 @@ export function add(url, id) {
     items.set(simplifyURL(url), id)
 }
 
-//getId
 export function getId(url) {
     return items.get(simplifyURL(url))
 }
 
-//reload
-export async function reload(force=false) {
-    if (loading && !force)
-        return
+//downloads only once
+export async function load() {
+    if (!loaded) await reload()
+}
 
-    //do not load when no 'tabs' permission, origins access not required
+//always downloads
+export async function reload() {
+    if (!downloading)
+        downloading = download().finally(()=>{ downloading = null })
+    return downloading
+}
+
+async function download() {
+    //origins access not required, 'tabs' permission is enough
     try{
         if (!await browser.permissions.contains({
             permissions: ['tabs']
         })) return
     }catch(e){}
 
-    loading = true
-    items = new Map()
-
     let text = ''
 
     try{
         text = await Api._get('raindrops/links', {
-            cache: force ? 'no-store' : 'default',
             headers: {
                 'Content-Type': 'text/plain'
             },
@@ -66,27 +69,29 @@ export async function reload(force=false) {
     } catch(e) {
         console.error(e)
     }
-    loading = false
 
     if (!text) return;
 
-    text.split('\n').forEach(line=>{
-        const [_id, href] = line.split(options.divider)
-        const url = simplifyURL(
-            decodeURIComponent(
-                href||''
+    //swap to fresh map only when fully parsed
+    const next = new Map()
+    for(const line of text.split('\n'))
+        try {
+            const [_id, href] = line.split(options.divider)
+            const url = simplifyURL(
+                decodeURIComponent(
+                    href||''
+                )
             )
-        )
 
-        if (url)
-            items.set(url, _id)
-    })
+            if (url)
+                next.set(url, _id)
+        } catch(e) {}
+    items = next
+    loaded = true
 
-    //update action badge
     action.updateBadge()
 }
 
-//messaging
 const onMessage = debounce(
     async function({ type }) {
         switch(type) {
@@ -94,20 +99,17 @@ const onMessage = debounce(
                 await reload()
             break
         }
-    }, 
-    350, 
+    },
+    350,
     { maxWait: 1000}
 )
 
-//init
 export default function () {
-    //message
     browser.runtime.onMessage.removeListener(onMessage)
     browser.runtime.onMessage.addListener(onMessage)
 
-    //permissions
     browser.permissions.onAdded.removeListener(reload)
     browser.permissions.onAdded.addListener(reload)
-    
+
     reload()
 }
