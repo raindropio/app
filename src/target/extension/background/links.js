@@ -5,8 +5,7 @@ import debounce from '~modules/format/callback/debounce'
 import * as action from './action'
 
 const options = {
-    divider: '</-rl-/>',
-    maxLinkLength: 500
+    divider: '</-rl-/>'
 }
 
 var items = new Map()
@@ -31,7 +30,7 @@ export function has(url) {
 }
 
 export function add(url, id) {
-    items.set(url, id)
+    items.set(simplifyURL(url), id)
 }
 
 //getId
@@ -77,7 +76,7 @@ export async function reload(force=false) {
             decodeURIComponent(
                 href||''
             )
-        ).substr(0, options.maxLinkLength)
+        )
 
         if (url)
             items.set(url, _id)
