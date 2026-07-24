@@ -21,18 +21,20 @@ function SettingsExtensionAdd({ add_default_collection, add_auto_save, add_auto_
                 <Label>
                     {t.s('newBookmark')}
                 </Label>
-                <div>
-                    <Checkbox
-                        checked={add_auto_save}
-                        onChange={()=>set('add_auto_save', !add_auto_save)}>
-                        {t.s('saveAutomatically')}
-                    </Checkbox>
-                    <Checkbox
-                        checked={add_auto_save_context_menu}
-                        onChange={()=>set('add_auto_save_context_menu', !add_auto_save_context_menu)}>
-                        {t.s('saveAutomaticallyContextMenu')}
-                    </Checkbox>
-                </div>
+                <Checkbox
+                    checked={add_auto_save}
+                    onChange={()=>set('add_auto_save', !add_auto_save)}>
+                    {t.s('saveAutomatically')}
+                </Checkbox>
+
+                <Label>
+                    {t.s('contextMenu')}
+                </Label>
+                <Checkbox
+                    checked={add_auto_save_context_menu}
+                    onChange={()=>set('add_auto_save_context_menu', !add_auto_save_context_menu)}>
+                    {t.s('saveAutomaticallyContextMenu')}
+                </Checkbox>
 
                 <Label>
                     {t.s('defaultCollection')}
