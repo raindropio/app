@@ -305,6 +305,7 @@
   "saveTabsCount": "{0}個のタブを保存",
   "closeTabs": "タブを閉じる",
   "saveAutomatically": "自動保存",
+  "saveAutomaticallyContextMenu": "コンテキストメニューにも適用",
   "addHighlights": "ハイライトを追加",
   "addDescription": "説明を追加",
   "addNote": "メモを追加",

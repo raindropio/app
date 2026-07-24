@@ -7,7 +7,7 @@ import { Title, Label, Radio, Checkbox, Layout } from '~co/common/form'
 import Icon from '~co/common/icon'
 import CollectionIcon from '~co/collections/item/icon'
 
-function SettingsExtensionAdd({ add_default_collection, add_auto_save, browser_extension_mode, set }) {
+function SettingsExtensionAdd({ add_default_collection, add_auto_save, add_auto_save_context_menu, browser_extension_mode, set }) {
     if (browser_extension_mode != 'clipper')
         return null
 
@@ -21,11 +21,18 @@ function SettingsExtensionAdd({ add_default_collection, add_auto_save, browser_e
                 <Label>
                     {t.s('newBookmark')}
                 </Label>
-                <Checkbox 
-                    checked={add_auto_save}
-                    onChange={()=>set('add_auto_save', !add_auto_save)}>
-                    {t.s('saveAutomatically')}
-                </Checkbox>
+                <div>
+                    <Checkbox
+                        checked={add_auto_save}
+                        onChange={()=>set('add_auto_save', !add_auto_save)}>
+                        {t.s('saveAutomatically')}
+                    </Checkbox>
+                    <Checkbox
+                        checked={add_auto_save_context_menu}
+                        onChange={()=>set('add_auto_save_context_menu', !add_auto_save_context_menu)}>
+                        {t.s('saveAutomaticallyContextMenu')}
+                    </Checkbox>
+                </div>
 
                 <Label>
                     {t.s('defaultCollection')}
@@ -51,8 +58,8 @@ function SettingsExtensionAdd({ add_default_collection, add_auto_save, browser_e
 }
 
 export default connect(
-    ({ config: { add_default_collection, add_auto_save, browser_extension_mode } })=>({
-        add_default_collection, add_auto_save, browser_extension_mode
+    ({ config: { add_default_collection, add_auto_save, add_auto_save_context_menu, browser_extension_mode } })=>({
+        add_default_collection, add_auto_save, add_auto_save_context_menu, browser_extension_mode
     }),
     { set }
 )(SettingsExtensionAdd)

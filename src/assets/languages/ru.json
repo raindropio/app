@@ -305,6 +305,7 @@
   "saveTabsCount": "Сохранить {0} вкладок",
   "closeTabs": "Закрыть вкладки",
   "saveAutomatically": "Сохранять автоматически",
+  "saveAutomaticallyContextMenu": "Также для контекстного меню",
   "addHighlights": "Добавить цитату",
   "addDescription": "Добавить описание",
   "addNote": "Добавить заметку",

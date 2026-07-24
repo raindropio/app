@@ -305,6 +305,7 @@
   "saveTabsCount": "儲存 {0} 個分頁",
   "closeTabs": "關閉分頁",
   "saveAutomatically": "自動儲存",
+  "saveAutomaticallyContextMenu": "同時套用於右鍵選單",
   "addHighlights": "新增標記",
   "addDescription": "新增描述",
   "addNote": "新增備註",

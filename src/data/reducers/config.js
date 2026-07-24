@@ -75,6 +75,7 @@ const initialState = Immutable({
 
 	add_default_collection: 0, //last_used
 	add_auto_save:			false,
+	add_auto_save_context_menu: false,
 	mobile_add_auto_save:	false,
 	
 	browser_extension_mode: 'clipper',
@@ -91,5 +92,6 @@ const safeKeys = [
 	'lang',
 	'add_default_collection',
 	'add_auto_save',
+	'add_auto_save_context_menu',
 	'browser_extension_mode'
 ]

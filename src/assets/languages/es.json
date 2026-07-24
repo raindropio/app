@@ -305,6 +305,7 @@
   "saveTabsCount": "Guardar {0} pestañas",
   "closeTabs": "Cerrar pestañas",
   "saveAutomatically": "Guardar automáticamente",
+  "saveAutomaticallyContextMenu": "También para el menú contextual",
   "addHighlights": "Añadir destacados",
   "addDescription": "Añadir descripción",
   "addNote": "Añadir nota",

@@ -305,6 +305,7 @@
   "saveTabsCount": "{0} tabbladen opslaan",
   "closeTabs": "Tabbladen sluiten",
   "saveAutomatically": "Automatisch opslaan",
+  "saveAutomaticallyContextMenu": "Ook voor het contextmenu",
   "addHighlights": "Markeringen toevoegen",
   "addDescription": "Beschrijving toevoegen",
   "addNote": "Notitie toevoegen",

@@ -305,6 +305,7 @@
   "saveTabsCount": "Save {0} tabs",
   "closeTabs": "Close tabs",
   "saveAutomatically": "Save automatically",
+  "saveAutomaticallyContextMenu": "Also for context menu",
   "addHighlights": "Add highlights",
   "addDescription": "Add description",
   "addNote": "Add note",
