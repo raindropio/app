@@ -7,7 +7,7 @@ import Icon from '~co/common/icon'
 export default ({ className, spaceId })=>(
     <Button 
         className={className}
-        href={new URL(`/my/${spaceId}`, config.links.app.index).toString()}
+        href={new URL(`/my/${parseInt(spaceId)||0}`, config.links.app.index).toString()}
         target='_blank'
         title={t.s('openInNewTab')}>
         <Icon name='open' size='micro' />

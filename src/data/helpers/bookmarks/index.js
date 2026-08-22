@@ -7,6 +7,7 @@ const emptyObject = {}
 export * from './blankSpace'
 export * from './getUrl'
 export * from './queryIsEqual'
+export * from './spaceCacheId'
 export * from './normalizeRecentSearch'
 
 //Iterator by spaceId prefixes and original
