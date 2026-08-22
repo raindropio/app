@@ -11,10 +11,15 @@ export * from './spaceCacheId'
 export * from './normalizeRecentSearch'
 
 //Iterator by spaceId prefixes and original
-export const iterateSpaceId = (spaceId, func)=>{
+export const iterateSpaceId = (spaceId, func, spaces)=>{
 	const cleanSpaceId = String(parseInt(spaceId))
 	func(cleanSpaceId)
 	func(cleanSpaceId+'s')
+
+	if (spaces)
+		for(const id of Object.keys(spaces))
+			if (id.startsWith(cleanSpaceId+':'))
+				func(id)
 }
 
 //Saga helpers

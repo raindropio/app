@@ -21,6 +21,7 @@ export default class BookmarksEmptyView extends React.PureComponent {
         if (spaceId == -101) return null
 
         switch(status.main) {
+            case 'loaded':
             case 'empty':{
 				const _id = parseInt(spaceId)
 

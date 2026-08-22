@@ -1,4 +1,4 @@
-const FILTER = /^(-?[\w.]+:[^\s"']+|❤️)$/
+const FILTER = /^(?:[A-Za-z]+:[A-Za-z]+|❤️)$/
 
 export const getSpaceCacheId = (spaceId, search='')=>{
 	const filter = String(search).trim()
