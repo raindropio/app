@@ -17,7 +17,7 @@ export default function BookmarksExportPopover({ spaceId = 0, pin, onClose }) {
 
     //url generation
     const prefix = useMemo(()=>
-        `${API_ENDPOINT_URL}raindrops/${spaceId}`,
+        `${API_ENDPOINT_URL}raindrops/${parseInt(spaceId)||0}`,
         [spaceId]
     )
     const suffix = useMemo(()=>
