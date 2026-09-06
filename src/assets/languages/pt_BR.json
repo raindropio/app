@@ -305,6 +305,8 @@
   "saveTabsCount": "Salvar {0} abas",
   "closeTabs": "Fechar abas",
   "saveAutomatically": "Salvar automaticamente",
+  "contextMenu": "Menu de contexto",
+  "saveAutomaticallyContextMenu": "Salvar automaticamente sem abrir uma janela",
   "addHighlights": "Adicionar destaques",
   "addDescription": "Adicionar descrição",
   "addNote": "Adicionar nota",

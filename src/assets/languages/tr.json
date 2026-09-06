@@ -305,6 +305,8 @@
   "saveTabsCount": "{0} sekmeyi kaydet",
   "closeTabs": "Sekmeleri kapat",
   "saveAutomatically": "Otomatik kaydet",
+  "contextMenu": "Bağlam menüsü",
+  "saveAutomaticallyContextMenu": "Pencere açmadan otomatik kaydet",
   "addHighlights": "Vurgu ekle",
   "addDescription": "Açıklama ekle",
   "addNote": "Not ekle",

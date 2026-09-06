@@ -305,6 +305,8 @@
   "saveTabsCount": "Spara {0} flikar",
   "closeTabs": "Stäng flikar",
   "saveAutomatically": "Spara automatiskt",
+  "contextMenu": "Snabbmeny",
+  "saveAutomaticallyContextMenu": "Spara automatiskt utan att öppna ett fönster",
   "addHighlights": "Lägg till markeringar",
   "addDescription": "Lägg till beskrivning",
   "addNote": "Lägg till anteckning",

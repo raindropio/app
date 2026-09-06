@@ -305,6 +305,8 @@
   "saveTabsCount": "{0}개 탭 저장",
   "closeTabs": "탭 닫기",
   "saveAutomatically": "자동 저장",
+  "contextMenu": "컨텍스트 메뉴",
+  "saveAutomaticallyContextMenu": "창을 열지 않고 자동 저장",
   "addHighlights": "하이라이트 추가",
   "addDescription": "설명 추가",
   "addNote": "메모 추가",

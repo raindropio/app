@@ -305,6 +305,8 @@
   "saveTabsCount": "Salva {0} schede",
   "closeTabs": "Chiudi schede",
   "saveAutomatically": "Salva automaticamente",
+  "contextMenu": "Menu contestuale",
+  "saveAutomaticallyContextMenu": "Salva automaticamente senza aprire una finestra",
   "addHighlights": "Aggiungi evidenziazioni",
   "addDescription": "Aggiungi descrizione",
   "addNote": "Aggiungi nota",

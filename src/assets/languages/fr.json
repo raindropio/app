@@ -305,6 +305,8 @@
   "saveTabsCount": "Enregistrer {0} onglets",
   "closeTabs": "Fermer les onglets",
   "saveAutomatically": "Enregistrer automatiquement",
+  "contextMenu": "Menu contextuel",
+  "saveAutomaticallyContextMenu": "Enregistrer automatiquement sans ouvrir de fenêtre",
   "addHighlights": "Ajouter des surlignages",
   "addDescription": "Ajouter une description",
   "addNote": "Ajouter une note",

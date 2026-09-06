@@ -3,19 +3,54 @@ import config from '~config'
 import { open } from './action'
 import { addCurrentTabSelection } from './highlights'
 import { environment } from '../environment'
+import Api from '~data/modules/api'
+import { createRaindrop } from '~data/helpers/bookmarks'
+import * as links from './links'
+import * as action from './action'
+
+async function quickSave(link) {
+    if (!link) return false
+
+    let config
+    try {
+        ({ user: { config } } = await Api._get('user'))
+    } catch(e) { return false }
+
+    if (!config.add_auto_save_context_menu)
+        return false
+
+    try {
+        const item = await createRaindrop({
+            link,
+            collectionId: config.add_default_collection || config.last_collection || -1
+        })
+
+        links.add(link, item._id)
+        action.updateBadge().catch(console.error)
+
+        return true
+    } catch(e) {
+        console.error(e)
+        return false
+    }
+}
 
 async function onClicked({ menuItemId, pageUrl, srcUrl, linkUrl }, { windowId }) {
     switch(menuItemId) {
         case 'save_page':
+            if (await quickSave(pageUrl)) return
             return open(`/add?link=${encodeURIComponent(pageUrl)}`)
 
         case 'save_link':
+            if (await quickSave(linkUrl)) return
             return open(`/add?link=${encodeURIComponent(linkUrl)}`)
 
         case 'save_video':
+            if (await quickSave(srcUrl)) return
             return open(`/add?link=${encodeURIComponent(srcUrl)}`)
 
         case 'save_image':
+            if (await quickSave(srcUrl)) return
             return open(`/add?link=${encodeURIComponent(srcUrl)}`)
 
         case 'save_highlight':

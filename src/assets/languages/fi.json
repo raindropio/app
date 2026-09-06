@@ -305,6 +305,8 @@
   "saveTabsCount": "Tallenna {0} välilehteä",
   "closeTabs": "Sulje välilehdet",
   "saveAutomatically": "Tallenna automaattisesti",
+  "contextMenu": "Pikavalikko",
+  "saveAutomaticallyContextMenu": "Tallenna automaattisesti avaamatta ikkunaa",
   "addHighlights": "Lisää korostuksia",
   "addDescription": "Lisää kuvaus",
   "addNote": "Lisää muistiinpano",

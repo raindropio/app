@@ -305,6 +305,8 @@
   "saveTabsCount": "Gem {0} faner",
   "closeTabs": "Luk faner",
   "saveAutomatically": "Gem automatisk",
+  "contextMenu": "Genvejsmenu",
+  "saveAutomaticallyContextMenu": "Gem automatisk uden at åbne et vindue",
   "addHighlights": "Tilføj fremhævninger",
   "addDescription": "Tilføj beskrivelse",
   "addNote": "Tilføj note",

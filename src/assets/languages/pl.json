@@ -305,6 +305,8 @@
   "saveTabsCount": "Zapisz {0} kart",
   "closeTabs": "Zamknij karty",
   "saveAutomatically": "Zapisuj automatycznie",
+  "contextMenu": "Menu kontekstowe",
+  "saveAutomaticallyContextMenu": "Zapisuj automatycznie bez otwierania okna",
   "addHighlights": "Dodaj wyróżnienia",
   "addDescription": "Dodaj opis",
   "addNote": "Dodaj notatkę",

@@ -305,6 +305,8 @@
   "saveTabsCount": "{0} Tabs speichern",
   "closeTabs": "Tabs schließen",
   "saveAutomatically": "Automatisch speichern",
+  "contextMenu": "Kontextmenü",
+  "saveAutomaticallyContextMenu": "Automatisch speichern, ohne ein Fenster zu öffnen",
   "addHighlights": "Highlights hinzufügen",
   "addDescription": "Beschreibung hinzufügen",
   "addNote": "Notiz hinzufügen",
