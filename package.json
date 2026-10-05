@@ -105,5 +105,10 @@
 		"webpack-merge": "^5.8.0",
 		"webpack-pwa-manifest": "^4.0.0",
 		"zip-webpack-plugin": "^4.0.0"
+	},
+	"overrides": {
+		"react-router-dom": {
+			"react-router": "0.0.0"
+		}
 	}
 }
