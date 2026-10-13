@@ -2,7 +2,7 @@ import s from './index.module.styl'
 import React, { useRef, useCallback } from 'react'
 import t from '~t'
 import { useSelector, useDispatch } from 'react-redux'
-import { bookmarksIds, makeStatus, getSearchEmpty } from '~data/selectors/bookmarks'
+import { makeCount, makeStatus, getSearchEmpty } from '~data/selectors/bookmarks'
 import { nextPage } from '~data/actions/bookmarks'
 
 import { Link } from 'react-router-dom'
@@ -10,7 +10,8 @@ import Button from '~co/common/button'
 
 function BookmarksFooter({ spaceId, compact, compactLimit }) {
     //data
-    const count = useSelector(state=>bookmarksIds(state, spaceId).length)
+    const getCount = useRef(makeCount()).current
+    const count = useSelector(state=>getCount(state, spaceId))
     const getStatus = useRef(makeStatus()).current
     const status = useSelector(state=>getStatus(state, spaceId))
     const isSearching = useSelector(state=>!getSearchEmpty(state, spaceId))
