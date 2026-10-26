@@ -43,6 +43,7 @@
 textarea.text {
     field-sizing: content
     scrollbar-gutter: stable
+    overflow-wrap: anywhere
 
     /* unset var → invalid at computed-value time → auto/none, i.e. no clamp */
     min-height: calc( 1lh * var(--min-rows) + (var(--padding-small) * 2) )
