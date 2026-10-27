@@ -12,7 +12,7 @@ class BookmarksItemTag extends React.PureComponent {
             <Link 
                 key={tag} 
                 tabIndex='-1'
-                to={'/my/'+spaceId+'/'+encodeURIComponent(tag.includes(' ') ? `"#${tag}"` : `#${tag}`)}>
+                to={'/my/'+(parseInt(spaceId)||0)+'/'+encodeURIComponent(tag.includes(' ') ? `"#${tag}"` : `#${tag}`)}>
                 <Icon name='tag' size='micro' />
                 {tag}
             </Link>

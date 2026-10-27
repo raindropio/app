@@ -3,15 +3,17 @@ import React, { useState, useCallback } from 'react'
 import t from '~t'
 import { useDispatch, useSelector } from 'react-redux'
 import * as bookmarkActions from '~data/actions/bookmarks'
+import useSpaceCacheId from '../../useSpaceCacheId'
 
 import Button from '~co/common/button'
 import Icon from '~co/common/icon'
 import Modal from '~co/overlay/modal'
 import Stella from '~co/stella'
 
-export default function PageMySpaceHeaderAsk({ itemId, cId }) {
+export default function PageMySpaceHeaderAsk({ itemId, cId, search }) {
     const enabled = useSelector(state=>state.config.ai_assistant)
     const dispatch = useDispatch()
+    const spaceId = useSpaceCacheId(cId, search)
     const [created, setCreated] = useState(false)
     const [visible, setVisible] = useState(false)
 
@@ -22,8 +24,8 @@ export default function PageMySpaceHeaderAsk({ itemId, cId }) {
     }, [])
 
     const onToolCalled = useCallback(() => {
-        dispatch(bookmarkActions.refresh(cId))
-    }, [dispatch, cId])
+        dispatch(bookmarkActions.refresh(spaceId))
+    }, [dispatch, spaceId])
 
     const onClose = useCallback(() => {
         setVisible(false)
