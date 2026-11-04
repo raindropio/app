@@ -9,5 +9,6 @@ export function openTab(links) {
 
     for(const link of arr)
         if (!link.startsWith('file'))
-            window.open(link)
+            try { window.open(link) }
+            catch(e) {} //browser denies privileged urls like moz-extension:// or chrome://
 }

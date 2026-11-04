@@ -23,7 +23,8 @@ export function DateTime({ className='', left, right, value, min, onChange, onFo
 
     //focus
     const onInputFocus = useCallback(e=>{
-        e.currentTarget.showPicker()
+        try { e.currentTarget.showPicker() }
+        catch(err) {} //safari throws when focus is not from user gesture
         if (typeof onFocus == 'function')
             onFocus(e)
     }, [onFocus])

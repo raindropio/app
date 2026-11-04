@@ -48,10 +48,9 @@ export default class CollectionsTree extends React.Component {
         const row = this.props.data[index]
 
         if (!row)
-            if (this.props.customRowRenderer)
-                return this.props.customRowRenderer(
-                    this.props.customRows[index - this.props.data.length]
-                )
+            return this.props.customRowRenderer ?
+                this.props.customRowRenderer(this.props.customRows[index - this.props.data.length]) :
+                null
 
         let Component, active = false, multiselect = false
         switch(row.type) {
@@ -125,7 +124,7 @@ export default class CollectionsTree extends React.Component {
         const origin = this.props.data[from]
         const target = this.props.data[to]
 
-        if (origin && origin.item)
+        if (origin && origin.item && target)
             switch(origin.type){
                 case 'collection': 
                     if (!origin.item.access || !origin.item.access.draggable)

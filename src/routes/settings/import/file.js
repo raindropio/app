@@ -20,7 +20,8 @@ class ImportFile extends React.Component {
 
         this.props.upload(e.target.files[0], undefined, e=>{
             Error(e)
-            this.input.current.value = ''
+            if (this.input.current)
+                this.input.current.value = ''
         })
     }
 

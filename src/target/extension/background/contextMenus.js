@@ -31,7 +31,7 @@ async function onClicked({ menuItemId, pageUrl, srcUrl, linkUrl }, { windowId })
             })
 
         case 'settings':
-            return open('/settings')
+            return open('/settings', { width: 800, height: 700 })
 
         case 'execute_side_panel':
             if (browser.sidePanel)

@@ -16,11 +16,11 @@ function* get(url, overrideOptions={}) {
 		const contentType = (res.headers.get('Content-Type')||'').toLowerCase()
 
 		if (contentType.includes('application/json')){
-			json = yield res.json()
+			json = yield read(res, 'json')
 			checkJSON(json)
 		}
 		else if (contentType.includes('text/plain'))
-			return yield res.text()
+			return yield read(res, 'text')
 	}
 
 	return json;
@@ -36,7 +36,7 @@ function* put(url, data={}, options={}) {
 		},
 		body: JSON.stringify(data)
 	})
-	const json = yield res.json()
+	const json = yield read(res, 'json')
 	checkJSON(json)
 
 	return json;
@@ -52,7 +52,7 @@ function* post(url, data={}, options={}, retries=0) {
 		},
 		body: JSON.stringify(data)
 	}, retries)
-	const json = yield res.json()
+	const json = yield read(res, 'json')
 	checkJSON(json)
 
 	return json;
@@ -77,7 +77,7 @@ function* upload(url, _body, options={}, retries=0) {
 		body
 	}, retries)
 
-	const json = yield res.json()
+	const json = yield read(res, 'json')
 	checkJSON(json)
 
 	return json;
@@ -93,7 +93,7 @@ function* del(url, data={}, options={}) {
 		},
 		...(data ? { body: JSON.stringify(data) } : {})
 	})
-	const json = yield res.json()
+	const json = yield read(res, 'json')
 	checkJSON(json)
 
 	return json;
@@ -139,6 +139,15 @@ function* req(url, options={}, retries=0) {
 	}
 
 	throw new ApiError({ status, errorMessage: `${errorMessage} ${finalURL}` })
+}
+
+//body can fail after headers arrived: connection drop, navigation, truncated response
+function* read(res, type) {
+	try {
+		return yield res[type]()
+	} catch(e) {
+		throw new ApiError({ status: res.status, errorMessage: `${e.message} ${res.url}` })
+	}
 }
 
 const fetchWrap = (url, options)=>(

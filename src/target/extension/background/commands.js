@@ -31,10 +31,13 @@ async function onCommand(command, tab) {
             }
             catch(e) { console.error(e) }
 
-            if (openAction)
-                return open()
+            const add = `/add?link=${encodeURIComponent(url)}`
 
-            return open(`/add?link=${encodeURIComponent(url)}`)
+            //clipper reads active tab of its own window, so it can't work in a separate one
+            if (openAction)
+                return open(undefined, { path: add })
+
+            return open(add)
         }
 
         case 'open_raindrop_web':

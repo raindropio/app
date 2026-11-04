@@ -1,5 +1,10 @@
 import React from 'react'
 
+const isExternalLink = link=>{
+    try { return new URL(link).host != location.host }
+    catch(e) { return false }
+}
+
 export default class DropModule extends React.Component {
     static defaultProps = {
         onDropFiles: undefined, //required func
@@ -80,10 +85,7 @@ export default class DropModule extends React.Component {
                     const found = e.dataTransfer.getData(record.type)
                         .split('\n')
                         .map(v=>v.trim())
-                        .filter(v=>{
-                            try { return new URL(v).host != location.host }
-                            catch(e) { return false }
-                        })
+                        .filter(isExternalLink)
                     
                     for(const link of found)
                         if (!links.includes(link))
@@ -92,8 +94,7 @@ export default class DropModule extends React.Component {
                 //link
                 else if (record.type == 'text/uri-list'){
                     const link = e.dataTransfer.getData(record.type)
-                    if (new URL(link).host != location.host && 
-                        !links.includes(link))
+                    if (isExternalLink(link) && !links.includes(link))
                         links.push(link)
                 }
             }

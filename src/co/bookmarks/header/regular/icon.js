@@ -20,7 +20,7 @@ class BookmarksHeaderIcon extends React.PureComponent {
     }
 
     render() {
-        const { collection: { _id, cover=[], access: { level } }, status } = this.props
+        const { collection: { _id, cover=[], access: { level }={} }, status } = this.props
         const selectable = level >= 3 && status.main == 'loaded'
         const noicon = !cover.length && _id>0
 

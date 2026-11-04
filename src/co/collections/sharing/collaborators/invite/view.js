@@ -35,10 +35,8 @@ export default function CollectionSharingInviteView({ access, onInvite }) {
                     }
                 )
 
-                if (copy) {
-                    await navigator.permissions.query({name: 'clipboard-write'})
-                    await await navigator.clipboard.writeText(link)
-                }
+                if (copy)
+                    await navigator.clipboard.writeText(link)
                 setLoading(false)
             },
             (error)=>{

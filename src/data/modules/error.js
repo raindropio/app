@@ -12,6 +12,6 @@ export default class ApiError extends Error {
         this.code = error
         this.error = error
         this.status = status
-        this.name = this.constructor.name
+        this.name = 'ApiError'
     }
 }

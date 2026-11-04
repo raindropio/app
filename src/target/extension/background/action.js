@@ -18,7 +18,7 @@ export async function updateBadge() {
     ])
 }
 
-export async function open(path) {
+async function openPopup(path) {
     if (!path)
         return browser.action.openPopup()
 
@@ -30,6 +30,29 @@ export async function open(path) {
     } finally {
         //always restore, even if opening failed
         await browser.action.setPopup({ popup: default_popup })
+    }
+}
+
+async function openWindow({ path = '', width = 420, height = 600 }) {
+    const origin = await browser.windows.getCurrent()
+
+    return browser.windows.create({
+        url: `/index.html#${path}`,
+        type: 'popup',
+        width,
+        height,
+        left: Math.round(origin.left + (origin.width - width) / 2),
+        top: Math.round(origin.top + (origin.height - height) / 2)
+    })
+}
+
+//openPopup can fail in some browsers (e.g. Vivaldi), then a separate window is used with windowOptions
+export async function open(path, windowOptions) {
+    try {
+        await openPopup(path)
+    } catch (e) {
+        console.log(e)
+        await openWindow({ path, ...windowOptions })
     }
 }
 

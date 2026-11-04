@@ -33,7 +33,7 @@ export default function BookmarkEditFormCollection({ item, onChange, onSave }) {
 
     const onPickerClose = useCallback(()=>{
         setPick(false)
-        buttonRef.current.focus()
+        buttonRef.current?.focus()
     }, [buttonRef, setPick])
 
     const pickerEvents = useMemo(()=>({
