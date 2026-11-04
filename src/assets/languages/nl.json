@@ -148,6 +148,7 @@
   "comparePlans": "Vergelijk abonnementen",
   "serverCollaboratorsIncorrectToken": "Het is onmogelijk om lid van de collectie te worden. Ongeldige URL. Vraag de eigenaar van de collectie om u nogmaals uit te nodigen.",
   "serverCollaboratorsAlready": "U bent al lid van de collectie!",
+  "serverRecaptcha": "reCAPTCHA kon niet worden geladen. Schakel de adblocker uit of probeer een andere browser",
   "support": "Support",
   "info": "Info",
   "open": "Open",

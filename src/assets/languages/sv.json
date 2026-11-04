@@ -148,6 +148,7 @@
   "comparePlans": "Jämför",
   "serverCollaboratorsIncorrectToken": "Det går inte att bli medlem i samlingen. Ogiltig URL. Be ägaren av samlingen att bjuda in dig igen.",
   "serverCollaboratorsAlready": "Du är redan medlem i samlingen!",
+  "serverRecaptcha": "reCAPTCHA kunde inte läsas in. Stäng av annonsblockeraren eller prova en annan webbläsare",
   "support": "Support",
   "info": "Info",
   "open": "Öppna",

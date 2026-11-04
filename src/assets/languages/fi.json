@@ -148,6 +148,7 @@
   "comparePlans": "Vertaile",
   "serverCollaboratorsIncorrectToken": "On mahdotonta tulla kokoelman jäseneksi. Virheellinen osoite. Pyydä kokoelman tekijää kutsumaan sinut vielä kertaalleen.",
   "serverCollaboratorsAlready": "Olet jo kokoelman jäsen!",
+  "serverRecaptcha": "reCAPTCHA:n lataus epäonnistui. Poista mainosten esto käytöstä tai kokeile toista selainta",
   "support": "Tuki",
   "info": "Tiedot",
   "open": "Avaa",

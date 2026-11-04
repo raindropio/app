@@ -16,7 +16,7 @@ export async function Alert(message, custom={}) {
 export async function Error(error, custom={}) {
     return DialogsContainer.openDialog('alert', {
         message: t.s('error'),
-        description: error.error && t.has('server'+error.error) ? t.s('server'+error.error) : error.message,
+        description: (error.error && t.has('server'+error.error) ? t.s('server'+error.error) : error.message) || t.s('tryAgain'),
         variant: 'error',
         ...custom
     })

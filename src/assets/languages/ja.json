@@ -148,6 +148,7 @@
   "comparePlans": "プランを比較",
   "serverCollaboratorsIncorrectToken": "コレクションのメンバーになることはできません。無効なURLです。コレクションの作者に再度招待を依頼してください。",
   "serverCollaboratorsAlready": "すでにコレクションのメンバーになっています！",
+  "serverRecaptcha": "reCAPTCHA を読み込めませんでした。広告ブロッカーを無効にするか、別のブラウザをお試しください",
   "support": "サポート",
   "info": "情報",
   "open": "開く",

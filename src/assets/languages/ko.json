@@ -148,6 +148,7 @@
   "comparePlans": "요금제 비교하기",
   "serverCollaboratorsIncorrectToken": "컬렉션에 참여할 수 없습니다. 초대 링크가 유효하지 않습니다. 컬렉션 소유자에게 다시 초대해 달라고 요청하세요.",
   "serverCollaboratorsAlready": "이미 컬렉션의 멤버입니다!",
+  "serverRecaptcha": "reCAPTCHA를 불러올 수 없습니다. 광고 차단기를 끄거나 다른 브라우저를 사용해 보세요",
   "support": "지원",
   "info": "정보",
   "open": "열기",

@@ -148,6 +148,7 @@
   "comparePlans": "Compare os planos",
   "serverCollaboratorsIncorrectToken": "Não foi possível se tornar um membro da coleção. URL inválido. Peça ao dono da coleção para convidá-lo novamente.",
   "serverCollaboratorsAlready": "Você já é membro da coleção!",
+  "serverRecaptcha": "Não foi possível carregar o reCAPTCHA. Desative o bloqueador de anúncios ou tente outro navegador",
   "support": "Suporte",
   "info": "Informações",
   "open": "Abrir",

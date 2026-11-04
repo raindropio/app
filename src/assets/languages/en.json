@@ -148,6 +148,7 @@
   "comparePlans": "Compare plans",
   "serverCollaboratorsIncorrectToken": "Unable to join the collection. The invite link is invalid. Ask the collection owner to invite you again.",
   "serverCollaboratorsAlready": "You are already a collection member!",
+  "serverRecaptcha": "reCAPTCHA failed to load. Disable ad blocker or try another browser",
   "support": "Support",
   "info": "Info",
   "open": "Open",

@@ -148,6 +148,7 @@
   "comparePlans": "Comparer les versions",
   "serverCollaboratorsIncorrectToken": "Vous ne pouvez pas devenir membre de cette collection. URL incorrecte. Demandez à l'auteur de la collection de vous inviter à nouveau.",
   "serverCollaboratorsAlready": "Vous êtes déjà membre de la collection !",
+  "serverRecaptcha": "Échec du chargement de reCAPTCHA. Désactivez le bloqueur de publicités ou essayez un autre navigateur",
   "support": "Support",
   "info": "Informations",
   "open": "Ouvrir",

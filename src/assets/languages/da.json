@@ -148,6 +148,7 @@
   "comparePlans": "Sammenlign abonnementstyper",
   "serverCollaboratorsIncorrectToken": "Det er ikke muligt at blive medlem af denne samling. Ugyldig URL. Få samlingens ejer til at invitere dig igen.",
   "serverCollaboratorsAlready": "Du er allerede medlem af denne samling!",
+  "serverRecaptcha": "reCAPTCHA kunne ikke indlæses. Slå adblockeren fra, eller prøv en anden browser",
   "support": "Support",
   "info": "Info",
   "open": "Åbn",

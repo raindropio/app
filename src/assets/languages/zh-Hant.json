@@ -148,6 +148,7 @@
   "comparePlans": "計劃比較",
   "serverCollaboratorsIncorrectToken": "無法加入共享收藏夾。連結為無效，請詢問收藏夾擁有人，讓他重新發送共享連結邀請。",
   "serverCollaboratorsAlready": "你已經是收藏夾的共享成員了！",
+  "serverRecaptcha": "reCAPTCHA 載入失敗。請關閉廣告攔截器或嘗試其他瀏覽器",
   "support": "支持",
   "info": "資訊",
   "open": "開啟",

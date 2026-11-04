@@ -148,6 +148,7 @@
   "comparePlans": "Confronta offerte",
   "serverCollaboratorsIncorrectToken": "Impossibile entrare a far parte della raccolta. URL non valido. Chiedi all'autore della raccolta di invitarti di nuovo.",
   "serverCollaboratorsAlready": "Sei già membro della raccolta!",
+  "serverRecaptcha": "Impossibile caricare reCAPTCHA. Disattiva il blocco degli annunci o prova un altro browser",
   "support": "Supporto tecnico",
   "info": "Informazioni",
   "open": "Apri",

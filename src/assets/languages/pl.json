@@ -148,6 +148,7 @@
   "comparePlans": "Porównaj",
   "serverCollaboratorsIncorrectToken": "Nie można zostać członkiem tej kolekcji. Nieprawidłowy adres URL. Poproś autora kolekcji o ponowne zaproszenie.",
   "serverCollaboratorsAlready": "Już jesteś członkiem tej kolekcji!",
+  "serverRecaptcha": "Nie udało się załadować reCAPTCHA. Wyłącz blokowanie reklam lub spróbuj w innej przeglądarce",
   "support": "Wsparcie",
   "info": "Informacje",
   "open": "Otwórz",

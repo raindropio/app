@@ -148,6 +148,7 @@
   "comparePlans": "Abonnements vergleichen",
   "serverCollaboratorsIncorrectToken": "Es ist unmöglich ein Mitglied dieser Sammlung zu werden. Ungültige URL. Frag den Autor der Sammlung danach dich noch einmal einzuladen.",
   "serverCollaboratorsAlready": "Du bist bereits Mitglied dieser Sammlung!",
+  "serverRecaptcha": "reCAPTCHA konnte nicht geladen werden. Deaktiviere den Adblocker oder versuche es mit einem anderen Browser",
   "support": "Support",
   "info": "Informationen",
   "open": "Öffnen",

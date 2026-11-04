@@ -148,6 +148,7 @@
   "comparePlans": "Planları karşılaştır",
   "serverCollaboratorsIncorrectToken": "Koleksiyonun üyesi olabilmek imkansız. Geçersiz URL. Koleksiyonun yaratıcısına davet edilir edilmez bildirin.",
   "serverCollaboratorsAlready": "Hali hazırda koleksiyon üyesisiniz!",
+  "serverRecaptcha": "reCAPTCHA yüklenemedi. Reklam engelleyiciyi kapatın veya başka bir tarayıcı deneyin",
   "support": "Destek",
   "info": "Bilgi",
   "open": "Aç",

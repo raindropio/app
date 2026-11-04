@@ -148,6 +148,7 @@
   "comparePlans": "比较",
   "serverCollaboratorsIncorrectToken": "不可能成为收藏一员。无效链接。询问收藏人，让他再邀请你一次。",
   "serverCollaboratorsAlready": "你已经是收藏集的成员",
+  "serverRecaptcha": "reCAPTCHA 加载失败。请关闭广告拦截器或尝试其他浏览器",
   "support": "支持",
   "info": "资讯",
   "open": "直接在浏览器打开",
