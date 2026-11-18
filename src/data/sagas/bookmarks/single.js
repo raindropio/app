@@ -19,7 +19,8 @@ import {
 import {
 	getBookmark,
 	getBookmarkScreenshotIndex,
-	getMeta
+	getMeta,
+	createRaindrop
 } from '../../helpers/bookmarks'
 
 import { isPro } from '../../selectors/user'
@@ -74,32 +75,12 @@ function* createBookmark({obj={}, ignore=false, draft, onSuccess, onFail}) {
 	if (ignore) return;
 
 	try{
-		let item = { ...obj }
-
-		//minimum info is already provided, grab all other in background on server
-		if (item.title)
-			item.pleaseParse = { weight: 1 }
-		//parse bookmark otherwise
-		else {
-			const parsed = yield call(Api.get, 'import/url/parse?url='+encodeURIComponent(item.link))
-
-			item = { ...item, ...parsed.item }
-		}
-
-		//try to create bookmark on server
-		let res
-		try {
-			res = yield call(Api.post, 'raindrop', item)
-		} catch (e) {}
-
-		//try again, maybe it's collectionId related issue
-		if (!res)
-			res = yield call(Api.post, 'raindrop', {...item, collectionId: -1 })
+		const item = yield call(createRaindrop, obj)
 
 		yield put({
 			type: BOOKMARK_CREATE_SUCCESS,
-			_id: res.item._id,
-			item: res.item,
+			_id: item._id,
+			item,
 			draft,
 			onSuccess, onFail
 		});
