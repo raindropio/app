@@ -1,5 +1,5 @@
 import _ from 'lodash-es'
-import { normalizeBookmarks, blankSpace, queryIsEqual } from '../../helpers/bookmarks'
+import { normalizeBookmarks, blankSpace, queryIsEqual, iterateSpaceId } from '../../helpers/bookmarks'
 import { actualizeSpaceStatus } from './utils'
 import { REHYDRATE } from 'redux-persist/src/constants'
 import {
@@ -340,17 +340,19 @@ export default function(state, action) {switch (action.type) {
 			.set('meta', state.meta.without(ids))
 
 		//remove from *all bookmarks* ids
-		for(const spaceId of [0, '0s']){
+		iterateSpaceId(0, (spaceId)=>{
 			let space = state.spaces[spaceId]
-			if (!space) continue
-			
+			if (!space) return
+
 			space = space
 				.set('ids', _.without(space.ids, ...ids))
 				.set('highlight', space.highlight.without(ids))
 
 			state = state.setIn(['spaces', spaceId], space)
-		}
-		
+		}, state.spaces)
+
+		state = actualizeSpaceStatus(state, 0)
+
 		return state
 	}
 }}
