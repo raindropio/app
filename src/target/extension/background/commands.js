@@ -5,24 +5,14 @@ import { open } from './action'
 import { addCurrentTabSelection } from './highlights'
 import Api from '~data/modules/api'
 
-function getSelectedText() {
-    var s = window.getSelection(); 
-    return s && s.rangeCount>0 && !s.isCollapsed && s.toString().trim().length>0
-}
-
 async function onCommand(command, tab) {
     switch(command) {
         case 'save_page':{
-            const { url='', id } = tab || await currentTab()
-
             //save highlight if text is selected
-            const [res] = await browser.scripting.executeScript({
-                target : {tabId : id},
-                func: getSelectedText,
-                injectImmediately: true
-            })
-            if (res?.result)
-                return addCurrentTabSelection()
+            if (await addCurrentTabSelection())
+                return
+
+            const { url='' } = tab || await currentTab()
 
             let openAction = false
             try {

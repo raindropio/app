@@ -6,4 +6,5 @@
     - on failure → sync, page reverts to real state
 - RDH_READY is ignored: every injection is followed by push with config
 - addCurrentTabSelection()
+    - no selection or unsupported page → false
     - request permissions → RDH_ADD_SELECTION → page sends RDH_ADD

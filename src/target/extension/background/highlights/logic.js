@@ -5,9 +5,11 @@ import * as action from '../action'
 import file from './highlight.js?asis'
 import Api from '~data/modules/api'
 
+const appHosts = ['app.raindrop.io', 'beta.raindrop.io']
+
 //server state → page
 export async function sync(tab) {
-    if (!isWebPage(tab)) return
+    if (!isEnabledPage(tab)) return
     if (!await havePermission()) return
 
     await links.load()
@@ -101,6 +103,20 @@ export async function addSelection(tab) {
     return browser.tabs.sendMessage(tab.id, { type: 'RDH_ADD_SELECTION' })
 }
 
+export async function hasSelection(tab) {
+    if (!isEnabledPage(tab)) return false
+
+    const [res] = await browser.scripting.executeScript({
+        target: { tabId: tab.id },
+        func: function() {
+            const s = window.getSelection()
+            return s && s.rangeCount>0 && !s.isCollapsed && s.toString().trim().length>0
+        },
+        injectImmediately: true
+    })
+    return res?.result ? true : false
+}
+
 export async function havePermission() {
     return browser.permissions.contains({
         permissions: ['tabs'],
@@ -159,7 +175,7 @@ async function getConfig() {
 }
 
 async function inject(tab) {
-    if (!isWebPage(tab)) return false
+    if (!isEnabledPage(tab)) return false
 
     if (await isInjected(tab))
         return true
@@ -194,6 +210,11 @@ async function isInjected(tab) {
     return res?.result ? true : false
 }
 
-function isWebPage(tab) {
-    return /^https?:/.test(tab?.url || '')
+function isEnabledPage(tab) {
+    try {
+        const { protocol, hostname } = new URL(tab?.url)
+        return /^https?:$/.test(protocol) && !appHosts.includes(hostname)
+    } catch(e) {
+        return false
+    }
 }

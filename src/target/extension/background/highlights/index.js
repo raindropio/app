@@ -1,6 +1,6 @@
 import browser from 'webextension-polyfill'
 import { currentTab } from '~target'
-import { sync, add, update, remove, addSelection, requestPermission } from './logic'
+import { sync, add, update, remove, addSelection, hasSelection, requestPermission } from './logic'
 
 async function onMessage({ type, payload }, sender) {
     if (sender.id != browser.runtime.id) return
@@ -54,9 +54,15 @@ async function onPermissionsAdded() {
         await onTabActivated({ tabId: id })
 }
 
+//false when current tab has no selection to highlight
 export async function addCurrentTabSelection() {
+    const tab = await currentTab()
+    if (!await hasSelection(tab)) return false
+
     if (await requestPermission())
-        return addSelection(await currentTab())
+        await addSelection(tab)
+
+    return true
 }
 
 export default function() {

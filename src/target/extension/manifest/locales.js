@@ -3,9 +3,11 @@ const path = require('path')
 
 const folder = path.resolve(__dirname, '../../../assets/languages')
 const _strings = {}
-const overrideLangCode = {
-    'zh-Hans': 'zh_CN',
-    'zh-Hant': 'zh_TW'
+//browsers look up exact locale, then language only: pt covers pt_PT
+const localeCodes = {
+    'pt_BR': ['pt_BR', 'pt'],
+    'zh-Hans': ['zh_CN'],
+    'zh-Hant': ['zh_TW']
 }
 
 function s(lang, key) {
@@ -27,7 +29,7 @@ module.exports = ({ emitFile })=>{
     ).map(([lang])=>lang)
 
     for(const lang of languages){
-        emitFile(`_locales/${overrideLangCode[lang] || lang}/messages.json`, JSON.stringify(
+        const messages = JSON.stringify(
             {
                 appDesc: {
                     message: s(lang, 'raindropTagline'),
@@ -84,6 +86,9 @@ module.exports = ({ emitFile })=>{
             },
             null,
             2
-        ))
+        )
+
+        for(const code of localeCodes[lang] || [lang])
+            emitFile(`_locales/${code}/messages.json`, messages)
     }
 }
