@@ -2,12 +2,15 @@ import React, { useCallback, useMemo } from 'react'
 import { useSelector } from 'react-redux'
 import { useNavigate, useLocation } from 'react-router-dom'
 import { target, environment, openTab } from '~target'
+import useSpaceCacheId from '../useSpaceCacheId'
 import Bookmarks from '~co/bookmarks'
 
 export default function PageMySpaceBookmarks({ cId, search, itemId }) {
     const { pathname } = useLocation()
     let { raindrops_click } = useSelector(state=>state.config)
     const navigate = useNavigate()
+
+    const spaceId = useSpaceCacheId(cId, search)
 
     const onBookmarkClick = useCallback(item=>{
         //no preview in extension, so open in new tab instead
@@ -36,7 +39,7 @@ export default function PageMySpaceBookmarks({ cId, search, itemId }) {
 
     return (
         <Bookmarks 
-            spaceId={cId}
+            spaceId={spaceId}
             search={search}
             full={search || pathname.includes('/full') ? true : false}
             activeId={itemId && parseInt(itemId)}

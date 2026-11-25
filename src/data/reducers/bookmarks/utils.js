@@ -2,6 +2,8 @@ import _ from 'lodash-es'
 import { iterateSpaceId } from '../../helpers/bookmarks'
 
 export const actualizeSpaceStatus = (state, spaceId)=>{
+	const spaces = state.spaces
+
 	iterateSpaceId(spaceId, (cleanSpaceId)=>{
 		const space = state.getIn(['spaces', cleanSpaceId])
 		var newMainStatus = '',
@@ -23,7 +25,7 @@ export const actualizeSpaceStatus = (state, spaceId)=>{
 
 		if (newNextPageStatus)
 			state = state.setIn(['spaces', cleanSpaceId, 'status', 'nextPage'], 	newNextPageStatus)
-	})
+	}, spaces)
 
 	return state
 }
@@ -42,12 +44,14 @@ export const insertIdToSpace = (state, spaceId, _id)=>{
 }
 
 export const removeIdFromSpace = (state, spaceId, _id)=>{
+	const spaces = state.spaces
+
 	iterateSpaceId(spaceId, (cleanSpaceId)=>{
 		const ids = state.getIn(['spaces', cleanSpaceId, 'ids'])||[]
 		if (ids.length)
 			state = state
 				.setIn(['spaces', cleanSpaceId, 'ids'], ids.filter((id)=>id!=_id))
-	})
+	}, spaces)
 
 	return state
 }
